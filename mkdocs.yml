@@ -1,0 +1,6 @@
+site_name: OpenVidu Documentation
+pages:
+- ['index.md','Home', 'Home']
+- ['api/index.md','API', 'API']
+theme: readthedocs
+repo_url: https://github.com/OpenVidu/openvidu.io-docs

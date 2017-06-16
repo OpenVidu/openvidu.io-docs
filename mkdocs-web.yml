@@ -1,0 +1,7 @@
+site_name: OpenVidu Documentation
+pages:
+- ['index.md','Home', 'Home']
+- ['api/index.md','API', 'API']
+theme: null
+theme_dir: 'custom_theme'
+repo_url: https://github.com/OpenVidu/openvidu.io-docs
