@@ -46,7 +46,7 @@ Building a simple app with OpenVidu
 ===================
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSNF9ZWHREUXo3QlE">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSNF9ZWHREUXo3QlE">
 </p>
 
 OpenVidu has a traditional **Client - Server** architecture built on three modules that are shown in the image above. To run **openvidu-server** and **Kurento Media Server** you can execute the following container: 
@@ -56,7 +56,7 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 ```
  
  
-Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in [OpenVidu.js] file that you can download from https://github.com/OpenVidu/openvidu/blob/master/openvidu-browser/src/main/resources/static/js/OpenVidu.js. Then add the file in your HTML with `<script src="OpenVidu.js"></script>`.
+Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in [OpenVidu.js] file that you can download from [HERE](https://github.com/OpenVidu/openvidu/blob/master/openvidu-browser/src/main/resources/static/js/OpenVidu.js). Then add the file in your HTML with `<script src="OpenVidu.js"></script>`.
 
 With the **openvidu-browser** library you can handle all available operations straight away from your client, as creating video calls, joining users to them or publishing/unpublishing video and audio
 
@@ -138,7 +138,7 @@ Thus, a non-secure version of OpenVidu is only intended for development environm
 
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeDNIekd5R2ZhQUE">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeDNIekd5R2ZhQUE">
 </p>
 
 In the image above you can see the main difference with the non-secure version of OpenVidu. Your backend will now have to call two HTTP REST operations in openvidu-server to get the two parameters needed in the securization process:
@@ -157,7 +157,7 @@ You have three different options available for getting sessionIds and tokens fro
 
 
 <p align="center">
-  <img src="http://www.plantuml.com/plantuml/png/ZP9TIyCm58QlcrznY3SJNFsus8KNmgPJAcKPRWWYkyYQT8HXKfBiu-URkcn4cxhUji_xdFSSOjP2LbJJBnYf_PGo9kGARcyGSX-jA4H5fGNyeJOQdhMI5l_-eIekju9j-akjTePhZ11QgZtW7vXBXk623ygxiaH9gp4vetGQSD9Ofn4jrcsLN7ORDAhHKw6I3sA53hhaVz-fJhW4z1z21zp3PqvUiWcGwVXjEC_8P76EVoKEVy-UnWGUXtc-G6cQ7eSSe3hpjuvBNg-udN5ZX98PGqsYCGgR8uqx-INVpPKxNYUthSccDzpTBHjKkFAHo84QRy55NHdms_O2ooMAqCt1Fj1jb8VJGad92zlpHLj7nMxdizy0">
+  <img class="img-responsive" src="http://www.plantuml.com/plantuml/png/ZP9TIyCm58QlcrznY3SJNFsus8KNmgPJAcKPRWWYkyYQT8HXKfBiu-URkcn4cxhUji_xdFSSOjP2LbJJBnYf_PGo9kGARcyGSX-jA4H5fGNyeJOQdhMI5l_-eIekju9j-akjTePhZ11QgZtW7vXBXk623ygxiaH9gp4vetGQSD9Ofn4jrcsLN7ORDAhHKw6I3sA53hhaVz-fJhW4z1z21zp3PqvUiWcGwVXjEC_8P76EVoKEVy-UnWGUXtc-G6cQ7eSSe3hpjuvBNg-udN5ZX98PGqsYCGgR8uqx-INVpPKxNYUthSccDzpTBHjKkFAHo84QRy55NHdms_O2ooMAqCt1Fj1jb8VJGad92zlpHLj7nMxdizy0">
 </p>
 
  1. Identify your user and listen to a request for joining a video call (represented by [LOGIN OPERATION] and [JOIN VIDEO CALL] in the diagram). This process is entirely up to you.
@@ -243,11 +243,11 @@ Acknowledgments
 OpenVidu platform has been supported under project LERNIM (RTC-2016-4674-7) confunded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Union_ FEDER, whose main goal with this funds is to promote technological development, innovation and high-quality research.
 
 <p align="center">
-  <img width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSQzNLQnF4SnhFLWc">
+  <img class="img-responsive" width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSQzNLQnF4SnhFLWc">
 </p>
 
 <p align="center">
-  <img width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSa205YXNkSW9VNUE">
+  <img class="img-responsive" width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSa205YXNkSW9VNUE">
 </p>
 
 

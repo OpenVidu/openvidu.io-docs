@@ -25,7 +25,7 @@ active: documentation
 			$(this).find('ul.subnav').toggle();
 		});
 
-		var minHeight = $('#float-panel').outerHeight() + 100;
+		var minHeight = $('#sticky-menu').outerHeight() + 100;
 		$('#doc-container').css('min-height', minHeight + 'px');
 	});
 
@@ -33,8 +33,7 @@ active: documentation
 </script>
 
 <div id="doc-container" class="container text-justify">
-	<div class="holder range">
-		<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12"> <div id="float-panel" class="float-panel" data-top="56">
+		<div id="sticky-menu" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 
 			{# SIDE NAV, TOGGLES ON MOBILE #}
 			<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
@@ -53,7 +52,7 @@ active: documentation
 				</div>
 				&nbsp;
 			</nav>
-		</div></div>
+		</div>
 
 		<section class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
 			{# PAGE CONTENT #}
@@ -69,6 +68,4 @@ active: documentation
 				</div>
 			</div>
 		</section>
-
-	</div>
 </div>
