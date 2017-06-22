@@ -1,7 +1,15 @@
 site_name: OpenVidu Documentation
 pages:
 - ['index.md','Home', 'Home']
+- ['tutorials/index.md','Tutorials', 'Intro']
+- ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
+- ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
+- ['tutorials/openvidu-js-java.md','Tutorials', 'openvidu-js-java']
+- ['tutorials/openvidu-mvc-java.md','Tutorials', 'openvidu-mvc-java']
+- ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
+- ['tutorials/openvidu-mvc-node.md','Tutorials', 'openvidu-mvc-node']
 - ['api/index.md','API', 'API']
+- ['deployment/index.md','Deployment', 'Deployment']
 theme: null
 theme_dir: 'custom_theme'
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

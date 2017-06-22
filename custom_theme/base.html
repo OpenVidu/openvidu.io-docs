@@ -1,0 +1,74 @@
+---
+layout: docs-layout
+title: OpenVidu Documentation{% if page.title %} - {{ page.title }}{% endif %}
+active: documentation
+---
+
+<script src="/js/jquery-3.2.1.slim.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('li.subnav_drop').find('ul.subnav').hide();
+		$(".subnav").find("li:contains('{{ page.title }}')").each(function (i, e) {
+			var currentElement = $(e);
+			currentElement.parent().css({
+				"display": "block",
+				"visibility": "visible"
+			}); //css("background-color","blue");
+			currentElement.css({
+				"display": "block",
+				"visibility": "visible"
+			});
+		});
+		$('li.subnav_drop').click(function (i, e) {
+			$('li.subnav_drop').not(this).find('ul.subnav').hide();
+			$(this).find('ul.subnav').toggle();
+		});
+
+		var minHeight = $('#float-panel').outerHeight() + 100;
+		$('#doc-container').css('min-height', minHeight + 'px');
+	});
+
+	$(".wy-nav-content").find("li:contains('{{ page.title }}')").css('color', 'red');
+</script>
+
+<div id="doc-container" class="container text-justify">
+	<div class="holder range">
+		<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12"> <div id="float-panel" class="float-panel" data-top="56">
+
+			{# SIDE NAV, TOGGLES ON MOBILE #}
+			<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+				<div class="wy-menu wy-menu-vertical" role="navigation" aria-label="main navigation">
+					<div id="site-menu-title">
+						<h3>Explore docs</h3>
+						<hr>
+					</div>
+					<ul id="menu-list" class="current">
+						{% for nav_item in nav %} {% if nav_item.title != "**HIDDEN**" %}
+						<li>
+							<ul>{% include "toc.html" %}</ul>
+						</li>
+						{% endif %} {% endfor %}
+					</ul>
+				</div>
+				&nbsp;
+			</nav>
+		</div></div>
+
+		<section class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+			{# PAGE CONTENT #}
+			<div>
+				<div>
+
+					<div role="main">
+						<div class="section">
+							{% block content %} {{ page.content }} {% endblock %}
+						</div>
+					</div>
+					{%- block footer %} {% include "footer.html" %} {% endblock %}
+				</div>
+			</div>
+		</section>
+
+	</div>
+</div>
