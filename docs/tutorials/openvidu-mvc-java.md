@@ -5,7 +5,7 @@ A secure OpenVidu sample app with a Java backend and a traditional MVC frontend.
 ## Understanding this example
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSQzJGRDhzS1dNZFk">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSQzJGRDhzS1dNZFk">
 </p>
 
 OpenVidu is composed by the modules displayed on the image above.
@@ -75,7 +75,7 @@ Let's describe the code following this scenario: a user logs in to the app and c
 At path `/` a login form will be displayed:
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
 </p>
 
 The form will execute a POST operation to path `/dashboard` whenever "Log in" button is clicked, passing the username and the password:
@@ -136,7 +136,7 @@ public String login(@RequestParam(name = "user", required = false) String user,
 `dashboard.html` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
 </p>
 
 The form will execute a POST operation to path `/session` whenever "Join!" button is clicked, passing the nickname and the session name:

@@ -5,7 +5,7 @@ A secure OpenVidu sample app with a Node backend and a SPA frontend. It makes us
 ## Understanding this example
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSVkNVZ2s3cmk2aHM">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSVkNVZ2s3cmk2aHM">
 </p>
 
 OpenVidu is composed by the modules displayed on the image above.
@@ -85,7 +85,7 @@ Where `method` is whether "POST" or "GET", `url` the path of the REST operation,
 `index.html` will first show a form to log in:
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
 </p>
 
 `app.js` sends an HTTP request to "/api-login/login" passing the username and the password retrieved from the HTML form whenever "Log in" button is clicked:
@@ -136,7 +136,7 @@ app.post('/api-login/login', function (req, res) {
 HTML will display now the user has logged a different form, asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field and press "Join!" button:
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
 </p>
 
 `app.js` will execute `joinSession()` method, which starts like this:

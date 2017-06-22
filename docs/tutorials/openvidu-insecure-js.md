@@ -5,7 +5,7 @@ This is the simplest demo you can try to get started with OpenVidu. It has the m
 ## Understanding this example
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeVBWdkFwWEtqNjA">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeVBWdkFwWEtqNjA">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.

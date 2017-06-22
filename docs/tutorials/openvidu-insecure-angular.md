@@ -5,7 +5,7 @@ This is the Angular version of _openvidu-insecure-js_. Try it if you plan to use
 ## Understanding this example
 
 <p align="center">
-  <img src="https://docs.google.com/uc?id=0B61cQ4sbhmWSbmtwcXNnXy1ZSkU">
+  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSbmtwcXNnXy1ZSkU">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
