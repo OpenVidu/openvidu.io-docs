@@ -21,26 +21,26 @@ OpenVidu is composed by the modules displayed on the image above.
 
 1. Clone the repo:
 
-	```bash
+	```
 	git clone https://github.com/OpenVidu/openvidu-tutorials.git
 	```
 	
 2. You will need _maven_ to build the project. You can install it with:
 
-	```bash
+	```
 	sudo apt-get install maven
 	```
 
 3. To run the sample application, execute the following command in the project:
 
-	```bash
+	```
 	cd openvidu-mvc-java
 	mvn package exec:java
 	```
 
 4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-	```bash
+	```
 	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 	```
 

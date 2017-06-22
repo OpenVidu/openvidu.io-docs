@@ -21,20 +21,20 @@ OpenVidu is composed by the modules displayed on the image above.
 
 1. Clone the repo:
 
-	```bash
+	```
 	git clone https://github.com/OpenVidu/openvidu-tutorials.git
 	```
 	
 2. You will need _node_ and _NPM_ to execute the app. You can install them with:
 
-	```bash
+	```
 	sudo apt-get install nodejs
 	sudo apt-get install npm
 	```
 
 3. To run the sample application, execute the following commands in the project. They will install the NPM dependencies and will execute `server.js` server passing two arguments: "localhost:8443" as the URL where _openvidu-server_ will be listening and "MY_SECRET" as the secret share with it:
 
-	```bash
+	```
 	cd openvidu-js-node
 	npm install
 	node server.js localhost:8443 MY_SECRET
@@ -42,7 +42,7 @@ OpenVidu is composed by the modules displayed on the image above.
 
 4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-	```bash
+	```
 	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 	```
 
