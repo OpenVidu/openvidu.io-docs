@@ -6,6 +6,10 @@ active: documentation
 
 <script src="/js/jquery-3.2.1.slim.min.js"></script>
 
+<link rel="stylesheet" href="/css/syntax.css" />
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <script type="text/javascript">
 	$(document).ready(function () {
 		$('li.subnav_drop').find('ul.subnav').hide();
@@ -20,9 +24,9 @@ active: documentation
 				"visibility": "visible"
 			});
 		});
-		$('li.subnav_drop').click(function (i, e) {
-			$('li.subnav_drop').not(this).find('ul.subnav').hide();
-			$(this).find('ul.subnav').toggle();
+		$('li.subnav_drop div').click(function (i, e) {
+			//$('li.subnav_drop span').not(this).find('ul.subnav').hide();
+			$(this).parent().find('ul.subnav').toggle();
 		});
 
 		var minHeight = $('#sticky-menu').outerHeight() + 100;

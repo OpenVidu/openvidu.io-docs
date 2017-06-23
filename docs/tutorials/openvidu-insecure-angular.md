@@ -18,33 +18,33 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Executing this example
 
-1. Clone the repo:
+1) Clone the repo:
 
-	```
-	git clone https://github.com/OpenVidu/openvidu-tutorials.git
-	```
-	
-2. You will need angular-cli to serve the Angular frontend. You can install it with the following command:
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+```
 
-	```
-	npm install -g @angular/cli
-	```
+2) You will need angular-cli to serve the Angular frontend. You can install it with the following command:
 
-3. To run the sample application, execute the following command in the project:
+```bash
+npm install -g @angular/cli
+```
 
-	```
-	cd openvidu-insecure-angular
-	npm install
-	ng serve
-	```
+3) To run the sample application, execute the following command in the project:
 
-4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+```bash
+cd openvidu-insecure-angular
+npm install
+ng serve
+```
 
-	```
-	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
-	```
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-5. Go to [`localhost:4200`](http://localhost:4200) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+```bash
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
+```
+
+5) Go to [`localhost:4200`](http://localhost:4200) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 ## Understanding the code
 
@@ -57,12 +57,17 @@ This is an Angular project generated with angular-cli, and therefore you will se
 
 Let's see how `app.component.ts` uses `openvidu-browser`:
 
-- First line imports the necessary objects from `openvidu-browser`:
+---
+
+**First line imports the necessary objects from `openvidu-browser`:**
 
 ```typescript
 import { OpenVidu, Session, Stream } from 'openvidu-browser';
 ```
-- `app.component.ts` declares the following properties:
+
+---
+
+**`app.component.ts` declares the following properties:**
 
 ```typescript
 // OpenVidu objects
@@ -79,7 +84,9 @@ token: string;
 ```
 `OpenVidu` object will allow us to get a `Session` object, which is declared just after it. `remoteStreams` array will store the active streams of other users in the video-call and `localStream` will be your own local webcam stream. Finally, `sessionId` and `token` params simply represent the video-call and your participant's nickname, as you will see in a moment.
 
-- Whenever a user clicks on the submit input defined in `app.component.html`, `joinSession()` method is called:
+---
+
+**Whenever a user clicks on the submit input defined in `app.component.html`, `joinSession()` method is called:**
 
 ```javascript
 // --- 1) Get an OpenVidu object and init a session with a sessionId ---
@@ -130,7 +137,9 @@ Here we subscribe to the Session events that interest us. As we are using Angula
 	
 `streamDestroyed`: for each Stream that has been destroyed (which means a user has left the video-call), we remove it from `remoteStreams` array, so Angular will automatically delete the required StreamComponent from HTML. We call `event.preventDefault()` to cancel OpenVidu default behaviour towards `streamDestroyed` event, which is the deletion of the previously created HTML video element on `streamCreated` event. Because we are handling the video elements by ourselves taking advantage of Angular capabilities, we tell OpenVidu not to create them on `streamCreated` and not to delete them on `streamDestroyed`, by passing an empty string as second parameter on `Session.subscribe()` method on `streamCreated` and by calling `event.preventDefault()` on `streamDestroyed`.
 
-- Finally connect to the session and publish your webcam:
+---
+
+**Finally connect to the session and publish your webcam:**
 
 ```javascript
 

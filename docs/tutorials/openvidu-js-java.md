@@ -19,43 +19,43 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ## Executing this example
 
-1. Clone the repo:
+1) Clone the repo:
 
-	```
-	git clone https://github.com/OpenVidu/openvidu-tutorials.git
-	```
-	
-2. You will need _maven_ to build the project. You can install it with:
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+```
 
-	```
-	sudo apt-get install maven
-	```
+2) You will need _maven_ to build the project. You can install it with:
 
-3. To run the sample application, execute the following command in the project:
+```bash
+sudo apt-get install maven
+```
 
-	```
-	cd openvidu-js-java
-	mvn package exec:java
-	```
+3) To run the sample application, execute the following command in the project:
 
-4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+```bash
+cd openvidu-js-java
+mvn package exec:java
+```
 
-	```
-	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
-	```
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-5. Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+```bash
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+```
+
+5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 ## Understanding the code
 
 This is a very basic web application with a pretty simple vanilla JS/HTML/CSS frontend and a straightforward Java backend. OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive _HttpSession_ API. In these posts multiple options for user session management in Java are explained, inlcuding the one used in this tutorial: [journaldev.com](http://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting), [studytonight.com](http://www.studytonight.com/servlet/session-management.php).
 
-- Backend: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.js.java` package)
+- **Backend**: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.js.java` package)
 	- `App.java` : entrypoint for the app
 	- `LoginController.java` : rest controller for handling login and logout operations
 	- `SessionController.java` : rest controller for getting sessionId's and tokens. It also stores our active video-calls and the users connected to them
 
-- Frontend: Pure JS/HTML/CSS files (`src/main/resources/static`)
+- **Frontend**: Pure JS/HTML/CSS files (`src/main/resources/static`)
 	- `OpenVidu.js` : openvidu-browser library. You don't have to manipulate this file. 
 	- `app.js` : sample application main JavaScritp file, which makes use of _OpenVidu.js_.
 	- `index.html` : HTML code for the form to login, the form to connect to a video-call and for the video-call itself.

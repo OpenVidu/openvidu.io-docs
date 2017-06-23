@@ -18,32 +18,32 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Executing this example
 
-1. Clone the repo:
+1) Clone the repo:
 
-	```
-	git clone https://github.com/OpenVidu/openvidu-tutorials.git
-	```
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+```
 
-2. You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server) to serve application files. It can be installed with:
+2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server) to serve application files. It can be installed with:
 
-	```
-	npm install -g http-server
-	```
+```bash
+npm install -g http-server
+```
 
-3. To run the sample application, execute the following command in the project:
+3) To run the sample application, execute the following command in the project:
 
-	```
-	cd openvidu-insecure-js/web
-	http-server
-	```
+```bash
+cd openvidu-insecure-js/web
+http-server
+```
 
-4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-	```
-	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
-	```
+```bash
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
+```
 
-5. Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 ## Understanding the code
 
@@ -63,14 +63,18 @@ This application is very simple. It has only 4 files:
 
 Let's see how `app.js` uses `OpenVidu.js`:
 
-- First lines declare the two variables that will be needed in different points along the code. `OV` will be our OpenVidu object and `session` the video-call we will connect to:
+---
+
+**First lines declare the two variables that will be needed in different points along the code. `OV` will be our OpenVidu object and `session` the video-call we will connect to:**
 
 ```javascript
 var OV;
 var session;
 ```
 
-- Let's initialize a new session and configure our events:
+---
+
+**Let's initialize a new session and configure our events:**
 
 ```javascript
 // --- 1) Get an OpenVidu object and init a session with a sessionId ---
@@ -115,8 +119,9 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 `streamDestroyed`: for each Stream that has been destroyed (which means a user has left the video-call), we remove the paragraph element with the user's nickname that we added in the previous event (`appendUserData` method created the element with an _id_ containing `event.stream.connection.connectionId` unique value, so we can now identify the right element to be removed). The video element is automatically deleted by default, so we don't need to do anything else.
 
+---
 
-- Finally connect to the session and publish your webcam:
+**Finally connect to the session and publish your webcam:**
 
 ```javascript
 // --- 3) Connect to the session ---

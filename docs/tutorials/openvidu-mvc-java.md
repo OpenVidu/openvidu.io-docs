@@ -19,32 +19,32 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ## Executing this example
 
-1. Clone the repo:
+1) Clone the repo:
 
-	```
-	git clone https://github.com/OpenVidu/openvidu-tutorials.git
-	```
-	
-2. You will need _maven_ to build the project. You can install it with:
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+```
 
-	```
-	sudo apt-get install maven
-	```
+2) You will need _maven_ to build the project. You can install it with:
 
-3. To run the sample application, execute the following command in the project:
+```bash
+sudo apt-get install maven
+```
 
-	```
-	cd openvidu-mvc-java
-	mvn package exec:java
-	```
+3) To run the sample application, execute the following command in the project:
 
-4. _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+```bash
+cd openvidu-mvc-java
+mvn package exec:java
+```
 
-	```
-	docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
-	```
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
-5. Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+```bash
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+```
+
+5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 ## Understanding the code
 

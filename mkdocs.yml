@@ -8,7 +8,10 @@ pages:
 - ['tutorials/openvidu-mvc-java.md','Tutorials', 'openvidu-mvc-java']
 - ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
 - ['tutorials/openvidu-mvc-node.md','Tutorials', 'openvidu-mvc-node']
-- ['api/index.md','API', 'API']
-- ['deployment/index.md','Deployment', 'Deployment']
+- ['api/openvidu-browser.md','API', 'openvidu-browser']
+- ['api/openvidu-java-client.md','API', 'openvidu-java-client']
+- ['api/openvidu-node-client.md','API', 'openvidu-node-client']
+- ['deployment/index.md','Deployment', 'Deploying on AWS']
+- ['developing/index.md','Developing OpenVidu', 'Developing OpenVidu']
 theme: readthedocs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
