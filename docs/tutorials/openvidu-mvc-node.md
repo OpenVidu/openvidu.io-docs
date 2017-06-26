@@ -242,6 +242,7 @@ else { // New session: return a new sessionId and a new token
 }
 ```
 We are almost there! Now in `session.html` JavaScript code (preceded by a tag `<script>`) we can init a new Session with _sessionId_ and connect to it with _token_:
+
 ```javascript
 // Get all the attributes from the template in EJS style
 var sessionId = <%- JSON.stringify(sessionId) %>;
@@ -249,7 +250,8 @@ var token = <%- JSON.stringify(token) %>;
 var nickName = <%- JSON.stringify(nickName) %>;
 var userName = <%- JSON.stringify(userName) %>;
 var sessionName = <%- JSON.stringify(sessionName) %>;
-
+```
+```javascript
 // --- 1) Get an OpenVidu object and init a session with the retrieved sessionId ---
 
 var OV = new OpenVidu();
@@ -314,6 +316,7 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (err) {
 	}
 });	
 ```
+
 The user will now see its own video on the page. The connection to the session has completed!
 
 ---

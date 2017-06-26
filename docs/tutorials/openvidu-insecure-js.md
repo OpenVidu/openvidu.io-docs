@@ -125,16 +125,18 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 ```javascript
 // --- 3) Connect to the session ---
 
-// 'token' param irrelevant when using insecure version of OpenVidu. Second param will be received by every user
-// in Stream.connection.data property, which will be appended to DOM as the user's nickname
+// 'token' param irrelevant when using insecure version of OpenVidu.
+// Second param will be received by every user in Stream.connection.data property,
+// which will be appended to DOM as the user's nickname
 session.connect(token, '{"clientData": "' + token + '"}', function (error) {
 
-	// If the connection is successful, initialize a publisher and publish to the session
+	// If connection successful, initialize a publisher and publish to the session
 	if (!error) {
 
 		// --- 4) Get your own camera stream with the desired resolution ---
 
-		// Both audio and video will be active. HTML video element will be appended to element with 'publisher' id
+		// Both audio and video will be active. HTML video element will be
+		// appended to element with 'publisher' id
 		var publisher = OV.initPublisher('publisher', {
 			audio: true,
 			video: true,

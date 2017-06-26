@@ -145,31 +145,33 @@ Here we subscribe to the Session events that interest us. As we are using Angula
 
 // --- 3) Connect to the session ---
 
-// 'token' param irrelevant when using insecure version of OpenVidu. Second param will be received by every user
-// in Stream.connection.data property, which will be appended to DOM as the user's nickname
+// 'token' param irrelevant when using insecure version of OpenVidu
+// Second param will be received by every user in Stream.connection.data property,
+// which will be appended to DOM as the user's nickname
 this.session.connect(this.token, '{"clientData": "' + this.token + '"}', (error) => {
 	
-	// If the connection is successful...
+	// If connection successful, initialize a publisher and publish to the session
 	if (!error) {
 
-	// --- 4) Get your own camera stream with the desired resolution ---
+		// --- 4) Get your own camera stream with the desired resolution ---
 
-	// Both audio and video will be active. HTML video element will be appended to element with 'publisher' id
-	let publisher = this.OV.initPublisher('', {
-		audio: true,
-		video: true,
-		quality: 'MEDIUM'
-	});
-	
-	//Store your webcam stream in 'localStream' object
-	this.localStream = publisher.stream;
+		// Both audio and video will be active. HTML video element will be
+		// appended to element with 'publisher' id
+		let publisher = this.OV.initPublisher('', {
+			audio: true,
+			video: true,
+			quality: 'MEDIUM'
+		});
+		
+		// Store your webcam stream in 'localStream' object
+		this.localStream = publisher.stream;
 
-	// --- 5) Publish your stream ---
+		// --- 5) Publish your stream ---
 
-	this.session.publish(publisher);
+		this.session.publish(publisher);
 
 	} else {
-	console.log('There was an error connecting to the session:', error.code, error.message);
+		console.log('There was an error connecting to the session:', error.code, error.message);
 	}
 });
 ```
