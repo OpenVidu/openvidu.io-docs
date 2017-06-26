@@ -33,8 +33,7 @@ npm install -g http-server
 3) To run the sample application, execute the following command in the project:
 
 ```bash
-cd openvidu-insecure-js/web
-http-server
+http-server openvidu-insecure-js/web
 ```
 
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):

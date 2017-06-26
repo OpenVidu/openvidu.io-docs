@@ -30,7 +30,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 npm install -g @angular/cli
 ```
 
-3) To run the sample application, execute the following command in the project:
+3) To run the sample application, execute the following commands in the project:
 
 ```bash
 cd openvidu-insecure-angular

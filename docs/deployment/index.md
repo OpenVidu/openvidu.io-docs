@@ -51,7 +51,7 @@ Go to **_Outputs_** tab to get your brand new IP and click on it. Accept the cer
 
 Deploying on AWS with native services and executables
 ------------------
-If you prefer to have your own local . In this case, KMS and openvidu-server run in the same machine, the first one as a native service and the second one in a Docker container.
+If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. In this case, KMS and openvidu-server run in the same machine.
 
 #### 1. Install KMS (in first command: ***xenial*** for 16.04, ***trusty*** for 14.04)
 ```bash
@@ -95,10 +95,14 @@ sudo service coturn restart
 sudo service kurento-media-server-6.0 restart
 ```
 
-#### 7. Init openvidu-server Docker container (securization enabled)
+#### 7A. Init openvidu-server Docker container (securization enabled)...
 
 ```html
-sudo docker run -d -p 8443:8443 -e openvidu.security=true -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_MACHINE'S_INTERNAL_IP:8888/kurento\"] openvidu/openvidu-server
+sudo docker run -d -p 8443:8443 -e openvidu.security=true -e openvidu.secret=YOUR_SECRET openvidu/openvidu-server
 ```
 
+#### 7B. ...or init your own openvidu-server executable (securization enabled)
 
+```bash
+java -jar -Dopenvidu.security=true -Dopenvidu.secret=YOUR_SECRET openvidu-server.jar
+```
