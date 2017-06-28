@@ -204,7 +204,7 @@ app.post('/api-sessions/get-sessionid-token', function (req, res) {
            .build();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exitsts? 
+Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
 ```javascript
 if (mapSessionNameSession[sessionName]) { ...
 ```

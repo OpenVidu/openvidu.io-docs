@@ -193,7 +193,7 @@ public String joinSession(@RequestParam(name = "data") String clientData,
 	TokenOptions tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exitsts? 
+Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
 ```java
 if (this.mapSessions.get(sessionName) != null) { ...
 ```
@@ -349,7 +349,7 @@ The code executed in `session.html` _< script >_ tag would also be the same. Aft
 
 ---
 
-### 4) Users leave the video-call**
+### 4) Users leave the video-call
 
 After a while both users decide to leave the session. Apart from calling `session.disconnect()` (triggered in `leaveSession()` _onclick_ method) to destroy the connection on openvidu-server, we need another POST operation to let the backend know that certain user has left the session so it can update the collections with the active sessions and tokens.
 

@@ -204,7 +204,7 @@ var tokenOptions = new TokenOptions.Builder()
 	.build();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exitsts? 
+Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
 ```javascript
 if (mapSessionNameSession[sessionName]) { ...
 ```

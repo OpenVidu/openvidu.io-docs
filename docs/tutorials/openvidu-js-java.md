@@ -209,7 +209,7 @@ public ResponseEntity<JSONObject> getSessionIdToken(@RequestBody String sessionN
 	JSONObject responseJson = new JSONObject();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exitsts? 
+Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
 ```java
 if (this.mapSessions.get(sessionName) != null) { ...
 ```

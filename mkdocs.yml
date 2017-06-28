@@ -1,6 +1,7 @@
 site_name: OpenVidu Documentation
 pages:
-- ['index.md','Home', 'Home']
+- ['home/index.md','Home', 'Home']
+- ['home/openvidu-basics.md','Home', 'OpenVidu Basics']
 - ['tutorials/index.md','Tutorials', 'Intro']
 - ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
 - ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
@@ -11,6 +12,7 @@ pages:
 - ['api/openvidu-browser.md','API', 'openvidu-browser']
 - ['api/openvidu-java-client.md','API', 'openvidu-java-client']
 - ['api/openvidu-node-client.md','API', 'openvidu-node-client']
+- ['api/REST-API.md','API', 'REST API']
 - ['deployment/index.md','Deployment', 'Deploying on AWS']
 - ['developing/index.md','Developing OpenVidu', 'Developing OpenVidu']
 theme: readthedocs
