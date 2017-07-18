@@ -50,7 +50,7 @@ This application is very simple. It has only 4 files:
 
 - `OpenVidu.js`: openvidu-browser library. You don't have to manipulate this file. 
 - `app.js`: sample application main JavaScritp file, which makes use of _OpenVidu.js_. You can manipulate this file to suit your needs.
-- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to adapt it to suit your needs. 
+- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. 
 	It has two links to both JavaScript files: 
 
 ```html
@@ -78,11 +78,11 @@ var session;
 ```javascript
 // --- 1) Get an OpenVidu object and init a session with a sessionId ---
 
-// OpenVidu listening on "localhost:8443"
-OV = new OpenVidu("wss://" + location.hostname + ":8443/");
+// Init OpenVidu object
+OV = new OpenVidu();
 
-// We will join the video-call "sessionId"
-session = OV.initSession(sessionId);
+// We will join the video-call "sessionId". This parameter must start with the URL of OpenVidu Server
+session = OV.initSession('wss://' + location.hostname + ':8443/' + sessionId);
 ```
 Since we are in a local sample app, `OV` object is initialize with `localhost:8443` as its _openvidu-server_ URL. `session` object is initialize with `sessionId` param: this means we will connect to `sessionId` video-call. In this case, this parameter is retrieve from HTML input 	`<input type="text" id="sessionId" required>`, which may be filled by the user.
 

@@ -41,7 +41,7 @@ No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Creat
 
 Wait until status shows **_CREATE_COMPLETE_**
 
-Go to **_Outputs_** tab to get your brand new IP and click on it. Accept the certificate and there you have your deployed OpenVidu demo!
+Go to **_Outputs_** tab to get your brand new IP and click on it. Accept the certificate and there you have your deployed OpenVidu demo! (you may have to wait for a minute before the page is accesible)
 
   <p align="center">
     <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSZDNpdWpTMkw3Mlk">

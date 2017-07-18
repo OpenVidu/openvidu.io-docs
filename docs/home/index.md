@@ -78,11 +78,11 @@ You can now start editing HTML, JS and CSS files. Just reload your browser to se
 ### Code description
 
 
-1. Get an *OpenVidu* object and initialize a session with a *sessionId*. Have in mind that this is the parameter that defines which video call to connect.
+1. Get an *OpenVidu* object and initialize a session with a *sessionId*. Have in mind that this is the parameter that defines which video call to connect, and that it should start with the openvidu-server IP.
 
 ```javascript
-var OV = new OpenVidu("wss://" + OPENVIDU_SERVER_IP + ":8443/");
-var session = OV.initSession(sessionId);
+var OV = new OpenVidu();
+var session = OV.initSession("wss://" + OPENVIDU_SERVER_IP + "/" + sessionId);
 ```
 	
 2. Set the events to be listened by your session. For example, this snippet below will automatically append the new participants videos to HTML element with 'subscriber' id. Available events for the Session object are detailed in [API section](#session).
@@ -143,7 +143,7 @@ Thus, a non-secure version of OpenVidu is only intended for development environm
 
 In the image above you can see the main difference with the non-secure version of OpenVidu. Your backend will now have to call two HTTP REST operations in openvidu-server to get the two parameters needed in the securization process:
 
- - ***sessionId***: just as in the non-secure version, it identifies each specific video-call
+ - ***sessionId***: just as in the non-secure version, it identifies each specific video-call. It always starts with the URL of openvidu-server.
  - ***token***: any user joining a specific video call will need to pass a valid token as a parameter
 
 You have three different options available for getting sessionIds and tokens from openvidu-server:

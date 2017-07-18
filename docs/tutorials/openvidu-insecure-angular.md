@@ -91,11 +91,11 @@ token: string;
 ```javascript
 // --- 1) Get an OpenVidu object and init a session with a sessionId ---
 
-// OpenVidu listening on "localhost:8443"
-this.OV = new OpenVidu('wss://' + location.hostname + ':8443/');
+// Init OpenVidu object
+this.OV = new OpenVidu();
 
-// We will join the video-call "sessionId"
-this.session = this.OV.initSession(this.sessionId);
+// We will join the video-call "sessionId". This parameter must start with the URL of OpenVidu Server
+this.session = this.OV.initSession('wss://' + location.hostname + ':8443/' + this.sessionId);
 ```
 Since we are in a local sample app, `OV` is initialize with `localhost:8443` as its _openvidu-server_ URL. `session` is initialize with `sessionId` param: this means we will connect to `sessionId` video-call. In this case, this parameter is binded from an `<input>` element of `app.component.html`, which may be filled by the user.
 

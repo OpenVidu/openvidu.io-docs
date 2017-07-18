@@ -9,6 +9,7 @@ pages:
 - ['tutorials/openvidu-mvc-java.md','Tutorials', 'openvidu-mvc-java']
 - ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
 - ['tutorials/openvidu-mvc-node.md','Tutorials', 'openvidu-mvc-node']
+- ['tutorials/openvidu-getaroom.md','Tutorials', 'openvidu-getaroom']
 - ['api/openvidu-browser.md','API', 'openvidu-browser']
 - ['api/openvidu-java-client.md','API', 'openvidu-java-client']
 - ['api/openvidu-node-client.md','API', 'openvidu-node-client']
