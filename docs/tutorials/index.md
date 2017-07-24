@@ -51,7 +51,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/react.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="#" onClick="return false;">Coming soon...</i></a></li>
@@ -61,8 +61,8 @@
                     </div>
                 </div>
                 <div class="member-info wow fadeInUp">
-                    <h4>React</h4>
-                    <p>This React app will get you going in the blink of an eye.</p>
+                    <h4>Ionic</h4>
+                    <p>This Ionic app will get you going in the blink of an eye</p>
                 </div>
             </div>
 
