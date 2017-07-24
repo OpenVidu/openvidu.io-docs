@@ -70,12 +70,12 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<a data-fancybox="gallery2" href="/img/demos/secure-session-2.png">
-			<img class="img-responsive" src="/img/demos/secure-session-1.png">
+			<img class="img-responsive" src="/img/demos/secure-session-2.png">
 		</a>
 	</div>
 	<div class="col-md-6">
 		<a data-fancybox="gallery2" href="/img/demos/secure-session-1.png">
-			<img class="img-responsive" src="/img/demos/secure-session-2.png">
+			<img class="img-responsive" src="/img/demos/secure-session-1.png">
 		</a>
 	</div>
 </div>
@@ -294,8 +294,8 @@ session = OV.initSession(sessionId);
 session.on('streamCreated', function (event) {
 
 	// Subscribe to the Stream to receive it
-	// HTML video will be appended to element with 'subscriber' id
-	var subscriber = session.subscribe(event.stream, 'subscriber');
+	// HTML video will be appended to element with 'video-container' id
+	var subscriber = session.subscribe(event.stream, 'video-container');
 	
 	// When the HTML video has been appended to DOM...
 	subscriber.on('videoElementCreated', function (event) {
@@ -328,7 +328,7 @@ session.connect(token, '{"clientData": "' + participantName + '"}', function (er
 
 			// --- 4) Get your own camera stream ---
 
-			var publisher = OV.initPublisher('publisher', {
+			var publisher = OV.initPublisher('video-container', {
 				audio: true,
 				video: true,
 				quality: 'MEDIUM'
@@ -349,14 +349,14 @@ session.connect(token, '{"clientData": "' + participantName + '"}', function (er
 
 		} else {
 			console.warn('You don\'t have permissions to publish');
+			initMainVideoThumbnail(); // Show SUBSCRIBER message in main video
 		}
 	} else {
 		console.warn('Error connecting to the session:', error.code, error.message);
 	}
-	
-	// HTML shows session page ...
-	
 });
+
+// HTML shows session page ...
 ```
 The user will now see its own video on the page. The connection to the session has completed!
 

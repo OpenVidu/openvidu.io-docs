@@ -46,9 +46,43 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
+<script>
+	$(document).ready(function(){
+		$(".fancybox").fancybox({
+			openEffect: "none",
+			closeEffect: "none"
+		});
+	});
+</script>
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-login.png">
+			<img class="img-responsive" src="/img/demos/secure-login.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-join.png">
+			<img class="img-responsive" src="/img/demos/secure-join.png">
+		</a>
+	</div>
+</div>
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-session-2.png">
+			<img class="img-responsive" src="/img/demos/secure-session-2.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-session-1.png">
+			<img class="img-responsive" src="/img/demos/secure-session-1.png">
+		</a>
+	</div>
+</div>
+
 ## Understanding the code
 
-This is a very basic web application with a pretty simple vanilla JS/HTML/CSS frontend and a straightforward Java backend that serves HTML files with a MVC approach, building the templates with the help of [Thymeleaf](http://www.thymeleaf.org/).
+This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Java backend that serves HTML files with a MVC approach, building the templates with the help of [Thymeleaf](http://www.thymeleaf.org/).
 
 OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive _HttpSession_ API. In these posts multiple options for user session management in Java are explained, inlcuding the one used in this tutorial: [journaldev.com](http://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting), [studytonight.com](http://www.studytonight.com/servlet/session-management.php).
 
@@ -75,21 +109,23 @@ Let's describe the code following this scenario: a user logs in to the app and c
 At path `/` a login form will be displayed:
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
+  <img class="img-responsive" style="max-width: 300px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSV3phM2JTWHBxakk">
 </p>
 
 The form will execute a POST operation to path `/dashboard` whenever "Log in" button is clicked, passing the username and the password:
 
 ```html
-<form action="/dashboard" method="post">
+<form class="form-group jumbotron" action="/dashboard" method="post">
 	<p>
-		<label>User</label> <input type="text" name="user" required="true"></input>
+		<label>User</label>
+		<input class="form-control" type="text" name="user" required="true"></input>
 	</p>
 	<p>
-		<label>Pass</label> <input type="password" name="pass" required="true"></input>
+		<label>Pass</label>
+		<input class="form-control" type="password" name="pass" required="true"></input>
 	</p>
-	<p>
-		<button type="submit">Log in</button>
+	<p class="text-center">
+		<button class="btn btn-lg btn-info" type="submit">Log in</button>
 	</p>
 </form>
 ```
@@ -136,21 +172,23 @@ public String login(@RequestParam(name = "user", required = false) String user,
 `dashboard.html` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
+  <img class="img-responsive" style="max-width: 500px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMElwU2l1cGpKQzQ">
 </p>
 
 The form will execute a POST operation to path `/session` whenever "Join!" button is clicked, passing the nickname and the session name:
 
 ```html
-<form action="/session" method="post">
+<form class="form-group" action="/session" method="post">
 	<p>
-		<label>Name: </label> <input name="data" required="true"></input>
+		<label>Participant</label>
+		<input class="form-control" type="text" name="data" required="true"></input>
 	</p>
 	<p>
-		<label>Session: </label> <input name="session-name" required="true"></input>
+		<label>Session</label>
+		<input class="form-control" type="text" name="session-name" required="true"></input>
 	</p>
-	<p>
-		<button type="submit">Join!</button>
+	<p class="text-center">
+		<button class="btn btn-lg btn-success" type="submit">Join!</button>
 	</p>
 </form>
 ```
@@ -252,15 +290,15 @@ var session = OV.initSession(sessionId);
 
 // On every new Stream received...
 session.on('streamCreated', function (event) {
-	
+
 	// Subscribe to the Stream to receive it
-	// HTML video will be appended to element with 'subscriber' id
-	var subscriber = session.subscribe(event.stream, 'subscriber');
+	// HTML video will be appended to element with 'video-container' id
+	var subscriber = session.subscribe(event.stream, 'video-container');
 	
 	// When the HTML video has been appended to DOM...
 	subscriber.on('videoElementCreated', function (event) {
-		
-		// Add a new <p> element for the user's name and nickname just below its video
+	
+		// Add a new HTML element for the user's name and nickname just below its video
 		appendUserData(event.element, subscriber.stream.connection);
 	});
 });
@@ -288,23 +326,33 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (err) {
 
 			// --- 4) Get your own camera stream ---
 			
-			var publisher = OV.initPublisher('publisher', {
+			var publisher = OV.initPublisher('video-container', {
 				audio: true,
 				video: true,
 				quality: 'MEDIUM'
 			});
 
+			// When our HTML video has been added to DOM...
+			publisher.on('videoElementCreated', function (event) {
+				// Init the main video with ours and append our data
+				var userData = {nickName: nickName, userName: userName};
+				initMainVideo(event.element, userData);
+				appendUserData(event.element, userData);
+			});
+
+
 			// --- 5) Publish your stream ---
-			
+
 			session.publish(publisher);
 
 		} else {
 			console.warn('You don\'t have permissions to publish');
+			initMainVideoThumbnail(); // Show SUBSCRIBER message in main video
 		}
 	} else {
-		console.warn('Error connecting to the session:', error.code, error.message);
+		console.warn('There was an error connecting to the session:', error.code, error.message);
 	}
-});	
+});
 ```
 The user will now see its own video on the page. The connection to the session has completed!
 
@@ -359,7 +407,8 @@ In `session.html` template the "Leave session" button actually performs a POST o
 <form action="/leave-session" method="post">
 	<input type="hidden" name="session-name" th:value="${sessionName}"></input>
 	<input type="hidden" name="token" th:value="${token}"></input>
-	<button type="submit" onclick="leaveSession()">Leave session</button>
+	<button id="buttonLeaveSession" class="btn btn-large btn-danger" type="submit" onclick="leaveSession()">
+		Leave session</button>
 </form>
 ```
 

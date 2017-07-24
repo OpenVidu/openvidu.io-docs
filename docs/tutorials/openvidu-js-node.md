@@ -48,9 +48,43 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
+<script>
+	$(document).ready(function(){
+		$(".fancybox").fancybox({
+			openEffect: "none",
+			closeEffect: "none"
+		});
+	});
+</script>
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-login.png">
+			<img class="img-responsive" src="/img/demos/secure-login.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-join.png">
+			<img class="img-responsive" src="/img/demos/secure-join.png">
+		</a>
+	</div>
+</div>
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-session-1.png">
+			<img class="img-responsive" src="/img/demos/secure-session-1.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/secure-session-2.png">
+			<img class="img-responsive" src="/img/demos/secure-session-2.png">
+		</a>
+	</div>
+</div>
+
 ## Understanding the code
 
-This is a very basic web application with a pretty simple vanilla JS/HTML/CSS frontend and a straightforward Node backend with [_express_](http://expressjs.com). OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session) API.
+This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Node backend with [_express_](http://expressjs.com). OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session) API.
 
 - **Backend**: node server
 	- `server.js` : single file which handles all operations of server.
@@ -85,7 +119,7 @@ Where `method` is whether "POST" or "GET", `url` the path of the REST operation,
 `index.html` will first show a form to log in:
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMlh0QkZoYmpQMkE">
+  <img class="img-responsive" style="max-width: 300px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSV3phM2JTWHBxakk">
 </p>
 
 `app.js` sends an HTTP request to "/api-login/login" passing the username and the password retrieved from the HTML form whenever "Log in" button is clicked:
@@ -136,7 +170,7 @@ app.post('/api-login/login', function (req, res) {
 HTML will display now the user has logged a different form, asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field and press "Join!" button:
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSWkJsOFltSXhYbmc">
+  <img class="img-responsive" style="max-width: 500px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMElwU2l1cGpKQzQ">
 </p>
 
 `app.js` will execute `joinSession()` method, which starts like this:
@@ -253,8 +287,8 @@ session = OV.initSession(sessionId);
 session.on('streamCreated', function (event) {
 
 	// Subscribe to the Stream to receive it
-	// HTML video will be appended to element with 'subscriber' id
-	var subscriber = session.subscribe(event.stream, 'subscriber');
+	// HTML video will be appended to element with 'video-container' id
+	var subscriber = session.subscribe(event.stream, 'video-container');
 	
 	// When the HTML video has been appended to DOM...
 	subscriber.on('videoElementCreated', function (event) {
@@ -274,10 +308,10 @@ session.on('streamDestroyed', function (event) {
 // --- 3) Connect to the session passing the retrieved token and some more data from
 //         the client (in this case a JSON with the nickname chosen by the user) ---
 
-session.connect(token, '{"clientData": "' + $("#participantName").val() + '"}', function (err) {
+session.connect(token, '{"clientData": "' + participantName + '"}', function (error) {
 
 	// If the connection is successful, initialize a publisher and publish to the session
-	if (!err) {
+	if (!error) {
 
 		// Here we check somehow if the user has at least 'PUBLISHER' role before
 		// trying to publish its stream. Even if someone modified the client's code and
@@ -287,10 +321,18 @@ session.connect(token, '{"clientData": "' + $("#participantName").val() + '"}', 
 
 			// --- 4) Get your own camera stream ---
 
-			var publisher = OV.initPublisher('publisher', {
+			var publisher = OV.initPublisher('video-container', {
 				audio: true,
 				video: true,
 				quality: 'MEDIUM'
+			});
+
+			// When our HTML video has been added to DOM...
+			publisher.on('videoElementCreated', function (event) {
+				// Init the main video with ours and append our data
+				var userData = {nickName: participantName, userName: userName};
+				initMainVideo(event.element, userData);
+				appendUserData(event.element, userData);
 			});
 
 
@@ -300,14 +342,14 @@ session.connect(token, '{"clientData": "' + $("#participantName").val() + '"}', 
 
 		} else {
 			console.warn('You don\'t have permissions to publish');
+			initMainVideoThumbnail(); // Show SUBSCRIBER message in main video
 		}
 	} else {
-		console.warn('Error connecting to the session:', error.code, error.message);
+		console.warn('There was an error connecting to the session:', error.code, error.message);
 	}
-	
-	// HTML shows session page ...
-	
 });
+
+// HTML shows session page ...
 ```
 The user will now see its own video on the page. The connection to the session has completed!
 
