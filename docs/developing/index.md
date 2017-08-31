@@ -61,7 +61,7 @@ ng serve
 8) `/openvidu/openvidu-server`
 
 ```bash
-mvn -DskipTests=true clean compile package -Dopenvidu.security=false exec:java
+mvn -DskipTests=true clean compile package exec:java
 ```
 
 *(or if you prefer you can just run the Java application in your favourite IDE)*
@@ -143,7 +143,7 @@ mvn install -DskipTests=true
 8) `/openvidu/openvidu-server`
 
 ```bash
-mvn -DskipTests=true clean compile package -Dopenvidu.security=false exec:java
+mvn -DskipTests=true clean compile package exec:java
 ```
 
   *(or if you prefer you can just run the Java application in your favourite IDE)*

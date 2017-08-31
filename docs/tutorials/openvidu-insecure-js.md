@@ -39,7 +39,7 @@ http-server openvidu-insecure-js/web
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -70,19 +70,19 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 
 This application is very simple. It has only 4 files:
 
-- `OpenVidu.js`: openvidu-browser library. You don't have to manipulate this file. 
+- `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
 - `app.js`: sample application main JavaScritp file, which makes use of _OpenVidu.js_. You can manipulate this file to suit your needs.
 - `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. 
 	It has two links to both JavaScript files: 
 
 ```html
-<script src="OpenVidu.js"></script>
+<script src="openvidu-browser-VERSION.js"></script>
 <script src="app.js"></script>
 ```
 
 - `style.css`: some CSS classes to style _index.html_. You can manipulate this file to suit your needs.
 
-Let's see how `app.js` uses `OpenVidu.js`:
+Let's see how `app.js` uses `openvidu-browser-VERSION.js`:
 
 ---
 
@@ -103,10 +103,10 @@ var session;
 // Init OpenVidu object
 OV = new OpenVidu();
 
-// We will join the video-call "sessionId". This parameter must start with the URL of OpenVidu Server, with secure WebSocket protocol ('wss://')
-session = OV.initSession('wss://' + location.hostname + ':8443/' + sessionId);
+// We will join the video-call "sessionId". As there's no server, this parameter must start with the URL of OpenVidu Server (with secure websocket protocol: "wss://") and must include the OpenVidu secret at the end
+session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + '?secret=MY_SECRET');
 ```
-Session's identifiers must begin with the URL where _openvidu-server_ listens, so they can connect through WebSocket to it. It is necessary to explicitly set this URL in the param received by `OV.initSession` method only when using the insecure version of OpenVidu. Since we are in a local sample app, `OV.initSession` will finally receive `wss://localhost:8443/` as its _openvidu-server_ URL. Last param appended, `sessionId`, is the distinctive portion of the session identifier and allows OpenVidu to differentiate sessions from each other. In this case, this parameter is retrieved from HTML input `<input type="text" id="sessionId" required>`, which may be filled by the user.
+Session's identifiers must begin with the URL where _openvidu-server_ listens, so they can connect through WebSocket to it. It is necessary to explicitly set this URL in the param when using a pure frontend web. Since we are in a local sample app, `OV.initSession` will finally receive `wss://localhost:8443/` as its _openvidu-server_ URL. `sessionId` is the distinctive portion of the session identifier and allows OpenVidu to differentiate sessions from each other. In this case, this parameter is retrieved from HTML input `<input class="form-control" type="text" id="sessionId" required>`, which may be filled by the user. Finally, `'?secret=MY_SECRET'` string allows us to connect to OpenVidu directly from the browser, without a server side. **WARNING: this is only for demos and developing environments. Do NOT include your secret in production.**
 
 ```javascript
 // --- 2) Specify the actions when events take place ---

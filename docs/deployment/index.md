@@ -98,11 +98,11 @@ sudo service kurento-media-server-6.0 restart
 #### 7A. Init openvidu-server Docker container (securization enabled)...
 
 ```html
-sudo docker run -d -p 8443:8443 -e openvidu.security=true -e openvidu.secret=YOUR_SECRET openvidu/openvidu-server
+sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET openvidu/openvidu-server
 ```
 
 #### 7B. ...or init your own openvidu-server executable (securization enabled)
 
 ```bash
-java -jar -Dopenvidu.security=true -Dopenvidu.secret=YOUR_SECRET openvidu-server.jar
+java -jar -Dopenvidu.secret=YOUR_SECRET openvidu-server.jar
 ```

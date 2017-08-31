@@ -19,7 +19,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 #### Docker
 
 ```bash
-docker run -p 8443:8443 -p 4040:4040 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.security=false openvidu/getaroom-demo
+docker run -p 8443:8443 -p 4040:4040 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 openvidu/getaroom-demo
 ```
 > This container will give you a public IP thanks to _ngrok_ so you can test the app over the Internet
 
@@ -46,7 +46,7 @@ http-server openvidu-getaroom/web
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -207,9 +207,8 @@ function leaveRoom() {
 
 	// --- 6) Leave the session by calling 'disconnect' method over the Session object ---
 	session.disconnect();
-
-	// Back to welcome page and update the browser's navigation bar
-	showJoinHideSession();
-	window.location.href = window.location.origin;
+	
+	// Back to welcome page
+	window.location.href = window.location.origin + window.location.pathname;
 }
 ```

@@ -51,10 +51,10 @@ We have implemented a very basic demo application to see OpenVidu in action. To 
  - Run this Docker container
    
 ```
-docker run -p 5000:5000 -p 4040:4040 -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-plainjs-demo
+docker run -p 5000:5000 -p 4040:4040 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 openvidu/basic-videoconference-demo
 ```
    
- - Wait until you see a public URL ended with `.ngrok.io`. You can connect locally in [`localhost:5000`](http://localhost:5000) or by using the ngrok public URL. You can also share this URL with anyone you want to test the app over the Internet!
+ - Wait until you see a public URL ended with `.ngrok.io` and connect to it.  You can share this URL with anyone you want to test the app over the Internet!
  
 ----------
 
@@ -68,11 +68,11 @@ Building a simple app with OpenVidu
 OpenVidu has a traditional **Client - Server** architecture built on three modules that are shown in the image above. To run **openvidu-server** and **Kurento Media Server** you can execute the following container: 
 
 ```
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.security=false openvidu/openvidu-server-kms
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
  
  
-Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in [OpenVidu.js] file that you can download from [HERE](https://github.com/OpenVidu/openvidu/blob/master/openvidu-browser/src/main/resources/static/js/OpenVidu.js). Then add the file in your HTML with `<script src="OpenVidu.js"></script>`.
+Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in a JavaScript file. You can use the [last relase version](https://github.com/OpenVidu/openvidu/releases) or the [development version](https://github.com/OpenVidu/openvidu/tree/master/openvidu-browser/src/main/resources/static/js). Add the file in your HTML with `<script src="openvidu-browser-VERSION.js"></script>`.
 
 With the **openvidu-browser** library you can handle all available operations straight away from your client, as creating video calls, joining users to them or publishing/unpublishing video and audio
 
@@ -82,7 +82,7 @@ With the **openvidu-browser** library you can handle all available operations st
 
 Once you have up and running Kurento Media Server and openvidu-server, you just need to add a few lines of code in your frontend to make your first video call with OpenVidu. You can take a look to the simplest sample application in GitHub https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-js.
 
-You can clone the repo and serve the app locally with your favourite tool (we recommend http-server: `npm install -g http-server`)
+You can clone the repo and serve the app locally with your favourite tool (we recommend http-server: `sudo npm install -g http-server`)
 
 ```
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
@@ -94,21 +94,22 @@ You can now start editing HTML, JS and CSS files. Just reload your browser to se
 ### Code description
 
 
-1. Get an *OpenVidu* object and initialize a session with a *sessionId*. Have in mind that this is the parameter that defines which video call to connect, and that it should start with the openvidu-server IP.
+**1)** Get an *OpenVidu* object and initialize a session with a *sessionId*. Have in mind that this is the parameter that defines which video call to connect. It must start with your openvidu-server URL and if the application doesn't have a server side, you need to include at the end the secret with which you initilized your openvidu-server (in this case, "MY_SECRET"). **WARNING: this is only for demos and developing environments. Do NOT include your secret in production. See [Securization](#securization) section to learn more.**
 
 ```javascript
 var OV = new OpenVidu();
-var session = OV.initSession("wss://" + OPENVIDU_SERVER_IP + "/" + sessionId);
+var session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + '?secret=MY_SECRET');
 ```
-	
-2. Set the events to be listened by your session. For example, this snippet below will automatically append the new participants videos to HTML element with 'subscriber' id. Available events for the Session object are detailed in [API section](#session).
+
+**2)** Set the events to be listened by your session. For example, this snippet below will automatically append the new participants videos to HTML element with 'subscriber' id. Available events for the Session object are detailed in [API section](#session).
 
 ```javascript
 session.on('streamCreated', function (event) {
     session.subscribe(event.stream, 'subscriber');
 });
 ```
-3. Connect to the session. For a non-secure approach, the value of *token* parameter is irrelevant. You can pass as second parameter a callback to be executed after connection is stablished. A common use-case for users that want to stream their own video is the following one: if the connection to the session has been succesful, get a Publisher object (appended to HTML element with id 'publisher') and publish it. The rest of participants will receive the stream.
+
+**3)** Connect to the session. For a non-secure approach, the value of *token* parameter is irrelevant. You can pass as second parameter a callback to be executed after connection is stablished. A common use-case for users that want to stream their own video is the following one: if the connection to the session has been succesful, get a Publisher object (appended to HTML element with id 'publisher') and publish it. The rest of participants will receive the stream.
 
 ```javascript
 session.connect(token, function (error) {
@@ -125,7 +126,8 @@ session.connect(token, function (error) {
     }
 });
 ```
-4. Finally, whenever you want to leave the video call...
+
+**4)** Finally, whenever you want to leave the video call...
 
 ```javascript
 session.disconnect();
@@ -144,7 +146,7 @@ Securization
 ## Why?
 
 
-In a production environment probably you don't want unauthorized users swamping your video calls. It's not possible to control access to them with the first approach we have seen in the sections above: anyone who knows the _sessionId_ could connect to your video call, and if it turns out that the _sessionId_ doesn't belong to an existing session, a new one would be created.
+In a production environment probably you don't want unauthorized users swamping your video calls. It's not possible to control access to them with the first approach we have seen in the sections above: anyone who knows the _sessionId_ could connect to your video call, and if it turns out that the _sessionId_ doesn't belong to an existing session, a new one would be created. The time when we talked about appending your openvidu secret in your JavaScript file, it was clear that this is not an advisable approach for a production app.
 
 In addition, a secure version also means you can choose the role each user has in your video calls (see [OpenViduRole](#openvidurole) section).
 
@@ -157,23 +159,23 @@ Thus, a non-secure version of OpenVidu is only intended for development environm
   <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeDNIekd5R2ZhQUE">
 </p>
 
-In the image above you can see the main difference with the non-secure version of OpenVidu. Your backend will now have to call two HTTP REST operations in openvidu-server to get the two parameters needed in the securization process:
+In the image above you can see the main difference with the non-secure version of OpenVidu. Of course, you will need a backend, which will now have to call two HTTP REST operations in openvidu-server to get the two parameters needed in the securization process:
 
  - ***sessionId***: just as in the non-secure version, it identifies each specific video-call. It always starts with the URL of openvidu-server.
  - ***token***: any user joining a specific video call will need to pass a valid token as a parameter
 
 You have three different options available for getting sessionIds and tokens from openvidu-server:
 
- - [REST API](https://github.com/OpenVidu)
- - [openvidu-java-client](https://github.com/OpenVidu)
- - [openvidu-node-client](https://github.com/OpenVidu)
+ - [REST API](api/REST-API/)
+ - [openvidu-java-client](api/openvidu-java-client/)
+ - [openvidu-node-client](api/openvidu-node-client/)
 
 ## A sequence diagram to sum up
 
 
 
 <p align="center">
-  <img class="img-responsive" src="http://www.plantuml.com/plantuml/png/ZP9TIyCm58QlcrznY3SJNFsus8KNmgPJAcKPRWWYkyYQT8HXKfBiu-URkcn4cxhUji_xdFSSOjP2LbJJBnYf_PGo9kGARcyGSX-jA4H5fGNyeJOQdhMI5l_-eIekju9j-akjTePhZ11QgZtW7vXBXk623ygxiaH9gp4vetGQSD9Ofn4jrcsLN7ORDAhHKw6I3sA53hhaVz-fJhW4z1z21zp3PqvUiWcGwVXjEC_8P76EVoKEVy-UnWGUXtc-G6cQ7eSSe3hpjuvBNg-udN5ZX98PGqsYCGgR8uqx-INVpPKxNYUthSccDzpTBHjKkFAHo84QRy55NHdms_O2ooMAqCt1Fj1jb8VJGad92zlpHLj7nMxdizy0">
+  <img class="img-responsive" src="http://www.plantuml.com/plantuml/png/ZP9TIyCm58QlcrznY3SJjawzs8KNWqsdLCeoL0IHNMHDAc6Ob2Jx-FbcQnpHfgwtxVC-vps7cBMG5TNq2wPglw2C2Va9rrS8kOzM5AAYqW9-LniD3rf9Yt__K1MNMy4sWvLMEyCrHWYjr1xm4UQIORZWe_AcB57IQapEA9q6d3JMQKgBTLibbzq6ZGxegL39Hx52jIxvttUg4ou1Wt7eW5luoCbZDWUoc3rFNZCoNvxZduZ3txBx6O6xIPulKPgcFqDgw93vMySbXxGIGyED4KeQr2GQex27CuOx-wror-jcFw9DSxYzMpSeqVUHo8aQhy559T_1Intk1PPB5A6RWtsWsoWFfuMIaXUsvuksZefTpsU_0G00">
 </p>
 
  1. Identify your user and listen to a request for joining a video call (represented by [LOGIN OPERATION] and [JOIN VIDEO CALL] in the diagram). This process is entirely up to you.
@@ -191,31 +193,24 @@ We have implemented a very basic [demo application](https://github.com/OpenVidu/
  - Run this Docker container
    
 ```
-docker run -p 5000:5000 -p 3000:3000 -p 4040:4040 -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 openvidu/openvidu-sample-secure
+docker run -p 5000:5000 -p 3000:3000 -p 4040:4040 -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/basic-webinar-demo
 ```
  
- - Wait until you see a public URL ended with `.ngrok.io`. You can connect locally in [`localhost:3000`](http://localhost:3000) or by using the ngrok public URL. You can also share this URL with anyone you want to test the app over the Internet!
+ - Wait until you see a public URL ended with `.ngrok.io` and connect to it.  You can share this URL with anyone you want to test the app over the Internet! To try it on your own, use a standard window and an incognito window to test two users at the same time.
  
 
 
 ## Running a sample advanced app
-Wanna try a [real sample application](https://github.com/OpenVidu/openvidu/tree/master/openvidu-sample-app) that makes use of everything we have talked about? Take a look at this app. It wraps a frontend built with Angular, a backend built with Spring and a MySQL database:
+Wanna try a [real sample application](https://github.com/OpenVidu/classroom-demo) that makes use of everything we have talked about? Take a look at this app. It wraps a frontend built with Angular, a backend built with Spring and a MySQL database:
 
  - Please be sure that you have docker-compose (`sudo apt-get install docker-compose`)
  - Download the `docker-compose.yml` file and run it:
    
 ```
-wget -O docker-compose.yml https://raw.githubusercontent.com/OpenVidu/openvidu-docker/master/openvidu-sample-app/docker-compose.yml
+wget -O docker-compose.yml https://raw.githubusercontent.com/OpenVidu/classroom-demo/master/docker/docker-compose.yml
 docker-compose up
 ```
- - Wait until you see an output like `Started App in XXX seconds (JVM running for XXX)`
-   
- - Go to [`https://localhost:5000`](https://localhost:5000) and accept the self-signed certificate. Here you have a couple registered users (use a standard window and an incognito window to test both of them at the same time):
-
-	| user                             | password |
-	| -------------------------- | ----------- |
-	| teacher@<span></span>gmail.com   | pass         |
-	| student1@<span></span>gmail.com | pass         |
+ - Wait until you see a public URL ended with `.ngrok.io` and connect to it.  You can share this URL with anyone you want to test the app over the Internet! To try it on your own, use a standard window and an incognito window to test two users at the same time.
 
 ----------
 

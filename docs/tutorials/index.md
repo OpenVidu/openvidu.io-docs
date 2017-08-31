@@ -73,9 +73,7 @@
 
         <div class="col-md-12 text-center wow fadeInUp">
             <h3 class="section-title">Client Side + Server Side </h3>
-            <p class="subheading">Try any of our ready-for-production web apps to see the secure version of OpenVidu in action with a real
-                example
-            </p>
+            <p class="subheading">Try any of our ready-for-production web apps to see secure OpenVidu in action</p>
         </div>
 
         <div class="row">

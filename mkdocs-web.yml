@@ -2,6 +2,7 @@ site_name: OpenVidu Documentation
 pages:
 - ['home/index.md','Home', 'Home']
 - ['home/openvidu-basics.md','Home', 'OpenVidu Basics']
+- ['home/openvidu-artifacts.md','Home', 'OpenVidu Artifacts']
 - ['tutorials/index.md','Tutorials', 'Intro']
 - ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
 - ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
