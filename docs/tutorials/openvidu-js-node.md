@@ -86,20 +86,18 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 
 This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Node backend with [_express_](http://expressjs.com). OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session) API.
 
-- **Backend**: node server
-	- `server.js` : single file which handles all operations of server.
+  - **Backend**: node server
+    - `server.js` : single file which handles all operations of server.
 
-- **Frontend**: Pure JS/HTML/CSS files (`/public` folder)
-	- `OpenVidu.js` : openvidu-browser library. You don't have to manipulate this file. 
-	- `app.js` : sample application main JavaScritp file, which makes use of _OpenVidu.js_.
-	- `index.html` : HTML code for the form to login, the form to connect to a video-call and for the video-call itself.
-		It has two links to both JavaScript files: 
-		```html
-		<script src="OpenVidu.js"></script>
-		<script src="app.js"></script>
-		```
-	
-	- `style.css`: some CSS classes to style _index.html_.
+  - **Frontend**: Pure JS/HTML/CSS files (`/public` folder)
+    - `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file. 
+    - `app.js` : sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_.
+    - `index.html` : HTML code for the form to login, the form to connect to a video-call and for the video-call itself. It has two links to both JavaScript files:
+
+	        <script src="openvidu-browser-VERSION.js"></script>
+	        <script src="app.js"></script>
+
+    - `style.css`: some CSS classes to style _index.html_.
 
 
 Let's describe the code following this scenario: a user logs in to the app and connects to the video-call "TUTORIAL", where he publishes his webcam. A second user will connect to the same video-call just after that and publish its own webcam. Both of them will leave the call after a while.
@@ -135,7 +133,6 @@ function logIn() {
 
 	httpRequest('POST', '/api-login/login', jsonBody, 'Login WRONG',
 	  function successCallback(response){ // Send POST request
-		console.warn(userName + ' login');
 		// HTML shows logged-in page ...
 	});
 }
@@ -183,7 +180,8 @@ So the first thing to do here is to retrieve a _sessionId_ and a _token_ from ou
 
 ```javascript
 function getSessionIdAndToken(callback) {
-	sessionName = $("#sessionName").val(); // Video-call to connect ("TUTORIAL")
+	sessionName = $("#sessionName").val(); // Video-call chosen by the user ("TUTORIAL")
+	nickName = $("#participantName").val(); // Nickname chosen by the user
 	var jsonBody = JSON.stringify({ // Body of POST request
 		'session': sessionName
 	});
@@ -233,9 +231,9 @@ app.post('/api-sessions/get-sessionid-token', function (req, res) {
 
 	// Build tokenOptions object with the serverData and the role
 	var tokenOptions = new TokenOptions.Builder()
-           .data(serverData)
-           .role(role)
-           .build();
+		.data(serverData)
+		.role(role)
+		.build();
 ```
 
 Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
@@ -308,7 +306,7 @@ session.on('streamDestroyed', function (event) {
 // --- 3) Connect to the session passing the retrieved token and some more data from
 //         the client (in this case a JSON with the nickname chosen by the user) ---
 
-session.connect(token, '{"clientData": "' + participantName + '"}', function (error) {
+session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 
 	// If the connection is successful, initialize a publisher and publish to the session
 	if (!error) {
@@ -330,9 +328,13 @@ session.connect(token, '{"clientData": "' + participantName + '"}', function (er
 			// When our HTML video has been added to DOM...
 			publisher.on('videoElementCreated', function (event) {
 				// Init the main video with ours and append our data
-				var userData = {nickName: participantName, userName: userName};
+				var userData = {
+					nickName: nickName,
+					userName: userName
+				};
 				initMainVideo(event.element, userData);
 				appendUserData(event.element, userData);
+				$(event.element).prop('muted', true); // Mute lcoal video
 			});
 
 

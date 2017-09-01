@@ -51,21 +51,54 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
+
+<script>
+	$(document).ready(function(){
+		$(".fancybox").fancybox({
+			openEffect: "none",
+			closeEffect: "none"
+		});
+	});
+</script>
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/getaroom-index.png">
+			<img class="img-responsive" src="/img/demos/getaroom-index.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-1.png">
+			<img class="img-responsive" src="/img/demos/getaroom-session-1.png">
+		</a>
+	</div>
+</div>
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-6.png">
+			<img class="img-responsive" src="/img/demos/getaroom-session-6.png">
+		</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-6-mob.png">
+			<img id="img-mob" class="img-responsive" src="/img/demos/getaroom-session-6-mob.png">
+		</a>
+	</div>
+</div>
+
+
 ## Understanding the code
 
 This application is very simple. It has only 4 files:
 
-- `OpenVidu.js`: openvidu-browser library. You don't have to manipulate this file. 
-- `app.js`: sample application main JavaScritp file, which makes use of _OpenVidu.js_. You can manipulate this file to suit your needs.
-- `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. 
-	It has two links to both JavaScript files: 
+  - `openvidu-browser-VERSION.js.js`: openvidu-browser library. You don't have to manipulate this file. 
+  - `app.js`: sample application main JavaScritp file, which makes use of _OpenVidu.js_. You can manipulate this file to suit your needs.
+  - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
 
-```html
-<script src="OpenVidu.js"></script>
-<script src="app.js"></script>
-```
+        <script src="openvidu-browser-VERSION.js.js"></script>
+        <script src="app.js"></script>
 
-- `style.css`: some CSS classes to style _index.html_. You can manipulate this file to suit your needs. _index.html_ uses also Bootstrap as its main style framework.
+  - `style.css`: some CSS classes to style _index.html_. You can manipulate this file to suit your needs. _index.html_ uses also Bootstrap as its main style framework.
 
 Down below we will describe the most important code snippets in `app.js`:
 
@@ -82,7 +115,7 @@ var publisher;				// Publisher object which the user will publish
 var sessionId;				// Unique identifier of the session
 var audioEnabled = true;	// True if the audio track of publisher is active
 var videoEnabled = true;	// True if the video track of publisher is active
-var numOfVideos = 0;		// Keeps track of the number of videos that are shown
+var numOfVideos = 0;		// Keeps track of the number of videos that are being shown
 ```
 
 ---
@@ -96,7 +129,6 @@ window.addEventListener('load', function () {
 	sessionId = window.location.hash; // For 'https://myurl/#roomId', sessionId would be '#roomId'
 	if (sessionId) {
 		// The URL has a session id. Join the room right away
-		console.log("Joining to room " + sessionId);
 		showSessionHideJoin();
 		joinRoom(sessionId);
 	} else {
@@ -121,7 +153,7 @@ function joinRoom(sessionId) {
 
 	if (!sessionId) {
 		// If the user is joining to a new room
-		var sessionId = '#' + randomString();
+		sessionId = '#' + randomString();
 	}
 
 	// As insecure OpenVidu, the user's token can be a random string
@@ -131,9 +163,9 @@ function joinRoom(sessionId) {
 
 	OV = new OpenVidu();
 
-	// We will join the video-call "sessionId". This parameter must start with the URL of openvidu-server
-	// and since we are using the insecure version of OpenVidu we must explicitly set it
-	session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId);
+	// We will join the video-call "sessionId". As there's no server, this parameter must start with the URL of 
+	// OpenVidu Server (with secure websocket protocol: "wss://") and must include the OpenVidu secret at the end
+	session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + "?secret=MY_SECRET");
 
 
 	// --- 2) Specify the actions when events take place ---
@@ -177,6 +209,7 @@ function joinRoom(sessionId) {
 				// When your own video is added to DOM, update the page layout to fit it
 				numOfVideos++;
 				updateLayout();
+				$(event.element).prop('muted', true); // Mute local video
 			});
 
 			// --- 5) Publish your stream ---
@@ -189,7 +222,8 @@ function joinRoom(sessionId) {
 	});
 
 	// Update the URL shown in the browser's navigation bar to show the session id
-	window.history.pushState("", "", '/' + sessionId);
+	var pathname = (location.pathname.slice(-1) === "/" ? location.pathname : location.pathname+"/");
+	window.history.pushState("", "", pathname + sessionId);
 
 	// Auxiliary methods to show the session's view
 	showSessionHideJoin();

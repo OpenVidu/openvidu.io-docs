@@ -90,17 +90,17 @@ This is a very basic web application with a pretty simple JS/HTML/CSS frontend a
 
 OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session) API.
 
-- **Backend**: node server
-	- `server.js` : single file which handles all operations of server. It returns HTML templates as response to HTTP requests.
+  - **Backend**: node server
+    - `server.js` : single file which handles all operations of server. It returns HTML templates as response to HTTP requests.
 
-- **Frontend templates**: Pure JS/HTML/CSS files served by the backend, with `.ejs` extension to support Embedded JavaScript (`/views` folder)
-	- `index.ejs` : template with the login form
-	- `dashboard.ejs` : template with the form to join a video-call
-	- `session.ejs` : template of the video-call itself
+  - **Frontend templates**: Pure JS/HTML/CSS files served by the backend, with `.ejs` extension to support Embedded JavaScript (`/views` folder)
+    - `index.ejs` : template with the login form
+    - `dashboard.ejs` : template with the form to join a video-call
+    - `session.ejs` : template of the video-call itself
 
-- **Frontend static files** (`/public` folder)
- 	- `OpenVidu.js` : openvidu-browser library. You don't have to manipulate this file
-	- `style.css` : some CSS classes to style the templates
+  - **Frontend static files** (`/public` folder)
+    - `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file
+    - `style.css` : some CSS classes to style the templates
 
 
 Let's describe the code following this scenario: a user logs in to the app and connects to the video-call "TUTORIAL", where he publishes his webcam. A second user will connect to the same video-call just after that and publish its own webcam. Both of them will leave the call after a while.
@@ -175,7 +175,7 @@ function dashboardController(req, res) {
 
 ### 2) User connects to "TUTORIAL" video-call
 
-`dashboard.html` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
+`dashboard.ejs` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
 
 <p align="center">
   <img class="img-responsive" style="max-width: 500px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMElwU2l1cGpKQzQ">
@@ -221,25 +221,25 @@ Rest controller method receives both params sent by the client (whatever nicknam
 
 ```javascript
 app.post('/session', (req, res) => {
-// Check the user is logged ... 
+	// Check the user is logged ... 
 
-// The nickname sent by the client
-var clientData = req.body.data;
-// The video-call to connect ("TUTORIAL")
-var sessionName = req.body.sessionname;
+	// The nickname sent by the client
+	var clientData = req.body.data;
+	// The video-call to connect ("TUTORIAL")
+	var sessionName = req.body.sessionname;
 
-// Role associated to this user
-var role = users.find(u => (u.user === req.session.loggedUser)).role;
+	// Role associated to this user
+	var role = users.find(u => (u.user === req.session.loggedUser)).role;
 
-// Optional data to be passed to other users when this user connects to the video-call
-// In this case, a JSON with the value we stored in the req.session object on login
-var serverData = '{"serverData": "' + req.session.loggedUser + '"}';
+	// Optional data to be passed to other users when this user connects to the video-call
+	// In this case, a JSON with the value we stored in the req.session object on login
+	var serverData = '{"serverData": "' + req.session.loggedUser + '"}';
 
-// Build tokenOptions object with the serverData and the role
-var tokenOptions = new TokenOptions.Builder()
-	.data(serverData)
-	.role(role)
-	.build();
+	// Build tokenOptions object with the serverData and the role
+	var tokenOptions = new TokenOptions.Builder()
+		.data(serverData)
+		.role(role)
+		.build();
 ```
 
 Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
@@ -279,7 +279,7 @@ else { // New session: return a new sessionId and a new token
 	});
 }
 ```
-We are almost there! Now in `session.html` JavaScript code (preceded by a tag `<script>`) we can init a new Session with _sessionId_ and connect to it with _token_:
+We are almost there! Now in `session.ejs` JavaScript code (preceded by a tag `<script>`) we can init a new Session with _sessionId_ and connect to it with _token_:
 
 ```javascript
 // Get all the attributes from the template in EJS style
@@ -332,11 +332,11 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 		// trying to publish its stream. Even if someone modified the client's code and
 		// published the stream, it wouldn't work if the token sent in Session.connect
 		// method doesn't belong to a 'PUBLIHSER' role
-		if (isPublisher(userName)) {
+		if (isPublisher()) {
 
 			// --- 4) Get your own camera stream ---
 			
-			var publisher = OV.initPublisher('publisher', {
+			var publisher = OV.initPublisher('video-container', {
 				audio: true,
 				video: true,
 				quality: 'MEDIUM'
@@ -345,9 +345,13 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 			// When our HTML video has been added to DOM...
 			publisher.on('videoElementCreated', function (event) {
 				// Init the main video with ours and append our data
-				var userData = {nickName: nickName, userName: userName};
+				var userData = {
+					nickName: nickName,
+					userName: userName
+				};
 				initMainVideo(event.element, userData);
 				appendUserData(event.element, userData);
+				$(event.element).prop('muted', true); // Mute local video
 			});
 
 
@@ -362,7 +366,7 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 	} else {
 		console.warn('There was an error connecting to the session:', error.code, error.message);
 	}
-});	
+});
 ```
 
 The user will now see its own video on the page. The connection to the session has completed!
@@ -400,7 +404,7 @@ if (mapSessionNameSession[sessionName]) {
 	});
 }
 ```
-The code executed in `session.html` _< script >_ tag would also be the same. After the `Session.publish()` method has been succesful, both users will be seeing each other's video, as well as the username and the nickname below it.
+The code executed in `session.ejs` _< script >_ tag would also be the same. After the `Session.publish()` method has been succesful, both users will be seeing each other's video, as well as the username and the nickname below it.
 
 ---
 
@@ -408,7 +412,7 @@ The code executed in `session.html` _< script >_ tag would also be the same. Aft
 
 After a while both users decide to leave the session. Apart from calling `session.disconnect()` (triggered in `leaveSession()` _onclick_ method) to destroy the connection on openvidu-server, we need another POST operation to let the backend know that certain user has left the session so it can update the collections with the active sessions and tokens.
 
-In `session.html` template the "Leave session" button actually performs a POST operation to path `/leave-session` with a hidden form. Notice that when the user clicks the submit button, a POST operation will be triggered but also the `leaveSession()` method. First updates our backend. Second updates our openvidu-server.
+In `session.ejs` template the "Leave session" button actually performs a POST operation to path `/leave-session` with a hidden form. Notice that when the user clicks the submit button, a POST operation will be triggered but also the `leaveSession()` method. First updates our backend. Second updates our openvidu-server.
 
 ```html
 <form action="/leave-session" method="post">

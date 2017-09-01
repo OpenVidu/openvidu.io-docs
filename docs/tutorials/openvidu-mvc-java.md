@@ -97,7 +97,7 @@ OpenVidu assumes you can identify your users so you can tell which users can con
 	- `session.html` : template of the video-call itself
 
 - **Frontend static files** (`src/main/resources/static`)
- 	- `OpenVidu.js` : openvidu-browser library. You don't have to manipulate this file
+ 	- `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file
 	- `style.css` : some CSS classes to style the templates
 
 Let's describe the code following this scenario: a user logs in to the app and connects to the video-call "TUTORIAL", where he publishes his webcam. A second user will connect to the same video-call just after that and publish its own webcam. Both of them will leave the call after a while.
@@ -294,11 +294,11 @@ session.on('streamCreated', function (event) {
 	// Subscribe to the Stream to receive it
 	// HTML video will be appended to element with 'video-container' id
 	var subscriber = session.subscribe(event.stream, 'video-container');
-	
+
 	// When the HTML video has been appended to DOM...
 	subscriber.on('videoElementCreated', function (event) {
-	
-		// Add a new HTML element for the user's name and nickname just below its video
+
+		// Add a new HTML element for the user's name and nickname over its video
 		appendUserData(event.element, subscriber.stream.connection);
 	});
 });
@@ -312,20 +312,19 @@ session.on('streamDestroyed', function (event) {
 
 // --- 3) Connect to the session passing the retrieved token and some more data from
 //         the client (in this case a JSON with the nickname chosen by the user) ---
-
-session.connect(token, '{"clientData": "' + nickName + '"}', function (err) {
+session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 
 	// If the connection is successful, initialize a publisher and publish to the session
-	if (!err) {
+	if (!error) {
 
 		// Here we check somehow if the user has at least 'PUBLISHER' role before
 		// trying to publish its stream. Even if someone modified the client's code and
 		// published the stream, it wouldn't work if the token sent in Session.connect
 		// method doesn't belong to a 'PUBLIHSER' role
-		if (isPublisher(userName)) {
+		if (isPublisher()) {
 
 			// --- 4) Get your own camera stream ---
-			
+
 			var publisher = OV.initPublisher('video-container', {
 				audio: true,
 				video: true,
@@ -335,9 +334,13 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (err) {
 			// When our HTML video has been added to DOM...
 			publisher.on('videoElementCreated', function (event) {
 				// Init the main video with ours and append our data
-				var userData = {nickName: nickName, userName: userName};
+				var userData = {
+					nickName: nickName,
+					userName: userName
+				};
 				initMainVideo(event.element, userData);
 				appendUserData(event.element, userData);
+				$(event.element).prop('muted', true);  // Mute local video
 			});
 
 
@@ -428,26 +431,22 @@ public String removeUser(@RequestParam(name = "session-name") String sessionName
 		if (this.mapSessionIdsTokens.containsKey(sessionId)) {
 			// If the token exists
 			if (this.mapSessionIdsTokens.get(sessionId).remove(token) != null) {
-				// Token has been removed
+				// User left the session
 				if (this.mapSessionIdsTokens.get(sessionId).isEmpty()) {
 					// Last user left: session "TUTORIAL" must be removed
 					this.mapSessions.remove(sessionName);
 				}
-				model.addAttribute("sessionId", sessionId);
 				return "redirect:/dashboard";
 			} else {
 				// The TOKEN wasn't valid
-				model.addAttribute("sessionId", sessionId);
 				return "redirect:/dashboard";
 			}
 		} else {
 			// The SESSIONID wasn't valid
-			model.addAttribute("sessionId", sessionId);
 			return "redirect:/dashboard";
 		}
 	} else {
 		// The SESSION does not exist
-		model.addAttribute("sessionId", sessionId);
 		return "redirect:/dashboard";
 	}
 }
