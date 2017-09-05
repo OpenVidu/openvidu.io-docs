@@ -20,6 +20,24 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
 
 We have packed all our demos in one single template for AWS CloudFormation. You can follow these steps and see how easy it is to deploy OpenVidu in the cloud.
 
+<div style="
+    display: table;
+    border: 1px solid #0088aa;
+    border-radius: 5px;
+    width: 100%;"><div style="display: table-cell">
+    <i class="icon ion-android-alert" style="
+    font-size: 60px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 30%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">This CloudFormation Stack will send us some data for the sake of statistics gathering. This ONLY includes the <strong>AWS geographical area</strong>, the <strong>version of OpenVidu</strong> that is being used and the <strong>current date</strong>.</div></div>
+
 #### 1. Access to the console of AWS Cloud Formation
 
   <p><a href="https://console.aws.amazon.com/cloudformation" class="btn btn-xs btn-primary" title="Developing OpenVidu" target="_blank">Go to CloudFormation<span class="icon icon-circle-arrow-right"></span></a></p>
