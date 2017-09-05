@@ -62,7 +62,7 @@ Building a simple app with OpenVidu
 ===================
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSNF9ZWHREUXo3QlE">
+  <img class="img-responsive" src="/img/docs/home/openvidu-architecture.png">
 </p>
 
 OpenVidu has a traditional **Client - Server** architecture built on three modules that are shown in the image above. To run **openvidu-server** and **Kurento Media Server** you can execute the following container: 
@@ -156,7 +156,7 @@ Thus, a non-secure version of OpenVidu is only intended for development environm
 
 
 <p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeDNIekd5R2ZhQUE">
+  <img class="img-responsive" src="/img/docs/home/openvidu-secure-architecture.png">
 </p>
 
 In the image above you can see the main difference with the non-secure version of OpenVidu. Of course, you will need a backend, which will now have to call two HTTP REST operations in openvidu-server to get the two parameters needed in the securization process:
@@ -193,7 +193,7 @@ We have implemented a very basic [demo application](https://github.com/OpenVidu/
  - Run this Docker container
    
 ```
-docker run -p 5000:5000 -p 3000:3000 -p 4040:4040 -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 -e openvidu.secret=MY_SECRET openvidu/basic-webinar-demo
+docker run -p 5000:5000 -p 3000:3000 -p 4040:4040 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 openvidu/basic-webinar-demo
 ```
  
  - Wait until you see a public URL ended with `.ngrok.io` and connect to it.  You can share this URL with anyone you want to test the app over the Internet! To try it on your own, use a standard window and an incognito window to test two users at the same time.
@@ -206,7 +206,7 @@ Wanna try a [real sample application](https://github.com/OpenVidu/classroom-demo
  - Please be sure that you have docker-compose (`sudo apt-get install docker-compose`)
  - Download the `docker-compose.yml` file and run it:
    
-```
+```console
 wget -O docker-compose.yml https://raw.githubusercontent.com/OpenVidu/classroom-demo/master/docker/docker-compose.yml
 docker-compose up
 ```
@@ -254,11 +254,11 @@ Acknowledgments
 OpenVidu platform has been supported under project LERNIM (RTC-2016-4674-7) confunded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Union_ FEDER, whose main goal with this funds is to promote technological development, innovation and high-quality research.
 
 <p align="center">
-  <img class="img-responsive" width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSQzNLQnF4SnhFLWc">
+  <img class="img-responsive" width="400px" src="/img/docs/home/ministerio-economia.jpg">
 </p>
 
 <p align="center">
-  <img class="img-responsive" width="400px" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSa205YXNkSW9VNUE">
+  <img class="img-responsive" width="400px" src="/img/docs/home/european-union.png">
 </p>
 
 

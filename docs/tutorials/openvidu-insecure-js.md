@@ -71,7 +71,7 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=193.147.51.12 -e KMS_STUN_PORT=3478 
 This application is very simple. It has only 4 files:
 
 - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
-- `app.js`: sample application main JavaScritp file, which makes use of _OpenVidu.js_. You can manipulate this file to suit your needs.
+- `app.js`: sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
 - `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. 
 	It has two links to both JavaScript files: 
 
