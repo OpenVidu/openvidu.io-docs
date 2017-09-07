@@ -15,7 +15,9 @@ pages:
 - ['api/openvidu-java-client.md','API', 'openvidu-java-client']
 - ['api/openvidu-node-client.md','API', 'openvidu-node-client']
 - ['api/REST-API.md','API', 'REST API']
-- ['deployment/index.md','Deployment', 'Deploying on AWS']
+- ['deployment/deploying-demos-aws.md','Deployment', 'Tutorial - Deploying OpenVidu Demos on AWS']
+- ['deployment/deploying-aws.md','Deployment', 'Deploying OpenVidu Server and your app on AWS']
+- ['deployment/custom-certificate.md','Deployment', 'Using your own certificate']
 - ['developing/index.md','Developing OpenVidu', 'Developing OpenVidu']
 theme: readthedocs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

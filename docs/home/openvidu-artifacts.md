@@ -4,7 +4,7 @@
 <br>
 <h3>Main artifacts</h3>
 
-<table>
+<table class="artifact-table">
 
   <tr>
     <th>Artifact</th>
@@ -68,9 +68,18 @@
 
   <tr>
     <td>openvidu-cloud-devops</td>
-    <td>File?</td>
+    <td>JSON files</td>
     <td>1.0.0-beta.3</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu-cloud-devops/releases" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Configuration files for automatic launching of OpenVidu Server and OpenVidu Demos in AWS CloudFormation" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-parent</td>
+    <td>pom.xml</td>
+    <td>1.0.0-beta.3</td>
+        <td><a class="" href="https://mvnrepository.com/artifact/io.openvidu/openvidu-parent/1.0.0-beta.3" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Maven multi-module project parent. It makes easy the management of versions, dependencies and plugins of all OpenVidu artifacts" class="icon ion-information-circled"></i></td>
   </tr>
   
 </table>
@@ -78,7 +87,7 @@
 <br>
 <h3>Demos and tutorials artifacts</h3>
 
-<table>
+<table class="artifact-table">
 
   <tr>
     <th>Artifact</th>
@@ -133,7 +142,7 @@
 <br>
 <h3>Tutorials artifacts without a binary distribution</h3>
 
-<table>
+<table class="artifact-table">
 
   <tr>
     <th>Artifact</th>

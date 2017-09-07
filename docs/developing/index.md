@@ -4,13 +4,14 @@ Developing OpenVidu
 <br>
 Packages required:
 
-| Dependecy     | Check version | Install                            |
-| ------------- | ------------- |----------------------------------- |
-| node          | `nodejs -v`   | `sudo apt-get install -g nodejs`   |
-| npm           | `npm -v`      | `sudo apt-get install -g npm`      |
-| maven         | `mvn -v`      | `sudo apt-get install -g maven`    |
-| angular-cli   | `ng -v`       | `sudo npm install -g @angular/cli` |
-| typescript    | `tsc -v`      | `sudo npm install -g typescript`   |
+| Dependecy     | Check version   | Install                            |
+| ------------- | --------------- |----------------------------------- |
+| java JDK      | `java -version` | `sudo apt-get install default-jdk` |
+| node          | `nodejs -v`     | `sudo apt-get install -g nodejs`   |
+| npm           | `npm -v`        | `sudo apt-get install -g npm`      |
+| maven         | `mvn -v`        | `sudo apt-get install -g maven`    |
+| angular-cli   | `ng -v`         | `sudo npm install -g @angular/cli` |
+| typescript    | `tsc -v`        | `sudo npm install -g typescript`   |
 
 ---
 
@@ -205,7 +206,7 @@ sudo service kurento-media-server-6.0 stop
 Adding Kurento parent POM to your local respository
 ------------------
 
-You will need development version of Kurento's parent POM in your local repository in order to compile _openvidu-server_. To achieve this, add in your `/home/.m2` a file `settings.xml` with the following content:
+You will need development version of Kurento's parent POM in your local repository in order to compile _openvidu-server_. To achieve this, add a file `~/.m2/settings.xml` with the following content:
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
