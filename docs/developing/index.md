@@ -206,7 +206,7 @@ sudo service kurento-media-server-6.0 stop
 Adding Kurento parent POM to your local respository
 ------------------
 
-You will need development version of Kurento's parent POM in your local repository in order to compile _openvidu-server_. To achieve this, add a file `~/.m2/settings.xml` with the following content:
+You will need development version of Kurento's parent POM in your local repository in order to compile the development version of _openvidu-server_. To achieve this, add a file `~/.m2/settings.xml` with the following content:
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"

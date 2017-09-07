@@ -245,6 +245,13 @@ Depending on the framework of your app:
 
       > If you want to test the deployment of a Node app, you can use **[openvidu-js-node](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-node)**
 
+##### PHP, Ruby, Python, .NET...
+
+We are not going to spell out in detail what is to be done with the rest of backend technologies, but you can get the idea from the Java and Node steps above. It is always the same process: take your app to your instance, place it under `/var/www/html/`, configure Nginx and Supervisor (this last with the necessary launching script depending on your technology) and relaunch both services.
+
+Voilà! It is really this simple.
+
+
 #### PS: Multiple apps in the same instance
 
 To launch multiple apps in the same instance, just store each one of them inside its own folder under `/var/www/html/`. For example:

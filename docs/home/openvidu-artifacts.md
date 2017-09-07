@@ -48,13 +48,13 @@
   <tr>
     <td rowspan="2">openvidu-java-client</td>
     <td>JAR</td>
-    <td>1.0.0-beta.3</td>
+    <td>1.0.1-beta.3</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub</a></td>
     <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your JAVA server. It makes easier the retrieval of the necessary params from OpenVidu Server for securing your application (sessionIds and tokens). It is a simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>MVN package</td>
-    <td>1.0.0-beta.3</td>
+    <td>1.0.1-beta.3</td>
     <td><a class="" href="https://mvnrepository.com/artifact/io.openvidu/openvidu-java-client/1.0.0-beta.3" target="_blank">MVN Repository</a></td>
   </tr>
   

@@ -101,7 +101,7 @@ var OV = new OpenVidu();
 var session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + '?secret=MY_SECRET');
 ```
 
-**2)** Set the events to be listened by your session. For example, this snippet below will automatically append the new participants videos to HTML element with 'subscriber' id. Available events for the Session object are detailed in [API section](#session).
+**2)** Set the events to be listened by your session. For example, this snippet below will automatically append the new participants videos to HTML element with 'subscriber' id. Available events for the Session object are detailed in [API section](/docs/api/openvidu-browser/#session).
 
 ```javascript
 session.on('streamCreated', function (event) {
@@ -148,7 +148,7 @@ Securization
 
 In a production environment probably you don't want unauthorized users swamping your video calls. It's not possible to control access to them with the first approach we have seen in the sections above: anyone who knows the _sessionId_ could connect to your video call, and if it turns out that the _sessionId_ doesn't belong to an existing session, a new one would be created. The time when we talked about appending your openvidu secret in your JavaScript file, it was clear that this is not an advisable approach for a production app.
 
-In addition, a secure version also means you can choose the role each user has in your video calls (see [OpenViduRole](#openvidurole) section).
+In addition, a secure version also means you can choose the role each user has in your video calls (see [OpenViduRole](/docs/api/openvidu-java-client/#openvidurole) section).
 
 Thus, a non-secure version of OpenVidu is only intended for development environments. Don't worry, adding securization is not a difficult task.
 
@@ -166,9 +166,9 @@ In the image above you can see the main difference with the non-secure version o
 
 You have three different options available for getting sessionIds and tokens from openvidu-server:
 
- - [REST API](api/REST-API/)
- - [openvidu-java-client](api/openvidu-java-client/)
- - [openvidu-node-client](api/openvidu-node-client/)
+ - [REST API](/docs/api/REST-API/)
+ - [openvidu-java-client](/docs/api/openvidu-java-client/)
+ - [openvidu-node-client](/docs/api/openvidu-node-client/)
 
 ## A sequence diagram to sum up
 
@@ -183,7 +183,7 @@ You have three different options available for getting sessionIds and tokens fro
  3. You also need a new valid _token_ for this session. Ask openvidu-server for it passing the _sessionId_.
  4. Finally return both parameters to your frontend, where using openvidu-browser you may initilize your session with _sessionId_ and then connect to it with _token_. Good news: **the code is exactly the same as explained before in [Code description](#code-description) section**
 
-> Communication between _Your Back_ and _openvidu-server_ modules is outlined in the diagram, but it does not correspond to the real methods. Remember you can handle this from your backend by consuming the [REST API](#rest-api) or by using [openvidu-backend-client](#openvidu-backend-client) package.
+> Communication between _Your Back_ and _openvidu-server_ modules is outlined in the diagram, but it does not correspond to the real methods. Remember you can handle this from your backend by consuming the [REST API](/docs/api/REST-API/) or by using [openvidu-java-client](#openvidu-backend-client) / [openvidu-node-client](#openvidu-node-client)
 
 
 ## Running a secure videocall application
