@@ -55,7 +55,7 @@
   <tr>
     <td>MVN package</td>
     <td>1.0.1-beta.3</td>
-    <td><a class="" href="https://mvnrepository.com/artifact/io.openvidu/openvidu-java-client/1.0.0-beta.3" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://mvnrepository.com/artifact/io.openvidu/openvidu-java-client/1.0.1-beta.3" target="_blank">MVN Repository</a></td>
   </tr>
   
   <tr>
@@ -76,7 +76,7 @@
 
   <tr>
     <td>openvidu-parent</td>
-    <td>pom.xml</td>
+    <td>POM</td>
     <td>1.0.0-beta.3</td>
         <td><a class="" href="https://mvnrepository.com/artifact/io.openvidu/openvidu-parent/1.0.0-beta.3" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Maven multi-module project parent. It makes easy the management of versions, dependencies and plugins of all OpenVidu artifacts" class="icon ion-information-circled"></i></td>

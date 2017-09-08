@@ -35,7 +35,7 @@ We have packed all our demos in one single template for AWS CloudFormation. You 
 
 #### 3. Option _Specify an Amazon S3 template URL_ with the following URL
 
-  <code id="code-1">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Demos.json</code>
+  <code id="code-1">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Demos-latest.json</code>
   <button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                                 title="Copy to Clipboard">Copy</button>
 

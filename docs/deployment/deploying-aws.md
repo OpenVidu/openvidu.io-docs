@@ -35,7 +35,7 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
 
 #### 3. Option _Specify an Amazon S3 template URL_ with the following URL
 
-  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu.json</code>
+  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-latest.json</code>
   <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                                 title="Copy to Clipboard">Copy</button>
 
@@ -256,8 +256,8 @@ Voilà! It is really this simple.
 
 To launch multiple apps in the same instance, just store each one of them inside its own folder under `/var/www/html/`. For example:
 
-  - `/var/www/html/YOUR_APP_1` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_1`
-  - `/var/www/html/YOUR_APP_2` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_2`
+  - `/var/www/html/YOUR_APP_1` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_1/`
+  - `/var/www/html/YOUR_APP_2` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_2/`
 
 The other steps explained above also need some adjustments related to paths:
 
