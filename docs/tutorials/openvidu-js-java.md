@@ -46,15 +46,6 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
-<script>
-	$(document).ready(function(){
-		$(".fancybox").fancybox({
-			openEffect: "none",
-			closeEffect: "none"
-		});
-	});
-</script>
-
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<a data-fancybox="gallery2" href="/img/demos/secure-login.png">

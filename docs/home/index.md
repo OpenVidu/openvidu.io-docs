@@ -16,7 +16,7 @@
     display: table-cell;
     padding-left: 20px;
     padding-right: 20px;
-    ">OpenVidu has been released under <strong>beta-1</strong> (check the <a href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub release</a>). This means that some bugs may appear while working to provide a stable release version as soon as possible.<br>You can make use of the <a href="https://groups.google.com/forum/#!forum/openvidu">Mailing List</a> or the <a href="https://github.com/OpenVidu/bugtracker">Issue Tracker repository</a> to warn about unknown bugs and to clear up any doubts.</div></div>
+    ">OpenVidu has been released under <strong>1.0.0-beta</strong> (check the <a href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub release</a>). This means that some bugs may appear while working to provide a stable release version as soon as possible.<br>You can make use of the <a href="https://groups.google.com/forum/#!forum/openvidu">Mailing List</a> or the <a href="https://github.com/OpenVidu/bugtracker">Issue Tracker repository</a> to warn about unknown bugs and to clear up any doubts.</div></div>
 
 What is OpenVidu?
 ========
