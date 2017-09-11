@@ -1,8 +1,6 @@
 site_name: OpenVidu Documentation
 pages:
-- ['home/index.md','Home', 'Home']
-- ['home/openvidu-basics.md','Home', 'OpenVidu Basics']
-- ['home/openvidu-artifacts.md','Home', 'OpenVidu Artifacts']
+- ['home/index.md','What is OpenVidu?']
 - ['tutorials/index.md','Tutorials', 'Intro']
 - ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
 - ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
@@ -11,13 +9,15 @@ pages:
 - ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
 - ['tutorials/openvidu-mvc-node.md','Tutorials', 'openvidu-mvc-node']
 - ['tutorials/openvidu-getaroom.md','Tutorials', 'openvidu-getaroom']
-- ['api/openvidu-browser.md','API', 'openvidu-browser']
-- ['api/openvidu-java-client.md','API', 'openvidu-java-client']
-- ['api/openvidu-node-client.md','API', 'openvidu-node-client']
-- ['api/REST-API.md','API', 'REST API']
-- ['deployment/deploying-demos-aws.md','Deployment', 'Tutorial - Deploying OpenVidu Demos on AWS']
+- ['reference-docs/openvidu-browser.md','Reference documentation', 'openvidu-browser API']
+- ['reference-docs/openvidu-java-client.md','Reference documentation', 'openvidu-java-client API']
+- ['reference-docs/openvidu-node-client.md','Reference documentation', 'openvidu-node-client API']
+- ['reference-docs/REST-API.md','Reference documentation', 'REST  API']
+- ['reference-docs/openvidu-artifacts.md','Reference documentation', 'OpenVidu Artifacts']
+- ['deployment/deploying-demos-aws.md','Deployment', 'Deploying OpenVidu Demos on AWS (TUTORIAL)']
 - ['deployment/deploying-aws.md','Deployment', 'Deploying OpenVidu Server and your app on AWS']
+- ['deployment/deploying-ubuntu.md','Deployment', 'Deploying OpenVidu as a native service']
 - ['deployment/custom-certificate.md','Deployment', 'Using your own certificate']
-- ['developing/index.md','Developing OpenVidu', 'Developing OpenVidu']
+- ['developing/index.md','Contribute', 'Developing OpenVidu']
 theme: readthedocs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

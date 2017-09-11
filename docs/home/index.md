@@ -1,10 +1,20 @@
-<h2 id="section-title">OpenVidu Documentation</h2>
+<h2 id="section-title">What is OpenVidu?</h2>
 <hr>
+
+OpenVidu is a platform to facilitate the addition of video calls in your web or mobile 
+application, either group or one-to-one calls. In fact, any combination you come up with is easy to implement with OpenVidu.
+
+It is based on [Kurento](http://www.kurento.org), the WebRTC platform for multimedia applications. Openvidu was forked from [KurentoRoom project](https://github.com/Kurento/kurento-room).
+
+OpenVidu is licensed under [Apache License v2](https://choosealicense.com/licenses/apache-2.0/).
+
 <div style="
     display: table;
     border: 1px solid #0088aa;
     border-radius: 5px;
-    width: 100%;"><div style="display: table-cell">
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;"><div style="display: table-cell">
     <i class="icon ion-android-alert" style="
     font-size: 100px;
     color: #0088aa;
@@ -17,16 +27,6 @@
     padding-left: 20px;
     padding-right: 20px;
     ">OpenVidu has been released under <strong>1.0.0-beta</strong> (check the <a href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub release</a>). This means that some bugs may appear while working to provide a stable release version as soon as possible.<br>You can make use of the <a href="https://groups.google.com/forum/#!forum/openvidu">Mailing List</a> or the <a href="https://github.com/OpenVidu/bugtracker">Issue Tracker repository</a> to warn about unknown bugs and to clear up any doubts.</div></div>
-
-What is OpenVidu?
-========
-
-OpenVidu is a platform to facilitate the addition of video calls in your web or mobile 
-application, either group or one-to-one calls. In fact, any combination you come up with is easy to implement with OpenVidu.
-
-It is based on [Kurento](http://www.kurento.org), the WebRTC platform for multimedia applications. Openvidu was forked from [KurentoRoom project](https://github.com/Kurento/kurento-room).
-
-OpenVidu and Kurento are licensed under Apache License v2.
 
 ----------
 

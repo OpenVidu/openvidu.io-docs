@@ -1,4 +1,4 @@
-<h2 id="section-title">Tutorial - Deploying OpenVidu Demos on AWS</h2>
+<h2 id="section-title">Deploying OpenVidu Demos on AWS (TUTORIAL)</h2>
 <hr>
 
 Deploying on AWS with Cloud Formation
