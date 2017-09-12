@@ -1,4 +1,4 @@
-site_name: OpenVidu Documentation
+site_name: OpenVidu Docs
 pages:
 - ['home/index.md','What is OpenVidu?']
 - ['tutorials/index.md','Tutorials', 'Intro']
@@ -19,5 +19,6 @@ pages:
 - ['deployment/deploying-ubuntu.md','Deployment', 'Deploying OpenVidu as a native service']
 - ['deployment/custom-certificate.md','Deployment', 'Using your own certificate']
 - ['developing/index.md','Contribute', 'Developing OpenVidu']
+- ['troubleshooting/index.md','Troubleshooting / FAQ']
 theme: readthedocs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

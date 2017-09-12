@@ -88,7 +88,7 @@ Now you can deploy your application in the same machine (if the app is not pure 
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your _COTURN_ server:
   
-  - First of all, you certainly need this machine to have a **public, reachable IP**. The reason is pretty simple: _COTURN_ is necessary to cover those situations where the final users are hidden behind NATs or complex networks. If the _COTURN_ itself is running in an unreachable machine, your video transmission couold fail in certain cases.
+  - First of all, you certainly need this machine to have a **public, reachable IP**. The reason is pretty simple: _COTURN_ is necessary to cover those situations where the final users are hidden behind NATs or complex networks. If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
 
   - Besides, _COTURN_ server needs some ports opened in the firewall:
 
@@ -96,6 +96,8 @@ In order for this deployment to work, you will have to meet 2 sets of needs in t
       - **49152 - 65535 UDP** (TURN exchanges media through any of these ports)
 
   > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
+  
+  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in a few minutes [here](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
 
 ## Architectures
 

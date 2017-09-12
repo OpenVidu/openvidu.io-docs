@@ -157,19 +157,21 @@ Remember that the key will be the same you indicated when configuring the [Cloud
 Depending on the framework of your app:
 
 ##### Plain HTML/CSS/JS
-  - Add your web files into `/var/www/html/`. You should have instant access to it through `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/`
+  - Add your web files into `/opt/`. You should have instant access to it through `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/`
 
       > If you want to test the deployment of a plain HTML/CSS/JS app, you can use **[openvidu-insecure-js](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-js)**
 
 ##### Java
-  - Copy your JAR or WAR into `/var/www/html/`
+  - Copy your JAR or WAR into `/opt/`
 
-  - Write a script to launch your app with all the parameters it needs, and store it under `/var/www/html/`. For example, a file `/var/www/html/YOUR_LAUNCHER.sh` containing:
+  - Write a script to launch your app with all the parameters it needs, and store it under `/opt/`. For example, a file `/opt/YOUR_LAUNCHER.sh` containing:
         
-        cd /var/www/html
+        cd /opt
         java -jar -Dserver.port=4040 myapp.jar
 
-      > **IMPORTANT**: It is crucial to navigate to **/var/www/html** before the launching command. Otherwise, the system will surely have some problems for finding your files
+      > **IMPORTANT 1**: It is crucial to navigate to **/opt** before the launching command. Otherwise, the system will surely have some problems for finding your files
+
+      > **IMPORTANT 2**: Obviously your app will need Java to run. You must install the correct version of Java in your machine (check version: `java -version`)
 
   - Configure Nginx: add a new **location** directive to the file `/etc/nginx/sites-enabled/default`, inside the `server { }` group:
         
@@ -188,7 +190,7 @@ Depending on the framework of your app:
   - Configure Supervisor: add the script you wrote in the second step to the file `/etc/supervisor/conf.d/openvidu.conf` like this:
             
           [program:YOUR_APP]
-          command=/bin/bash /var/www/html/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
+          command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
 
       > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (check [Securization](/home/#securization) section), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-java/src/main/resources/application.properties#L8).
@@ -204,14 +206,16 @@ Depending on the framework of your app:
       > If you want to test the deployment of a Java app, you can use **openvidu-js-java** or **openvidu-mvc-java** ([release here](https://github.com/OpenVidu/openvidu-tutorials/releases))
 
 ##### Node
-  - Add your web files into `/var/www/html/`
+  - Add your web files into `/opt/`
 
-  - Write a script to launch your app with all the parameters it needs, and store it under `/var/www/html/`. For example, a file `/var/www/html/YOUR_LAUNCHER.sh` containing:
+  - Write a script to launch your app with all the parameters it needs, and store it under `/opt/`. For example, a file `/opt/YOUR_LAUNCHER.sh` containing:
         
-        cd /var/www/html
+        cd /opt
         node myserver.js 4040
 
-      > **IMPORTANT**: It is crucial to navigate to **/var/www/html** before the launching command. Otherwise, the system will surely have some problems for finding your files
+      > **IMPORTANT 1**: It is crucial to navigate to **/opt** before the launching command. Otherwise, the system will surely have some problems for finding your files
+
+      > **IMPORTANT 2**: Obviously your app will need Node to run. You must install the correct version of Node in your machine (check version: `nodejs -v`)
   
   - Configure Nginx: add a new **location** directive to the file `/etc/nginx/sites-enabled/default`, inside the `server { }` group::
       
@@ -232,7 +236,7 @@ Depending on the framework of your app:
   - Configure Supervisor: add the script you wrote in the second step to `/etc/supervisor/conf.d/openvidu.conf` like this:
           
           [program:YOUR_APP]
-          command=/bin/bash /var/www/html/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
+          command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
 
       > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (check [Securization](/home/#securization) section), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-node/server.js#L64).
@@ -247,17 +251,17 @@ Depending on the framework of your app:
 
 ##### PHP, Ruby, Python, .NET...
 
-We are not going to spell out in detail what is to be done with the rest of backend technologies, but you can get the idea from the Java and Node steps above. It is always the same process: take your app to your instance, place it under `/var/www/html/`, configure Nginx and Supervisor (this last with the necessary launching script depending on your technology) and relaunch both services.
+We are not going to spell out in detail what is to be done with the rest of backend technologies, but you can get the idea from the Java and Node steps above. It is always the same process: take your app to your instance, place it under `/opt/`, configure Nginx and Supervisor (this last with the necessary launching script depending on your technology) and relaunch both services. Be sure that your machine has all the necessary dependencies and technologies to execute your application, depending on the framework (Java for a Java app, Node for a Node app, Ruby for a Ruby app...)
 
 Voilà! It is really this simple.
 
 
 #### PS: Multiple apps in the same instance
 
-To launch multiple apps in the same instance, just store each one of them inside its own folder under `/var/www/html/`. For example:
+To launch multiple apps in the same instance, just store each one of them inside its own folder under `/opt/`. For example:
 
-  - `/var/www/html/YOUR_APP_1` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_1/`
-  - `/var/www/html/YOUR_APP_2` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_2/`
+  - `/opt/YOUR_APP_1` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_1/`
+  - `/opt/YOUR_APP_2` : will be available at `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/YOUR_APP_2/`
 
 The other steps explained above also need some adjustments related to paths:
 
@@ -276,11 +280,11 @@ The other steps explained above also need some adjustments related to paths:
   - Configure Supervisor: now...
 
           [program:YOUR_APP_1]
-          command=/bin/bash /var/www/html/YOUR_APP_1/YOUR_LAUNCHER_1.sh YOUR_APP1_PARAM_1 YOUR_APP1_PARAM_2 ...
+          command=/bin/bash /opt/YOUR_APP_1/YOUR_LAUNCHER_1.sh YOUR_APP1_PARAM_1 YOUR_APP1_PARAM_2 ...
           redirect_stderr=true
 
           [program:YOUR_APP_2]
-          command=/bin/bash /var/www/html/YOUR_APP_2/YOUR_LAUNCHER_2.sh YOUR_APP2_PARAM_1 YOUR_APP2_PARAM_2 ...
+          command=/bin/bash /opt/YOUR_APP_2/YOUR_LAUNCHER_2.sh YOUR_APP2_PARAM_1 YOUR_APP2_PARAM_2 ...
           redirect_stderr=true
 
 <script src="/js/copy-btn.js"></script>
