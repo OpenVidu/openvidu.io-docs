@@ -17,13 +17,13 @@
   <tr>
     <td rowspan="2">openvidu-browser</td>
     <td>NPM package</td>
-    <td>1.0.3-beta.3</td>
+    <td>1.0.4-beta.3</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
     <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
-    <td>1.0.3-beta.3</td>
+    <td>1.0.4-beta.3</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub</a></td>
   </tr>
   

@@ -7,9 +7,9 @@ For a JAR binary of OpenVidu Server
 You will need a Java keystore (**.jks**). Check [Get JKS from CRT and KEY](#get-jks-from-crt-and-key) section to see how to get it from your certificate's files.
 In order to use your JKS, just set the following values for these properties on launch:
 
-- server.ssl.key-store
-- server.ssl.key-store-password
-- server.ssl.key-alias
+- `server.ssl.key-store`
+- `server.ssl.key-store-password`
+- `server.ssl.key-alias`
 
 <br>
 
@@ -27,13 +27,13 @@ For the Docker container of OpenVidu Server
 You will need a Java keystore (**.jks**). Check [Get JKS from CRT and KEY](#get-jks-from-crt-and-key) section to see how to get it from your certificate's files.
 In order to use your JKS, just set the following values for these properties on launch:
 
-- server.ssl.key-store
-- server.ssl.key-store-password
-- server.ssl.key-alias
+- `server.ssl.key-store`
+- `server.ssl.key-store-password`
+- `server.ssl.key-alias`
 
 You must also indicate the _volume_ flag (-v) to mount your keystore file, letting know Docker the location of the file and that it should be only readable:
 
-- -v /ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:ro
+- `-v /ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:ro`
 
 <br>
 

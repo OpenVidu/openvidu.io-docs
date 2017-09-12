@@ -3,7 +3,7 @@
 This demo allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a pure frontend application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/) does.
 
 <p align="center">
-  <img src="/img/tutorials/openvidu-getaroom.png">
+  <img  class="img-responsive" src="/img/tutorials/openvidu-getaroom.png">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.

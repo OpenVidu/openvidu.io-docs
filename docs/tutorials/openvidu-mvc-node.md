@@ -103,7 +103,7 @@ Let's describe the code following this scenario: a user logs in to the app and c
 At path `/` a login form will be displayed:
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 300px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSV3phM2JTWHBxakk">
+  <img class="img-responsive login-form-img" style="padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSV3phM2JTWHBxakk">
 </p>
 
 The form will execute a POST operation to path `/dashboard` whenever "Log in" button is clicked, passing the username and the password:
@@ -169,7 +169,7 @@ function dashboardController(req, res) {
 `dashboard.ejs` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 500px; padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMElwU2l1cGpKQzQ">
+  <img class="img-responsive join-form-img" style="padding: 25px 0;" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSMElwU2l1cGpKQzQ">
 </p>
 
 The form will execute a POST operation to path `/session` whenever "Join!" button is clicked, passing the nickname and the session name:
