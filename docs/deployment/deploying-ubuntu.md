@@ -68,14 +68,14 @@ sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET --net="host" open
 > `sudo apt-get -y install docker-ce`</br>
 >
 
-Go to [Using your own certificate](/deployment/custom-certificate#for-the-docker-container-of-openvidu-server) to add your certificate to the container instead of using the self-signed default one.
+Go to [Using your own certificate](/deployment/custom-certificate#for-the-docker-container-of-openvidu-server) to add your certificate to the container instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
 #### 7B. ...or init your own openvidu-server executable
 
 ```console
 java -jar -Dopenvidu.secret=YOUR_SECRET openvidu-server.jar &
 ```
-Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one.
+Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
 #### 8. Finally check your server
 
@@ -86,16 +86,14 @@ Now you can deploy your application in the same machine (if the app is not pure 
 
 ## Server network requirements
 
-In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your _COTURN_ server:
+In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need this machine to have a **public, reachable IP**. The reason is pretty simple: _COTURN_ is necessary to cover those situations where the final users are hidden behind NATs or complex networks. If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
 
-  - Besides, _COTURN_ server needs some ports opened in the firewall:
+  - Besides, the server needs some **ports** opened in the firewall:
 
-      - **3478 TCP & UDP** (this server implementation listens on port 3478 by default)
-      - **49152 - 65535 UDP** (TURN exchanges media through any of these ports)
-
-  > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
+      - **3478 TCP & UDP** (_COTURN_ listens on port 3478 by default)
+      - **49152 - 65535 UDP** (WebRTC exchanges media through any of these ports)
   
   > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in a few minutes [here](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
 
@@ -120,7 +118,7 @@ If you are deploying with these instructions for the first time, we recommend us
   </div>
 </div>
 
-The instructions above portray scenarios 1 and 2. In other words, we are supposing that OpenVidu Server and KMS will be hosted in the same machine. The only difference between options 1-2 and option 3 is that for steps 7A and 7B, another parameter is required when launching your openvidu-server:
+The instructions above portray scenarios 1 and 2 in the image. In other words, we are supposing that OpenVidu Server and KMS will be hosted in the same machine. The only difference between options 1-2 and option 3 is that for steps 7A and 7B, another parameter is required when launching your openvidu-server:
 
 #### 7A
 
