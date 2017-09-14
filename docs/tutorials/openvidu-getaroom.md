@@ -1,4 +1,5 @@
 # openvidu-getaroom
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
 This demo allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a pure frontend application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/) does.
 
@@ -14,7 +15,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 > You will only have to make use of **openvidu-browser** to get this sample app working.
 
-## Executing this example
+## Running this tutorial
 
 #### Docker
 
@@ -51,6 +52,7 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
+> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

@@ -6,8 +6,33 @@
     <div class="container">
 
         <div class="col-md-12 text-center wow fadeInUp">
+            <h3 class="section-title">Hello World</h3>
+            <p class="subheading">Make your first video-call with just a few lines of code</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-4 team-member"></div>
+            <div class="col-md-4 col-sm-4 team-member">
+                <div class="effect effects wow fadeInUp">
+                    <div class="img">
+                        <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa"><h3 style="line-height: 100px; border-top: none; margin: 0; color: #0088aa">Go!</h3></div>
+                        <div class="overlay">
+                            <ul class="expand">
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-hello-world" class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
+                            </ul>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 team-member"></div>
+        </div>
+
+        <hr>
+
+        <div class="col-md-12 text-center wow fadeInUp">
             <h3 class="section-title">Client Side only </h3>
-            <p class="subheading">Get started in 5 minutes with the simplest version of OpenVidu</p>
+            <p class="subheading">Get quickly started without worrying about a server-side</p>
         </div>
 
         <div class="row">
@@ -54,7 +79,7 @@
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="#" onClick="return false;">Coming soon...</i></a></li>
+                                <li class="social-icon"><a href="#" onClick="return false;" style="font-size: 60%">Coming soon...</i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -73,12 +98,12 @@
 
         <div class="col-md-12 text-center wow fadeInUp">
             <h3 class="section-title">Client Side + Server Side </h3>
-            <p class="subheading">Try any of our ready-for-production web apps to see secure OpenVidu in action</p>
+            <p class="subheading">Try any of our ready-for-production web apps to see OpenVidu in action with a real example</p>
         </div>
 
-        <div class="row">
+        <div class="row row-secure-tutorials">
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
@@ -97,7 +122,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
@@ -115,7 +140,12 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+        </div>
+        <!-- End Row -->
+
+        <div class="row row-secure-tutorials">
+
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
@@ -134,13 +164,7 @@
                 </div>
             </div>
 
-            
-        </div>
-        <!-- End Row -->
-
-        <div class="row">
-
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />

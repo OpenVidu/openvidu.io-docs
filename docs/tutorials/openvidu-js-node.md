@@ -1,8 +1,9 @@
 # openvidu-js-node
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
 A secure OpenVidu sample app with a Node backend and a SPA frontend. It makes use of the _openvidu-node-client_ to get the necessary params from OpenVidu Server.
 
-## Understanding this example
+## Understanding this tutorial
 
 <p align="center">
   <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSVkNVZ2s3cmk2aHM">
@@ -17,7 +18,7 @@ OpenVidu is composed by the modules displayed on the image above.
 
 > You will only have to make use of **openvidu-browser** and **openvidu-node-client** to get this sample app working
 
-## Executing this example
+## Running this tutorial
 
 1) Clone the repo:
 
@@ -47,6 +48,8 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 ```
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+
+> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

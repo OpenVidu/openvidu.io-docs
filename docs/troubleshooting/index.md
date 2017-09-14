@@ -18,9 +18,17 @@ Besides that, these are the recommended steps to follow when videos are not rece
 
 You can do some things to improve your efficiency while using OpenVidu:
 
-  - You can test the video transmision between multiple tabs in the same browser. **WARNING:** You may have trouble for testing at the same time with a Chrome and a Firefox tab, as they compete for the camera access.
-  - Be very aware of the browser's console. There you will find warning messages reporting the triggering of events and other important stuff. Error messages can also help you to solve many issues.
-  - Do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. NGROK
+  - **Multiple tabs to test the video transmission**: you can use multiple tabs in the same browser to test your video streams. WARNING: you may have trouble for testing with a Chrome and a Firefox tab at the same time, as they compete for the camera access.
+  - **Be very aware of the browser's console**: there you will find warning messages reporting the triggering of events and other important stuff. Error messages can also help you to solve many issues.
+  - **Remember the browser's cache**: if you have changed your HTML, JavaScript or CSS code, refreshed the page and cannot see the changes on the browser, probably the cache is still serving the old files. To perform a hard reload of your page on the browser, press `Ctrl + Shift + R`
+  - **Use _Ngrok_ to share your app**: do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. To achieve this, you can use _Ngrok_. The set up is quite simple:
+    - Download _Ngrok_ with this link [**<a href="https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip">LINK</a>**] and unzip it.
+    - Download this _Ngrok_ configuration file (named `ngrok.yml`) from our GitHub repo **[<a href="https://raw.githubusercontent.com/OpenVidu/openvidu-tutorials/master/openvidu-js-java/docker/ngrok.yml">LINK</a>]** and place it in the same path as _Ngrok_ binary.
+    - Run _Ngrok_ with this command: `./ngrok start --all -config=ngrok.yml`. You will get two public IPs (ended with `.ngrok.io`) publishing your local address `localhost:5000` and `localhost:3000`.
+    - You just have to run you app at port `3000` and run OpenVidu Server locally adding this parameter:
+        - When running OpenVidu Server as a Docker container: `-Dspring.profiles.active=ngrok`
+        - When running OpenVidu Server as a JAR: `-e spring.profiles.active=ngrok`
+    - That's it! Now you can connect to your app through the _Ngrok_ public IP and the connection to OpenVidu Server will work just fine. You have "deployed" your app on your own computer, and cross-device testing through your own network is now possible. Connecting to your app over the Internet is also possible, but the video transmission may not work (check [this FAQ](#1-everything-looks-alright-but-i-cannot-see-any-remote-video) to learn why).
 
 ### 3. Why does my app need a server-side?
 

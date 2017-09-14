@@ -32,6 +32,7 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
+> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
 
 ## Understanding the code
 
@@ -42,10 +43,10 @@ This application is very simple. It has only 4 files:
 - `style.css`: some CSS classes to style _index.html_.
 - `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. It has two links to both JavaScript files: 
 
-  <pre class="html-scripts">
-    <code>&lt;script src="openvidu-browser-VERSION.js"&gt;&lt;/script&gt;
+<pre class="html-scripts">
+  <code>&lt;script src="openvidu-browser-VERSION.js"&gt;&lt;/script&gt;
 &lt;script src="app.js"&gt;&lt;/script&gt;</code>
-  </pre>
+</pre>
 
 Let's see how `app.js` uses `openvidu-browser-VERSION.js`:
 
@@ -74,11 +75,11 @@ As you can see in the code, the process is very simple: get an OpenVidu object f
 
 <p style="text-align: center"><strong>"wss://"</strong> + <code>OPENVIDU_IP</code> + <strong>":8443/"</strong> + <code>SESSION_ID</code> + <strong>"?secret="</strong> + <code>OPENVIDU_SECRET</code></p>
 
-  - `OPENVIDU_IP`  is the IP where your OpenVidu Server is running. In this case, it will be localhost.
-  - `SESSION_ID` is the unique identifier of your session. This parameter will determine which session you are connecting to.
+  - `OPENVIDU_IP`  is the IP where your OpenVidu Server is running. In this case, it will be _localhost_.
+  - `SESSION_ID` is the unique identifier of your session. This parameter will determine which session you are connecting to: in this case, we get this from the HTML text input, where the user can type whatever he wants.
   - `OPENVIDU_SECRET` is the same secret as used to initialize you OpenVidu Server (check param `openvidu.secret` in step 4 of [Running this tutorial](#running-this-tutorial)).
 
-> This is only necessary when your app has no server-side. Obviously in a production environment this is not recommended. Check [this FAQ](/troubleshooting#what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side) to learn more.
+> This parameter building process for _initrSession_ method is only necessary when your app has no server-side. Obviously in a production environment appending your secret is not recommended. Check [this FAQ](/troubleshooting#4-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side) to learn more.
 
 Then you can subscribe to all the events you want for your session. In this case we just want to subscribe to every stream that is being created in the session: on `streamCreated` we subscribe to the specific stream, available at `event.stream` property.
 
@@ -86,7 +87,7 @@ Then you can subscribe to all the events you want for your session. In this case
 
 ---
 
-#### Finally connect to the session and publish your webcam:
+#### Connect to the session and publish your webcam:
 
 ```javascript
 session.connect(null, function (error) {
@@ -101,8 +102,18 @@ session.connect(null, function (error) {
 });
 ```
 
-We simply need to call `session.connect` method providing a callback to execute when the operation is completed. First parameter `null` is now irrelevant because we have no server-side (check the [FAQ](/troubleshooting#what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
+We simply need to call `session.connect` method providing a callback to execute when the operation is completed. First parameter `null` is now irrelevant because we have no server-side (check the [FAQ](/troubleshooting#4-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
 
-The only parameter received by our callback is `error` object, which will be undefined if everything has gone well. To publish our webcam to the session we just get a `publisher` (thanks to `OpenVidu.initPublisher` method), and a new HTML video will be appended to the page inside element with id _publisher_.
+The only parameter received by our callback is `error` object, which will be undefined if everything has gone well. To publish our webcam to the session we just get a `publisher` (thanks to `OpenVidu.initPublisher` method), and a new HTML video showing our webcam will be appended to the page inside element with id _publisher_.
 
-Last but not least, we publish this `publisher` object thanks to `session.publish`. At this point the rest of users connected to this session will trigger `streamCreated` event and can start watching our webcam.
+Last but not least, we publish this `publisher` object thanks to `session.publish`. At this point the rest of users connected to this session will trigger their own `streamCreated` event and can start watching our webcam.
+
+---
+
+#### Leaving the session:
+
+```javascript
+session.disconnect();
+```
+
+Whenever we want a user to leave the session, we just need to call `session.disconnect` method. Here it will be called inside _leaveSession_ function, triggered when the user clicks on "LEAVE" button.
