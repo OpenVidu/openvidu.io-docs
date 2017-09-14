@@ -76,12 +76,12 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery1" href="/img/demos/insecure-join.png">
+		<a data-fancybox="gallery" href="/img/demos/insecure-join.png">
 		<img class="img-responsive" src="/img/demos/insecure-join.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery1" href="/img/demos/insecure-session.png">
+		<a data-fancybox="gallery" href="/img/demos/insecure-session.png">
 		<img class="img-responsive" src="/img/demos/insecure-session.png">
 	</a>
 	</div>
@@ -297,3 +297,21 @@ leaveSession() {
 	...
 }
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox="gallery"]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>

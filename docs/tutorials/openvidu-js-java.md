@@ -51,24 +51,24 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/secure-login.png">
+		<a data-fancybox="gallery" href="/img/demos/secure-login.png">
 			<img class="img-responsive" src="/img/demos/secure-login.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/secure-join.png">
+		<a data-fancybox="gallery" href="/img/demos/secure-join.png">
 			<img class="img-responsive" src="/img/demos/secure-join.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/secure-session-2.png">
+		<a data-fancybox="gallery" href="/img/demos/secure-session-2.png">
 			<img class="img-responsive" src="/img/demos/secure-session-2.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/secure-session-1.png">
+		<a data-fancybox="gallery" href="/img/demos/secure-session-1.png">
 			<img class="img-responsive" src="/img/demos/secure-session-1.png">
 		</a>
 	</div>
@@ -461,3 +461,22 @@ When the last user leaves the session `this.mapSessions.remove(sessionName);` wi
 > At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**. 
 > 
 > The only actual requirements are getting ***sessionId*** and ***token*** params from  ***openvidu-server*** (by using one of the available clients or with the REST API) and using them along with ***openvidu-browser*** to connect your clients to the sessions.
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox="gallery"]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>

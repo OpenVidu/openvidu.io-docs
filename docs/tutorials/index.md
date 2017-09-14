@@ -6,7 +6,7 @@
     <div class="container">
 
         <div class="col-md-12 text-center wow fadeInUp">
-            <h3 class="section-title">Hello World</h3>
+            <h3 id="hello-world" class="section-title">Hello World</h3>
             <p class="subheading">Make your first video-call with just a few lines of code</p>
         </div>
 
@@ -31,7 +31,7 @@
         <hr>
 
         <div class="col-md-12 text-center wow fadeInUp">
-            <h3 class="section-title">Client Side only </h3>
+            <h3 id="client-side-only" class="section-title">Client Side only </h3>
             <p class="subheading">Get quickly started without worrying about a server-side</p>
         </div>
 
@@ -97,7 +97,7 @@
         <hr>
 
         <div class="col-md-12 text-center wow fadeInUp">
-            <h3 class="section-title">Client Side + Server Side </h3>
+            <h3 id="client-side-server-side" class="section-title">Client Side + Server Side </h3>
             <p class="subheading">Try any of our ready-for-production web apps to see OpenVidu in action with a real example</p>
         </div>
 

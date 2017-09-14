@@ -56,24 +56,24 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/getaroom-index.png">
+		<a data-fancybox="gallery" href="/img/demos/getaroom-index.png">
 			<img class="img-responsive" src="/img/demos/getaroom-index.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-1.png">
+		<a data-fancybox="gallery" href="/img/demos/getaroom-session-1.png">
 			<img class="img-responsive" src="/img/demos/getaroom-session-1.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-6.png">
+		<a data-fancybox="gallery" href="/img/demos/getaroom-session-6.png">
 			<img class="img-responsive" src="/img/demos/getaroom-session-6.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery2" href="/img/demos/getaroom-session-6-mob.png">
+		<a data-fancybox="gallery" href="/img/demos/getaroom-session-6-mob.png">
 			<img id="img-mob" class="img-responsive" src="/img/demos/getaroom-session-6-mob.png">
 		</a>
 	</div>
@@ -239,3 +239,21 @@ function leaveRoom() {
 	window.location.href = window.location.origin + window.location.pathname;
 }
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox="gallery"]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>
