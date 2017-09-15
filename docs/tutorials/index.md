@@ -79,7 +79,7 @@
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="#" onClick="return false;" style="font-size: 60%">Coming soon...</i></a></li>
+                                <li class="social-icon"><a href="#" onClick="return false;" style="font-size: 60%">Coming soon...</a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -93,6 +93,23 @@
 
         </div>
         <!-- End Row -->
+
+        <div class="row no-margin row-more-info">
+            <a class="btn btn-xs" data-toggle="collapse" data-target="#info-client-only"></a>
+            <div id="info-client-only" class="collapse more-info-tutorials">
+                <div class="row no-margin more-info-tutorials-int">
+                    <div class="col-lg-12 col-md-12 col-img-more-info">
+                        <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture-client.png">
+                    </div>
+                    <div class="col-lg-12 col-md-12 more-info-desc">
+                        <p><strong>OpenVidu</strong> is present on both client-side and server-side, but the <strong>application</strong> is only present on client-side.</p>
+                        <p>Since these are client-side-only applications, you will be dealing only with <strong>frontend technologies</strong>: HTML, CSS, Javascript / Typescript ...</p>
+                        <p>The main difference compared to Client Side + Server Side tutorials is that here you don't have real control over your users: your
+                            <strong>video-calls won't be secure</strong> beacuse you cannot identify them and cannot determine if allow or deny their access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <hr>
 
@@ -182,6 +199,24 @@
                 </div>
             </div>
 
+        </div>
+
+        <div class="row no-margin row-more-info">
+            <a class="btn btn-xs" data-toggle="collapse" href="#info-client-server"></a>
+            <div id="info-client-server" class="collapse more-info-tutorials">
+                <div class="row no-margin more-info-tutorials-int">
+                    <div class="col-lg-12 col-md-12 col-img-more-info">
+                        <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture.png">
+                    </div>
+                    <div class="col-lg-12 col-md-12 more-info-desc">
+                        <p><strong>OpenVidu</strong> and the <strong>application</strong> are present on both client-side and server-side.</p>
+                        <p>Since these are full web applications, you will be dealing with <strong>frontend technologies</strong> (HTML, CSS, Javascript / Typescript ...) 
+                            but also with <strong>backend technologies</strong> (Java / Node)</p>
+                        <p>The main difference compared to Client Side Only tutorials is that here you have total control over your users: your 
+                            <strong>video-calls are secure</strong> beacuse you can identify them and allow or deny their access.</p>                             
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
