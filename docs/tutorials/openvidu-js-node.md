@@ -49,7 +49,11 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
-> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
+<br>
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -238,6 +242,7 @@ In this case it doesn't because 'publisher1' is the first user connecting to it.
 
 ```javascript
 else { // New session: return a new sessionId and a new token
+
 	// Create a new OpenVidu Session
 	var mySession = OV.createSession();
 	
@@ -366,15 +371,16 @@ if (mapSessionNameSession[sessionName]) {
 	mySession.generateToken(tokenOptions, function (token) {
 		
 		// Get the existing sessionId
-		var sessionId = mySession.getSessionId();
+		mySession.getSessionId(function (sessionId) {
 		
-		// Store the new token in the collection of tokens
-		mapSessionIdTokens[sessionId].push(token);
-		
-		// Return the sessionId and token to the client
-		res.status(200).send({
-			0: sessionId,
-			1: token
+			// Store the new token in the collection of tokens
+			mapSessionIdTokens[sessionId].push(token);
+			
+			// Return the sessionId and token to the client
+			res.status(200).send({
+				0: sessionId,
+				1: token
+			});
 		});
 	});
 }
@@ -412,33 +418,37 @@ app.post('/api-sessions/remove-user', function (req, res) {
 	// Retrieve params from POST body
 	var sessionName = req.body.sessionName;
 	var token = req.body.token;
-	
-	// If the session exists ("TUTORIAL" in this case)
+
+	// If the session exists
 	var mySession = mapSessionNameSession[sessionName];
 	if (mySession) {
-		var tokens = mapSessionIdTokens[mySession.getSessionId()];
-		if (tokens) {
-			var index = tokens.indexOf(token);
-			
-			// If the token exists
-			if (index !== -1) {
-				// Token removed!
-				tokens.splice(index, 1);
+		mySession.getSessionId(function (sessionId) {
+			var tokens = mapSessionIdTokens[sessionId];
+			if (tokens) {
+				var index = tokens.indexOf(token);
+				
+				// If the token exists
+				if (index !== -1) {
+					// Token removed!
+					tokens.splice(index, 1);
+				} else {
+					var msg = 'Problems in the app server: the TOKEN wasn\'t valid';
+					res.status(500).send(msg);
+				}
+				if (mapSessionIdTokens[sessionId].length == 0) {
+					// Last user left: session must be removed
+					delete mapSessionNameSession[sessionName];
+				}
+				res.status(200).send();
 			} else {
-				res.status(500).send('The TOKEN wasn\'t valid');
+				var msg = 'Problems in the app server: the SESSIONID wasn\'t valid';
+				res.status(500).send(msg);
 			}
-			if (mapSessionIdTokens[mySession.getSessionId()].length == 0) {
-				// Last user left: session "TUTORIAL" must be removed
-				delete mapSessionNameSession[sessionName];
-			}
-			res.status(200).send();
-		} else {
-			res.status(500).send('The SESSIONID wasn\'t valid');
-		}
+		});
 	} else {
-		res.status(500).send('The SESSION does not exist');
+		var msg = 'Problems in the app server: the SESSION does not exist';
+		res.status(500).send(msg);
 	}
-}
 ```
 When the last user leaves the session `delete mapSessionNameSession[sessionName]` will be executed: this means the session is empty and that it is going to be closed. The _sessionId_ and all _token_ params associated to it will be invalidated.
 

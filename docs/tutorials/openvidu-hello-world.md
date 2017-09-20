@@ -32,7 +32,11 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
-> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
+<br>
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 ## Understanding the code
 
@@ -79,7 +83,7 @@ As you can see in the code, the process is very simple: get an OpenVidu object f
   - `SESSION_ID` is the unique identifier of your session. This parameter will determine which session you are connecting to: in this case, we get this from the HTML text input, where the user can type whatever he wants.
   - `OPENVIDU_SECRET` is the same secret as used to initialize you OpenVidu Server (check param `openvidu.secret` in step 4 of [Running this tutorial](#running-this-tutorial)).
 
-> This parameter building process for _initrSession_ method is only necessary when your app has no server-side. Obviously in a production environment appending your secret is not recommended. Check [this FAQ](/troubleshooting#4-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side) to learn more.
+> This parameter building process for _initrSession_ method is only necessary when your app has no server-side. Obviously in a production environment appending your secret is not recommended. Check [this FAQ](/troubleshooting#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side) to learn more.
 
 Then you can subscribe to all the events you want for your session. In this case we just want to subscribe to every stream that is being created in the session: on `streamCreated` we subscribe to the specific stream, available at `event.stream` property.
 
@@ -102,7 +106,7 @@ session.connect(null, function (error) {
 });
 ```
 
-We simply need to call `session.connect` method providing a callback to execute when the operation is completed. First parameter `null` is now irrelevant because we have no server-side (check the [FAQ](/troubleshooting#4-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
+We simply need to call `session.connect` method providing a callback to execute when the operation is completed. First parameter `null` is now irrelevant because we have no server-side (check the [FAQ](/troubleshooting#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
 
 The only parameter received by our callback is `error` object, which will be undefined if everything has gone well. To publish our webcam to the session we just get a `publisher` (thanks to `OpenVidu.initPublisher` method), and a new HTML video showing our webcam will be appended to the page inside element with id _publisher_.
 

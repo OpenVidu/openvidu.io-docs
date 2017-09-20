@@ -68,7 +68,11 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
-> This [FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu) will give you some tips to develop with OpenVidu
+<br>
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -143,7 +147,7 @@ Session's identifiers must begin with the URL where _openvidu-server_ listens, s
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: this is only for demos and developing environments. Do NOT include your secret in production. Check this <a href="/docs/troubleshooting#4-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side">FAQ</a> to learn more.
+	<strong>WARNING</strong>: this is only for demos and developing environments. Do NOT include your secret in production. Check this <a href="/docs/troubleshooting#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side">FAQ</a> to learn more.
 </div>
 </div>
 

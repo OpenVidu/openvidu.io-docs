@@ -56,7 +56,7 @@
   <tr>
     <td>openvidu-node-client</td>
     <td>NPM package</td>
-    <td>1.0.1-beta.3</td>
+    <td>1.0.2-beta.3</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your NODE server. It makes easier the retrieval of the necessary params from OpenVidu Server for securing your application (sessionIds and tokens). It is a simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
@@ -92,10 +92,15 @@
   </tr>
   
   <tr>
-    <td>openvidu-js-java</td>
+    <td rowspan="2">openvidu-js-java</td>
     <td>JAR</td>
     <td>1.0.0-beta.3</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu-tutorials/releases" target="_blank">GitHub</a></td>
+  </tr>
+  <tr>
+    <td>Docker container<br><em>(basic-webinar-demo)</em></td>
+    <td>1.0.0-beta.3</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/basic-webinar-demo/tags/" target="_blank">DockerHub</a></td>
   </tr>
   
   <tr>
@@ -105,13 +110,6 @@
     <td><a class="" href="https://github.com/OpenVidu/openvidu-tutorials/releases" target="_blank">GitHub</a></td>
   </tr>
   
-  <tr>
-    <td>basic-webinar-demo</td>
-    <td>Docker container</td>
-    <td>1.0.0-beta.3</td>
-    <td><a class="" href="https://hub.docker.com/r/openvidu/basic-webinar-demo/tags/" target="_blank">DockerHub</a></td>
-  </tr>
-
   <tr>
     <td>basic-videoconference-demo</td>
     <td>Docker container</td>
@@ -146,27 +144,27 @@
   
   <tr>
     <td>openvidu-js-node</td>
-    <td><a href="/docs/tutorials/openvidu-js-node/#executing-this-example" target="_blank">Go</a></td>
+    <td><a href="/docs/tutorials/openvidu-js-node/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
   
   <tr>
     <td>openvidu-mvc-node</td>
-    <td><a href="/docs/tutorials/openvidu-mvc-node/#executing-this-example" target="_blank">Go</a></td>
+    <td><a href="/docs/tutorials/openvidu-mvc-node/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
-    <td>openvidu-insecure-js</td>
-    <td><a href="/docs/tutorials/openvidu-insecure-js/#executing-this-example" target="_blank">Go</a></td>
+    <td>openvidu-insecure-js<br><em>(basic-videoconference-demo)</em></td>
+    <td><a href="/docs/tutorials/openvidu-insecure-js/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
     <td>openvidu-insecure-angular</td>
-    <td><a href="/docs/tutorials/openvidu-insecure-angular/#executing-this-example" target="_blank">Go</a></td>
+    <td><a href="/docs/tutorials/openvidu-insecure-angular/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
     <td>openvidu-getaroom</td>
-    <td><a href="/docs/tutorials/openvidu-getaroom/#executing-this-example" target="_blank">Go</a></td>
+    <td><a href="/docs/tutorials/openvidu-getaroom/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
   
 </table>
