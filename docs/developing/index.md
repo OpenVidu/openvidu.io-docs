@@ -2,7 +2,7 @@
 Developing OpenVidu
 ===================
 <br>
-This documentation is suitable for **Linux**. Packages required:
+This documentation is suitable for **Ubuntu 14.04** or **Ubuntu 16.04**. Packages required:
 
 | Dependecy     | Check version   | Install                               |
 | ------------- | --------------- |-------------------------------------- |

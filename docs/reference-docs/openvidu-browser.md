@@ -16,9 +16,10 @@
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
 | `initSession`    | [Session](#session) | _`apikey:string`_<br/>`sessionId:string` | Returns a session with id **sessionId**. This parameter must always start with the URL of openvidu-server (automatically set when asking for it to openvidu-server) |
-| `initPublisher`  | [Publisher](#publisher) | `parentId:string`<br/>_`cameraOptions:any`_<br/>_`callback:function`_ | Starts local video stream, appending it to **parentId** HTML element, with the specific **cameraOptions** settings and executing **callback** function in the end. _cameraOptions_ must be an object with three properties: **{audio:boolean, video:boolean, quality:string}**, being _audio_/_video_ false if you want to initialize them muted (_Publisher.publishAudio(true)_ and _Publisher.publishVideo(true)_ can unmute them later) and _quality_ must be 'LOW', 'MEDIUM' or 'HIGH'|
-| `checkSystemRequirements`  | number |  | Returns 1 if the browser supports WebRTC, 0 otherwise|
+| `initPublisher`  | [Publisher](#publisher) | `parentId:string`<br/>_`cameraOptions:any`_<br/>_`callback:function`_ | Starts local video stream, appending it to **parentId** HTML element, with the specific **cameraOptions** settings and executing **callback** function in the end. _cameraOptions_ must be an object with three properties: **{audio:boolean, video:boolean, quality:string}**, being _audio_/_video_ false if you want to initialize them muted (_Publisher.publishAudio(true)_ and _Publisher.publishVideo(true)_ can unmute them later) and _quality_ must be 'LOW', 'MEDIUM' or 'HIGH' |
+| `checkSystemRequirements`  | number |  | Returns 1 if the browser supports WebRTC, 0 otherwise |
 | `getDevices` | Promise | `callback(error, deviceInfo):function` | Collects information about the media input and output devices available on the system, returned in **deviceInfo** array |
+| `enableProdMode`  |  |  | Disable all logging except error level |
 
 #### **Session**
 | Method           | Returns | Parameters | Description |
@@ -40,11 +41,11 @@
 
 | Event                  | Properties            | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
-| `streamCreated`        | stream:[Stream](#stream)         | Triggered by Session object when a new Stream has been created and added to it |
-| `streamDestroyed`      | stream:[Stream](#stream)<br/>preventDefault():Function | Triggered by Session object when an existing Stream has been destroyed. The default behaviour is the deletion of the HTML video element associated to it. To prevent it, call `preventDefault()` method on the event object  |
-| `connectionCreated`    | connection:[Connection](#connection) | Triggered by Session object whenever any user has joined the session. This includes dispatching one event for each user that joins the session when you are already connected to it, one for each existing participant the first time you connect to the session and once for your own local connection |
-| `connectionDestroyed`  | connection:[Connection](#connection) | Triggered by Session object whenever a user leaves the session. This event can also mean that `streamDestroyed` events could be dispatched, depending on the streams associated to it  |
-| `sessionDisconnected`  | preventDefault():Function | Triggered by Session object when the user disconnects from the Session. Default behaviour is the deletion of all HTML video elements. Call `preventDefault()` on event object to prevent it and delete them by yourself |
+| `streamCreated`        | stream:[Stream](#stream)         | Triggered by Session object when a new Stream (published by other client) has been created and added to it |
+| `streamDestroyed`      | stream:[Stream](#stream)<br/>preventDefault():Function | Triggered by Session object when an existing Stream (published by other client) has been destroyed. The default behaviour is the deletion of the HTML video element associated to it. To prevent it, call `preventDefault()` method on the event object  |
+| `connectionCreated`    | connection:[Connection](#connection) | Triggered by Session object whenever any client has joined the session. This includes dispatching one event for each client that joins the session when you are already connected to it, one for each existing participant the first time you connect to the session and once for your own local connection |
+| `connectionDestroyed`  | connection:[Connection](#connection) | Triggered by Session object whenever a client (other than your own) leaves the session. This event can also mean that `streamDestroyed` events could be dispatched, depending on the streams associated to it  |
+| `sessionDisconnected`  | preventDefault():Function | Triggered by Session object when the client disconnects from the Session. Default behaviour is the deletion of all HTML video elements. Call `preventDefault()` on event object to prevent it and delete them by yourself |
 
 #### **Publisher**
 | Method         | Returns | Parameters | Description |
@@ -52,6 +53,8 @@
 | `publishAudio` |  | `value:boolean`| Enable or disable the audio track depending on whether value is _true_ or _false_ |
 | `publishVideo` |  | `value:boolean`| Enable or disable the video track depending on whether value is _true_ or _false_ |
 | `destroy`      | [Publisher](#publihser) || Delets the publisher object and removes it from DOM. The rest of users will trigger a _streamDestroyed_ event |
+| `subscribeToRemote` | | | Local video will be replaced by your remote video (same stream as other clients will receive from you) |
+| `on` | | `eventName:string`<br/>`callback:function` | **callback** function will be triggered each time **eventName** event is recieved |
 
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
@@ -64,8 +67,9 @@
 | Event                  | Properties            | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
 | `accessAllowed`        |          | Triggered by Publisher object when the user has granted access to the camera/microphone |
-| `accessDenied`      |          | Triggered by Publisher object when the user has rejected access to the camera/microphone |
-| `videoElementCreated`      | element:HTMLVideoElement | Triggered by Publisher object inmediately after a new video element has been added to DOM |
+| `accessDenied`         |          | Triggered by Publisher object when the user has rejected access to the camera/microphone |
+| `videoElementCreated`  | element:HTMLVideoElement | Triggered by Publisher object inmediately after a new video element has been added to DOM |
+| `remoteVideoPlaying`   | element:HTMLVideoElement | Triggered by Publisher object when your looped remote video starts playing. Only triggered for those Publisher objects which have called their method _subscribeToRemote_|
 
 #### **Subscriber**
 | Method         | Returns | Parameters | Description |

@@ -18,17 +18,53 @@ Besides that, these are the recommended steps to follow when videos are not rece
 
 You can do some things to improve your efficiency while using OpenVidu:
 
-  - **Multiple tabs to test the video transmission**: you can use multiple tabs in the same browser to test your video streams. WARNING: you may have trouble for testing with a Chrome and a Firefox tab at the same time, as they compete for the camera access.
-  - **Be very aware of the browser's console**: there you will find warning messages reporting the triggering of events and other important stuff. Error messages can also help you to solve many issues.
-  - **Remember the browser's cache**: if you have changed your HTML, JavaScript or CSS code, refreshed the page and cannot see the changes on the browser, probably the cache is still serving the old files. To perform a hard reload of your page on the browser, press `Ctrl + Shift + R`
-  - **Use _Ngrok_ to share your app**: do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. To achieve this, you can use _Ngrok_. The set up is quite simple:
-    - Download _Ngrok_ with this link [**<a href="https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip">LINK</a>**] and unzip it.
-    - Download this _Ngrok_ configuration file (named `ngrok.yml`) from our GitHub repo **[<a href="https://raw.githubusercontent.com/OpenVidu/openvidu-tutorials/master/openvidu-js-java/docker/ngrok.yml">LINK</a>]** and place it in the same path as _Ngrok_ binary.
-    - Run _Ngrok_ with this command: `./ngrok start --all -config=ngrok.yml`. You will get two public IPs (ended with `.ngrok.io`) publishing your local address `localhost:5000` and `localhost:3000`.
-    - You just have to run you app at port `3000` and run OpenVidu Server locally adding this parameter:
-        - When running OpenVidu Server as a Docker container: `-Dspring.profiles.active=ngrok`
-        - When running OpenVidu Server as a JAR: `-e spring.profiles.active=ngrok`
-    - That's it! Now you can connect to your app through the _Ngrok_ public IP and the connection to OpenVidu Server will work just fine. You have "deployed" your app on your own computer, and cross-device testing through your own network is now possible. Connecting to your app over the Internet is also possible, but the video transmission may not work (check [this FAQ](#1-everything-looks-alright-but-i-cannot-see-any-remote-video) to learn why).
+<br>
+##### Multiple tabs to test the video transmission
+You can use multiple tabs in the same browser to test your video streams.
+
+**WARNING**: you may have trouble for testing with a Chrome and a Firefox tab at the same time, as they compete for the camera access.
+
+<br>
+##### Be very aware of the browser's console
+There you can find logs reporting important stuff. Error messages can help you to solve many issues.
+
+<div class="row" style="margin-bottom: 10px">
+  <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 20px">
+    <img class="img-responsive img-more-info" src="/img/docs/troubleshooting/chrome_logging.png">
+  </div>
+  <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 20px">
+    <img class="img-responsive img-more-info" src="/img/docs/troubleshooting/firefox_logging.png">
+  </div>
+  <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
+    <p style="text-align: justify; font-size: 13px">
+      <em>OpenVidu Browser is developed with both <strong>Chrome</strong> (first image) and <strong>Firefox</strong> (second image) in mind in terms of logging. By default the browser's console displays OpenVidu's high-level messages (that's when the options 'Info' is enabled, as seen in the images). This means logs about OpenVidu objects being created and destroyed and logs for each triggered event (only for those you are subscribed to).</em>
+    </p>
+    <div class="hidden-sm hidden-xs"></div>
+    <p style="text-align: justify; font-size: 13px">
+      <em>Warn and Error messages are specifically reserved for unwanted situations, and you should check your code in case you spot one of them.</em>
+    </p>
+    <div class="hidden-sm hidden-xs"></div>
+    <p style="text-align: justify; font-size: 13px">
+      <em>If you enable the lowest level of logging you can see all the messages concerning the WebRTC negotiation process (generally not very interesting for an OpenVidu user).</em>
+    </p>
+  </div>
+</div>
+
+<br>
+##### Remember the browser's cache
+If you have changed your HTML, JavaScript or CSS code, refreshed the page and cannot see the changes on the browser, probably the cache is still serving the old files. To perform a hard reload of your page on the browser, press `Ctrl + Shift + R`
+
+<br>
+##### Use _Ngrok_ to share your app
+Do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. To achieve this, you can use _Ngrok_. The set up is quite simple:
+
+  - Download _Ngrok_ with this link [**<a href="https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip">LINK</a>**] and unzip it.
+  - Download this _Ngrok_ configuration file (named `ngrok.yml`) from our GitHub repo **[<a href="https://raw.githubusercontent.com/OpenVidu/openvidu-tutorials/master/openvidu-js-java/docker/ngrok.yml">LINK</a>]** and place it in the same path as _Ngrok_ binary.
+  - Run _Ngrok_ with this command: `./ngrok start --all -config=ngrok.yml`. You will get two public IPs (ended with `.ngrok.io`) publishing your local address `localhost:5000` and `localhost:3000`.
+  - You just have to run you app at port `3000` and run OpenVidu Server locally adding this parameter:
+      - When running OpenVidu Server as a Docker container: `-Dspring.profiles.active=ngrok`
+      - When running OpenVidu Server as a JAR: `-e spring.profiles.active=ngrok`
+  - That's it! Now you can connect to your app through the _Ngrok_ public IP and the connection to OpenVidu Server will work just fine. You have "deployed" your app on your own computer, and cross-device testing through your own network is now possible. Connecting to your app over the Internet is also possible, but the video transmission may not work (check [this FAQ](#1-everything-looks-alright-but-i-cannot-see-any-remote-video) to learn why).
 
 
 ### 3. I am using Windows to run the tutorials / develop my app. Anything I should know?
@@ -49,13 +85,13 @@ in Windows is...
 
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
 >
-> _Generate a selfsigned certificate_
+> _Generate a selfsigned certificate (run in  your Docker console)_
 >
->     openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
+>  `openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem`
 >
 > _Run with SSL flag_
 >
->     http-server -S
+>  `http-server -S`
 
 #### Client-Side + Server-Side
 
@@ -110,16 +146,16 @@ The problem here is pretty evident: if you don't have any kind of server side to
     <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture.png">
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top: 40px">
-    <p style="text-align: justify">
-      First an OpenVidu app Client-Side Only.
+    <p style="text-align: justify; font-size: 13px">
+      <em>First an OpenVidu app Client-Side Only.</em>
     </p>
     <div class="hidden-sm hidden-xs"><br></div>
-    <p>
-      Second an OpenVidu app Client-Side + Server-Side.
+    <p style="text-align: justify; font-size: 13px">
+      <em>Second an OpenVidu app Client-Side + Server-Side.</em>
     </p>
     <div class="hidden-sm hidden-xs"><br></div>
-    <p>
-      In production you will usually want the second option to avoid unwanted users.
+    <p style="text-align: justify; font-size: 13px">
+      <em>In production you will usually want the second option to avoid unwanted users.</em>
     </p>
   </div>
 </div>
@@ -221,4 +257,20 @@ These are the conclusions for a machine with **8 cores and 15 GB of RAM**. The u
 | 4-way group video calls (grid composing) | 3 rooms of 4 users each         |
 | 1:N broadcast                            | 1 broadcaster + 80-150 viewers  |
 
-That said, one of the most important features OpenVidu will offer is the possibility of automated scalability and fault tolerance. We intend to provide an easy-to-use service integrated with Amazon Web Services to allow the automated launching and shutdown of servers depending on the workload of your application. 
+That said, one of the most important features OpenVidu will offer is the possibility of automated scalability and fault tolerance. We intend to provide an easy-to-use service integrated with Amazon Web Services to allow the automated launching and shutdown of servers depending on the workload of your application.
+
+### 11. I am getting an "Error accesing the camera" and I have already granted permissions on the browser
+
+This can be due to two different reasons:
+
+  - Maybe you are making **two different browsers access the same camera at the same time**. Remember that Chrome, Firefox, Opera, Safari and Edge are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera with different tabs of the same browser is tipically possible.
+
+  - In Chrome you **cannot access the camera or microphone from a `http` URL if it is not `localhost` or `127.0.0.1`**. In a nutshell: in Chrome accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK. But, for example, on `http://172.17.0.1:8080` it will through an error saying "_Only secure origins are allowed_". If for any reason you want to serve your app locally on a custom URL, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
+
+    - Generate a selfsigned certificate with _openssl_
+
+            openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
+  
+    - Run _http-server_ with SSL flag
+        
+            http-server -S
