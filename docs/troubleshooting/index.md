@@ -14,6 +14,8 @@ Besides that, these are the recommended steps to follow when videos are not rece
   - Access your OpenVidu dashboard (`https://YOUR_OPENVIDU_IP:8443`) to quickly test the video transmission.
   - Please be sure that your OpenVidu Server host meets the [network requirements](/deployment/deploying-ubuntu#server-network-requirements).
 
+The other 1% of the time this can be an attempt of **accessing the same camera from two different browsers at the same time**. Remember that Chrome, Firefox, Opera, Safari and Edge are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera from different tabs of the same browser is tipically possible.
+
 ### 2. Any tips to make easier the development of my app with OpenVidu?
 
 You can do some things to improve your efficiency while using OpenVidu:
@@ -22,7 +24,7 @@ You can do some things to improve your efficiency while using OpenVidu:
 ##### Multiple tabs to test the video transmission
 You can use multiple tabs in the same browser to test your video streams.
 
-**WARNING**: you may have trouble for testing with a Chrome and a Firefox tab at the same time, as they compete for the camera access.
+**WARNING**: you may have trouble for testing with tabs from different browsers the same time, as they compete for the camera access.
 
 <br>
 ##### Be very aware of the browser's console
@@ -261,16 +263,12 @@ That said, one of the most important features OpenVidu will offer is the possibi
 
 ### 11. I am getting an "Error accesing the camera" and I have already granted permissions on the browser
 
-This can be due to two different reasons:
+  If you are using **Chrome**: you **cannot access the camera or microphone from a `http` URL if it is not `localhost` or `127.0.0.1`**. In a nutshell: in Chrome accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK. But, for example, on `http://172.17.0.1:8080` it will through an error saying "_Only secure origins are allowed_". If for any reason you want to serve your app locally on a custom URL, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
 
-  - Maybe you are making **two different browsers access the same camera at the same time**. Remember that Chrome, Firefox, Opera, Safari and Edge are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera with different tabs of the same browser is tipically possible.
+  - Generate a selfsigned certificate with _openssl_
 
-  - In Chrome you **cannot access the camera or microphone from a `http` URL if it is not `localhost` or `127.0.0.1`**. In a nutshell: in Chrome accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK. But, for example, on `http://172.17.0.1:8080` it will through an error saying "_Only secure origins are allowed_". If for any reason you want to serve your app locally on a custom URL, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
+        openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
 
-    - Generate a selfsigned certificate with _openssl_
-
-            openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
-  
-    - Run _http-server_ with SSL flag
-        
-            http-server -S
+  - Run _http-server_ with SSL flag
+      
+        http-server -S
