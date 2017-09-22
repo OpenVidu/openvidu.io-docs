@@ -10,7 +10,6 @@ This documentation is suitable for **Ubuntu 14.04** or **Ubuntu 16.04**. Package
 | node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 | maven         | `mvn -v`        | `sudo apt-get install -y maven`       |
 | angular-cli   | `ng -v`         | `sudo npm install -g @angular/cli`    |
-| typescript    | `tsc -v`        | `sudo npm install -g typescript`      |
 
 
 Setup for development
@@ -73,7 +72,7 @@ At these point, you can start modifying *openvidu-ng-testapp*, *openvidu-browser
 
  - **_openvidu-insecure-angular_**:  the previous "ng serve" command will take care of refreshing the browser's page whenever any change takes place.
 
- - **_openvidu-browser_**: after modifying any typescript file, you will need to run the following command to update your changes (*typescript* package is necessary):
+ - **_openvidu-browser_**: after modifying any typescript file, you will need to run the following command to update your changes:
  
     **/openvidu/openvidu-browser/src/main/resources** 
 

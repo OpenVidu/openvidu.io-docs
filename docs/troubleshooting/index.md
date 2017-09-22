@@ -39,7 +39,7 @@ There you can find logs reporting important stuff. Error messages can help you t
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
     <p style="text-align: justify; font-size: 13px">
-      <em>OpenVidu Browser is developed with both <strong>Chrome</strong> (first image) and <strong>Firefox</strong> (second image) in mind in terms of logging. By default the browser's console displays OpenVidu's high-level messages (that's when the options 'Info' is enabled, as seen in the images). This means logs about OpenVidu objects being created and destroyed and logs for each triggered event (only for those you are subscribed to).</em>
+      <em>OpenVidu Browser is developed with both <strong>Chrome</strong> (first image) and <strong>Firefox</strong> (second image) in mind in terms of logging. By default the browser's console displays OpenVidu's high-level messages (that's when the option 'Info' is enabled, as seen in the images). This means logs about OpenVidu objects being created and destroyed and logs for each triggered event (only for those you are subscribed to).</em>
     </p>
     <div class="hidden-sm hidden-xs"></div>
     <p style="text-align: justify; font-size: 13px">

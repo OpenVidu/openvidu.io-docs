@@ -69,6 +69,7 @@
 | `accessAllowed`        |          | Triggered by Publisher object when the user has granted access to the camera/microphone |
 | `accessDenied`         |          | Triggered by Publisher object when the user has rejected access to the camera/microphone |
 | `videoElementCreated`  | element:HTMLVideoElement | Triggered by Publisher object inmediately after a new video element has been added to DOM |
+| `videoPlaying`         | element:HTMLVideoElement | Triggered by Subscriber object when the video (same as `videoElementCreated`) starts playing. Only triggered for those Publisher objects which have NOT called their method _subscribeToRemote_ |
 | `remoteVideoPlaying`   | element:HTMLVideoElement | Triggered by Publisher object when your looped remote video starts playing. Only triggered for those Publisher objects which have called their method _subscribeToRemote_|
 
 #### **Subscriber**
@@ -85,7 +86,8 @@
 
 | Event                  | Properties            | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
-| `videoElementCreated`      | element:HTMLVideoElement | Triggered by Subscriber object inmediately after a new video element has been added to DOM |
+| `videoElementCreated`  | element:HTMLVideoElement | Triggered by Subscriber object inmediately after a new video element has been added to DOM |
+| `videoPlaying`         | element:HTMLVideoElement | Triggered by Subscriber object when the video (same as `videoElementCreated`) starts playing |
 
 #### **Stream**
 | Property    | Type   | Description                  |
