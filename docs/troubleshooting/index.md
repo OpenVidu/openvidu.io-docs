@@ -222,7 +222,7 @@ If the user's devices don't have a public and reachable IP, WebRTC connections c
 In order to support these circumstances, WebRTC relies on **STUN and TURN** servers:
 
   - **STUN** can easily provide to the user's devices their own public IP (the IP that other devices on the Internet use to connect to it), so they can tell OpenVidu where to send the video streams. Only with a STUN server, around **86%** of the time the connection will be successful.
-  - **TURN** is an extension of STUN, and covers the most extreme cases where both sides of the connection are hidden behind complex networks. It acts as a gateway, passing all the media streams form one side to the other. This situation will occur with a probability of around **8%**.
+  - **TURN** is an extension of STUN, and covers the most extreme cases of complex networks (symmetric NATs). It acts as a gateway, passing all the media streams form one side to the other. This situation will occur with a probability of around **8%**.
 
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933)), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
 

@@ -15,7 +15,7 @@
 #### **OpenVidu**
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
-| `initSession`    | [Session](#session) | _`apikey:string`_<br/>`sessionId:string` | Returns a session with id **sessionId**. This parameter must always start with the URL of openvidu-server (automatically set when asking for it to openvidu-server) |
+| `initSession`    | [Session](#session) | _`apikey:string`_<br/>`sessionId:string` | Returns a session with id **sessionId** |
 | `initPublisher`  | [Publisher](#publisher) | `parentId:string`<br/>_`cameraOptions:any`_<br/>_`callback:function`_ | Starts local video stream, appending it to **parentId** HTML element, with the specific **cameraOptions** settings and executing **callback** function in the end. _cameraOptions_ must be an object with three properties: **{audio:boolean, video:boolean, quality:string}**, being _audio_/_video_ false if you want to initialize them muted (_Publisher.publishAudio(true)_ and _Publisher.publishVideo(true)_ can unmute them later) and _quality_ must be 'LOW', 'MEDIUM' or 'HIGH' |
 | `checkSystemRequirements`  | number |  | Returns 1 if the browser supports WebRTC, 0 otherwise |
 | `getDevices` | Promise | `callback(error, deviceInfo):function` | Collects information about the media input and output devices available on the system, returned in **deviceInfo** array |
