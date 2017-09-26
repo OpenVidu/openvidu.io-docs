@@ -44,7 +44,7 @@ docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=1
 ```
  
  
-Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in a JavaScript file. You can use the [last relase version](https://github.com/OpenVidu/openvidu/releases) or the [development version](https://github.com/OpenVidu/openvidu/tree/master/openvidu-browser/src/main/resources/static/js). Add the file in your HTML with `<script src="openvidu-browser-VERSION.js"></script>`.
+Then, you have to use the library **openvidu-browser** in your JavaScript browser application (frontend). This library is packaged in a JavaScript file. You can use the [last relase version](https://github.com/OpenVidu/openvidu/releases) or the [development version](https://github.com/OpenVidu/openvidu/tree/master/openvidu-browser/static/js). Add the file in your HTML with `<script src="openvidu-browser-VERSION.js"></script>`.
 
 With the **openvidu-browser** library you can handle all available operations straight away from your client, as creating video calls, joining users to them or publishing/unpublishing video and audio
 

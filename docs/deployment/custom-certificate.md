@@ -16,7 +16,7 @@ In order to use your JKS, just set the following values for these properties on 
 ##### Example
 
 ```console
-java -jar -Dserver.ssl.key-store=PATH/TO/YOUR/KEYSTORE.jks -Dserver.ssl.key-store-password=YOUR_KEYSTORE_PASSWORD -Dserver.ssl.key-alias=YOUR_KEYSTORE_ALIAS openvidu-server.jar
+java -jar -Dopenvidu.secret=YOUR_SECRET -Dserver.ssl.key-store=PATH/TO/YOUR/KEYSTORE.jks -Dserver.ssl.key-store-password=YOUR_KEYSTORE_PASSWORD -Dserver.ssl.key-alias=YOUR_KEYSTORE_ALIAS openvidu-server.jar
 ```
 
 ----------

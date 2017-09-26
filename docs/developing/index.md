@@ -28,7 +28,7 @@ git clone https://github.com/OpenVidu/openvidu.git
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
-4) `openvidu/openvidu-browser/src/main/resources/`
+4) `openvidu/openvidu-browser/`
 
 ```bash
 npm install
@@ -74,7 +74,7 @@ At these point, you can start modifying *openvidu-ng-testapp*, *openvidu-browser
 
  - **_openvidu-browser_**: after modifying any typescript file, you will need to run the following command to update your changes:
  
-    **/openvidu/openvidu-browser/src/main/resources** 
+    **/openvidu/openvidu-browser** 
 
     ``` 
     npm run updatetsc
