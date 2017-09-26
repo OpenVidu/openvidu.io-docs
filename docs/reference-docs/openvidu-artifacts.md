@@ -64,7 +64,7 @@
   <tr>
     <td>openvidu-cloud-devops</td>
     <td>JSON files</td>
-    <td>1.0.0-beta.3</td>
+    <td>1.1.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu-cloud-devops/releases" target="_blank">GitHub</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Configuration files for automatic launching of OpenVidu Server and OpenVidu Demos in AWS CloudFormation" class="icon ion-information-circled"></i></td>
   </tr>

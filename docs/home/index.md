@@ -6,26 +6,6 @@ application, either group or one-to-one calls. In fact, any combination you come
 
 OpenVidu is licensed under [Apache License v2](https://choosealicense.com/licenses/apache-2.0/).
 
-<div style="
-    display: table;
-    border: 1px solid #0088aa;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
-    <i class="icon ion-android-alert" style="
-    font-size: 100px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 15%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">OpenVidu has been released under <strong>1.0.0-beta</strong> (check the <a href="https://github.com/OpenVidu/openvidu/releases" target="_blank">GitHub release</a>). This means that some bugs may appear while working to provide a stable release version as soon as possible.<br>You can make use of the <a href="https://groups.google.com/forum/#!forum/openvidu">Mailing List</a> or the <a href="https://github.com/OpenVidu/bugtracker">Issue Tracker repository</a> to warn about unknown bugs and to clear up any doubts.</div></div>
-
 ----------
 
 What can I do with OpenVidu?

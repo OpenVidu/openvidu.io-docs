@@ -123,7 +123,7 @@ The instructions above portray scenarios 1 and 2 in the image. In other words, w
 #### 7A
 
 ```console
-sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] --net="host" openvidu/openvidu-server
+sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
 ```
 
 #### 7B
