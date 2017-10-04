@@ -294,7 +294,7 @@ Whenever we want a user to leave the session, we just need to call `session.disc
 leaveSession() {
 
 	// --- 6) Leave the session by calling 'disconnect' method over the Session object ---
-	if (this.OV) { this.session.disconnect(); };
+	if (this.session) { this.session.disconnect(); };
 
 	...
 }

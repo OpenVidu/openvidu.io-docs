@@ -5,18 +5,21 @@
 
 | Class      | Description   										     |
 | ---------- | ---------------------------------------------------------- |
-| [OpenVidu](#openvidu)   | Use it to initialize your sessions and publishers |
-| [Session](#session)    | Represents a video call. It can also be seen as a room where multiple users can connect. Participants who publish their videos to a session will be seen by the rest of users connected to that specific session  |
+| [OpenVidu](#openvidu) | Use it to initialize your sessions and publishers |
+| [Session](#session)  | Represents a video call. It can also be seen as a room where multiple users can connect. Participants who publish their videos to a session will be seen by the rest of users connected to that specific session  |
 | [Publisher](#publisher)  | Packs local media streams. Users can publish it to a session |
 | [Subscriber](#subscriber) | Packs remote media streams. Users automatically receive them when others publish their streams|
-| [Stream](#stream)     | Represents each one of the videos send and receive by a user in a session. Therefore each Publisher and Subscriber has an attribute of type Stream |
-| [Connection](#connection)     | Represents each one of the user's connection to the session (the local one and other user's connections). Therefore each Session and Stream object has an attribute of type Connection |
+| [Stream](#stream) | Represents each one of the videos send and receive by a user in a session. Therefore each Publisher and Subscriber has an attribute of type Stream |
+| [Connection](#connection) | Represents each one of the user's connection to the session (the local one and other user's connections). Therefore each Session and Stream object has an attribute of type Connection |
+| [OpenViduError](#openviduerror)  | Simple object to identify errors on runtime |
+| [OpenViduErrorName](#openviduerrorname)  | OpenViduError names enum |
 
 #### **OpenVidu**
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
+| _`constructor`_    | [OpenVidu](#OpenVidu) |  | Returns a new OpenVidu object. This is the entry point to OpenVidu in the browser |
 | `initSession`    | [Session](#session) | _`apikey:string`_<br/>`sessionId:string` | Returns a session with id **sessionId** |
-| `initPublisher`  | [Publisher](#publisher) | `parentId:string`<br/>_`cameraOptions:any`_<br/>_`callback:function`_ | Starts local video stream, appending it to **parentId** HTML element, with the specific **cameraOptions** settings and executing **callback** function in the end. _cameraOptions_ must be an object with three properties: **{audio:boolean, video:boolean, quality:string}**, being _audio_/_video_ false if you want to initialize them muted (_Publisher.publishAudio(true)_ and _Publisher.publishVideo(true)_ can unmute them later) and _quality_ must be 'LOW', 'MEDIUM' or 'HIGH' |
+| `initPublisher`  | [Publisher](#publisher) | `parentId:string`<br/>_`cameraOptions:any`_<br/>_`callback:function`_ | Starts local video stream, appending it to **parentId** HTML element, with the specific **cameraOptions** settings and executing **callback** function in the end. _cameraOptions_ is an object with the following (optional) properties:<br/><br/>**var cameraOptions = {</br><span style="padding-left: 20px">audio: boolean,</span></br><span style="padding-left: 20px">video: boolean,</span></br><span style="padding-left: 20px">audioActive: boolean,</span></br><span style="padding-left: 20px">videoActive: boolean,</span></br><span style="padding-left: 20px">quality: string,</span></br><span style="padding-left: 20px">screen: boolean</span><br/>}**<br/><br/><ul style="padding-left: 20px"><li>**audio**: whether to transmit audio or not</li><li>**video**: whether to transmit video or not</li><li>**audioActive**: whether to join the session with the audio unmuted or muted. Only makes sense if property _audio_ is set to true. You can change audio state later during the session with _Publisher.publishAudio(true)_</li><li>**videoActive**: whether to join the session with the video enabled or disabled. Only makes sense if property _video_ is set to true. You can change video state later during the session with _Publisher.publishVideo(true)_</li><li>**quality**: quality of the video ("LOW", "MEDIUM", "HIGH")</li><li>**screen**: whether to use screen capturing as the video source instead of a camera or not</li></ul> |
 | `checkSystemRequirements`  | number |  | Returns 1 if the browser supports WebRTC, 0 otherwise |
 | `getDevices` | Promise | `callback(error, deviceInfo):function` | Collects information about the media input and output devices available on the system, returned in **deviceInfo** array |
 | `enableProdMode`  |  |  | Disable all logging except error level |
@@ -100,3 +103,27 @@
 | `connectionId` | string | Unique identifier of the connection |
 | `data` | string | Data associated to this connection (and therefore to certain user). This is an important field: it allows you to broadcast all the information you want for each user (a username, for example)  |
 | `creationTime` | number | Time when this connection was created |
+
+#### **OpenViduError**
+| Method           | Returns | Parameters | Description |
+| ---------------- | ------- | ------------------------------------------- | ----------- |
+| _`constructor`_    | [OpenViduError](#openviduerror) | _`name:OpenViduErrorName`_<br/>`message:string` | Returns a new OpenViduError object |
+
+| Property     | Type   | Description                  |
+| ------------ | ------ | ---------------------------- |
+| `name` | [OpenViduErrorName](#openviduerrorname) | The name and unique identifier of the error |
+| `message` | string | Further information about the error |
+
+#### **OpenViduErrorName**
+ _(enum)_
+
+| Constant     ||
+| ------------ |-|
+| `CAMERA_ACCESS_DENIED` ||
+| `MICROPHONE_ACCESS_DENIED` ||
+| `SCREEN_CAPTURE_DENIED` ||
+| `NO_VIDEO_DEVICE` ||
+| `NO_INPUT_DEVICE` ||
+| `SCREEN_EXTENSION_NOT_INSTALLED` ||
+| `GENERIC_ERROR` ||
+

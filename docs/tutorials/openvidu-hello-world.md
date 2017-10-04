@@ -72,7 +72,7 @@ OV = new OpenVidu();
 session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + '?secret=MY_SECRET');
 
 session.on('streamCreated', function (event) {
-    var subscriber = session.subscribe(event.stream, 'subscriber');
+  session.subscribe(event.stream, 'subscriber');
 });
 ```
 As you can see in the code, the process is very simple: get an OpenVidu object for initializing a Session object with it. `initSession` method must recieve a string with the following format: 
