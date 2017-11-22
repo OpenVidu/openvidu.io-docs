@@ -22,7 +22,7 @@ docker run -it --rm -v `pwd`:/docs -p 8000:8000 coding2012/mkdocs serve -a 0.0.0
 	```
 	git clone https://github.com/OpenVidu/openvidu.io
 	cd openvidu.io
-	docker run --rm --label=jekyll --volume="$(pwd)":/srv/jekyll -it -p 127.0.0.1:4000:4000 jekyll/jekyll bundle exec jekyll serve
+	docker run --rm --label=jekyll --volume="$(pwd)":/srv/jekyll -it -p 127.0.0.1:4000:4000 jekyll/jekyll:2.4 bundle exec jekyll serve
 	```
 	
 	- Run `openvidu.io-docs/generate-dev.sh` script, which will build Mkdocs files and will put them in `openvidu.io/docs` folder (this is why we need _openvidu.io_ and _openvidu.io-docs_ repos at the same path).
