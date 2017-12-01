@@ -24,7 +24,7 @@ You can do some things to improve your efficiency while using OpenVidu:
 ##### Multiple tabs to test the video transmission
 You can use multiple tabs in the same browser to test your video streams.
 
-**WARNING**: you may have trouble for testing with tabs from different browsers the same time, as they compete for the camera access.
+**WARNING**: you may have trouble for testing with tabs from different browsers at the same time, as they compete for the camera access.
 
 <br>
 ##### Be very aware of the browser's console
@@ -38,16 +38,16 @@ There you can find logs reporting important stuff. Error messages can help you t
     <img class="img-responsive img-more-info" src="/img/docs/troubleshooting/firefox_logging.png">
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
-    <p style="text-align: justify; font-size: 13px">
-      <em>OpenVidu Browser is developed with both <strong>Chrome</strong> (first image) and <strong>Firefox</strong> (second image) in mind in terms of logging. By default the browser's console displays OpenVidu's high-level messages (that's when the option 'Info' is enabled, as seen in the images). This means logs about OpenVidu objects being created and destroyed and logs for each triggered event (only for those you are subscribed to).</em>
+    <p style="text-align: justify">
+      OpenVidu Browser is developed with both <strong>Chrome</strong> (first image) and <strong>Firefox</strong> (second image) in mind in terms of logging. By default the browser's console displays OpenVidu's high-level messages (that's when the option 'Info' is enabled, as seen in the images). This means logs about OpenVidu objects being created and destroyed and logs for each triggered event (only for those you are subscribed to).
     </p>
     <div class="hidden-sm hidden-xs"></div>
-    <p style="text-align: justify; font-size: 13px">
-      <em>Warn and Error messages are specifically reserved for unwanted situations, and you should check your code in case you spot one of them.</em>
+    <p style="text-align: justify">
+      Warn and Error messages are specifically reserved for unwanted situations, and you should check your code in case you spot one of them.
     </p>
     <div class="hidden-sm hidden-xs"></div>
-    <p style="text-align: justify; font-size: 13px">
-      <em>If you enable the lowest level of logging you can see all the messages concerning the WebRTC negotiation process (generally not very interesting for an OpenVidu user).</em>
+    <p style="text-align: justify">
+      If you enable the lowest level of logging you can see all the messages concerning the WebRTC negotiation process (generally not very interesting for an OpenVidu user).
     </p>
   </div>
 </div>
@@ -58,7 +58,7 @@ If you have changed your HTML, JavaScript or CSS code, refreshed the page and ca
 
 <br>
 ##### Use _Ngrok_ to share your app
-Do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. To achieve this, you can use _Ngrok_. The set up is quite simple:
+Do you want to be able to publish your development app over your network or even the Internet, without really having to deploy it in a server? This can be very helpful, as you can test with different devices and browsers at the same time. To achieve this, you can use _Ngrok_. The set up for Ubuntu is quite simple:
 
   - Download _Ngrok_ with this link [**<a href="https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip">LINK</a>**] and unzip it.
   - Download this _Ngrok_ configuration file (named `ngrok.yml`) from our GitHub repo **[<a href="https://raw.githubusercontent.com/OpenVidu/openvidu-tutorials/master/openvidu-js-java/docker/ngrok.yml">LINK</a>]** and place it in the same path as _Ngrok_ binary.
