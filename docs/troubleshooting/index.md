@@ -238,9 +238,8 @@ As the main goal OpenVidu has is to make as simple as possible the integration o
 But there's also a bunch of features supported by Kurento or WebRTC that will be part of OpenVidu as well:
 
   - **Video composing**: right now OpenVidu streams are always sent and received without any processing in Kurento Media Server, so every subscription to a video stream in a video-session implies its own WebRTC connection. We intend to provide the possibility of configuring video-sessions to be processed and send as only one video, composed in a grid by all the published streams.
-  - **Direct p2p connections betwwen users**: OpenVidu will offer the possibility of connecting users without having to use Kurento Media Server as central node. This can be very advantegeous for certain use-cases, as will reduce the need of infraestructure.
+  - **Direct p2p connections between users**: OpenVidu will offer the possibility of connecting users without having to use Kurento Media Server as central node. This can be very advantegeous for certain use-cases, as will reduce the need of infraestructure.
   - **Video recording**: OpenVidu will support multiple (grid) and single stream recording, so developers can easily access video files later.
-  - **Screen share**: OpenVidu will support screen sharing.
   - **Mobile platforms**: OpenVIdu will provide clients for both Android and iOS.
 
 ### 9. Does OpenVidu support Android and iOS?

@@ -138,10 +138,14 @@ Remember that the key will be the same you indicated when configuring the [Cloud
 
 Depending on the framework of your app:
 
+<br>
+
 ##### Plain HTML/CSS/JS
-  - Add your web files into `/opt/`. You should have instant access to it through `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/`
+  - If your app doesn't have a server-side and it is plain HTML, CSS and JavaScript, you just have to add your web files into `/var/www/html/`. You will have instant access to it through `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN/`
 
       > If you want to test the deployment of a plain HTML/CSS/JS app, you can use **[openvidu-insecure-js](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-js)**
+
+<br>
 
 ##### Java
   - Copy your JAR or WAR into `/opt/`
@@ -187,6 +191,8 @@ Depending on the framework of your app:
 
       > If you want to test the deployment of a Java app, you can use **openvidu-js-java** or **openvidu-mvc-java** ([release here](https://github.com/OpenVidu/openvidu-tutorials/releases))
 
+<br>
+
 ##### Node
   - Add your web files into `/opt/`
 
@@ -230,6 +236,8 @@ Depending on the framework of your app:
   - Troubleshooting: If your app is not working as expected, there are a few files you should check for debugging: `/var/log/nginx/` (info about the proxy), `/var/log/supervisor/` (output of your app). You can also try to connect to your app directly through the port like `https://AMAZON_URL_OR_YOUR_CUSTOM_DOMAIN:YOUR_APP_PORT`
 
       > If you want to test the deployment of a Node app, you can use **[openvidu-js-node](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-node)**
+
+<br>
 
 ##### PHP, Ruby, Python, .NET...
 

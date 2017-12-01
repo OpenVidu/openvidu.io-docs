@@ -19,13 +19,13 @@ OV.initPublisher(
     {
         audio: true,        // Whether you want to transmit audio or not
         video: true,        // Whether you want to transmit video or not
-        audioActive: true,  // Whetehr you want to start the publishing with your audio unmuted ot muted
-        videoActive: true,  // Whether you want to join the publishing with your video enabled or disabled
-        quality: 'MEDIUM',  // The quality of yur video ('LOW', 'MEDIUM', 'HIGH')
-        screen: false       // true to get your screen as video source instead of your camera.
+        audioActive: true,  // Whether you want to start the publishing with your audio unmuted or muted
+        videoActive: true,  // Whether you want to start the publishing with your video enabled or disabled
+        quality: 'MEDIUM',  // The quality of your video ('LOW', 'MEDIUM', 'HIGH')
+        screen: false       // true to get your screen as video source instead of your camera
                             // See 'How do I...?' -> 'Screen share' section to learn more
     },
-    function(error) {       // Function to be executed in case the PUblisher initialization fails
+    function(error) {       // Function to be executed in case the Publisher initialization fails
         if (error) {
             console.log('Error while initializing publisher: ', error);
         }
