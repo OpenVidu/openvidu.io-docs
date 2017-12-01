@@ -114,7 +114,12 @@ Go to **_Outputs_** tab to get your brand new IP and click on it (or if you have
     <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_output.png">
   </p>
 
-You will connect to your OpenVidu Dashboard, where you can test the video transmission. You can now add your own application to your instance. To learn how check the [next section](#adding-your-own-app-to-cloudformation-openvidu-server).
+You will connect to your OpenVidu dashboard. To access to it use:
+
+- `OPENVIDUAPP` as username
+- The secret you chose on [Step 4](#4-complete-the-configuration-fields) as password (field **OpenVidu Secret** in the table). 
+
+At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check the [next section](#adding-your-own-app-to-cloudformation-openvidu-server).
 
   > **IMPORTANT**: Even though the Status of your new Stack shows "CREATE_COMPLETE", 
   > it will take a bit longer until you can access your OpenVidu Server. Be patient.
