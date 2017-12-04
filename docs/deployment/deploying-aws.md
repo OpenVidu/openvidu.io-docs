@@ -104,11 +104,11 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes.
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_**.
 
 #### 6. Access and test your OpenVidu Server through your new IP
 
-Go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it).
+After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it).
 
   <p>
     <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_output.png">
@@ -120,9 +120,6 @@ You will connect to your OpenVidu dashboard. To access to it use:
 - The secret you chose on [Step 4](#4-complete-the-configuration-fields) as password (field **OpenVidu Secret** in the table). 
 
 At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check the [next section](#adding-your-own-app-to-cloudformation-openvidu-server).
-
-  > **IMPORTANT**: Even though the Status of your new Stack shows "CREATE_COMPLETE", 
-  > it will take a bit longer until you can access your OpenVidu Server. Be patient.
 
 
 Adding your own app to CloudFormation OpenVidu Server
