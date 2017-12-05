@@ -160,6 +160,8 @@ Depending on the framework of your app:
       > **IMPORTANT 1**: It is crucial to navigate to **/opt** before the launching command. Otherwise, the system will surely have some problems for finding your files
 
       > **IMPORTANT 2**: Obviously your app will need Java to run. You must install the correct version of Java in your machine (check version: `java -version`)
+      
+      > **IMPORTANT 3**: Make sure the script you made is executable.(For Linux you could do like this `chmod +x YOUR_LAUNCHER.sh `)
 
   - Configure Nginx: add a new **location** directive to the file `/etc/nginx/sites-enabled/default`, inside the `server { }` group:
         
@@ -180,6 +182,21 @@ Depending on the framework of your app:
           [program:YOUR_APP]
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
+          
+    Now your `/etc/supervisor/conf.d/openvidu.conf` must looks like this:
+
+          [supervisord]
+          nodaemon=true
+          logfile=/var/log/supervisor/supervisord.log
+          pidfile=/var/run/supervisord.pid
+          loglevel=debug
+
+          [program:openvidu-server]
+          command=java -jar -Dopenvidu.secret="MY_SECRET" -Dserver.ssl.enabled=false -Dopenvidu.pu$
+
+          [program:YOUR_APP]
+          command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
+          redirect_stderr=true          
 
       > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (check [Securization](/home/#securization) section), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-java/src/main/resources/application.properties#L8).
             
@@ -206,6 +223,8 @@ Depending on the framework of your app:
       > **IMPORTANT 1**: It is crucial to navigate to **/opt** before the launching command. Otherwise, the system will surely have some problems for finding your files
 
       > **IMPORTANT 2**: Obviously your app will need Node to run. You must install the correct version of Node in your machine (check version: `nodejs -v`)
+      
+      > **IMPORTANT 3**: Make sure the script you made is executable.(For Linux you could do like this `chmod +x YOUR_LAUNCHER.sh `)
   
   - Configure Nginx: add a new **location** directive to the file `/etc/nginx/sites-enabled/default`, inside the `server { }` group::
       
@@ -228,6 +247,21 @@ Depending on the framework of your app:
           [program:YOUR_APP]
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
+          
+    Now your `/etc/supervisor/conf.d/openvidu.conf` must looks like this:
+
+          [supervisord]
+          nodaemon=true
+          logfile=/var/log/supervisor/supervisord.log
+          pidfile=/var/run/supervisord.pid
+          loglevel=debug
+
+          [program:openvidu-server]
+          command=java -jar -Dopenvidu.secret="MY_SECRET" -Dserver.ssl.enabled=false -Dopenvidu.pu$
+
+          [program:YOUR_APP]
+          command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
+          redirect_stderr=true    
 
       > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (check [Securization](/home/#securization) section), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-node/server.js#L64).
           
