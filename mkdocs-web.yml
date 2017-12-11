@@ -18,6 +18,7 @@ pages:
 - ['how-do-i/mute-audio-video.md', 'How do I ... ?', 'Mute audio/video']
 - ['how-do-i/screen-share.md', 'How do I ... ?', 'Screen share']
 - ['how-do-i/share-data.md', 'How do I ... ?', 'Share data between users']
+- ['how-do-i/send-messages.md', 'How do I ... ?', 'Send text messages']
 - ['reference-docs/openvidu-browser.md','Reference Documentation', 'openvidu-browser API']
 - ['reference-docs/openvidu-java-client.md','Reference Documentation', 'openvidu-java-client API']
 - ['reference-docs/openvidu-node-client.md','Reference Documentation', 'openvidu-node-client API']

@@ -36,6 +36,7 @@
 | `off` | | `eventName:string`<br/>`eventHandler:any` | Removes **eventHandler** handler for **eventName** event |
 | `subscribe` | [Subscriber](#subscriber) | `stream:Stream`<br/>`htmlId:string`<br/>_`videoOptions:any`_ | Subscribes to **stream**, appending a new HTML Video element to DOM element of **htmlId** id, with **videoOptions** settings. This method is usually called in the callback of _streamCreated_ event |
 | `unsubscribe` | | `subscriber:Subscriber` | Unsubscribes from **subscriber**, automatically removing its HTML Video element |
+| `signal` | | `signal:any` | Sends one signal. `signal` object has the following properties: {data:`string`, to:`Connection[]`, type:`string`} (all optional properties)<br/>All users subscribed to that signal (`session.on('signal:type', ...)` or `session.on('signal', ...)` for all signals) and whose Connection objects are in `to` array will receive it |
 
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
