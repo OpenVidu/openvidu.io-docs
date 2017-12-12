@@ -8,7 +8,7 @@ Any user connected to a session can send messages to every other participant of 
 
 session.signal({
         data: 'My custom message',  // Any string (optional)
-        to: [],                     // Array of Connection objects (optional)
+        to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
         type: 'my-chat'             // The type of message (optional)
     },
     function (error) {              // Callback for catching errors ('error' is null if success)
