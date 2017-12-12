@@ -36,20 +36,22 @@
 | `off` | | `eventName:string`<br/>`eventHandler:any` | Removes **eventHandler** handler for **eventName** event |
 | `subscribe` | [Subscriber](#subscriber) | `stream:Stream`<br/>`htmlId:string`<br/>_`videoOptions:any`_ | Subscribes to **stream**, appending a new HTML Video element to DOM element of **htmlId** id, with **videoOptions** settings. This method is usually called in the callback of _streamCreated_ event |
 | `unsubscribe` | | `subscriber:Subscriber` | Unsubscribes from **subscriber**, automatically removing its HTML Video element |
-| `signal` | | `signal:any` | Sends one signal. `signal` object has the following properties: {data:`string`, to:`Connection[]`, type:`string`} (all optional properties)<br/>All users subscribed to that signal (`session.on('signal:type', ...)` or `session.on('signal', ...)` for all signals) and whose Connection objects are in `to` array will receive it |
+| `signal`</br>_(since  **v1.2.0**)_ | | `signal:any` | Sends one signal. `signal` object has the following properties: {data:`string`, to:`Connection[]`, type:`string`} (all optional properties)<br/>All users subscribed to that signal (`session.on('signal:type', ...)` or `session.on('signal', ...)` for all signals) and whose Connection objects are in `to` array will receive it |
 
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
 | `sessionId` | string | The unique id of the session |
 
 
-| Event                  | Properties            | Description                  |
+| Event                  | Properties of `event` object  | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
 | `streamCreated`        | stream:[Stream](#stream)         | Triggered by Session object when a new Stream (published by other client) has been created and added to it |
 | `streamDestroyed`      | stream:[Stream](#stream)<br/>preventDefault():Function | Triggered by Session object when an existing Stream (published by other client) has been destroyed. The default behaviour is the deletion of the HTML video element associated to it. To prevent it, call `preventDefault()` method on the event object  |
 | `connectionCreated`    | connection:[Connection](#connection) | Triggered by Session object whenever any client has joined the session. This includes dispatching one event for each client that joins the session when you are already connected to it, one for each existing participant the first time you connect to the session and once for your own local connection |
 | `connectionDestroyed`  | connection:[Connection](#connection) | Triggered by Session object whenever a client (other than your own) leaves the session. This event can also mean that `streamDestroyed` events could be dispatched, depending on the streams associated to it  |
 | `sessionDisconnected`  | preventDefault():Function | Triggered by Session object when the client disconnects from the Session. Default behaviour is the deletion of all HTML video elements. Call `preventDefault()` on event object to prevent it and delete them by yourself |
+| `publisherStartSpeaking`<br/>_(since  **v1.3.0**)_ | connection:[Connection](#connection)</br>streamId:string | Triggered by Session object when any Publisher starts speaking. `connection` property identifies the participant who is speaking, and `streamId` identifies the specific Stream for which the event has been triggered |
+| `publisherStopSpeaking`<br/>_(since  **v1.3.0**)_ | connection:[Connection](#connection)</br>streamId:string | Triggered by Session object when any Publisher stops speaking. `connection` property identifies the participant who is has stopped speaking, and `streamId` identifies the specific Stream for which the event has been triggered. For this event to be triggered, `publisherStartSpeaking` event must have been previously triggered |
 
 #### **Publisher**
 | Method         | Returns | Parameters | Description |
@@ -68,7 +70,7 @@
 | `stream` | [Stream](#stream) | The stream object of the publisher |
 | `session` | [Session](#session) | The session to which the publisher belongs |
 
-| Event                  | Properties            | Description                  |
+| Event                  | Properties of `event` object    | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
 | `accessAllowed`        |          | Triggered by Publisher object when the user has granted access to the camera/microphone |
 | `accessDenied`         |          | Triggered by Publisher object when the user has rejected access to the camera/microphone |
@@ -88,7 +90,7 @@
 | `id` | string | The id of the HTML Video element of the subscriber |
 | `stream` | [Stream](#stream) | The stream object of the subscriber |
 
-| Event                  | Properties            | Description                  |
+| Event                  | Properties of `event` object    | Description                  |
 | -----------------------| --------------------- | ---------------------------- |
 | `videoElementCreated`  | element:HTMLVideoElement | Triggered by Subscriber object inmediately after a new video element has been added to DOM |
 | `videoPlaying`         | element:HTMLVideoElement | Triggered by Subscriber object when the video (same as `videoElementCreated`) starts playing |
@@ -97,6 +99,10 @@
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
 | `connection` | [Connection](#connection) | The Connection object to which the Stream belongs |
+| `streamId`<br/>_(since  **v1.3.0**)_ | string | The unique id of the stream |
+| `hasAudio`<br/>_(since  **v1.3.0**)_ | boolean | _true_ if there's an audio stream, _false_ otherwise |
+| `hasVideo`<br/>_(since  **v1.3.0**)_ | boolean | _true_ if there's a video stream, _false_ otherwise |
+| `typeOfVideo`<br/>_(since  **v1.3.0**)_ | string | _"CAMERA"_, _"SCREEN"_ or _""_ (empty string) for a Stream publishing the video of a camera (with or without audio), doing screen sharing (with or without audio) or sending only audio respectively |
 
 #### **Connection**
 | Property    | Type   | Description                  |
