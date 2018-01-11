@@ -1,7 +1,7 @@
 
 Developing OpenVidu
 ===================
-<br>
+
 This documentation is suitable for **Ubuntu 14.04** or **Ubuntu 16.04**. Packages required:
 
 | Dependecy     | Check version   | Install                               |
@@ -15,17 +15,16 @@ This documentation is suitable for **Ubuntu 14.04** or **Ubuntu 16.04**. Package
 Setup for development
 ------------------
 
-Here we show how to develop an Angular app (_openvidu-insecure-angular_ tutorial) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want.
+Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want.
 
 1) [Install KMS](#installing-kms)
 
 2) [Add Kurento parent Maven dependency to your local repo](#adding-kurento-parent-pom-to-your-local-respository)
 
-3) Clone repos:
+3) Clone repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu.git
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
 4) `openvidu/openvidu-browser/`
@@ -39,10 +38,10 @@ sudo npm link
 5) `openvidu/`
 
 ```bash
-mvn compile && mvn install
+mvn -DskipTests=true compile && mvn -DskipTests=true install
 ```
 
-6) `openvidu-tutorials/openvidu-insecure-angular/`
+6) `openvidu/openvidu-testapp/`
 
 ```bash
 npm install
@@ -59,7 +58,7 @@ sudo service kurento-media-server-6.0 restart
 8) `openvidu/openvidu-server/`
 
 ```bash
-mvn package exec:java
+mvn exec:java
 ```
 
 *(or if you prefer you can just run the Java application in your favourite IDE)*
@@ -70,9 +69,9 @@ mvn package exec:java
 
 At these point, you can start modifying *openvidu-ng-testapp*, *openvidu-browser* or *openvidu-server*.
 
- - **_openvidu-insecure-angular_**:  the previous "ng serve" command will take care of refreshing the browser's page whenever any change takes place.
+ - **_openvidu-testapp_** :  the previous "ng serve" command will take care of refreshing the browser's page whenever any change takes place.
 
- - **_openvidu-browser_**: after modifying any typescript file, you will need to run the following command to update your changes:
+ - **_openvidu-browser_** : after modifying any typescript file, you will need to run the following command to update your changes:
  
     **/openvidu/openvidu-browser** 
 
@@ -80,12 +79,12 @@ At these point, you can start modifying *openvidu-ng-testapp*, *openvidu-browser
     npm run updatetsc
     ```
 
- - **_openvidu-server_**: after modifying any file, there is no other alternative but to re-launch the java application if you want to update your changes.
+ - **_openvidu-server_** : after modifying any file, there is no other alternative but to re-launch the java application if you want to update your changes.
 
     **/openvidu/openvidu-server**
 
     ``` 
-    mvn clean package exec:java
+    mvn clean exec:java
     ```
 
     *(or re-launch the Java application in your IDE. Some IDE's support automatic re-launch in response to changes)*
@@ -101,7 +100,7 @@ You will need a server for the built app (if you don't have any, we recommend *h
 
 Run exactly the same commands as the process above, but on step **6)** skip `ng serve`. We don't want Angular-CLI to serve our app. Instead, these commands will be the ones which you should launch (and relaunch to update your changes):
 
-`openvidu-tutorials/openvidu-insecure-angular/`
+`openvidu/openvidu-testapp/`
 
 ```bash
 ng build -op ./dist

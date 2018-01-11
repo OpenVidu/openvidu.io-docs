@@ -1,6 +1,6 @@
-# Publish a stream
+# Publish/Unpublish a stream
 
-After joining a session, get a `Publisher` object through OpenVidu object (`OpenVidu.initPublisher`) and publish it with `Session` object.
+You can publish a stream after joining a session: get a `Publisher` object through OpenVidu object (`OpenVidu.initPublisher`) and publish it with `Session` object.
 
 ```javascript
 // After joining a session...
@@ -32,3 +32,14 @@ OV.initPublisher(
     }
 );
 ```
+
+To unpublish the stream:
+
+```javascript
+session.unpublish(publisher);
+```
+
+As long as you have the Publisher object available, you can alternately call `Session.publish` and `Session.unpublish` as many times as you want.
+
+<br/>
+> **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method (see [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)

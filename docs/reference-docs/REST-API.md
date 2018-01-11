@@ -36,5 +36,5 @@ For secret "MY_SECRET", the final header would be
 > - PUBLISHER
 > - MODERATOR
 > 
-> (See [OpenViduRole](/api/openvidu-java-client/#openvidurole) section)
+> (See [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)
 
