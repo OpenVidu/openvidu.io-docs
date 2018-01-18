@@ -88,7 +88,7 @@ Now you can deploy your application in the same machine (if the app is not pure 
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#7-what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
 
   - Besides, the server needs some **ports** opened in the firewall:
 
@@ -123,11 +123,11 @@ The instructions above portray scenarios 1 and 2 in the image. In other words, w
 #### 7A
 
 ```console
-sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
+docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
 ```
 
 #### 7B
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu-server.jar &
+java -Dopenvidu.secret=YOUR_SECRET -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
 ```
