@@ -34,3 +34,126 @@ docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=
 #### Call Detail Record
 
 OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every connection established by each one of the users. To start OpenVidu Server with CDR enabled, launch it with option `openvidu.cdr=true`.
+
+The record is a plain text file containing one standard JSON entry for each line. All JSON entries have the following structure:
+
+`{"[EVENT_NAME]": {"sessionId": "[SESSION_ID]", "timestamp": "[TIMESTAMP]", "[CUSTOM_PROPERTY_1]": "[CUSTOM_VALUE_1]","[CUSTOM_PROPERTY_2]": "[CUSTOM_VALUE_2]", ... }}`
+
+So every entry is a JSON object identified by a specific event name, and all of them have as properties the `sessionId` identifying the video-session for which this event was registered and the `timestamp`. Besides this two common properties, there are custom properties for every specific event with useful information. The complete list of possible JSON entries is available below:
+
+<hr>
+
+##### sessionCreated
+
+Recorded when a new session has been created.
+
+| Property         | Description   	                      | Value |
+| ---------------- | ------------------------------------ | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+
+Example:
+```json
+{"sessionCreated":{"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","timestamp":1516292370848}}
+```
+
+<hr>
+
+##### sessionDestroyed
+
+Recored when a session has finished.
+
+| Property    | Description | Value |
+| ----------- | --------- | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+| `startTime` | Time when the session started          | UTC milliseconds |
+| `endTime`   | Time when the session finished          | UTC milliseconds |
+| `duration`  | Total duration of the session         | Seconds |
+
+Example:
+```json
+{"sessionDestroyed":{"duration":4,"startTime":1516292370848,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375176,"timestamp":1516292375176}}
+```
+
+<hr>
+
+##### participantJoined
+
+Recorded when a user has connected to a session.
+
+| Property         | Description   	                      | Value |
+| ---------------- | ------------------------------------ | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+| `participantId` | Identifier of the participant          | A string with the participant unique identifier |
+
+Example: 
+```json
+{"participantJoined":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","timestamp":1516292370885}}
+```
+
+<hr>
+
+##### participantLeft
+
+Recorded when a user has left a session.
+
+| Property    | Description | Value |
+| ----------- | --------- | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+| `participantId` | Identifier of the participant          | A string with the participant unique identifier |
+| `startTime` | Time when the participant joined the session          | UTC milliseconds |
+| `endTime`   | Time when the participant left the session          | UTC milliseconds |
+| `duration`  | Total duration of the participant's connection to the session         | Seconds |
+
+Example:
+```json
+{"participantLeft":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","duration":4,"startTime":1516292370885,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375195,"timestamp":1516292375195}}
+```
+
+<hr>
+
+##### webrtcConnectionCreated
+
+Recorded when a new media stream has been established. Can be an "INBOUND" connection (the user is receiving a stream from a publisher of the session) or an "OUTBOUND" connection (the user is a publishing a stream to the session).
+
+| Property    | Description | Value |
+| ----------- | --------- | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+| `participantId` | Identifier of the participant          | A string with the participant unique identifier |
+| `connection` | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu)      | [`"INBOUND"`,`"OUTBOUND"`]|
+| `audioEnabled` | Whether the media connection is sending audio or not        | [`true`,`false`] |
+| `videoEnabled` | Whether the media connection is sending video or not      | [`true`,`false`] |
+| `videoSource` | If `videoEnabled` is true, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
+
+Example:
+```json
+{"webrtcConnectionCreated":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","videoEnabled":true,"timestamp":1516292371499}}
+```
+
+<hr>
+
+##### webrtcConnectionDestroyed
+
+Recorded when any media stream connection is closed.
+
+| Property    | Description | Value |
+| ----------- | --------- | ----- |
+| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
+| `timestamp` | Time when the event was triggered | UTC milliseconds |
+| `participantId` | Identifier of the participant          | A string with the participant unique identifier |
+| `connection` | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu)      | [`"INBOUND"`,`"OUTBOUND"`]|
+| `audioEnabled` | Whether the media connection is sending audio or not        | [`true`,`false`] |
+| `videoEnabled` | Whether the media connection is sending video or not      | [`true`,`false`] |
+| `videoSource` | If `videoEnabled` is true, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
+| `startTime` | Time when the media connection was established         | UTC milliseconds |
+| `endTime`   | Time when the media connection closed          | UTC milliseconds |
+| `duration`  | Total duration of the media connection         | Seconds |
+
+Example:
+```json
+{"webrtcConnectionDestroyed":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","duration":3,"videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"startTime":1516292371499,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375180,"videoEnabled":true,"timestamp":1516292375180}}
+```

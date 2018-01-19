@@ -6,6 +6,7 @@ You can publish a stream after joining a session: get a `Publisher` object throu
 // After joining a session...
 
 var publisher = OV.initPublisher('html-id');
+// Register all the events you want with 'publisher.on(...)'
 session.publish(publisher);
 ```
 
@@ -39,7 +40,16 @@ To unpublish the stream:
 session.unpublish(publisher);
 ```
 
-As long as you have the Publisher object available, you can alternately call `Session.publish` and `Session.unpublish` as many times as you want.
+As long as you have the Publisher object available, you can alternately call `Session.publish` and `Session.unpublish` as many times as you want. It is also possible to change the Publisher dynamically (for example if you want to stop transmitting your webcam and start sharing your screen, all of it without leaving the session). To do so:
+
+```javascript
+session.unpublish(oldPubliser);
+newPublisher = OV.initPublisher(newOptions);
+// Register all the events you want with 'newPublisher.on(...)'
+session.publish(newPublisher);
+```
+
+In future updates one user will be able to publish more than one Publisher at once.
 
 <br/>
 > **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method (see [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)
