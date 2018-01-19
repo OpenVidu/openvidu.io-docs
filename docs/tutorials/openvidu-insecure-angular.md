@@ -44,11 +44,10 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 
-1) Clone the repo and checkout to version v1.1.0:
+1) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
-cd openvidu-tutorials && git checkout v1.1.0
 ```
 
 2) You will need angular-cli to serve the Angular frontend. You can install it with the following command:
@@ -60,7 +59,7 @@ npm install -g @angular/cli
 3) Run the tutorial:
 
 ```bash
-cd openvidu-insecure-angular
+cd openvidu-tutorials/openvidu-insecure-angular
 npm install
 ng serve
 ```
@@ -68,7 +67,7 @@ ng serve
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:1.1.0
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:4200`](http://localhost:4200) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.

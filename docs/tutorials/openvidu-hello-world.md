@@ -5,11 +5,10 @@ This is the simplest demo you can try to get started with OpenVidu: HTML code is
 
 ## Running this tutorial
 
-1) Clone the repo and checkout to version v1.1.0:
+1) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
-cd openvidu-tutorials && git checkout v1.1.0
 ```
 
 2) You will need an http web server installed in your development computer to execute the tutorial. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server) to serve application files. It can be installed with:
@@ -21,13 +20,13 @@ npm install -g http-server
 3) Run the tutorial:
 
 ```bash
-http-server openvidu-hello-world/web
+http-server openvidu-tutorials/openvidu-hello-world/web
 ```
 
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:1.1.0
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.

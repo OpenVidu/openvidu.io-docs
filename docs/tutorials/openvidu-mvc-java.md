@@ -20,11 +20,10 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ## Running this tutorial
 
-1) Clone the repo and checkout to version v1.1.0:
+1) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
-cd openvidu-tutorials && git checkout v1.1.0
 ```
 
 2) You will need _maven_ to build the project. You can install it with:
@@ -36,14 +35,14 @@ sudo apt-get install maven
 3) Run the tutorial:
 
 ```bash
-cd openvidu-mvc-java
+cd openvidu-tutorials/openvidu-mvc-java
 mvn package exec:java
 ```
 
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:1.1.0
+docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
