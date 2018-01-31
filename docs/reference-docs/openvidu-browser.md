@@ -6,15 +6,18 @@
 | Class      | Description   										     |
 | ---------- | ---------------------------------------------------------- |
 | [OpenVidu](#openvidu) | Use it to initialize your sessions and publishers |
-| [Session](#session)  | Represents a video call. It can also be seen as a room where multiple users can connect. Participants who publish their videos to a session will be seen by the rest of users connected to that specific session  |
+| [Session](#session)  | Represents a video call. It can also be seen as a room where multiple users can connect. Participants who publish their videos to a session will be seen by the rest of users connected to that specific session |
 | [Publisher](#publisher)  | Packs local media streams. Users can publish it to a session |
-| [Subscriber](#subscriber) | Packs remote media streams. Users automatically receive them when others publish their streams|
+| [Subscriber](#subscriber) | Packs remote media streams. Users automatically receive them when others publish their streams |
 | [Stream](#stream) | Represents each one of the videos send and receive by a user in a session. Therefore each Publisher and Subscriber has an attribute of type Stream |
 | [Connection](#connection) | Represents each one of the user's connection to the session (the local one and other user's connections). Therefore each Session and Stream object has an attribute of type Connection |
 | [OpenViduError](#openviduerror)  | Simple object to identify errors on runtime |
 | [OpenViduErrorName](#openviduerrorname)  | OpenViduError names enum |
 
 #### **OpenVidu**
+
+Use it to initialize your sessions and publishers
+
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
 | _`constructor`_    | [OpenVidu](#OpenVidu) |  | Returns a new OpenVidu object. This is the entry point to OpenVidu in the browser |
@@ -25,6 +28,9 @@
 | `enableProdMode`  |  |  | Disable all logging except error level |
 
 #### **Session**
+
+Represents a video call. It can also be seen as a room where multiple users can connect. Participants who publish their videos to a session will be seen by the rest of users connected to that specific session
+
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
 | `connect`    |  | `token:string`<br/>_`metadata:any`_<br/>`callback(error):function` | Connects to the session using **token** and executes **callback** in the end (_error_ parameter null if success). **metadata** parameter allows you to pass extra data to share with other users when they receive _streamCreated_ event. You can also add metadata through openvidu-backend-client when generating tokens (see [TokenOptions](/reference-docs/openvidu-java-client/#tokenoptions)). The structure of this string is up to you (maybe some standarized format as JSON or XML is a good idea), the only restriction is a maximum length of 1000 chars |
@@ -38,9 +44,10 @@
 | `unsubscribe` | | `subscriber:Subscriber` | Unsubscribes from **subscriber**, automatically removing its HTML Video element |
 | `signal`</br>_(since  **v1.2.0**)_ | | `signal:any` | Sends one signal. `signal` object has the following properties: {data:`string`, to:`Connection[]`, type:`string`} (all optional properties)<br/>All users subscribed to that signal (`session.on('signal:type', ...)` or `session.on('signal', ...)` for all signals) and whose Connection objects are in `to` array will receive it |
 
-| Property    | Type   | Description                  |
-| ------------| ------ | ---------------------------- |
-| `sessionId` | string | The unique id of the session |
+| Property     | Type   | Description                  |
+| -------------| ------ | ---------------------------- |
+| `sessionId`  | string | The unique id of the session |
+| `connection` | [Connection](#connection) | The local connection to the session. Only available after `Session.connect()` method has been called succesfully |
 
 
 | Event                  | Properties of `event` object  | Description                  |
@@ -54,6 +61,9 @@
 | `publisherStopSpeaking`<br/>_(since  **v1.3.0**)_ | connection:[Connection](#connection)</br>streamId:string | Triggered by Session object when any Publisher stops speaking. `connection` property identifies the participant who is has stopped speaking, and `streamId` identifies the specific Stream for which the event has been triggered. For this event to be triggered, `publisherStartSpeaking` event must have been previously triggered |
 
 #### **Publisher**
+
+Packs local media streams. Users can publish it to a session
+
 | Method         | Returns | Parameters | Description |
 | -------------- | ------- | ------------------------------------------- | ----------- |
 | `publishAudio` |  | `value:boolean`| Enable or disable the audio track depending on whether value is _true_ or _false_ |
@@ -79,6 +89,9 @@
 | `remoteVideoPlaying`   | element:HTMLVideoElement | Triggered by Publisher object when your looped remote video starts playing. Only triggered for those Publisher objects which have called their method _subscribeToRemote_|
 
 #### **Subscriber**
+
+Packs remote media streams. Users automatically receive them when others publish their streams
+
 | Method         | Returns | Parameters | Description |
 | -------------- | ------- | ------------------------------------------- | ----------- |
 | | | | |
@@ -96,6 +109,9 @@
 | `videoPlaying`         | element:HTMLVideoElement | Triggered by Subscriber object when the video (same as `videoElementCreated`) starts playing |
 
 #### **Stream**
+
+Represents each one of the videos send and receive by a user in a session. Therefore each Publisher and Subscriber has an attribute of type Stream
+
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
 | `connection` | [Connection](#connection) | The Connection object to which the Stream belongs |
@@ -105,6 +121,9 @@
 | `typeOfVideo`<br/>_(since  **v1.3.0**)_ | string | _"CAMERA"_, _"SCREEN"_ or _""_ (empty string) for a Stream publishing the video of a camera (with or without audio), doing screen sharing (with or without audio) or sending only audio respectively |
 
 #### **Connection**
+
+Represents each one of the user's connection to the session (the local one and other user's connections). Therefore each Session and Stream object has an attribute of type Connection
+
 | Property    | Type   | Description                  |
 | ------------| ------ | ---------------------------- |
 | `connectionId` | string | Unique identifier of the connection |
@@ -112,6 +131,9 @@
 | `creationTime` | number | Time when this connection was created |
 
 #### **OpenViduError**
+
+Simple object to identify errors on runtime
+
 | Method           | Returns | Parameters | Description |
 | ---------------- | ------- | ------------------------------------------- | ----------- |
 | _`constructor`_    | [OpenViduError](#openviduerror) | _`name:OpenViduErrorName`_<br/>`message:string` | Returns a new OpenViduError object |
@@ -123,6 +145,8 @@
 
 #### **OpenViduErrorName**
  _(enum)_
+
+OpenViduError names enum
 
 | Constant     ||
 | ------------ |-|

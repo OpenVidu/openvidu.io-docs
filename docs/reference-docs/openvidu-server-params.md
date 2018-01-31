@@ -3,13 +3,16 @@
 
 #### List of configuration parameters when launching openvidu-server:
 
-| Parameter            | Description   										     | Default value |
-| -------------------- | ------------------------------------------------------- | ------------- |
-| `openvidu.secret`    | Secret used to connect to OpenVidu Server. This value is required when using the [REST API](/reference-docs/REST-API/) or any server client ([openvidu-java-client](/reference-docs/openvidu-java-client), [openvidu-node-client](/reference-docs/openvidu-node-client)), as well as when connecting to openvidu-server dashboard | ***MY_SECRET*** |
-| `openvidu.publicurl` | URL to connect clients to OpenVidu Server. This must be the full IP of your OpenVidu Server, including _protocol_, _host_ and _port_ (for example: `https://my.openvidu.server.ip:8443`). If no _port_ argument is provided, `server.port` param will be appended to it | ***local***<br>(with default value _local_ this parameter will be set to `localhost:PORT`, being _PORT_ the param `server.port`) |
-| `openvidu.cdr`       | Whether to enable Call Detail Record or not (check [Call Detail Record](#call-detail-record)) | ***false*** |
-| `server.port`        | Port where OpenVidu Server will listen to client's connections | ***8443*** |
-| `kms.uris`           | KMS URL's to which OpenVidu Server will try to connect. They are tested in order until a valid one is found | ***[\"ws://localhost:8888/kurento\"]***<br>(default value for a KMS running in the same machine as OpenVidu Server) |
+| Parameter                        | Description   										     | Default value |
+| -------------------------------- | ------------------------------------------------------- | ------------- |
+| `server.port`                    | Port where OpenVidu Server will listen to client's connections | ***8443*** |
+| `kms.uris`                       | KMS URL's to which OpenVidu Server will try to connect. They are tested in order until a valid one is found | ***[\"ws://localhost:8888/kurento\"]***<br>(default value for a KMS running in the same machine as OpenVidu Server) |
+| `openvidu.secret`                | Secret used to connect to OpenVidu Server. This value is required when using the [REST API](/reference-docs/REST-API/) or any server client ([openvidu-java-client](/reference-docs/openvidu-java-client), [openvidu-node-client](/reference-docs/openvidu-node-client)), as well as when connecting to openvidu-server dashboard | ***MY_SECRET*** |
+| `openvidu.publicurl`             | URL to connect clients to OpenVidu Server. This must be the full IP of your OpenVidu Server, including _protocol_, _host_ and _port_ (for example: `https://my.openvidu.server.ip:8443`). If no _port_ argument is provided, `server.port` param will be appended to it | ***local***<br>(with default value _local_ this parameter will be set to `localhost:PORT`, being _PORT_ the param `server.port`) |
+| `openvidu.cdr`                   | Whether to enable Call Detail Record or not (check [Call Detail Record](#call-detail-record)) | ***false*** |
+| `openvidu.recording`             | Whether to enable recording module or not (check [Recording](/advanced-features/recording/)) | ***false*** |
+| `openvidu.recording.path`        | System path where to store the video files of recorded sessions | ***/opt/openvidu/recordings*** |
+| `openvidu.recording.free-access` | Whether to allow free http access to recorded sessions or not.<br>If *true* path `https://OPENVIDU_SERVER_IP:[server.port]/[openvidu.recording.path]` will be publicly accessible through `https://OPENVIDU_SERVER_IP:[server.port]/recordings` path. For example, for OpenVidu Server launched in *my-domain.com* and configured with *server.port=5000*, *openvidu.recording=true*, *openvidu.recording-path=/my/path* and *openvidu.recording.free-access=true* : A session with id *foo* that has been recorded will generate a video file locally stored under `/my/path/foo.mp4` and accesible by any client connecting to `https://my-domain.com:5000/recordings/foo.mp4`.<br>If *false* HTTP basic authentication will be required to access any video file stored under that route (as requested when connecting to OpenVidu dashboard on `https://OPENVIDU_SERVER_IP:[server.port]`) | ***false*** |
 
 Example:
 
@@ -125,9 +128,10 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
 | `timestamp` | Time when the event was triggered | UTC milliseconds |
 | `participantId` | Identifier of the participant          | A string with the participant unique identifier |
 | `connection` | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu)      | [`"INBOUND"`,`"OUTBOUND"`]|
+| `receivingFrom` | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received | A string with the participant (sender) unique identifier |
 | `audioEnabled` | Whether the media connection is sending audio or not        | [`true`,`false`] |
 | `videoEnabled` | Whether the media connection is sending video or not      | [`true`,`false`] |
-| `videoSource` | If `videoEnabled` is true, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
+| `videoSource` | If `videoEnabled` is `true`, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
 
 Example:
 ```json
@@ -146,9 +150,10 @@ Recorded when any media stream connection is closed.
 | `timestamp` | Time when the event was triggered | UTC milliseconds |
 | `participantId` | Identifier of the participant          | A string with the participant unique identifier |
 | `connection` | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu)      | [`"INBOUND"`,`"OUTBOUND"`]|
+| `receivingFrom` | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received | A string with the participant (sender) unique identifier |
 | `audioEnabled` | Whether the media connection is sending audio or not        | [`true`,`false`] |
 | `videoEnabled` | Whether the media connection is sending video or not      | [`true`,`false`] |
-| `videoSource` | If `videoEnabled` is true, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
+| `videoSource` | If `videoEnabled` is `true`, the type of video that is being transmitted | [`"CAMERA"`,`"SCREEN"`]|
 | `startTime` | Time when the media connection was established         | UTC milliseconds |
 | `endTime`   | Time when the media connection closed          | UTC milliseconds |
 | `duration`  | Total duration of the media connection         | Seconds |

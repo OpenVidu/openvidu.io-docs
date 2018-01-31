@@ -79,10 +79,9 @@ Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-bina
 
 #### 8. Finally check your server
 
-You can connect to OpenVidu dashboard through `https://YOUR_MACHINE_PUBLIC_IP:8443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
+You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:8443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
-Now you can deploy your application in the same machine (if the app is not pure frontend HTML/CSS/JS and has a [secure backend](/home/#securization), connect it to OpenVidu Server through _https://localhost:8443_) or in a different one (connect to OpenVidu server through _https://YOUR_MACHINE_PUBLIC_IP:8443_).
-
+To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:8443`. To learn more, this scenario is exactly the same as portrayed [here](/deployment/deploying-aws#connecting-your-external-app-to-cloudformation-openvidu-server).
 
 ## Server network requirements
 

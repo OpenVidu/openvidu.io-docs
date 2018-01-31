@@ -17,24 +17,39 @@ For secret "MY_SECRET", the final header would be
 | **Operation** | POST |
 | **URL** | https://[YOUR_OPENVIDUSERVER_IP]/api/sessions |
 | **Headers** | Authorization:Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_ |
+| **Body** _*see notes below_ | {"archiveMode": "ARCHIVE_MODE", "archiveLayout": "ARCHIVE_LAYOUT", "mediaMode": "MEDIA_MODE"} |
 | **Returns** | {"id": "SESSIONID"} |
+
+> **Body parameters**
+>
+> - All of them are optional (the Body of the POST operation may be empty)
+> - ARCHIVE_MODE
+>     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session
+>     - `MANUAL` (_default_) : If you want to manage when start and stop the recording. _NOT AVAILABLE YET: no recording at all if this Archive Mode is set_
+> - ARCHIVE_LAYOUT
+>     - `BEST_FIT`(_default_) : A grid layout where all the videos are evenly distributed
+>     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`
+> - MEDIA_MODE
+>     - `ROUTED` (_default_) : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording
+>     - Not available yet: `RELAYED`
 
 ### /api/tokens
 
-| _NEW TOKEN_ | _PARAMETERS_ |
-| ---------       | -- |
-| **Operation** | POST |
-| **URL** | https://[YOUR_OPENVIDUSERVER_IP]/api/tokens |
-| **Headers** | Authorization:Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type:application/json |
-| **Body** | {"session": "SESSIONID", "role": "ROLE", "data": "DATA"} |
-| **Returns** | {"token": "TOKEN", "session": "SESSIONID", "role": "ROLE", "data": "DATA", "id": "TOKEN"} |
+| _NEW TOKEN_   | _PARAMETERS_                                                                                    |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| **Operation** | POST                                                                                            |
+| **URL**       | https://[YOUR_OPENVIDUSERVER_IP]/api/tokens                                                     |
+| **Headers**   | Authorization:Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type:application/json |
+| **Body**      | {"session": "SESSIONID", "role": "ROLE", "data": "DATA"}                                        |
+| **Returns**   | {"token": "TOKEN", "session": "SESSIONID", "role": "ROLE", "data": "DATA", "id": "TOKEN"}       |
 
 
-> **ROLE** value in Body field of POST to "/api/tokens" can be:
+> **Body parameters**
 > 
-> - SUBSCRIBER
-> - PUBLISHER
-> - MODERATOR
-> 
-> (See [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)
+> - SESSIONID: the sessionId for which the token should be associated
+> - ROLE _(See [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)_
+>     - `SUBSCRIBER`
+>     - `PUBLISHER`
+>     - `MODERATOR` (not available yet)
+> - DATA: an optional string to associate any metadata to this token (usually participant's information)
 
