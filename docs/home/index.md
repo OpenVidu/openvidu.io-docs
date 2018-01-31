@@ -11,9 +11,18 @@ OpenVidu is licensed under [Apache License v2](https://choosealicense.com/licens
 What can I do with OpenVidu?
 ===
 
-You can add video-call functionalities to your app, among many other things. The process is really simple: OpenVidu offers all the necessary services and tools. You just need to integrate them in your app to start enjoying its benefits: one-to-one calls, one-to-many calls, many-to-many calls. Decide which user can publish and which can't. Mute audio or video whenever you want.
+You can add video-call functionalities to your app, among many other things. The process is really simple: OpenVidu offers all the necessary services and tools. You just need to integrate them in your app to start enjoying its benefits: 
 
-So, what about adding a video-call center for attending your customers face to face? Or maybe you are developing an application to hold meetings via videoconference. Or you are thinking about a teacher streaming to all his students within online lessons. The possibilities are endless.
+- One-to-One, One-to-Many, Many-to-Many calls
+- Decide which user can publish and which can't with predefined roles
+- Send audio + video, audio-only or video-only streams
+- Broadcast text messages
+- Mute any track whenever you want
+- Share your screen
+- Record your videocalls
+
+<br>
+So, what about adding a video-call center for attending your customers face to face? Or maybe you are developing an application to hold meetings via videoconference. Or you are thinking about teachers streaming to all their students within online lessons, or doctors communicating with their patients with a human touch. The possibilities are endless.
 
 You can check our **[Demos](http://openvidu.io/demos)** to get an idea of what you can do with OpenVidu. Here are some cool pictures of them:
 
