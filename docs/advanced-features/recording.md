@@ -43,7 +43,7 @@ OpenVidu recording module consists of a Docker image that needs to be downloaded
 `Exception connecting to Docker daemon: you need Docker installed in this machine to enable OpenVidu recorder service`
 
 <br>
-> **[OpenVidu CloudFormation](/deployment/deploying-aws/)** already includes the Docker image for recording service. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server.
+> **[OpenVidu CloudFormation](/deployment/deploying-aws/) already includes the Docker image for recording service. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server**
 
 ### 2. Launch OpenVidu Server with new environment variables
 _(Only variables related with OpenVidu recording service are stated below. To see a complete list of available environment variables, visit [OpenVidu Server configuration](/reference-docs/openvidu-server-params/))_

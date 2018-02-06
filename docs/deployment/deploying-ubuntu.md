@@ -56,7 +56,7 @@ sudo service kurento-media-server-6.0 restart
 
 #### 7A. Init openvidu-server Docker container...
 ```console
-sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET --net="host" openvidu/openvidu-server
+sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ --net="host" openvidu/openvidu-server
 ```
 
 > To quickly install the latest official stable version of **Docker CE**:
@@ -73,7 +73,7 @@ Go to [Using your own certificate](/deployment/custom-certificate#for-the-docker
 #### 7B. ...or init your own openvidu-server executable
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET openvidu-server.jar &
+java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ openvidu-server.jar &
 ```
 Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
@@ -122,11 +122,11 @@ The instructions above portray scenarios 1 and 2 in the image. In other words, w
 #### 7A
 
 ```console
-docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
+docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
 ```
 
 #### 7B
 
 ```console
-java -Dopenvidu.secret=YOUR_SECRET -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
+java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
 ```

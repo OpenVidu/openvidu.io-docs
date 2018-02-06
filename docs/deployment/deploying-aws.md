@@ -322,7 +322,7 @@ The best production setup for OpenVidu is having your application deployed in a 
 
 Once you have deployed your CloudFormation OpenVidu Server and checked that it is up and running, and after setting up your own application in its dedicated server:
 
-- Make sure you know your **OpenVidu Server public IP**. That includes the protocol (`https`), the location and the port (`8443`). For example: `https://YOUR_SERVER_IP:8443/`
+- Make sure you know your **OpenVidu Server public IP**. That includes the protocol (`https`), the location and the port. For example: `https://YOUR_SERVER_IP:8443/`
 - Use it in your application server to perform the **[REST](/reference-docs/REST-API/)** operations, or to initialize your OpenVidu object if you are making use of **[openvdiu-java-client](/reference-docs/openvidu-java-client/)** or **[openvidu-node-client](/reference-docs/openvidu-node-client/)** :
     - _REST_ operations to `https://OPENVIDUSERVER_PUBLIC_IP/api/METHOD` 
     - _openvidu-java-client_ entrypoint is `new OpenVidu(OPENVIDUSERVER_PUBLIC_IP, OPENVIDU_SECRET)`
