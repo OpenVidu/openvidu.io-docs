@@ -60,7 +60,7 @@ openvidu-server.jar
 
 - `openvidu.recording`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/)) will be downloaded.
 - `openvidu.recording.path`: where to store the recorded video files on the host machine.
-- `openvidu.recording.free-access`: if *true* any client can connect to<p style="text-align: center; margin: 8px 0 8px 0; word-wrap: break-word;"><strong>https://OPENVIDU_SERVER_IP:OPENVIDU_PORT/recordings/any_session_file.mp4</strong></p> and access any recorded video file. If *false* this path will be secured with `openvidu.secret` param just as OpenVidu Server dashboard at **https://OPENVIDU_SERVER_IP:OPENVIDU_PORT**
+- `openvidu.recording.free-access`: if *true* any client can connect to<p style="text-align: center; margin: 8px 0 8px 0; word-wrap: break-word;"><strong>https://OPENVIDU_SERVER_IP:OPENVIDU_PORT/recordings/any_session_file.mkv</strong></p> and access any recorded video file. If *false* this path will be secured with `openvidu.secret` param just as OpenVidu Server dashboard at **https://OPENVIDU_SERVER_IP:OPENVIDU_PORT**
 
 #### For OpenVidu Server Docker image
 

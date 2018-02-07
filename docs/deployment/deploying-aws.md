@@ -86,6 +86,12 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
       <td><em>Your choice</em></td>
     </tr>
     <tr>
+      <td class="first-col">Free HTTP access to recorded videos<br><span class="field-comment">(see <code>openvidu.recording.free-access</code> property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server">here</a>)<span></td>
+      <td><em>true / false</em></td>
+      <td><em>true / false</em></td>
+      <td><em>true / false</em></td>
+    </tr>
+    <tr>
       <td class="first-col">Instance Type</td>
       <td><em>Your choice</em></br><span class="field-comment">(at least <code>t2.medium</code> recommended)</span></td>
       <td><em>Your choice</em></br><span class="field-comment">(at least <code>t2.medium</code> recommended)</span></td>
