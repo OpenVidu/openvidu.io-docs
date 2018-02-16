@@ -106,6 +106,8 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
   </table>
 </div>
 
+> If you are using ***LET'S ENCRYPT CERTIFICATE***, of course you will need to register your ElasticIP in your DNS hosting service and associate it with the fully qualified domain name.
+
 #### 5. Create your Stack
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create_**
