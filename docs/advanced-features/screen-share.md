@@ -6,9 +6,10 @@ To share your screen instead of your webcam, the process is exactly the same as 
 OV.initPublisher('html-element-id', { screen: true });
 ```
 
-Both **Chrome** and **Firefox** support screen sharing.
+Both **Chrome** and **Firefox** support screen sharing. Chrome needs an extension and Firefox supports native screen sharing since version 52. Two different [OpenViduError](http://openvidu.io/docs/reference-docs/openvidu-browser/#openviduerror) can be returned in the callback function:
 
-For **Chrome**, it is a necessary requirement that the user has an extension installed. If it is not, `initPublisher` will return an error with _name_ `SCREEN_EXTENSION_NOT_INSTALLED` and _message_ the URL of Chrome Web Store where to install the extension. So, a possible approach would be:
+- `SCREEN_SHARING_NOT_SUPPORTED`: if the browser does not support screen sharing.
+- `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
 
 ```javascript
 OV.initPublisher('html-element-id', { screen: true }, function(error) {
@@ -17,11 +18,12 @@ OV.initPublisher('html-element-id', { screen: true }, function(error) {
         // showWarning could show a button with href 'error.message',
         // so the user can navigate to install the extension.
         // A browser refresh is also needed after installation
+    } else if (error.name == 'SCREEN_SHARING_NOT_SUPPORTED') {
+        alert('Your browser does not support screen sharing');
     }
 });
 ```
 
-For **Firefox** it is even easier, as it supports native screen capturing since version 52, so no extension is needed (a typical alert telling the user to select the window to share will pop up, similar to camera/microphone permission alert).
-
 <br/>
-> **NOTE**: when testing and developing screen sharing feature, in Chrome it is possible to do so over HTTP in `http://localhost:PORT`, but in Firefox it is a mandatory requirement to serve your application over HTTPS even though you are connecting through localhost
+
+> **NOTE**: for testing screen sharing in **Firefox < 59** it is a mandatory requirement to serve your application over HTTPS, even though you are connecting through `localhost`. For Chrome and Firefox ≥ 59 you can serve your app through `http://localhost:PORT` when developing without a problem.

@@ -1,5 +1,5 @@
 # Speech detection
-_(since **v1.3.0**)_
+_(since 1.3.0)_
 
 A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through two events that can be configured for [Session](/reference-docs/openvidu-browser/#session) objects:
 

@@ -12,7 +12,10 @@
 | `openvidu.cdr`                   | Whether to enable Call Detail Record or not (check [Call Detail Record](#call-detail-record)) | ***false*** |
 | `openvidu.recording`             | Whether to enable recording module or not (check [Recording](/advanced-features/recording/)) | ***false*** |
 | `openvidu.recording.path`        | System path where to store the video files of recorded sessions | ***/opt/openvidu/recordings*** |
-| `openvidu.recording.free-access` | Whether to allow free http access to recorded sessions or not.<br>If *true* path `https://OPENVIDU_SERVER_IP:[server.port]/[openvidu.recording.path]` will be publicly accessible through `https://OPENVIDU_SERVER_IP:[server.port]/recordings` path.<br>For example, for OpenVidu Server launched in *my-domain.com* and configured with *server.port=5000*, *openvidu.recording=true*, *openvidu.recording-path=/my/path* and *openvidu.recording.free-access=true* : A session with id *foo* that has been recorded will generate a video file locally stored under `/my/path/foo.mkv` and accesible by any client connecting to `https://my-domain.com:5000/recordings/foo.mkv`.<br>If *false* HTTP basic authentication will be required to access any video file stored under that route (as requested when connecting to OpenVidu dashboard on `https://OPENVIDU_SERVER_IP:[server.port]`) | ***false*** |
+| `openvidu.recording.free-access` | Whether to allow free http access to recorded sessions or not.<br>If *true* path `https://OPENVIDU_SERVER_IP:[server.port]/[openvidu.recording.path]` will be publicly accessible through `https://OPENVIDU_SERVER_IP:[server.port]/recordings` path.<br>For example, for OpenVidu Server launched in *my-domain.com* and configured with *server.port=5000*, *openvidu.recording=true*, *openvidu.recording-path=/my/path* and *openvidu.recording.free-access=true* : A session with id *foo* that has been recorded will generate a video file locally stored under `/my/path/foo.mp4` and accesible by any client connecting to `https://my-domain.com:5000/recordings/foo.mp4`.<br>If *false* HTTP basic authentication will be required to access any video file stored under that route (as requested when connecting to OpenVidu dashboard on `https://OPENVIDU_SERVER_IP:[server.port]`) | ***false*** |
+| `server.ssl.key-store`           | Path for using custom JKS certificate | _(selfsigned OpenVidu key-store)_ |
+| `server.ssl.key-store-password`  | Password for the custom JKS | _(selfsigned OpenVidu password)_ |
+| `server.ssl.key-alias`           | Alias for the custom JKS | _(selfsigned OpenVidu alias)_  |
 
 Example:
 
@@ -36,11 +39,11 @@ docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=
 
 #### Call Detail Record
 
-OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every connection established by each one of the users. To start OpenVidu Server with CDR enabled, launch it with option `openvidu.cdr=true`. The CDR file will be located under `log/` folder in the same path as your Java executable.
+OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every media connection established by each one of the users (sending or receiving). To start OpenVidu Server with CDR enabled, launch it with option `openvidu.cdr=true`. The CDR file will be located under `log/` folder in the same path as your Java executable.
 
 The record is a plain text file containing one standard JSON entry for each line. All JSON entries have the following structure:
 
-`{"[EVENT_NAME]": {"sessionId": "[SESSION_ID]", "timestamp": "[TIMESTAMP]", "[CUSTOM_PROPERTY_1]": "[CUSTOM_VALUE_1]","[CUSTOM_PROPERTY_2]": "[CUSTOM_VALUE_2]", ... }}`
+`{"EVENT_NAME": {"sessionId": "SESSION_ID", "timestamp": TIMESTAMP, "PROPERTY_1": "VALUE_1","PROPERTY_2": "VALUE_2", ... }}`
 
 So every entry is a JSON object identified by a specific event name, and all of them have as properties the `sessionId` identifying the video-session for which this event was registered and the `timestamp`. Besides this two common properties, there are custom properties for every specific event with useful information. The complete list of possible JSON entries is available below:
 
@@ -57,7 +60,7 @@ Recorded when a new session has been created.
 
 Example:
 ```json
-{"sessionCreated":{"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","timestamp":1516292370848}}
+{"sessionCreated":{"sessionId":"fds4e07mdug1ga3h","timestamp":1516292370848}}
 ```
 
 <hr>
@@ -76,7 +79,7 @@ Recored when a session has finished.
 
 Example:
 ```json
-{"sessionDestroyed":{"duration":4,"startTime":1516292370848,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375176,"timestamp":1516292375176}}
+{"sessionDestroyed":{"duration":4,"startTime":1516292370848,"sessionId":"fds4e07mdug1ga3h","endTime":1516292375176,"timestamp":1516292375176}}
 ```
 
 <hr>
@@ -93,7 +96,7 @@ Recorded when a user has connected to a session.
 
 Example: 
 ```json
-{"participantJoined":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","timestamp":1516292370885}}
+{"participantJoined":{"participantId":"ogjud06fhgkck4id","sessionId":"fds4e07mdug1ga3h","timestamp":1516292370885}}
 ```
 
 <hr>
@@ -113,7 +116,7 @@ Recorded when a user has left a session.
 
 Example:
 ```json
-{"participantLeft":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","duration":4,"startTime":1516292370885,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375195,"timestamp":1516292375195}}
+{"participantLeft":{"participantId":"ogjud06fhgkck4id","duration":4,"startTime":1516292370885,"sessionId":"fds4e07mdug1ga3h","endTime":1516292375195,"timestamp":1516292375195}}
 ```
 
 <hr>
@@ -135,7 +138,7 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
 
 Example:
 ```json
-{"webrtcConnectionCreated":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","videoEnabled":true,"timestamp":1516292371499}}
+{"webrtcConnectionCreated":{"participantId":"ogjud06fhgkck4id","videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"sessionId":"fds4e07mdug1ga3h","videoEnabled":true,"timestamp":1516292371499}}
 ```
 
 <hr>
@@ -160,5 +163,5 @@ Recorded when any media stream connection is closed.
 
 Example:
 ```json
-{"webrtcConnectionDestroyed":{"participantId":"ogjud06fhgkck4id5a8p4a6ejp","duration":3,"videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"startTime":1516292371499,"sessionId":"fds4e07mdug1ga3hlrfh3sdf6d","endTime":1516292375180,"videoEnabled":true,"timestamp":1516292375180}}
+{"webrtcConnectionDestroyed":{"participantId":"ogjud06fhgkck4id","duration":3,"videoSource":"CAMERA","connection":"OUTBOUND","audioEnabled":true,"startTime":1516292371499,"sessionId":"fds4e07mdug1ga3h","endTime":1516292375180,"videoEnabled":true,"timestamp":1516292375180}}
 ```

@@ -1,5 +1,5 @@
 # Send text messages between users
-_(since **v1.2.0**)_
+_(since v1.2.0)_
 
 Any user connected to a session can send messages to every other participant of the session, as a broadcast message for everyone or to one or more specific participants. To do so:
 

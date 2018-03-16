@@ -1,7 +1,7 @@
 # Recording
-_(since **v1.7.0**)_
+_(since v1.7.0)_
 
-OpenVidu Server can be configured to record sessions. In the current version 1.7.0, every publisher stream is composed in the same video file in a grid layout.
+OpenVidu Server can be configured to record sessions. In the current version 1.8.0, every publisher stream is composed in the same video file in a grid layout, generating a unique MP4 file when the recording stops.
 
 For example, in a session with two publishers the video file will look like this:
 
@@ -45,6 +45,8 @@ OpenVidu recording module consists of a Docker image that needs to be downloaded
 <br>
 > **[OpenVidu CloudFormation](/deployment/deploying-aws/) already includes the Docker image for recording service. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server**
 
+---
+
 ### 2. Launch OpenVidu Server with new environment variables
 _(Only variables related with OpenVidu recording service are stated below. To see a complete list of available environment variables, visit [OpenVidu Server configuration](/reference-docs/openvidu-server-params/))_
 
@@ -60,7 +62,7 @@ openvidu-server.jar
 
 - `openvidu.recording`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/)) will be downloaded.
 - `openvidu.recording.path`: where to store the recorded video files on the host machine.
-- `openvidu.recording.free-access`: if *true* any client can connect to<p style="text-align: center; margin: 8px 0 8px 0; word-wrap: break-word;"><strong>https://OPENVIDU_SERVER_IP:OPENVIDU_PORT/recordings/any_session_file.mkv</strong></p> and access any recorded video file. If *false* this path will be secured with `openvidu.secret` param just as OpenVidu Server dashboard at **https://OPENVIDU_SERVER_IP:OPENVIDU_PORT**
+- `openvidu.recording.free-access`: if *true* any client can connect to<p style="text-align: center; margin: 8px 0 8px 0; word-wrap: break-word;"><strong>https://OPENVIDU_SERVER_IP:OPENVIDU_PORT/recordings/any_session_file.mp4</strong></p> and access any recorded video file. If *false* this path will be secured with `openvidu.secret` param just as OpenVidu Server dashboard at **https://OPENVIDU_SERVER_IP:OPENVIDU_PORT**
 
 #### For OpenVidu Server Docker image
 
@@ -100,65 +102,80 @@ It is also necessary to mount 2 volumes and pass `MY_UID` variable:
 - `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`: gives access to the recorded video files through the container
 - `-e MY_UID=$(id -u $USER)`: for permission reasons
 
-> `/PATH/TO/VIDEO/FILES` must be the same in `openvidu.recording.path=/PATH/TO/VIDEO/FILES` property and in<br>`-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES` option if you want to have acces to the video files from outside the container
+<br>
+> **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in `openvidu.recording.path=/PATH/TO/VIDEO/FILES` property and in both sides of `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES` flag
+
+---
 
 ### 3. Configure your Sessions to be recorded
 
 Setting property `openvidu.recording` to *true* only automatically enables recordings for insecure sessions (those directly created from the client side. See [this FAQ](/troubleshooting/#4-why-does-my-app-need-a-server-side) and [this FAQ](/troubleshooting/#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
 
-In order to record a regular securized session, it is necessary to explicitly configure it through the [REST API](/reference-docs/REST-API/) or any of the server clients ([openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/)). As seen in the API documentation ...
+In order to record a regular securized session, it is necessary to explicitly configure it through the [REST API](/reference-docs/REST-API/) or any of the server clients ([openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/)).
+
+Recording can be configured in two ways: **automatic recording** _(since v1.7.0)_ or **manual recording** _(since v1.7.0)_:
+
+- **Automatic recording**: your sessions will be recorded from the moment the first participant starts publishing media until the last participant leaves the session.
+- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will never be automatically stopped even though all participants leave the session (in fact the session will not be closed until the recording stops).
 
 #### API REST
 
-The body of the POST request in order to generate a sessionId (`/api/sessions`) must be:
-
-```json
-{"archiveMode": "ALWAYS", "archiveLayout": "BEST_FIT", "mediaMode": "ROUTED"}
-```
+1. Initialize your sessions with this POST method: [POST /api/sessions](/reference-docs/REST-API#post-apisessions). For sessions configured for automatic recording no more steps are needed
+2. If you have configured your session for manual recording
+    - Start the recording with this POST method: [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart)
+    - Stop the recording with this POST method: [POST /api/recordings/stop](/reference-docs/REST-API#post-apirecordingsstoprecording_id)
 
 #### openvidu-java-client
 
-Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured
+Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured:
 
 ```java
-import io.openvidu.java.client.ArchiveLayout;
-import io.openvidu.java.client.ArchiveMode;
-import io.openvidu.java.client.MediaMode;
-import io.openvidu.java.client.OpenVidu;
-import io.openvidu.java.client.Session;
-import io.openvidu.java.client.SessionProperties;
-
-...
-
 OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 SessionProperties properties = new SessionProperties.Builder()
-    .archiveMode(ArchiveMode.ALWAYS)
+    .archiveMode(ArchiveMode.MANUAL) // ArchiveMode.ALWAYS for automatic recording
     .archiveLayout(ArchiveLayout.BEST_FIT)
     .mediaMode(MediaMode.ROUTED)
     .build();
 Session session = openVidu.createSession(properties);
 ```
 
+If Session is configured with `ArchiveMode.MANUAL`:
+
+```java
+Archive archive = openVidu.startRecording(session.getSessionId()); // Starts recording
+archive = openVidu.stopRecording(archive.getId()); // Stops recording
+```
+
 #### openvidu-node-client
 
-Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured
+Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured:
 
 ```javascript
-var OpenVidu = require('openvidu-node-client').OpenVidu;
-var SessionProperties = require('openvidu-node-client').SessionProperties;
-var ArchiveLayout = require('openvidu-node-client').ArchiveLayout;
-var ArchiveMode = require('openvidu-node-client').ArchiveMode;
-var MediaMode = require('openvidu-node-client').MediaMode;
-
-...
-
 var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var properties = new SessionProperties.Builder()
+    .archiveMode(ArchiveMode.MANUAL) // ArchiveMode.ALWAYS for automatic recording
     .archiveLayout(ArchiveLayout.BEST_FIT)
-    .archiveMode(ArchiveMode.MANUAL)
     .mediaMode(MediaMode.ROUTED)
     .build();
 var mySession = openvidu.createSession(properties);
+```
+
+If Session is configured with `ArchiveMode.MANUAL`:
+
+```javascript
+var archive;
+
+openvidu.startRecording(sessionId) // Starts recording
+.then(response => {
+    archive = response;
+})
+.catch(error => console.error(error));
+
+openvidu.stopRecording(archive.getId()) // Stops recording
+.then(response => {
+    archive = response
+})
+.catch(error => console.error(error));
 ```
 
 <hr>
@@ -167,4 +184,10 @@ var mySession = openvidu.createSession(properties);
 
 - **Single stream recording**: right now only grid layout recording is supported, but in the near future it is planned to support single stream recording for each participant publishing to the session. This type of video recording is intended to be much less demanding in terms of computing resources, and will provide developers greater freedom in the later processing of their videos.
 
-- **More grid layouts**: only `BEST_FIT` layout is supported right now, but there are more layouts that will be available in next development iterations.
+- **More grid layouts**: only `BEST_FIT` layout is supported right now, but there are more layouts that will be available in next development iterations. Moreover, developers will be able to provide their own custom layout if they want.
+
+<hr>
+
+### Local recording
+
+OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](/reference-docs/openvidu-browser/#localrecorder).

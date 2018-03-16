@@ -64,8 +64,8 @@ Do you want to be able to publish your development app over your network or even
   - Download this _Ngrok_ configuration file (named `ngrok.yml`) from our GitHub repo **[<a href="https://raw.githubusercontent.com/OpenVidu/openvidu-tutorials/master/openvidu-js-java/docker/ngrok.yml">LINK</a>]** and place it in the same path as _Ngrok_ binary.
   - Run _Ngrok_ with this command: `./ngrok start --all -config=ngrok.yml`. You will get two public IPs (ended with `.ngrok.io`) publishing your local address `localhost:5000` and `localhost:3000`.
   - You just have to run you app at port `3000` and run OpenVidu Server locally adding this parameter:
-      - When running OpenVidu Server as a Docker container: `-Dspring.profiles.active=ngrok`
-      - When running OpenVidu Server as a JAR: `-e spring.profiles.active=ngrok`
+      - When running OpenVidu Server as a Docker container: `-e spring.profiles.active=ngrok`
+      - When running OpenVidu Server as a JAR: `-Dspring.profiles.active=ngrok`
   - That's it! Now you can connect to your app through the _Ngrok_ public IP and the connection to OpenVidu Server will work just fine. You have "deployed" your app on your own computer, and cross-device testing through your own network is now possible. Connecting to your app over the Internet is also possible, but the video transmission may not work (check [this FAQ](#1-everything-looks-alright-but-i-cannot-see-any-remote-video) to learn why).
 
 
