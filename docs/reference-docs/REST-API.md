@@ -228,15 +228,3 @@ _(since v1.8.0)_
 > - `204`: the video file and all of its metadata has been succesfully deleted from the host
 > - `404`: no recording exists for the passed recording id
 > - `409`: the recording has `"started"` status. Stop it before deletion
-
-| Method         | Returns                          | Parameters | Description                                                                         |
-| -------------- | -------------------------------- | ---------- | ----------------------------------------------------------------------------------- |
-| getId()        | String                           |            | Returns the recording identifier                                                    |
-| getName()      | String                           |            | Returns the recording name                                                          |
-| getSessionId() | String                           |            | Returns the session identifier associated to this recording                         |
-| getCreatedAt() | long                             |            | Returns the time when the recording started (UTC milliseconds)                      |
-| getSize()      | long                             |            | Returns the size of the recording in bytes (0 until the recording is stopped)       |
-| getDuration()  | double                           |            | Returns the duration of the recording in seconds (0 until the recording is stopped) |
-| hasAudio()     | boolean                          |            | Returns if the recording has audio tracks (currently fixed to true)                 |
-| hasVideo()     | boolean                          |            | Returns if the recording has video tracks (currently fixed to true)                 |
-| getStatus()    | [Archive.Status](#archivestatus) |            | Returns the status of the recording                                                 |
