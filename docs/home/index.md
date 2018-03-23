@@ -92,9 +92,9 @@ Acknowledgments
 ===============
 OpenVidu platform has been supported under project LERNIM (RTC-2016-4674-7) confunded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Union_ FEDER, whose main goal with this funds is to promote technological development, innovation and high-quality research.
 
-<p align="center">
-  <img class="img-acknowledgments" width="400px" src="/img/docs/home/ministerio-economia.jpg">
-  <img class="img-acknowledgments" width="400px" src="/img/docs/home/european-union.png">
+<p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
+  <img class="img-acknowledgments" width="400px" src="/img/sponsors/footer-ministerio-economia-400-optimized.png">
+  <img class="img-acknowledgments" width="400px" src="/img/sponsors/footer-european-union-400-optimized.png">
 </p>
 
 
