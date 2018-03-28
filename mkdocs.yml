@@ -33,5 +33,6 @@ pages:
 - ['deployment/custom-certificate.md','Deployment', 'Using your own certificate']
 - ['developing/index.md','Contribute', 'Developing OpenVidu']
 - ['troubleshooting/index.md','Troubleshooting / FAQ']
+- ['releases/index.md','Releases']
 theme: readthedocs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

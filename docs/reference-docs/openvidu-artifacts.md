@@ -9,7 +9,7 @@
   <tr>
     <th>Artifact</th>
     <th>Type</th>
-    <th>Latest version</th>
+    <th>Stable version</th>
     <th>Link</th>
     <th class="last-table-col">Info</th>
   </tr>
@@ -50,7 +50,7 @@
     <td>MVN package</td>
     <td>1.8.0</td>
     <td><a class="" href="https://search.maven.org/#search%7Cga%7C1%7Ca%3A%22openvidu-java-client%22" target="_blank">MVN Repository</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your JAVA server. It makes easier the retrieval of the necessary params from OpenVidu Server for securing your application (sessionIds and tokens). It is a simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
   
   <tr>
@@ -58,13 +58,13 @@
     <td>NPM package</td>
     <td>1.8.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your NODE server. It makes easier the retrieval of the necessary params from OpenVidu Server for securing your application (sessionIds and tokens). It is a simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Library for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
   <tr>
     <td>openvidu-cloud-devops</td>
     <td>JSON files</td>
-    <td>1.1.0</td>
+    <td>1.7.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu-cloud-devops/releases" target="_blank">GitHub</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Configuration files for automatic launching of OpenVidu Server and OpenVidu Demos in AWS CloudFormation" class="icon ion-information-circled"></i></td>
   </tr>
@@ -87,7 +87,7 @@
   <tr>
     <th>Artifact</th>
     <th>Type</th>
-    <th>Latest version</th>
+    <th>Stable version</th>
     <th>Link</th>
   </tr>
   
