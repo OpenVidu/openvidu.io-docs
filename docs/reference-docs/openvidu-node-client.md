@@ -93,10 +93,10 @@ _(inner static class)_
 | Method         | Returns | Parameters | Description |
 | -------------- | ------- | --------------------------------------------- | ----------- |
 | SessionProperties.Builder() |  |  | Constructor |
-| archiveLayout() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `ArchiveLayout:archiveLayout` | Some extra metadata to be associated to the user through its token. The structure of this string is up to you (maybe some standarized format as JSON or XML is a good idea), the only restriction is a maximum length of 1000 chars |
-| archiveMode() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `ArchiveMode:archiveMode` | The role associated to this token |
-| mediaMode() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `MediaMode:mediaMode` | The role associated to this token |
-| build() | [SessionProperties](#sessionproperties) |  | Returns a new **TokenOptions** object with the stablished properties. Default values if methods _data()_ and _role()_ are not called are an empty string and OpenViduRole.PUBLISHER, respectively |
+| archiveLayout() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `ArchiveLayout:archiveLayout` | How the videos will be distributed in the recording layout |
+| archiveMode() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `ArchiveMode:archiveMode` | When will the session recording process start |
+| mediaMode() | [SessionProperties.Builder](#sessionpropertiesbuilder) | `MediaMode:mediaMode` | How the media streams will be transmitted (as p2p direct connections between clients or routed through OpenVidu Media Server). Recording service requires MediaMode.ROUTED |
+| build() | [SessionProperties](#sessionproperties) |  | Returns a new **SessionProperties** object with the stablished properties. Default values if methods _archiveLayout()_, _archiveMode()_ _mediaMode()_ are not called are BEST_FIT, MANUAL and ROUTED, respectively |
 
 #### **MediaMode**
 | Enum       | Description |

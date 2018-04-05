@@ -62,7 +62,7 @@ For secret "MY_SECRET", the final HTTP header would be
 >     - `SUBSCRIBER`
 >     - `PUBLISHER`
 >     - `MODERATOR` (not available yet)
-> - DATA: an optional string to associate any metadata to this token (usually participant's information)
+> - DATA: an optional string to associate any metadata to this token (usually participant's information). Maximum 1000 chars
 
 <div></div>
 
