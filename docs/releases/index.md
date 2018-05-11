@@ -70,32 +70,6 @@
 
 This is the first breaking change update for OpenVidu, which brings in lots of new features and internal improvements.
 
-#### BREAKING CHANGES LIST
-
-- **OpenVidu Browser**
-    - [`OpenVidu.initSession`](../../api/openvidu-browser/classes/openvidu.html#initsession) now doesn't receive any input parameter.
-    - [`OpenVidu.initPublisher`](../../api/openvidu-browser/classes/openvidu.html#initpublisher) input parameters have changed. Now `properties` parameter must match [PublisherProperties](../..//api/openvidu-browser/interfaces/publisherproperties.html) interface.
-    - [`Session.connect`](../../api/openvidu-browser/classes/session.html#connect) method has been promisified. Change the last mandatory `callback` parameter for a Promise implementation: `session.connect(token, (error) => { ... })` to `session.connect(token).then(() => {...}).catch(error => {...});` <br><br>
-
-- **OpenVidu Java Client**
-    - All `Archive` entities are now called `Recording`. This includes: class `Archive` to `Recording`, class `ArchiveMode` to `RecordingMode`, class `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
-    - `RecordingLayout` property in [`SessionProperties.Builder`](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html) is now configured calling method `defaultRecordingLayout()` instead of `recordingLayout()`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `RecordingProperties.Builder.recordingLayout()`, which will overwrite the default one globally configured in SessionProperties object. <br><br>
-
-- **OpenVidu Node Client**
-    - We have removed the builder pattern in all openvidu-node-client classes. Now objects are used instead, which includes classes `TokenOptions`, `SessionProperties` and `RecordingProperties`. For example, instead of getting a TokenOptions object like this: `var tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build()` now it must be like this: `var tokenOptions = {data: serverData, role: role}`
-    - There has been a simple change in certain asynchronous call. Method `Session.getSessionId()` is now synchronous, but method `OpenVidu.createSession()` is now asynchronous (the reason is pretty simple: now method _createSession_ implements the behaviour that _getSessionId_ was providing the first time it was called for certain _Session_ object).
-    - All callback methods have been promisified. This includes method `Session.generateToken(tokenOptions?, callback): void` (now  `Session.generateToken(tokenOptions?): Promise<string>`) and method `Session.getSessionId(callback): void` (now `OpenVidu.createSession(): Promise<Session>`, take also into account that the async call has changed from one method to the other as stated in the previous point).
-    - All `Archive` entities are now called `Recording`. This includes: object `Archive` to `Recording`, object `ArchiveMode` to `RecordingMode`, object `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
-    - `recordingLayout` property in [`SessionProperties`](../../api/openvidu-node-client/interfaces/sessionproperties.html) has changed to `defaultRecordingLayout`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `recordingLayout` property (of [RecordingProperties](../../api/openvidu-node-client/interfaces/recordingproperties.html) interface, which will overwrite the default one globally configured in SessionProperties object. <br><br>
-
-- **REST API**
-    - All `Archive` entities are now called `Recording` in API REST. For example: `{"archiveMode": "ARCHIVE_MODE", "archiveLayout": "ARCHIVE_LAYOUT", "mediaMode": "MEDIA_MODE"}` now is `{"recordingMode": "RECORDING_MODE", "recordingLayout": "RECORDING_LAYOUT", "mediaMode": "MEDIA_MODE"}`.
-    - Field `recordingLayout` is now called `defaultRecordingLayout` in operation [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions). This means that if one Session is gonna be recorded more than once, each recording layout may be customize adding a new field `recordingLayout` in the call to [POST /api/recordings/start](https://openvidu.io/docs/reference-docs/REST-API/#post-apirecordingsstart) of the API REST, which will overwrite the default one globally configured during [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions) <br><br>
-
-- **Other breaking changes**
-    - OpenVidu Server default port from `8443` to `4443`
-    - OpenVidu Server configuration property `openvidu.recording.free-access` is now `openvidu.recording.public-access`
-
 #### NEW FEATURES
 
 - **OpenVidu Browser new methods**
@@ -155,6 +129,32 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 - When OpenVidu Server is stopped, it will try to gracefully finish every in progress session and recording. This way no recording file will end corrupted upon OpenVidu Server termination (this cannot be granted if the process crashes or is forcibly terminated)
 - Now both STUN and TURN [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/#list-of-additional-configuration-parameters-when-launching-openvidu-server-kms-docker-container) can be set up at the same time with no overwritings.
 - Tons of small fixes and code refactoring that makes OpenVidu more stable and easy to test and develop
+
+#### BREAKING CHANGES LIST
+
+- **OpenVidu Browser**
+    - [`OpenVidu.initSession`](../../api/openvidu-browser/classes/openvidu.html#initsession) now doesn't receive any input parameter.
+    - [`OpenVidu.initPublisher`](../../api/openvidu-browser/classes/openvidu.html#initpublisher) input parameters have changed. Now `properties` parameter must match [PublisherProperties](../..//api/openvidu-browser/interfaces/publisherproperties.html) interface.
+    - [`Session.connect`](../../api/openvidu-browser/classes/session.html#connect) method has been promisified. Change the last mandatory `callback` parameter for a Promise implementation: `session.connect(token, (error) => { ... })` to `session.connect(token).then(() => {...}).catch(error => {...});` <br><br>
+
+- **OpenVidu Java Client**
+    - All `Archive` entities are now called `Recording`. This includes: class `Archive` to `Recording`, class `ArchiveMode` to `RecordingMode`, class `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
+    - `RecordingLayout` property in [`SessionProperties.Builder`](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html) is now configured calling method `defaultRecordingLayout()` instead of `recordingLayout()`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `RecordingProperties.Builder.recordingLayout()`, which will overwrite the default one globally configured in SessionProperties object. <br><br>
+
+- **OpenVidu Node Client**
+    - We have removed the builder pattern in all openvidu-node-client classes. Now objects are used instead, which includes classes `TokenOptions`, `SessionProperties` and `RecordingProperties`. For example, instead of getting a TokenOptions object like this: `var tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build()` now it must be like this: `var tokenOptions = {data: serverData, role: role}`
+    - There has been a simple change in certain asynchronous call. Method `Session.getSessionId()` is now synchronous, but method `OpenVidu.createSession()` is now asynchronous (the reason is pretty simple: now method _createSession_ implements the behaviour that _getSessionId_ was providing the first time it was called for certain _Session_ object).
+    - All callback methods have been promisified. This includes method `Session.generateToken(tokenOptions?, callback): void` (now  `Session.generateToken(tokenOptions?): Promise<string>`) and method `Session.getSessionId(callback): void` (now `OpenVidu.createSession(): Promise<Session>`, take also into account that the async call has changed from one method to the other as stated in the previous point).
+    - All `Archive` entities are now called `Recording`. This includes: object `Archive` to `Recording`, object `ArchiveMode` to `RecordingMode`, object `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
+    - `recordingLayout` property in [`SessionProperties`](../../api/openvidu-node-client/interfaces/sessionproperties.html) has changed to `defaultRecordingLayout`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `recordingLayout` property (of [RecordingProperties](../../api/openvidu-node-client/interfaces/recordingproperties.html) interface, which will overwrite the default one globally configured in SessionProperties object. <br><br>
+
+- **REST API**
+    - All `Archive` entities are now called `Recording` in API REST. For example: `{"archiveMode": "ARCHIVE_MODE", "archiveLayout": "ARCHIVE_LAYOUT", "mediaMode": "MEDIA_MODE"}` now is `{"recordingMode": "RECORDING_MODE", "recordingLayout": "RECORDING_LAYOUT", "mediaMode": "MEDIA_MODE"}`.
+    - Field `recordingLayout` is now called `defaultRecordingLayout` in operation [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions). This means that if one Session is gonna be recorded more than once, each recording layout may be customize adding a new field `recordingLayout` in the call to [POST /api/recordings/start](https://openvidu.io/docs/reference-docs/REST-API/#post-apirecordingsstart) of the API REST, which will overwrite the default one globally configured during [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions) <br><br>
+
+- **Other breaking changes**
+    - OpenVidu Server default port from `8443` to `4443`
+    - OpenVidu Server configuration property `openvidu.recording.free-access` is now `openvidu.recording.public-access`
 
 <br>
 <hr>
