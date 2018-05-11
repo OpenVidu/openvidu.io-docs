@@ -103,7 +103,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
     - `Session.publish()`: now returns a Promise so you can tell if the method was successful or not.
     - `Session.signal()`: now returns a Promise so you can tell if the method was successful or not.
     - `Subcriber.subscribeToAudio()` and `Subscriber.subscribeToVideo()`: new methods that allows you to mute the audio or video tracks of a remote stream.
-    - `OpenVidu.initPubliher()`: now expects properties as interface [PublisherProperties](../../api/openvidu-browser/interfaces/publisherproperties.html). They include:
+    - `OpenVidu.initPublisher()`: now expects properties as interface [PublisherProperties](../../api/openvidu-browser/interfaces/publisherproperties.html). They include:
 
             {
                 audioSource: undefined, // The source of audio. If undefined default audio input
