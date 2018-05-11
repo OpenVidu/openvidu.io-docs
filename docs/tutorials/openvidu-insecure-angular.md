@@ -231,7 +231,7 @@ this.getToken().then(token => {
 
 Now we need a token from OpenVidu Server. In a production environment we would perform this operation in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we are actually using OpenVidu Node Client, taking advantage of the fact that we have a _package.json_ in which we can include this library very easily. But remember: do not retrieve tokens from OpenVidu Server directly from your clients. Do it from your application's backend.
 
-You can inspect method `getToken()` in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-angular/src/app/app.component.ts#L160).
+You can inspect method `getToken()` in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-angular/src/app/app.component.ts#L162).
 
 ---
 

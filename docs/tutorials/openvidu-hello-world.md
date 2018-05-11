@@ -125,7 +125,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second ajax request performas a POST to `/api/tokens` (we send a `sessionId` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L56).
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L56).
 
 ---
 

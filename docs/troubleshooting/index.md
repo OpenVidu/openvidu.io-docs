@@ -90,10 +90,10 @@ When consuming openvidu-server REST api, change `location.hostname` to the IP of
 
 This applies to:
 
-- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L64) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L80)
-- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-js/web/app.js#L195) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-js/web/app.js#L211)
-- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-angular/src/app/app.component.ts#L163)
-- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-getaroom/web/app.js#L277) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-getaroom/web/app.js#L293)
+- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L64) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L80)
+- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L195) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L211)
+- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-angular/src/app/app.component.ts#L163)
+- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L277) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L293)
 
 <br>
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
@@ -153,7 +153,7 @@ First of all, let's differentiate between OpenVidu server-side and your applicat
 
 Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](/tutorials/openvidu-hello-world/), [openvidu-insecure-js](/tutorials/openvidu-insecure-js/), [openvidu-getaroom](/tutorials/openvidu-getaroom/)
 
-The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L48), [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-js/web/app.js#l171) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-getaroom/web/app.js#L251) a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
+The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L46), [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L177) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L259) a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
 
 <br>
   > **IMPORTANT**: Do NOT include your SECRET in your JavaScript or HTML files in a production environment!
