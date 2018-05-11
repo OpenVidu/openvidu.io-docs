@@ -13,11 +13,9 @@ A secure OpenVidu sample app with a Node backend and a traditional MVC frontend.
 OpenVidu is composed by the modules displayed on the image above.
 
 - **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-node-client**: NPM package to easily get the necessary params (sessionId's and tokens) from openvidu-server. Quick alternative to REST API
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
-
-> You will only have to make use of **openvidu-browser** and **openvidu-node-client** to get this sample app working
+- **openvidu-node-client**: server SDK for Node. Quick alternative to REST API
+- **openvidu-server**: application to control Kurento Media Server
+- **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
 
@@ -34,27 +32,27 @@ sudo apt-get install nodejs
 sudo apt-get install npm
 ```
 
-3) Run the tutorial with the following commands. They will install the NPM dependencies and will execute `server.js` server passing two arguments: "localhost:8443" as the URL where _openvidu-server_ will be listening and "MY_SECRET" as the secret share with it:
+3) Run the tutorial with the following commands. They will install the NPM dependencies and will execute `server.js` server passing two arguments: "localhost:4443" as the URL where _openvidu-server_ will be listening and "MY_SECRET" as the secret share with it:
 
 ```bash
 cd openvidu-tutorials/openvidu-mvc-node
 npm install
-node server.js localhost:8443 MY_SECRET
+node server.js localhost:4443 MY_SECRET
 ```
 
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 <br>
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
-
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -403,7 +401,7 @@ if (mapSessionNameSession[sessionName]) {
 	});
 }
 ```
-The code executed in `session.ejs` _< script >_ tag would also be the same. After the `Session.publish()` method has been succesful, both users will be seeing each other's video, as well as the username and the nickname below it.
+The code executed in `session.ejs` _< script >_ tag would also be the same. After the `Session.publish()` method has been successful, both users will be seeing each other's video, as well as the username and the nickname below it.
 
 ---
 

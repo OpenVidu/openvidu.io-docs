@@ -1,22 +1,21 @@
 # Send text messages between users
-_(since v1.2.0)_
 
 Any user connected to a session can send messages to every other participant of the session, as a broadcast message for everyone or to one or more specific participants. To do so:
 
 ```javascript
-// Sender of the message (after calling 'session.connect')
+// Sender of the message (after 'session.connect')
 
 session.signal({
-        data: 'My custom message',  // Any string (optional)
-        to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
-        type: 'my-chat'             // The type of message (optional)
-    },
-    function (error) {              // Callback for catching errors ('error' is null if success)
-        if (error) {
-            console.log('Error sending signal: ' + error);
-        }
-    }
-);
+      data: 'My custom message',  // Any string (optional)
+      to: [],                     // Array of Connection objects (optional. Broadcast to everyone if empty)
+      type: 'my-chat'             // The type of message (optional)
+    })
+    .then(() => {
+        console.log('Message successfully sent');
+    })
+    .catch(error => {
+        console.error(error);
+    });
 ```
 
 Any user subscribed to that _type_ will receive the message:
@@ -46,7 +45,7 @@ session.on('signal', (event) => {
 You can send messages to specific users adding to `to` array the proper Connection objects:
 
 ```javascript
-// Sender of the message (after calling 'session.connect')
+// Sender of the adressed message (after calling 'session.connect')
 
 session.signal({
     data: 'My private custom message',
@@ -55,7 +54,7 @@ session.signal({
 });
 ```
 
-Only participants represented by `connection1` and `connection2` objects will receive the signal event (only if they are subscribed to it!). You can get Connection objects by subscribing to `connectionCreated` event before connecting to a session:
+In this last case, only participants represented by `connection1` and `connection2` objects will receive the signal event (only if they are subscribed to it!). You can get Connection objects by subscribing to `connectionCreated` event before connecting to a session:
 
 ```javascript
 this.session.on('connectionCreated', (event) => {

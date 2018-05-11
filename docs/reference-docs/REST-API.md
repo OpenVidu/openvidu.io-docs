@@ -13,22 +13,28 @@ For secret "MY_SECRET", the final HTTP header would be
 | ----------------- | --------------------------------------------------------------------------------------------------- |
 | **Operation**     | POST                                                                                                |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                 |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/json   |
-| **Body**          | ```{"archiveMode": "ARCHIVE_MODE", "archiveLayout": "ARCHIVE_LAYOUT", "mediaMode": "MEDIA_MODE"}``` |
-| **Sample return** | ```{"id": "wss://localhost:8443/jpifeuzfati5qaj8"}```                                               |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json   |
+| **Body**          | ```{"mediaMode": "MEDIA_MODE", "recordingMode": "RECORDING_MODE", "defaultRecordingLayout": "RECORDING_LAYOUT", "defaultCustomLayout": "CUSTOM_LAYOUT", "customSessionId": "CUSTOM_SESSION_ID"}``` |
+| **Sample return** | ```{"id": "wss://localhost:4443/jpifeuzfati5qaj8"}```                                               |
 
 > **Body parameters**
 >
-> - All of them are optional (the Body of the POST operation may be empty)
-> - ARCHIVE_MODE
+> ---
+>
+> - **mediaMode** _(optional)_
+>     - `ROUTED` _(default)_ : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording
+>     - Not available yet: `RELAYED`<br><br>
+> - **recordingMode** _(optional)_
 >     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session
->     - `MANUAL` (_default_) : If you want to manage when start and stop the recording
-> - ARCHIVE_LAYOUT
->     - `BEST_FIT`(_default_) : A grid layout where all the videos are evenly distributed
->     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`
-> - MEDIA_MODE
->     - `ROUTED` (_default_) : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording
->     - Not available yet: `RELAYED`
+>     - `MANUAL` _(default)_ : If you want to manage when start and stop the recording<br><br>
+> - **defaultRecordingLayout** _(optional)_
+>     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
+>     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](/advanced-features/recording/#custom-recording-layouts) section to learn how
+>     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
+> - **defaultCustomLayout** _(optional)_
+>     - A relative path indicating the custom recording layout to be used if more than one is available. Only applies if `defaultRecordingLayout` is set to `CUSTOM`. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](openvidu-server-params/) property `openvidu.recording.custom-layout`)<br><br>
+> - **customSessionId** _(optional)_
+>     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you.
 
 <div></div>
 
@@ -40,8 +46,9 @@ For secret "MY_SECRET", the final HTTP header would be
 
 > **HTTP responses**
 >
-> - `200`: session succesfully created and sessionId ready to be used
+> - `200`: session successfully created and sessionId ready to be used
 > - `400`: problem with body parameters
+> - `409`: parameter `customSessionId` corresponds to an existing session. There has been no change at all in the state of OpenVidu Server
 
 ---
 
@@ -51,18 +58,20 @@ For secret "MY_SECRET", the final HTTP header would be
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Operation**     | POST                                                                                                                                                               |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/tokens                                                                                                                  |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/json                                                                  |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                            |
 | **Body**          | ```{"session": "SESSION_ID", "role": "ROLE", "data": "DATA"}```                                                                                                    |
-| **Sample return** | ```{"token": "tjyqiq2dw1j4fxjr", "session": "wss://localhost:8443/jpifeuzfati5qaj8", "role": "PUBLISHER", "data": "secure_user_data", "id": "tjyqiq2dw1j4fxjr"}``` |
+| **Sample return** | ```{"token": "tjyqiq2dw1j4fxjr", "session": "wss://localhost:4443/jpifeuzfati5qaj8", "role": "PUBLISHER", "data": "secure_user_data", "id": "tjyqiq2dw1j4fxjr"}``` |
 
 > **Body parameters**
 >
-> - SESSION_ID: the sessionId for which the token should be associated
-> - ROLE _(See [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)_
+> ---
+>
+> - **session**: the sessionId for which the token should be associated<br><br>
+> - **role** _(optional. Check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description)_
 >     - `SUBSCRIBER`
->     - `PUBLISHER`
->     - `MODERATOR` (not available yet)
-> - DATA: an optional string to associate any metadata to this token (usually participant's information). Maximum 1000 chars
+>     - `PUBLISHER` _(default)_
+>     - `MODERATOR`<br><br>
+> - **data** _(optional)_ : an optional string to associate any metadata to this token (usually participant's information). Maximum 1000 chars
 
 <div></div>
 
@@ -78,25 +87,28 @@ For secret "MY_SECRET", the final HTTP header would be
 
 > **HTTP responses**
 >
-> - `200`: token succesfully created and ready to be used by one client to connec to the associated session
+> - `200`: token successfully created and ready to be used by one client to connec to the associated session
 > - `400`: problem with body parameters
 
 ---
 
 ### POST `/api/recordings/start`
-_(since v1.8.0)_
 
 | _START SESSION RECORDING_ | _PARAMETERS_                                                                                                                                                                                                                                   |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Operation**             | POST                                                                                                                                                                                                                                           |
 | **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                                                                                                                                                                    |
-| **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/json                                                                                                                                              |
-| **Body**                  | ```{"session": "SESSION_ID"}```                                                                                                                                                                                                                |
-| **Sample return**         | ```{"createdAt": 1521196095981, "duration": 0, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:8443/jpifeuzfati5qaj8", "size": 0, "status": "started", "url": null}``` |
+| **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                                                                              |
+| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT"}```                                                                                                                                                                                                                |
+| **Sample return**         | ```{"createdAt": 1521196095981, "duration": 0, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 0, "status": "started", "url": null}``` |
 
 > **Body parameters**
 >
-> - SESSION_ID: the sessionId belonging to the session you want to start recording
+> ---
+>
+> - **session**: the sessionId belonging to the session you want to start recording<br><br>
+> - **name** _(optional)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording<br><br>
+> - **recordingLayout** _(optional)_ : you can override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different layouts if you start and stop recording the same session more than once
 
 <div></div>
 
@@ -107,6 +119,7 @@ _(since v1.8.0)_
 > - `hasAudio`: true if the recording has an audio track, false otherwise (currently fixed to `true`)
 > - `hasVideo`: true if the recording has a video track, false otherwise (currently fixed to `true`)
 > - `id`: recording identifier. Store it to perform other operations such as stop, get or delete the recording
+> - `recordingLayout`: the recording layout that is being used
 > - `name`: name of the recording (currently same as `id`)
 > - `sessionId`: session associated to the recording (same value as `session` in the body request)
 > - `size`: size in bytes of the video file (0 until stop operation is called)
@@ -121,18 +134,18 @@ _(since v1.8.0)_
 > - `404`: no session exists for the passed sessionId
 > - `400`: the session has no connected participants
 > - `409`: the session is not configured for using MediaMode `ROUTED` or it is already being recorded
+> - `501`: OpenVidu Server recording module is disabled (`openvidu.recording` property set to `false`)
 
 ---
 
 ### POST `/api/recordings/stop/<RECORDING_ID>`
-_(since v1.8.0)_
 
 | _STOP SESSION RECORDING_ | _PARAMETERS_                                                                                                        |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------- |
 | **Operation**            | POST                                                                                                                |
 | **URL**                  | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/stop/&lt;RECORDING_ID&gt;                                     |
-| **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/x-www-form-urlencoded  |
-| **Sample return**        | ```{"createdAt": 1521196095981, "duration": 20.88,, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:8443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
+| **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded  |
+| **Sample return**        | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
 
 > **Returned JSON**
 >
@@ -141,17 +154,18 @@ _(since v1.8.0)_
 > - `hasAudio`: true if the recording has an audio track, false otherwise (currently fixed to `true`)
 > - `hasVideo`: true if the recording has a video track, false otherwise (currently fixed to `true`)
 > - `id`: recording identifier
+> - `recordingLayout`: the recording layout that is being used
 > - `name`: name of the recording (currently same as `id`)
 > - `sessionId`: session associated to the recording
 > - `size`: size in bytes of the video file
-> - `status`: set to `"stopped"` or `"available"` depending on whether openvidu-server property _openvidu.recording.free-access_ is false or true
-> - `url`: set to `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server property _openvidu.recording.free-access_ is false or true
+> - `status`: set to `"stopped"` or `"available"` depending on whether openvidu-server property _openvidu.recording.public-access_ is false or true
+> - `url`: set to `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server property _openvidu.recording.public-access_ is false or true
 
 <div></div>
 
 > **HTTP responses**
 >
-> - `200`: the session has succesfully stopped from being recorded. The video file is ready to be reproduced
+> - `200`: the session has successfully stopped from being recorded. The video file is ready to be reproduced
 > - `400`: RECORDING_ID parameter not found in form url-encoded
 > - `404`: no recording exists for the passed recording id
 > - `406`: recording has `starting` status. Wait until `started` status before stopping the recording
@@ -159,14 +173,13 @@ _(since v1.8.0)_
 ---
 
 ### GET `/api/recordings/<RECORDING_ID>`
-_(since v1.8.0)_
 
 | _GET RECORDING INFO_ | _PARAMETERS_                                                                                                       |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | **Operation**        | GET                                                                                                                |
 | **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                         |
-| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**    | ```{"createdAt": 1521196095981, "duration": 20.88,, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:8443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
+| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
+| **Sample return**    | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
 
 > **Returned JSON**
 >
@@ -175,30 +188,30 @@ _(since v1.8.0)_
 > - `hasAudio`: true if the recording has an audio track, false otherwise (currently fixed to `true`)
 > - `hasVideo`: true if the recording has a video track, false otherwise (currently fixed to `true`)
 > - `id`: recording identifier. Store it to perform other operations such as stop, get or delete the recording
+> - `recordingLayout`: the recording layout that is being used
 > - `name`: name of the recording (currently same as `id`)
 > - `sessionId`: session associated to the recording (same value as `session` in the body request)
 > - `size`: size in bytes of the video file (0 until stop operation is called)
 > - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"available"`, `"failed"`)
-> - `url`: set to `null` until stop operation is called. Then can be `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server property _openvidu.recording.free-access_ is false or true
+> - `url`: set to `null` until stop operation is called. Then can be `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server property _openvidu.recording.public-access_ is false or true
 
 <div></div>
 
 > **HTTP responses**
 >
-> - `200`: the recording information has been succesfully retrieved
+> - `200`: the recording information has been successfully retrieved
 > - `404`: no recording exists for the passed recording id
 
 ---
 
 ### GET `/api/recordings`
-_(since v1.8.0)_
 
 | _LIST RECORDINGS INFO_ | _PARAMETERS_                                                    |
 | ---------------------- | --------------------------------------------------------------- |
 | **Operation**          | GET                                                             |
 | **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings           |
-| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_  |
-| **Sample return**      | ```{"count": 2, "items": [{"duration": 132.08, "hasVideo": true, "createdAt": 1521202349460, "hasAudio": true, "size": 22887561, "name": "n0kcws1evvn3esmo", "id": "n0kcws1evvn3esmo", "sessionId": "wss://localhost:8443/n0kcws1evvn3esmo", "url": "https://localhost:8443/recordings/n0kcws1evvn3esmo.mp4", "status": "available"}, {"duration": 20.88, "hasVideo": true, "createdAt": 1521200592175, "hasAudio": true, "size": 3766979, "name": "gm0hdsv6n8asjgcs", "id": "gm0hdsv6n8asjgcs", "sessionId": "wss://localhost:8443/gm0hdsv6n8asjgcs", "url": "https://localhost:8443/recordings/gm0hdsv6n8asjgcs.mp4", "status": "available"}]}``` |
+| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_  |
+| **Sample return**      | ```{"count": 2, "items": [{"duration": 132.08, "hasVideo": true, "createdAt": 1521202349460, "hasAudio": true, "size": 22887561, "recordingLayout": "BEST_FIT", "name": "n0kcws1evvn3esmo", "id": "n0kcws1evvn3esmo", "sessionId": "wss://localhost:4443/n0kcws1evvn3esmo", "url": "https://localhost:4443/recordings/n0kcws1evvn3esmo.mp4", "status": "available"}, {"duration": 20.88, "hasVideo": true, "createdAt": 1521200592175, "hasAudio": true, "size": 3766979, "recordingLayout": "BEST_FIT", "name": "gm0hdsv6n8asjgcs", "id": "gm0hdsv6n8asjgcs", "sessionId": "wss://localhost:4443/gm0hdsv6n8asjgcs", "url": "https://localhost:4443/recordings/gm0hdsv6n8asjgcs.mp4", "status": "available"}]}``` |
 
 > **Returned JSON**
 >
@@ -209,22 +222,21 @@ _(since v1.8.0)_
 
 > **HTTP responses**
 >
-> - `200`: all of the available recording information has been succesfully retrieved
+> - `200`: all of the available recording information has been successfully retrieved
 
 ---
 
 ### DELETE `/api/recordings/<RECORDING_ID>`
-_(since v1.8.0)_
 
 | _DELETE RECORDING_ | _PARAMETERS_                                                                                                       |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------ |
 | **Operation**      | DELETE                                                                                                             |
 | **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                         |
-| **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:[YOUR_SECRET])_<br/>Content-Type: application/x-www-form-urlencoded |
+| **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
 | **Sample return**  | _Returns nothing_                                                                                                  |
 
 > **HTTP responses**
 >
-> - `204`: the video file and all of its metadata has been succesfully deleted from the host
+> - `204`: the video file and all of its metadata has been successfully deleted from the host
 > - `404`: no recording exists for the passed recording id
 > - `409`: the recording has `"started"` status. Stop it before deletion

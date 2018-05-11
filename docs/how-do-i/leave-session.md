@@ -6,11 +6,11 @@ By calling `session.disconnect` method you can leave the session.
 session.disconnect();
 ```
 
-`sessionDisconnected` event will be triggered by `session` object. The default behaviour is the deletion of all HTML video elements associated to this particular session. To avoid this, call `event.preventDefault()` method:
+This action will trigger the following events:
 
-```javascript
-session.on('sessionDisconnected', function (event) {
-    event.preventDefault();
-    // Do wahtever you want when the user leaves the session
-});
-```
+- `sessionDisconnected`: dispatched by [Session](../../api/openvidu-browser/classes/session.html) object of the local user that is leaving. Automatically cleans all remote videos.
+- `streamDestroyed`: dispatched by [Publisher](../../api/openvidu-browser/classes/publisher.html) object of the local user that is leaving (only if publishing). Automatically cleans the local video.
+- `streamDestroyed`: dispatched by [Session](../../api/openvidu-browser/classes/session.html) object of every other remote user connected to the session. Autoamtically cleans the remote video.
+- `connectionDestroyed`: dispatched by [Session](../../api/openvidu-browser/classes/session.html) object of every other remote user connected to the session.
+
+<br>

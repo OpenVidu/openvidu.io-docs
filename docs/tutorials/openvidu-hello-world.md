@@ -1,7 +1,7 @@
 # openvidu-hello-world
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-hello-world" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is the simplest demo you can try to get started with OpenVidu: HTML code is only about 30 lines and the JavaScript code not even 50, but it has the minimum set of features to make a group video-call. You will only need a few minutes to get your first application working!
+This is the simplest demo you can try to get started with OpenVidu. It has the minimum set of features to make a group video-call. You will only need a few minutes to get your first application working!
 
 ## Running this tutorial
 
@@ -26,16 +26,16 @@ http-server openvidu-tutorials/openvidu-hello-world/web
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 <br>
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
-
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
 ## Understanding the code
 
@@ -55,59 +55,103 @@ Let's see how `app.js` uses `openvidu-browser-VERSION.js`:
 
 ---
 
-#### First lines declare the two variables that will be needed in different points along the code. `OV` will be our OpenVidu object and `session` the video-call we will connect to:
+#### First lines declare the variables that will be needed in different points along the code
 
 ```javascript
 var OV;
 var session;
 ```
 
+`OV` will be our OpenVidu object (entrypoint to the libray). `session` will be the video-call we will connect to. As first sentence in the `joinSession()` method, we initialize the variable that will identify our video-call retrieving the value from the HTML input.
+
+```javascript
+var mySessionId = document.getElementById("sessionId").value;
+```
+
 ---
 
-#### Initialize a new session and its events:
+#### Initialize a new session and its events
 
 ```javascript
 OV = new OpenVidu();
-session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + '?secret=MY_SECRET');
+session = OV.initSession();
 
 session.on('streamCreated', function (event) {
   session.subscribe(event.stream, 'subscriber');
 });
 ```
-As you can see in the code, the process is very simple: get an OpenVidu object for initializing a Session object with it. `initSession` method must recieve a string with the following format: 
 
-<p style="text-align: center"><strong>"wss://"</strong> + <code>OPENVIDU_IP</code> + <strong>":8443/"</strong> + <code>SESSION_ID</code> + <strong>"?secret="</strong> + <code>OPENVIDU_SECRET</code></p>
-
-  - `OPENVIDU_IP`  is the IP where your OpenVidu Server is running. In this case, it will be _localhost_.
-  - `SESSION_ID` is the unique identifier of your session. This parameter will determine which session you are connecting to: in this case, we get this from the HTML text input, where the user can type whatever he wants.
-  - `OPENVIDU_SECRET` is the same secret as used to initialize you OpenVidu Server (check param `openvidu.secret` in step 4 of [Running this tutorial](#running-this-tutorial)).
-
-> This parameter building process for _initrSession_ method is only necessary when your app has no server-side. Obviously in a production environment appending your secret is not recommended. Check [this FAQ](/troubleshooting#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side) to learn more.
+As you can see in the code, the process is very simple: get an OpenVidu object and initialize a Session object with it.
 
 Then you can subscribe to all the events you want for your session. In this case we just want to subscribe to every stream that is being created in the session: on `streamCreated` we subscribe to the specific stream, available at `event.stream` property.
 
-> You can take a look at all the events in the [Reference Documentation](/reference-docs/openvidu-browser/)
+> You can take a look at all the events in the [Reference Documentation](../../api/openvidu-browser/classes/event.html)
 
 ---
 
-#### Connect to the session and publish your webcam:
+#### Get a _token_ from OpenVidu Server
+
+<div style="
+    display: table;
+    border: 1px solid #0088aa;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;"><div style="display: table-cell">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
+</div>
+</div>
 
 ```javascript
-session.connect(null, function (error) {
-
-  if (!error) {
-    var publisher = OV.initPublisher('publisher');
-    session.publish(publisher);
-  } else {
-    console.log('There was an error connecting to the session:', error.code, error.message);
-  }
-  
+getToken(mySessionId).then(token => {
+	// See next point to see how to connect to the session using 'token'
 });
 ```
 
-We simply need to call `session.connect` method providing a callback to execute when the operation is completed. First parameter `null` is now irrelevant because we have no server-side (check the [FAQ](/troubleshooting#5-what-are-the-differences-related-to-openvidu-between-an-app-without-a-server-side-and-an-app-with-a-server-side)).
+Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we have implemented the POST requests to OpenVidu Server in a mehtod `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
-The only parameter received by our callback is `error` object, which will be undefined if everything has gone well. To publish our webcam to the session we just get a `publisher` (thanks to `OpenVidu.initPublisher` method), and a new HTML video showing our webcam will be appended to the page inside element with id _publisher_.
+  - First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
+  - Second ajax request performas a POST to `/api/tokens` (we send a `sessionId` field to assign the token to this same session)
+
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L56).
+
+---
+
+#### Connect to the session using the token
+
+```javascript
+getToken(mySessionId).then(token => {
+
+  session.connect(token)
+    .then(() => {
+      document.getElementById("session-header").innerText = mySessionId;
+      document.getElementById("join").style.display = "none";
+      document.getElementById("session").style.display = "block";
+
+      var publisher = OV.initPublisher("publisher");
+      session.publish(publisher);
+    })
+    .catch(error => {
+      console.log("There was an error connecting to the session:", error.code, error.message);
+    });
+});
+```
+
+We simply need to call `session.connect` passing the recently retrieved token from OpenVidu Server. This method returns a Promise to which you can subscribe to.
+
+In case of success we first set the view to the active video session. Then we proceed to publish our webcam. To do so we just get a `publisher` using `OpenVidu.initPublisher` method, and a new HTML video showing our webcam will be appended to the page inside element with id _"publisher"_.
 
 Last but not least, we publish this `publisher` object thanks to `session.publish`. At this point the rest of users connected to this session will trigger their own `streamCreated` event and can start watching our webcam.
 
@@ -119,4 +163,4 @@ Last but not least, we publish this `publisher` object thanks to `session.publis
 session.disconnect();
 ```
 
-Whenever we want a user to leave the session, we just need to call `session.disconnect` method. Here it will be called inside _leaveSession_ function, triggered when the user clicks on "LEAVE" button.
+Whenever we want a user to leave the session, we just need to call `session.disconnect` method. Here it will be called inside _leaveSession_ function, triggered when the user clicks on "LEAVE" button. This function also returns the page to the "Join session" view.

@@ -1,7 +1,7 @@
 # openvidu-getaroom
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This demo allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a pure frontend application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/) does.
+This demo allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/) does.
 
 <p align="center">
   <img  class="img-responsive" src="/img/tutorials/openvidu-getaroom.png">
@@ -12,8 +12,6 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 - **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
 - **openvidu-server**: Java application that controls Kurento Media Server
 - **Kurento Media Server**: server that handles low level operations of media flows transmission
-
-> You will only have to make use of **openvidu-browser** to get this sample app working.
 
 ## Running this tutorial
 
@@ -38,16 +36,16 @@ http-server openvidu-tutorials/openvidu-getaroom/web
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 <br>
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
-
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -114,11 +112,12 @@ On _load_ we will check if the user is connecting to an existing room or to a ne
 ```javascript
 // Check if the URL already has a room
 window.addEventListener('load', function () {
-	sessionId = window.location.hash; // For 'https://myurl/#roomId', sessionId would be '#roomId'
+	sessionId = window.location.hash.slice(1); // For 'https://myurl/#roomId', sessionId would be 'roomId'
 	if (sessionId) {
 		// The URL has a session id. Join the room right away
+		console.log("Joining to room " + sessionId);
 		showSessionHideJoin();
-		joinRoom(sessionId);
+		joinRoom();
 	} else {
 		// The URL has not a session id. Show welcome page
 		showJoinHideSession();
@@ -127,7 +126,7 @@ window.addEventListener('load', function () {
 
 // Disconnect participant on browser's window closed
 window.addEventListener('beforeunload', function () {
-	session.disconnect();
+	if (session) session.disconnect();
 });
 ```
 
@@ -137,26 +136,23 @@ window.addEventListener('beforeunload', function () {
 Here we initialize our session and set the events we need for the desired behaviuor. Then we connect to it and finally publish our own webcam to the session.
 
 ```javascript
-function joinRoom(sessionId) {
+function joinRoom() {
 
 	if (!sessionId) {
 		// If the user is joining to a new room
-		sessionId = '#' + randomString();
+		sessionId = randomString();
 	}
 
-	// As insecure OpenVidu, the user's token can be a random string
-	var userId = randomString();
-
-	// --- 1) Get an OpenVidu object and init a session with a sessionId ---
+	// --- 1) Get an OpenVidu object ---
 
 	OV = new OpenVidu();
 
-	// We will join the video-call "sessionId". As there's no server, this parameter must start with the URL of 
-	// OpenVidu Server (with secure websocket protocol: "wss://") and must include the OpenVidu secret at the end
-	session = OV.initSession("wss://" + location.hostname + ":8443/" + sessionId + "?secret=MY_SECRET");
+	// --- 2) Init a session ---
+
+	session = OV.initSession();
 
 
-	// --- 2) Specify the actions when events take place ---
+	// --- 3) Specify the actions when events take place in the session ---
 
 	// On every new Stream received...
 	session.on('streamCreated', function (event) {
@@ -177,49 +173,60 @@ function joinRoom(sessionId) {
 	});
 
 
-	// --- 3) Connect to the session ---
+	// --- 4) Connect to the session with a valid user token ---
 
-	// Remember 'userId' param (usually called 'token') is irrelevant when using the insecure version of OpenVidu
-	session.connect(userId, function (error) {
+	// 'getToken' method is simulating what your server-side should do.
+	// 'token' parameter should be retrieved and returned by your own backend
+	getToken(sessionId).then(token => {
 
-		// If the connection is successful, initialize a publisher and publish to the session
-		if (!error) {
+		// Connect with the token
+		session.connect(token)
+			.then(() => {
 
-			// --- 4) Get your own camera stream with the desired resolution ---
+				// --- 5) Set page layout for active call ---
 
-			publisher = OV.initPublisher('publisher', {
-				audio: true,
-				video: true,
-				quality: 'MEDIUM'
+				// Update the URL shown in the browser's navigation bar to show the session id
+				var path = (location.pathname.slice(-1) == "/" ? location.pathname : location.pathname + "/");
+				window.history.pushState("", "", path + '#' + sessionId);
+
+				// Auxiliary methods to show the session's view
+				showSessionHideJoin();
+				initializeSessionView();
+
+				// --- 6) Get your own camera stream with the desired properties ---
+
+				publisher = OV.initPublisher('publisher', {
+					audioSource: undefined, // The source of audio. If undefined default audio input
+					videoSource: undefined, // The source of video. If undefined default video input
+					publishAudio: true,  	// Whether to start publishing with your audio unmuted or not
+					publishVideo: true,  	// Whether to start publishing with your video enabled or not
+					resolution: '640x480',  // The resolution of your video
+					frameRate: 30,			// The frame rate of your video
+					insertMode: 'APPEND',	// How the video is inserted in target element 'video-container'
+					mirror: true       		// Whether to mirror your local video or not
+				});
+
+				// --- 7) Specify the actions when events take place in our publisher ---
+
+				// When our HTML video has been added to DOM...
+				publisher.on('videoElementCreated', function (event) {
+					// When your own video is added to DOM, update the page layout to fit it
+					numOfVideos++;
+					updateLayout();
+					$(event.element).prop('muted', true); // Mute local video to avoid feedback
+				});
+
+				// --- 8) Publish your stream ---
+
+				session.publish(publisher);
+			})
+			.catch(error => {
+				console.log('There was an error connecting to the session:', error.code, error.message);
 			});
-
-			publisher.on('videoElementCreated', function (event) {
-				// When your own video is added to DOM, update the page layout to fit it
-				numOfVideos++;
-				updateLayout();
-				$(event.element).prop('muted', true); // Mute local video
-			});
-
-			// --- 5) Publish your stream ---
-
-			session.publish(publisher);
-
-		} else {
-			console.log('There was an error connecting to the session:', error.code, error.message);
-		}
 	});
-
-	// Update the URL shown in the browser's navigation bar to show the session id
-	var pathname = (location.pathname.slice(-1) === "/" ? location.pathname : location.pathname+"/");
-	window.history.pushState("", "", pathname + sessionId);
-
-	// Auxiliary methods to show the session's view
-	showSessionHideJoin();
-	initializeSessionView();
-
-	return false;
 }
 ```
+
 ---
 
 #### _leaveRoom_ method
@@ -227,9 +234,10 @@ function joinRoom(sessionId) {
 ```javascript
 function leaveRoom() {
 
-	// --- 6) Leave the session by calling 'disconnect' method over the Session object ---
-	session.disconnect();
+	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
 	
+	session.disconnect();
+
 	// Back to welcome page
 	window.location.href = window.location.origin + window.location.pathname;
 }

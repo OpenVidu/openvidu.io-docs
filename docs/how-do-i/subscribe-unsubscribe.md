@@ -5,19 +5,12 @@ To receive the stream of a publisher of the session:
 ```javascript
 var subscriber;
 
-session.on('streamCreated', function(event) {
-    subscriber = session.subscribe(event.stream, 'html-id');
+session.on('streamCreated', (event) => {
+    subscriber = session.subscribe(event.stream, targetElement);
 });
 ```
 
-A new HTML video element will be appended to DOM inside the element with id `html-id`. If you prefer to manage the stream object by yourself, you can always get its `MediaStream` property to insert it on any `HTMLMediaElement` as its `srcObject` (such as a `<video>` element). For example:
-```javascript
-session.on('streamCreated', function(event) {
-    subscriber = session.subscribe(event.stream, ''); // Empty html id
-    var video = document.getElementById('myVideoElement'); 
-    video.srcObject = event.stream.getMediaStream();
-});
-```
+A new HTML video element will be appended to DOM inside the element `targetElement`. It can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [SubscriberProperties.insertMode](../../api/openvidu-browser/interfaces/subscriberproperties.html#insertmode)).
 
 To cancel the subscription and stop receiving media:
 

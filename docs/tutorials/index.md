@@ -15,7 +15,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa"><h3 style="line-height: 100px; border-top: none; margin: 0; color: #0088aa">Go!</h3></div>
+                        <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa"><h3 style="line-height: 100px; border-top: none; margin: 0; color: #0088aa">Hello World!</h3></div>
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/docs/tutorials/openvidu-hello-world" class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>

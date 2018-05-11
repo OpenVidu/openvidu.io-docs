@@ -5,30 +5,35 @@ You can publish a stream after joining a session: get a `Publisher` object throu
 ```javascript
 // After joining a session...
 
-var publisher = OV.initPublisher('html-id');
+var publisher = OV.initPublisher(targetElement);
 // Register all the events you want with 'publisher.on(...)'
 session.publish(publisher);
 ```
 
-`initPublisher` method will append to DOM a new HTML video element inside the element with id `html-id`, showing your camera. You can then publish it to the session whenever you want (perhaps you want the user to confirm that his camera is working well before publishing it).
+- `OpenVidu.initPublisher` method will insert into DOM a new HTML video element inside the element `targetElement`, showing your camera. This target element can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [PublisherProperties.insertMode](../../api/openvidu-browser/interfaces/publisherproperties.html#insertmode)). You can then publish it to the session whenever you want (perhaps you want the user to confirm that the camera is working well before publishing it).
 
-You can add two more parameters to `initPublisher` method: an object with properties about your publisher stream and a callback function to be executed in case any error takes places during publisher initialization:
+- `Session.publish` method will make [Publisher](../../api/openvidu-browser/classes/publisher.html) object trigger `streamCreated` event in the local user that is publishing and will make [Session](../../api/openvidu-browser/classes/session.html) object trigger `streamCreated` event in every other remote user connected to the session. <br><br>
+
+You can add two more parameters to `initPublisher` method: an object with properties about your publisher stream and a callback function to be executed just after the method finishes and before the publisher object dispatches `accessAllowed` or `accessDenied` event:
 
 ```javascript
 OV.initPublisher(
-    'html-element-id',
+    targetElement,
     {
-        audio: true,        // Whether you want to transmit audio or not
-        video: true,        // Whether you want to transmit video or not
-        audioActive: true,  // Whether you want to start the publishing with your audio unmuted or muted
-        videoActive: true,  // Whether you want to start the publishing with your video enabled or disabled
-        quality: 'MEDIUM',  // The quality of your video ('LOW', 'MEDIUM', 'HIGH')
-        screen: false       // true to get your screen as video source instead of your camera
-                            // See 'How do I...?' -> 'Screen share' section to learn more
+        audioSource: undefined, // The source of audio. If undefined default audio input
+        videoSource: undefined, // The source of video. If undefined default video input
+        publishAudio: true,  	// Whether you want to start the publishing with audio unmuted or muted
+        publishVideo: true,  	// Whether you want to start the publishing with video enabled or disabled
+        resolution: '640x480',  // The resolution of your video
+        frameRate: 30,			// The frame rate of your video
+        insertMode: 'APPEND',	// How the video will be inserted according to targetElement
+        mirror: false       	// Whether to mirror your local video or not
     },
-    function(error) {       // Function to be executed in case the Publisher initialization fails
+    (error) => {                // Function to be executed when the method finishes
         if (error) {
-            console.log('Error while initializing publisher: ', error);
+            console.error('Error while initializing publisher: ', error);
+        } else {
+            console.log('Publisher successfully initialized');
         }
     }
 );
@@ -49,7 +54,5 @@ newPublisher = OV.initPublisher(newOptions);
 session.publish(newPublisher);
 ```
 
-In future updates one user will be able to publish more than one Publisher at once.
-
 <br/>
-> **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method (see [OpenViduRole](/reference-docs/openvidu-java-client#openvidurole) section)
+> **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method. You can check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description

@@ -86,7 +86,7 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
       <td><em>Your choice</em></td>
     </tr>
     <tr>
-      <td class="first-col">Free HTTP access to recorded videos<br><span class="field-comment">(see <code>openvidu.recording.free-access</code> property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server">here</a>)<span></td>
+      <td class="first-col">Free HTTP access to recorded videos<br><span class="field-comment">(see <code>openvidu.recording.public-access</code> property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server">here</a>)<span></td>
       <td><em>true / false</em></td>
       <td><em>true / false</em></td>
       <td><em>true / false</em></td>
@@ -206,7 +206,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true          
 
-      > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the [REST API](/reference-docs/REST-API/) or [openvidu-java-client](/reference-docs/openvidu-java-client/)), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-java/src/main/resources/application.properties#L8).
+      > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the [REST API](/reference-docs/REST-API/) or [openvidu-java-client](/reference-docs/openvidu-java-client/)), you will need to use the URL `https://localhost:4443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-java/src/main/resources/application.properties#L8).
             
   - Restart Nginx: `systemctl restart nginx`
   
@@ -271,7 +271,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true    
 
-      > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the [REST API](/reference-docs/REST-API/) or [openvidu-node-client](/reference-docs/openvidu-node-client/)), you will need to use the URL `https://localhost:8443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _8443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-node/server.js#L64).
+      > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the [REST API](/reference-docs/REST-API/) or [openvidu-node-client](/reference-docs/openvidu-node-client/)), you will need to use the URL `https://localhost:4443`. _localhost_ because both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/ba5121c622ea59aa9708021f3635f922acb3ff73/openvidu-js-node/server.js#L64).
           
   - Restart Supervisor: `systemctl restart supervisor`
 
@@ -330,11 +330,11 @@ The best production setup for OpenVidu is having your application deployed in a 
 
 Once you have deployed your CloudFormation OpenVidu Server and checked that it is up and running, and after setting up your own application in its dedicated server:
 
-- Make sure you know your **OpenVidu Server public IP**. That includes the protocol (`https`), the location and the port. For example: `https://YOUR_SERVER_IP:8443/`
+- Make sure you know your **OpenVidu Server public IP**. That includes the protocol (`https`), the location and the port. For example: `https://YOUR_SERVER_IP:4443/`
 - Use it in your application server to perform the **[REST](/reference-docs/REST-API/)** operations, or to initialize your OpenVidu object if you are making use of **[openvdiu-java-client](/reference-docs/openvidu-java-client/)** or **[openvidu-node-client](/reference-docs/openvidu-node-client/)** :
     - _REST_ operations to `https://OPENVIDUSERVER_PUBLIC_IP/api/METHOD` 
     - _openvidu-java-client_ entrypoint is `new OpenVidu(OPENVIDUSERVER_PUBLIC_IP, OPENVIDU_SECRET)`
     - _openvidu-node-client_ entrypoint is `new OpenVidu(OPENVIDUSERVER_PUBLIC_IP, OPENVIDU_SECRET)` 
 
 <br>
-> In the one-server-scenario of the [previous section](#adding-your-own-app-to-cloudformation-openvidu-server) the OpenVidu Server public IP would be `https://localhost:8443`, as both OpenVidu Server and your app live in the same host.
+> In the one-server-scenario of the [previous section](#adding-your-own-app-to-cloudformation-openvidu-server) the OpenVidu Server public IP would be `https://localhost:4443`, as both OpenVidu Server and your app live in the same host.

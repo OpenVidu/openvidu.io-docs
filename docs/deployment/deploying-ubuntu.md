@@ -7,10 +7,11 @@ If you prefer having KMS installed in your EC2 machine and your own version of o
 
 #### 1. Install KMS (in first command: ***xenial*** for 16.04, ***trusty*** for 14.04)
 ```console
-echo "deb http://ubuntu.kurento.org xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-wget -O - http://ubuntu.kurento.org/kurento.gpg.key | sudo apt-key add -
-sudo apt-get update
-sudo apt-get -y install kurento-media-server-6.0
+echo "deb http://ubuntu.openvidu.io/6.7.0 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+apt-get update
+apt-get -y install kurento-media-server
+apt-get -y install openh264-gst-plugins-bad-1.5
 ```
 
 #### 2. Install COTURN
@@ -51,12 +52,12 @@ TURNSERVER_ENABLED=1
 #### 6. Init services
 ```bash
 sudo service coturn restart
-sudo service kurento-media-server-6.0 restart
+sudo service kurento-media-server restart
 ```
 
 #### 7A. Init openvidu-server Docker container...
 ```console
-sudo docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ --net="host" openvidu/openvidu-server
+sudo docker run -d -p 4443:4443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ --net="host" openvidu/openvidu-server
 ```
 
 > To quickly install the latest official stable version of **Docker CE**:
@@ -73,21 +74,21 @@ Go to [Using your own certificate](/deployment/custom-certificate#for-the-docker
 #### 7B. ...or init your own openvidu-server executable
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ openvidu-server.jar &
+java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server.jar &
 ```
 Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
 #### 8. Finally check your server
 
-You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:8443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
+You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
-To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:8443`. To learn more, this scenario is exactly the same as portrayed [here](/deployment/deploying-aws#connecting-your-external-app-to-cloudformation-openvidu-server).
+To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, this scenario is exactly the same as portrayed [here](/deployment/deploying-aws#connecting-your-external-app-to-cloudformation-openvidu-server).
 
 ## Server network requirements
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#7-what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
 
   - Besides, the server needs some **ports** opened in the firewall:
 
@@ -122,11 +123,11 @@ The instructions above portray scenarios 1 and 2 in the image. In other words, w
 #### 7A
 
 ```console
-docker run -d -p 8443:8443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
+docker run -d -p 4443:4443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
 ```
 
 #### 7B
 
 ```console
-java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:8443/ -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
+java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
 ```

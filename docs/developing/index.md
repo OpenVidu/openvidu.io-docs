@@ -19,29 +19,27 @@ Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu
 
 1) [Install KMS](#installing-kms)
 
-2) [Add Kurento parent Maven dependency to your local repo](#adding-kurento-parent-pom-to-your-local-respository)
-
-3) Clone repo:
+2) Clone repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu.git
 ```
 
-4) `openvidu/openvidu-browser/`
+3) `openvidu/openvidu-browser/`
 
 ```bash
 npm install
-npm run updatetsc
+npm run build
 sudo npm link
 ```
 
-5) `openvidu/`
+4) `openvidu/`
 
 ```bash
 mvn -DskipTests=true compile && mvn -DskipTests=true install
 ```
 
-6) `openvidu/openvidu-testapp/`
+5) `openvidu/openvidu-testapp/`
 
 ```bash
 npm install
@@ -49,10 +47,10 @@ npm link openvidu-browser
 ng serve
 ```
 
-7) Start KMS in your machine:
+6) Start KMS in your machine:
 
 ```bash
-sudo service kurento-media-server-6.0 restart
+sudo service kurento-media-server restart
 ```
 
 8) `openvidu/openvidu-server/`
@@ -76,7 +74,7 @@ At these point, you can start modifying *openvidu-ng-testapp*, *openvidu-browser
     **/openvidu/openvidu-browser** 
 
     ``` 
-    npm run updatetsc
+    npm run build
     ```
 
  - **_openvidu-server_** : after modifying any file, there is no other alternative but to re-launch the java application if you want to update your changes.
@@ -123,86 +121,28 @@ How to *install* and *run* KMS in your development machine:
 Ubuntu 14.04 LTS Trusty (64 bits)
 
 ```bash
-echo "deb http://ubuntu.kurento.org trusty kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-wget -O - http://ubuntu.kurento.org/kurento.gpg.key | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install -y kurento-media-server-6.0
+echo "deb http://ubuntu.openvidu.io/6.7.0 trusty kms6" | tee /etc/apt/sources.list.d/kurento.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+apt-get update
+apt-get -y install kurento-media-server
+apt-get -y install openh264-gst-plugins-bad-1.5
 ```
 
 Ubuntu 16.04 LTS Xenial (64 bits)
 
 ```bash
-echo "deb http://ubuntu.kurento.org xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-wget -O - http://ubuntu.kurento.org/kurento.gpg.key | sudo apt-key add -
-sudo apt-get update
-sudo apt-get install -y kurento-media-server-6.0
+echo "deb http://ubuntu.openvidu.io/6.7.0 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+apt-get update
+apt-get -y install kurento-media-server
+apt-get -y install openh264-gst-plugins-bad-1.5
 ```
 
 Start and stop the service
 
 ```bash
-sudo service kurento-media-server-6.0 start
-sudo service kurento-media-server-6.0 stop
+sudo service kurento-media-server start
+sudo service kurento-media-server stop
 ```
 
-[Here](http://doc-kurento.readthedocs.io/en/stable/installation_guide.html) you can check Kurento's official documentation.
-
----
-
-Adding Kurento parent POM to your local respository
-------------------
-
-You will need development version of Kurento's parent POM in your local repository in order to compile the development version of _openvidu-server_. To achieve this, add a file `~/.m2/settings.xml` with the following content (if it doesn't exist, create it on that exact path):
-
-```xml
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <localRepository/>
-    <interactiveMode/>
-    <usePluginRegistry/>
-    <offline/>
-    <pluginGroups/>
-    <mirrors/>
-    <proxies/>
-
-   <profiles>
-        <profile>
-            <id>kurento-develop</id>
-            <activation>
-              <activeByDefault>true</activeByDefault>
-            </activation>
-
-            <repositories>
-              <repository>
-                  <id>kurento-snapshots</id>
-                  <name>Kurento Snapshot Repository</name>
-                  <url>http://maven.kurento.org/snapshots/</url>
-                  <releases>
-                      <enabled>false</enabled>
-                  </releases>
-                  <snapshots>
-                      <enabled>true</enabled>
-                  </snapshots>
-              </repository>
-            </repositories>
-            <pluginRepositories>
-              <pluginRepository>
-                  <id>kurento-snapshots</id>
-                  <name>Kurento Snapshot Repository</name>
-                  <url>http://maven.kurento.org/snapshots/</url>
-                  <releases>
-                    <enabled>false</enabled>
-                  </releases>
-                  <snapshots>
-                    <enabled>true</enabled>
-                  </snapshots>
-              </pluginRepository>
-            </pluginRepositories>
-
-       </profile>
-    </profiles>
-    <activeProfiles/>
-</settings>
-```
+[Here](http://doc-kurento.readthedocs.io/en/stable/user/installation.html) you can check Kurento's official documentation.

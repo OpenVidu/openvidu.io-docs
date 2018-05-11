@@ -1,7 +1,7 @@
 # openvidu-js-java
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-java" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Java backend and a SPA frontend. It makes use of _openvidu-java-client_ to get the necessary params from OpenVidu Server.
+A secure OpenVidu sample app with a Java backend and a SPA frontend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-mvc-java](/tutorials/openvidu-mvc-java). This tutorial is intended for developers who feel more comfortable with a SPA (Single Page Application) architecture for their frontends.
 
 ## Understanding this tutorial
 
@@ -12,11 +12,9 @@ A secure OpenVidu sample app with a Java backend and a SPA frontend. It makes us
 OpenVidu is composed by the modules displayed on the image above.
 
 - **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-java-client**: Java package to easily get the necessary params (sessionId's and tokens) from openvidu-server. Quick alternative to REST API
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
-
-> You will only have to make use of **openvidu-browser** and **openvidu-java-client** to get this sample app working
+- **openvidu-java-client**: server SDK for Java. Quick alternative to REST API
+- **openvidu-server**: application to control Kurento Media Server
+- **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
 
@@ -42,16 +40,17 @@ mvn package exec:java
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 8443:8443 --rm -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
 5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 <br>
 
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -85,10 +84,10 @@ This is a very basic web application with a pretty simple JS/HTML/CSS frontend a
   - **Backend**: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.js.java` package)
     - `App.java` : entrypoint for the app
     - `LoginController.java` : rest controller for handling login and logout operations
-    - `SessionController.java` : rest controller for getting sessionId's and tokens. It also stores our active video-calls and the users connected to them
+    - `SessionController.java` : rest controller for getting OpenVidu tokens. It also stores our active video-calls and the users connected to them<br><br>
 
-  - **Frontend**: Pure JS/HTML/CSS files (`src/main/resources/static`)
-    - `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file. 
+  - **Frontend**: Plain JS/HTML/CSS files (`src/main/resources/static`)
+    - `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file.
     - `app.js` : sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_.
     - `index.html` : HTML code for the form to login, the form to connect to a video-call and for the video-call itself. It has two links to both JavaScript files:
 
@@ -97,20 +96,19 @@ This is a very basic web application with a pretty simple JS/HTML/CSS frontend a
 
     - `style.css`: some CSS classes to style _index.html_.
 
-
-Let's describe the code following this scenario: a user logs in to the app and connects to the video-call "TUTORIAL", where he publishes his webcam. A second user will connect to the same video-call just after that and publish its own webcam. Both of them will leave the call after a while.
+Let's describe the code following this scenario: a user logs into the app and connects to the video-call "TUTORIAL", where he publishes his webcam. A second user will connect to the same video-call just after that and publish its own webcam. Both of them will leave the call after a while.
 
 ---
 
-### 1)  User logs in
+### 1) User logs in
 
-We have implemented a method for making HTTP requests to the backend, as we will need to make at least three of them: one for logging in, one for getting the sessionId and a valid token from openvidu-server and one for letting know our backend when any user leaves the video-call. The header of the method looks like this:
+We have implemented a method for making HTTP POST requests to the backend, as we will need to make at least three of them: one for logging in, one for getting a token from openvidu-server and one for letting know our backend when any user leaves the video-call. The header of the method looks like this:
 
 ```javascript
-function httpRequest(method, url, body, errorMsg, callback)
+function httpPostRequest(url, body, errorMsg, callback)
 ```
 
-Where `method` is whether "POST" or "GET", `url` the path of the REST operation, `body` the data to be passed, `errorMsg` the output error message if something goes wrong and `callback` the function to execute in case of success. As mentioned above, we need to call this method three times for each user that LOGS IN 🡒 CONNECTS TO A VIDEO-CALL 🡒 LEAVES THE VIDEO-CALL.
+Where `url` is the path of the POST operation, `body` the object to send as data, `errorMsg` the output error message if something goes wrong and `callback` the function to execute in case of success. As mentioned above, we need to call this method three times for each user that LOGS IN 🡒 CONNECTS TO A VIDEO-CALL 🡒 LEAVES THE VIDEO-CALL.
 
 `index.html` will first show a form to log in:
 
@@ -118,22 +116,21 @@ Where `method` is whether "POST" or "GET", `url` the path of the REST operation,
   <img class="img-responsive login-form-img" style="padding: 25px 0;" src="/img/docs/tutorials/login-form.png">
 </p>
 
-`app.js` sends an HTTP request to "/api-login/login" passing the username and the password retrieved from the HTML form whenever "Log in" button is clicked:
+`app.js` sends a POST request to "/api-login/login" passing the username and the password retrieved from the HTML form whenever "Log in" button is clicked:
 
 ```javascript
 function logIn() {
 	var user = $("#user").val(); // Username
 	var pass = $("#pass").val(); // Password
-	var jsonBody = JSON.stringify({ // Body of POST request
-		'user': user,
-		'pass': pass
-	});
 
-	httpRequest('POST', '/api-login/login', jsonBody, 'Login WRONG',
-	  function successCallback(response){ // Send POST request
-		console.warn(userName + ' login');
-		// HTML shows logged-in page ...
-	});
+	httpPostRequest(
+		'api-login/login',
+		{user: user, pass: pass},
+		'Login WRONG',
+		(response) => {
+			// HTML shows logged-in page ...
+		}
+	);
 }
 ```
 
@@ -141,8 +138,10 @@ function logIn() {
 
 ```java
 @RequestMapping(value = "/login", method = RequestMethod.POST)
-public ResponseEntity<Object> login(@RequestBody String userPass, HttpSession httpSession) throws ParseException {
+public ResponseEntity<Object> login(@RequestBody String userPass, HttpSession httpSession) 
+	throws ParseException {
 
+	System.out.println("Logging in | {user, pass}=" + userPass);
 	// Retrieve params from POST body
 	JSONObject userPassJson = (JSONObject) new JSONParser().parse(userPass);
 	String user = (String) userPassJson.get("user");
@@ -175,38 +174,38 @@ HTML will display now the user has logged a different form, asking for the video
 
 ```javascript
 function joinSession() {
-	getSessionIdAndToken(function () { ...
+	getToken((token) => { ...
 ```
-So the first thing to do here is to retrieve a _sessionId_ and a _token_ from our backend. Only when we have them available in the browser we will continue with the _join_ operation. Let's see what `getSessionIdAndToken()` looks like:
+
+So the first thing to do here is to retrieve an OpenVidu _token_ from our backend. Only when we have it available in the browser we will continue with the _join_ operation. Let's see what `getToken()` looks like:
 
 ```javascript
-function getSessionIdAndToken(callback) {
-	sessionName = $("#sessionName").val(); // Video-call chosen by the user ("TUTORIAL")
-	nickName = $("#participantName").val(); // Nickname chosen by the user
+function getToken(callback) {
+	sessionName = $("#sessionName").val(); // Video-call chosen by the user
 
-	var jsonBody = JSON.stringify({ // Body of POST request
-		'session': sessionName
-	});
-
-	// Send POST request
-	httpRequest('POST', '/api-sessions/get-sessionid-token', jsonBody, 
-	 'Request of SESSIONID and TOKEN gone WRONG:', function successCallback(response){
-		sessionId = response[0]; // Get sessionId from response
-		token = response[1]; // Get token from response
-		callback(); // Continue the join operation
-	});
+	httpPostRequest(
+		'api-sessions/get-token',
+		{sessionName: sessionName},
+		'Request of TOKEN gone WRONG:',
+		(response) => {
+			token = response[0]; // Get token from response
+			console.warn('Request of TOKEN gone WELL (TOKEN:' + token + ')');
+			callback(token); // Continue the join operation
+		}
+	);
 }
 ```
-Here is the second time we must call our `httpRequest()` method, sending the session we want to connect ("TUTORIAL") and waiting to get a _sessionId_ and a _token_ as response. The interesting part here is in `SessionController.java`. First of all there are some important attributes in this class we must mention:
+
+Here is the second time we must call our `httpPostRequest()` method, sending the session we want to connect (`sessionName` parameter) and waiting to get a _token_ as response. The interesting part here is in `SessionController.java` at `/api-sessions/get-token`. First of all there are some important attributes in this class we must mention:
 
 ```java
-// OpenVidu object to ask openvidu-server for sessionId and token
+// OpenVidu object as entrypoint of the SDK
 private OpenVidu openVidu;
 
 // Collection to pair session names and OpenVidu Session objects
 private Map<String, Session> mapSessions = new ConcurrentHashMap<>();
-// Collection to pair sessionId's and tokens (the inner Map pairs tokens and role associated)
-private Map<String, Map<String, OpenViduRole>> mapSessionIdsTokens = new ConcurrentHashMap<>();
+// Collection to pair session names and tokens (the inner Map pairs tokens and role associated)
+private Map<String, Map<String, OpenViduRole>> mapSessionNamesTokens = new ConcurrentHashMap<>();
 
 // URL where our OpenVidu server is listening
 private String OPENVIDU_URL;
@@ -217,15 +216,16 @@ private String SECRET;
 Rest controller method begins retrieving the param send by the client, which in this case is the video-call name ("TUTORIAL"), as well as preparing a param we will need a little further on: `tokenOptions`.
 
 ```java
-@RequestMapping(value = "/api-sessions/get-sessionid-token", method = RequestMethod.POST)
-public ResponseEntity<JSONObject> getSessionIdToken(@RequestBody String sessionNameParam, 
+@RequestMapping(value = "/get-token", method = RequestMethod.POST)
+	public ResponseEntity<JSONObject> getToken(@RequestBody String sessionNameParam,
 		HttpSession httpSession) throws ParseException {
-	// Check the user is logged ... 
+
+	// ... check the user is logged with HttpSession and continue ...
 
 	JSONObject sessionJSON = (JSONObject) new JSONParser().parse(sessionNameParam);
-	
+
 	// The video-call to connect ("TUTORIAL")
-	String sessionName = (String) sessionJSON.get("session");
+	String sessionName = (String) sessionJSON.get("sessionName");
 	
 	// Role associated to this user
 	OpenViduRole role = LoginController.users.get(httpSession.getAttribute("loggedUser")).role;
@@ -240,32 +240,32 @@ public ResponseEntity<JSONObject> getSessionIdToken(@RequestBody String sessionN
 	JSONObject responseJson = new JSONObject();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist? 
+Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist?
+
 ```java
 if (this.mapSessions.get(sessionName) != null) { ...
 ```
+
 In this case it doesn't because 'publisher1' is the first user connecting to it. So we focus on the _else_ branch:
 
 ```java
 else {
-	// New session: return a new sessionId and a new token
+	// New session
+	System.out.println("New session " + sessionName);
 	try {
-	
+
 		// Create a new OpenVidu Session
 		Session session = this.openVidu.createSession();
-		// Get the sessionId
-		String sessionId = session.getSessionId();
 		// Generate a new token with the recently created tokenOptions
 		String token = session.generateToken(tokenOptions);
 
 		// Store the session and the token in our collections
 		this.mapSessions.put(sessionName, session);
-		this.mapSessionIdsTokens.put(sessionId, new ConcurrentHashMap<>());
-		this.mapSessionIdsTokens.get(sessionId).put(token, role);
+		this.mapSessionNamesTokens.put(sessionName, new ConcurrentHashMap<>());
+		this.mapSessionNamesTokens.get(sessionName).put(token, role);
 
-		// Prepare the response with the sessionId and the token
-		responseJson.put(0, sessionId);
-		responseJson.put(1, token);
+		// Prepare the response with the token
+		responseJson.put(0, token);
 
 		// Return the response to the client
 		return new ResponseEntity<>(responseJson, HttpStatus.OK);
@@ -276,26 +276,29 @@ else {
 	}
 }
 ```
-We are almost there! Now in `app.js` we can init a new Session with _sessionId_ and connect to it with _token_:
+
+We are almost there! Now in `app.js` we can init a new Session and connect to it with _token_:
 
 ```javascript
-// --- 1) Get an OpenVidu object and init a session with the retrieved sessionId ---
+// --- 1) Get an OpenVidu object ---
 
 OV = new OpenVidu();
-session = OV.initSession(sessionId);
 
+// --- 2) Init a session ---
 
-// --- 2) Specify the actions when events take place ---
+session = OV.initSession();
+
+// --- 3) Specify the actions when events take place in the session ---
 
 // On every new Stream received...
-session.on('streamCreated', function (event) {
+session.on('streamCreated', (event) => {
 
 	// Subscribe to the Stream to receive it
 	// HTML video will be appended to element with 'video-container' id
 	var subscriber = session.subscribe(event.stream, 'video-container');
 
 	// When the HTML video has been appended to DOM...
-	subscriber.on('videoElementCreated', function (event) {
+	subscriber.on('videoElementCreated', (event) => {
 
 		// Add a new HTML element for the user's name and nickname over its video
 		appendUserData(event.element, subscriber.stream.connection);
@@ -303,36 +306,49 @@ session.on('streamCreated', function (event) {
 });
 
 // On every Stream destroyed...
-session.on('streamDestroyed', function (event) {
+session.on('streamDestroyed', (event) => {
 	// Delete the HTML element with the user's name and nickname
 	removeUserData(event.stream.connection);
 });
 
+// --- 4) Connect to the session passing the retrieved token and some more data from
+//        the client (in this case a JSON with the nickname chosen by the user) ---
 
-// --- 3) Connect to the session passing the retrieved token and some more data from
-//         the client (in this case a JSON with the nickname chosen by the user) ---
+var nickName = $("#nickName").val();
+session.connect(token, { clientData: nickName })
+	.then(() => {
 
-session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
+		// --- 5) Set page layout for active call ---
 
-	// If the connection is successful, initialize a publisher and publish to the session
-	if (!error) {
+		var userName = $("#user").val();
+		$('#session-title').text(sessionName);
+		$('#join').hide();
+		$('#session').show();
 
-		// Here we check somehow if the user has at least 'PUBLISHER' role before
+
+		// Here we check somehow if the user has 'PUBLISHER' role before
 		// trying to publish its stream. Even if someone modified the client's code and
 		// published the stream, it wouldn't work if the token sent in Session.connect
-		// method doesn't belong to a 'PUBLIHSER' role
-		if (isPublisher()) {
+		// method is not recognized as 'PUBLIHSER' role by OpenVidu Server
+		if (isPublisher(userName)) {
 
-			// --- 4) Get your own camera stream ---
+			// --- 6) Get your own camera stream ---
 
 			var publisher = OV.initPublisher('video-container', {
-				audio: true,
-				video: true,
-				quality: 'MEDIUM'
+				audioSource: undefined, // The source of audio. If undefined default microphone
+				videoSource: undefined, // The source of video. If undefined default webcam
+				publishAudio: true,  	// Whether you want to start publishing with your audio unmuted or not
+				publishVideo: true,  	// Whether you want to start publishing with your video enabled or not
+				resolution: '640x480',  // The resolution of your video
+				frameRate: 30,			// The frame rate of your video
+				insertMode: 'APPEND',	// How the video is inserted in the target element 'video-container'
+				mirror: false       	// Whether to mirror your local video or not
 			});
 
+			// --- 7) Specify the actions when events take place in our publisher ---
+
 			// When our HTML video has been added to DOM...
-			publisher.on('videoElementCreated', function (event) {
+			publisher.on('videoElementCreated', (event) => {
 				// Init the main video with ours and append our data
 				var userData = {
 					nickName: nickName,
@@ -344,7 +360,7 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 			});
 
 
-			// --- 5) Publish your stream ---
+			// --- 8) Publish your stream ---
 
 			session.publish(publisher);
 
@@ -352,38 +368,34 @@ session.connect(token, '{"clientData": "' + nickName + '"}', function (error) {
 			console.warn('You don\'t have permissions to publish');
 			initMainVideoThumbnail(); // Show SUBSCRIBER message in main video
 		}
-	} else {
+	})
+	.catch(error => {
 		console.warn('There was an error connecting to the session:', error.code, error.message);
-	}
-});
-
-// HTML shows session page ...
+	});
 ```
+
 The user will now see its own video on the page. The connection to the session has completed!
 
 ---
 
 ### 3) Another user connects to the video-call
 
-The process would be exactly the same as before until `SessionController.java` executes `getSessionIdAndToken()` method. Now session 'TUTORIAL' already exists, so in the _if-else_ statement the _if_ branch would be the one executed:
+The process would be exactly the same as before until `SessionController.java` executes `getToken()` method. Now session 'TUTORIAL' already exists, so in the _if-else_ statement the _if_ branch would be the one executed:
 
 ```java
 if (this.mapSessions.get(sessionName) != null) {
-	// Session already exists: return existing sessionId and a new token
+	// Session already exists
+	System.out.println("Existing session " + sessionName);
 	try {
 	
-		// Get the existing sessionId from our collection with 
-		// the sessionName param ("TUTORIAL")
-		String sessionId = this.mapSessions.get(sessionName).getSessionId();
 		// Generate a new token with the recently created tokenOptions
 		String token = this.mapSessions.get(sessionName).generateToken(tokenOptions);
 		
 		// Update our collection storing the new token
-		this.mapSessionIdsTokens.get(sessionId).put(token, role);
+		this.mapSessionNamesTokens.get(sessionName).put(token, role);
 		
-		// Prepare the response with the sessionId and the token
-		responseJson.put(0, sessionId);
-		responseJson.put(1, token);
+		// Prepare the response with the token
+		responseJson.put(0, token);
 		
 		// Return the response to the client
 		return new ResponseEntity<>(responseJson, HttpStatus.OK);
@@ -394,37 +406,37 @@ if (this.mapSessions.get(sessionName) != null) {
 	}
 }
 ```
-The code executed in `app.js` would also be the same. After the `Session.publish()` method has been succesful, both users will be seeing each other's video, as well as the username and the nickname below it.
+
+The code executed in `app.js` would also be the same. After the `Session.publish()` method has been successful, both users will be seeing each other's video, as well as the username and nickname uppon it.
 
 ---
 
 ### 4) Users leave the video-call
 
-After a while both users decide to leave the session. Apart from calling `leaveSession()` (and therefore `session.disconnect()`) to destroy the connection on openvidu-server, we need to run the last HTTP operation: we must let the backend know that certain user has left the session so it can update the collections with the active sessions and tokens. To sum up, `session.disconnect()` updates our openvidu-server and the POST operation updates our backend.
+After a while both users decide to leave the session. Apart from calling `leaveSession()` (and therefore `session.disconnect()`) to destroy the connection on OpenVidu Server, we need to run the last POST operation: we must let the backend know that certain user has left the session so it can update the collections with the active sessions and tokens. To sum up, `session.disconnect()` updates our OpenVidu Server and the POST operation updates our application's backend.
 For the POST operation, in `app.js` we run:
 
 ```javascript
 function removeUser() {
-	// Body of POST request with the name of the session and the token of the leaving user
-	var jsonBody = JSON.stringify({
-		'sessionName': sessionName,
-		'token': token
-	});
-
-	// Send POST request
-	httpRequest('POST', '/api-sessions/remove-user', jsonBody,
-		'User couldn\'t be removed from session', function successCallback(response) {
-		console.warn(userName + ' correctly removed from session ' + sessionName);
-	});
+	httpPostRequest(
+		'api-sessions/remove-user',
+		{sessionName: sessionName, token: token},
+		'User couldn\'t be removed from session',
+		(response) => {
+			console.warn("You have been removed from session " + sessionName);
+		}
+	);
 }
-``` 
+```
+
 And in `SessionController.java` we update the collections:
 
 ```java
-@RequestMapping(value = "/api-sessions/remove-user", method = RequestMethod.POST)
-public ResponseEntity<JSONObject> removeUser(@RequestBody String sessionNameToken, 
+@RequestMapping(value = "/remove-user", method = RequestMethod.POST)
+public ResponseEntity<JSONObject> removeUser(@RequestBody String sessionNameToken,
 	HttpSession httpSession) throws Exception {
-	// Check the user is logged ... 
+
+	// ... check the user is logged with HttpSession and continue ...
 
 	// Retrieve the params from BODY
 	JSONObject sessionNameTokenJSON = (JSONObject) new JSONParser().parse(sessionNameToken);
@@ -432,40 +444,36 @@ public ResponseEntity<JSONObject> removeUser(@RequestBody String sessionNameToke
 	String token = (String) sessionNameTokenJSON.get("token");
 
 	// If the session exists ("TUTORIAL" in this case)
-	if (this.mapSessions.get(sessionName) != null) {
-		String sessionId = this.mapSessions.get(sessionName).getSessionId();
-
-		if (this.mapSessionIdsTokens.containsKey(sessionId)) {
-			// If the token exists
-			if (this.mapSessionIdsTokens.get(sessionId).remove(token) != null) {
-				// User left the session
-				if (this.mapSessionIdsTokens.get(sessionId).isEmpty()) {
-					// Last user left: session "TUTORIAL" must be removed
-					this.mapSessions.remove(sessionName);
-				}
-				return new ResponseEntity<>(HttpStatus.OK);
-			} else {
-				// The TOKEN wasn't valid
-				return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	if (this.mapSessions.get(sessionName) != null && this.mapSessionNamesTokens.get(sessionName) != null) {
+		
+		// If the token exists and is succesfully removed
+		if (this.mapSessionNamesTokens.get(sessionName).remove(token) != null) {
+			// User left the session
+			if (this.mapSessionNamesTokens.get(sessionName).isEmpty()) {
+				// Last user left: session must be removed
+				this.mapSessions.remove(sessionName);
 			}
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			// The SESSIONID wasn't valid
+			// The TOKEN wasn't valid
+			System.out.println("Problems in the app server: the TOKEN wasn't valid");
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	} else {
 		// The SESSION does not exist
+		System.out.println("Problems in the app server: the SESSION does not exist");
 		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
 ```
-When the last user leaves the session `this.mapSessions.remove(sessionName);` will be executed: this means the session is empty and that it is going to be closed. The _sessionId_ and all _token_ params associated to it will be invalidated.
+
+When the last user leaves the session `this.mapSessions.remove(sessionName);` will be executed: this means the session is empty and that it has been closed in OpenVidu Server. All our Session objects and tokens associated to them will be invalidated.
 
 ---
 
-> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**. 
-> 
-> The only actual requirements are getting ***sessionId*** and ***token*** params from  ***openvidu-server*** (by using one of the available clients or with the REST API) and using them along with ***openvidu-browser*** to connect your clients to the sessions.
-
+> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
+>
+> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/) or the [REST API](/reference-docs/REST-API/)) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

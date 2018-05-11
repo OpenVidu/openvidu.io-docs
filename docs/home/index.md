@@ -24,7 +24,7 @@ You can add video-call functionalities to your app, among many other things. The
 <br>
 So, what about adding a video-call center for attending your customers face to face? Or maybe you are developing an application to hold meetings via videoconference. Or you are thinking about teachers streaming to all their students within online lessons, or doctors communicating with their patients with a human touch. The possibilities are endless.
 
-You can check our **[Demos](http://openvidu.io/demos)** to get an idea of what you can do with OpenVidu. Here are some cool pictures of them:
+You can check our **[Demos](https://openvidu.io/demos)** to get an idea of what you can do with OpenVidu. Here are some cool pictures of them:
 
 <div class="docs-gallery">
     <a data-fancybox="gallery-wellcome" href="/img/demos/insecure-session.png"><img class="img-responsive img-wellcome" src="/img/demos/insecure-session.png"/></a>
@@ -90,7 +90,7 @@ OpenVidu wraps and hides all the low-level operations. The main goal we pursue i
 
 Acknowledgments
 ===============
-OpenVidu platform has been supported under project LERNIM (RTC-2016-4674-7) confunded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Union_ FEDER, whose main goal with this funds is to promote technological development, innovation and high-quality research.
+OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research.
 
 <p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
   <img class="img-acknowledgments" width="400px" src="/img/sponsors/footer-ministerio-economia-400-optimized.png">
