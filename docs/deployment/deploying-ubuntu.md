@@ -57,7 +57,7 @@ sudo service kurento-media-server restart
 
 #### 7A. Init openvidu-server Docker container...
 ```console
-sudo docker run -d -p 4443:4443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ --net="host" openvidu/openvidu-server
+sudo docker run -d -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ --net="host" openvidu/openvidu-server
 ```
 
 > To quickly install the latest official stable version of **Docker CE**:

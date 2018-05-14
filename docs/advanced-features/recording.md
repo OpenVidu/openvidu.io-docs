@@ -81,7 +81,7 @@ openvidu/openvidu-server-kms
 **[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
 
 ```console
-docker run --net="host" -p 4443:4443 --rm \
+docker run --net="host" --rm \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -e openvidu.recording=true \
@@ -268,7 +268,7 @@ openvidu/openvidu-server-kms
 **[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
 
 ```console
-docker run --net="host" -p 4443:4443 --rm \
+docker run --net="host" --rm \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -v /PATH/TO/INDEX/CUSTOM/LAYOUT:/PATH/TO/INDEX/CUSTOM/LAYOUT \
