@@ -110,12 +110,6 @@ Let's see how `app.component.ts` uses NPM package `openvidu-browser`:
 import { OpenVidu, Session, Stream, StreamEvent } from 'openvidu-browser';
 ```
 
-We are also using package `openvidu-node-client` in this example. This is a node library intended to be used in the server-side of a Node app, but since this is a serverless tutorial, we will use it directly from the browser.
-
-```typescript
-import { OpenVidu as OpenViduAPI } from 'openvidu-node-client';
-```
-
 ---
 
 ####`app.component.ts` declares the following properties:
@@ -229,9 +223,12 @@ this.getToken().then(token => {
 });
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operation in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we are actually using OpenVidu Node Client, taking advantage of the fact that we have a _package.json_ in which we can include this library very easily. But remember: do not retrieve tokens from OpenVidu Server directly from your clients. Do it from your application's backend.
+Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we have implemented the POST requests to OpenVidu Server in a mehtod `getToken()` that returns a Promise with the token, using `@angular/http` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
-You can inspect method `getToken()` in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-angular/src/app/app.component.ts#L162).
+  - First request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
+  - Second request performas a POST to `/api/tokens` (we send a `sessionId` field to assign the token to this same session)
+
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/9f4a181bf4f43ca8743d554345338e0c132d78be/openvidu-insecure-angular/src/app/app.component.ts#L164).
 
 ---
 
