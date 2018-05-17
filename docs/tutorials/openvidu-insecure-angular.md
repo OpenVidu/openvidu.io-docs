@@ -50,10 +50,10 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
-2) You will need angular-cli to serve the Angular frontend. You can install it with the following command:
+2) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can install it with the following command:
 
 ```bash
-npm install -g @angular/cli@1.7.4
+npm install -g @angular/cli@6.0.1
 ```
 
 3) Run the tutorial:
