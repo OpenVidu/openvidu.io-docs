@@ -228,7 +228,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second request performas a POST to `/api/tokens` (we send a `sessionId` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/9f4a181bf4f43ca8743d554345338e0c132d78be/openvidu-insecure-angular/src/app/app.component.ts#L164).
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-angular/src/app/app.component.ts#L167).
 
 ---
 

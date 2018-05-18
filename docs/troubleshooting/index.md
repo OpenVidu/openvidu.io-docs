@@ -88,12 +88,12 @@ When consuming openvidu-server REST api, change `location.hostname` to the IP of
 
     "https://192.168.99.100:4443/api/<OPERATION>"
 
-This applies to:
+Change this url in every insecure tutorial right here:
 
-- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L64) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L80)
-- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L195) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L211)
-- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-angular/src/app/app.component.ts#L163)
-- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L277) and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L293)
+- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/bb9880c44aeba391de7d057b35e2cff4df65beb6/openvidu-hello-world/web/app.js#L56)
+- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/bb9880c44aeba391de7d057b35e2cff4df65beb6/openvidu-insecure-js/web/app.js#L189)
+- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/bb9880c44aeba391de7d057b35e2cff4df65beb6/openvidu-insecure-angular/src/app/app.component.ts#L15)
+- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/bb9880c44aeba391de7d057b35e2cff4df65beb6/openvidu-getaroom/web/app.js#L269)
 
 <br>
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
