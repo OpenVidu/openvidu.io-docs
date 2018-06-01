@@ -16,6 +16,7 @@ pages:
 - ['how-do-i/subscribe-unsubscribe.md', 'How do I ... ?', 'Subscribe/Unsubscribe from a stream']
 - ['how-do-i/publish-unpublish.md', 'How do I ... ?', 'Publish/Unpublish a stream']
 - ['how-do-i/mute-audio-video.md', 'How do I ... ?', 'Mute/Unmute audio and video']
+- ['how-do-i/manage-videos.md', 'How do I ... ?', 'Manage video players']
 - ['how-do-i/share-data.md', 'How do I ... ?', 'Share data between users']
 - ['how-do-i/send-messages.md', 'How do I ... ?', 'Send text messages']
 - ['advanced-features/recording.md', 'Advanced features', 'Recording']

@@ -1,6 +1,85 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+## 2.1.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.1.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.1.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.1.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.1.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.1.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.1.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.1.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.0.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.0.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.0.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client?activeTab=versions" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+<br>
+
+#### NEW FEATURES
+
+**OpenVidu Browser support for video management**
+
+We have implemented a new class in OpenVidu Browser aimed to better support declarative frontend framewroks such as Angular, React or Vue.js.
+
+Now Publisher and Subscriber objects both inherit from [StreamManager](../../api/openvidu-browser/classes/streammanager.html), which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dinamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](/how-do-i/manage-videos) section.
+
+If you want to check out a real example of this behaviuor, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/).<br><br>
+
+---
+
 ## 2.0.0
 
 ### Artifacts
