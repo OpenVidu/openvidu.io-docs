@@ -1,8 +1,8 @@
 # openvidu-call
 
-OpenVidu Call demo,<strong> built with Angular 6</strong>,  is allows users to make videoconferences of the easiest way, only sharing the room name with others. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/) does.
+OpenVidu Call demo,<strong> built with Angular 6</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
-OpenVidu-Call is composed by four components displayed on the image below.
+OpenVidu-Call is composed by the four Angular components displayed in the image below.
 
 <br>
 <p align="center">
@@ -18,14 +18,14 @@ OpenVidu-Call is composed by four components displayed on the image below.
 	</div>
 	<div class="col-md-6">
 		<p align="center"><strong>Login Component</strong></p>
-		<p>This component allows you to set the video room name and login in that room. That room name can be shared with whomever the user wants to join the videoconference.</p>
+		<p>This component allows you to set the videocall name and login in that session. That session name can be shared with whomever the user wants to join the videoconference.</p>
 	</div>
 </div>
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<p align="center"><strong>Video-room Component</strong></p>
-		<p>This is the main component of <strong>OpenVidu-Call</strong>  due to it allows you to establish a connection with your video roommates. The Video-room Component would not be able to establish this connection without the help of OpenVidu Service. This component allows the user to mute the microphone, unpublish the webcam, share the screen, open the chat and leave the session.</p>
+		<p>This is the main component of <strong>OpenVidu-Call</strong>. It allows you to establish a connection with your video roommates. The Video-room Component would not be able to establish this connection without the help of OpenVidu Service. This component allows the user to mute the microphone, unpublish the webcam, share the screen, open the chat and leave the session.</p>
 	</div>
 	<div class="col-md-6">
 		<a data-fancybox="gallery" href="/img/demos/openvidu_call1.png">
@@ -42,8 +42,7 @@ OpenVidu-Call is composed by four components displayed on the image below.
 	</div>
 	<div class="col-md-6">
 		<p align="center"><strong>Chat Component</strong></p>
-		<p>This component provides to Video-room Component a chatting system for allow to users to type each others.
-		TThe OpenVidu chat is the most intuitive system for the user will can communicate with other users.
+		<p>This component provides to Video-room Component a chatting system that allows users to type to each other.
 		</p>
 	</div>
 </div>
@@ -51,7 +50,7 @@ OpenVidu-Call is composed by four components displayed on the image below.
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<p align="center"><strong>Stream Component</strong></p>
-		<p> With OpenVidu Layout, this component is the responsible of display the video stream of each user on the nice way. On the right, we can see four streams displayed in a same videoconference.</p>
+		<p> With OpenVidu Layout, this component is the responsible of displaying the video stream of each user in a nice way. On the right, we can see four streams displayed in the same videoconference.</p>
 	</div>
 	<div class="col-md-6">
 		<a data-fancybox="gallery" href="/img/demos/openvidu_call5.png">
@@ -70,13 +69,13 @@ OpenVidu-Call is composed by four components displayed on the image below.
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
-1.  Clone the repo:
+1)  Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-call.git
 ```
 
-2.  You will need node, NPM and angular-cli to execute the app. You can install them with:
+2) You will need node, NPM and angular-cli to execute the app. You can install them with:
 
 ```bash
 sudo apt-get update
@@ -85,20 +84,20 @@ sudo apt-get install -y nodejs
 sudo npm install -g @angular/cli
 ```
 
-3.  _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+3)  _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
-4.  Install NPM dependencies of frontend:
+4)  Install NPM dependencies of Angular app:
 
 ```
 cd openvidu-call/front/openvidu-call
 npm install
 ```
 
-4.  Launch the server:
+5)  Launch the server:
 
 ```
 ng serve --open
