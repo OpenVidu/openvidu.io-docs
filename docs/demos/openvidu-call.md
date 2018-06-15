@@ -1,4 +1,5 @@
 # openvidu-call
+<a href="https://github.com/OpenVidu/openvidu-call.git" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
 OpenVidu Call demo,<strong> built with Angular 6</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
