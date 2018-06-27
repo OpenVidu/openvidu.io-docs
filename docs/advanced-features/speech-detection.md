@@ -14,7 +14,7 @@ session.on('publisherStopSpeaking', (event) => {
 
 Event `publisherStopSpeaking` for certain [Connection](../../api/openvidu-browser/classes/connection.html) object can only be triggered after `publisherStartSpeaking` has been called for that specific Connection object. In other words, none of these events can be triggered twice in a row for one Connection: they are always launched alternately.
 
-You can further configure the behaviour of these two events by using [OpenVidu.setAdvancedConfiguration](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration) method:
+You can further configure the behavior of these two events by using [OpenVidu.setAdvancedConfiguration](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration) method:
 
 ```javascript
 var OV = new OpenVidu();

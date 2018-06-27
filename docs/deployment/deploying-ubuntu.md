@@ -3,11 +3,11 @@
 
 ## Installation process
 
-If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. **Ubuntu xenial 14.04** and **Ubuntu trusty 16.04** are supported.
+If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. Only and **Ubuntu xenial 16.04** is supported.
 
-#### 1. Install KMS (in first command: ***xenial*** for 16.04, ***trusty*** for 14.04)
+#### 1. Install KMS
 ```console
-echo "deb http://ubuntu.openvidu.io/6.7.0 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
+echo "deb http://ubuntu.openvidu.io/6.7.2 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 apt-get update
 apt-get -y install kurento-media-server
@@ -18,67 +18,65 @@ apt-get -y install openh264-gst-plugins-bad-1.5
 ```console
 sudo apt-get -y install coturn
 ```
-> This is a great implementation of a STUN/TURN server, necessary for connecting your users under some complicated circumstances. You can check its documentation [here](https://github.com/coturn/coturn).
-> If there's any problem with the installation on **Ubuntu trusty 14.04**:
->
-> `wget -c http://ftp.us.debian.org/debian/pool/main/c/coturn/coturn_4.2.1.2-1_amd64.deb`</br>
-> `sudo dpkg -i coturn_4.2.1.2-1_amd64.deb`</br>
-> `sudo apt-get -f -y install`</br>
-> `sudo dpkg -i coturn_4.2.1.2-1_amd64.deb`</br>
 
-#### 3. File `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
+> This is a great implementation of a STUN/TURN server, necessary for connecting your users under some complicated circumstances. You can check its documentation [here](https://github.com/coturn/coturn).
+
+#### 3. Install Redis
+```console
+sudo apt-get -y install redis-server
+```
+
+#### 4. File `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
 ```console
 stunServerAddress=YOUR_MACHINE_PUBLIC_IP
 stunServerPort=3478
-turnURL=USER:PASS@YOUR_MACHINE_PUBLIC_IP:3478
 ```
 
-#### 4. File `/etc/turnserver.conf`
+#### 5. File `/etc/turnserver.conf`
 ```console
 external-ip=YOUR_MACHINE_PUBLIC_IP
-fingerprint
-user=USER:PASS
+listening-port=3478
 lt-cred-mech
-realm=kurento.org
-log-file=/var/log/turnserver/turnserver.log
+max-port=65535
+min-port=49152
+pidfile="/var/run/turnserver.pid"
+realm=openvidu
 simple-log
+redis-userdb="ip=127.0.0.1 dbname=0 password=turn connect_timeout=30"
+verbose
 ```
 
-#### 5. File `/etc/default/coturn`
+#### 6. File `/etc/default/coturn`
 ```
 TURNSERVER_ENABLED=1
 ```
 
-#### 6. Init services
+#### 7. Init services
 ```bash
+sudo service redis-server restart
 sudo service coturn restart
 sudo service kurento-media-server restart
 ```
 
-#### 7A. Init openvidu-server Docker container...
-```console
-sudo docker run -d -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ --net="host" openvidu/openvidu-server
-```
-
-> To quickly install the latest official stable version of **Docker CE**:
-
-> 
-> `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -`</br>
-> `sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"`</br>
-> `sudo apt-get update`</br>
-> `sudo apt-get -y install docker-ce`</br>
->
-
-Go to [Using your own certificate](/deployment/custom-certificate#for-the-docker-container-of-openvidu-server) to add your certificate to the container instead of using the self-signed default one (which will launch a security warning on the user's browser).
-
-#### 7B. ...or init your own openvidu-server executable
+#### 8. Init Openvidu Server JAR executable
 
 ```console
 java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server.jar &
 ```
+
+> You will need Java 8 to run OpenVidu Server:
+> 
+> `sudo add-apt-repository -y ppa:openjdk-r/ppa`</br>
+> `sudo sudo apt-get update`</br>
+> `sudo apt-get install -y openjdk-8-jre`</br>
+> 
+> You can get any [version](/releases/) of OpenVidu Server running:
+> 
+> `wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar`</br>
+
 Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
-#### 8. Finally check your server
+#### 9. Finally check your server
 
 You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
@@ -118,15 +116,7 @@ If you are deploying with these instructions for the first time, we recommend us
   </div>
 </div>
 
-The instructions above portray scenarios 1 and 2 in the image. In other words, we are supposing that OpenVidu Server and KMS will be hosted in the same machine. The only difference between options 1-2 and option 3 is that for steps 7A and 7B, another parameter is required when launching your openvidu-server:
-
-#### 7A
-
-```console
-docker run -d -p 4443:4443 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ -e kms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] openvidu/openvidu-server
-```
-
-#### 7B
+The instructions above portray scenarios 1 and 2 in the image. In other words, we are supposing that OpenVidu Server and KMS will be hosted in the same machine. The only difference between options 1-2 and option 3 is that for step 8 another parameter is required when launching your openvidu-server:
 
 ```console
 java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar

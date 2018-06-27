@@ -1,6 +1,87 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.2.0](#220)
+- [2.1.0](#210)
+- [2.0.0](#200)
+- [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.2.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.2.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.2.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.2.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client?activeTab=versions" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+<br>
+
+OpenVidu now offers **integrated and automated support for TURN server**. We encourage developers to check out our **[post on Medium](https://medium.com/@openvidu/openvidu-2-2-0-turn-made-easy-9d7e145f8905)** to learn more about it.
+
+The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](https://openvidu.io/docs/deployment/deploying-aws/) with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](https://openvidu.io/docs/deployment/deploying-ubuntu/).
+
+---
+<br>
+
 ## 2.1.0
 
 ### Artifacts
@@ -72,13 +153,14 @@
 
 **OpenVidu Browser support for video management**
 
-We have implemented a new class in OpenVidu Browser aimed to better support declarative frontend framewroks such as Angular, React or Vue.js.
+We have implemented a new class in OpenVidu Browser aimed to better support declarative frontend frameworks such as Angular, React or Vue.js.
 
-Now Publisher and Subscriber objects both inherit from [StreamManager](../../api/openvidu-browser/classes/streammanager.html), which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dinamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](/how-do-i/manage-videos) section.
+Now Publisher and Subscriber objects both inherit from [StreamManager](../../api/openvidu-browser/classes/streammanager.html), which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dynamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](/how-do-i/manage-videos) section.
 
-If you want to check out a real example of this behaviuor, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/).<br><br>
+If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/).<br><br>
 
 ---
+<br>
 
 ## 2.0.0
 
@@ -222,7 +304,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 
 - **OpenVidu Node Client**
     - We have removed the builder pattern in all openvidu-node-client classes. Now objects are used instead, which includes classes `TokenOptions`, `SessionProperties` and `RecordingProperties`. For example, instead of getting a TokenOptions object like this: `var tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build()` now it must be like this: `var tokenOptions = {data: serverData, role: role}`
-    - There has been a simple change in certain asynchronous call. Method `Session.getSessionId()` is now synchronous, but method `OpenVidu.createSession()` is now asynchronous (the reason is pretty simple: now method _createSession_ implements the behaviour that _getSessionId_ was providing the first time it was called for certain _Session_ object).
+    - There has been a simple change in certain asynchronous call. Method `Session.getSessionId()` is now synchronous, but method `OpenVidu.createSession()` is now asynchronous (the reason is pretty simple: now method _createSession_ implements the behavior that _getSessionId_ was providing the first time it was called for certain _Session_ object).
     - All callback methods have been promisified. This includes method `Session.generateToken(tokenOptions?, callback): void` (now  `Session.generateToken(tokenOptions?): Promise<string>`) and method `Session.getSessionId(callback): void` (now `OpenVidu.createSession(): Promise<Session>`, take also into account that the async call has changed from one method to the other as stated in the previous point).
     - All `Archive` entities are now called `Recording`. This includes: object `Archive` to `Recording`, object `ArchiveMode` to `RecordingMode`, object `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
     - `recordingLayout` property in [`SessionProperties`](../../api/openvidu-node-client/interfaces/sessionproperties.html) has changed to `defaultRecordingLayout`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `recordingLayout` property (of [RecordingProperties](../../api/openvidu-node-client/interfaces/recordingproperties.html) interface, which will overwrite the default one globally configured in SessionProperties object. <br><br>
@@ -235,8 +317,8 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
     - OpenVidu Server default port from `8443` to `4443`
     - OpenVidu Server configuration property `openvidu.recording.free-access` is now `openvidu.recording.public-access`
 
+---
 <br>
-<hr>
 
 ## 1.9.0-beta-1
 

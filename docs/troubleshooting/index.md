@@ -244,7 +244,7 @@ At the moment there are no OpenVidu clients for mobile platforms, but we are wor
 
 ### 9. Which is the current status of OpenVidu on scalability and fault tolerance?
 
-This particular point relies on Kurento Media Server performance, as it is the media server used by OpenVidu. [TestRTC](https://testrtc.com/) published on September 13, 2017 a very interesting article describing in detail the behaviour of Kurento Media Server while holding a different number of video-sessions. [Here](https://testrtc.com/sessions-kurento-server/) is the complete article.
+This particular point relies on Kurento Media Server performance, as it is the media server used by OpenVidu. [TestRTC](https://testrtc.com/) published on September 13, 2017 a very interesting article describing in detail the behavior of Kurento Media Server while holding a different number of video-sessions. [Here](https://testrtc.com/sessions-kurento-server/) is the complete article.
 
 These are the conclusions for a machine with **8 cores and 15 GB of RAM**. The upper limit where the following scenarios guaranteed good quality of service are:
 
