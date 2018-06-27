@@ -3,7 +3,7 @@
 
 ## Installation process
 
-If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. Only and **Ubuntu xenial 16.04** is supported.
+If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. Only **Ubuntu xenial 16.04** is supported.
 
 #### 1. Install KMS
 ```console
