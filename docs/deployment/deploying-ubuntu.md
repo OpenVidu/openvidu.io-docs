@@ -36,6 +36,7 @@ stunServerPort=3478
 ```console
 external-ip=YOUR_MACHINE_PUBLIC_IP
 listening-port=3478
+fingerprint
 lt-cred-mech
 max-port=65535
 min-port=49152
