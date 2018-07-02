@@ -14,7 +14,7 @@ Both **Chrome** and **Firefox** support screen sharing. Chrome needs an extensio
 - `SCREEN_CAPTURE_DENIED`: if the user doesn't grant permissions to capture the screen when the browser asks to.
 
 ```javascript
-OV.initPublisher('html-element-id', { screen: true }, function(error) {
+OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
     if (error.name == 'SCREEN_EXTENSION_NOT_INSTALLED') {
         showWarning(error.message);
 
