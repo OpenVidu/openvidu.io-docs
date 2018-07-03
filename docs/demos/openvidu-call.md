@@ -64,6 +64,20 @@ OpenVidu-Call is composed by the four Angular components displayed in the image 
 
 ## Running this demo
 
+You have several options to run OpenVidu Call:
+
+#### Using Docker
+
+ The easiest way is running this Docker container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+
+```bash
+docker run -p 4443:4443 openvidu/openvidu-call
+```
+
+#### Cloning GitHub Repository
+
+
 1)  Clone the repo:
 
 ```bash
@@ -103,6 +117,55 @@ ng serve --open
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+
+#### Using the Release
+
+As you can see [here](https://github.com/OpenVidu/openvidu-call/releases), OpenVidu Call has new release. 
+The **openvidu-call-X.X.X.tar.gz** file contains the compiled app served in `/` and **openvidu-call-demos-X.X.X.tar.gz** file contains the compiled app served in `/openvidu-call/`.
+
+To run OpenVidu Call with the compiled files you will need:
+
+1) openvidu-server and Kurento Media Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+```
+
+2) Download the release:
+
+```bash
+wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.0.1/openvidu-call-1.0.1.tar.gz
+```
+
+3) Decompress the dowloaded file:
+
+
+```
+mkdir openvidu-call
+tar -xvzf openvidu-call-1.0.1.tar.gz -C openvidu-call/
+cd openvidu-call
+```
+
+
+4) You will need a HTTP server to display the app like [NGINX](https://www.nginx.com/) or [http-server](https://www.npmjs.com/package/http-server).  We will use **http-server**:
+
+You will need **node** and **NPM** to install http-server. You can install them with:
+
+```bash
+sudo apt-get update
+sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo apt-get install -y nodejs
+```
+5) Install **http-server** and serve the app:
+
+```
+npm i http-server
+http-server
+```
+Wait until you see on the output a line IP address. 
+
+By default, the app will be served in `http://127.0.0.1` address. You will need go to [`https://127.0.0.1:4443`](https://127.0.0.1:4443) to sign the certificate. Once signed, you will can test OpenVidu Call in the default IP [`http://127.0.0.1:8080`](http://127.0.0.1:8080)
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
