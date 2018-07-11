@@ -6,7 +6,7 @@ This is a fully functional application that makes use of the secure version of O
 
 
 
-## Running this tutorial
+## Running this demo
 
 
 1) Clone the repo:

@@ -13,7 +13,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 - **openvidu-server**: Java application that controls Kurento Media Server
 - **Kurento Media Server**: server that handles low level operations of media flows transmission
 
-## Running this tutorial
+## Running this demo
 
 1) Clone the repo:
 

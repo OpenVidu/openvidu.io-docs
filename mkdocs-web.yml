@@ -2,6 +2,7 @@ site_name: OpenVidu Docs
 pages:
 - ['home/index.md','What is OpenVidu?']
 - ['tutorials/index.md','Tutorials', 'Intro']
+- ['tutorials/openvidu-webcomponent.md','Tutorials', 'openvidu-webcomponent']
 - ['tutorials/openvidu-hello-world.md','Tutorials', 'openvidu-hello-world']
 - ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
 - ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
