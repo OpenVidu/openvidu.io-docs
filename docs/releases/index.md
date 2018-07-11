@@ -1,12 +1,204 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.3.0](#230)
 - [2.2.0](#220)
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.3.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser/v/2.3.0" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.2.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client?activeTab=versions" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.3.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### OPENVIDU WEB COMPONENT
+
+OpenVidu platform now offers an easier way to get started: just include our new Web Component into your web and start enjoying video call capabilities with just 3 new lines of code:
+
+Add to your `index.html` OpenVidu Web Component files:
+
+```html
+<link rel="stylesheet" href="openvidu-webcomponent.css" />
+<script src="openvidu-webcomponent.js"></script>
+```
+
+And add your video-call element wherever you want in your application:
+
+```html
+<openvidu-webcomponent session-config='{"user":"NICKNAME", "token":"TOKEN"}' theme="dark"></openvidu-webcomponent>
+```
+
+Being `NICKNAME` the user's name during the call and `TOKEN` one token generated in OpenVidu Server. Of course, if you want to connect users to the same session, the tokens should be generated for the same session.
+Attribute `theme` can be `dark` or `light`. Use the one that better fits your application.
+
+OpenVidu Web Component supports a reasonable amount of different dimensions, and every video displayed inside of it will be automatically relocated and resized for its optimal position upon window resizing. You can set the position, width and height of the component by styling it like this:
+
+1. Setting its property `position` to `absolute` or `fixed`, depending on your web layout and the desired behavior you want the component to have.
+2. Playing with values:
+    - `width`
+    - `height`
+    - `top` or `bottom`
+    - `right` or `left`
+
+For example, the following CSS rule would position the upper OpenVidu Web Component in the bottom-right corner of your web, taking up half of the height of the page and a third of its width.
+
+```css
+openvidu-webcomponent {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 33vw;
+  height: 50vh;
+}
+```
+
+If you give enough width to the component (at least `700px`), users can communicate through an integrated chat.
+
+> To see some images of OpenVidu Web Component in action, check this post on [Medium](https://medium.com/@openvidu/openvidu-2-3-0-web-component-and-tons-of-new-features-3341d46cbb54). If you want to learn more about OpenVidu Web Component, visit [Tutorials section](/tutorials/openvidu-webcomponent)
+
+<br>
+#### NEW FEATURES
+
+<br>
+##### StreamPropertyChangedEvent (See [here](https://openvidu.io/api/openvidu-browser/classes/streampropertychangedevent.html))
+
+OpenVidu Browser now lets users connected to a Session know when any Stream they are subscribed to undergoes any possible change in its properties. Every Session object will dispatch this new event (you can subscribe to it to every Publisher or Subscriber object too). This event can refer to the following Stream properties:
+
+- `Stream.audioActive`: this property may change if the user publishing the Stream calls `Publisher.pusblishAudio(bool)`.
+- `Stream.videoActive`: this property may change if the user publishing the Stream calls `Publisher.publishVideo(bool)`.
+- `Stream.videoDimensions`: this property may change if...
+    - ...the user publishing the stream is screen-sharing and the shared window changes its dimensions.
+    - ...the user is publishing from a mobile device and it is rotated (every camera from a phone will invert the resolution in the output video when rotated).
+
+So, for example, now you can do:
+
+```javascript
+var OV = new OpenVidu();
+var session = OV.initSession();
+session.on('streamPropertyChanged', event => {
+    if (event.changedProperty === 'audioActive') {
+        console.log('The state of the audio of the publisher has changed. Is enabled? -> ' + event.newValue);
+    } else if (event.changedProperty === 'videoActive') {
+        console.log('The state of the video of the publisher has changed. Is enabled? -> ' + event.newValue);
+    } else if (event.changedProperty === 'videoDimensions') {
+        console.log('The video dimensions of the publisher has changed. New dimensions: ' + event.newValue);
+    }
+});
+```
+
+This way you can react more easily upon this variations in the published streams and update your application's layout accordingly.
+
+<br>
+##### Session.capabilities (See [here](https://openvidu.io/api/openvidu-browser/interfaces/capabilities.html))
+
+You can check capabilities property of Session object to know which methods are able to invoke each one of your clients, depending on their role. Also, if a client tries to call a method for which he has no permissions, now an OpenViduError is thrown with property `name` being [`OPENVIDU_PERMISSION_DENIED`](https://openvidu.io/api/openvidu-browser/enums/openviduerrorname.html#openvidu_permission_denied).
+
+<br>
+##### New MODERATOR role
+
+At last developers have available the new role that has been in our roadmap for a long time. Users connecting to a session with a token configured with MODERATOR role can call every method granted for SUBSCRIBER and PUBLISHER roles, but also:
+
+- [`Session.forceDisconnect`](https://openvidu.io/api/openvidu-browser/classes/session.html#forcedisconnect): you can evict any user from the Session (force the method `Session.disconnect`)
+- [`Session.forceUnpublish`](https://openvidu.io/api/openvidu-browser/classes/session.html#forceunpublish): you can stop the Publisher of any user publishing in the Session (force the method `Session.unpublish`)
+
+<br>
+##### REST API extended
+
+5 new methods join the [REST API of OpenVidu Server](https://openvidu.io/docs/reference-docs/REST-API/):
+
+- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessionssession_id)
+- Retrieve all active sessions info: [**GET /api/sessions**](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions)
+- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_id)
+- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_idconnectionconnection_id)
+- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_idstreamstream_id)
+
+> Future iterations will add this capabilities to [openvidu-java-client](https://openvidu.io/docs/reference-docs/openvidu-java-client/) and [openvidu-node-client](https://openvidu.io/docs/reference-docs/openvidu-node-client/) libraries
+
+<br>
+##### Configure global bandwidth for your WebRTC connections
+
+We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/) sections:
+
+- `openvidu.streams.video.max-recv-bandwidth`: Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 600)
+- `openvidu.streams.video.min-recv-bandwidth`: Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 300)
+- `openvidu.streams.video.max-send-bandwidth`: Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 600)
+- `openvidu.streams.video.min-send-bandwidth`: Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 300)
+
+> Future iterations will study the possibility of configuring this same parameters for each session individually or even for each incoming or outgoing WebRTC connection (maybe as part of [`PublisherProperties`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html) or [`SubscriberProperties`](https://openvidu.io/api/openvidu-browser/interfaces/subscriberproperties.html))
+
+---
+<br>
 
 ## 2.2.0
 

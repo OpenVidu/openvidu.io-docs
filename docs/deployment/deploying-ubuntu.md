@@ -3,15 +3,14 @@
 
 ## Installation process
 
-If you prefer having KMS installed in your EC2 machine and your own version of openvidu-server, follow these few steps. Only **Ubuntu xenial 16.04** is supported.
+Only **Ubuntu xenial 16.04** is supported.
 
 #### 1. Install KMS
 ```console
-echo "deb http://ubuntu.openvidu.io/6.7.2 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
-apt-get update
-apt-get -y install kurento-media-server
-apt-get -y install openh264-gst-plugins-bad-1.5
+sudo echo "deb http://ubuntu.openvidu.io/6.7.2 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+sudo apt-get update
+sudo apt-get -y install kurento-media-server
 ```
 
 #### 2. Install COTURN
@@ -67,8 +66,6 @@ java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHIN
 
 > You will need Java 8 to run OpenVidu Server:
 > 
-> `sudo add-apt-repository -y ppa:openjdk-r/ppa`</br>
-> `sudo sudo apt-get update`</br>
 > `sudo apt-get install -y openjdk-8-jre`</br>
 > 
 > You can get any [version](/releases/) of OpenVidu Server running:
@@ -87,14 +84,15 @@ To connect your application to OpenVidu Server, use the same URL `https://YOUR_O
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission could fail in certain cases.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks ([learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them)). If the _COTURN_ itself is running inside an unreachable machine, your video transmission will probably fail.
 
   - Besides, the server needs some **ports** opened in the firewall:
 
-      - **3478 TCP & UDP** (_COTURN_ listens on port 3478 by default)
-      - **49152 - 65535 UDP** (WebRTC exchanges media through any of these ports)
+      - **4443 TCP** (_OpenVidu Server_ listens on port 4443 by default)
+      - **3478 TCP** (_COTURN_ listens on port 3478 by default)
+      - **49152 - 65535 UDP** (these ports are recommended to be opened, as WebRTC randomly exchanges media through any of them)
   
-  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in a few minutes [here](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
+  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
 
 ## Architectures
 

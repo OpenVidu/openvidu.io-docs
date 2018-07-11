@@ -1,37 +1,36 @@
 # openvidu-webcomponent
-
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-webcomponent" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu webcomponent is the fullest, lightest and simplest element which you will can try to get started with OpenVidu and add videoconferences system into your website or app.
-You will only need a few minutes to get your first application working!
+OpenVidu Web Component is the simplest and quickest way to add videoconference capabilities to your existing web application. It brings many of the features of OpenVidu platform, making it very powerful.
+With just a few lines of code you will have your first video call working!
 
 ## Running this tutorial
 
-1.  Clone the repo:
+1) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
-2.  You will need an http web server installed in your development computer to execute the tutorial. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server) to serve application files. It can be installed with:
+2) You will need an http web server installed in your development computer to execute the tutorial. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server) to serve application files. It can be installed with:
 
 ```bash
 npm install -g http-server
 ```
 
-3.  Run the tutorial:
+3) Run the tutorial:
 
 ```bash
 http-server openvidu-tutorials/openvidu-webcomponent/web
 ```
 
-4.  _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
 ```
 
-5.  Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 <br>
 
@@ -43,46 +42,42 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 This application is very simple. It has only 4 files:
 
--   `openvidu-webcomponent.js`: openvidu-webcomponent script. You don't have to manipulate this file.
--   `openvidu-webcomponent.css`: openvidu-webcomponent styles. You don't have to manipulate this file.
--   `app.js`: sample application main JavaScritp file.
--   `index.html`: HTML code for the form to connect to a video-session and for the video-session itself.
-    Let's see it:
+-   `openvidu-webcomponent-{VERSION}.js`: JavaScript file of OpenVidu Web Component. You don't have to manipulate this file.
+-   `openvidu-webcomponent-{VERSION}.css`: styles for OpenVidu Web Component. You don't have to manipulate this file.
+-   `app.js`: sample application main JavaScript file.
+-   `index.html`: HTML code of the application.
 
-Inside of the `head` section, you must add `app.js`, `openvidu-webcomponent.js` and `openvidu-webcomponent.css` files:
+Let's see how OpenVidu Web Component works:
 
-```
+---
+
+#### index.html
+
+Inside of the `head` section of `index.html`, we reference our `app.js` script and `openvidu-webcomponent` files:
+
+```html
 <head>
-    <title>openvidu-webcomponent</title>
-    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
-    <!-- OpenVidu WebComponent -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="openvidu-webcomponent.css">
-    <script type='application/javascript' src='openvidu-webcomponent.js'></script>
-    <!-- OpenVidu WebComponent -->
+    <!--... other imports ...-->
 
     <script src="app.js"></script>
-
+    <script src='openvidu-webcomponent-{VERSION}.js'></script>
+    <link rel="stylesheet" href="openvidu-webcomponent-{VERSION}.css">
 </head>
 ```
 
-As you can see, the `index.html` body has the form to connect to a video-session and the **OpenVidu webcomponent**
-
-<pre class="html-scripts">
-  <code>&lt;openvidu-webcomponent&gt;&lt;/openvidu-webcomponent&gt;</code>
-</pre>
+As you can see, the `index.html` body has the form to connect to a video-session and the **OpenVidu Web Component**, which starts hidden:
 
 ```html
 <body>
+
     <!-- Form to connect to a video-session -->
     <div id="main" style="text-align: center;">
         <h1>Join a video session</h1>
         <form onsubmit="joinSession(); return false" style="padding: 80px; margin: auto">
             <p>
                 <label>Session:</label>
-                <input type="text" id="sessionId" value="SessionA" required>
+                <input type="text" id="sessionName" value="SessionA" required>
             </p>
             <p>
                 <label>User:</label>
@@ -93,60 +88,66 @@ As you can see, the `index.html` body has the form to connect to a video-session
             </p>
         </form>
     </div>
-    <!-- Form to connect to a video-session -->
 
-    <openvidu-webcomponent id="session" style="display: none;"></openvidu-webcomponent>
+    <!-- OpenVidu Web Component -->
+    <openvidu-webcomponent style="display: none;"></openvidu-webcomponent>
 
 </body>
 ```
 
 ---
 
-#### OpenVidu webcomponent events emitted
+#### app.js (I): OpenVidu Web Component events
 
-OpenVidu webcomponent emits events like _`joinSession`_, _`leaveSession`_ or _`error`_, you will be able to handle it and manage the behavior for each event inthe main JS file, `app.js`:
+OpenVidu Web Component emits events _`joinSession`_, _`leaveSession`_ or _`error`_, so we can handle them in our JavaScript code.
+We just need to get the element once the document is ready and add all the listeners we want:
 
 ```javascript
-var ov = document.querySelector('openvidu-webcomponent');
+$(document).ready(() => {
+    var webComponent = document.querySelector('openvidu-webcomponent');
 
-ov.addEventListener('joinSession', (event) => {
-    // Do something
-});
-
-ov.addEventListener('leaveSession', (event) => {
-    // Do something
-});
-
-ov.addEventListener('error', (event) => {
-    // Do something
+    webComponent.addEventListener('joinSession', (event) => {
+        // Do something
+    });
+    webComponent.addEventListener('leaveSession', (event) => {
+        // Do something
+    });
+    webComponent.addEventListener('error', (event) => {
+        // Do something
+    });
 });
 ```
 
-#### Method called when the form has been submitted
+In this tutorial, we just alternate the view between the form and the web component, hiding or showing them when receiving `joinSession` or `leaveSession` events.
 
-The `joinSession()` method get the form input values and get the `token` from OpenVidu Server.
+---
+
+#### app.js (II): Configuring OpenVidu Web Component
+
+Method `joinSession()` gets:
+
+ - The form input values, with the video-call to connect and the nickname the user will have in it.
+ - The `token` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
+
+When we have our token available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and `token`.
+
+- `sessionName`: the session name that will be displayed inside the component
+- `user`: the nickname that the user will have in the session
+- `token`: the retrieved token from OpenVidu Server
 
 ```javascript
 function joinSession() {
-    var ov = document.querySelector('openvidu-webcomponent');
-    var sessionId = document.getElementById('sessionId').value;
+    var sessionName = document.getElementById('sessionName').value;
     var user = document.getElementById('user').value;
 
-    getToken(sessionId).then((token) => {
-        // See next step to see how to use the token gotten.
+    getToken(sessionName).then((token) => {
+        var webComponent = document.querySelector('openvidu-webcomponent');
+        webComponent.sessionConfig = { sessionName, user, token };
     });
 }
 ```
 
-When the token has been gotten, you must assign, the **session configuration**, to OpenVidu web component, an object named `sessionConfig` with three parameters: `sessionId` , `user` and `token`.
-
-```javascript
-getToken(sessionId).then((token) => {
-    ov.sessionConfig = { sessionId, user, token };
-});
-```
-
-On this way, you will join to the video session with your session id, your user nickname and your token gotten previously.
+That's it. Once you configure the token into the webcomponent, it will automatically join the proper session (`joinSession` event will be dispatched so you can update your web). The user will see in the webcomponent all other users joined to the same session and will publish the webcam. You have a video-call working!
 
 ---
 
@@ -171,41 +172,46 @@ On this way, you will join to the video session with your session id, your user 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
+	<strong>WARNING</strong>: This makes this tutorial an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
 </div>
 </div>
 
 ```javascript
-getToken(sessionId).then((token) => {
+getToken(sessionName).then((token) => {
     // Send the 'token' to OpenVidu web component
 });
 ```
 
-In a production environment we would perform this operations in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we have implemented the POST requests to OpenVidu Server in a mehtod `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+In a production environment we would perform this operations in our application backend, by making use of the [API REST](/reference-docs/REST-API/), [OpenVidu Java Client](/reference-docs/openvidu-java-client/) or [OpenVidu Node Client](/reference-docs/openvidu-node-client/). Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
--   First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `sessionId` value retrieved from HTML input)
--   Second ajax request performas a POST to `/api/tokens` (we send a `sessionId` field to assign the token to this same session)
+-   First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `sessionName` value retrieved from HTML input)
+-   Second ajax request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-hello-world/web/app.js#L58).
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-webcomponent/web/app.js#L43).
 
 <hr>
 
-## Extra features of OpenVidu webcomponent
+## Extra features of OpenVidu Web Component
 
 
 #### Alternatives to connect to OpenVidu session
 
-On the example above, **OpenVidu webcomponent** receives the `sessionConfig` parameter dynamically: 
+In the example above, **OpenVidu Web Component** receives the `sessionConfig` parameter dynamically like this: 
 
 ```javascript
  ov.sessionConfig = { sessionId, user, token };
 ```
 
-
-You also can send others parameters, in a static way, like `openviduServerUrl` and `openviduSecret` when you do not want to get the token yourself. The OpenVidu web component will get it by you.
+But you can also set them statically, for example if you are building your template in the backend:
 
 ```html
-<openvidu-webcomponent session-config='{"sessionId":"SessionA", "user":"User1"}'
+<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1", "token": "TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER"}'></openvidu-webcomponent>
+```
+
+And if you want to let the webcomponent get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
+
+```html
+<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1"}'
 openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET"></openvidu-webcomponent>
 ```
 
@@ -234,15 +240,15 @@ openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET"></openv
 
 #### Close the session dynamically
 
-You also can disconnect the session assigning dynamically `"null"` to the **sessionId**:
+You can also disconnect the user from the session assigning dynamically `undefined` to the **sessionConfig** property :
 
 ```javascript
-ov.sessionConfig = {sessionId: "null"}
+ov.sessionConfig = undefined;
 ```
 
 #### Choose a theme
 
-Nowadays, OpenVidu webcomponent allows you to choose between two themes. By default, the theme selected is _**dark theme**_ but if you prefer change it for a _**light them**_, you can add `theme="light"`.
+OpenVidu  allows you to choose between two themes. By default, the theme selected is **dark theme** but if you prefer change it for a **light them**, you can add `theme="light"`
 
 ```html
 <openvidu-webcomponent theme="light"></openvidu-webcomponent>

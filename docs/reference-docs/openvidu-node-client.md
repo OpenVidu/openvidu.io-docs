@@ -1,6 +1,8 @@
 <h2 id="section-title">openvidu-node-client API</h2>
 <hr>
 
+_This is a Node library wrapping [OpenVidu Server REST API](/reference-docs/REST-API/)_
+
 <h3>Check <a href="../../../api/openvidu-node-client/">TypeDoc documentation</a></h3>
 
 <hr>

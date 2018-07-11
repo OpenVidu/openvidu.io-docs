@@ -1,21 +1,39 @@
 <h2 id="section-title">REST API</h2>
 <hr>
 
-All REST operations have in common the header referred to authorization. It is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "OPENVIDUAPP") and the password (your **secret** shared with openvidu-server). An example is shown below:
+All REST operations have in common the header referred to authorization. It is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "OPENVIDUAPP") and the password (your **secret** shared with openvidu-server). If authorization header is wrong, every call to any REST API operation will return HTTP status `401`.
 
-For secret "MY_SECRET", the final HTTP header would be
+For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
 
+### List of available operations
+<br>
+
+- Initialize a session: [**POST /api/sessions**](#post-apisessions)
+- Generate a token: [**POST /api/tokens**](#post-apitokens)
+- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionssession_id)
+- Retrieve all active sessions info: [**GET /api/sessions**](#get-apisessions)
+- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionssession_id)
+- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionssession_idconnectionconnection_id)
+- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionssession_idstreamstream_id)
+- Start the recording of a session: [**POST /api/recordings/start**](#post-apirecordingsstart)
+- Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstoprecording_id)
+- Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsrecording_id)
+- Get all recordings info: [**GET /api/recordings**](#get-apirecordings)
+- Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsrecording_id)
+
+---
+
 ### POST `/api/sessions`
 
-| _NEW SESSIONID_   | _PARAMETERS_                                                                                        |
-| ----------------- | --------------------------------------------------------------------------------------------------- |
-| **Operation**     | POST                                                                                                |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                 |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json   |
+| _NEW SESSIONID_   | _PARAMETERS_                                                                                                                                                                                       |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**     | POST                                                                                                                                                                                               |
+| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                                                                                                                |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                            |
 | **Body**          | ```{"mediaMode": "MEDIA_MODE", "recordingMode": "RECORDING_MODE", "defaultRecordingLayout": "RECORDING_LAYOUT", "defaultCustomLayout": "CUSTOM_LAYOUT", "customSessionId": "CUSTOM_SESSION_ID"}``` |
-| **Sample return** | ```{"id": "wss://localhost:4443/jpifeuzfati5qaj8"}```                                               |
+| **Sample return** | ```{"id": "wss://localhost:4443/jpifeuzfati5qaj8"}```                                                                                                                                              |
 
 > **Body parameters**
 >
@@ -92,14 +110,120 @@ For secret "MY_SECRET", the final HTTP header would be
 
 ---
 
+### GET `/api/sessions/<SESSION_ID>`
+
+| _GET SESSION INFO_ | _PARAMETERS_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**      | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **Sample return**  | ```{"mediaMode":"ROUTED","recording":false,"sessionId":"TestSession","recordingMode":"MANUAL","connections":{"numberOfElements":2,"content":[{"role":"PUBLISHER","subscribers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","publisher":"xm3zcg6d9ntp0qbn"}],"connectionId":"rxrqelmbskpsxwx1","publishers":[],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=okx9wldlu4u4okmt&role=PUBLISHER&turnUsername=5VKPTG&turnCredential=udv4gy"},{"role":"PUBLISHER","subscribers":[],"connectionId":"xm3zcg6d9ntp0qbn","publishers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","mediaOptions":{"hasVideo":true,"frameRate":30,"hasAudio":false,"videoActive":true,"videoDimensions":"{\"width\":640,\"height\":480}","typeOfVideo":"CAMERA"}}],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=mltylf00bpapshru&role=PUBLISHER&turnUsername=O1NDC2&turnCredential=xcjany"}]},"defaultRecordingLayout":"BEST_FIT"}``` |
+
+> **Returned JSON**
+>
+> - `sessionId`: identifier of the session (identical to _SESSION_ID_ url parameter)
+> - `mediaMode`: media mode configured for the session (`ROUTED` or `RELAYED`)
+> - `recording`: whether the session is being recorded or not at this moment
+> - `recordingMode`: recording mode configured for the session (`ALWAYS` or `MANUAL`)
+> - `defaultRecordingLayout`: the default recording layout configured for the session
+> - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
+>     - `connectionId`: identifier of the user's connection
+>     - `role`: role of the connection
+>     - `clientData`: data defined in OpenVidu Browser when calling [`Session.connect`](/../api/openvidu-browser/classes/session.html#connect) (_metadata_ parameter)
+>     - `serverData`: data assigned to the user's token when generating the token in OpenVidu Server
+>     - `token`: user's token
+>     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo")
+>     - `subscribers`: array of Subscriber objects (streams the user is subscribed to). Each on is defined by the unique `streamId` and a `publisher` property with the _connectionId_ to identify the connection publishing the stream (must be present inside the `connections.content` array of the session)
+
+<div></div>
+
+> **HTTP responses**
+>
+> - `200`: the session information has been successfully retrieved
+> - `404`: no session exists for the passed SESSION_ID
+
+---
+
+### GET `/api/sessions`
+
+| _GET ALL SESSION INFO_ | _PARAMETERS_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**          | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| **Sample return**      | ```{"numberOfElements":1,"content":[{"mediaMode":"ROUTED","recording":false,"sessionId":"TestSession","recordingMode":"MANUAL","connections":{"numberOfElements":2,"content":[{"role":"PUBLISHER","subscribers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","publisher":"xm3zcg6d9ntp0qbn"}],"connectionId":"rxrqelmbskpsxwx1","publishers":[],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=okx9wldlu4u4okmt&role=PUBLISHER&turnUsername=5VKPTG&turnCredential=udv4gy"},{"role":"PUBLISHER","subscribers":[],"connectionId":"xm3zcg6d9ntp0qbn","publishers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","mediaOptions":{"hasVideo":true,"frameRate":30,"hasAudio":false,"videoActive":true,"videoDimensions":"{\"width\":640,\"height\":480}","typeOfVideo":"CAMERA"}}],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=mltylf00bpapshru&role=PUBLISHER&turnUsername=O1NDC2&turnCredential=xcjany"}]},"defaultRecordingLayout":"BEST_FIT"}]}``` |
+
+> **Returned JSON**
+>
+> - `numberOfElements`: total number of active sessions
+> - `content`: array of sessions. Each object has the same structure as defined in the returned JSON of [**GET /api/sessions/<SESSION_ID>**](#get-apisessionssession_id)
+
+<div></div>
+
+> **HTTP responses**
+>
+> - `200`: all the session information has been successfully retrieved
+
+---
+
+### DELETE `/api/sessions/<SESSION_ID>`
+
+| _CLOSE SESSION_   | _PARAMETERS_                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**     | DELETE                                                                                                                   |
+| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;                                                   |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
+| **Sample return** | _Returns nothing_                                                                                                        |
+
+> **HTTP responses**
+>
+> - `204`: the session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html), [`connectionDestroyed`](/../api/openvidu-browser/classes/connectionevent.html) and [`sessionDisconnected`](/../api/openvidu-browser/classes/sessiondisconnectedevent.html), all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others (the first one will only receive the events related to himself, last one will receive every possible event)
+> - `404`: no session exists for the passed SESSION_ID
+
+---
+
+### DELETE `/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>`
+
+| _FORCE DISCONNECTION_   | _PARAMETERS_                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**     | DELETE                                                                                                                   |
+| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;                  |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
+| **Sample return** | _Returns nothing_                                                                                                        |
+
+> **HTTP responses**
+>
+> - `204`: the user has been successfully evicted from the session. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html) if the user was publishing, [`connectionDestroyed`](/../api/openvidu-browser/classes/connectionevent.html) for the remaining users and [`sessionDisconnected`](/../api/openvidu-browser/classes/sessiondisconnectedevent.html) for the evicted user. All of them with "reason" property set to "forceDisconnectByServer"
+> - `400`: no session exists for the passed SESSION_ID
+> - `404`: no connection exists for the passed CONNECTION_ID
+
+---
+
+### DELETE `/api/sessions/<SESSION_ID>/stream/<STREAM_ID>`
+
+| _FORCE UNPUBLISHING_   | _PARAMETERS_                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**     | DELETE                                                                                                                   |
+| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;                  |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
+| **Sample return** | _Returns nothing_                                                                                                        |
+
+> **HTTP responses**
+>
+> - `204`: the stream has been successfully unpublished. Every participant will have received the proper [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html) event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer"
+> - `400`: no session exists for the passed SESSION_ID
+> - `404`: no stream exists for the passed STREAM_ID
+
+---
+
 ### POST `/api/recordings/start`
 
-| _START SESSION RECORDING_ | _PARAMETERS_                                                                                                                                                                                                                                   |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Operation**             | POST                                                                                                                                                                                                                                           |
-| **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                                                                                                                                                                    |
-| **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                                                                              |
-| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT"}```                                                                                                                                                                                                                |
+| _START SESSION RECORDING_ | _PARAMETERS_                                                                                                                                                                                                                                                                  |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**             | POST                                                                                                                                                                                                                                                                          |
+| **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                                                                                                                                                                                                   |
+| **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                                                                                                       |
+| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT"}```                                                                                                                                                                                        |
 | **Sample return**         | ```{"createdAt": 1521196095981, "duration": 0, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 0, "status": "started", "url": null}``` |
 
 > **Body parameters**
@@ -131,7 +255,7 @@ For secret "MY_SECRET", the final HTTP header would be
 > **HTTP responses**
 >
 > - `200`: the session has started to be recorded. The moment this response is retrieved, it means that the video file is already created and contains proper data, and that the recording can be stopped with guarantees
-> - `404`: no session exists for the passed sessionId
+> - `404`: no session exists for the passed SESSION_ID
 > - `400`: the session has no connected participants
 > - `409`: the session is not configured for using MediaMode `ROUTED` or it is already being recorded
 > - `501`: OpenVidu Server recording module is disabled (`openvidu.recording` property set to `false`)
@@ -140,11 +264,11 @@ For secret "MY_SECRET", the final HTTP header would be
 
 ### POST `/api/recordings/stop/<RECORDING_ID>`
 
-| _STOP SESSION RECORDING_ | _PARAMETERS_                                                                                                        |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------- |
-| **Operation**            | POST                                                                                                                |
-| **URL**                  | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/stop/&lt;RECORDING_ID&gt;                                     |
-| **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded  |
+| _STOP SESSION RECORDING_ | _PARAMETERS_                                                                                                                                                                                                                                                                            |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**            | POST                                                                                                                                                                                                                                                                                    |
+| **URL**                  | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/stop/&lt;RECORDING_ID&gt;                                                                                                                                                                                                         |
+| **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                |
 | **Sample return**        | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
 
 > **Returned JSON**
@@ -167,18 +291,18 @@ For secret "MY_SECRET", the final HTTP header would be
 >
 > - `200`: the session has successfully stopped from being recorded. The video file is ready to be reproduced
 > - `400`: RECORDING_ID parameter not found in form url-encoded
-> - `404`: no recording exists for the passed recording id
+> - `404`: no recording exists for the passed RECORDING_ID
 > - `406`: recording has `starting` status. Wait until `started` status before stopping the recording
 
 ---
 
 ### GET `/api/recordings/<RECORDING_ID>`
 
-| _GET RECORDING INFO_ | _PARAMETERS_                                                                                                       |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **Operation**        | GET                                                                                                                |
-| **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                         |
-| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
+| _GET RECORDING INFO_ | _PARAMETERS_                                                                                                                                                                                                                                                                            |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**        | GET                                                                                                                                                                                                                                                                                     |
+| **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                                                                                                                                                                                              |
+| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                |
 | **Sample return**    | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
 
 > **Returned JSON**
@@ -200,17 +324,17 @@ For secret "MY_SECRET", the final HTTP header would be
 > **HTTP responses**
 >
 > - `200`: the recording information has been successfully retrieved
-> - `404`: no recording exists for the passed recording id
+> - `404`: no recording exists for the passed RECORDING_ID
 
 ---
 
 ### GET `/api/recordings`
 
-| _LIST RECORDINGS INFO_ | _PARAMETERS_                                                    |
-| ---------------------- | --------------------------------------------------------------- |
-| **Operation**          | GET                                                             |
-| **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings           |
-| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_  |
+| _LIST RECORDINGS INFO_ | _PARAMETERS_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Operation**          | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Sample return**      | ```{"count": 2, "items": [{"duration": 132.08, "hasVideo": true, "createdAt": 1521202349460, "hasAudio": true, "size": 22887561, "recordingLayout": "BEST_FIT", "name": "n0kcws1evvn3esmo", "id": "n0kcws1evvn3esmo", "sessionId": "wss://localhost:4443/n0kcws1evvn3esmo", "url": "https://localhost:4443/recordings/n0kcws1evvn3esmo.mp4", "status": "available"}, {"duration": 20.88, "hasVideo": true, "createdAt": 1521200592175, "hasAudio": true, "size": 3766979, "recordingLayout": "BEST_FIT", "name": "gm0hdsv6n8asjgcs", "id": "gm0hdsv6n8asjgcs", "sessionId": "wss://localhost:4443/gm0hdsv6n8asjgcs", "url": "https://localhost:4443/recordings/gm0hdsv6n8asjgcs.mp4", "status": "available"}]}``` |
 
 > **Returned JSON**
@@ -228,15 +352,15 @@ For secret "MY_SECRET", the final HTTP header would be
 
 ### DELETE `/api/recordings/<RECORDING_ID>`
 
-| _DELETE RECORDING_ | _PARAMETERS_                                                                                                       |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------ |
-| **Operation**      | DELETE                                                                                                             |
-| **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                         |
+| _DELETE RECORDING_ | _PARAMETERS_                                                                                                             |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**      | DELETE                                                                                                                   |
+| **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                               |
 | **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**  | _Returns nothing_                                                                                                  |
+| **Sample return**  | _Returns nothing_                                                                                                        |
 
 > **HTTP responses**
 >
 > - `204`: the video file and all of its metadata has been successfully deleted from the host
-> - `404`: no recording exists for the passed recording id
+> - `404`: no recording exists for the passed RECORDING_ID
 > - `409`: the recording has `"started"` status. Stop it before deletion
