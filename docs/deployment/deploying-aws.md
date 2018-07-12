@@ -58,8 +58,8 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
     <tr>
       <td class="first-col">Fully qualified domain name</td>
       <td></td>
-      <td><em>Your custom domain</em></br><span class="field-comment">(for example: <em>openvidu.io</em>)</span></td>
-      <td><em>Your custom domain</em></br><span class="field-comment">(for example: <em>openvidu.io</em>)</span></td>
+      <td><em>Your custom domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
+      <td><em>Your custom domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Elastic IP</td>
