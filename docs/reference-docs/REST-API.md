@@ -223,7 +223,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**             | POST                                                                                                                                                                                                                                                                          |
 | **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                                                                                                                                                                                                   |
 | **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                                                                                                       |
-| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT"}```                                                                                                                                                                                        |
+| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT", "customLayout": "CUSTOM_LAYOUT"}```                                                                                                                                                                                        |
 | **Sample return**         | ```{"createdAt": 1521196095981, "duration": 0, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 0, "status": "started", "url": null}``` |
 
 > **Body parameters**
@@ -233,6 +233,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - **session**: the sessionId belonging to the session you want to start recording<br><br>
 > - **name** _(optional)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording<br><br>
 > - **recordingLayout** _(optional)_ : you can override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different layouts if you start and stop recording the same session more than once
+> - **customLayout** _(optional)_ : you can override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different custom layouts if you start and stop recording the same session more than once
 
 <div></div>
 
