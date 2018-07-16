@@ -283,24 +283,24 @@ openvidu/openvidu-server-kms
 
 ### 3. Configure your sessions to use your custom layout
 
-Do exactly the same process explained [here](recording/#3-configure-your-sessions-to-be-recorded), but changing `recordingLayout` from `BEST_FIT` to `CUSTOM`.
+Do exactly the same process explained [here](#3-configure-your-sessions-to-be-recorded), but changing `defaultRecordingLayout` from `BEST_FIT` to `CUSTOM`.
 
-- If you are using the _API REST_, just change json body parameter `"recordingLayout":"BEST_FIT"` to `"recordingLayout":"CUSTOM"`.
+- If you are using the _API REST_, just change json body parameter `"defaultRecordingLayout":"BEST_FIT"` to `"defaultRecordingLayout":"CUSTOM"`.
 - If you are using _openvidu-java-client_ change
 
-    `SessionProperties.Builder().recordingLayout(RecordingLayout.BEST_FIT)`
+    `SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.BEST_FIT)`
 
     to
 
-    `SessionProperties.Builder().recordingLayout(RecordingLayout.CUSTOM)`
+    `SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.CUSTOM)`
 
-- If you are using _openvidu-node-client_ change property `recordingLayout` of `SessionProperties` from
+- If you are using _openvidu-node-client_ change property `defaultRecordingLayout` of `SessionProperties` from
 
-    `{ recordingLayout: RecordingLayout.BEST_FIT }`
+    `{ defaultRecordingLayout: RecordingLayout.BEST_FIT }`
 
     to
 
-    `{ recordingLayout: RecordingLayout.CUSTOM }`
+    `{ defaultRecordingLayout: RecordingLayout.CUSTOM }`
 
 <br>
 
@@ -308,11 +308,11 @@ Do exactly the same process explained [here](recording/#3-configure-your-session
 
 ## Configuring multiple custom layouts
 
-You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path `/PATH/TO/INDEX/CUSTOM/LAYOUT`. Then, when configuring your sessions as stated above in point 3, just add a new parameter besides changing `recordingLayout` property:
+You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path `/PATH/TO/INDEX/CUSTOM/LAYOUT`. Then, when configuring your sessions as stated above in point 3, just add a new parameter besides changing `defaultRecordingLayout` property:
 
-  - If you are using the _API REST_, add an additional field to json body: `"recordingLayout":"CUSTOM", "customLayout":"RELATIVE/PATH/TO/INDEX"`
-  - If you are using _openvidu-java-client_, create SessionProperties object with a new step: `new SessionProperties.Builder().recordingLayout(RecordingLayout.CUSTOM).customLayout("RELATIVE/PATH/TO/INDEX").build())`
-  - If you are using _openvidu-node-client_, create SessionProperties object with a new property: `{recordingLayout: RecordingLayout.CUSTOM, customLayout: "RELATIVE/PATH/TO/INDEX"}` 
+  - If you are using the _API REST_, add an additional field to json body: `"defaultRecordingLayout":"CUSTOM", "defaultCustomLayout":"RELATIVE/PATH/TO/INDEX"`
+  - If you are using _openvidu-java-client_, create SessionProperties object with a new step: `new SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.CUSTOM).defaultCustomLayout("RELATIVE/PATH/TO/INDEX").build())`
+  - If you are using _openvidu-node-client_, create SessionProperties object with a new property: `{defaultRecordingLayout: RecordingLayout.CUSTOM, defaultCustomLayout: "RELATIVE/PATH/TO/INDEX"}` 
 
 <br>
 Path `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `openvidu.recording.custom-layout` to the specific `index.html` you want to use for a particular session recording. So, if you have the following folder tree structure:
@@ -330,7 +330,7 @@ Path `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration pro
     ...
 ```
 
-You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout, just configure `recordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `customLayout` to `layout1` or `layout2`.
+You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout, just configure `defaultRecordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `defaultCustomLayout` to `layout1` or `layout2`.
 
 ---
 

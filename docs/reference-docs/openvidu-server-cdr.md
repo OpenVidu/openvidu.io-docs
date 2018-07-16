@@ -166,12 +166,12 @@ Recorded when a new session has stopped being recorded
 | `sessionId` | Session for which the event was triggered  | A string with the session unique identifier      |
 | `timestamp` | Time when the event was triggered          | UTC milliseconds                                 |
 | `id`        | Unique identifier of the recording         | A string with the recording unique identifier    |
-| `recordingLayout` | The type of layout used in the recording   | A [`RecordingLayout`](openvidu-java-client/#recordinglayout) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording   | A [`RecordingLayout`](/../api/openvidu-node-client/enums/recordinglayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `hasAudio`  | Wheter the recording file has audio or not | [`true`,`false`] (current version always `true`) |
 | `hasVideo`  | Wheter the recording file has video or not | [`true`,`false`] (current version always `true`) |
 | `size`      | The size of the video file                 | Bytes                                            |
 | `duration`  | Duration of the video file                 | Seconds                                          |
-| `reason`    | Why the recording stopped                  | [<br>`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
+| `reason`    | Why the recording stopped                  | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json
