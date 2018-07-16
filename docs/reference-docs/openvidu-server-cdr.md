@@ -38,7 +38,7 @@ Recorded when a session has finished.
 | `startTime` | Time when the session started             | UTC milliseconds                                          |
 | `endTime`   | Time when the session finished            | UTC milliseconds                                          |
 | `duration`  | Total duration of the session             | Seconds                                                   |
-| `reason`    | Why the session was destroyed             | [`"lastParticipantLeft"`,<br>`"openviduServerStopped"`] |
+| `reason`    | Why the session was destroyed             | [`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json
@@ -76,7 +76,7 @@ Recorded when a user has left a session.
 | `startTime`     | Time when the participant joined the session                  | UTC milliseconds                                |
 | `endTime`       | Time when the participant left the session                    | UTC milliseconds                                |
 | `duration`      | Total duration of the participant's connection to the session | Seconds                                         |
-| `reason`        | How the participant left the session                          | [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
+| `reason`        | How the participant left the session                          | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json
@@ -126,7 +126,7 @@ Recorded when any media stream connection is closed.
 | `startTime`      | Time when the media connection was established  | UTC milliseconds |
 | `endTime`        | Time when the media connection was disposed     | UTC milliseconds |
 | `duration`       | Total duration of the media connection          | Seconds          |
-| `reason`         | How the WebRTC connection was destroyed         | [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
+| `reason`         | How the WebRTC connection was destroyed         | [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"forceUnpublishByUser"`,<br>`"forceUnpublishByServer"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json
@@ -171,6 +171,7 @@ Recorded when a new session has stopped being recorded
 | `hasVideo`  | Wheter the recording file has video or not | [`true`,`false`] (current version always `true`) |
 | `size`      | The size of the video file                 | Bytes                                            |
 | `duration`  | Duration of the video file                 | Seconds                                          |
+| `reason`    | Why the recording stopped                  | [<br>`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json

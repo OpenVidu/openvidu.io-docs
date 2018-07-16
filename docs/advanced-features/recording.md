@@ -151,11 +151,11 @@ Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperti
 
 ```javascript
 var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-var properties = new SessionProperties.Builder()
-    .recordingMode(RecordingMode.MANUAL) // RecordingMode.ALWAYS for automatic recording
-    .defaultRecordingLayout(RecordingLayout.BEST_FIT)
-    .mediaMode(MediaMode.ROUTED)
-    .build();
+var properties = {
+    recordingMode: RecordingMode.MANUAL, // RecordingMode.ALWAYS for automatic recording
+    defaultRecordingLayout: RecordingLayout.BEST_FIT,
+    mediaMode: MediaMode.ROUTED
+};
 var mySession = openvidu.createSession(properties);
 ```
 
@@ -286,13 +286,21 @@ openvidu/openvidu-server-kms
 Do exactly the same process explained [here](recording/#3-configure-your-sessions-to-be-recorded), but changing `recordingLayout` from `BEST_FIT` to `CUSTOM`.
 
 - If you are using the _API REST_, just change json body parameter `"recordingLayout":"BEST_FIT"` to `"recordingLayout":"CUSTOM"`.
-- If you are using _openvidu-java-client_ or _openvidu-node-client_, change
+- If you are using _openvidu-java-client_ change
 
     `SessionProperties.Builder().recordingLayout(RecordingLayout.BEST_FIT)`
 
     to
 
     `SessionProperties.Builder().recordingLayout(RecordingLayout.CUSTOM)`
+
+- If you are using _openvidu-node-client_ change property `recordingLayout` of `SessionProperties` from
+
+    `{ recordingLayout: RecordingLayout.BEST_FIT }`
+
+    to
+
+    `{ recordingLayout: RecordingLayout.CUSTOM }`
 
 <br>
 
@@ -303,7 +311,8 @@ Do exactly the same process explained [here](recording/#3-configure-your-session
 You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path `/PATH/TO/INDEX/CUSTOM/LAYOUT`. Then, when configuring your sessions as stated above in point 3, just add a new parameter besides changing `recordingLayout` property:
 
   - If you are using the _API REST_, add an additional field to json body: `"recordingLayout":"CUSTOM", "customLayout":"RELATIVE/PATH/TO/INDEX"`
-  - If you are using _openvidu-java-client_ or _openvidu-node-client_, create SessionProperties object with a new step: `new SessionProperties.Builder().recordingLayout(RecordingLayout.CUSTOM).customLayout("RELATIVE/PATH/TO/INDEX").build())`
+  - If you are using _openvidu-java-client_, create SessionProperties object with a new step: `new SessionProperties.Builder().recordingLayout(RecordingLayout.CUSTOM).customLayout("RELATIVE/PATH/TO/INDEX").build())`
+  - If you are using _openvidu-node-client_, create SessionProperties object with a new property: `{recordingLayout: RecordingLayout.CUSTOM, customLayout: "RELATIVE/PATH/TO/INDEX"}` 
 
 <br>
 Path `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `openvidu.recording.custom-layout` to the specific `index.html` you want to use for a particular session recording. So, if you have the following folder tree structure:
