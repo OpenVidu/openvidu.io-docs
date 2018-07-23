@@ -112,7 +112,7 @@ We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFIC
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_**.
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_** (between 6-10 minutes).
 
 #### 6. Access and test your OpenVidu Server through your new IP
 

@@ -126,6 +126,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `recording`: whether the session is being recorded or not at this moment
 > - `recordingMode`: recording mode configured for the session (`ALWAYS` or `MANUAL`)
 > - `defaultRecordingLayout`: the default recording layout configured for the session
+> - `defaultCustomLayout`: the default custom layout configured for the session. Its format is a relative path. Only defined if field `defaultRecordingLayout` is set to `CUSTOM`
 > - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
 >     - `connectionId`: identifier of the user's connection
 >     - `role`: role of the connection
@@ -231,8 +232,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > ---
 >
 > - **session**: the sessionId belonging to the session you want to start recording<br><br>
-> - **name** _(optional)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording<br><br>
-> - **recordingLayout** _(optional)_ : you can override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different layouts if you start and stop recording the same session more than once
+> - **name** _(optional)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording. **WARNING: this parameter follows an overwriting policy** (if you pass same "name" value for two different recordings, the newest MP4 file will overwrite the oldest one)<br><br>
+> - **recordingLayout** _(optional)_ : you can override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different layouts if you start and stop recording the same session more than once<br><br>
 > - **customLayout** _(optional)_ : you can override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions). This allows you to use different custom layouts if you start and stop recording the same session more than once
 
 <div></div>
@@ -314,6 +315,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `hasVideo`: true if the recording has a video track, false otherwise (currently fixed to `true`)
 > - `id`: recording identifier. Store it to perform other operations such as stop, get or delete the recording
 > - `recordingLayout`: the recording layout that is being used
+> - `customLayout`: the custom layout that is being used. Its format is a relative path. Only defined if field `recordingLayout` is set to `CUSTOM`
 > - `name`: name of the recording (currently same as `id`)
 > - `sessionId`: session associated to the recording (same value as `session` in the body request)
 > - `size`: size in bytes of the video file (0 until stop operation is called)

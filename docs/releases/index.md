@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.4.0](#240)
 - [2.3.0](#230)
 - [2.2.0](#220)
 - [2.1.0](#210)
@@ -8,6 +9,125 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.4.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.4.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.4.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.4.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.4.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+##### OpenVidu Java Client and OpenVidu Node Client REST API support for v2.3.0
+
+Backend clients are now compatible with REST API 2.3.0, adding methods:
+
+- `Session.close()`: close a Session from your backend
+- `Session.forceDisconnect()`: force some user to leave a Session
+- `Session.forceUnpublish()`: force some user to unpublish a Publisher from a Session
+- `Session.fetch()`: bring Session information from OpenVidu Server
+- `OpenVidu.fetch()`: bring information from every active Session from OpenVidu Server
+
+You can call methods `Session.fetch()` and `OpenVidu.fetch()` to bring the current status of sessions from OpenVidu Server. You can consult now directly from _OpenVidu Java Client_ / _OpenVidu Node Client_ all the active sessions with [`OpenVidu.getActiveSessions()`](https://openvidu.io/api/openvidu-java-client/) / [`OpenVidu.activeSessions`](https://openvidu.io/api/openvidu-node-client/classes/openvidu.html#activesessions) and the active connections of a session with [`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/) / [`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections).
+
+<br>
+##### OpenVidu CDR extended
+
+Event `recordingStopped` event now has `reason` property. Can be: 
+
+- `"recordingStoppedByServer"`: the recording was stopped by the application (using REST API, OpenVidu Java Client or OpenVidu Node Client)
+- `"lastParticipantLeft"`: if the Session was configured for automatic recording (`RecordingMode.ALWAYS`, check [OpenVidu Node Client](https://openvidu.io/api/openvidu-node-client/enums/recordingmode.html) docs for more info), then it stopped because the last participant left the session
+- `"sessionClosedByServer"`: the recording stopped because the session was forcibly closed by the application (using REST API, OpenVidu Java Client or OpenVidu Node Client)
+- `"openviduServerStopped"`: the recording stopped because OpenVidu Server process unexpectedly stopped (cannot be guaranteed)
+
+<br>
+##### OpenVidu WebComponent improvements
+
+- Added a generic fullscreen button which will set as fullscreen element the entire component
+- Local video toolbar shown on fullscreen
+- User's nickname update process is now less intrusive (pop-up removed, simple text input instead)
+- Updated every dialog: now they appear inside of the component (center position), instead of appended to DOM body
+- The chat component is integrated in the layout for a better experience
+- New close chat button (top right corner)
+- New send button (bottom right corner)
+- New avatar user in each message. A new snapshot image will be displayed with each new message
+
+#### BUG FIXES
+
+- OpenVidu Server dashboard test could sometimes fail because of a misuse of TURN server
+- OpenVidu Java Client: pending requests bug fixed
+- Remote Stream status properties are now properly updated when calling `Session.publish`, `Session.unpublish` and `Session.publish` for the same Publisher object (having unpublished audio or video in between the calls)
+
+---
+<br>
 
 ## 2.3.0
 

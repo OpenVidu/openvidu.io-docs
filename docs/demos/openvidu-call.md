@@ -128,13 +128,13 @@ To run OpenVidu Call with the compiled files you will need:
 1) openvidu-server and Kurento Media Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.4.0
 ```
 
 2) Download the release:
 
 ```bash
-wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.0.1/openvidu-call-1.0.1.tar.gz
+wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.1.0/openvidu-call-1.1.0.tar.gz
 ```
 
 3) Decompress the dowloaded file:
@@ -142,7 +142,7 @@ wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.0.1/openvidu
 
 ```
 mkdir openvidu-call
-tar -xvzf openvidu-call-1.0.1.tar.gz -C openvidu-call/
+tar -xvzf openvidu-call-1.1.0.tar.gz -C openvidu-call/
 cd openvidu-call
 ```
 
@@ -156,15 +156,21 @@ sudo apt-get update
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
-5) Install **http-server** and serve the app:
+
+Install **http-server**:
+
+```bash
+npm i http-server
+```
+
+5) Serve the app:
 
 ```
-npm i http-server
 http-server
 ```
 Wait until you see on the output a line IP address. 
 
-By default, the app will be served in `http://127.0.0.1` address. You will need go to [`https://127.0.0.1:4443`](https://127.0.0.1:4443) to sign the certificate. Once signed, you will can test OpenVidu Call in the default IP [`http://127.0.0.1:8080`](http://127.0.0.1:8080)
+By default, the app will be served in `localhost:8080` address. You will need go to [`https://localhost:4443/`](https://localhost:4443/) to accept the self-signed certificate. Once accepted, you will be able to test OpenVidu Call in the default IP [`localhost:8080`](http://localhost:8080)
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
