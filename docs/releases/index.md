@@ -75,7 +75,7 @@
     <td>openvidu-webcomponent</td>
     <td>ZIP</td>
     <td>2.4.0</td>
-    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.4.0" target="_blank">GitHub</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
   </tr>
 
