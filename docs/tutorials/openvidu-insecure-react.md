@@ -235,7 +235,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-react/src/App.js#L200).
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-react/src/App.js#L274).
 
 ---
 
