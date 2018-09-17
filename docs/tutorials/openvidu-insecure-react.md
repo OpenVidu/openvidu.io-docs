@@ -344,8 +344,7 @@ export default class UserVideoComponent extends Component {
 <video autoPlay={true} ref={this.videoRef} />
 ```
 
-And the unique responsibility of the component's logic is letting OpenVidu know the exact HTML DOM video player associated to its StreamManger. To do so we use method `StreamManager.addVideoElement`, which receives a native HTML video element. The way we implement this is React Refs: we get the video element with *React.createRef()* and we call the method once after the component output has been rendered to the DOM (***componentDidMount***) and once every time the StreamManager input changes (***componentWillReceiveProps*** method)
-
+And the unique responsibility of the component's logic is letting OpenVidu know the exact HTML DOM video player associated to its StreamManger. To do so we use method `StreamManager.addVideoElement`, which receives a native HTML video element. The way we implement this is React Refs: we get the video element with *React.createRef()* and we call the method once after the component output has been rendered to the DOM (* **componentDidMount** *).
 ```javascript
 export default class OpenViduVideoComponent extends Component {
     constructor(props) {
