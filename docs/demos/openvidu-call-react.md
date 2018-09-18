@@ -3,7 +3,7 @@
 
 OpenVidu Call demo,<strong> built with React</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
-OpenVidu-Call is composed by the four React components displayed in the image below.
+OpenVidu-Call-React is composed by the five React components displayed in the image below.
 
 <br>
 <p align="center">
@@ -32,7 +32,7 @@ OpenVidu-Call is composed by the four React components displayed in the image be
 	</div>
 	<div class="col-md-6">
 		<p align="center"><strong>Chat Component</strong></p>
-		<p>This component provides to Video-room Component a chatting system that allows users to type to each other.
+		<p>This component provides to Video-room Component a chatting system, integrated with the layout, that allows users to type to each other.
 		</p>
 	</div>
 </div>
