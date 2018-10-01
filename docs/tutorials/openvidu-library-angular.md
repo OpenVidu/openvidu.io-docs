@@ -1,8 +1,8 @@
-# openvidu-libraryangular
+# openvidu-library-angular
 
 <a href="#" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Library Angular is one of the simplest and quickest tutorial to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-angular_ library.
+OpenVidu Library Angular is one of the simplest and quickest tutorials to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-angular_ library.
 
 ## Running this tutorial
 
@@ -118,7 +118,7 @@ imports: [
 
 ##### app.component.html
 
-As you can see here, you can use `<opv-session></opv-session>` component to embed openvidu session in your application in a very easy way. Our component will starts hidden:
+As you can see here, you can use `<opv-session></opv-session>` component to embed openvidu session in your application in a very easy way. Our component will start hidden:
 
 ```html
 <div *ngIf="!session" id="join">
@@ -147,9 +147,9 @@ As you can see here, you can use `<opv-session></opv-session>` component to embe
 
 ##### app.component.ts
 
-Method `joinSession()` gets the token which we provide to our component to establish the connection.
+Method `joinSession()` gets the token which we provide to our component to connect to the session.
 
-You can configure the opv-session with the next parameters:
+You can configure the opv-session with these parameters:
 
 -   `sessionName`: the session name that will be displayed inside the component
 -   `user`: the nickname that the user will have in the session
