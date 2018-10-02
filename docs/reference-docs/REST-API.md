@@ -33,7 +33,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                                                                                                                |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                            |
 | **Body**          | ```{"mediaMode": "MEDIA_MODE", "recordingMode": "RECORDING_MODE", "defaultRecordingLayout": "RECORDING_LAYOUT", "defaultCustomLayout": "CUSTOM_LAYOUT", "customSessionId": "CUSTOM_SESSION_ID"}``` |
-| **Sample return** | ```{"id": "wss://localhost:4443/jpifeuzfati5qaj8"}```                                                                                                                                              |
+| **Sample return** | ```{"id": "zfgmthb8jl9uellk", "createdAt": 1538481996019}```                                                                                                                                                                   |
 
 > **Body parameters**
 >
@@ -58,7 +58,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Returned JSON**
 >
-> - `id`: session identifier. Store it for generating tokens and starting session's recording. It is actually the URL where the client will connect to access the session
+> - `id`: session identifier. Store it for performing future operations onto this session
+> - `createdAt`: time when the session was created in UTC milliseconds
 
 <div></div>
 
@@ -66,7 +67,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: session successfully created and sessionId ready to be used
 > - `400`: problem with body parameters
-> - `409`: parameter `customSessionId` corresponds to an existing session. There has been no change at all in the state of OpenVidu Server
+> - `409`: parameter `customSessionId` corresponds to an existing session. There has been no change at all in the state of OpenVidu Server. You can proceed to use the rejected custom sessionId as usual without a problem
 
 ---
 
@@ -78,7 +79,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/tokens                                                                                                                  |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                            |
 | **Body**          | ```{"session": "SESSION_ID", "role": "ROLE", "data": "DATA"}```                                                                                                    |
-| **Sample return** | ```{"token": "tjyqiq2dw1j4fxjr", "session": "wss://localhost:4443/jpifeuzfati5qaj8", "role": "PUBLISHER", "data": "secure_user_data", "id": "tjyqiq2dw1j4fxjr"}``` |
+| **Sample return** | ```{"id":"wss://localhost:4443?sessionId=zfgmthb8jl9uellk&token=lnlrtnkwm4v8l7uc&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3","session":"zfgmthb8jl9uellk","role":"PUBLISHER","data":"User Data","token":"wss://localhost:4443?sessionId=zfgmthb8jl9uellk&token=lnlrtnkwm4v8l7uc&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3","kurentoOptions":{"videoMaxSendBandwidth":100,"allowedFilters":["GStreamerFilter","ZBarFilter"]}}``` |
 
 > **Body parameters**
 >
@@ -89,7 +90,13 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
-> - **data** _(optional)_ : an optional string to associate any metadata to this token (usually participant's information). Maximum 1000 chars
+> - **data** _(optional)_ : an optional string to associate any metadata to this token (usually participant's information). Maximum 10000 chars<br><br>
+> - **kurentoOptions** _(optional)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is an object with the following optional properties:
+>     - **videoMaxRecvBandwidth**: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.max-recv-bandwidth`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the stream._
+>     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.min-recv-bandwidth`) for every incoming stream of the user owning the token.
+>     - **videoMaxSendBandwidth**: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.max-send-bandwidth`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._
+>     - **videoMinSendBandwidth**: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.min-send-bandwidth`) for every outgoing stream of the user owning the token.
+>     - **allowedFilters**: array with the names of the filters the user owning the token will be able to apply (see [Voice and video filters](/advanced-features/filters/))
 
 <div></div>
 
@@ -100,12 +107,13 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `role`: same as in the body request
 > - `data`: same as in the body request
 > - `id`: same value as `token`
+> - `kurentoOptions`: object with Kurento configuration if provided, same as in the body request
 
 <div></div>
 
 > **HTTP responses**
 >
-> - `200`: token successfully created and ready to be used by one client to connec to the associated session
+> - `200`: token successfully created and ready to be used by one client to connect to the associated session
 > - `400`: problem with body parameters
 
 ---
@@ -117,23 +125,30 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**      | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| **Sample return**  | ```{"mediaMode":"ROUTED","recording":false,"sessionId":"TestSession","recordingMode":"MANUAL","connections":{"numberOfElements":2,"content":[{"role":"PUBLISHER","subscribers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","publisher":"xm3zcg6d9ntp0qbn"}],"connectionId":"rxrqelmbskpsxwx1","publishers":[],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=okx9wldlu4u4okmt&role=PUBLISHER&turnUsername=5VKPTG&turnCredential=udv4gy"},{"role":"PUBLISHER","subscribers":[],"connectionId":"xm3zcg6d9ntp0qbn","publishers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","mediaOptions":{"hasVideo":true,"frameRate":30,"hasAudio":false,"videoActive":true,"videoDimensions":"{\"width\":640,\"height\":480}","typeOfVideo":"CAMERA"}}],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=mltylf00bpapshru&role=PUBLISHER&turnUsername=O1NDC2&turnCredential=xcjany"}]},"defaultRecordingLayout":"BEST_FIT"}``` |
+| **Sample return**  | ```{"sessionId":"TestSession","createdAt":1538482606338,"mediaMode":"ROUTED","recordingMode":"MANUAL","defaultRecordingLayout":"BEST_FIT","customSessionId":"TestSession","connections":{"numberOfElements":2,"content":[{"connectionId":"vhdxz7abbfirh2lh","createdAt":1538482606412,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=2ezkertrimk6nttk&role=PUBLISHER&turnUsername=H0EQLL&turnCredential=kjh48u","role":"PUBLISHER","serverData":"","clientData":"TestClient1","publishers":[{"createdAt":1538482606976,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","mediaOptions":{"hasAudio":true,"audioActive":true,"hasVideo":true,"videoActive":true,"typeOfVideo":"CAMERA","frameRate":30,"videoDimensions":"{\"width\":640,\"height\":480}","filter":{}}}],"subscribers":[]},{"connectionId":"maxawd3ysuj1rxvq","createdAt":1538482607659,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=ovj1b4ysuqmcirti&role=PUBLISHER&turnUsername=INOAHN&turnCredential=oujrqd","role":"PUBLISHER","serverData":"","clientData":"TestClient2","publishers":[],"subscribers":[{"createdAt":1538482607799,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","publisher":"vhdxz7abbfirh2lh"}]}]},"recording":false}``` |
+
+
 
 > **Returned JSON**
 >
 > - `sessionId`: identifier of the session (identical to _SESSION_ID_ url parameter)
+> - `createdAt`: time when the session was created in UTC milliseconds
 > - `mediaMode`: media mode configured for the session (`ROUTED` or `RELAYED`)
 > - `recording`: whether the session is being recorded or not at this moment
 > - `recordingMode`: recording mode configured for the session (`ALWAYS` or `MANUAL`)
 > - `defaultRecordingLayout`: the default recording layout configured for the session
 > - `defaultCustomLayout`: the default custom layout configured for the session. Its format is a relative path. Only defined if field `defaultRecordingLayout` is set to `CUSTOM`
+> - `customSessionId`: custom session identifier. Only defined if the session was initialized passing a `customSessionId` field (see [**POST /api/sessions**](#post-apisessions))
 > - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
 >     - `connectionId`: identifier of the user's connection
+>     - `createdAt`: time when the connection was established in UTC milliseconds
+>     - `location`: geo location of the participant _(ONLY IN OPENVIDU PRO)_
+>     - `platform`: complete description of the platform used by the participant to connect to the session
 >     - `role`: role of the connection
 >     - `clientData`: data defined in OpenVidu Browser when calling [`Session.connect`](/../api/openvidu-browser/classes/session.html#connect) (_metadata_ parameter)
 >     - `serverData`: data assigned to the user's token when generating the token in OpenVidu Server
 >     - `token`: user's token
->     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo")
+>     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo", "filter")
 >     - `subscribers`: array of Subscriber objects (streams the user is subscribed to). Each on is defined by the unique `streamId` and a `publisher` property with the _connectionId_ to identify the connection publishing the stream (must be present inside the `connections.content` array of the session)
 
 <div></div>
@@ -152,7 +167,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**          | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Sample return**      | ```{"numberOfElements":1,"content":[{"mediaMode":"ROUTED","recording":false,"sessionId":"TestSession","recordingMode":"MANUAL","connections":{"numberOfElements":2,"content":[{"role":"PUBLISHER","subscribers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","publisher":"xm3zcg6d9ntp0qbn"}],"connectionId":"rxrqelmbskpsxwx1","publishers":[],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=okx9wldlu4u4okmt&role=PUBLISHER&turnUsername=5VKPTG&turnCredential=udv4gy"},{"role":"PUBLISHER","subscribers":[],"connectionId":"xm3zcg6d9ntp0qbn","publishers":[{"streamId":"xm3zcg6d9ntp0qbn_CAMERA_MJALP","mediaOptions":{"hasVideo":true,"frameRate":30,"hasAudio":false,"videoActive":true,"videoDimensions":"{\"width\":640,\"height\":480}","typeOfVideo":"CAMERA"}}],"clientData":"TestClient","serverData":"","token":"wss://localhost:4443?sessionId=TestSession&token=mltylf00bpapshru&role=PUBLISHER&turnUsername=O1NDC2&turnCredential=xcjany"}]},"defaultRecordingLayout":"BEST_FIT"}]}``` |
+| **Sample return**      | ```{"numberOfElements":1,"content":[{"sessionId":"TestSession","createdAt":1538482606338,"mediaMode":"ROUTED","recordingMode":"MANUAL","defaultRecordingLayout":"BEST_FIT","customSessionId":"TestSession","connections":{"numberOfElements":2,"content":[{"connectionId":"vhdxz7abbfirh2lh","createdAt":1538482606412,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=2ezkertrimk6nttk&role=PUBLISHER&turnUsername=H0EQLL&turnCredential=kjh48u","role":"PUBLISHER","serverData":"","clientData":"TestClient1","publishers":[{"createdAt":1538482606976,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","mediaOptions":{"hasAudio":true,"audioActive":true,"hasVideo":true,"videoActive":true,"typeOfVideo":"CAMERA","frameRate":30,"videoDimensions":"{\"width\":640,\"height\":480}","filter":{}}}],"subscribers":[]},{"connectionId":"maxawd3ysuj1rxvq","createdAt":1538482607659,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=ovj1b4ysuqmcirti&role=PUBLISHER&turnUsername=INOAHN&turnCredential=oujrqd","role":"PUBLISHER","serverData":"","clientData":"TestClient2","publishers":[],"subscribers":[{"createdAt":1538482607799,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","publisher":"vhdxz7abbfirh2lh"}]}]},"recording":false}]}``` |
 
 > **Returned JSON**
 >
@@ -225,7 +240,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                                                                                                                                                                                                   |
 | **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                                                                                                                                                                       |
 | **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "recordingLayout": "RECORDING_LAYOUT", "customLayout": "CUSTOM_LAYOUT"}```                                                                                                                                                                                        |
-| **Sample return**         | ```{"createdAt": 1521196095981, "duration": 0, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 0, "status": "started", "url": null}``` |
+| **Sample return**         | ```{"id":"fds4e07mdug1ga3h","name":"My recording","recordingLayout":"BEST_FIT","sessionId":"fds4e07mdug1ga3h","createdAt":1538483258315,"size":0,"duration":0.0,"url":null,"hasAudio":true,"hasVideo":true,"status":"started"}``` |
 
 > **Body parameters**
 >
@@ -246,7 +261,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `hasVideo`: true if the recording has a video track, false otherwise (currently fixed to `true`)
 > - `id`: recording identifier. Store it to perform other operations such as stop, get or delete the recording
 > - `recordingLayout`: the recording layout that is being used
-> - `name`: name of the recording (currently same as `id`)
+> - `name`: name of the recording. If no `name` parameter is passed in the POST operation, will be equal to `id` field
 > - `sessionId`: session associated to the recording (same value as `session` in the body request)
 > - `size`: size in bytes of the video file (0 until stop operation is called)
 > - `status`: set to `"started"`
@@ -271,7 +286,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**            | POST                                                                                                                                                                                                                                                                                    |
 | **URL**                  | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/stop/&lt;RECORDING_ID&gt;                                                                                                                                                                                                         |
 | **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                |
-| **Sample return**        | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
+| **Sample return**        | ```{"id":"fds4e07mdug1ga3h","name":"My Recording","recordingLayout":"BEST_FIT","sessionId":"fds4e07mdug1ga3h","createdAt":1538483606521,"size":3205004,"duration":12.92,"url":null,"hasAudio":false,"hasVideo":false,"status":"stopped"}``` |
 
 > **Returned JSON**
 >
@@ -285,7 +300,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `sessionId`: session associated to the recording
 > - `size`: size in bytes of the video file
 > - `status`: set to `"stopped"` or `"available"` depending on whether openvidu-server property _openvidu.recording.public-access_ is false or true
-> - `url`: set to `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server property _openvidu.recording.public-access_ is false or true
+> - `url`: set to `null` or `"https://YOUR_OPENVIDU_SERVER_IP/recordings/<RECORDING_ID>.mp4"` depending on whether openvidu-server configuration property _openvidu.recording.public-access_ is false or true
 
 <div></div>
 
@@ -305,7 +320,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**        | GET                                                                                                                                                                                                                                                                                     |
 | **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                                                                                                                                                                                              |
 | **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded                                                                                                                                                                |
-| **Sample return**    | ```{"createdAt": 1521196095981, "duration": 20.88, "hasAudio": true, "hasVideo": true, "id": "jpifeuzfati5qaj8", "recordingLayout": "BEST_FIT", "name": "jpifeuzfati5qaj8", "sessionId": "wss://localhost:4443/jpifeuzfati5qaj8", "size": 3766979, "status": "stopped", "url": null}``` |
+| **Sample return**    | ```{"id":"fds4e07mdug1ga3h","name":"MyRecording","recordingLayout":"BEST_FIT","sessionId":"fds4e07mdug1ga3h","createdAt":1538483606521,"size":3205004,"duration":12.92,"url":null,"hasAudio":true,"hasVideo":true,"status":"stopped"}``` |
 
 > **Returned JSON**
 >
@@ -338,7 +353,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**          | GET                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| **Sample return**      | ```{"count": 2, "items": [{"duration": 132.08, "hasVideo": true, "createdAt": 1521202349460, "hasAudio": true, "size": 22887561, "recordingLayout": "BEST_FIT", "name": "n0kcws1evvn3esmo", "id": "n0kcws1evvn3esmo", "sessionId": "wss://localhost:4443/n0kcws1evvn3esmo", "url": "https://localhost:4443/recordings/n0kcws1evvn3esmo.mp4", "status": "available"}, {"duration": 20.88, "hasVideo": true, "createdAt": 1521200592175, "hasAudio": true, "size": 3766979, "recordingLayout": "BEST_FIT", "name": "gm0hdsv6n8asjgcs", "id": "gm0hdsv6n8asjgcs", "sessionId": "wss://localhost:4443/gm0hdsv6n8asjgcs", "url": "https://localhost:4443/recordings/gm0hdsv6n8asjgcs.mp4", "status": "available"}]}``` |
+| **Sample return**      | ```{"count": 2, "items": [{"duration": 132.08, "hasVideo": true, "createdAt": 1521202349460, "hasAudio": true, "size": 22887561, "recordingLayout": "BEST_FIT", "name": "n0kcws1evvn3esmo", "id": "n0kcws1evvn3esmo", "sessionId": "n0kcws1evvn3esmo", "url": "https://localhost:4443/recordings/n0kcws1evvn3esmo.mp4", "status": "available"}, {"duration": 20.88, "hasVideo": true, "createdAt": 1521200592175, "hasAudio": true, "size": 3766979, "recordingLayout": "BEST_FIT", "name": "gm0hdsv6n8asjgcs", "id": "gm0hdsv6n8asjgcs", "sessionId": "gm0hdsv6n8asjgcs", "url": "https://localhost:4443/recordings/gm0hdsv6n8asjgcs.mp4", "status": "available"}]}``` |
 
 > **Returned JSON**
 >

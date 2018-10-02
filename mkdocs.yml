@@ -29,6 +29,7 @@ pages:
 - ['advanced-features/recording.md', 'Advanced features', 'Recording']
 - ['advanced-features/screen-share.md', 'Advanced features', 'Screen share']
 - ['advanced-features/speech-detection.md', 'Advanced features', 'Speech detection']
+- ['advanced-features/filters.md', 'Advanced features', 'Voice and video filters']
 - ['reference-docs/openvidu-browser.md','Reference Documentation', 'openvidu-browser API']
 - ['reference-docs/openvidu-java-client.md','Reference Documentation', 'openvidu-java-client API']
 - ['reference-docs/openvidu-node-client.md','Reference Documentation', 'openvidu-node-client API']

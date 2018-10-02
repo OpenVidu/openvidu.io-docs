@@ -7,7 +7,7 @@ This documentation is suitable for **Ubuntu 14.04** or **Ubuntu 16.04**. Package
 | Dependecy     | Check version   | Install                               |
 | ------------- | --------------- |-------------------------------------- |
 | java 8 JDK    | `java -version` | `sudo apt-get install -y default-jdk` |
-| node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+| node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 | maven         | `mvn -v`        | `sudo apt-get install -y maven`       |
 | angular-cli   | `ng -v`         | `sudo npm install -g @angular/cli`    |
 
@@ -121,21 +121,19 @@ How to *install* and *run* KMS in your development machine:
 Ubuntu 14.04 LTS Trusty (64 bits)
 
 ```bash
-echo "deb http://ubuntu.openvidu.io/6.7.0 trusty kms6" | tee /etc/apt/sources.list.d/kurento.list
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
-apt-get update
-apt-get -y install kurento-media-server
-apt-get -y install openh264-gst-plugins-bad-1.5
+sudo echo "deb http://ubuntu.openvidu.io/6.8.0 trusty kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+sudo apt-get update
+sudo apt-get -y install kurento-media-server
 ```
 
 Ubuntu 16.04 LTS Xenial (64 bits)
 
 ```bash
-echo "deb http://ubuntu.openvidu.io/6.7.0 xenial kms6" | tee /etc/apt/sources.list.d/kurento.list
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
-apt-get update
-apt-get -y install kurento-media-server
-apt-get -y install openh264-gst-plugins-bad-1.5
+sudo echo "deb http://ubuntu.openvidu.io/6.8.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+sudo apt-get update
+sudo apt-get -y install kurento-media-server
 ```
 
 Start and stop the service

@@ -7,7 +7,7 @@ Only **Ubuntu xenial 16.04** is supported.
 
 #### 1. Install KMS
 ```console
-sudo echo "deb http://ubuntu.openvidu.io/6.7.2 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb http://ubuntu.openvidu.io/6.8.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -61,8 +61,10 @@ sudo service kurento-media-server restart
 #### 8. Init Openvidu Server JAR executable
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server.jar &
+java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server-{VERSION}.jar &
 ```
+
+Being `YOUR_SECRET` the password you want for securing your OpenVidu Server. This will be needed for connecting to OpenVidu Server dashboard and for consuming OpenVidu Server REST API. Keep it safe!
 
 > You will need Java 8 to run OpenVidu Server:
 > 

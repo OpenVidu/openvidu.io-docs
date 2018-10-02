@@ -6,7 +6,7 @@ To share your screen instead of your webcam, the process is exactly the same as 
 OV.initPublisher("html-element-id", { videoSource: "screen" });
 ```
 
-Both **Chrome** and **Firefox** support screen sharing. Chrome needs an extension and Firefox supports native screen sharing since version 52. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html) property in the callback function:
+**Chrome**, **Firefox** and **Opera** support screen sharing. Chrome (and Opera) need an extension and Firefox supports native screen sharing since version 52. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html) property in the callback function:
 
 - `SCREEN_SHARING_NOT_SUPPORTED`: if the browser does not support screen sharing.
 - `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
@@ -32,10 +32,17 @@ OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
 });
 ```
 
+For **Firefox** two different `videoSource` strings are allowed in order to screen share:
+
+- `"screen"`: entire screen
+- `"window"`: specific application window
+
+In Chrome and Opera `"screen"` value will give access to both entire screen and specific application windows.
+
 <br><br>
 <hr>
 
-# Custom Screen Sharing extension for Chrome
+# Custom Screen Sharing extension for Chrome (and Opera)
 <br>
 We provide a default extension that will work on any domain, but you can create your own Chrome extension always based on ours ([OpenVidu Screen Sharing extension](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension)). This way your extension may have your own icon, name, description and custom valid domains.
 

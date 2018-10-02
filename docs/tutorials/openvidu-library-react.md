@@ -2,7 +2,7 @@
 
 <a href="#" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Library React is one of the simplest and quickest tutorial to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-react_ library.
+OpenVidu Library React is one of the simplest and quickest tutorials to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-react_ library.
 
 ## Running this tutorial
 
@@ -23,7 +23,7 @@ npm start
 3) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.4.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.5.0
 ```
 
 4) Go to [`localhost:3000`](http://localhost:3000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -87,7 +87,7 @@ import axios from 'axios';
 
 ##### App.js
 
-As you can see here, you can use `<OpvSession></OpvSession>` component to embed openvidu session in your application in a very easy way. Our component will starts hidden:
+As you can see here, you can use `<OpvSession></OpvSession>` component to embed openvidu session in your application in a very easy way. Our component will start hidden:
 
 ```html
 <div>
@@ -130,9 +130,9 @@ As you can see here, you can use `<OpvSession></OpvSession>` component to embed 
 </div>
 ```
 
-Method `joinSession()` gets the token which we provide to our component to establish the connection.
+Method `joinSession()` gets the token which we provide to our component to connect to the session.
 
-You can configure the OpvSession with the next parameters:
+You can configure the OpvSession with these parameters:
 
 -   `sessionName`: the session name that will be displayed inside the component
 -   `user`: the nickname that the user will have in the session

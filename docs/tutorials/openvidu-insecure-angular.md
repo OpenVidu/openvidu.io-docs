@@ -67,7 +67,7 @@ ng serve
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.4.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.5.0
 ```
 
 5) Go to [`localhost:4200`](http://localhost:4200) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -108,7 +108,7 @@ Let's see first how `app.component.ts` uses NPM package `openvidu-browser`:
 #### We import the necessary objects from `openvidu-browser`:
 
 ```typescript
-import { OpenVidu, Session, StreamManager, Publisher, Subscriber, StreamEvent } from 'openvidu-browser';
+import { OpenVidu, Publisher, Session, StreamEvent, StreamManager, Subscriber } from 'openvidu-browser';
 ```
 
 ---
@@ -127,8 +127,8 @@ mySessionId: string;
 myUserName: string;
 
 // Main video of the page, will be 'publisher' or one of the 'subscribers',
-// updated by an Output event of UserVideoComponent children
-@Input() mainStreamManager: StreamManager;
+// updated by click event in UserVideoComponent children
+mainStreamManager: StreamManager;
 ```
 
 `OpenVidu` object will allow us to get a `Session` object, which is declared just after it. `publisher` StreamManager object will be our own local webcam stream and `subscribers` StreamManager array will store the active streams of other users in the video-call. Finally, `mySessionId` and `myUserName` params simply represent the video-call and your participant's nickname, as you will see in a moment.
@@ -175,10 +175,10 @@ this.session.on('streamDestroyed', (event: StreamEvent) => {
 
 As we are using Angular framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be our *UserVideoComponent*. To do this, we need to store each new Subscriber we received in array `subscribers` (of the parent class `StreamManager`), and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
 
-- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM on its own (we will use the video element contained in one of our child components). HTML template of *AppComponent* loops through `subscribers` array with an `ngFor` directive, declaring a *UserVideoComponent* for each subscriber. We feed them not really as `Subscriber` objects, but rather as their parent class `StreamManager`. This way we can reuse *UserVideoComponent* to also display our `Publisher` object (that also inhertis from class StreamManager). `user-video` also declares an output event to let *AppComponent* know when the user has clicked on it.
+- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM on its own (we will use the video element contained in one of our child components). HTML template of *AppComponent* loops through `subscribers` array with an `ngFor` directive, declaring a *UserVideoComponent* for each subscriber. We feed them not really as `Subscriber` objects, but rather as their parent class `StreamManager`. This way we can reuse *UserVideoComponent* to also display our `Publisher` object (that also inhertis from class StreamManager). `user-video` also declares the `click` event so we can update the main video player view when the user clicks on its Publisher or any Subscriber videos.
 
         <div *ngFor="let sub of subscribers" class="stream-container col-md-6 col-xs-6">
-            <user-video [streamManager]="sub" (clicked)="updateMainStreamManager(sub)"></user-video>
+            <user-video [streamManager]="sub" (click)="updateMainStreamManager(sub)"></user-video>
         </div>
 	
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so Angular will automatically delete the required UserVideoComponent from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
@@ -286,14 +286,16 @@ And we store the Publisher under `this.publisher`, which is also of parent class
 
 ```html
 <div *ngIf="publisher" class="stream-container col-md-6 col-xs-6">
-    <user-video [streamManager]="publisher" (clicked)="updateMainStreamManager(publisher)"></user-video>
+    <user-video [streamManager]="publisher" (click)="updateMainStreamManager(publisher)"></user-video>
 </div>
 ```
 
-Last point worth considering is the implementation of *UserVideoComponent* and *OpenViduVideoComponent*. Each *UserVideoComponent* manages one StreamManager object (a Subscriber or a Publisher) that will be fed to its child component *OpenViduVideoComponent*. Its main task is not managing the final video player (that is *OpenViduVideoComponent* responsibility), but displaying custom information for each one of them (the user's nickname) and handling the click event on them to update property `mainStreamManager` of parent *AppComponent*:
+You can see that every `<user-video>` component for our Publisher and every Subscriber also updates the main video player when clicking on it.
+
+Last point worth considering is the implementation of *UserVideoComponent* and *OpenViduVideoComponent*. Each *UserVideoComponent* manages one StreamManager object (a Subscriber or a Publisher) that will be fed to its child component *OpenViduVideoComponent*. Its main task is not managing the final video player (that is *OpenViduVideoComponent* responsibility), but displaying custom information for each one of them (the user's nickname in this case):
 
 ```html
-<div (click)="videoClicked()">
+<div>
     <ov-video [streamManager]="streamManager"></ov-video>
     <div><p>{% raw %}{{getNicknameTag()}}{% endraw %}</p></div>
 </div>
@@ -305,15 +307,8 @@ export class UserVideoComponent {
     @Input()
     streamManager: StreamManager;
 
-    @Output()
-    clicked = new EventEmitter();
-
     getNicknameTag() { // Gets the nickName of the user
         return JSON.parse(this.streamManager.stream.connection.data).clientData;
-    }
-
-    videoClicked() { // Triggers event for the parent component to update its main video display
-        this.clicked.emit();
     }
 }
 ```

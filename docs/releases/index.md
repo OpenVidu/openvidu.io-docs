@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.5.0](#250)
 - [2.4.0](#240)
 - [2.3.0](#230)
 - [2.2.0](#220)
@@ -9,6 +10,179 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.5.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.5.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.5.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.5.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+##### Kurento filters support
+
+OpenVidu API offers a simple way of applying filters to video and audio streams in the server side by making use of Kurento Media Server capabilities. See [Voice and video filters](https://openvidu.io/docs/advanced-features/filters/) section to learn more.
+
+<br>
+##### Individual user configuration for maximum/minimum bandwidth
+
+In version 2.3.0 we introduced [4 new configuration parameters for OpenVidu Server](#configure-global-bandwidth-for-your-webrtc-connections) that allow the limitation of the video bandwidth both sent and received to/from OpenVidu Server, affecting all video streams in a global manner. Now it is possible to specifically configure certain input and output bandwidth for every user connected to a session. This way you can customize the bandwidth for each Publisher and Subscriber object of each Connection object. Users with no specific configuration will use the global values.
+
+You can set custom bandwidths by using **REST API**, **openvidu-java-client** or **openvidu-node-client**:
+
+- **REST API**: in [POST /api/tokens](https://openvidu.io/docs/reference-docs/REST-API/#post-apitokens) append a property in the json body like this
+
+        "kurentoOptions": {
+          "videoMaxRecvBandwidth": 1000,
+          "videoMinRecvBandwidth": 1000,
+          "videoMaxSendBandwidth": 1000,
+          "videoMinSendBandwidth": 1000
+        }
+
+- **openvidu-java-client**: build your tokens like this
+  
+        KurentoOptions kurentoOptions = new KurentoOptions.Builder()
+          .videoMaxRecvBandwidth(1000)
+          .videoMinRecvBandwidth(1000)
+          .videoMaxSendBandwidth(1000)
+          .videoMinSendBandwidth(1000)
+          .build();
+        TokenOptions tokenOptions = new TokenOptions.Builder()
+          .data("User data")
+          .role(OpenViduRole.PUBLISHER)
+          .kurentoOptions(kurentoOptions)
+          .build();
+        String myToken = mySession.generateToken(tokenOptions);
+
+- **openvidu-node-client**: build your tokens like this
+
+        var tokenOptions = {
+            data: "User data",
+            role: OpenViduRole.PUBLISHER,
+            kurentoOptions: {
+              videoMaxRecvBandwidth: 1000,
+              videoMinRecvBandwidth: 1000,
+              videoMaxSendBandwidth: 1000,
+              videoMinSendBandwidth: 1000
+            }
+        };
+        mySession.generateToken(tokenOptions).then(token => { ... } );
+
+<br>
+##### REST API and Server SDKs improvements
+
+- `Connection` objects have a brand new property very useful for session analysis: `platform`. It carries a complete description of the platform used by the client to connect to your session. For example: `"Chrome 69.0.3497.81 on OS X 10.13.6 64-bit"` or `"Firefox Mobile 62.0 on Mobile (Android 8.1.0)"`
+
+    You can get this information by retrieving session information with the REST api ([GET /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions) or [GET /api/sessions/SESSION_ID](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessionssession_id)) or inspecting _openvidu-java-client_ and _openvidu-node-client_ Session objects: calling `Session.fetch()` or `OpenVidu.fetch()` will update the status of their `activeConnections` property. Then you can check it out in _openvidu-node-client_ (property [`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections)) or _openvidu-java-client_ (method [`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/))
+
+- `Session`, `Connection` and `Publisher` objects now have `createdAt` property, indicating when these objects where initialized in OpenVidu Server. This property has been integrated to maintain consistency with OpenVidu Server Call Detail Record, which has already been storing it in previous versions (check `"timestamp"` property of every [CDR entry](https://openvidu.io/docs/reference-docs/openvidu-server-cdr)).
+
+<br>
+##### OpenVidu Browser improvements
+
+- New method `OpenVidu.checkScreenSharingCapabilities()`. It allows developers to know if the client platform supports screen sharing (see its declaration in [OpenVidu Documentation](https://openvidu.io//api/openvidu-browser/classes/openvidu.html#checkscreensharingcapabilities))
+
+<br>
+##### New OpenVidu Angular and OpenVidu React libraries
+
+We introduced OpenVidu Web Component in release [2.3.0](#230). Now we offer native libraries for both Angular and React (latest versions) to insert the same powerful component in your applications by making use of each framework capabilities. You can check a tutorial for OpenVidu Angular ([openvidu-library-angular](https://openvidu.io/docs/tutorials/openvidu-library-angular/)) and  for OpenVidu React ([openvidu-library-react](https://openvidu.io/docs/tutorials/openvidu-library-react/)) right now.
+
+Of course you can keep using OpenVidu Browser library instead of these components in any frontend framework. These tutorials show a basic use of OpenVidu Browser in an Angular app ([openvidu-insecure-angular](https://openvidu.io/docs/tutorials/openvidu-insecure-angular/)) and in a React app ([openvidu-insecure-react](https://openvidu.io/docs/tutorials/openvidu-insecure-react/)).
+
+#### BUG FIXES
+
+- Local tracks now are not stopped on stream disposal if property [`PublisherProperties.videoSource`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html#videosource) was of type MediaStreamTrack (custom stream got with [`OpenVidu.getUserMedia()`](https://openvidu.io/api/openvidu-browser/classes/openvidu.html#getusermedia)). _Issue [#107](https://github.com/OpenVidu/openvidu/issues/107), PR [#108](https://github.com/OpenVidu/openvidu/pull/108)_
+- Deprecated `RTCPeerConnection.getRemoteStreams` and `RTCPeerConnection.getLocalStreams` to `RTCPeerConnection.getReceivers` and `RTCPeerConnection.getSenders`. _Issue [#54](https://github.com/OpenVidu/openvidu/issues/54)_
+- Allow full screen sharing in Firefox. _Issue [#103](https://github.com/OpenVidu/openvidu/issues/103), PR [#105](https://github.com/OpenVidu/openvidu/pull/105)_
+- Fixed duplicated camera permissions in Firefox if `PublisherProperties.videoSource/audioSource` are provided as MediaStreamTracks. _PR [#109](https://github.com/OpenVidu/openvidu/pull/109)_
+- openvidu-node-client now rejects with Error object upon OpenVidu Server unreachable. _Issue [#116](https://github.com/OpenVidu/openvidu/issues/116), PR [#117](https://github.com/OpenVidu/openvidu/pull/117)_
+
+---
+<br>
 
 ## 2.4.0
 
@@ -310,9 +484,9 @@ At last developers have available the new role that has been in our roadmap for 
 
 We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/) sections:
 
-- `openvidu.streams.video.max-recv-bandwidth`: Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 600)
+- `openvidu.streams.video.max-recv-bandwidth`: Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 1000)
 - `openvidu.streams.video.min-recv-bandwidth`: Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 300)
-- `openvidu.streams.video.max-send-bandwidth`: Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 600)
+- `openvidu.streams.video.max-send-bandwidth`: Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 1000)
 - `openvidu.streams.video.min-send-bandwidth`: Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 300)
 
 > Future iterations will study the possibility of configuring this same parameters for each session individually or even for each incoming or outgoing WebRTC connection (maybe as part of [`PublisherProperties`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html) or [`SubscriberProperties`](https://openvidu.io/api/openvidu-browser/interfaces/subscriberproperties.html))
