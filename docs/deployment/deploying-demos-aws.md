@@ -112,8 +112,4 @@ Go to **_Outputs_** tab to get your brand new IP and click on it (or if you have
     <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_output_demos.png">
   </p>
 
-  > **IMPORTANT**: Even though the Status of your new Stack shows "CREATE_COMPLETE", 
-  > it will take a bit longer until you can access your demos. Be patient.
-
-
 <script src="/js/copy-btn.js"></script>
