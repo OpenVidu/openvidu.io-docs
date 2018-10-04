@@ -170,9 +170,9 @@ openvidu.startRecording(sessionId) // Starts recording
 })
 .catch(error => console.error(error));
 
-openvidu.stopRecording(recording.getId()) // Stops recording
+openvidu.stopRecording(recording.id) // Stops recording
 .then(response => {
-    recording = response
+    recording = response;
 })
 .catch(error => console.error(error));
 ```
