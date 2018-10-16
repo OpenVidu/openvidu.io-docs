@@ -9,6 +9,7 @@ pages:
 - ['tutorials/openvidu-library-angualar.md','Tutorials', 'openvidu-library-angular']
 - ['tutorials/openvidu-insecure-react.md','Tutorials', 'openvidu-insecure-react']
 - ['tutorials/openvidu-library-react.md','Tutorials', 'openvidu-library-react']
+- ['tutorials/openvidu-ionic.md','Tutorials', 'openvidu-ionic']
 - ['tutorials/openvidu-js-java.md','Tutorials', 'openvidu-js-java']
 - ['tutorials/openvidu-mvc-java.md','Tutorials', 'openvidu-mvc-java']
 - ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
