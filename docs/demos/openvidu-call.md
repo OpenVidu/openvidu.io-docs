@@ -3,7 +3,7 @@
 
 OpenVidu Call demo,<strong> built with Angular 6</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
-OpenVidu-Call is composed by the four Angular components displayed in the image below.
+OpenVidu-Call is composed by the six Angular components displayed in the image below.
 
 <br>
 <p align="center">
