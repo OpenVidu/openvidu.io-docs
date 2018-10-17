@@ -176,11 +176,22 @@ ionic cordova run android
 </div>
 </div>
 
-4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+4) Connect the device to the same network as the PC. 
+
+5) Establishing the same WIFI in both devices, you need to know IP of your PC in the network. For know that, you can execute `ifconfig` in your command shell and you will can find something like `192.168.0.105`.
+
+Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
+
+Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L20) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
+
+
+6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url" openvidu/openvidu-server-kms:2.5.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.5.0
 ```
+
 
 
 <div class="row no-margin ">
