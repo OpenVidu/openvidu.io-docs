@@ -12,6 +12,7 @@ If it is the first time you use OpenVidu, it is higly recommended to start with 
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
+    background-color: #FFFBF1;
     margin-bottom: 25px;"><div style="display: table-cell">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -27,6 +28,7 @@ If it is the first time you use OpenVidu, it is higly recommended to start with 
     <br><br>
     <strong>Bugs reported:</strong><br>
     <li>Android 5 and 6.0 will not work with Ionic v4-beta until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved</li>
+    <li>This app will not work in iOS because of <a href="https://stackoverflow.com/questions/45055329/does-webkit-in-ios-11-beta-support-webrtc/49467964#49467964">problems between WebRTC and iOS</a></li>
 
 	
 </div>
@@ -68,7 +70,9 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 </div>
 </div>
 
-## Running this tutorial
+## Running this tutorial:
+
+#### Using the browser
 
 1) Clone the repo:
 
@@ -98,11 +102,86 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 5) Go to [`localhost:8100`](http://localhost:8100) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
+6) To show the app with the device appearance, press `F12` button in your keyboard and the browser DevTool will be opened.
+
+7) Then, you can find a button with a device icon at the top of the browser page. Pressing this button, you should see the device appearance and it will allow you choose your favourite device.
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ionic-chrome1.png">
+		<img class="img-responsive" src="/img/demos/ionic-chrome1.png">
+	</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ionic-chrome2.png">
+		<img class="img-responsive" src="/img/demos/ionic-chrome2.png">
+	</a>
+	</div>
+</div>
+
+
 <br>
 
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+
+#### Using the Android apk in an Android device
+
+To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android) to allows us to configure step by step all the requirements.
+
+After we have finished the Ionic tutorial, we must have to follow these steps:
+
+1) Clone the repo:
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+```
+
+2) You will need ionic-cli (and of course node 8.9 or greater) to serve the Ionic app. You can install it with the following command:
+
+```bash
+npm install -g ionic@latest
+```
+
+3) Run the tutorial:
+
+```bash
+cd openvidu-tutorials/openvidu-ionic
+npm install
+ionic cordova run android
+```
+
+<div style="
+    display: table;
+    border: 1px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;"><div style="display: table-cell">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+    To deploy apps to an Android device and debug them, developer mode must be enabled and allow for USB debugging turned on. Check out <a href="https://developer.android.com/studio/debug/dev-options#enable">these instructions</a> to do this on a device.
+</div>
+</div>
+
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url" openvidu/openvidu-server-kms:2.5.0
+```
+
 
 <div class="row no-margin ">
 	<div class="col-md-4 col-sm-4">
@@ -121,6 +200,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 	</a>
 	</div>
 </div>
+
+
+
 
 ## Understanding the code
 
@@ -273,25 +355,29 @@ this.getToken().then(token => {
 
     // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
     // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
-    this.session.connect(token, { clientData: this.myUserName })
-        .then(() => {
+    this.session.connect(token, { clientData: this.myUserName }).then(() => {
+
+        if (this.platform.is('cordova')) {
 
             // --- 5) Requesting and Checking Android Permissions
             this.checkAndroidPermissions().then(() => {
                 this.initPublisher();
             })
             .catch((err) => console.error(err));
-        })
-        .catch(error => {
-            console.log('There was an error connecting to the session:', error.code, error.message);
-        });
+        } else {
+            this.initPublisher();
+        }
+    })
+    .catch(error => {
+        console.log('There was an error connecting to the session:', error.code, error.message);
+    });
 });
 ```
 
 
 In `session.connect` method first param is the recently retrieved user token. Second param is the value every user will receive in `event.stream.connection.data` property on `streamCreated` event (this value will be used by *UserVideoComponent* to append the user's nickname to the his video). So in this case it is an object with a property "clientData" with value "myUserName", which is binded from HTML input `<ion-input [(ngModel)]="myUserName"></ion-input>` (filled by the user).
 
-If the method succeeds, we will call and receive a promise from `checkAndroidPermissions()` method. That method requests and checks the Android permissions that the device give to our device. Once the promise has been resolved, the `initPublisher()` method will be called. 
+If the method succeeds and is running under a cordova platform, we will call and receive a promise from `checkAndroidPermissions()` method. That method requests and checks the Android permissions that the device give to our device. Once the promise has been resolved, the `initPublisher()` method will be called. 
 
 We will talk about the Android permissions in the next section.
 
@@ -321,8 +407,7 @@ this.publisher = publisher;
 
 ```
 
-
-After to receive the promise resolved from `checkAndroidPermissions()`, we proceed to publish our webcam to the session. To do so we get a `Publisher` object with the desired properties and publish it to the Session through `Session.publish()` method. The rest of users will receive our Stream object and will execute their `streamCreated` event. Finally we make the main video player (which is just another *UserVideoComponent*) display the Publisher object by default. This is the HTML code that will display the main stream manager:
+After to receive the promise resolved from `checkAndroidPermissions()` or if we are running the app in a browser,  we proceed to publish our webcam to the session. To do so we get a `Publisher` object with the desired properties and publish it to the Session through `Session.publish()` method. The rest of users will receive our Stream object and will execute their `streamCreated` event. Finally we make the main video player (which is just another *UserVideoComponent*) display the Publisher object by default. This is the HTML code that will display the main stream manager:
 
 ```html
 <div *ngIf="mainStreamManager" id="main-video">
@@ -456,6 +541,9 @@ Now, we are ready to request permissions to our device. To do that, we need to u
 
 It is important to call to these methods under `platform.ready()` because of that function returns us a promise when the platform is ready and the native funcionality can be called.
 
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L166).
+
+
 You also should declare an array of permissions to use like parameter of `requestPermissions()`: 
 
 ```typescript
@@ -466,11 +554,8 @@ ANDROID_PERMISSIONS = [
 ];
 ```
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L166).
 
-
-
-4) Last but not least, under `platforms/android/app/src/main` is found `AndroidManifest.xml`. These permissions must be included:
+4) Last but not least, under `platforms/android/app/src/main` (platform directory will be created after execute `ionic cordova prepare android`) is found `AndroidManifest.xml`. These permissions must be included:
 
 ```xml
 <uses-permission android:name="android.permission.CAMERA" />
