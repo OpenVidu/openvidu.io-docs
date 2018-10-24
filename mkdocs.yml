@@ -17,6 +17,7 @@ pages:
 - ['demos/openvidu-getaroom.md','Demos', 'openvidu-getaroom']
 - ['demos/openvidu-call.md','Demos', 'openvidu-call']
 - ['demos/openvidu-call-react.md','Demos', 'openvidu-call-react']
+- ['demos/openvidu-call-ionic.md','Demos', 'openvidu-call-ionic']
 - ['demos/openvidu-classroom.md','Demos', 'openvidu-classroom']
 - ['how-do-i/create-session.md', 'How do I ... ?', 'Create a session']
 - ['how-do-i/join-session.md', 'How do I ... ?', 'Join a session']
