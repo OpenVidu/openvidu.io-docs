@@ -1,4 +1,4 @@
-<h2 id="section-title">Deploying on Ubuntu with native services and executables</h2>
+<h2 id="section-title">Deploying OpenVidu on Ubuntu</h2>
 <hr>
 
 ## Installation process
@@ -14,14 +14,14 @@ sudo apt-get -y install kurento-media-server
 ```
 
 #### 2. Install COTURN
-```console
+```bash
 sudo apt-get -y install coturn
 ```
 
 > This is a great implementation of a STUN/TURN server, necessary for connecting your users under some complicated circumstances. You can check its documentation [here](https://github.com/coturn/coturn).
 
 #### 3. Install Redis
-```console
+```bash
 sudo apt-get -y install redis-server
 ```
 
@@ -47,7 +47,7 @@ verbose
 ```
 
 #### 6. File `/etc/default/coturn`
-```
+```bash
 TURNSERVER_ENABLED=1
 ```
 
@@ -74,13 +74,15 @@ Being `YOUR_SECRET` the password you want for securing your OpenVidu Server. Thi
 > 
 > `wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar`</br>
 
-Go to [Using your own certificate](/deployment/custom-certificate#for-a-jar-binary-of-openvidu-server) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
+Go to [Using your own certificate](#using-your-own-certificate) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
 #### 9. Finally check your server
 
 You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
 To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, this scenario is exactly the same as portrayed [here](/deployment/deploying-aws#connecting-your-external-app-to-cloudformation-openvidu-server).
+
+---
 
 ## Server network requirements
 
@@ -92,33 +94,39 @@ In order for this deployment to work, you will have to meet 2 sets of needs in t
 
       - **4443 TCP** (_OpenVidu Server_ listens on port 4443 by default)
       - **3478 TCP** (_COTURN_ listens on port 3478 by default)
-      - **49152 - 65535 UDP** (these ports are recommended to be opened, as WebRTC randomly exchanges media through any of them)
+      - **49152 - 65535 UDP** (these ports are strongly recommended to be opened, as WebRTC randomly exchanges media through any of them)
   
-  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
+  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws).
 
-## Architectures
+---
 
-You can have the following scenarios depending on how many machines you have and what architecture you prefer. What are the advantages and disadvantages of each one of them? Well, it really depends on the power of the machine, the nature of your application and the load expected. In general, having all the services running in one machine will reduce its performance and scalability, but on the other hand, makes it easier the process of installation, configuration and launching.
+## Using your own certificate
 
-If you are deploying with these instructions for the first time, we recommend using only one machine. When you verify that everything is working as expected, you can try different configurations to compare overall performance and load capacity.
+OpenVidu Server is a Java application and therefore needs a Java keystore (**.jks**) for providing security certificates. If you don't have it, you can easily obtain a **.jks** file from your certificate and private key files (**.crt** and **.key** respectively, or maybe both of them being **.pem**). You do so by using **_openssl_** and **_keytool_** :
 
-<div id="deploy-arch-row" class="row">
-  <div class="col-md-8">
-    <img class="img-responsive" src="/img/docs/deployment/app-ovserver-kms-final.png">
-  </div>
-  <div id="deploy-arch-desc" class="col-md-4">
-  <blockquote>
-    <ol>
-      <li>App, OpenVidu Server and KMS run in the same machine</li>
-      <li>App runs in its own machine. OpenVidu Server and KMS run in the same machine</li>
-      <li>App, OpenVidu Server and KMS all run in different machines</li>
-    </ol>
-    </blockquote>
-  </div>
-</div>
+```bash
+# Export certificate in p12 format (password will be asked)
+# YOUR_CRT.crt and YOUR_KEY.key files may be YOUR_CRT.pem and YOUR_KEY.pem files instead
+openssl pkcs12 -export -name YOUR_KEYSTORE_ALIAS -in YOUR_CRT.crt -inkey YOUR_PRIVATE_KEY.key -out p12keystore.p12
 
-The instructions above portray scenarios 1 and 2 in the image. In other words, we are supposing that OpenVidu Server and KMS will be hosted in the same machine. The only difference between options 1-2 and option 3 is that for step 8 another parameter is required when launching your openvidu-server:
-
-```console
-java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ -Dkms.uris=[\"ws://YOUR_KMS_MACHINE_IP:8888/kurento\"] -jar openvidu-server.jar
+# Generate jks (password will be asked again)
+keytool -importkeystore -srckeystore p12keystore.p12 -srcstoretype pkcs12 -deststoretype pkcs12 -alias YOUR_KEYSTORE_ALIAS -destkeystore YOUR_KEYSTORE_NAME.jks
 ```
+
+In order to use your JKS, just give the proper value to the following OpenVidu Server properties on launch:
+
+- `server.ssl.key-store`=/PATH/TO/YOUR_KEYSTORE_NAME.jks
+- `server.ssl.key-store-password`=value_provided_when_generating_jks
+- `server.ssl.key-alias`=YOUR_KEYSTORE_ALIAS
+
+<br>
+
+##### Example
+
+```bash
+java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_keystore.jks -Dserver.ssl.key-store-password=MY_KEYSTORE_SECRET -Dserver.ssl.key-alias=my_cert_alias openvidu-server-2.5.0.jar
+```
+
+> Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/deployment/deploying-aws#4-complete-the-configuration-fields)**
+
+<br>

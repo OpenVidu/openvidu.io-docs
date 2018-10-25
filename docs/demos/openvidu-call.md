@@ -137,7 +137,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.1.0/openvidu-call-1.1.0.tar.gz
 ```
 
-3) Decompress the dowloaded file:
+3) Decompress the downloaded file:
 
 
 ```
@@ -190,3 +190,4 @@ By default, the app will be served in `localhost:8080` address. You will need go
     clickSlide   : 'close',
   });
 </script>
+

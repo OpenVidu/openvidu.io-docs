@@ -1,6 +1,6 @@
 # Screen share
 
-To share your screen instead of your webcam, the process is exactly the same as stated in [Publish a stream](/how-do-i/publish-unpublish/) section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
+To share your screen instead of your webcam, the process is exactly the same as stated in [Publish a stream](/cheatsheet/publish-unpublish/) section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 OV.initPublisher("html-element-id", { videoSource: "screen" });

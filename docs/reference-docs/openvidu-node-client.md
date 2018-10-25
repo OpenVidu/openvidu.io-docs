@@ -27,6 +27,42 @@ var tokenOptions = {
 session.generateToken(tokenOptions).then(token => { ... });
 ```
 
+### Fetch session status
+
+```javascript
+// Fetch all session info from OpenVidu Server
+openvidu.fetch()
+  .then(anyChange => {
+      var activeSessions = openvidu.activeSessions;
+  }):
+
+// Fetch one session info from OpenVidu Server
+session.fetch()
+  .then(anyChange => {
+      var activeConnections = session.activeSessions;
+  });
+```
+
+### Close a session
+
+```javascript
+session.close().then(() => console.log('Session closed'));
+```
+
+### Disconnect a user
+
+```javascript
+// Find the desired Connection object in the array Session.activeConnections
+session.forceDisconnect(connection);
+```
+
+### Unpublish a user's stream
+
+```javascript
+// Find the desired Publisher object in the array Connection.publishers
+session.forceUnpublish(publisher);
+```
+
 ### Manage recordings
 
 ```javascript

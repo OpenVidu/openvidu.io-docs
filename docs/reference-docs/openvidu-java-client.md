@@ -27,6 +27,38 @@ TokenOptions tokenOptions = new TokenOptions.Builder()
 String token = session.generateToken(tokenOptions);
 ```
 
+### Fetch session status
+
+```java
+// Fetch all session info from OpenVidu Server
+openvidu.fetch():
+List<Session> activeSessions = openvidu.getActiveSessions();
+
+// Fetch one session info from OpenVidu Server
+session.fetch();
+List<Connection> activeConnections = session.getActiveConnections();
+```
+
+### Close a session
+
+```java
+session.close();
+```
+
+### Disconnect a user
+
+```java
+// Find the desired Connection object in the list returned by Session.getActiveConnections()
+session.forceDisconnect(connection);
+```
+
+### Unpublish a user's stream
+
+```java
+// Find the desired Publisher object in the list returned by Connection.getPublishers()
+session.forceUnpublish(publisher);
+```
+
 ### Manage recordings
 
 ```java
