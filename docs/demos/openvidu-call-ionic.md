@@ -40,28 +40,6 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
 
 <hr>
 
-<div class="row wow fadeInUp">
-
-<div class="screenshots-gallery" style="text-align: -webkit-center; width: 90%; margin: auto;" >
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic1.png">
-		<img class="/img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic1.png"/>
-	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic2.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic2.png"/>
-	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic5.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic5.png"/>
-	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic3.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic3.png"/>
-	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic4.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic4.png"/>
-	</a>
-</div>
-</div>
-
-
 ## Running this demo
 
 
@@ -139,7 +117,24 @@ git clone https://github.com/OpenVidu/openvidu-call-ionic.git
 npm install -g ionic@latest
 ```
 
-3) Run the tutorial:
+3) Connect the device to the same network as the PC. 
+
+4) Establishing the same WIFI in both devices, you need to know IP of your PC in the network. For know that, you can execute `ifconfig` in your command shell and you will can find something like `192.168.0.105`.
+
+Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
+
+Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
+
+
+5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.5.0
+```
+
+6) Connect the device to the PC. You can check if your device is authoriced with the `adb devices` command.
+
+7) Run the tutorial:
 
 ```bash
 cd openvidu-call-ionic
@@ -171,20 +166,29 @@ ionic cordova run android
 </div>
 </div>
 
-4) Connect the device to the same network as the PC. 
+<div class="row wow fadeInUp">
 
-5) Establishing the same WIFI in both devices, you need to know IP of your PC in the network. For know that, you can execute `ifconfig` in your command shell and you will can find something like `192.168.0.105`.
+<div class="screenshots-gallery" style="text-align: -webkit-center; width: 90%; margin: auto;" >
+	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic1.png">
+		<img class="/img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic1.png"/>
+	</a>
+	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic2.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic2.png"/>
+	</a>
+	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic5.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic5.png"/>
+	</a>
+	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic3.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic3.png"/>
+	</a>
+	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic4.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic4.png"/>
+	</a>
+</div>
+</div>
 
-Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
+<br>
 
-Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
-
-
-6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
-
-```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.5.0
-```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
