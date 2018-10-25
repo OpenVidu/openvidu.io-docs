@@ -144,7 +144,25 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 npm install -g ionic@latest
 ```
 
-3) Run the tutorial:
+3) Connect the device to the same network as the PC. 
+
+4) Establishing the same WIFI in both devices, you need to know IP of your PC in the network. For know that, you can execute `ifconfig` in your command shell and you will can find something like `192.168.0.105`.
+
+Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
+
+Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L20) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
+
+
+5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.5.0
+```
+
+
+6) Connect the device to the PC. You can check if your device is authoriced with the `adb devices` command.
+
+7) Run the tutorial:
 
 ```bash
 cd openvidu-tutorials/openvidu-ionic
@@ -177,20 +195,7 @@ ionic cordova run android
 </div>
 
 
-4) Connect the device to the same network as the PC. 
 
-5) Establishing the same WIFI in both devices, you need to know IP of your PC in the network. For know that, you can execute `ifconfig` in your command shell and you will can find something like `192.168.0.105`.
-
-Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
-
-Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L20) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
-
-
-6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
-
-```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.5.0
-```
 
 
 
@@ -511,11 +516,13 @@ Whenever we want a user to leave the session, we just need to call `session.disc
 
 ## Android Permisions
 
-In the previous section, we have seen how we can connect to the session and publish our webcam. Before we publish our webcam, we have to take account that we are working with a cordova application. 
+In the previous section, we have seen how we can connect to the session and publish our webcam. Before we publish it, we have to take account that we are working with a cordova application. 
 
 Keeping this in mind, our app will need get access to the camera and the microphone. We have to provide to it with the necessary permission of the device.
- 
- Following the next steps, we will be able to do that.
+
+Following the next steps, we have been able to set up the permisions required for OpenVidu works in Android device.
+
+These configurations are included in the **openvidu-ionic** project we provide you. Otherwise, if you want to **start a new project with Ionic and OpenVidu**, you should follow these four steps:
 
  1) Install [android-permissions](https://beta.ionicframework.com/docs/native/android-permissions) Cordova and Ionic Native Plugin:
 
@@ -552,7 +559,7 @@ Now, we are ready to request permissions to our device. To do that, we need to u
 
 It is important to call to these methods under `platform.ready()` because of that function returns us a promise when the platform is ready and the native funcionality can be called.
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L166).
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/99f0c03ba11d3d59e68a0ab840175764ce24399b/openvidu-ionic/src/app/app.component.ts#L172).
 
 
 You also should declare an array of permissions to use like parameter of `requestPermissions()`: 
@@ -566,12 +573,20 @@ ANDROID_PERMISSIONS = [
 ```
 
 
-4) Last but not least, under `platforms/android/app/src/main` (platform directory will be created after execute `ionic cordova prepare android`) is found `AndroidManifest.xml`. These permissions must be included:
+4) Last but not least, in `root` directory is found `config.xml`. These permissions must be included inside of android platform:
 
 ```xml
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+<config-file mode="merge" parent="/*" target="AndroidManifest.xml">
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+</config-file>
+```
+Moreover, you must to add `xmlns:android="http://schemas.android.com/apk/res/android"` to the end of the opening `widget` node.
+```xml
+<widget id="io.openvidu.sample" version="2.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+...
+</widget>
 ```
 
 Once we have added that  lines to our code, our app will be ready to works in our device.
