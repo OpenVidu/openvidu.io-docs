@@ -244,7 +244,9 @@ But there's also a bunch of features supported by Kurento or WebRTC that will be
 
 ### 8. Does OpenVidu support Android and iOS?
 
-At the moment there are no OpenVidu clients for mobile platforms, but we are working on it. In the future you will have available **OpenVidu Android** and **OpenVidu iOS**, joining **OpenVidu Browser**. The main goal here is that all of them are fully compatible with one another.
+Since release 2.6.0 **Android** is supported through **[Ionic](https://ionicframework.com/)**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/) tutorial and you will have an OpenVidu native Android app working in minutes. iOS compatibility is being worked on.
+
+In the future OpenVidu team plans to support **[React Native](https://facebook.github.io/react-native/)** and **[Native Script](https://www.nativescript.org/)** frameworks in the same manner.
 
 ---
 
