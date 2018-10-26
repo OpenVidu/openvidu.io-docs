@@ -27,7 +27,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 1) You will need _node_ to execute the app. You can install them with:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
