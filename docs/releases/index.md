@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.6.0](#260)
 - [2.5.0](#250)
 - [2.4.0](#240)
 - [2.3.0](#230)
@@ -10,6 +11,130 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.6.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.6.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.6.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.6.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.6.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+##### Ionic support
+
+There's a [complete tutorial](/tutorials/openvidu-ionic/) in OpenVidu Docs to get a native Android app working with OpenVidu in just a few steps. You can just clone and use our sample application as a starting point or maybe you want to add OpenVidu to your existing Ionic app. [Here you have](/tutorials/openvidu-ionic/#android-permisions) the necessary configuration steps to do so (basically Android permissions stuff).
+
+We are currently working on making OpenVidu work on iOS with Ionic.
+
+<br>
+##### New types of filters supported
+
+OpenVidu 2.5.0 brought a fantastic and a differentiating element: [real time audio and video filters](/advanced-features/filters/). Now we have extended this capability to support new GStreamer based filters such as **textoverlay**, **timeoverlay** or **clockoverlay**.
+
+You can embed any text, the timestamp of the video or the current time, easily customizing its position and format. Check these filters in [GStreamer section](/advanced-features/filters/#gstreamer-filters) of filters documentation.
+
+<br>
+##### Recording service now generates a thumbnail when stopping the recording
+
+Whenever you stop the recording of a session, OpenVidu will automatically generate a thumbnail for the video, getting it from the middle of the video timeline. You can access it from `https://OPENVIDU_SERVER_IP:4443/recordings/RECORDING_NAME.jpg`
+
+Do not worry about their lifecycle: they are linked to the video file itself. If you decide to delete the recording, thumbnail will also be deleted.
+
+#### BUG FIXES
+
+<br>
+##### Important fix for increasing success rate in establishing media connections
+
+Time ago we ran into a pretty ugly bug that was causing some problems during WebRTC negotiation, resulting in some clients located in complex networks (like a company's WiFi network) not being able to connect to OpenVidu Server. What developers perceived was that in certain scenarios some users simply couldn't receive or send any media connection.
+
+This bug has been completely solved in OpenVidu 2.6.0. Now media connections will work fine in almost every client network configuration.
+
+---
+<br>
 
 ## 2.5.0
 
