@@ -114,11 +114,11 @@ Just need to add a new parameter when launching you openvidu-server container:
 
   - **openvidu/openvidu-server-kms Docker container** (See [DockerHub](https://hub.docker.com/r/openvidu/openvidu-server-kms/)): override the default value of the property `openvidu.publicurl`:
 
-        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms
+        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
     
     in Windows is...
 
-        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms
+        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.6.0
 
 And let know your app/tutorial how to initialize _openvidu-java-client_ or _openvidu-node-client_ (or where to send your REST API operations in case you are not using any of these clients). For example:
 

@@ -88,7 +88,7 @@ docker run --net="host" --rm \
     -e MY_UID=$(id -u $USER) \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.public-access=true \
-openvidu/openvidu-server
+openvidu/openvidu-server:2.6.0
 ```
 
 - `openvidu.recording`: _same as in OpenVidu Server JAR_
@@ -262,7 +262,7 @@ docker run -p 4443:4443 --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms
+openvidu/openvidu-server-kms:2.6.0
 ```
 
 **[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
@@ -276,7 +276,7 @@ docker run --net="host" --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms
+openvidu/openvidu-server-kms:2.6.0
 ```
 
 ---
@@ -336,14 +336,14 @@ You should start openvidu-server with property `openvidu.recording.custom-layout
 
 ## Sample custom layout
 
-This is literally the simplest HTML for a custom recording layout. Use it as a template for building more complex ones.
+This is literally the simplest HTML for a custom recording layout. Use it as a template for building more complex ones (you will need [latest `openvidu-browser-VERSION.min.js` file](https://github.com/OpenVidu/openvidu/releases) to be in the same folder)
 
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.0.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.6.0.min.js"></script></head>
 
-<body>
+<body style="cursor: none">
     <div id="videos"></div>
 </body>
 

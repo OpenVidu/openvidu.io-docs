@@ -30,7 +30,7 @@ java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.serv
 ```
 
 ```console
-docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e kms.uris=[\"ws://my.kms.ip:8888/kurento\"] openvidu/openvidu-server
+docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e kms.uris=[\"ws://my.kms.ip:8888/kurento\"] openvidu/openvidu-server:2.6.0
 ```
 
 <br>
@@ -46,7 +46,7 @@ docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=
 Example:
 
 ```console
-docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e KMS_TURN_URL=myuser:mypass@54.54.54.54:3478 openvidu/openvidu-server-kms
+docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e KMS_TURN_URL=myuser:mypass@54.54.54.54:3478 openvidu/openvidu-server-kms:2.6.0
 ```
 
 <br>

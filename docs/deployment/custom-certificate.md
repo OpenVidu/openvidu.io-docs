@@ -40,7 +40,7 @@ You must also indicate the _volume_ flag (-v) to mount your keystore file, letti
 ##### Example
 
 ```console
-docker run -d -p 4443:4443 --rm -v /ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:ro -e openvidu.secret=YOUR_SECRET -e server.ssl.key-store=/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks -e server.ssl.key-store-password=YOUR_KEYSTORE_PASSWORD -e server.ssl.key-alias=YOUR_KEYSTORE_ALIAS openvidu/openvidu-server-kms
+docker run -d -p 4443:4443 --rm -v /ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks:ro -e openvidu.secret=YOUR_SECRET -e server.ssl.key-store=/ABSOLUTE/PATH/TO/YOUR/KEYSTORE.jks -e server.ssl.key-store-password=YOUR_KEYSTORE_PASSWORD -e server.ssl.key-alias=YOUR_KEYSTORE_ALIAS openvidu/openvidu-server-kms:2.6.0
 ```
 
 ----------
