@@ -74,7 +74,23 @@ Do you want to be able to publish your development app over your network or even
 
 ### 3. I am using Windows to run the tutorials / develop my app. Anything I should know?
 
-Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accesible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`). To let your applications know how to connect to OpenVidu Server:
+Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accesible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`). 
+
+First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/)) setting paramater `openvidu.publicurl` to the IP allocated for Docker in your Windows machine.
+
+What in Linux/Mac is... 
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
+```
+
+...in Windows is...
+
+```bash
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.6.0
+```
+
+Then, to let your applications know how to connect to OpenVidu Server:
 
 #### Applications _Client-Side Only_
 
@@ -98,9 +114,9 @@ Change this url in every insecure tutorial right here:
 <br>
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
 >
-> _Generate a selfsigned certificate (run in  your Docker console)_
+> _Generate a selfsigned certificate (run in your Docker console)_
 >
->  `openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem`
+>  `openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '//CN=www.mydom.com\O=My Company LTD.\C=US' -keyout key.pem -out cert.pem`
 >
 > _Run with SSL flag_
 >
@@ -110,17 +126,7 @@ Change this url in every insecure tutorial right here:
 
 (Tutorials _[openvidu-js-java](/tutorials/openvidu-js-java/)_, _[openvidu-mvc-java](/tutorials/openvidu-mvc-java/)_, _[openvidu-js-node](/tutorials/openvidu-js-node/)_, _[openvidu-mvc-node](/tutorials/openvidu-mvc-node/)_)
 
-Just need to add a new parameter when launching you openvidu-server container:
-
-  - **openvidu/openvidu-server-kms Docker container** (See [DockerHub](https://hub.docker.com/r/openvidu/openvidu-server-kms/)): override the default value of the property `openvidu.publicurl`:
-
-        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
-    
-    in Windows is...
-
-        docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.6.0
-
-And let know your app/tutorial how to initialize _openvidu-java-client_ or _openvidu-node-client_ (or where to send your REST API operations in case you are not using any of these clients). For example:
+You must let know your app/tutorial how to initialize _openvidu-java-client_ or _openvidu-node-client_ (or where to send your REST API operations in case you are not using any of these clients). For example:
 
   - **Java tutorials** (tutorials _[openvidu-js-java](/tutorials/openvidu-js-java/)_, _[openvidu-mvc-java](/tutorials/openvidu-mvc-java/)_): override the default value of the property `openvidu.url`:
 
