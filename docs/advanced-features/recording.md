@@ -14,7 +14,7 @@ For example, in a session with two publishers the video file will look like this
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;

@@ -12,7 +12,7 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
     width: 100%;
     margin-top: 30px;
 	background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -149,7 +149,7 @@ ionic cordova run android
     width: 100%;
     margin-top: 30px;
     background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;

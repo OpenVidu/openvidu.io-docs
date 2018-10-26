@@ -51,7 +51,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>JavaScript</h4>
-                    <p>Vanilla JavaScript app: good old JS code for a traditional approach.</p>
+                    <p>Vanilla JavaScript app: good old JS code for a traditional approach</p>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>Angular</h4>
-                    <p>Try this fantastic tutorial using the last version of Angular framework.</p>
+                    <p>Try this fantastic tutorial using the last version of Angular framework</p>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="#" onClick="return false;" style="font-size: 60%">Coming soon...</a></li>
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-ionic/"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>Ionic</h4>
-                    <p>This Ionic app will get you going in the blink of an eye</p>
+                    <p>This Ionic project will get your mobile app going in the blink of an eye</p>
                 </div>
             </div>
 

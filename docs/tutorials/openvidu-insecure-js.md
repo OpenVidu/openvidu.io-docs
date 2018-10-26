@@ -23,7 +23,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;
@@ -180,7 +180,7 @@ Here we subscribe to the events that interest us. In this case, we want to recei
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;

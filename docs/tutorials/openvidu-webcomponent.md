@@ -159,7 +159,7 @@ That's it. Once you configure the token into the webcomponent, it will automatic
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;
@@ -221,7 +221,7 @@ openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET"></openv
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;
