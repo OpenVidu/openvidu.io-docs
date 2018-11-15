@@ -172,6 +172,17 @@ Wait until you see on the output a line IP address.
 
 By default, the app will be served in `localhost:8080` address. You will need go to [`https://localhost:4443/`](https://localhost:4443/) to accept the self-signed certificate. Once accepted, you will be able to test OpenVidu Call in the default IP [`localhost:8080`](http://localhost:8080)
 
+In addiction, you can set up the address where you app will be served with `http-server -a "your_address"`. Moreover, includying a **JSON** file named **ov-credentials.json** in the root directory, you will can configure the `openvidu_url` and `openvidu_secret`:
+
+```json
+{
+  "openviduCredentials": {
+    "openvidu_url": "https://0.0.0.0:4443",
+    "openvidu_secret": "MY_SECRET"
+  }
+}
+```
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
