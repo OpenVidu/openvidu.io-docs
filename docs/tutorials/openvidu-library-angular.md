@@ -72,16 +72,13 @@ This is a basic Angular project generated with angular-cli tool, and therefore y
 npm install openvidu-angular --save
 ```
 
+2) [Angular Material](https://material.angular.io/guide/getting-started) is included in openvidu-angular neverthelesst you need to include a theme style in your application. If you're using the Angular CLI, you can add this to your `styles.css`:
 
-2) You also need to install _openvidu-browser_
-
-```bash
-npm install openvidu-browser --save
+```
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 ```
 
-3) [Angular Material](https://material.angular.io/guide/getting-started) must be included in your project
-
-4) Finally, you need to include the Global variable script and Jquery in `index.html` file:
+3) Finally, you need to include Jquery script, the Global variable and Material icons font in the `index.html` file:
 
 ```html
 <head>
@@ -90,6 +87,7 @@ npm install openvidu-browser --save
   <script>
       var global = global || window;
   </script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 ```
 
