@@ -64,7 +64,7 @@ This is a basic Angular project generated with angular-cli tool, and therefore y
 
 ---
 
-#### We must include these four elements:
+#### We must include these elements:
 
 
 1) First of all, obviously you have to install openvidu-angular:
@@ -78,7 +78,7 @@ npm install openvidu-angular --save
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 ```
 
-3) Finally, you need to include Jquery script, the Global variable and Material icons font in the `index.html` file:
+3) Finally, you need to include *Jquery* script, the *global variable* and *Material icons font* in the `index.html` file:
 
 ```html
 <head>
