@@ -465,7 +465,7 @@ leaveSession() {
 }
 ```
 
-## Android Permisions
+## Android Permissions
 
 In the previous section, we have seen how we can connect to the session and publish our webcam. Before publishing it, we have to take into account that our app will need permissions for accessing the microphone and camera.
 
