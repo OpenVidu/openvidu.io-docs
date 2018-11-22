@@ -101,7 +101,7 @@ Run exactly the same commands as the process above, but on step **6)** skip `ng 
 `openvidu/openvidu-testapp/`
 
 ```bash
-ng build -op ./dist
+ng build --outputPath ./dist
 cd dist
 openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
 http-server -S
