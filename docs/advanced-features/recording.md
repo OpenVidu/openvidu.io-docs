@@ -115,7 +115,7 @@ In order to record a regular securized session, it is necessary to explicitly co
 Recording can be configured in two ways: **automatic recording** or **manual recording**:
 
 - **Automatic recording**: your sessions will be recorded from the moment the first participant starts publishing media until the last participant leaves the session.
-- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will never be automatically stopped even though all participants leave the session (in fact the session will not be closed until the recording stops).
+- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will only be automatically stopped if last user leaves the session and 2 minutes pass without any participant publishing to that session. If that doesn't happen, then the session will be closed and the recording gracefully stopped.
 
 #### API REST
 
