@@ -190,24 +190,7 @@ The problem here is pretty evident: if you don't have any kind of server side to
 
 ### 5. The CloudFormation Stack is a nice option for Amazon, but I don't like it. I want more control
 
-You can always deploy everything by yourself. To do so, check [Deploying OpenVidu as a native service](/deployment/deploying-ubuntu/) section. It is very important to understand all the posibilities you have available regarding to the architecture of your system: you can have everything running in the same host or split the services between two or even more machines. That's up to you.
-
-<div id="deploy-arch-row" class="row">
-  <div class="col-md-8">
-    <img class="img-responsive" src="/img/docs/deployment/app-ovserver-kms-final.png">
-  </div>
-  <div id="deploy-arch-desc" class="col-md-4">
-  <blockquote>
-    <ol>
-      <li>App, OpenVidu Server and KMS run in the same machine</li>
-      <li>App runs in its own machine. OpenVidu Server and KMS run in the same machine</li>
-      <li>App, OpenVidu Server and KMS all run in different machines</li>
-    </ol>
-    </blockquote>
-  </div>
-</div>
-
-In this diagram [STUN/TURN server](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them) is not outlined. It is another necessary service, and it can be hosted wherever you want (we recommend running it in the same host as Kurento Media Server).
+You can always deploy everything by yourself. To do so, check [Deploying OpenVidu on Ubuntu](/deployment/deploying-ubuntu/) section.
 
 ---
 
@@ -223,7 +206,7 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933)), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
 
   - Our ready-to-use [CloudFormation stack](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation) already includes a properly configured COTURN server.
-  - If you are deploying OpenVidu Server by your own, there are detailed instructions in the [Deploying OpenVidu as a native service](/deployment/deploying-ubuntu/) section, which explains how to install, configure and run COTURN in Ubuntu.
+  - If you are deploying OpenVidu Server by your own, there are detailed instructions in the [Deploying OpenVidu as a native service](/deployment/deploying-ubuntu/) section, which explains how to install, configure and run COTURN on Ubuntu.
 
     > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/). To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
@@ -238,13 +221,12 @@ But there's also a bunch of features supported by Kurento or WebRTC that will be
   - **Video composing**: right now OpenVidu streams are always sent and received without any processing in Kurento Media Server, so every subscription to a video stream in a video-session implies its own WebRTC connection. We intend to provide the possibility of configuring video-sessions to be processed and send as only one video, composed in a grid by all the published streams.
   - **Direct p2p connections between users**: OpenVidu will offer the possibility of connecting users without having to use Kurento Media Server as central node. This can be very advantegeous for certain use-cases, as will reduce the need of infraestructure.
   - **Single stream video recording**: OpenVidu will support single stream recording, not only composed recording.
-  - **Mobile platforms**: OpenVidu will provide clients for both Android and iOS.
 
 ---
 
 ### 8. Does OpenVidu support Android and iOS?
 
-Since release 2.6.0 **Android** is supported through **[Ionic](https://ionicframework.com/)**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/) tutorial and you will have an OpenVidu native Android app working in minutes. iOS compatibility is being worked on.
+Since release 2.7.0 **Android** and **iOS** are supported through **[Ionic](https://ionicframework.com/)**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/) tutorial and you will have an OpenVidu native application compatible with both Android ang iOS working in minutes.
 
 In the future OpenVidu team plans to support **[React Native](https://facebook.github.io/react-native/)** and **[Native Script](https://www.nativescript.org/)** frameworks in the same manner.
 
@@ -252,21 +234,16 @@ In the future OpenVidu team plans to support **[React Native](https://facebook.g
 
 ### 9. Which is the current status of OpenVidu on scalability and fault tolerance?
 
-This particular point relies on Kurento Media Server performance, as it is the media server used by OpenVidu. [TestRTC](https://testrtc.com/) published on September 13, 2017 a very interesting article describing in detail the behavior of Kurento Media Server while holding a different number of video-sessions. [Here](https://testrtc.com/sessions-kurento-server/) is the complete article.
+OpenVidu preliminary load test results provide the following numbers in a server with **8 cores and 16 GB of RAM**:
 
-These are the conclusions for a machine with **8 cores and 15 GB of RAM**. The upper limit where the following scenarios guaranteed good quality of service are:
-
-| Scenario                                 | Size                            |
-| ---------------------------------------- | ------------------------------- |
-| 1:1 video calls                          | 18 users in 9 parallel sessions |
-| 4-way group video calls (grid composing) | 3 rooms of 4 users each         |
-| 1:N broadcast                            | 1 broadcaster + 80-150 viewers  |
+- Test consisting of a continuous increase in sessions of 7 participants, each one publishing an audio + video stream (video of 540×360 pixels, 30 fps) and receiving 6 remote streams.
+- This test usually reaches an average of 17/18 concurrent sessions, which means an average of 120 concurrent participants, which in turn means 120 browser-to-server media streams and 720 server-to-browser media streams. At that moment CPU load gets to 100% and establishment of new media connections starts failing.
 
 That said, one of the most important features OpenVidu will offer is the possibility of automated scalability and fault tolerance. We intend to provide an easy-to-use service integrated with Amazon Web Services to allow the automated launching and shutdown of servers depending on the workload of your application.
 
 ---
 
-### 10. I am getting an "Error accesing the camera" and I have already granted permissions on the browser
+### 10. I am getting an "Error accessing the camera" and I have already granted permissions on the browser
 
   If you are using **Chrome**: you **cannot access the camera or microphone from a `http` URL if it is not `localhost` or `127.0.0.1`**. In a nutshell: in Chrome accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK. But, for example, on `http://172.17.0.1:8080` it will through an error saying "_Only secure origins are allowed_". If for any reason you want to serve your app locally on a custom URL, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
 

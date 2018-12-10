@@ -142,7 +142,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
 >     - `connectionId`: identifier of the user's connection
 >     - `createdAt`: time when the connection was established in UTC milliseconds
->     - `location`: geo location of the participant _(ONLY IN OPENVIDU PRO)_
+>     - `location`: geo location of the participant <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
 >     - `platform`: complete description of the platform used by the participant to connect to the session
 >     - `role`: role of the connection
 >     - `clientData`: data defined in OpenVidu Browser when calling [`Session.connect`](/../api/openvidu-browser/classes/session.html#connect) (_metadata_ parameter)
@@ -382,3 +382,4 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the video file and all of its metadata has been successfully deleted from the host
 > - `404`: no recording exists for the passed RECORDING_ID
 > - `409`: the recording has `"started"` status. Stop it before deletion
+

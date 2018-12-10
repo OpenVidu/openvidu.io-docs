@@ -9,7 +9,20 @@ The record is a plain text file containing one standard JSON entry for each line
 
 So every entry is a JSON object identified by a specific event name, and all of them have as properties the `sessionId` identifying the video-session for which this event was registered and the `timestamp`. Besides this two common properties, there are custom properties for every specific event with useful information. The complete list of possible JSON entries is available below:
 
-<hr>
+### List of events in OpenVidu CDR
+
+- [**sessionCreated**](#sessioncreated)
+- [**sessionDestroyed**](#sessiondestroyed)
+- [**participantJoined**](#participantjoined)
+- [**participantLeft**](#participantleft)
+- [**webrtcConnectionCreated**](#webrtcconnectioncreated)
+- [**webrtcConnectionDestroyed**](#webrtcconnectiondestroyed)
+- [**recordingStarted**](#recordingstarted)
+- [**recordingStopped**](#recordingstopped)
+
+<br>
+
+---
 
 #### sessionCreated
 
@@ -55,7 +68,7 @@ Recorded when a user has connected to a session.
 | `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier             |
 | `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                        |
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
-| `location`      | Geo location of the participant _(ONLY IN OPENVIDU PRO)_                               | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
+| `location`      | Geo location of the participant <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
 
 Example:
@@ -74,7 +87,7 @@ Recorded when a user has left a session.
 | `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier                                                                                                                          |
 | `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                                                                                                                                     |
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
-| `location`      | Geo location of the participant _(ONLY IN OPENVIDU PRO)_                                 | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
+| `location`      | Geo location of the participant <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
