@@ -172,13 +172,38 @@ Wait until you see on the output a line IP address.
 
 By default, the app will be served in `localhost:8080` address. You will need go to [`https://localhost:4443/`](https://localhost:4443/) to accept the self-signed certificate. Once accepted, you will be able to test OpenVidu Call in the default IP [`localhost:8080`](http://localhost:8080)
 
-In addiction, you can set up the address where you app will be served with `http-server -a "your_address"`. Moreover, includying a **JSON** file named **ov-credentials.json** in the root directory, you will can configure the `openvidu_url` and `openvidu_secret`:
+## Extra features
+
+Using the OpenVidu Call release, you can set up the address where you app will be served with `http-server -a "your_address"`. Moreover, includying a **JSON** file named **ov-settings.json** in the root directory, you will can configure the `openvidu_url` and `openvidu_secret` on this way:
 
 ```json
 {
   "openviduCredentials": {
     "openvidu_url": "https://0.0.0.0:4443",
     "openvidu_secret": "MY_SECRET"
+  }
+}
+```
+
+Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize and config the app enabling or disabling the **chat** and each of the toolbar buttons. Besides, OpenVidu Call allows you config your **camera** and **audio device**, your **avatar** and your **nickname** before join to the room. To do that, you only have to set `autopublish` property to `false`.
+
+
+```json
+{
+  "openviduCredentials": {
+    "openvidu_url": "https://0.0.0.0:4443",
+    "openvidu_secret": "MY_SECRET"
+  },
+  "openviduSettings": {
+    "chat": true,
+    "autopublish": true,
+    "toolbarButtons": {
+      "audio": true,
+      "video": true,
+      "screenShare": true,
+      "fullscreen": true,
+      "exit": false
+    }
   }
 }
 ```
