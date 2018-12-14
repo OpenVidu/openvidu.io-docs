@@ -81,13 +81,13 @@ First of all, you must launch the developing Docker container of OpenVidu Server
 What in Linux/Mac is... 
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
 ```
 
 ...in Windows is...
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.6.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.7.0
 ```
 
 Then, to let your applications know how to connect to OpenVidu Server:
@@ -254,3 +254,23 @@ That said, one of the most important features OpenVidu will offer is the possibi
   - Run _http-server_ with SSL flag
       
         http-server -S
+
+### 11. My Safari users with role `SUBSCRIBER` are not able to receive any remote video
+
+  Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](/../api/openvidu-browser/classes/openvidu.html#initpublisher). If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
+  
+  So, in this particular case developers must show a button their SUBSCRIBER users must click (any other action that counts as user-gesture is also suitable), and the action executed upon click event should include a call to `video.play()`. The actual video element is completely irrelevant. It can be hidden and with no media attached at all. For example:
+
+```html
+<!-- This can be placed anywhere in the DOM. For example, as last child of <body> element -->
+<video id="hidden-video"></video>
+```
+
+```javascript
+// Javascript code run upon any user gesture
+var video = document.getElementById("hidden-video").play();
+```
+
+  After this JavaScript line has been executed any remote video will start playing. This process is not necessary for future subscribed videos, when there is already some audio being played in the DOM.
+
+<br>

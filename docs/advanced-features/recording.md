@@ -262,7 +262,7 @@ docker run -p 4443:4443 --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.6.0
+openvidu/openvidu-server-kms:2.7.0
 ```
 
 **[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
@@ -276,7 +276,7 @@ docker run --net="host" --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.6.0
+openvidu/openvidu-server-kms:2.7.0
 ```
 
 ---

@@ -2,7 +2,7 @@
 <hr>
 
 <p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
-OpenVidu is a platform to facilitate the addition of video calls in your web or mobile application. It provides a complete stack of technologies very easy to integrate in your application. Our main goal is to allow developers to add real-time communications to their apps very fast and with low impact in their code
+OpenVidu is a platform to facilitate the addition of video calls in your web or mobile application. It provides a complete stack of technologies very easy to integrate in your application. Our main goal is to allow developers to add real-time communications to their apps very fast and with low impact in their code.
 </p>
 
 <div class="container">

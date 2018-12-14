@@ -82,7 +82,7 @@ ionic serve
 5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community))
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
 ```
 
 6) Go to [`localhost:8100`](http://localhost:8100) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -135,7 +135,7 @@ When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL`
 6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community))
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.6.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.7.0
 ```
 
 > Remember changing `openvidu.publicurl` parameter to the actual value. In this example that would be:<br>`-e openvidu.publicurl=https://192.168.0.105:4443/`
@@ -180,12 +180,27 @@ After we have completed all the steps of the Ionic guide and performed steps 1),
 
 <br>
 
-4) Run the tutorial. The app will be automatically launched in your iOS device. You will have to give permissions to the application under `Settings -> General -> `
+4) Add ios platform
+
+```bash
+# In openvidu-tutorials/openvidu-ionic
+ionic cordova platform add ios
+```
+
+5) Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
 
 ```bash
 # In openvidu-tutorials/openvidu-ionic
 ionic cordova run ios
 ```
+
+You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca):
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="https://help.apple.com/xcode/mac/current/en.lproj/Art/pr_launch_app_on_device.png">
+</p>
+
+<br>
 
 <div class="row no-margin ">
 	<div class="col-md-4 col-sm-4">
@@ -205,6 +220,7 @@ ionic cordova run ios
 	</div>
 </div>
 
+<br>
 
 ## Understanding the code
 
@@ -492,6 +508,8 @@ leaveSession() {
 }
 ```
 
+<br>
+
 ## Android specific requirements
 
 Android apps need to actively ask for permissions in the code to access camera and microphone. By following steps below we have been able to properly set up the permissions your Ionic app will need to work along OpenVidu.
@@ -560,6 +578,8 @@ Moreover, you must add `xmlns:android="http://schemas.android.com/apk/res/androi
 
 Once these changes are added to our code, the app will be ready to run on our Android phone.
 
+<br>
+
 ## iOS specific requirements
 
 Unfortunately, Ionic's WebView layer on iOS devices ([WKWebview](https://ionicframework.com/docs/wkwebview/)) does not support WebRTC (blame Apple and its politics). So the only way to make WebRTC work on iOS Ionic platform is by using a plugin. The result works just fine, but a little work is needed to make your Ionic app compatible with iOS. OpenVidu makes use of [cordova-plugin-iosrtc](https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc) to achieve this.
@@ -615,7 +635,9 @@ ionic cordova platform add ios
 
 ### Code requirements
 
-1) Add to global styles the following rule. For example, in openvidu-ionic app it is done [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/global.scss#L13-L15). This will allow us to put other HTML elements above the video elements.
+**1)** Add to global styles the following rule. For example, in openvidu-ionic app it is done [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/global.scss#L13-L15). This will allow us to put other HTML elements above the video elements.
+
+One limitation for iOS is the background color of your app: we need it to be transparent to allow plugin videos to be visible behind the Ionic app. So you have 2 choices: you can have one video or many videos to fill all available space in the device's screen (which is in fact the most common layout in video conferencing apps for mobile phones) or you'll have to go with a white background if videos leave visible space in your app's layout.
 
 ```scss
 :root {
@@ -623,7 +645,7 @@ ionic cordova platform add ios
 }
 ```
 
-2) Initialize _cordova-plugin-iosrtc_. The easiest way is doing so in `app.component.ts` constructor, using Platform library to identify iOS Ionic context. It is very important to initialize the plugin only for **iOS** devices running a **cordova** app.
+**2)** Initialize _cordova-plugin-iosrtc_. The easiest way is doing so in `app.component.ts` constructor, using Platform library to identify iOS Ionic context. It is very important to initialize the plugin only for **iOS** devices running a **cordova** app.
 
 ```typescript
 // Import declarations...
@@ -644,7 +666,7 @@ declare var cordova;
     }
 ```
 
-3) Every `<video>` element should be managed carefully on cordova iOS. The plugin inserts iOS native video elements whenever it finds an HTMLVideoElement, respecting certain CSS rules. In general, we recommend that at the moment you have video metadata, you apply programmatically the following styles: `object-fit`, `z-index`, `width` and `height`.
+**3)** Every `<video>` element should be managed carefully on cordova iOS. The plugin inserts iOS native video elements whenever it finds an HTMLVideoElement, respecting certain CSS rules. In general, we recommend that at the moment you have video metadata, you apply programmatically the following styles: `object-fit`, `z-index`, `width` and `height`.
 In openvidu-ionic app this is done as follows in file [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts)
 
 We call the following `updateVideoView` method inside `ngAfterViewInit`, so our video elementRef is properly defined:

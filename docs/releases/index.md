@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.7.0](#270)
 - [2.6.0](#260)
 - [2.5.0](#250)
 - [2.4.0](#240)
@@ -11,6 +12,130 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.7.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.7.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.7.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.5.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.7.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.7.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+##### Safari support
+
+OpenVidu finally brings Safari to its collection of supported platforms. Two things to take into account when developing a Safari compatible application:
+
+- If there are gonna be other types of clients rather than Safari connecting to the same session, then transcoding will be necessary in OpenVidu Server. This will bring up CPU load significantly. This behavior is due to Safari not supporting any other codec than H264, when rest of platforms usually prefer VP8. Good news is this is a problem that will soon fix on its own: Safari will support VP8 in the near future (see [Release 68 Notes](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/))
+- A little hack is needed in your app if your Safari users are gonna have `SUBSCRIBER` role (only receiving video, without accessing their microphone or camera). [Learn more here](/troubleshooting/#11-my-safari-users-with-role-subscriber-are-not-able-to-receive-any-remote-video)
+
+<br>
+
+##### Ionic support for iOS
+
+Apple support is completed with Ionic platform for iOS. Now you can implement an Ionic app that will compile OK into an iOS native application. Our [openvidu-ionic](/tutorials/openvidu-ionic/) tutorial is now fully compatible with iPhones and iPads. We recommend to use it as a starting point for your Android/iOS application, but in openvidu-ionic tutorial you also have everything you need to integrate OpenVidu in any Ionic app. Take a look at it!
+
+<br>
+
+##### New event `streamAudioVolumeChange`
+
+You can now listen to volume changes in any Publisher or Subscriber object. You can, for example, add a real-time audio wave or perform some action when certain level of noise or silence is reached. More details [here](/advanced-features/speech-detection/#audio-volume-detection).
+
+#### BUG FIXES
+
+<br>
+
+- Recording layout now internally hides cursor (no need of styling the layout with `cursor:none`). _Issue [#138](https://github.com/OpenVidu/openvidu/issues/138)_
+- Recording stopping process reinforced to terminate and gracefully generate video files for failed recording containers (those that do not receive any video from the session caused by a misconfiguration or a wrong custom recording layout). This will help getting rid off dead containers and keeping OpenVidu Server clean. _Issue [#148](https://github.com/OpenVidu/openvidu/issues/148)_
+- Mirroring local video fix: when changing to screen-share, local video is now un-mirrored, and viceversa. _Issue [#13](https://github.com/OpenVidu/openvidu-call/issues/13)_
+- Sessions configured with `Recording.MANUAL` now automatically stop their recording if last participant left the session and no user published to the same session in 2 minutes. _Issue [#149](https://github.com/OpenVidu/openvidu/issues/149)_
+- `Publisher.publishAudio` and `Publisher.publishVideo` may be called without having initialized a Session or having called `Session.publish(Publisher)`
+
+---
+<br>
 
 ## 2.6.0
 

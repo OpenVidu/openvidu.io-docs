@@ -45,7 +45,7 @@ exit
 4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps         both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.6.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
 ```
 
 5) Install NPM dependencies of frontend:
