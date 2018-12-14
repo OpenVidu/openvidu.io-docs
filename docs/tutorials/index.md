@@ -37,7 +37,7 @@
 
         <div class="row">
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
@@ -73,7 +73,25 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-6 col-sm-6 team-member">
+                <div class="effect effects wow fadeInUp">
+                    <div class="img">
+                        <img src="/img/assets/react.png" class="img-responsive img-tutorials" alt="" />
+                        <div class="overlay">
+                            <ul class="expand">
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-react/"><i class="icon ion-edit"></i></a></li>
+                            </ul>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-info wow fadeInUp">
+                    <h4>React</h4>
+                    <p>Have a look to this nice tutorial based on React </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
