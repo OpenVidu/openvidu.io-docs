@@ -93,7 +93,7 @@
   <tr>
     <td>openvidu-react</td>
     <td>NPM package</td>
-    <td>2.7.0</td>
+    <td>2.7.1</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
   </tr>
