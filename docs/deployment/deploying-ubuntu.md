@@ -7,7 +7,7 @@ Only **Ubuntu xenial 16.04** is supported.
 
 #### 1. Install KMS
 ```console
-sudo echo "deb http://ubuntu.openvidu.io/6.8.1 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
