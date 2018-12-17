@@ -341,7 +341,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.6.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.7.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>

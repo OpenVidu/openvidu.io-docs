@@ -7,7 +7,7 @@ You have an app that uses OpenVidu to stream some video user-to-user, and the pr
 
 99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy in Amazon our ready-to-use OpenVidu Server with [CloudFormation](/deployment/deploying-aws/#deploying-openvidu-server-on-aws-with-cloud-formation).
 
-If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself in Ubuntu 14.04 and 16.04. Check [Deploying OpenVidu as a native service](/deployment/deploying-ubuntu/) section to learn how to properly do it.
+If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself in Ubuntu 16.04. Check [Deploying OpenVidu as a native service](/deployment/deploying-ubuntu/) section to learn how to properly do it.
 
 Besides that, these are the recommended steps to follow when videos are not received:
 
