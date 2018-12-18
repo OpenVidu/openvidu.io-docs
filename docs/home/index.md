@@ -13,7 +13,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">WebRTC videoconferences</h3>
-      <span class="feature-text">One-to-One, One-to-Many, Many-to-Many. Any combination you can think is possible with OpenVidu</span>
+      <span class="feature-text">One-to-One, One-to-Many, Many-to-Many. Any combination you can think of is possible with OpenVidu</span>
     </div>
   </div>
   <hr>
