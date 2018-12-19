@@ -12,16 +12,16 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 - Initialize a session: [**POST /api/sessions**](#post-apisessions)
 - Generate a token: [**POST /api/tokens**](#post-apitokens)
-- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionssession_id)
+- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
 - Retrieve all active sessions info: [**GET /api/sessions**](#get-apisessions)
-- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionssession_id)
-- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionssession_idconnectionconnection_id)
-- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionssession_idstreamstream_id)
+- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionsltsession_idgt)
+- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionsltsession_idgtconnectionltconnection_idgt)
+- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionsltsession_idgtstreamltstream_idgt)
 - Start the recording of a session: [**POST /api/recordings/start**](#post-apirecordingsstart)
-- Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstoprecording_id)
-- Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsrecording_id)
+- Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstopltrecording_idgt)
+- Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsltrecording_idgt)
 - Get all recordings info: [**GET /api/recordings**](#get-apirecordings)
-- Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsrecording_id)
+- Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsltrecording_idgt)
 
 ---
 
@@ -90,7 +90,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
-> - **data** _(optional)_ : an optional string to associate any metadata to this token (usually participant's information). Maximum 10000 chars<br><br>
+> - **data** _(optional)_ : an optional string to associate any metadata to this token (usually participant's information)<br><br>
 > - **kurentoOptions** _(optional)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is an object with the following optional properties:
 >     - **videoMaxRecvBandwidth**: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.max-recv-bandwidth`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the stream._
 >     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server) (parameter `openvidu.streams.video.min-recv-bandwidth`) for every incoming stream of the user owning the token.
@@ -142,7 +142,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
 >     - `connectionId`: identifier of the user's connection
 >     - `createdAt`: time when the connection was established in UTC milliseconds
->     - `location`: geo location of the participant _(ONLY IN OPENVIDU PRO)_
+>     - `location`: geo location of the participant <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
 >     - `platform`: complete description of the platform used by the participant to connect to the session
 >     - `role`: role of the connection
 >     - `clientData`: data defined in OpenVidu Browser when calling [`Session.connect`](/../api/openvidu-browser/classes/session.html#connect) (_metadata_ parameter)
@@ -382,3 +382,4 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the video file and all of its metadata has been successfully deleted from the host
 > - `404`: no recording exists for the passed RECORDING_ID
 > - `409`: the recording has `"started"` status. Stop it before deletion
+

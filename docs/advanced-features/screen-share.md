@@ -1,6 +1,6 @@
 # Screen share
 
-To share your screen instead of your webcam, the process is exactly the same as stated in [Publish a stream](/how-do-i/publish-unpublish/) section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
+To share your screen instead of your webcam, the process is exactly the same as stated in [Publish a stream](/cheatsheet/publish-unpublish/) section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 OV.initPublisher("html-element-id", { videoSource: "screen" });
@@ -42,7 +42,7 @@ In Chrome and Opera `"screen"` value will give access to both entire screen and 
 <br><br>
 <hr>
 
-# Custom Screen Sharing extension for Chrome (and Opera)
+# Custom Screen Sharing extension for Chrome
 <br>
 We provide a default extension that will work on any domain, but you can create your own Chrome extension always based on ours ([OpenVidu Screen Sharing extension](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension)). This way your extension may have your own icon, name, description and custom valid domains.
 

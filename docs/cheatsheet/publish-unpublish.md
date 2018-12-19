@@ -3,11 +3,10 @@
 You can publish a stream after joining a session: get a `Publisher` object through OpenVidu object (`OpenVidu.initPublisher`) and publish it with `Session` object.
 
 ```javascript
-// After joining a session...
-
 var publisher = OV.initPublisher(targetElement);
 // Register all the events you want with 'publisher.on(...)'
 session.publish(publisher);
+// Method Session.publish must always be called after successfully connecting to session
 ```
 
 - `OpenVidu.initPublisher` method will insert into DOM a new HTML video element inside the element `targetElement`, showing your camera. This target element can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [PublisherProperties.insertMode](../../api/openvidu-browser/interfaces/publisherproperties.html#insertmode)). You can then publish it to the session whenever you want (perhaps you want the user to confirm that the camera is working well before publishing it).

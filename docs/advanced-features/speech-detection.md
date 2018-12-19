@@ -27,3 +27,16 @@ OV.setAdvancedConfiguration({
 ```
 
 With these events it is really easy to build a layout that can make the main speaker video the bigger one, and alternate the main view between the participants of a session as they take the floor.
+
+
+### Audio volume detection
+
+Since release 2.7.0, you have also available a new [StreamManagerEvent](../../api/openvidu-browser/classes/streammanagerevent.html) called `streamAudioVolumeChange`. You can get the audio volume (-100 being silence to 0 being max volume) of any Publisher or Subscriber by doing this:
+
+```javascript
+publisher.on('streamAudioVolumeChange', (event) => {
+    console.log('Publisher audio volume change from ' + event.value.oldValue + ' to' + event.value.newValue);
+});
+```
+
+<br>

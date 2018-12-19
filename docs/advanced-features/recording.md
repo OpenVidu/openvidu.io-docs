@@ -115,7 +115,7 @@ In order to record a regular securized session, it is necessary to explicitly co
 Recording can be configured in two ways: **automatic recording** or **manual recording**:
 
 - **Automatic recording**: your sessions will be recorded from the moment the first participant starts publishing media until the last participant leaves the session.
-- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will never be automatically stopped even though all participants leave the session (in fact the session will not be closed until the recording stops).
+- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will only be automatically stopped if last user leaves the session and 2 minutes pass without any participant publishing to that session. If that doesn't happen, then the session will be closed and the recording gracefully stopped.
 
 #### API REST
 
@@ -262,7 +262,7 @@ docker run -p 4443:4443 --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.6.0
+openvidu/openvidu-server-kms:2.7.0
 ```
 
 **[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
@@ -276,7 +276,7 @@ docker run --net="host" --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.6.0
+openvidu/openvidu-server-kms:2.7.0
 ```
 
 ---
@@ -341,7 +341,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.6.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.7.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>
