@@ -234,10 +234,11 @@ In the future OpenVidu team plans to support **[React Native](https://facebook.g
 
 ### 9. Which is the current status of OpenVidu on scalability and fault tolerance?
 
-OpenVidu preliminary load test results provide the following numbers in a server with **8 cores and 16 GB of RAM**:
+OpenVidu load testing process is described in detail in this **[Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9)**. Results are the following for 7-to-7 sessions were every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video):
 
-- Test consisting of a continuous increase in sessions of 7 participants, each one publishing an audio + video stream (video of 540×360 pixels, 30 fps) and receiving 6 remote streams.
-- This test usually reaches an average of 17/18 concurrent sessions, which means an average of 120 concurrent participants, which in turn means 120 browser-to-server media streams and 720 server-to-browser media streams. At that moment CPU load gets to 100% and establishment of new media connections starts failing.
+<div class="row" style="margin-bottom: 10px; text-align: center; text-align: -webkit-center">
+  <img class="img-responsive" src="/img/docs/troubleshooting/load_test_results.png">
+</div>
 
 That said, one of the most important features OpenVidu will offer is the possibility of automated scalability and fault tolerance. We intend to provide an easy-to-use service integrated with Amazon Web Services to allow the automated launching and shutdown of servers depending on the workload of your application.
 
