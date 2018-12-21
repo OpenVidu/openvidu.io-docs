@@ -185,28 +185,7 @@ Using the OpenVidu Call release, you can set up the address where you app will b
 }
 ```
 
-Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize and config the app enabling or disabling the **chat** and each of the toolbar buttons. Besides, OpenVidu Call allows you config your **camera** and **audio device**, your **avatar** and your **nickname** before join to the room. To do that, you only have to set `autopublish` property to `false`.
-
-
-```json
-{
-  "openviduCredentials": {
-    "openvidu_url": "https://0.0.0.0:4443",
-    "openvidu_secret": "MY_SECRET"
-  },
-  "openviduSettings": {
-    "chat": true,
-    "autopublish": true,
-    "toolbarButtons": {
-      "audio": true,
-      "video": true,
-      "screenShare": true,
-      "fullscreen": true,
-      "exit": false
-    }
-  }
-}
-```
+Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize the session interface adding an extra JSON object named  **openviduSetttings** inside of the file. We have explained with details what the **openviduSettings** must be filled  [here](/tutorials/openvidu-webcomponent.md#interface-configuration).
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
