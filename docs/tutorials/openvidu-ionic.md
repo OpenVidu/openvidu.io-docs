@@ -588,10 +588,11 @@ This **openvidu-ionic** project is ready to work on iOS devices, but we will go 
 
 ### Configuration requirements
 
-1) Install cordova-plugin-iosrtc
+1) Install cordova-plugin-iosrtc and xcode
 
 ```bash
 ionic cordova plugin add cordova-plugin-iosrtc
+npm install xcode --save
 ```
 
 2) Add the following files to your Ionic app. Consider relative paths under root folder, the one containing your `package.json` file
@@ -669,12 +670,20 @@ declare var cordova;
 **3)** Every `<video>` element should be managed carefully on cordova iOS. The plugin inserts iOS native video elements whenever it finds an HTMLVideoElement, respecting certain CSS rules. In general, we recommend that at the moment you have video metadata, you apply programmatically the following styles: `object-fit`, `z-index`, `width` and `height`.
 In openvidu-ionic app this is done as follows in file [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts)
 
+We check if the platform is iOS with the following method: 
+
+```typescript
+private isIos(): boolean {
+    return this.platform.is('ios') && this.platform.is('cordova');
+}
+```
+
 We call the following `updateVideoView` method inside `ngAfterViewInit`, so our video elementRef is properly defined:
 
 ```typescript
 private updateVideoView() {
     this._streamManager.addVideoElement(this.elementRef.nativeElement);
-    if (this.platform.is('ios') && this.platform.is('cordova')) {
+    if (this.isIos()) {
         (<HTMLVideoElement>this.elementRef.nativeElement).onloadedmetadata = () => {
             this.applyIosIonicVideoAttributes();
         };
