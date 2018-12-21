@@ -32,6 +32,20 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 5) Go to [`localhost:8080`](http://localhost:8080) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent2.png">
+		<img class="img-responsive" src="/img/demos/ov-webcomponent2.png">
+	</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent1.png">
+		<img class="img-responsive" src="/img/demos/ov-webcomponent1.png">
+	</a>
+	</div>
+</div>
+
 <br>
 
 > If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
@@ -124,16 +138,19 @@ In this tutorial, we just alternate the view between the form and the web compon
 
 #### app.js (II): Configuring OpenVidu Web Component
 
+##### Session Configuration
+
 Method `joinSession()` gets:
 
  - The form input values, with the video-call to connect and the nickname the user will have in it.
  - The `token` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
 
-When we have our token available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and `token`.
+When we have our token available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and  `token`.
 
 - `sessionName`: the session name that will be displayed inside the component
 - `user`: the nickname that the user will have in the session
 - `token`: the retrieved token from OpenVidu Server
+
 
 ```javascript
 function joinSession() {
@@ -148,6 +165,46 @@ function joinSession() {
 ```
 
 That's it. Once you configure the token into the webcomponent, it will automatically join the proper session (`joinSession` event will be dispatched so you can update your web). The user will see in the webcomponent all other users joined to the same session and will publish the webcam. You have a video-call working!
+
+##### Interface Configuration
+
+Optionally, you can add an extra JSON param inside of **webcomponent.sessionConfig** object named `ovSettings`. This parameter allows you to set up an extra custom interface. We have the choice to enabling or disabling the chat and each of the toolbar buttons. Besides, openvidu-webcomponent allows you configure your **camera** and **audio device**, your **avatar** and your **nickname** before join to the room. To do that, you only have to set `autopublish` property to `false`.
+
+To do that, is necessary to declare the following **ovSettings** variable:  
+
+```javascript
+var ovSettings = {
+  chat: true,
+  autopublish: true,
+  toolbarButtons: {
+    audio: true,
+    video: true,
+    screenShare: true,
+    fullscreen: true,
+    exit: true,
+  }
+};
+```
+
+and add it inside of **webcomponent.sessionConfig** object: 
+
+```javascript
+webComponent.sessionConfig = { sessionName, user, token, ovSettings };
+```
+
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent3.png">
+		<img class="img-responsive" src="/img/demos/ov-webcomponent3.png">
+	</a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent4.png">
+		<img class="img-responsive" src="/img/demos/ov-webcomponent4.png">
+	</a>
+	</div>
+</div>
 
 ---
 
@@ -208,11 +265,19 @@ But you can also set them statically, for example if you are building your templ
 <openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1", "token": "TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER"}'></openvidu-webcomponent>
 ```
 
+Besides, openvidu-webcomponent allows you to add **ovSettings** parameter statically:
+
+```html
+<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1",               "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true,
+ "video": true, "screenShare": true, "fullscreen": true, "exit": true }}}'>
+</openvidu-webcomponent>
+```
+
 And if you want to let the webcomponent get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
 
 ```html
-<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1"}'
-openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET"></openvidu-webcomponent>
+<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "exit": true }}}'>
+</openvidu-webcomponent>
 ```
 
 <div style="
@@ -253,3 +318,37 @@ OpenVidu  allows you to choose between two themes. By default, the theme selecte
 ```html
 <openvidu-webcomponent theme="light"></openvidu-webcomponent>
 ```
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent5.png">
+		    <img class="img-responsive" src="/img/demos/ov-webcomponent5.png">
+	    </a>
+	</div>
+    <div class="col-md-6">
+		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent6.png">
+		    <img class="img-responsive" src="/img/demos/ov-webcomponent6.png">
+	    </a>
+	</div>
+</div>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox="gallery"]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>
+
+
