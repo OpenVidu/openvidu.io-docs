@@ -26,7 +26,7 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<p align="center"><strong>Video-room Component</strong></p>
-		<p>This is the main component of <strong>OpenVidu-Call</strong>. It allows you to establish a connection with your video roommates. The Video-room Component would not be able to establish this connection without the help of OpenVidu Service. This component allows the user to mute the microphone, unpublish the webcam, share the screen, open the chat and leave the session.</p>
+		<p>This is the main component of <strong>OpenVidu-Call</strong>. It allows you to set up the session before join to the room. You will can check and set your microphone and your webcam device, create your own avatar or to choose the default avatar and to establish the nickname.</p>
 	</div>
 	<div class="col-md-6">
 		<a data-fancybox="gallery" href="/img/demos/openvidu_call1.png">
@@ -37,8 +37,8 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call_chat2.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call_chat2.png">
+		<a data-fancybox="gallery" href="/img/demos/openvidu_call2.png">
+			<img class="img-responsive" src="/img/demos/openvidu_call2.png">
 		</a>
 	</div>
 	<div class="col-md-6">
@@ -54,8 +54,8 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 		<p> With OpenVidu Layout, this component is the responsible of displaying the video stream of each user in a nice way. On the right, we can see four streams displayed in the same videoconference.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call5.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call5.png">
+		<a data-fancybox="gallery" href="/img/demos/openvidu_call3.png">
+			<img class="img-responsive" src="/img/demos/openvidu_call3.png">
 		</a>
 	</div>
 </div>
