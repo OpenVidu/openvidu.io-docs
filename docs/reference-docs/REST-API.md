@@ -12,16 +12,16 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 - Initialize a session: [**POST /api/sessions**](#post-apisessions)
 - Generate a token: [**POST /api/tokens**](#post-apitokens)
-- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
+- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionssession_id)
 - Retrieve all active sessions info: [**GET /api/sessions**](#get-apisessions)
-- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionsltsession_idgt)
-- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionsltsession_idgtconnectionltconnection_idgt)
-- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionsltsession_idgtstreamltstream_idgt)
+- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionssession_id)
+- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionssession_idconnectionconnection_id)
+- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionssession_idstreamstream_id)
 - Start the recording of a session: [**POST /api/recordings/start**](#post-apirecordingsstart)
-- Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstopltrecording_idgt)
-- Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsltrecording_idgt)
+- Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstoprecording_id)
+- Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsrecording_id)
 - Get all recordings info: [**GET /api/recordings**](#get-apirecordings)
-- Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsltrecording_idgt)
+- Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsrecording_id)
 
 ---
 
