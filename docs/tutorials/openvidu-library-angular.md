@@ -210,10 +210,10 @@ public ovSessionComponent: OpenviduSessionComponent;
 
 3) After that, **ovSessionComponent** will provides us some methods to get the internal variables we need. These methods are:
 
-* getSession
-* getLocalUser
-* getOpenviduLayout
-* getOpenviduLayputOptions
+* **getSession**: This method will provide you the Session. Check the Session documentation [here](https://openvidu.io/api/openvidu-browser/classes/session.html)
+* **getLocalUser**: This method will provide you the User. You can check the documentation about the User Class [here](./user-doc/modules/user_model.html)
+* **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](./layout-doc/classes/openvidu_layout.openvidulayout.html)
+* **getOpenviduLayputOptions**: This method will return the layout options. Click [here](./layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html) to more information.
 
 ```typescript
 myMethod() {
