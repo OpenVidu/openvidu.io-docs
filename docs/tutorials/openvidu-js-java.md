@@ -240,40 +240,38 @@ Rest controller method begins retrieving the param send by the client, which in 
 	JSONObject responseJson = new JSONObject();
 ```
 
-Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist?
+Just after that we check if the session "TUTORIAL" already exists
 
 ```java
 if (this.mapSessions.get(sessionName) != null) { ...
 ```
 
-In this case it doesn't because 'publisher1' is the first user connecting to it. So we focus on the _else_ branch:
+In this case it doesn't because 'publisher1' is the first user connecting to it. So we directly create a new session:
 
 ```java
-else {
-	// New session
-	System.out.println("New session " + sessionName);
-	try {
+// New session
+System.out.println("New session " + sessionName);
+try {
 
-		// Create a new OpenVidu Session
-		Session session = this.openVidu.createSession();
-		// Generate a new token with the recently created tokenOptions
-		String token = session.generateToken(tokenOptions);
+	// Create a new OpenVidu Session
+	Session session = this.openVidu.createSession();
+	// Generate a new token with the recently created tokenOptions
+	String token = session.generateToken(tokenOptions);
 
-		// Store the session and the token in our collections
-		this.mapSessions.put(sessionName, session);
-		this.mapSessionNamesTokens.put(sessionName, new ConcurrentHashMap<>());
-		this.mapSessionNamesTokens.get(sessionName).put(token, role);
+	// Store the session and the token in our collections
+	this.mapSessions.put(sessionName, session);
+	this.mapSessionNamesTokens.put(sessionName, new ConcurrentHashMap<>());
+	this.mapSessionNamesTokens.get(sessionName).put(token, role);
 
-		// Prepare the response with the token
-		responseJson.put(0, token);
+	// Prepare the response with the token
+	responseJson.put(0, token);
 
-		// Return the response to the client
-		return new ResponseEntity<>(responseJson, HttpStatus.OK);
-		
-	} catch (Exception e) {
-		// If error generate an error message and return it to client
-		return getErrorResponse(e);
-	}
+	// Return the response to the client
+	return new ResponseEntity<>(responseJson, HttpStatus.OK);
+	
+} catch (Exception e) {
+	// If error generate an error message and return it to client
+	return getErrorResponse(e);
 }
 ```
 
@@ -380,29 +378,35 @@ The user will now see its own video on the page. The connection to the session h
 
 ### 3) Another user connects to the video-call
 
-The process would be exactly the same as before until `SessionController.java` executes `getToken()` method. Now session 'TUTORIAL' already exists, so in the _if-else_ statement the _if_ branch would be the one executed:
+The process would be exactly the same as before until `SessionController.java` executes `getToken()` method. Now session 'TUTORIAL' already exists, so now we do enter the _if_ branch that we ignored in the previous step:
 
 ```java
 if (this.mapSessions.get(sessionName) != null) {
 	// Session already exists
 	System.out.println("Existing session " + sessionName);
 	try {
-	
+
 		// Generate a new token with the recently created tokenOptions
 		String token = this.mapSessions.get(sessionName).generateToken(tokenOptions);
-		
+
 		// Update our collection storing the new token
 		this.mapSessionNamesTokens.get(sessionName).put(token, role);
-		
+
 		// Prepare the response with the token
 		responseJson.put(0, token);
-		
+
 		// Return the response to the client
 		return new ResponseEntity<>(responseJson, HttpStatus.OK);
-		
-	} catch (Exception e) {
-		// If error generate an error message and return it to client
-		return getErrorResponse(e);
+	} catch (OpenViduJavaClientException e1) {
+		// If internal error generate an error message and return it to client
+		return getErrorResponse(e1);
+	} catch (OpenViduHttpException e2) {
+		if (404 == e2.getStatus()) {
+			// Invalid sessionId (user left unexpectedly). Session object is not valid
+			// anymore. Clean collections and continue as new session
+			this.mapSessions.remove(sessionName);
+			this.mapSessionNamesTokens.remove(sessionName);
+		}
 	}
 }
 ```
