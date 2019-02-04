@@ -157,18 +157,21 @@ Recorded when a new session has started to be recorded
 
 | Property          | Description                                | Value                                                                                                         |
 | ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier                                                                   |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                                                                                              |
-| `id`              | Unique identifier of the recording         | A string with the recording unique identifier                                                                 |
-| `recordingLayout` | The type of layout used in the recording   | A [`RecordingLayout`](openvidu-java-client/#recordinglayout) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
-| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] (current version always `true`)                                                              |
-| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] (current version always `true`)                                                              |
-| `size`            | The size of the video file                 | `0`                                                                                                           |
-| `duration`        | Duration of the video file                 | `0`                                                                                                           |
+| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier |
+| `timestamp`       | Time when the event was triggered          | UTC milliseconds |
+| `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
+| `name`            | Name given to the recording file           | A string with the recording name |
+| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
+| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] |
+| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A [`RecordingLayout`](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
+| `size`            | The size of the video file                 | `0`              |
+| `duration`        | Duration of the video file                 | `0`              |
 
 Example:
 ```json
-{"recordingStarted":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481536707,"id":"TestSession","name":"TestSession","recordingLayout":"BEST_FIT","hasAudio":true,"hasVideo":true,"size":0,"duration":0.0}}
+{"recordingStarted":{"sessionId":"TestSession","timestamp":1549015630563,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":false,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":0,"duration":0.0}}
 ```
 
 <hr>
@@ -177,21 +180,25 @@ Example:
 
 Recorded when a new session has stopped being recorded
 
-| Property          | Description                                | Value                                                                                                                           |
-| ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier                                                                                     |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                                                                                                                |
-| `id`              | Unique identifier of the recording         | A string with the recording unique identifier                                                                                   |
-| `recordingLayout` | The type of layout used in the recording   | A [`RecordingLayout`](/../api/openvidu-node-client/enums/recordinglayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
-| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] (current version always `true`)                                                                                |
-| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] (current version always `true`)                                                                                |
-| `size`            | The size of the video file                 | Bytes                                                                                                                           |
-| `duration`        | Duration of the video file                 | Seconds                                                                                                                         |
-| `reason`          | Why the recording stopped                  | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`]          |
+| Property          | Description                                | Value                                         |
+| ----------------- | ------------------------------------------ | --------------------------------------------- |
+| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
+| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
+| `startTime`       | Time when the stopped recording started    | UTC milliseconds                              |
+| `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
+| `name`            | Name given to the recording file           | A string with the recording name              |
+| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
+| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
+| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A [`RecordingLayout`](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
+| `size`            | The size of the video file                 | Bytes                                         |
+| `duration`        | Duration of the video file                 | Seconds                                       |
+| `reason`          | Why the recording stopped                  | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"automaticStop"`,<br>`"openviduServerStopped"`]                               |
 
 Example:
 ```json
-{"recordingStopped":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481568974,"startTime":1538481536707,"duration":28.72,"reason":"recordingStoppedByServer","id":"TestSession","name":"TestSession","recordingLayout":"BEST_FIT","hasAudio":false,"hasVideo":false,"size":6084390}}
+{"recordingStopped":{"sessionId":"TestSession","timestamp":1549015640859,"startTime":1549015630563,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":false,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":617509,"duration":5.967,"reason":"recordingStoppedByServer"}}
 ```
 
 <br>

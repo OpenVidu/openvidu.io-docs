@@ -6,11 +6,17 @@
 Only **Ubuntu xenial 16.04** is supported.
 
 #### 1. Install KMS
-```console
+```bash
 sudo echo "deb http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
+```
+
+Change the default user running KMS to the current one with this line:
+
+```bash
+sudo sed -i "s/DAEMON_USER=\"kurento\"/DAEMON_USER=\"${USER}\"/g" /etc/default/kurento-media-server
 ```
 
 #### 2. Install COTURN
@@ -61,26 +67,31 @@ sudo service kurento-media-server restart
 #### 8. Init Openvidu Server JAR executable
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server-{VERSION}.jar &
+java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server-{VERSION}.jar
 ```
 
 Being `YOUR_SECRET` the password you want for securing your OpenVidu Server. This will be needed for connecting to OpenVidu Server dashboard and for consuming OpenVidu Server REST API. Keep it safe!
 
-> You will need Java 8 to run OpenVidu Server:
+<br>
+
+> **1)** You will need Java 8 to run OpenVidu Server:
 > 
 > `sudo apt-get install -y openjdk-8-jre`</br>
 > 
-> You can get any [version](/releases/) of OpenVidu Server running:
+> **2)** You can get any [version](/releases/) of OpenVidu Server running:
 > 
 > `wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar`</br>
+>
+> **3)** If you want to enable recording module of OpenVidu Server to record your sessions, you must install [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/) and add [some more system properties](/advanced-features/recording/#2-launch-openvidu-server-with-new-environment-variables) to the `java -jar` command. Check out [Recording](/advanced-features/recording) section to learn more
 
+<br>
 Go to [Using your own certificate](#using-your-own-certificate) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
 
 #### 9. Finally check your server
 
 You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
-To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, this scenario is exactly the same as portrayed [here](/deployment/deploying-aws#connecting-your-external-app-to-cloudformation-openvidu-server).
+To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, check out [Connecting your app to OpenVidu](/deployment/deploying-app/#connecting-your-external-app-to-openvidu).
 
 ---
 
@@ -113,6 +124,7 @@ openssl pkcs12 -export -name YOUR_KEYSTORE_ALIAS -in YOUR_CRT.crt -inkey YOUR_PR
 keytool -importkeystore -srckeystore p12keystore.p12 -srcstoretype pkcs12 -deststoretype pkcs12 -alias YOUR_KEYSTORE_ALIAS -destkeystore YOUR_KEYSTORE_NAME.jks
 ```
 
+<br>
 In order to use your JKS, just give the proper value to the following OpenVidu Server properties on launch:
 
 - `server.ssl.key-store`=/PATH/TO/YOUR_KEYSTORE_NAME.jks
@@ -127,6 +139,7 @@ In order to use your JKS, just give the proper value to the following OpenVidu S
 java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_keystore.jks -Dserver.ssl.key-store-password=MY_KEYSTORE_SECRET -Dserver.ssl.key-alias=my_cert_alias openvidu-server-2.5.0.jar
 ```
 
+<br>
 > Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/deployment/deploying-aws#4-complete-the-configuration-fields)**
 
 <br>

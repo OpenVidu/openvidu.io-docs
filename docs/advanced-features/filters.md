@@ -40,39 +40,67 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
 
 This is a simple way of securing the ability of applying filters from OpenVidu Browser, so that not every user is able to apply any filter at any time.
 
-- [API REST](/reference-docs/REST-API#post-apitokens): include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters` (a string array containing the name of the filters the user will be able to apply)
-  
-        {
-	        "session": "6fpivlanw91qjy6n",
-            "data": "user_data",
-	        "role": "PUBLISHER",
-	        "kurentoOptions": {
-	  	        "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
-	        }
-        }
+<div class="lang-tabs-container" markdown="1">
 
-- [openvidu-java-client](/reference-docs/openvidu-java-client#generate-a-token): call `TokenOptions.Builder#kurentoOptions(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
 
-        TokenOptions tokenOptions = new TokenOptions.Builder()
-            .role(OpenViduRole.PUBLISHER)
-            .data("user_data")
-            .kurentoOptions(
-                new KurentoOptions.Builder()
-                    .allowedFilters(new String[]{"GStreamerFilter", "FaceOverlayFilter"})
-                    .build())
-            .build();
-        String token = session.generateToken(tokenOptions);
+<div id="rest-api" class="lang-tabs-content" markdown="1">
 
-- [openvidu-node-client](/reference-docs/openvidu-node-client#generate-a-token): include in [TokenOptions](/../api/openvidu-node-client/interfaces/tokenoptions.html) parameter a `kurentoOptions` property with `allowedFiters` array
+When generating a token with operation [POST /api/tokens](/reference-docs/REST-API#post-apitokens) include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
-        var tokenOptions = {
-            role: "PUBLISHER",
-            data: "user_data",
-            kurentoOptions: {
-	  	        allowedFilters: ["GStreamerFilter", "FaceOverlayFilter"]
-	        }
-        };
-        session.generateToken(tokenOptions).then(token => { ... });
+```json  
+{
+    "session": "6fpivlanw91qjy6n",
+    "data": "user_data",
+    "role": "PUBLISHER",
+    "kurentoOptions": {
+        "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
+    }
+}
+```
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+When generating a token, call `TokenOptions.Builder#kurentoOptions(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
+
+```java
+TokenOptions tokenOptions = new TokenOptions.Builder()
+    .role(OpenViduRole.PUBLISHER)
+    .data("user_data")
+    .kurentoOptions(
+        new KurentoOptions.Builder()
+            .allowedFilters(new String[]{"GStreamerFilter", "FaceOverlayFilter"})
+            .build())
+    .build();
+String token = session.generateToken(tokenOptions);
+```
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+When generating a token, include in [TokenOptions](/../api/openvidu-node-client/interfaces/tokenoptions.html) parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+
+```javascript
+var tokenOptions = {
+    role: "PUBLISHER",
+    data: "user_data",
+    kurentoOptions: {
+        allowedFilters: ["GStreamerFilter", "FaceOverlayFilter"]
+    }
+};
+session.generateToken(tokenOptions).then(token => { ... });
+```
+
+</div>
+
+</div>
 
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
@@ -240,3 +268,32 @@ A list of interesting values for `GSTREAMER_COMMAND` parameter is stated below. 
 All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins.html).
 
 <br>
+
+<script>
+function changeLangTab(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\s/g, "-").toLowerCase();
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of language buttons
+    if (child.classList.contains("lang-tabs-header")) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains("lang-tabs-btn")) {
+                btn.style.backgroundColor = btn === event.target ? '#eee' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }
+    // Change visibility of language content
+    if (child.classList.contains("lang-tabs-content")) {
+        if (child.id === txt) {
+            child.style.display = "block";
+        } else {
+            child.style.display = "none";
+        }
+    }
+  }
+}
+</script>

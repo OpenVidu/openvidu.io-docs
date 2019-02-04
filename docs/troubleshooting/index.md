@@ -77,13 +77,13 @@ First of all, you must launch the developing Docker container of OpenVidu Server
 What in Linux/Mac is... 
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
 ...in Windows is...
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.8.0
 ```
 
 Then, to let your applications know how to connect to OpenVidu Server:

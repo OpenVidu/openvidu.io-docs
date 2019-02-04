@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.8.0](#280)
 - [2.7.0](#270)
 - [2.6.0](#260)
 - [2.5.0](#250)
@@ -12,6 +13,146 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.8.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.8.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.8.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.8.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.8.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+##### Individual stream recording
+
+Finally individual stream recording is available in OpenVidu. When recording a session you can now configure it to store each published stream in its own file.
+
+This, on the one hand, gives developers lots of freedom to compose any kind of layout and achieve any kind of result once the recording has stopped, by using some post-processing video tool. On the other hand, this type of recording has proven to be 4x more efficient in comparison with previous grid recording in our first tests, allowing a better quality and a higher number of streams per recording, and more simultaneous recordings.
+
+We have entirely rewritten [Recording documentation](/advanced-features/recording/) explaining all these new features. Take a look at it!
+
+<br>
+
+##### Audio-only and video-only recording
+
+Configure your recordings to be audio-only or video-only. This is available for both `COMPOSED` and `INDIVIDUAL` recordings. It is worth mentioning that audio-only `COMPOSED` recordings takes advantage of the new recording capabilities introduced in this release to make it an extremley efficient process. Check out the **[full documentation](/advanced-features/recording/#audio-only-and-video-only-recordings)** on this subject.
+
+<br>
+
+##### Other improvements
+
+- New property `resolution` when starting recordings. With it you can set the width and height in pixels of the recorded file. This is only available fro `COMPOSED` recordings. `INDIVIDUAL` recordings will always record the video files with the native resolution of each video stream
+- Automatic stop of recordings is greatly improved. Check it out **[here](/advanced-features/recording/#automatic-stop-of-recordings)**
+- New property **[Stream.creationTime](https://openvidu.io/api/openvidu-browser/classes/stream.html#creationtime)** in OpenVidu Browser. This is the time when a stream was created in OpenVidu Server. Reflects the real starting time of the media stream transmission on the server side.
+- OpenVidu Server now destroys any stranded recording container left on the host on start up. This allows keeping the host machine clean when restarting the service
+- New REST method available in OpenVidu Server: `GET /config`. You can consult OpenVidu Server version and all active configuration properties with it. Check it out **[here](/reference-docs/REST-API/#get-config)**.
+
+<br>
+
+#### BUG FIXES
+
+- Fixed a problem that was causing unexpected websocket disconnections from OpenVidu Server due to HttpSessions expiring after half an hour. It has been fixed by adding real reconnection capailities to websockets established from clients. This also fixes a problem with recordings longer than 30 minutes sometimes failing. _Issue [#146](https://github.com/OpenVidu/openvidu/issues/146)_
+- Recording layout improved: default BEST_FIT layout used in COMPOSED recordings was including small black bars in the upper and left margins of the layout, that were visible in the final video file. This is now fixed.
+- openvidu-browser: property [Connection.creationTime](https://openvidu.io/api/openvidu-browser/classes/connection.html#creationtime) now has real value (brought from OpenVidu Server) instead of a local value. Now it reflects the real time some user connected to the Session. _Issue [#170](https://github.com/OpenVidu/openvidu/issues/170)_
+- openvidu-call: now when setting a screen-share stream in full-screen mode, aspect ratio is preserved to avoid loss of information
+
+<br>
+
+#### BREAKING CHANGES
+
+Even though this is not a major update with incompatibility changes according to _semver_, there are in fact a couple of changes that are worth mentioning:
+
+- Recorded files folder structure has changed: each recording is stored now in its own folder, named after the unique recording id. This doesn't affect the recordings management through REST API, openvidu-java-client or openvidu-node-client. But if you were locally managing the recordings, then a new folder structure is expected now.
+- openvidu-node-client: Recording properties `Recording.hasAudio`, `Recording.hasVideo` and  `Recording.name` have been included into new [Recording.properties](/../api/openvidu-node-client/classes/recording.html#properties) attribute: `Recording.properties.hasAudio`, `Recording.properties.hasVideo` and `Recording.properties.name`
+
+<br>
+
+---
+
+<br>
 
 ## 2.7.0
 
@@ -134,7 +275,10 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
 - Sessions configured with `Recording.MANUAL` now automatically stop their recording if last participant left the session and no user published to the same session in 2 minutes. _Issue [#149](https://github.com/OpenVidu/openvidu/issues/149)_
 - `Publisher.publishAudio` and `Publisher.publishVideo` may be called without having initialized a Session or having called `Session.publish(Publisher)`
 
+<br>
+
 ---
+
 <br>
 
 ## 2.6.0
@@ -258,7 +402,10 @@ Time ago we ran into a pretty ugly bug that was causing some problems during Web
 
 This bug has been completely solved in OpenVidu 2.6.0. Now media connections will work fine in almost every client network configuration.
 
+<br>
+
 ---
+
 <br>
 
 ## 2.5.0
@@ -431,7 +578,10 @@ Of course you can keep using OpenVidu Browser library instead of these component
 - Fixed duplicated camera permissions in Firefox if `PublisherProperties.videoSource/audioSource` are provided as MediaStreamTracks. _PR [#109](https://github.com/OpenVidu/openvidu/pull/109)_
 - openvidu-node-client now rejects with Error object upon OpenVidu Server unreachable. _Issue [#116](https://github.com/OpenVidu/openvidu/issues/116), PR [#117](https://github.com/OpenVidu/openvidu/pull/117)_
 
+<br>
+
 ---
+
 <br>
 
 ## 2.4.0
@@ -550,7 +700,10 @@ Event `recordingStopped` event now has `reason` property. Can be:
 - OpenVidu Java Client: pending requests bug fixed
 - Remote Stream status properties are now properly updated when calling `Session.publish`, `Session.unpublish` and `Session.publish` for the same Publisher object (having unpublished audio or video in between the calls)
 
+<br>
+
 ---
+
 <br>
 
 ## 2.3.0
@@ -741,7 +894,10 @@ We have included a first way to set the maximum and minimum bandwidths for the m
 
 > Future iterations will study the possibility of configuring this same parameters for each session individually or even for each incoming or outgoing WebRTC connection (maybe as part of [`PublisherProperties`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html) or [`SubscriberProperties`](https://openvidu.io/api/openvidu-browser/interfaces/subscriberproperties.html))
 
+<br>
+
 ---
+
 <br>
 
 ## 2.2.0
@@ -815,7 +971,10 @@ OpenVidu now offers **integrated and automated support for TURN server**. We enc
 
 The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](https://openvidu.io/docs/deployment/deploying-aws/) with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](https://openvidu.io/docs/deployment/deploying-ubuntu/).
 
+<br>
+
 ---
+
 <br>
 
 ## 2.1.0
@@ -895,7 +1054,10 @@ Now Publisher and Subscriber objects both inherit from [StreamManager](../../api
 
 If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/).<br><br>
 
+<br>
+
 ---
+
 <br>
 
 ## 2.0.0
@@ -1053,7 +1215,10 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
     - OpenVidu Server default port from `8443` to `4443`
     - OpenVidu Server configuration property `openvidu.recording.free-access` is now `openvidu.recording.public-access`
 
+<br>
+
 ---
+
 <br>
 
 ## 1.9.0-beta-1

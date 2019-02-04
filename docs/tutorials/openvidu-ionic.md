@@ -47,12 +47,13 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 
-1) You will need **Node**, **NPM** and **Ionic** to serve the app. Install them with the following command
+1) You will need **Node**, **NPM**, **Ionic** and **Cordova** to serve the app. Install them with the following command
 
 ```bash
 sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g ionic@latest
+sudo npm install -g cordova@latest
 ```
 
 2) Clone the repo
@@ -82,7 +83,7 @@ ionic serve
 5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community))
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
 6) Go to [`localhost:8100`](http://localhost:8100) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -135,7 +136,7 @@ When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL`
 6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community))
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.8.0
 ```
 
 > Remember changing `openvidu.publicurl` parameter to the actual value. In this example that would be:<br>`-e openvidu.publicurl=https://192.168.0.105:4443/`

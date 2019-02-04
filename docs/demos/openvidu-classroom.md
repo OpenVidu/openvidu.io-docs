@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/classroom-demo" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a fully functional application that makes use of the secure version of OpenVidu to connect teachers and students in video sessions. It has a frontend built with <strong>Angular 6</strong>, a backend built with <strong>Spring Boot</strong> and a <strong>MySQL</strong> database. There are two types of roles: teachers and students. First ones can create/edit/remove lessons and invite students to them. Only when a teacher initialize a lesson authorized students can connect to it.
+This is a fully functional application that makes use of the secure version of OpenVidu to connect teachers and students in video sessions. It has a frontend built with <strong>Angular 7</strong>, a backend built with <strong>Spring Boot</strong> and a <strong>MySQL</strong> database. There are two types of roles: teachers and students. First ones can create/edit/remove lessons and invite students to them. Only when a teacher initialize a lesson authorized students can connect to it.
 
 
 
@@ -45,7 +45,7 @@ exit
 4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps         both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
 5) Install NPM dependencies of frontend:

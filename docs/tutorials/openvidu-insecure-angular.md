@@ -1,7 +1,7 @@
 # openvidu-insecure-angular
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-angular" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Angular 6** framework.
+A client-side only application built with **Angular 7** framework.
 
 If it is the first time you use OpenVidu, it is higly recommended to start with **[openvidu-hello-world](/tutorials/openvidu-hello-world/)** tutorial, as this app is no more than an extension of it with some new features and sytles.
 
@@ -67,7 +67,7 @@ ng serve
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
 5) Go to [`localhost:4200`](http://localhost:4200) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.

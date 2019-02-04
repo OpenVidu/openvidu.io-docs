@@ -71,6 +71,11 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
     </div>
 </div>
 
+
+#### Other advanced options
+
+- OpenVidu Pro supports programmatic reset. You can just call a REST API method to restart your OpenVidu Server process. This way you can _A) change any configuration property_ and _B) easily clean up any garbage process or file that may have been stranded_
+
 ---
 <br>
 

@@ -205,7 +205,7 @@ Get started
 
 These are the recommended steps for getting started with OpenVidu:
 
-1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello Word Tutorial](/tutorials/openvidu-hello-world/)**.
+1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](/tutorials/openvidu-hello-world/)**.
 
 2. After that, you can try any of our **[Client-Side-Only](/tutorials/#client-side-only)** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
 

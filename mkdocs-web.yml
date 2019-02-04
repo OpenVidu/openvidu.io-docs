@@ -47,3 +47,6 @@ pages:
 theme: null
 theme_dir: 'custom_theme'
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
+
+markdown_extensions:
+  - markdown.extensions.extra

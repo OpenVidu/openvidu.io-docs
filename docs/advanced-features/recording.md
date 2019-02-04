@@ -1,184 +1,446 @@
 # Recording
 
-OpenVidu Server can be configured to record sessions. In the current version, every publisher stream is composed in the same video file in a grid layout, generating a unique MP4 file when the recording stops.
+- **[How to record sessions](#how-to-record-sessions)**
+- **[Composed recording](#composed-recording)**
+- **[Individual stream recording](#individual-stream-recording)**
+- **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
+- **[Automatic stop of recordings](#automatic-stop-of-recordings)**
+- **[Custom recording layouts](#custom-recording-layouts)**
+- **[Local recording in the browser](#local-recording-in-the-browser)**
 
-For example, in a session with two publishers the video file will look like this:
+---
+<br>
 
-<p>
-    <img class="img-responsive deploy-img" src="/img/docs/advanced-features/recorded-video.png">
-</p>
+OpenVidu Server can be configured to record sessions. Two types of recordings are available:
 
-<div style="
-    display: table;
-    border: 1px solid #0088aa;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	This type of grid recording is a pretty heavy consuming process. In order to record sessions and achieve good quality in the resulting videos it is strongly recommended to launch OpenVidu Server in a host with generous computing resources (Multicore >= 1GHz, 16GB of RAM)
-</div>
-</div>
+- **COMPOSED**: every publisher stream is composed in the same video file in a grid layout. You can use the default layout, that will evenly distribute each stream in the available space, or you can use your own custom layout.
+
+- **INDIVIDUAL**: every publisher stream is recorded in its own file, generating a ZIP file containing all videos along with a text file for synchronization data.
 
 <br>
+
+---
+
+# How to record sessions
 
 To start OpenVidu Server properly configured to allow session recording it is necessary to:
 
 ### 1. Have Docker CE installed in the host machine
 
-OpenVidu recording module consists of a Docker image that needs to be downloaded from the cloud. The process is **100% automatic**, but you will need [Docker CE](https://www.docker.com/community-edition#/download) installed in your server. If you enable OpenVidu recording service but there's no Docker installed, OpenVidu Server will fail to init, throwing the following exception:
+OpenVidu recording module may use a Docker image that needs to be downloaded from the cloud. The process is **100% automatic**, but you will need [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/) installed in your server. If you enable OpenVidu recording service but there's no Docker installed, OpenVidu Server will fail to init, throwing the following exception:
 
 `Exception connecting to Docker daemon: you need Docker installed in this machine to enable OpenVidu recorder service`
 
 <br>
-> **[OpenVidu CloudFormation](/deployment/deploying-aws/) already includes the Docker image for recording service. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server**
+> **[OpenVidu AWS deployment](/deployment/deploying-aws/) already includes the Docker image for recording service and is always launched with recording module enabled. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server. You can go straight to [step 3](#3-configure-your-sessions-to-be-recorded)**
+
+<br>
 
 ---
 
-### 2. Launch OpenVidu Server with new environment variables
-_(Only variables related with OpenVidu recording service are stated below. To see a complete list of available environment variables, visit [OpenVidu Server configuration](/reference-docs/openvidu-server-params/))_
+### 2. Launch OpenVidu Server with new properties
 
 #### For OpenVidu Server JAR
 
 ```console
 java -jar \
     -Dopenvidu.recording=true \
-    -Dopenvidu.recording.path=/path/to/video/files \
-    -Dopenvidu.recording.public-access=true \
+    -Dopenvidu.recording.path=/PATH/TO/VIDEO/FILES \
 openvidu-server.jar
 ```
 
 - `openvidu.recording`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/)) will be downloaded.
-- `openvidu.recording.path`: where to store the recorded video files on the host machine.
-- `openvidu.recording.public-access`: if *true* any client can connect to<p style="text-align: center; margin: 8px 0 8px 0; word-wrap: break-word;"><strong>https://OPENVIDU_SERVER_IP:OPENVIDU_PORT/recordings/any_session_file.mp4</strong></p> and access any recorded video file. If *false* this path will be secured with `openvidu.secret` param just as OpenVidu Server dashboard at **https://OPENVIDU_SERVER_IP:OPENVIDU_PORT**
+- `openvidu.recording.path`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path
 
-#### For OpenVidu Server Docker image
+<br>
 
-**[openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/)**
+> There are other environment variables related to recordings configuration that may be set. To see the full list, visit [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/)
+
+#### For OpenVidu Server Docker image _(development environment)_
 
 ```console
 docker run -p 4443:4443 --rm \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -e openvidu.recording=true \
-    -e MY_UID=$(id -u $USER) \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording.public-access=true \
-openvidu/openvidu-server-kms
-```
-
-**[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
-
-```console
-docker run --net="host" --rm \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording=true \
-    -e MY_UID=$(id -u $USER) \
-    -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording.public-access=true \
-openvidu/openvidu-server:2.6.0
+openvidu/openvidu-server-kms:2.8.0
 ```
 
 - `openvidu.recording`: _same as in OpenVidu Server JAR_
 - `openvidu.recording.path`: _same as in OpenVidu Server JAR_
-- `openvidu.recording.public-access`: _same as in OpenVidu Server JAR_
 
-It is also necessary to mount 2 volumes and pass `MY_UID` variable:
+It is also necessary to mount 2 volumes:
 
 - `-v /var/run/docker.sock:/var/run/docker.sock`: gives openvidu-server container access to the local Docker daemon
 - `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`: gives access to the recorded video files through the container
-- `-e MY_UID=$(id -u $USER)`: for permission reasons
 
 <br>
 > **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in property `openvidu.recording.path=/PATH/TO/VIDEO/FILES` and in both sides of flag `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`
+
+<br>
 
 ---
 
 ### 3. Configure your Sessions to be recorded
 
-Setting property `openvidu.recording` to *true* only automatically enables recordings for insecure sessions (those directly created from the client side. See [this FAQ](/troubleshooting/#4-does-my-app-need-a-server-side)).
+<br>
+Recording can be configured in two ways:
 
-In order to record a regular securized session, it is necessary to explicitly configure it through the [REST API](/reference-docs/REST-API/) or any of the server clients ([openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/)).
+- **ALWAYS**: the session will be automatically recorded from the moment the first participant starts publishing.
 
-Recording can be configured in two ways: **automatic recording** or **manual recording**:
+- **MANUAL**: you will have to tell openvidu-server when to start the recording of the session.
 
-- **Automatic recording**: your sessions will be recorded from the moment the first participant starts publishing media until the last participant leaves the session.
-- **Manual recording**: you will have to tell openvidu-server to start and to stop the recording. The recording will only be automatically stopped if last user leaves the session and 2 minutes pass without any participant publishing to that session. If that doesn't happen, then the session will be closed and the recording gracefully stopped.
+In both cases you can stop the recording manually, and every recording will always be automatically stopped if last user leaves the session and certain timeout elapses (see [Automatic stop of recordings](#automatic-stop-of-recordings)).
 
-#### API REST
+<br>
 
-1. Initialize your sessions with this POST method: [POST /api/sessions](/reference-docs/REST-API#post-apisessions). For sessions configured for automatic recording no more steps are needed
-2. If you have configured your session for manual recording
-    - Start the recording with this POST method: [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart)
-    - Stop the recording with this POST method: [POST /api/recordings/stop](/reference-docs/REST-API#post-apirecordingsstoprecording_id)
+You can use [REST API](/reference-docs/REST-API/) or any of the server SDKs ([openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/)) to manage your recorded sessions.
 
-#### openvidu-java-client
+<div class="lang-tabs-container" markdown="1">
 
-Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured:
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+1. Initialize your sessions with this POST method: [POST /api/sessions](/reference-docs/REST-API#post-apisessions)<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+
+2. If you have configured your session with `"recordingMode": "MANUAL"`
+
+    - Start the recording with this POST method: [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart)<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
+
+    - Stop the recording with this POST method: [POST /api/recordings/stop](/reference-docs/REST-API#post-apirecordingsstopltrecording_idgt)
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+1. Call `OpenVidu.createSession()` passing as an optional parameter a `SessionProperties` object. You may configure default values for recordings started for this session with that object. This way you can pre-configure recordings that will be automatically started (for sessions with `RecordingMode.ALWAYS`)
+
+        OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+        SessionProperties properties = new SessionProperties.Builder()
+            .recordingMode(RecordingMode.MANUAL) // RecordingMode.ALWAYS for automatic recording
+            .defaultOutputMode(Recording.OutputMode.INDIVIDUAL)
+            .build();
+        Session session = openVidu.createSession(properties);
+
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/../api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html) object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+
+        RecordingProperties properties = new RecordingProperties.Builder()
+            .outputMode(Recording.OutputMode.COMPOSED)
+            .name("MY_RECORDING_NAME")
+            .build();
+        Recording recording = openVidu.startRecording(session.getSessionId(), properties); // Starts recording
+        recording = openVidu.stopRecording(recording.getId()); // Stops recording
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+1. Call `OpenVidu.createSession()` passing as an optional parameter a `SessionProperties` object. You may configure default values for recordings started for this session with that object. This way you can pre-configure recordings that will be automatically started (for sessions with `RecordingMode.ALWAYS`)
+
+        var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+        var properties = {
+            recordingMode: RecordingMode.MANUAL, // RecordingMode.ALWAYS for automatic recording
+            defaultOutputMode: Recording.OutputMode.INDIVIDUAL
+        };
+        var mySession = openvidu.createSession(properties);
+
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/../api/openvidu-node-client/interfaces/recordingproperties.html) object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+
+        var recording;
+
+        // Starts recording
+        openvidu.startRecording(sessionId, {
+            outputMode: Recording.OutputMode.COMPOSED,
+            name: "MY_RECORDING_NAME"
+        })
+          .then(response => recording = response)
+          .catch(error => console.error(error));
+
+        // Stops recording
+        openvidu.stopRecording(recording.id)
+          .then(response => recording = response)
+          .catch(error => console.error(error));
+
+</div>
+
+</div>
+
+<br>
+
+---
+
+<br>
+
+# Composed recording
+
+Every publisher stream is composed in the same video file in a grid layout. This is the default recording mode, and it will generate as output an MP4 file.
+
+You can use the default layout, that will evenly distribute each stream in the available space, or you can [use your own custom layout](#custom-recording-layouts).<br>To use the default layout:
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart) pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
 ```java
-OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-SessionProperties properties = new SessionProperties.Builder()
-    .recordingMode(RecordingMode.MANUAL) // RecordingMode.ALWAYS for automatic recording
-    .defaultRecordingLayout(RecordingLayout.BEST_FIT)
-    .mediaMode(MediaMode.ROUTED)
+RecordingProperties properties = new RecordingProperties.Builder()
+    .outputMode(Recording.OutputMode.COMPOSED)
+    .recordingLayout(RecordingLayout.BEST_FIT)
     .build();
-Session session = openVidu.createSession(properties);
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
 ```
 
-If Session is configured with `RecordingMode.MANUAL`:
+</div>
 
-```java
-Recording recording = openVidu.startRecording(session.getSessionId()); // Starts recording
-recording = openVidu.stopRecording(recording.getId()); // Stops recording
-```
-
-#### openvidu-node-client
-
-Call `OpenVidu.createSession()` passing as optional parameter a `SessionProperties` object properly configured:
-
-```javascript
-var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-var properties = {
-    recordingMode: RecordingMode.MANUAL, // RecordingMode.ALWAYS for automatic recording
-    defaultRecordingLayout: RecordingLayout.BEST_FIT,
-    mediaMode: MediaMode.ROUTED
-};
-var mySession = openvidu.createSession(properties);
-```
-
-If Session is configured with `RecordingMode.MANUAL`:
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
 ```javascript
 var recording;
 
-openvidu.startRecording(sessionId) // Starts recording
-.then(response => {
-    recording = response;
+openvidu.startRecording(sessionId, {
+    outputMode: Recording.OutputMode.COMPOSED,
+    recordingLayout: RecordingLayout.BEST_FIT
 })
-.catch(error => console.error(error));
-
-openvidu.stopRecording(recording.id) // Stops recording
-.then(response => {
-    recording = response;
-})
-.catch(error => console.error(error));
+    .then(response => recording = response)
+    .catch(error => console.error(error));
 ```
 
-<br><br>
-<hr>
+</div>
+
+</div>
+
+<br> 
+
+For example, for a session with two publishers the video file will look like this when using output mode `COMPOSED` and recording layout `BEST_FIT`
+
+<br>
+
+<p>
+    <img class="img-responsive" src="/img/docs/advanced-features/recorded-video.png">
+</p>
+
+<br>
+
+> **Notes on COMPOSED recordings**<br>
+>
+> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be up to **4x more efficient**<br><br>
+> - You can configure the resolution of the MP4 file for COMPOSED recordings by using `resolution` property when starting the recording<br><br>
+> - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
+
+<br>
+
+---
+
+# Individual stream recording
+
+Every publisher stream is recorded in its own file. The final result is a ZIP file containing one WEBM file for each published stream during the recording (named after each stream identifier), along with a text file with synchronization information.
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart) pass parameter `{"outputMode:"INDIVIDUAL"}`
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+RecordingProperties properties = new RecordingProperties.Builder()
+    .outputMode(Recording.OutputMode.INDIVIDUAL)
+    .build();
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
+```
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var recording;
+
+openvidu.startRecording(sessionId, {
+    outputMode: Recording.OutputMode.INDIVIDUAL
+})
+    .then(response => recording = response)
+    .catch(error => console.error(error));
+```
+
+</div>
+
+</div>
+
+<br>
+
+For example, for a session with 2 publishers the final content of the ZIP file could be:
+
+```console
+MyRecording.zip
++-- MyRecording.json
++-- tzk08sgffcqqwpor_CAMERA_DFDAE.webm
++-- ugkmpnz4bn6yewbi_CAMERA_PAHHB.webm
+```
+
+And the content of the JSON synchronization file might be:
+
+```json
+{
+  "createdAt": 1548947712287,
+  "id": "zfgmthb8jl9uellk",
+  "name": "MyRecording",
+  "sessionId": "zfgmthb8jl9uellk",
+  "files": [
+    {
+      "connectionId": "ugkmpnz4bn6yewbi",
+      "streamId": "ugkmpnz4bn6yewbi_CAMERA_PAHHB",
+      "size": 4006190,
+      "clientData": "",
+      "serverData": "UserA",
+      "hasAudio": true,
+      "hasVideo": true,
+      "typeOfVideo": "SCREEN",
+      "startTimeOffset": 95,
+      "endTimeOffset": 56445
+    },
+    {
+      "connectionId": "tzk08sgffcqqwpor",
+      "streamId": "tzk08sgffcqqwpor_CAMERA_DFDAE",
+      "size": 2404760,
+      "clientData": "",
+      "serverData": "UserB",
+      "hasAudio": false,
+      "hasVideo": true,
+      "typeOfVideo": "CAMERA",
+      "startTimeOffset": 148,
+      "endTimeOffset": 56398
+    }
+  ]
+}
+```
+
+<br>
+
+These are the properties in the JSON file
+
+> - **createdAt**: time when the recording was started in UTC milliseconds
+> - **id**: unique identifier of the recording
+> - **name**: custom name of the recording. You can set this parameter when starting the recording, and the final ZIP file will be named after it
+> - **sessionId**: unique identifier of the session that was recorded
+> - **files**: array containing one JSON object for each one of the WEBM videos inside the ZIP file
+>     - **connectionId**: unique identifier of the connection that published the stream
+>     - **streamId**: unique identifier of the recorded stream
+>     - **size**: size in bytes of this particular recorded file
+>     - **clientData**: data associated to the connection that published the stream, in the client side. You can use this field to identify the user that published this particular recorded stream
+>     - **serverData**: data associated to the connection that published the stream, in the server side. You can use this field to identify the user that published this particular recorded stream
+>     - **hasAudio**: whether this recorded stream has an audio track or not
+>     - **hasVideo**: whether this recorded stream has a video track or not
+>     - **typeOfVideo**: type of video ("CAMERA" or "SCREEN"). Only defined if `hasVideo` is true
+>     - **startTimeOffset**: the offset in milliseconds for when this particular stream started being recorded, from the `createdAt` property of the root element
+>     - **endTimeOffset**: the offset in milliseconds for when this particular stream stopped being recorded, from the `createdAt` property of the root element
+
+<br>
+
+---
+
+# Audio-only and video-only recordings
+
+By default recordings will be generated with both audio and video, but you can configure them to record audio-only or video-only files.
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart) simply pass parameters `hasAudio` or `hasVideo` with the desired values.
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+RecordingProperties properties = new RecordingProperties.Builder()
+    .hasAudio(true)
+    .hasVideo(false)
+    .build();
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
+```
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var recording;
+
+openvidu.startRecording(sessionId, {
+    hasAudio: true,
+    hasVideo: false
+})
+    .then(response => recording = response)
+    .catch(error => console.error(error));
+```
+
+</div>
+
+</div>
+
+<br>
+
+> **Notes on audio/video only recordings**<br>
+>
+> - Recordings configured to not record neither audio nor video will fail to start, returning a status error of 422<br><br>
+> - COMPOSED video-only recordings will generate an MP4 file. COMPOSED audio-only recordings will generate a WEBM file. INDIVIDUAL recordings will always generate a ZIP file containing one WEBM file for each recorded stream<br><br>
+> - Streams published during a video-only recording that are audio-only won't be recorded: they won't be included in the grid layout for COMPOSED recordings and won't generate a WEBM file in INDIVIDUAL recordings. Same for audio-only recordings with video-only streams<br><br>
+> - Recordings started automatically (with recording mode `ALWAYS`) will record both audio and video
+
+<br>
+
+---
+
+# Automatic stop of recordings
+
+Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `openvidu.recording.autostop-timeout`](/reference-docs/openvidu-server-params/). The automatic recording stop timout will start:
+
+- For any recorded session, if last user disconnects from the session
+
+- For sessions with recording mode `MANUAL`, if the recording is started and no user is publishing a stream
+
+The only condition to abort the timeout is to have any user publishing a stream to the session within the timeout.
+
+Sessions will always remain opened and the recording active during the timeout. If it elapses and no stream is being published to the session, the recording will be stopped. If in addition there's no user connected to the session, the session will also be automatically closed.
+
+
+<br>
+
+---
 
 # Custom recording layouts
 
@@ -234,24 +496,27 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
             }
         });
 
+<br>
+
 ---
 
 ### 2. Add new properties when launching openvidu-server
 
-On the one hand a new property `openvidu.recording.custom-layout` and on the other hand, if using Docker images, a new `-v` option:
+You can configure where should OpenVidu Server look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `openvidu.recording.custom-layout`. OpenVidu Server must have read access to that path.
 
+<br>
 **[openvidu-server.jar](https://github.com/OpenVidu/openvidu/releases)**
 
 ```console
 java -jar \
     -Dopenvidu.recording=true \
     -Dopenvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -Dopenvidu.recording.public-access=true \
     -Dopenvidu.recording.custom-layout: /PATH/TO/INDEX/CUSTOM/LAYOUT \
 openvidu-server.jar
 ```
 
-**[openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/)**
+<br>
+**[openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/) _(development environment)_**
 
 ```console
 docker run -p 4443:4443 --rm \
@@ -262,45 +527,64 @@ docker run -p 4443:4443 --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.7.0
+openvidu/openvidu-server-kms:2.8.0
 ```
 
-**[openvidu/openvidu-server](https://hub.docker.com/r/openvidu/openvidu-server/)** (KMS up and running in the host machine)
+> **WARNING**: remember to add the `-v` option mounting the path defined with `openvidu.recording.custom-layout`
 
-```console
-docker run --net="host" --rm \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-    -v /PATH/TO/INDEX/CUSTOM/LAYOUT:/PATH/TO/INDEX/CUSTOM/LAYOUT \
-    -e MY_UID=$(id -u $USER) \
-    -e openvidu.recording=true \
-    -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.7.0
-```
+<br>
+**[OpenVidu AWS deployment](/deployment/deploying-aws/)**
+
+You must store your custom layouts in the server under default path `/opt/openvidu/custom-layout`
+
+<br>
 
 ---
 
-### 3. Configure your sessions to use your custom layout
+### 3. Configure your recordings to use your custom layout
 
-Do exactly the same process explained [here](#3-configure-your-sessions-to-be-recorded), but changing `defaultRecordingLayout` from `BEST_FIT` to `CUSTOM`.
+<div class="lang-tabs-container" markdown="1">
 
-- If you are using the _API REST_, just change json body parameter `"defaultRecordingLayout":"BEST_FIT"` to `"defaultRecordingLayout":"CUSTOM"`.
-- If you are using _openvidu-java-client_ change
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
 
-    `SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.BEST_FIT)`
+<div id="rest-api" class="lang-tabs-content" markdown="1">
 
-    to
+When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart) pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
 
-    `SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.CUSTOM)`
+</div>
 
-- If you are using _openvidu-node-client_ change property `defaultRecordingLayout` of `SessionProperties` from
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
-    `{ defaultRecordingLayout: RecordingLayout.BEST_FIT }`
+```java
+RecordingProperties properties = new RecordingProperties.Builder()
+    .outputMode(Recording.OutputMode.COMPOSED)
+    .recordingLayout(RecordingLayout.CUSTOM)
+    .build();
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
+```
 
-    to
+</div>
 
-    `{ defaultRecordingLayout: RecordingLayout.CUSTOM }`
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var recording;
+
+openvidu.startRecording(sessionId, {
+    outputMode: Recording.OutputMode.COMPOSED,
+    recordingLayout: RecordingLayout.CUSTOM
+})
+    .then(response => recording = response)
+    .catch(error => console.error(error));
+```
+
+</div>
+
+</div>
 
 <br>
 
@@ -308,14 +592,56 @@ Do exactly the same process explained [here](#3-configure-your-sessions-to-be-re
 
 ## Configuring multiple custom layouts
 
-You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path `/PATH/TO/INDEX/CUSTOM/LAYOUT`. Then, when configuring your sessions as stated above in point 3, just add a new parameter besides changing `defaultRecordingLayout` property:
+You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path defined with system property `openvidu.recording.custom-layout` (default value `/opt/openvidu/custom-layout`). Then, when configuring your sessions as stated above in point 3, just add a new parameter:
 
-  - If you are using the _API REST_, add an additional field to json body: `"defaultRecordingLayout":"CUSTOM", "defaultCustomLayout":"RELATIVE/PATH/TO/INDEX"`
-  - If you are using _openvidu-java-client_, create SessionProperties object with a new step: `new SessionProperties.Builder().defaultRecordingLayout(RecordingLayout.CUSTOM).defaultCustomLayout("RELATIVE/PATH/TO/INDEX").build())`
-  - If you are using _openvidu-node-client_, create SessionProperties object with a new property: `{defaultRecordingLayout: RecordingLayout.CUSTOM, defaultCustomLayout: "RELATIVE/PATH/TO/INDEX"}` 
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart) pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+RecordingProperties properties = new RecordingProperties.Builder()
+    .outputMode(Recording.OutputMode.COMPOSED)
+    .recordingLayout(RecordingLayout.CUSTOM)
+    .customLayout("RELATIVE/PATH/TO/INDEX")
+    .build();
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
+```
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var recording;
+
+openvidu.startRecording(sessionId, {
+    outputMode: Recording.OutputMode.COMPOSED,
+    recordingLayout: RecordingLayout.CUSTOM,
+    customLayout: "RELATIVE/PATH/TO/INDEX"
+})
+    .then(response => recording = response)
+    .catch(error => console.error(error));
+```
+
+</div>
+
+</div>
 
 <br>
-Path `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `openvidu.recording.custom-layout` to the specific `index.html` you want to use for a particular session recording. So, if you have the following folder tree structure:
+
+In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `openvidu.recording.custom-layout` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu Server host:
 
 ```
 /opt
@@ -330,7 +656,9 @@ Path `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration pro
     ...
 ```
 
-You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout, just configure `defaultRecordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `defaultCustomLayout` to `layout1` or `layout2`.
+You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout in a recording, just configure in recording properties `recordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `customLayout` to `layout1` or `layout2`.
+
+<br>
 
 ---
 
@@ -367,10 +695,41 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 </html>
 ```
 
-<hr>
+<br><br>
 
-# Local recording
+---
+
+# Local recording in the browser
 
 OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](../../api/openvidu-browser/classes/localrecorder.html).
 
 <br>
+
+<script>
+function changeLangTab(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\s/g, "-").toLowerCase();
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of language buttons
+    if (child.classList.contains("lang-tabs-header")) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains("lang-tabs-btn")) {
+                btn.style.backgroundColor = btn === event.target ? '#eee' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }
+    // Change visibility of language content
+    if (child.classList.contains("lang-tabs-content")) {
+        if (child.id === txt) {
+            child.style.display = "block";
+        } else {
+            child.style.display = "none";
+        }
+    }
+  }
+}
+</script>

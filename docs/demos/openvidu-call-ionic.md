@@ -1,7 +1,7 @@
 # openvidu-call-ionic
 <a href="https://github.com/OpenVidu/openvidu-call-ionic" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 6</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
+OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 7</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
 OpenVidu-Call-Ionic is composed by the five Angular components displayed in the image below.
 
@@ -68,7 +68,7 @@ ionic serve
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
 5) Go to [`localhost:8100`](http://localhost:8100) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -129,7 +129,7 @@ Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https
 5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.7.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.8.0
 ```
 
 6) Connect the device to the PC. You can check if your device is authoriced with the `adb devices` command.
