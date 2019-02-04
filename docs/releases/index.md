@@ -375,7 +375,7 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
 <br>
 ##### Ionic support
 
-There's a [complete tutorial](/tutorials/openvidu-ionic/) in OpenVidu Docs to get a native Android app working with OpenVidu in just a few steps. You can just clone and use our sample application as a starting point or maybe you want to add OpenVidu to your existing Ionic app. [Here you have](/tutorials/openvidu-ionic/#android-permisions) the necessary configuration steps to do so (basically Android permissions stuff).
+There's a [complete tutorial](/tutorials/openvidu-ionic/) in OpenVidu Docs to get a native Android app working with OpenVidu in just a few steps. You can just clone and use our sample application as a starting point or maybe you want to add OpenVidu to your existing Ionic app. [Here you have](/tutorials/openvidu-ionic/#android-permissions) the necessary configuration steps to do so (basically Android permissions stuff).
 
 We are currently working on making OpenVidu work on iOS with Ionic.
 
