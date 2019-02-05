@@ -62,8 +62,8 @@
   <tr>
     <td>openvidu-java-client</td>
     <td>MVN package</td>
-    <td>2.8.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.8.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td>2.8.1</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.8.1%7Cjar" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
   
