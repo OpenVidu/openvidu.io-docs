@@ -174,7 +174,7 @@ Some interesting use cases you can implement with OpenVidu:
 - A security platform where you can receive video from security cameras/webcams. You could even receive a notification when some movement is detected in a region of the video
 - An application to receive video from drones equipped with a camera <i>(RTSP support coming soon)</i>
 
-The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos)** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
+The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
 
 <div class="docs-gallery">
   <a data-fancybox="gallery-wellcome" href="/img/demos/call-good2.png"><img class="img-responsive img-wellcome" src="/img/demos/call-good2.png"/></a>
@@ -205,22 +205,22 @@ Get started
 
 These are the recommended steps for getting started with OpenVidu:
 
-1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](/tutorials/openvidu-hello-world/)**.
+1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](/tutorials/openvidu-hello-world/){:target="_blank"}**.
 
-2. After that, you can try any of our **[Client-Side-Only](/tutorials/#client-side-only)** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
+2. After that, you can try any of our **[Client-Side-Only](/tutorials/#client-side-only){:target="_blank"}** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
 
-3. Try now any of our **[Client-Side + Server-Side](/tutorials/#client-side-server-side)** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
+3. Try now any of our **[Client-Side + Server-Side](/tutorials/#client-side-server-side){:target="_blank"}** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
 
-4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/deployment/deploying-demos-aws/)**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server and your app on AWS](/deployment/deploying-aws/)**).
+4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/deployment/deploying-demos-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](/deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](/deployment/deploying-app/){:target="_blank"}**).
 
 ----------
 
 How does OpenVidu work?
 ===
 
-**[WebRTC](https://webrtc.org/)** is the ultimate responsible for all media transmission at the very heart of OpenVidu. WebRTC is a modern, cross-platform framework that democratizes media transmission over the Internet. It is promoted by Google, Mozilla, Opera and others.
+**[WebRTC](https://webrtc.org/){:target="_blank"}** is the ultimate responsible for all media transmission at the very heart of OpenVidu. WebRTC is a modern, cross-platform framework that democratizes media transmission over the Internet. It is promoted by Google, Mozilla, Opera and others.
 
-**[Kurento](http://www.kurento.org/)** is the WebRTC framework on which OpenVidu is built. Openvidu was forked from [KurentoRoom project](https://github.com/Kurento/kurento-room).
+**[Kurento](http://www.kurento.org/){:target="_blank"}** is the WebRTC framework on which OpenVidu is built. Openvidu was forked from [KurentoRoom project](https://github.com/Kurento/kurento-room){:target="_blank"}.
 
 <div class="row no margin" style="margin-top: 2em; margin-bottom: 2em">
   <div class="col-sm-6">

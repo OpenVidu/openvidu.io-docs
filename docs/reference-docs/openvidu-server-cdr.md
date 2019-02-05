@@ -164,7 +164,7 @@ Recorded when a new session has started to be recorded
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
 | `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] |
 | `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A [`RecordingLayout`](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file                 | `0`              |
 | `duration`        | Duration of the video file                 | `0`              |
@@ -190,7 +190,7 @@ Recorded when a new session has stopped being recorded
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
 | `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
 | `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A [`RecordingLayout`](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html) value (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](/../api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file                 | Bytes                                         |
 | `duration`        | Duration of the video file                 | Seconds                                       |

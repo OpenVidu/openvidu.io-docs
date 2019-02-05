@@ -9,9 +9,9 @@ session.publish(publisher);
 // Method Session.publish must always be called after successfully connecting to session
 ```
 
-- `OpenVidu.initPublisher` method will insert into DOM a new HTML video element inside the element `targetElement`, showing your camera. This target element can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [PublisherProperties.insertMode](../../api/openvidu-browser/interfaces/publisherproperties.html#insertmode)). You can then publish it to the session whenever you want (perhaps you want the user to confirm that the camera is working well before publishing it).
+- `OpenVidu.initPublisher` method will insert into DOM a new HTML video element inside the element `targetElement`, showing your camera. This target element can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [PublisherProperties.insertMode](../../api/openvidu-browser/interfaces/publisherproperties.html#insertmode){:target="_blank"}). You can then publish it to the session whenever you want (perhaps you want the user to confirm that the camera is working well before publishing it).
 
-- `Session.publish` method will make [Publisher](../../api/openvidu-browser/classes/publisher.html) object trigger `streamCreated` event in the local user that is publishing and will make [Session](../../api/openvidu-browser/classes/session.html) object trigger `streamCreated` event in every other remote user connected to the session. <br><br>
+- `Session.publish` method will make [Publisher](../../api/openvidu-browser/classes/publisher.html){:target="_blank"} object trigger `streamCreated` event in the local user that is publishing and will make [Session](../../api/openvidu-browser/classes/session.html){:target="_blank"} object trigger `streamCreated` event in every other remote user connected to the session. <br><br>
 
 You can add two more parameters to `initPublisher` method: an object with properties about your publisher stream and a callback function to be executed just after the method finishes and before the publisher object dispatches `accessAllowed` or `accessDenied` event:
 
@@ -54,4 +54,4 @@ session.publish(newPublisher);
 ```
 
 <br/>
-> **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method. You can check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description
+> **NOTE**: only users with Role `PUBLISHER` or `MODERATOR` can call `Session.publish` method. You can check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html){:target="_blank"} section of OpenVidu Node Client for a complete description

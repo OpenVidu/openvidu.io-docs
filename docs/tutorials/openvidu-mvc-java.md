@@ -1,7 +1,7 @@
 # openvidu-mvc-java
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-mvc-java" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Java backend and a traditional MVC frontend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-java](/tutorials/openvidu-js-java). This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Thymeleaf](http://www.thymeleaf.org/) is the template engine of choice for this tutorial.
+A secure OpenVidu sample app with a Java backend and a traditional MVC frontend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-java](/tutorials/openvidu-js-java){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Thymeleaf](http://www.thymeleaf.org/){:target="_blank"} is the template engine of choice for this tutorial.
 
 ## Understanding this tutorial
 
@@ -37,19 +37,19 @@ cd openvidu-tutorials/openvidu-mvc-java
 mvn package exec:java
 ```
 
-4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
-5) Go to [`https://localhost:5000`](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -78,9 +78,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 ## Understanding the code
 
-This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Java backend that serves HTML files with a MVC approach, building the templates with the help of [Thymeleaf](http://www.thymeleaf.org/).
+This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Java backend that serves HTML files with a MVC approach, building the templates with the help of [Thymeleaf](http://www.thymeleaf.org/){:target="_blank"}.
 
-OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive _HttpSession_ API. In these posts multiple options for user session management in Java are explained, inlcuding the one used in this tutorial: [journaldev.com](http://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting), [studytonight.com](http://www.studytonight.com/servlet/session-management.php).
+OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive _HttpSession_ API. In these posts multiple options for user session management in Java are explained, inlcuding the one used in this tutorial: [journaldev.com](http://www.journaldev.com/1907/java-session-management-servlet-httpsession-url-rewriting){:target="_blank"}, [studytonight.com](http://www.studytonight.com/servlet/session-management.php){:target="_blank"}.
 
 - **Backend**: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.js.java` package)
 	- `App.java` : entrypoint for the app
@@ -468,7 +468,7 @@ When the last user leaves the session `this.mapSessions.remove(sessionName);` wi
 
 > At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
 >
-> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](/reference-docs/openvidu-java-client/), [openvidu-node-client](/reference-docs/openvidu-node-client/) or the [REST API](/reference-docs/REST-API/)) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
+> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](/reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](/reference-docs/openvidu-node-client/){:target="_blank"} or the [REST API](/reference-docs/REST-API/){:target="_blank"}) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

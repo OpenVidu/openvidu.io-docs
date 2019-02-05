@@ -63,7 +63,7 @@
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.8.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.8.0%7Cjar" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
   
@@ -112,31 +112,31 @@ Finally individual stream recording is available in OpenVidu. When recording a s
 
 This, on the one hand, gives developers lots of freedom to compose any kind of layout and achieve any kind of result once the recording has stopped, by using some post-processing video tool. On the other hand, this type of recording has proven to be 4x more efficient in comparison with previous grid recording in our first tests, allowing a better quality and a higher number of streams per recording, and more simultaneous recordings.
 
-We have entirely rewritten [Recording documentation](/advanced-features/recording/) explaining all these new features. Take a look at it!
+We have entirely rewritten [Recording documentation](/advanced-features/recording/){:target="_blank"} explaining all these new features. Take a look at it!
 
 <br>
 
 ##### Audio-only and video-only recording
 
-Configure your recordings to be audio-only or video-only. This is available for both `COMPOSED` and `INDIVIDUAL` recordings. It is worth mentioning that audio-only `COMPOSED` recordings takes advantage of the new recording capabilities introduced in this release to make it an extremley efficient process. Check out the **[full documentation](/advanced-features/recording/#audio-only-and-video-only-recordings)** on this subject.
+Configure your recordings to be audio-only or video-only. This is available for both `COMPOSED` and `INDIVIDUAL` recordings. It is worth mentioning that audio-only `COMPOSED` recordings takes advantage of the new recording capabilities introduced in this release to make it an extremley efficient process. Check out the **[full documentation](/advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"}** on this subject.
 
 <br>
 
 ##### Other improvements
 
 - New property `resolution` when starting recordings. With it you can set the width and height in pixels of the recorded file. This is only available fro `COMPOSED` recordings. `INDIVIDUAL` recordings will always record the video files with the native resolution of each video stream
-- Automatic stop of recordings is greatly improved. Check it out **[here](/advanced-features/recording/#automatic-stop-of-recordings)**
-- New property **[Stream.creationTime](https://openvidu.io/api/openvidu-browser/classes/stream.html#creationtime)** in OpenVidu Browser. This is the time when a stream was created in OpenVidu Server. Reflects the real starting time of the media stream transmission on the server side.
+- Automatic stop of recordings is greatly improved. Check it out **[here](/advanced-features/recording/#automatic-stop-of-recordings){:target="_blank"}**
+- New property **[Stream.creationTime](https://openvidu.io/api/openvidu-browser/classes/stream.html#creationtime){:target="_blank"}** in OpenVidu Browser. This is the time when a stream was created in OpenVidu Server. Reflects the real starting time of the media stream transmission on the server side.
 - OpenVidu Server now destroys any stranded recording container left on the host on start up. This allows keeping the host machine clean when restarting the service
-- New REST method available in OpenVidu Server: `GET /config`. You can consult OpenVidu Server version and all active configuration properties with it. Check it out **[here](/reference-docs/REST-API/#get-config)**.
+- New REST method available in OpenVidu Server: `GET /config`. You can consult OpenVidu Server version and all active configuration properties with it. Check it out **[here](/reference-docs/REST-API/#get-config){:target="_blank"}**.
 
 <br>
 
 #### BUG FIXES
 
-- Fixed a problem that was causing unexpected websocket disconnections from OpenVidu Server due to HttpSessions expiring after half an hour. It has been fixed by adding real reconnection capailities to websockets established from clients. This also fixes a problem with recordings longer than 30 minutes sometimes failing. _Issue [#146](https://github.com/OpenVidu/openvidu/issues/146)_
+- Fixed a problem that was causing unexpected websocket disconnections from OpenVidu Server due to HttpSessions expiring after half an hour. It has been fixed by adding real reconnection capailities to websockets established from clients. This also fixes a problem with recordings longer than 30 minutes sometimes failing. _Issue [#146](https://github.com/OpenVidu/openvidu/issues/146){:target="_blank"}_
 - Recording layout improved: default BEST_FIT layout used in COMPOSED recordings was including small black bars in the upper and left margins of the layout, that were visible in the final video file. This is now fixed.
-- openvidu-browser: property [Connection.creationTime](https://openvidu.io/api/openvidu-browser/classes/connection.html#creationtime) now has real value (brought from OpenVidu Server) instead of a local value. Now it reflects the real time some user connected to the Session. _Issue [#170](https://github.com/OpenVidu/openvidu/issues/170)_
+- openvidu-browser: property **[Connection.creationTime](https://openvidu.io/api/openvidu-browser/classes/connection.html#creationtime){:target="_blank"}** now has real value (brought from OpenVidu Server) instead of a local value. Now it reflects the real time some user connected to the Session. _Issue [#170](https://github.com/OpenVidu/openvidu/issues/170){:target="_blank"}_
 - openvidu-call: now when setting a screen-share stream in full-screen mode, aspect ratio is preserved to avoid loss of information
 
 <br>
@@ -146,7 +146,7 @@ Configure your recordings to be audio-only or video-only. This is available for 
 Even though this is not a major update with incompatibility changes according to _semver_, there are in fact a couple of changes that are worth mentioning:
 
 - Recorded files folder structure has changed: each recording is stored now in its own folder, named after the unique recording id. This doesn't affect the recordings management through REST API, openvidu-java-client or openvidu-node-client. But if you were locally managing the recordings, then a new folder structure is expected now.
-- openvidu-node-client: Recording properties `Recording.hasAudio`, `Recording.hasVideo` and  `Recording.name` have been included into new [Recording.properties](/../api/openvidu-node-client/classes/recording.html#properties) attribute: `Recording.properties.hasAudio`, `Recording.properties.hasVideo` and `Recording.properties.name`
+- openvidu-node-client: Recording properties `Recording.hasAudio`, `Recording.hasVideo` and  `Recording.name` have been included into new [Recording.properties](/../api/openvidu-node-client/classes/recording.html#properties){:target="_blank"} attribute: `Recording.properties.hasAudio`, `Recording.properties.hasVideo` and `Recording.properties.name`
 
 <br>
 
@@ -250,29 +250,29 @@ Even though this is not a major update with incompatibility changes according to
 
 OpenVidu finally brings Safari to its collection of supported platforms. Two things to take into account when developing a Safari compatible application:
 
-- If there are gonna be other types of clients rather than Safari connecting to the same session, then transcoding will be necessary in OpenVidu Server. This will bring up CPU load significantly. This behavior is due to Safari not supporting any other codec than H264, when rest of platforms usually prefer VP8. Good news is this is a problem that will soon fix on its own: Safari will support VP8 in the near future (see [Release 68 Notes](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/))
-- A little hack is needed in your app if your Safari users are gonna have `SUBSCRIBER` role (only receiving video, without accessing their microphone or camera). [Learn more here](/troubleshooting/#11-my-safari-users-with-role-subscriber-are-not-able-to-receive-any-remote-video)
+- If there are gonna be other types of clients rather than Safari connecting to the same session, then transcoding will be necessary in OpenVidu Server. This will bring up CPU load significantly. This behavior is due to Safari not supporting any other codec than H264, when rest of platforms usually prefer VP8. Good news is this is a problem that will soon fix on its own: Safari will support VP8 in the near future (see [Release 68 Notes](https://webkit.org/blog/8475/release-notes-for-safari-technology-preview-68/){:target="_blank"})
+- A little hack is needed in your app if your Safari users are gonna have `SUBSCRIBER` role (only receiving video, without accessing their microphone or camera). [Learn more here](/troubleshooting/#11-my-safari-users-with-role-subscriber-are-not-able-to-receive-any-remote-video){:target="_blank"}
 
 <br>
 
 ##### Ionic support for iOS
 
-Apple support is completed with Ionic platform for iOS. Now you can implement an Ionic app that will compile OK into an iOS native application. Our [openvidu-ionic](/tutorials/openvidu-ionic/) tutorial is now fully compatible with iPhones and iPads. We recommend to use it as a starting point for your Android/iOS application, but in openvidu-ionic tutorial you also have everything you need to integrate OpenVidu in any Ionic app. Take a look at it!
+Apple support is completed with Ionic platform for iOS. Now you can implement an Ionic app that will compile OK into an iOS native application. Our [openvidu-ionic](/tutorials/openvidu-ionic/){:target="_blank"} tutorial is now fully compatible with iPhones and iPads. We recommend to use it as a starting point for your Android/iOS application, but in openvidu-ionic tutorial you also have everything you need to integrate OpenVidu in any Ionic app. Take a look at it!
 
 <br>
 
 ##### New event `streamAudioVolumeChange`
 
-You can now listen to volume changes in any Publisher or Subscriber object. You can, for example, add a real-time audio wave or perform some action when certain level of noise or silence is reached. More details [here](/advanced-features/speech-detection/#audio-volume-detection).
+You can now listen to volume changes in any Publisher or Subscriber object. You can, for example, add a real-time audio wave or perform some action when certain level of noise or silence is reached. More details [here](/advanced-features/speech-detection/#audio-volume-detection){:target="_blank"}.
 
 #### BUG FIXES
 
 <br>
 
-- Recording layout now internally hides cursor (no need of styling the layout with `cursor:none`). _Issue [#138](https://github.com/OpenVidu/openvidu/issues/138)_
-- Recording stopping process reinforced to terminate and gracefully generate video files for failed recording containers (those that do not receive any video from the session caused by a misconfiguration or a wrong custom recording layout). This will help getting rid off dead containers and keeping OpenVidu Server clean. _Issue [#148](https://github.com/OpenVidu/openvidu/issues/148)_
-- Mirroring local video fix: when changing to screen-share, local video is now un-mirrored, and viceversa. _Issue [#13](https://github.com/OpenVidu/openvidu-call/issues/13)_
-- Sessions configured with `Recording.MANUAL` now automatically stop their recording if last participant left the session and no user published to the same session in 2 minutes. _Issue [#149](https://github.com/OpenVidu/openvidu/issues/149)_
+- Recording layout now internally hides cursor (no need of styling the layout with `cursor:none`). _Issue [#138](https://github.com/OpenVidu/openvidu/issues/138){:target="_blank"}_
+- Recording stopping process reinforced to terminate and gracefully generate video files for failed recording containers (those that do not receive any video from the session caused by a misconfiguration or a wrong custom recording layout). This will help getting rid off dead containers and keeping OpenVidu Server clean. _Issue [#148](https://github.com/OpenVidu/openvidu/issues/148){:target="_blank"}_
+- Mirroring local video fix: when changing to screen-share, local video is now un-mirrored, and viceversa. _Issue [#13](https://github.com/OpenVidu/openvidu-call/issues/13){:target="_blank"}_
+- Sessions configured with `Recording.MANUAL` now automatically stop their recording if last participant left the session and no user published to the same session in 2 minutes. _Issue [#149](https://github.com/OpenVidu/openvidu/issues/149){:target="_blank"}_
 - `Publisher.publishAudio` and `Publisher.publishVideo` may be called without having initialized a Session or having called `Session.publish(Publisher)`
 
 <br>
@@ -375,16 +375,16 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
 <br>
 ##### Ionic support
 
-There's a [complete tutorial](/tutorials/openvidu-ionic/) in OpenVidu Docs to get a native Android app working with OpenVidu in just a few steps. You can just clone and use our sample application as a starting point or maybe you want to add OpenVidu to your existing Ionic app. [Here you have](/tutorials/openvidu-ionic/#android-permissions) the necessary configuration steps to do so (basically Android permissions stuff).
+There's a [complete tutorial](/tutorials/openvidu-ionic/){:target="_blank"} in OpenVidu Docs to get a native Android app working with OpenVidu in just a few steps. You can just clone and use our sample application as a starting point or maybe you want to add OpenVidu to your existing Ionic app. [Here you have](/tutorials/openvidu-ionic/#android-specific-requirements){:target="_blank"} the necessary configuration steps to do so (basically Android permissions stuff).
 
 We are currently working on making OpenVidu work on iOS with Ionic.
 
 <br>
 ##### New types of filters supported
 
-OpenVidu 2.5.0 brought a fantastic and a differentiating element: [real time audio and video filters](/advanced-features/filters/). Now we have extended this capability to support new GStreamer based filters such as **textoverlay**, **timeoverlay** or **clockoverlay**.
+OpenVidu 2.5.0 brought a fantastic and a differentiating element: [real time audio and video filters](/advanced-features/filters/){:target="_blank"}. Now we have extended this capability to support new GStreamer based filters such as **textoverlay**, **timeoverlay** or **clockoverlay**.
 
-You can embed any text, the timestamp of the video or the current time, easily customizing its position and format. Check these filters in [GStreamer section](/advanced-features/filters/#gstreamer-filters) of filters documentation.
+You can embed any text, the timestamp of the video or the current time, easily customizing its position and format. Check these filters in [GStreamer section](/advanced-features/filters/#gstreamer-filters){:target="_blank"} of filters documentation.
 
 <br>
 ##### Recording service now generates a thumbnail when stopping the recording
@@ -502,7 +502,7 @@ This bug has been completely solved in OpenVidu 2.6.0. Now media connections wil
 <br>
 ##### Kurento filters support
 
-OpenVidu API offers a simple way of applying filters to video and audio streams in the server side by making use of Kurento Media Server capabilities. See [Voice and video filters](https://openvidu.io/docs/advanced-features/filters/) section to learn more.
+OpenVidu API offers a simple way of applying filters to video and audio streams in the server side by making use of Kurento Media Server capabilities. See [Voice and video filters](https://openvidu.io/docs/advanced-features/filters/){:target="_blank"} section to learn more.
 
 <br>
 ##### Individual user configuration for maximum/minimum bandwidth
@@ -511,7 +511,7 @@ In version 2.3.0 we introduced [4 new configuration parameters for OpenVidu Serv
 
 You can set custom bandwidths by using **REST API**, **openvidu-java-client** or **openvidu-node-client**:
 
-- **REST API**: in [POST /api/tokens](https://openvidu.io/docs/reference-docs/REST-API/#post-apitokens) append a property in the json body like this
+- **REST API**: in [POST /api/tokens](https://openvidu.io/docs/reference-docs/REST-API/#post-apitokens){:target="_blank"} append a property in the json body like this
 
         "kurentoOptions": {
           "videoMaxRecvBandwidth": 1000,
@@ -554,29 +554,29 @@ You can set custom bandwidths by using **REST API**, **openvidu-java-client** or
 
 - `Connection` objects have a brand new property very useful for session analysis: `platform`. It carries a complete description of the platform used by the client to connect to your session. For example: `"Chrome 69.0.3497.81 on OS X 10.13.6 64-bit"` or `"Firefox Mobile 62.0 on Mobile (Android 8.1.0)"`
 
-    You can get this information by retrieving session information with the REST api ([GET /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions) or [GET /api/sessions/SESSION_ID](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessionssession_id)) or inspecting _openvidu-java-client_ and _openvidu-node-client_ Session objects: calling `Session.fetch()` or `OpenVidu.fetch()` will update the status of their `activeConnections` property. Then you can check it out in _openvidu-node-client_ (property [`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections)) or _openvidu-java-client_ (method [`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/))
+    You can get this information by retrieving session information with the REST api (_[GET /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions){:target="_blank"}_ or _[GET /api/sessions/SESSION_ID](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}_) or inspecting _openvidu-java-client_ and _openvidu-node-client_ Session objects: calling `Session.fetch()` or `OpenVidu.fetch()` will update the status of their `activeConnections` property. Then you can check it out in _openvidu-node-client_ (property _[`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections){:target="_blank"}_) or _openvidu-java-client_ (method _[`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/){:target="_blank"}_)
 
-- `Session`, `Connection` and `Publisher` objects now have `createdAt` property, indicating when these objects where initialized in OpenVidu Server. This property has been integrated to maintain consistency with OpenVidu Server Call Detail Record, which has already been storing it in previous versions (check `"timestamp"` property of every [CDR entry](https://openvidu.io/docs/reference-docs/openvidu-server-cdr)).
+- `Session`, `Connection` and `Publisher` objects now have `createdAt` property, indicating when these objects where initialized in OpenVidu Server. This property has been integrated to maintain consistency with OpenVidu Server Call Detail Record, which has already been storing it in previous versions (check `"timestamp"` property of every [CDR entry](https://openvidu.io/docs/reference-docs/openvidu-server-cdr){:target="_blank"}).
 
 <br>
 ##### OpenVidu Browser improvements
 
-- New method `OpenVidu.checkScreenSharingCapabilities()`. It allows developers to know if the client platform supports screen sharing (see its declaration in [OpenVidu Documentation](https://openvidu.io//api/openvidu-browser/classes/openvidu.html#checkscreensharingcapabilities))
+- New method `OpenVidu.checkScreenSharingCapabilities()`. It allows developers to know if the client platform supports screen sharing (see its declaration in [OpenVidu Documentation](https://openvidu.io//api/openvidu-browser/classes/openvidu.html#checkscreensharingcapabilities){:target="_blank"})
 
 <br>
 ##### New OpenVidu Angular and OpenVidu React libraries
 
-We introduced OpenVidu Web Component in release [2.3.0](#230). Now we offer native libraries for both Angular and React (latest versions) to insert the same powerful component in your applications by making use of each framework capabilities. You can check a tutorial for OpenVidu Angular ([openvidu-library-angular](https://openvidu.io/docs/tutorials/openvidu-library-angular/)) and  for OpenVidu React ([openvidu-library-react](https://openvidu.io/docs/tutorials/openvidu-library-react/)) right now.
+We introduced OpenVidu Web Component in release [2.3.0](#230). Now we offer native libraries for both Angular and React (latest versions) to insert the same powerful component in your applications by making use of each framework capabilities. You can check a tutorial for OpenVidu Angular ([openvidu-library-angular](https://openvidu.io/docs/tutorials/openvidu-library-angular/){:target="_blank"}) and  for OpenVidu React ([openvidu-library-react](https://openvidu.io/docs/tutorials/openvidu-library-react/){:target="_blank"}) right now.
 
-Of course you can keep using OpenVidu Browser library instead of these components in any frontend framework. These tutorials show a basic use of OpenVidu Browser in an Angular app ([openvidu-insecure-angular](https://openvidu.io/docs/tutorials/openvidu-insecure-angular/)) and in a React app ([openvidu-insecure-react](https://openvidu.io/docs/tutorials/openvidu-insecure-react/)).
+Of course you can keep using OpenVidu Browser library instead of these components in any frontend framework. These tutorials show a basic use of OpenVidu Browser in an Angular app ([openvidu-insecure-angular](https://openvidu.io/docs/tutorials/openvidu-insecure-angular/){:target="_blank"}) and in a React app ([openvidu-insecure-react](https://openvidu.io/docs/tutorials/openvidu-insecure-react/){:target="_blank"}).
 
 #### BUG FIXES
 
-- Local tracks now are not stopped on stream disposal if property [`PublisherProperties.videoSource`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html#videosource) was of type MediaStreamTrack (custom stream got with [`OpenVidu.getUserMedia()`](https://openvidu.io/api/openvidu-browser/classes/openvidu.html#getusermedia)). _Issue [#107](https://github.com/OpenVidu/openvidu/issues/107), PR [#108](https://github.com/OpenVidu/openvidu/pull/108)_
-- Deprecated `RTCPeerConnection.getRemoteStreams` and `RTCPeerConnection.getLocalStreams` to `RTCPeerConnection.getReceivers` and `RTCPeerConnection.getSenders`. _Issue [#54](https://github.com/OpenVidu/openvidu/issues/54)_
-- Allow full screen sharing in Firefox. _Issue [#103](https://github.com/OpenVidu/openvidu/issues/103), PR [#105](https://github.com/OpenVidu/openvidu/pull/105)_
-- Fixed duplicated camera permissions in Firefox if `PublisherProperties.videoSource/audioSource` are provided as MediaStreamTracks. _PR [#109](https://github.com/OpenVidu/openvidu/pull/109)_
-- openvidu-node-client now rejects with Error object upon OpenVidu Server unreachable. _Issue [#116](https://github.com/OpenVidu/openvidu/issues/116), PR [#117](https://github.com/OpenVidu/openvidu/pull/117)_
+- Local tracks now are not stopped on stream disposal if property _[`PublisherProperties.videoSource`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html#videosource){:target="_blank"}_ was of type MediaStreamTrack (custom stream got with _[`OpenVidu.getUserMedia()`](https://openvidu.io/api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"}_). _Issue [#107](https://github.com/OpenVidu/openvidu/issues/107){:target="_blank"}, PR [#108](https://github.com/OpenVidu/openvidu/pull/108){:target="_blank"}_
+- Deprecated `RTCPeerConnection.getRemoteStreams` and `RTCPeerConnection.getLocalStreams` to `RTCPeerConnection.getReceivers` and `RTCPeerConnection.getSenders`. _Issue [#54](https://github.com/OpenVidu/openvidu/issues/54){:target="_blank"}_
+- Allow full screen sharing in Firefox. _Issue [#103](https://github.com/OpenVidu/openvidu/issues/103){:target="_blank"}, PR [#105](https://github.com/OpenVidu/openvidu/pull/105){:target="_blank"}_
+- Fixed duplicated camera permissions in Firefox if `PublisherProperties.videoSource/audioSource` are provided as MediaStreamTracks. _PR [#109](https://github.com/OpenVidu/openvidu/pull/109){:target="_blank"}_
+- openvidu-node-client now rejects with Error object upon OpenVidu Server unreachable. _Issue [#116](https://github.com/OpenVidu/openvidu/issues/116){:target="_blank"}, PR [#117](https://github.com/OpenVidu/openvidu/pull/117){:target="_blank"}_
 
 <br>
 
@@ -670,7 +670,7 @@ Backend clients are now compatible with REST API 2.3.0, adding methods:
 - `Session.fetch()`: bring Session information from OpenVidu Server
 - `OpenVidu.fetch()`: bring information from every active Session from OpenVidu Server
 
-You can call methods `Session.fetch()` and `OpenVidu.fetch()` to bring the current status of sessions from OpenVidu Server. You can consult now directly from _OpenVidu Java Client_ / _OpenVidu Node Client_ all the active sessions with [`OpenVidu.getActiveSessions()`](https://openvidu.io/api/openvidu-java-client/) / [`OpenVidu.activeSessions`](https://openvidu.io/api/openvidu-node-client/classes/openvidu.html#activesessions) and the active connections of a session with [`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/) / [`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections).
+You can call methods `Session.fetch()` and `OpenVidu.fetch()` to bring the current status of sessions from OpenVidu Server. You can consult now directly from _OpenVidu Java Client_ / _OpenVidu Node Client_ all the active sessions with [`OpenVidu.getActiveSessions()`](https://openvidu.io/api/openvidu-java-client/){:target="_blank"} / [`OpenVidu.activeSessions`](https://openvidu.io/api/openvidu-node-client/classes/openvidu.html#activesessions){:target="_blank"} and the active connections of a session with [`Session.getActiveConnections()`](https://openvidu.io/api/openvidu-java-client/){:target="_blank"} / [`Session.activeConnections`](https://openvidu.io/api/openvidu-node-client/classes/session.html#activeconnections){:target="_blank"}.
 
 <br>
 ##### OpenVidu CDR extended
@@ -678,7 +678,7 @@ You can call methods `Session.fetch()` and `OpenVidu.fetch()` to bring the curre
 Event `recordingStopped` event now has `reason` property. Can be: 
 
 - `"recordingStoppedByServer"`: the recording was stopped by the application (using REST API, OpenVidu Java Client or OpenVidu Node Client)
-- `"lastParticipantLeft"`: if the Session was configured for automatic recording (`RecordingMode.ALWAYS`, check [OpenVidu Node Client](https://openvidu.io/api/openvidu-node-client/enums/recordingmode.html) docs for more info), then it stopped because the last participant left the session
+- `"lastParticipantLeft"`: if the Session was configured for automatic recording (`RecordingMode.ALWAYS`, check [OpenVidu Node Client](https://openvidu.io/api/openvidu-node-client/enums/recordingmode.html){:target="_blank"} docs for more info), then it stopped because the last participant left the session
 - `"sessionClosedByServer"`: the recording stopped because the session was forcibly closed by the application (using REST API, OpenVidu Java Client or OpenVidu Node Client)
 - `"openviduServerStopped"`: the recording stopped because OpenVidu Server process unexpectedly stopped (cannot be guaranteed)
 
@@ -822,13 +822,13 @@ openvidu-webcomponent {
 
 If you give enough width to the component (at least `700px`), users can communicate through an integrated chat.
 
-> To see some images of OpenVidu Web Component in action, check this post on [Medium](https://medium.com/@openvidu/openvidu-2-3-0-web-component-and-tons-of-new-features-3341d46cbb54). If you want to learn more about OpenVidu Web Component, visit [Tutorials section](/tutorials/openvidu-webcomponent)
+> To see some images of OpenVidu Web Component in action, check this post on [Medium](https://medium.com/@openvidu/openvidu-2-3-0-web-component-and-tons-of-new-features-3341d46cbb54){:target="_blank"}. If you want to learn more about OpenVidu Web Component, visit [Tutorials section](/tutorials/openvidu-webcomponent){:target="_blank"}
 
 <br>
 #### NEW FEATURES
 
 <br>
-##### StreamPropertyChangedEvent (See [here](https://openvidu.io/api/openvidu-browser/classes/streampropertychangedevent.html))
+##### StreamPropertyChangedEvent (See [here](https://openvidu.io/api/openvidu-browser/classes/streampropertychangedevent.html){:target="_blank"})
 
 OpenVidu Browser now lets users connected to a Session know when any Stream they are subscribed to undergoes any possible change in its properties. Every Session object will dispatch this new event (you can subscribe to it to every Publisher or Subscriber object too). This event can refer to the following Stream properties:
 
@@ -857,42 +857,42 @@ session.on('streamPropertyChanged', event => {
 This way you can react more easily upon this variations in the published streams and update your application's layout accordingly.
 
 <br>
-##### Session.capabilities (See [here](https://openvidu.io/api/openvidu-browser/interfaces/capabilities.html))
+##### Session.capabilities (See [here](https://openvidu.io/api/openvidu-browser/interfaces/capabilities.html){:target="_blank"})
 
-You can check capabilities property of Session object to know which methods are able to invoke each one of your clients, depending on their role. Also, if a client tries to call a method for which he has no permissions, now an OpenViduError is thrown with property `name` being [`OPENVIDU_PERMISSION_DENIED`](https://openvidu.io/api/openvidu-browser/enums/openviduerrorname.html#openvidu_permission_denied).
+You can check capabilities property of Session object to know which methods are able to invoke each one of your clients, depending on their role. Also, if a client tries to call a method for which he has no permissions, now an OpenViduError is thrown with property `name` being [`OPENVIDU_PERMISSION_DENIED`](https://openvidu.io/api/openvidu-browser/enums/openviduerrorname.html#openvidu_permission_denied){:target="_blank"}.
 
 <br>
 ##### New MODERATOR role
 
 At last developers have available the new role that has been in our roadmap for a long time. Users connecting to a session with a token configured with MODERATOR role can call every method granted for SUBSCRIBER and PUBLISHER roles, but also:
 
-- [`Session.forceDisconnect`](https://openvidu.io/api/openvidu-browser/classes/session.html#forcedisconnect): you can evict any user from the Session (force the method `Session.disconnect`)
-- [`Session.forceUnpublish`](https://openvidu.io/api/openvidu-browser/classes/session.html#forceunpublish): you can stop the Publisher of any user publishing in the Session (force the method `Session.unpublish`)
+- [`Session.forceDisconnect`](https://openvidu.io/api/openvidu-browser/classes/session.html#forcedisconnect){:target="_blank"}: you can evict any user from the Session (force the method `Session.disconnect`)
+- [`Session.forceUnpublish`](https://openvidu.io/api/openvidu-browser/classes/session.html#forceunpublish){:target="_blank"}: you can stop the Publisher of any user publishing in the Session (force the method `Session.unpublish`)
 
 <br>
 ##### REST API extended
 
-5 new methods join the [REST API of OpenVidu Server](https://openvidu.io/docs/reference-docs/REST-API/):
+5 new methods join the [REST API of OpenVidu Server](https://openvidu.io/docs/reference-docs/REST-API/){:target="_blank"}:
 
-- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessionssession_id)
-- Retrieve all active sessions info: [**GET /api/sessions**](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions)
-- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_id)
-- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_idconnectionconnection_id)
-- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionssession_idstreamstream_id)
+- Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API//#get-apisessionsltsession_idgt){:target="_blank"}
+- Retrieve all active sessions info: [**GET /api/sessions**](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions){:target="_blank"}
+- Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionsltsession_idgt){:target="_blank"}
+- Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}
+- Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](https://openvidu.io/docs/reference-docs/REST-API/#delete-apisessionsltsession_idgtstreamltstream_idgt){:target="_blank"}
 
-> Future iterations will add this capabilities to [openvidu-java-client](https://openvidu.io/docs/reference-docs/openvidu-java-client/) and [openvidu-node-client](https://openvidu.io/docs/reference-docs/openvidu-node-client/) libraries
+> Future iterations will add this capabilities to [openvidu-java-client](https://openvidu.io/docs/reference-docs/openvidu-java-client/){:target="_blank"} and [openvidu-node-client](https://openvidu.io/docs/reference-docs/openvidu-node-client/){:target="_blank"} libraries
 
 <br>
 ##### Configure global bandwidth for your WebRTC connections
 
-We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/) sections:
+We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/){:target="_blank"} sections:
 
 - `openvidu.streams.video.max-recv-bandwidth`: Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 1000)
 - `openvidu.streams.video.min-recv-bandwidth`: Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 300)
 - `openvidu.streams.video.max-send-bandwidth`: Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 1000)
 - `openvidu.streams.video.min-send-bandwidth`: Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained	(default 300)
 
-> Future iterations will study the possibility of configuring this same parameters for each session individually or even for each incoming or outgoing WebRTC connection (maybe as part of [`PublisherProperties`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html) or [`SubscriberProperties`](https://openvidu.io/api/openvidu-browser/interfaces/subscriberproperties.html))
+> Future iterations will study the possibility of configuring this same parameters for each session individually or even for each incoming or outgoing WebRTC connection (maybe as part of [`PublisherProperties`](https://openvidu.io/api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"} or [`SubscriberProperties`](https://openvidu.io/api/openvidu-browser/interfaces/subscriberproperties.html){:target="_blank"})
 
 <br>
 
@@ -967,9 +967,9 @@ We have included a first way to set the maximum and minimum bandwidths for the m
 
 <br>
 
-OpenVidu now offers **integrated and automated support for TURN server**. We encourage developers to check out our **[post on Medium](https://medium.com/@openvidu/openvidu-2-2-0-turn-made-easy-9d7e145f8905)** to learn more about it.
+OpenVidu now offers **integrated and automated support for TURN server**. We encourage developers to check out our **[post on Medium](https://medium.com/@openvidu/openvidu-2-2-0-turn-made-easy-9d7e145f8905){:target="_blank"}** to learn more about it.
 
-The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](https://openvidu.io/docs/deployment/deploying-aws/) with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](https://openvidu.io/docs/deployment/deploying-ubuntu/).
+The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](https://openvidu.io/docs/deployment/deploying-aws/){:target="_blank"} with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](https://openvidu.io/docs/deployment/deploying-ubuntu/){:target="_blank"}.
 
 <br>
 
@@ -1050,9 +1050,9 @@ The platform now integrates by default a COTURN server as part of its ecosystem.
 
 We have implemented a new class in OpenVidu Browser aimed to better support declarative frontend frameworks such as Angular, React or Vue.js.
 
-Now Publisher and Subscriber objects both inherit from [StreamManager](../../api/openvidu-browser/classes/streammanager.html), which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dynamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](/cheatsheet/manage-videos) section.
+Now Publisher and Subscriber objects both inherit from [StreamManager](../../api/openvidu-browser/classes/streammanager.html){:target="_blank"}, which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dynamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](/cheatsheet/manage-videos){:target="_blank"} section.
 
-If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/).<br><br>
+If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](/tutorials/openvidu-insecure-angular/){:target="_blank"}.<br><br>
 
 <br>
 
@@ -1136,7 +1136,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
     - `Session.publish()`: now returns a Promise so you can tell if the method was successful or not.
     - `Session.signal()`: now returns a Promise so you can tell if the method was successful or not.
     - `Subcriber.subscribeToAudio()` and `Subscriber.subscribeToVideo()`: new methods that allows you to mute the audio or video tracks of a remote stream.
-    - `OpenVidu.initPublisher()`: now expects properties as interface [PublisherProperties](../../api/openvidu-browser/interfaces/publisherproperties.html). They include:
+    - `OpenVidu.initPublisher()`: now expects properties as interface [PublisherProperties](../../api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}. They include:
 
             {
                 audioSource: undefined, // The source of audio. If undefined default audio input
@@ -1149,7 +1149,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
                 mirror: false       	// Whether to mirror your local video or not
             }
 
-    - `Session.subscribe()`: now expects properties as interface [SubscriberProperties](../../api/openvidu-browser/interfaces/subscriberproperties.html). They include:
+    - `Session.subscribe()`: now expects properties as interface [SubscriberProperties](../../api/openvidu-browser/interfaces/subscriberproperties.html){:target="_blank"}. They include:
 
             {
                 insertMode: 'APPEND',	// How the video will be inserted in the target element
@@ -1158,7 +1158,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
             }
 
     - `OpenVidu.getDevices()`: now you can use certain video or audio input device when calling `OpenVidu.initPublisher()`, thanks to properties `audioSource` or `videoSource` of `PublisherProperties` object. Just set these variables to the property `deviceId` of any of the devices returned by this method.
-    - `OpenVidu.getUserMedia()`: method improved. Now devs can customize a MediaStream object before calling `OpenVidu.initPublisher()` method, setting property `audioSource` or `videoSource` to a MediaStreamTrack object (see [docs](../../api/openvidu-browser/classes/openvidu.html#getusermedia) for further information)<br><br>
+    - `OpenVidu.getUserMedia()`: method improved. Now devs can customize a MediaStream object before calling `OpenVidu.initPublisher()` method, setting property `audioSource` or `videoSource` to a MediaStreamTrack object (see [docs](../../api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} for further information)<br><br>
 
 - **OpenVidu Browser new properties**
 
@@ -1167,49 +1167,49 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 - **OpenVidu Browser events**
 
     - New events `accessDialogOpened` and `accessDialogClosed`: dispatched by Publisher objects when the browser asks the user to grant permissions to camera or michrophone by opening a pop-up. You can use them to warn your users about it.
-    - New events `recordingStarted` and `recordingStopped`: dispatched by Session object when the recording of a Session starts and stops. You can customize which clients will receive this event thanks to new property `openvidu.recording.notification` (see [OpenVidu Server configuration](/reference-docs/openvidu-server-params/))
-    - Events `publisherStartSpeaking` and `publisherStopSpeaking` improved: more customizable thanks to [OpenVidu.setAdvancedConfiguration()](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration) and better overall performance.
-    - Events `streamDestroyed`, `connectionDestroyed` and `sessionDisconnected` have new property `reason`. This gives more information about why the events have been dispatched so you can take specific actions depending on the context: maybe a stream has been destroyed because the user publishing has deliberately diposed it or maybe the network connection has unexpectedly closed (see docs for [StreamEvent](../../api/openvidu-browser/classes/streamevent.html), [ConnectionEvent](../../api/openvidu-browser/classes/connectionevent.html) and [SessionDisconnectedEvent](../../api/openvidu-browser/classes/sessiondisconnectedevent.html))<br><br>
+    - New events `recordingStarted` and `recordingStopped`: dispatched by Session object when the recording of a Session starts and stops. You can customize which clients will receive this event thanks to new property `openvidu.recording.notification` (see [OpenVidu Server configuration](/reference-docs/openvidu-server-params/){:target="_blank"})
+    - Events `publisherStartSpeaking` and `publisherStopSpeaking` improved: more customizable thanks to [OpenVidu.setAdvancedConfiguration()](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} and better overall performance.
+    - Events `streamDestroyed`, `connectionDestroyed` and `sessionDisconnected` have new property `reason`. This gives more information about why the events have been dispatched so you can take specific actions depending on the context: maybe a stream has been destroyed because the user publishing has deliberately diposed it or maybe the network connection has unexpectedly closed (see docs for [StreamEvent](../../api/openvidu-browser/classes/streamevent.html){:target="_blank"}, [ConnectionEvent](../../api/openvidu-browser/classes/connectionevent.html){:target="_blank"} and [SessionDisconnectedEvent](../../api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"})<br><br>
 
 - **Other improvements in OpenVidu Browser**
 
-    - Support for [custom screen sharing extensions for Chrome](/advanced-features/screen-share/#custom-screen-sharing-extension-for-chrome)
-    - Support for custom STUN and TURN servers in openvidu-browser. Use [OpenVidu.setAdvancedConfiguration()](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration)
+    - Support for [custom screen sharing extensions for Chrome](/advanced-features/screen-share/#custom-screen-sharing-extension-for-chrome){:target="_blank"}
+    - Support for custom STUN and TURN servers in openvidu-browser. Use [OpenVidu.setAdvancedConfiguration()](../../api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"}
     - Library size decreased in almost 30% (_openvidu-browser.min.js_ from 300 KB to 216 KB)<br><br>
 
 - **OpenVidu Server new features**
-    - New property `name` for recordings: you can now specify which name should OpenVidu Server give to each one of your recording files. You can do it by using the **REST API** (by setting [body parameter "name" in POST /api/recordings/start](/reference-docs/REST-API/#post-apirecordingsstart)), **openvidu-java-client** (by using [RecordingProperties.Builder.name()](../../api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.Builder.html)) or **openvidu-node-client** (by setting property [RecordingProperties.name](../../api/openvidu-node-client/interfaces/recordingproperties.html#name))
-    - Now support for initializing sessions with a custom `sessionId`. You can take advantage of this new property to facilitate the mapping between OpenVidu Server 'session' entities and your own 'session' entities. You can set it by using the **REST API** (by setting [body parameter "customSessionId" in POST /api/sessions](/reference-docs/REST-API/#post-apisessions)), **openvidu-java-client** (by using [SessionProperties.Builder.customSessionId()](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html)) or **openvidu-node-client** (by setting property [SessionProperties.customSessionId](../../api/openvidu-node-client/interfaces/sessionproperties.html#customsessionid))
+    - New property `name` for recordings: you can now specify which name should OpenVidu Server give to each one of your recording files. You can do it by using the **REST API** (by setting [body parameter "name" in POST /api/recordings/start](/reference-docs/REST-API/#post-apirecordingsstart){:target="_blank"}), **openvidu-java-client** (by using [RecordingProperties.Builder.name()](../../api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.Builder.html){:target="_blank"}) or **openvidu-node-client** (by setting property [RecordingProperties.name](../../api/openvidu-node-client/interfaces/recordingproperties.html#name){:target="_blank"})
+    - Now support for initializing sessions with a custom `sessionId`. You can take advantage of this new property to facilitate the mapping between OpenVidu Server 'session' entities and your own 'session' entities. You can set it by using the **REST API** (by setting [body parameter "customSessionId" in POST /api/sessions](/reference-docs/REST-API/#post-apisessions){:target="_blank"}), **openvidu-java-client** (by using [SessionProperties.Builder.customSessionId()](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html){:target="_blank"}) or **openvidu-node-client** (by setting property [SessionProperties.customSessionId](../../api/openvidu-node-client/interfaces/sessionproperties.html#customsessionid){:target="_blank"})
     - Call Detail Record extended: new events `recordingStarted` and `recordingStopped`, property `reason` for events `sessionDestroyed`, `participantLeft` and `webrtcConnectionDestroyed`.
 
 #### BUG FIXES
 
 - Now when any participant unexpectedly disconnects from a session (for example, due to a network failure), `connectionDestroyed` event is sent to the rest of participants with property `reason` set to `networkDisconnect`.
 - When OpenVidu Server is stopped, it will try to gracefully finish every in progress session and recording. This way no recording file will end corrupted upon OpenVidu Server termination (this cannot be granted if the process crashes or is forcibly terminated)
-- Now both STUN and TURN [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/#list-of-additional-configuration-parameters-when-launching-openvidu-server-kms-docker-container) can be set up at the same time with no overwritings.
+- Now both STUN and TURN [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/#list-of-additional-configuration-parameters-when-launching-openvidu-server-kms-docker-container){:target="_blank"} can be set up at the same time with no overwritings.
 - Tons of small fixes and code refactoring that makes OpenVidu more stable and easy to test and develop
 
 #### BREAKING CHANGES LIST
 
 - **OpenVidu Browser**
-    - [`OpenVidu.initSession`](../../api/openvidu-browser/classes/openvidu.html#initsession) now doesn't receive any input parameter.
-    - [`OpenVidu.initPublisher`](../../api/openvidu-browser/classes/openvidu.html#initpublisher) input parameters have changed. Now `properties` parameter must match [PublisherProperties](../..//api/openvidu-browser/interfaces/publisherproperties.html) interface.
-    - [`Session.connect`](../../api/openvidu-browser/classes/session.html#connect) method has been promisified. Change the last mandatory `callback` parameter for a Promise implementation: `session.connect(token, (error) => { ... })` to `session.connect(token).then(() => {...}).catch(error => {...});` <br><br>
+    - [`OpenVidu.initSession`](../../api/openvidu-browser/classes/openvidu.html#initsession){:target="_blank"} now doesn't receive any input parameter.
+    - [`OpenVidu.initPublisher`](../../api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"} input parameters have changed. Now `properties` parameter must match [PublisherProperties](../..//api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"} interface.
+    - [`Session.connect`](../../api/openvidu-browser/classes/session.html#connect){:target="_blank"} method has been promisified. Change the last mandatory `callback` parameter for a Promise implementation: `session.connect(token, (error) => { ... })` to `session.connect(token).then(() => {...}).catch(error => {...});` <br><br>
 
 - **OpenVidu Java Client**
     - All `Archive` entities are now called `Recording`. This includes: class `Archive` to `Recording`, class `ArchiveMode` to `RecordingMode`, class `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
-    - `RecordingLayout` property in [`SessionProperties.Builder`](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html) is now configured calling method `defaultRecordingLayout()` instead of `recordingLayout()`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `RecordingProperties.Builder.recordingLayout()`, which will overwrite the default one globally configured in SessionProperties object. <br><br>
+    - `RecordingLayout` property in [`SessionProperties.Builder`](../../api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html){:target="_blank"} is now configured calling method `defaultRecordingLayout()` instead of `recordingLayout()`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `RecordingProperties.Builder.recordingLayout()`, which will overwrite the default one globally configured in SessionProperties object. <br><br>
 
 - **OpenVidu Node Client**
     - We have removed the builder pattern in all openvidu-node-client classes. Now objects are used instead, which includes classes `TokenOptions`, `SessionProperties` and `RecordingProperties`. For example, instead of getting a TokenOptions object like this: `var tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build()` now it must be like this: `var tokenOptions = {data: serverData, role: role}`
     - There has been a simple change in certain asynchronous call. Method `Session.getSessionId()` is now synchronous, but method `OpenVidu.createSession()` is now asynchronous (the reason is pretty simple: now method _createSession_ implements the behavior that _getSessionId_ was providing the first time it was called for certain _Session_ object).
     - All callback methods have been promisified. This includes method `Session.generateToken(tokenOptions?, callback): void` (now  `Session.generateToken(tokenOptions?): Promise<string>`) and method `Session.getSessionId(callback): void` (now `OpenVidu.createSession(): Promise<Session>`, take also into account that the async call has changed from one method to the other as stated in the previous point).
     - All `Archive` entities are now called `Recording`. This includes: object `Archive` to `Recording`, object `ArchiveMode` to `RecordingMode`, object `ArchiveLayout` to `RecordingLayout`, method `SessionProperties.archiveLayout()` to `SessionProperties.recordingLayout()`, method `SessionProperties.archiveMode()` to `SessionProperties.recordingMode()`, method `SessionProperties.Builder.archiveLayout()` to `SessionProperties.Builder.recordingLayout()`, method `SessionProperties.Builder.archiveMode()` to `SessionProperties.Builder.recordingMode()`
-    - `recordingLayout` property in [`SessionProperties`](../../api/openvidu-node-client/interfaces/sessionproperties.html) has changed to `defaultRecordingLayout`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `recordingLayout` property (of [RecordingProperties](../../api/openvidu-node-client/interfaces/recordingproperties.html) interface, which will overwrite the default one globally configured in SessionProperties object. <br><br>
+    - `recordingLayout` property in [`SessionProperties`](../../api/openvidu-node-client/interfaces/sessionproperties.html){:target="_blank"} has changed to `defaultRecordingLayout`. This means that if one Session is gonna be recorded more than once, each recording layout may be customize with `recordingLayout` property (of [RecordingProperties](../../api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} interface, which will overwrite the default one globally configured in SessionProperties object. <br><br>
 
 - **REST API**
     - All `Archive` entities are now called `Recording` in API REST. For example: `{"archiveMode": "ARCHIVE_MODE", "archiveLayout": "ARCHIVE_LAYOUT", "mediaMode": "MEDIA_MODE"}` now is `{"recordingMode": "RECORDING_MODE", "recordingLayout": "RECORDING_LAYOUT", "mediaMode": "MEDIA_MODE"}`.
-    - Field `recordingLayout` is now called `defaultRecordingLayout` in operation [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions). This means that if one Session is gonna be recorded more than once, each recording layout may be customize adding a new field `recordingLayout` in the call to [POST /api/recordings/start](https://openvidu.io/docs/reference-docs/REST-API/#post-apirecordingsstart) of the API REST, which will overwrite the default one globally configured during [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions) <br><br>
+    - Field `recordingLayout` is now called `defaultRecordingLayout` in operation [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions){:target="_blank"}. This means that if one Session is gonna be recorded more than once, each recording layout may be customize adding a new field `recordingLayout` in the call to [POST /api/recordings/start](https://openvidu.io/docs/reference-docs/REST-API/#post-apirecordingsstart){:target="_blank"} of the API REST, which will overwrite the default one globally configured during [POST /api/sessions](https://openvidu.io/docs/reference-docs/REST-API/#post-apisessions){:target="_blank"} <br><br>
 
 - **Other breaking changes**
     - OpenVidu Server default port from `8443` to `4443`
@@ -1289,8 +1289,8 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 <br>
 
 - **Safari support**: now OpenVidu is compatible with the most recent versions of Safari in Mac and iOS. It is necessary to use Kurento Media Server 6.7.0:<br><br>
-    - **[openvidu/openvidu-server-kms:1.9.0-beta-1](https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/)** Docker image already incorporates KMS 6.7.0
-    - **[openvidu/openvidu-server:1.9.0-beta-1](https://hub.docker.com/r/openvidu/openvidu-server/tags/)** Docker image and **[openvidu-server-1.9.0-beta-1.jar](https://github.com/OpenVidu/openvidu/releases/tag/v1.9.0-beta-1)** need KMS 6.7.0. To install it, first be sure to completely uninstall and clean any previous version of KMS and then:
+    - **[openvidu/openvidu-server-kms:1.9.0-beta-1](https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/){:target="_blank"}** Docker image already incorporates KMS 6.7.0
+    - **[openvidu/openvidu-server:1.9.0-beta-1](https://hub.docker.com/r/openvidu/openvidu-server/tags/){:target="_blank"}** Docker image and **[openvidu-server-1.9.0-beta-1.jar](https://github.com/OpenVidu/openvidu/releases/tag/v1.9.0-beta-1){:target="_blank"}** need KMS 6.7.0. To install it, first be sure to completely uninstall and clean any previous version of KMS and then:
         
 <pre style="padding-left: 80px"><code class="bash hljs"># In first command: xenial for Ubuntu 16.04, trusty for Ubuntu 14.04
 sudo echo "deb http://ubuntu.openvidu.io/6.7.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list

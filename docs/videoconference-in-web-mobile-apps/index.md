@@ -23,7 +23,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 
 #### b) Software as a Service
 
-This includes services offered by companies such as [Tokbox](https://tokbox.com/), [Twilio](https://www.twilio.com/), [Agora.io](https://www.agora.io/en/), [Temasys](https://temasys.io/), [Xirsys](https://xirsys.com/) or [Kandy](https://www.kandy.io/). This can be a recommended option if:   ***a) you can afford it*** and ***b) you are allowed to outsource the service***. Besides, these platforms usually support both P2P and routed videocalls and also bring more advanced features pretty useful for companies such as programmable SMS or phone calls, SIP integration and so on.
+This includes services offered by companies such as [Tokbox](https://tokbox.com/){:target="_blank"}, [Twilio](https://www.twilio.com/){:target="_blank"}, [Agora.io](https://www.agora.io/en/){:target="_blank"}, [Temasys](https://temasys.io/){:target="_blank"}, [Xirsys](https://xirsys.com/){:target="_blank"} or [Kandy](https://www.kandy.io/){:target="_blank"}. This can be a recommended option if:   ***a) you can afford it*** and ***b) you are allowed to outsource the service***. Besides, these platforms usually support both P2P and routed videocalls and also bring more advanced features pretty useful for companies such as programmable SMS or phone calls, SIP integration and so on.
 
 #### c) On-Premises Software
 

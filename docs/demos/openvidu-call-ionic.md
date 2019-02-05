@@ -27,7 +27,7 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
     <br><br>
     <strong>Bugs reported:</strong><br>
     <li>Android 5 and 6.0 will not work with Ionic v4-beta until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved</li>
-	<li>This app will not work in iOS because of <a href="https://stackoverflow.com/questions/45055329/does-webkit-in-ios-11-beta-support-webrtc/49467964#49467964">problems between WebRTC and iOS</a></li>
+	<li>This app will not work in iOS because of <a href="https://stackoverflow.com/questions/45055329/does-webkit-in-ios-11-beta-support-webrtc/49467964#49467964" target="_blank">problems between WebRTC and iOS</a></li>
 
 </div>
 </div>
@@ -65,13 +65,13 @@ npm install
 ionic serve
 ```
 
-4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
 ```
 
-5) Go to [`localhost:8100`](http://localhost:8100) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+5) Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 6) To show the app with the device appearance, press `F12` button in your keyboard and the browser DevTool will be opened.
 
@@ -93,15 +93,15 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 
 #### Using the Android apk in an Android device
 
 
-To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android) to allows us to configure step by step all the requirements.
+To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android){:target="_blank"} to allows us to configure step by step all the requirements.
 
 After we have finished the Ionic tutorial, we must have to follow these steps:
 
@@ -123,10 +123,10 @@ npm install -g ionic@latest
 
 Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://192.168.0.105:4443). 
 
-Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11) and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
+Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11){:target="_blank"} and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
 
 
-5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.8.0
@@ -162,7 +162,7 @@ ionic cordova run android
     padding-left: 20px;
     padding-right: 20px;
     ">
-    To deploy apps to an Android device and debug them, developer mode must be enabled and allow for USB debugging turned on. Check out <a href="https://developer.android.com/studio/debug/dev-options#enable">these instructions</a> to do this on a device.
+    To deploy apps to an Android device and debug them, developer mode must be enabled and allow for USB debugging turned on. Check out <a href="https://developer.android.com/studio/debug/dev-options#enable" target="blank">these instructions</a> to do this on a device.
 </div>
 </div>
 

@@ -1,7 +1,7 @@
 # openvidu-call
 <a href="https://github.com/OpenVidu/openvidu-call.git" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call demo,<strong> built with 7</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
+OpenVidu Call demo, built with <strong>Angular 7</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
 OpenVidu-Call is composed by the six Angular components displayed in the image below.
 
@@ -68,7 +68,7 @@ You have several options to run OpenVidu Call:
 
 #### Using Docker
 
- The easiest way is running this Docker container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+ The easiest way is running this Docker container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 
 ```bash
@@ -93,7 +93,7 @@ sudo apt-get install -y nodejs
 sudo npm install -g @angular/cli
 ```
 
-3)  _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+3)  _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
@@ -114,18 +114,18 @@ ng serve --open
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 #### Using the Release
 
-As you can see [here](https://github.com/OpenVidu/openvidu-call/releases), OpenVidu Call has new release. 
+**[Here](https://github.com/OpenVidu/openvidu-call/releases){:target="_blank"}** are OpenVidu Call releases.
 The **openvidu-call-X.X.X.tar.gz** file contains the compiled app served in `/` and **openvidu-call-demos-X.X.X.tar.gz** file contains the compiled app served in `/openvidu-call/`.
 
 To run OpenVidu Call with the compiled files you will need:
 
-1) openvidu-server and Kurento Media Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community)):
+1) openvidu-server and Kurento Media Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
@@ -147,7 +147,7 @@ cd openvidu-call
 ```
 
 
-4) You will need a HTTP server to display the app like [NGINX](https://www.nginx.com/) or [http-server](https://www.npmjs.com/package/http-server).  We will use **http-server**:
+4) You will need a HTTP server to display the app like [NGINX](https://www.nginx.com/){:target="_blank"} or [http-server](https://www.npmjs.com/package/http-server){:target="_blank"}.  We will use **http-server**:
 
 You will need **node** and **NPM** to install http-server. You can install them with:
 
@@ -170,7 +170,7 @@ http-server
 ```
 Wait until you see on the output a line IP address. 
 
-By default, the app will be served in `localhost:8080` address. You will need go to [`https://localhost:4443/`](https://localhost:4443/) to accept the self-signed certificate. Once accepted, you will be able to test OpenVidu Call in the default IP [`localhost:8080`](http://localhost:8080)
+By default, the app will be served in `localhost:8080` address. You will need go to [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"} to accept the self-signed certificate. Once accepted, you will be able to test OpenVidu Call in the default IP [`localhost:8080`](http://localhost:8080){:target="_blank"}
 
 ## Extra features
 
@@ -185,7 +185,7 @@ Using the OpenVidu Call release, you can set up the address where you app will b
 }
 ```
 
-Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize the session interface adding an extra JSON object named  **openviduSetttings** inside of the file. We have explained with details what the **openviduSettings** must be filled  [here](/tutorials/openvidu-webcomponent.md#interface-configuration).
+Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize the session interface adding an extra JSON object named  **openviduSettings** inside of the file. We have explained in detail how **openviduSettings** object must be treated [here](/tutorials/openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
@@ -205,4 +205,3 @@ Not only you can establish your own **openvidu_url** and **openvidu_secret** par
     clickSlide   : 'close',
   });
 </script>
-

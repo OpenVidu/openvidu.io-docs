@@ -119,4 +119,4 @@ sudo service kurento-media-server start
 sudo service kurento-media-server stop
 ```
 
-[Here](http://doc-kurento.readthedocs.io/en/stable/user/installation.html) you can check Kurento's official documentation.
+[Here](http://doc-kurento.readthedocs.io/en/stable/user/installation.html){:target="_blank"} you can check Kurento's official documentation.

@@ -42,7 +42,7 @@ CREATE DATABASE openvidu_sample_app;
 exit
 ```
 
-4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps         both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community):
+4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
@@ -68,22 +68,21 @@ cd ../../../
 mvn clean package exec:java
 ```
 
-Go to [https://localhost:5000](https://localhost:5000) to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of <i>openvidu-server</i> when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
-
+Go to [https://localhost:5000](https://localhost:5000){:target="_blank"} to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of <i>openvidu-server</i> when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 <div class="row no-margin row-gallery">
   <div class="col-md-4">
-    <a data-fancybox="gallery3" href="/img/demos/openvidu-classroom.png">
+    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom.png">
       <img class="img-responsive" src="/img/demos/openvidu-classroom.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery3" href="/img/demos/openvidu-classroom-dashboard.png">
+    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom-dashboard.png">
       <img class="img-responsive" src="/img/demos/openvidu-classroom-dashboard.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery3" href="/img/demos/openvidu-classroom-video.png">
+    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom-video.png">
       <img class="img-responsive" src="/img/demos/openvidu-classroom-video.png">
     </a>
   </div>
@@ -91,8 +90,7 @@ Go to [https://localhost:5000](https://localhost:5000) to test the app once the 
 
 <br>
 
-Without going into greater detail, the backend has [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/lesson/LessonController.java) for the REST operations of the lessons (create new ones or edit/remove existing ones) and [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/session_manager/SessionController.java) for handling the videoconferences. This controller is pretty similar to the one described in any of the secure tutorials. Basically it listens to the operations of creating a new session (returning a *sessionId* from *openvidu-server*), generating a new user token (returning the *token* from *openvidu-server*) and removing the users when they leave the session.
-
+Without going into greater detail, the backend has [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/lesson/LessonController.java){:target="_blank"} for the REST operations of the lessons (create new ones or edit/remove existing ones) and [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/session_manager/SessionController.java){:target="_blank"} for handling the videoconferences. This controller is pretty similar to the one described in any of the secure tutorials. Basically it listens to the operations of creating a new session (returning a *sessionId* from *openvidu-server*), generating a new user token (returning the *token* from *openvidu-server*) and removing the users when they leave the session.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

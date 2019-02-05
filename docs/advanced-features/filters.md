@@ -50,7 +50,7 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When generating a token with operation [POST /api/tokens](/reference-docs/REST-API#post-apitokens) include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When generating a token with operation [POST /api/tokens](/reference-docs/REST-API#post-apitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```json  
 {
@@ -85,7 +85,7 @@ String token = session.generateToken(tokenOptions);
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, include in [TokenOptions](/../api/openvidu-node-client/interfaces/tokenoptions.html) parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When generating a token, include in [TokenOptions](/../api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
 var tokenOptions = {
@@ -105,7 +105,7 @@ session.generateToken(tokenOptions).then(token => { ... });
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](/../api/openvidu-browser/interfaces/publisherproperties.html), specifically property [filter](/../api/openvidu-browser/interfaces/publisherproperties.html#filter):
+Use [PublisherProperties](/../api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](/../api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
 
 ```javascript
 var OV = new OpenVidu();
@@ -261,11 +261,11 @@ A list of interesting values for `GSTREAMER_COMMAND` parameter is stated below. 
 - **clockoverlay**: embed a clock with the local time (in OpenVidu Server)<br>Example: `clockoverlay valignment=bottom halignment=right shaded-background=true font-desc="Sans, 20"`<div style="margin-bottom: 7px"></div>
 - **audioecho**: add reverb to the audio stream<br>Example: `audioecho delay=50000000 intensity=0.6 feedback=0.4`<div style="margin-bottom: 7px"></div>
 - **audioamplify**: amplifies an audio stream by a given factor<br>Example: `audioamplify amplification=1.5 clipping-method=wrap-positive`<div style="margin-bottom: 7px"></div>
-- Other audio filters: check them out in [GStreamer site](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-plugin-audiofx.html)<div style="margin-bottom: 7px"></div>
-- Many effects of **[effectv project](https://wiki.gnome.org/Projects/GnomeVideoEffects/Effects)** : funny filters for the video stream like `agingtv`, `dicetv`, `optv`, `quarktv`, `radioactv`, `revtv`, `rippletv`, `shagadelictv`, `streaktv`, `vertigotv`, `warptv`<br>Example: `radioactv`
+- Other audio filters: check them out in [GStreamer site](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-plugin-audiofx.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- Many effects of **[effectv project](https://wiki.gnome.org/Projects/GnomeVideoEffects/Effects){:target="_blank"}** : funny filters for the video stream like `agingtv`, `dicetv`, `optv`, `quarktv`, `radioactv`, `revtv`, `rippletv`, `shagadelictv`, `streaktv`, `vertigotv`, `warptv`<br>Example: `radioactv`
 
 
-All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins.html).
+All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins.html){:target="_blank"}.
 
 <br>
 

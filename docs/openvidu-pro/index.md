@@ -111,7 +111,7 @@ For the near future, OpenVidu Pro roadmap includes features like:
 
 ## How
 
-OpenVidu Pro is available through **[AWS Marketplace](https://aws.amazon.com/marketplace)** (you will need an [Amazon Web Services account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start)).
+OpenVidu Pro is available through **[AWS Marketplace](https://aws.amazon.com/marketplace){:target="_blank"}** (you will need an [Amazon Web Services account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start){:target="_blank"}).
 
 Simply launch one OpenVidu Pro instance and you will have a production-ready setup with all the advanced features provided by OpenVidu Pro in just a few minutes. Hope you like it!
 
