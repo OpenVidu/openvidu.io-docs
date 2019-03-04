@@ -134,7 +134,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 2) Download the release:
 
 ```bash
-wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.1.0/openvidu-call-1.1.0.tar.gz
+wget https://github.com/OpenVidu/openvidu-call/releases/download/v2.8.0/openvidu-call-demos-2.8.0.tar.gz
 ```
 
 3) Decompress the downloaded file:
@@ -142,7 +142,7 @@ wget https://github.com/OpenVidu/openvidu-call/releases/download/v1.1.0/openvidu
 
 ```
 mkdir openvidu-call
-tar -xvzf openvidu-call-1.1.0.tar.gz -C openvidu-call/
+tar -xvzf openvidu-call-2.8.0.tar.gz -C openvidu-call/
 cd openvidu-call
 ```
 
