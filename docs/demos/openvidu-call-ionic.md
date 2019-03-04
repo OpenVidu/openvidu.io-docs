@@ -23,12 +23,8 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    Nowadays, we need to take account that we are developing our code with <strong>Ionic v4-beta</strong>. This means that is a preview version of Ionic 4 and it could has sporadics problems due to it is a inestable version.
-    <br><br>
     <strong>Bugs reported:</strong><br>
-    <li>Android 5 and 6.0 will not work with Ionic v4-beta until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved</li>
-	<li>This app will not work in iOS because of <a href="https://stackoverflow.com/questions/45055329/does-webkit-in-ios-11-beta-support-webrtc/49467964#49467964" target="_blank">problems between WebRTC and iOS</a></li>
-
+    <li>Android 5 and 6.0 will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved and integrated</li>
 </div>
 </div>
 

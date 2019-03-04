@@ -23,11 +23,9 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    This Ionic application is implemented with <strong>Ionic v4-beta</strong>. This means that it is a preview version of Ionic 4 and that could cause sporadic problems. The moment final stable version of Ionic 4 is released, this project will be updated to use it.
-    <br><br>
     <strong>Reported issues</strong><br><br>
     <ul>
-        <li>Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4-beta until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved</li>
+        <li>Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved and integrated</li>
     </ul>
 </div>
 </div>
