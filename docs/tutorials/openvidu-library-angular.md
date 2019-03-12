@@ -15,7 +15,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 2) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can install it with the following command:
 
 ```bash
-npm install -g @angular/cli@6.2.4
+npm install -g @angular/cli@latest
 ```
 
 3) Run the tutorial:

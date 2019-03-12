@@ -114,7 +114,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android){:target="_blank"} to allows us to configure step by step all the requirements.
 
-After we have completed all the steps of the Ionic guide and performed steps 1) and 2) stated above, we must continue with the following commands:
+After we have completed all the steps of the Ionic guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
 
 <br>
 
@@ -519,7 +519,7 @@ These configurations are already included in this **openvidu-ionic** project, so
 
 ```bash
 ionic cordova plugin add cordova-plugin-android-permissions
-npm install --save @ionic-native/android-permissions@5.0.0-beta.21
+npm install --save @ionic-native/android-permissions@latest
 ```
 
 2) Add this plugin to your app's module ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.module.ts){:target="_blank"})
