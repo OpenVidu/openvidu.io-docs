@@ -123,7 +123,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Recording</h3>
-      <span class="feature-text">Record your videocalls with complete freedom: OpenVidu provides predefined layouts, but you can use your own custom layouts to accomplish any kind of result</span>
+      <span class="feature-text"><a href="/docs/advanced-features/recording/" target="_blank">Record your videocalls</a> with complete freedom: OpenVidu provides predefined layouts, but you can use your own custom layouts to accomplish any kind of result</span>
     </div>
   </div>
   <hr>
@@ -153,7 +153,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Supported plans and professional support</h3>
-      <span class="feature-text"><!--We offer <a href="/docs/openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. -->OpenVidu team is opened to providing professional support for any project related to the platform</span>
+      <span class="feature-text">We offer <a href="/docs/openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="/contact" target="_blank">Contact us now!</a></span>
     </div>
   </div>
 

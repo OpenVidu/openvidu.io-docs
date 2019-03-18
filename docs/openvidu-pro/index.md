@@ -1,98 +1,84 @@
 <h2 id="section-title">OpenVidu Pro</h2>
 <hr>
 
-<pre class="pre-video-responsive">
+<!--<pre class="pre-video-responsive">
 <div class="video-responsive">
     <iframe width="100%" src="https://www.youtube.com/embed/xcJtL7QggTI?rel=0&amp;controls=2&amp;showinfo=0;autohide=2" frameborder="0" allowfullscreen></iframe>
 </div>
-</pre>
+</pre>-->
 
-<p style="text-align: center; margin-top: 30px">
-    <a href="https://aws.amazon.com/marketplace" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro" target="_blank"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro in</span><i style="margin-left: 10px; font-size: 45px; vertical-align: middle; font-weight: 100" class="fab fa-aws"></i></a>
+- **[Why](#why)**
+- **[What](#what)**
+- **[How](#how)**
+- **[Pricing](#pricing)**
+
+---
+
+<p style="text-align: center; margin-top: 50px">
+    <a href="#how" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
 </p>
+
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	Current version of OpenVidu Pro matches <strong>version 2.8.0</strong> of OpenVidu Community Edition. We are not currently charging anything for using OpenVidu Pro, as we intend these first versions to be a beta. The only price you will have to pay is the cost of the Amazon instance, as you would do when <a href="/docs/deployment/deploying-aws/" target="_blank">deploying OpenVidu Community Edition in AWS</a>
+</div>
+</div>
+
 
 ## Why
 
 OpenVidu is an **open source project**, and for sure will remain this way in the future. But OpenVidu team needs some source of income to continue working on this amazing project. The approach we'll be taking here is pretty straightforward: OpenVidu features themselves will always be open source, and only some tools or improvements related to **production environments** may end up being part of OpenVidu Pro stack. To sum up:
 <br><br>
 
-> You will always be able to access OpenVidu awesome features and build whatever you want with them. Our intention is to make OpenVidu platform long-term sustainable by offering **advanced production stage monitoring and management tools** for those companies interested in such capabilities.
+> You will always be able to access OpenVidu awesome features and build whatever you want with them. Our intention is to make OpenVidu platform long-term sustainable by offering **advanced production stage monitoring and management tools** for those companies interested in such capabilities
 
 <br>
+
+---
 
 ## What
 
-OpenVidu Pro consists of small modules working over OpenVidu community edition. We first have designed **OpenVidu Inspector**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor and manage all your videoconferences. Some features already available in the current version of OpenVidu Pro are:
+OpenVidu Pro consists of different modules working over OpenVidu Community Edition. The ultimate goal of OpenVidu Pro is to offer **automated scalability and fault-tolerance**, but this will be available in future releases.
 
-#### Full in-depth visualization of your ongoing video sessions
-Review each client connected to a video session and the media streams each one is sending and receiving. Our intuitive graph visualization will give you a complete summary of your sessions.
+We first have designed **[OpenVidu Inspector](/openvidu-pro/openvidu-inspector/){:target="_blank"}**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
 
-<div class="row wow fadeInUp">
-    <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro2.png"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro3.png"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro4.gif"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro4.gif"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro8.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro8.png"/></a>
-    </div>
-</div>
+#### For the near future...
 
-<br>
-
-#### Moderation capabilities of ongoing video sessions
-Through OpenVidu Inspector you are able to administrate your video sessions just by pressing buttons: cut the video or audio of any publisher, force the disconnection of any participant, start and stop the recording of any video session and close them whenever you want.
-
-<div class="row wow fadeInUp">
-    <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro5.png"/></a>
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro6.png"/></a>
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro7.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro7.png"/></a>
-    </div>
-</div>
-
-<br>
-
-#### Recording management
-OpenVidu Inspector allows you to review all your recordings in a simple way. Preview them, download them or delete those you don't need anymore. Just with a couple of clicks.
-
-<div class="row wow fadeInUp">
-    <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro9.png"/></a>
-    </div>
-</div>
-
-<br>
-
-#### Client geographic localization
-OpenVidu Pro is able to locate your clients by city and country to make easier the identification of the users connecting to your sessions. You can consult this property to OpenVidu Server whenever you want with REST API or any server SDK. You also have available this info in OpenVidu Inspector:<br><br>
-
-<div class="row wow fadeInUp">
-    <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="/img/docs/openvidu-pro/pro12.png"/></a>
-    </div>
-</div>
-
-
-#### Other advanced options
-
-- OpenVidu Pro supports programmatic reset. You can just call a REST API method to restart your OpenVidu Server process. This way you can _A) change any configuration property_ and _B) easily clean up any garbage process or file that may have been stranded_
-
----
-<br>
-
-For the near future, OpenVidu Pro roadmap includes features like:
+OpenVidu Pro roadmap includes features like:
 
 - **Audio and video quality metrics in all your video sessions**: WebRTC is an exciting technology, but also very tricky. So many factors may affect the final quality perceived by your clients that sometimes finding out what might actually be happening when something is wrong is just an annoying task. Gathering some metrics such us bitrate, packet loss or jitter is usually the most efficient way to face this kind of problems. OpenVidu Pro will do this for you, so you can get a picture of the actual network state in your clients side.<br><br>
-- **Video sessions history record**: we'll work to provide a persistent and highly detailed record of every past video session, not only ongoing ones. You will be able to review the behavior of your clients during the call, the actual performance each one of them experienced and much more useful data so you can improve the quality of your calls over time. All of this features will be seamlessly integrated in OpenVidu Inspector.<br><br>
-- **Automated scalability and fault tolerance**: integrated in popular cloud providers, OpenVidu Pro will include automated scalability and fault tolerance, so your real-time communication systems can keep up with your business growth.
+- **Automated scalability and fault tolerance**: this is the ultimate goal of OpenVidu Pro. Integrated in popular cloud providers, OpenVidu Pro will include automated scalability and fault tolerance, so your real-time communication systems can keep up with your business growth.
 <br><br>
 
 <div style="
     display: table;
-    border: 1px solid #0088aa;
+    border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell">
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;
@@ -109,15 +95,147 @@ For the near future, OpenVidu Pro roadmap includes features like:
 </div>
 </div>
 
+<br>
+
+---
+
 ## How
 
-OpenVidu Pro is available through **[AWS Marketplace](https://aws.amazon.com/marketplace){:target="_blank"}** (you will need an [Amazon Web Services account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start){:target="_blank"}).
+OpenVidu Pro is available through **AWS Marketplace** (you will need an [Amazon Web Services account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start){:target="_blank"})
 
-Simply launch one OpenVidu Pro instance and you will have a production-ready setup with all the advanced features provided by OpenVidu Pro in just a few minutes. Hope you like it!
+### 1) Steps towards configuration
 
 <p style="text-align: center; margin-top: 30px">
-    <a href="https://aws.amazon.com/marketplace" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro" target="_blank"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro in</span><i style="margin-left: 10px; font-size: 45px; vertical-align: middle; font-weight: 100" class="fab fa-aws"></i></a>
+    <a href="https://aws.amazon.com/marketplace/pp/B07N6JNC63?qid=1551707515999&sr=0-1&ref_=srh_res_product_title" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro" target="_blank"><span style="display: table-cell; vertical-align:middle">Go to </span><i style="margin-left: 10px; margin-right: 10px; font-size: 45px; vertical-align: middle; font-weight: 100" class="fab fa-aws"></i><span style="display: table-cell; vertical-align:middle"> marketplace</span></a>
 </p>
+
+<div class="row wow fadeInUp">
+    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market1.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market2.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market3.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market4.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market5.png"/></a>
+    </div>
+</div>
+
+<br>
+
+### 2) Configure your OpenVidu Server Pro
+
+Fill the form with the appropriate values as stated below
+
+#### Stack name
+The name of your deployment
+
+#### SSL Certificate Configuration
+This is the kind of certificate you will be using in your deployment. Three different options are offered:
+
+- **selfsigned**: use a selfsigned certificate. This options is meant for testing and developing environments. Leave the rest of the fields with their default value
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro6" href="/img/docs/openvidu-pro/marketplace/marketSelfsigned.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketSelfsigned.png"/></a>
+    </div>
+</div>
+
+- **letsencrypt**: use an automatic certificate by Let's Encrypt. This way you don't have to worry about providing your own certificate. You simply have to enter an email account where Let's Encrypt will send its messages, your fully qualified domain name and one AWS Elastic IP for the same region you selected before ([allocate one if you don't have it](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating){:target="_blank"}). Of course, **you will need to register this Elastic IP in your DNS hosting service and associate it with your fully qualified domain name**. Only after this association between the Elastic IP and your domain name is effective your deployment with Let's Encrypt will work fine.
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro7" href="/img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"/></a>
+    </div>
+</div>
+
+- **owncert**: use your own certificate. You must provide one AWS Elastic IP for the same region you selected before ([allocate one if you don't have it](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating){:target="_blank"}), and your public certificate and private key, both accessible through uris (an Amazon S3 bucket is the best way to do it). Leave the default values for *Email* and *Fully qualified domain name* fields.
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro8" href="/img/docs/openvidu-pro/marketplace/marketOwncert.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOwncert.png"/></a>
+    </div>
+</div>
+
+#### OpenVidu Configuration
+
+These fields respectively configure the following [system properties](/reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server: `openvidu.secret`, `openvidu.recording.public-access`, `openvidu.recording.notification`, `openvidu.streams.video.max-recv-bandwidth`, `openvidu.streams.video.min-recv-bandwidth`, `openvidu.streams.video.max-send-bandwidth`, `openvidu.streams.video.min-send-bandwidth`
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro9" href="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"/></a>
+    </div>
+</div>
+
+#### Openvidu Security Group
+
+These fields allow you to limit the IPs that will be able to connect to OpenVidu Server Pro.
+
+> **WARNING**: be careful when limiting these IP ranges
+>
+> - **Port 4443 access Range**: OpenVidu Server Pro REST API and client access point. This should be set to `0.0.0.0/0` if you want any client to be able to use your deployment
+> - **Port 3478 access Range**: TURN server port. This should be set to `0.0.0.0/0` if you want any client to be able to use your deployment, as you never know which user might need a TURN connection to be able to send and receive media
+> - **UDP Port access Range** and **TCP Port access Range**: limits the clients that will be able to establish TCP and UDP connections to your OpenVidu Server Pro. So again, if you want to provide service to any client these should be set to `0.0.0.0/0`
+> - **MinOpenPort** and **MaxOpenPort**: determine what ports will be available to establish the media connections, so the generous default value is a good choice
+> - **Port 80 access Range**: if you are using Let's Encrypt SSL configuration, set it to `0.0.0.0/0`, as Let's Encrypt will need to access your server through port 80
+> - **SSH Port access Range** can be limited as you want, as it provides SSH access to the server with the proper private key through port 22
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro10" href="/img/docs/openvidu-pro/marketplace/marketSecurity.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketSecurity.png"/></a>
+    </div>
+</div>
+
+#### Other parameters
+
+Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshooting/#9-which-is-the-current-status-of-openvidu-on-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
+
+<div class="row wow fadeInUp">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
+    </div>
+</div>
+
+You are ready to go. Click on **Next** 🡆 **Next** 🡆 **Create stack** to finally deploy your OpenVidu Server Pro.
+
+Wait until Stack status is set to `CREATE_COMPLETE`. Then you will have a production-ready setup with all the advanced features provided by OpenVidu Pro.
+
+>Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.8.0, use the artifact versions indicated in [2.8.0 release table](/releases#260){:target="_blank"}
+
+<br>
+
+---
+
+## Pricing
+
+OpenVidu Pro will be priced through AWS Marketplace. Any piece of software offered in AWS Marketplace has two different charges: the cost of the AWS resources running the software and the cost of the software itself. Software manufacturers specify this second charge, and it is the only revenue they receive from the total cost of the stack. Having made this clear:
+
+- The moment you cancel your OpenVidu Pro subscription in AWS Marketplace, no more charges will be applied. You only pay for the time you are running the service.
+- OpenVidu Pro is considered a beta version right now, and for this reason no extra fees will be charged for the software part.
+<!--- When releasing a final version, OpenVidu team may decide to offer OpenVidu Pro free of charge when deploying it on certain AWS instance types, so companies are able to try it on small machines before acquiring a bigger instance for real production setups.-->
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	Current version of OpenVidu Pro matches <strong>version 2.8.0</strong> of OpenVidu Community Edition. We are not currently charging anything for using OpenVidu Pro, as we intend these first versions to be a beta. The only price you will have to pay is the cost of the Amazon instance, as you would do when <a href="/docs/deployment/deploying-aws/" target="_blank">deploying OpenVidu Community Edition in AWS</a>
+</div>
+</div>
 
 <br>
 
@@ -160,6 +278,23 @@ Simply launch one OpenVidu Pro instance and you will have a production-ready set
         breakpoint: 768,
         settings: {
           arrows: false,
+          slidesToShow: 1
+        }
+      },
+    ]
+    });
+    $('.pro-gallery-steps').slick({
+      autoplay: false,
+      arrows: true,
+      prevArrow: '<div class="slick-btn slick-btn-prev"><i class="icon ion-chevron-left"></i></div>',
+      nextArrow: '<div class="slick-btn slick-btn-next"><i class="icon ion-chevron-right"></i></div>',
+      dots: true,
+      infinite: false,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
           slidesToShow: 1
         }
       },

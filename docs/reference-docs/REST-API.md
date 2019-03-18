@@ -89,7 +89,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **session** _(optional string)_: the sessionId for which the token should be associated<br><br>
+> - **session** _(mandatory string)_: the sessionId for which the token should be associated<br><br>
 > - **role** _(optional string. Check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html){:target="_blank"} section of OpenVidu Node Client for a complete description)_
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
@@ -119,7 +119,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: token successfully created and ready to be used by one client to connect to the associated session
 > - `400`: problem with some body parameter
-> - `404`: provided value for `session` parameter was not found in OpenVidu Server. You must first call `POST /api/sessions` with that value
+> - `404`: provided value for `session` parameter was not found in OpenVidu Server. You must first call `POST /api/sessions` to get a session id
 
 ---
 
@@ -329,7 +329,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > **HTTP responses**
 >
 > - `200`: the session has successfully stopped from being recorded. The video file is ready to be reproduced
-> - `400`: RECORDING_ID parameter not found in form url-encoded
 > - `404`: no recording exists for the passed RECORDING_ID
 > - `406`: recording has `starting` status. Wait until `started` status before stopping the recording
 

@@ -88,7 +88,7 @@ git clone https://github.com/OpenVidu/openvidu-call.git
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g @angular/cli
 ```
@@ -153,7 +153,7 @@ You will need **node** and **NPM** to install http-server. You can install them 
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 

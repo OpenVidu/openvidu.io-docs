@@ -123,7 +123,7 @@
                         <p><strong>OpenVidu</strong> is present on both client-side and server-side, but the <strong>application</strong> is only present on client-side.</p>
                         <p>Since these are client-side-only applications, you will be dealing only with <strong>frontend technologies</strong>: HTML, CSS, Javascript / Typescript ...</p>
                         <p>The main difference compared to Client Side + Server Side tutorials is that here you don't have real control over your users: your
-                            <strong>video-calls won't be secure</strong> beacuse you cannot identify them and cannot determine if allow or deny their access.</p>
+                            <strong>video-calls won't be secure</strong> because you cannot identify them and cannot determine if allow or deny their access.</p>
                     </div>
                 </div>
             </div>
@@ -231,7 +231,7 @@
                         <p>Since these are full web applications, you will be dealing with <strong>frontend technologies</strong> (HTML, CSS, Javascript / Typescript ...) 
                             but also with <strong>backend technologies</strong> (Java / Node)</p>
                         <p>The main difference compared to Client Side Only tutorials is that here you have total control over your users: your 
-                            <strong>video-calls are secure</strong> beacuse you can identify them and allow or deny their access.</p>                             
+                            <strong>video-calls are secure</strong> because you can identify them and allow or deny their access.</p>                             
                     </div>
                 </div>
             </div>

@@ -19,11 +19,12 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 <div style="
     display: table;
-    border: 1px solid #0088aa;
+    border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;
@@ -176,11 +177,12 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 <div style="
     display: table;
-    border: 1px solid #0088aa;
+    border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;

@@ -44,6 +44,9 @@ pages:
 - ['developing/index.md','Contribute', 'Developing OpenVidu']
 - ['troubleshooting/index.md','Troubleshooting / FAQ']
 - ['releases/index.md','Releases']
+- ['openvidu-pro/index.md','OpenVidu Pro', 'Home']
+- ['openvidu-pro/openvidu-inspector.md','OpenVidu Pro', 'OpenVidu Inspector']
+- ['openvidu-pro/REST-API-pro.md','OpenVidu Pro', 'REST API Pro']
 theme: null
 theme_dir: 'custom_theme'
 repo_url: https://github.com/OpenVidu/openvidu.io-docs

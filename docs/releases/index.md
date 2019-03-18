@@ -124,7 +124,7 @@ Configure your recordings to be audio-only or video-only. This is available for 
 
 ##### Other improvements
 
-- New property `resolution` when starting recordings. With it you can set the width and height in pixels of the recorded file. This is only available fro `COMPOSED` recordings. `INDIVIDUAL` recordings will always record the video files with the native resolution of each video stream
+- New property `resolution` when starting recordings. With it you can set the width and height in pixels of the recorded file. This is only available for `COMPOSED` recordings. `INDIVIDUAL` recordings will always record the video files with the native resolution of each video stream
 - Automatic stop of recordings is greatly improved. Check it out **[here](/advanced-features/recording/#automatic-stop-of-recordings){:target="_blank"}**
 - New property **[Stream.creationTime](https://openvidu.io/api/openvidu-browser/classes/stream.html#creationtime){:target="_blank"}** in OpenVidu Browser. This is the time when a stream was created in OpenVidu Server. Reflects the real starting time of the media stream transmission on the server side.
 - OpenVidu Server now destroys any stranded recording container left on the host on start up. This allows keeping the host machine clean when restarting the service

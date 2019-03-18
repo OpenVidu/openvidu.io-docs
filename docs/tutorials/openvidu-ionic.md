@@ -12,7 +12,9 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     width: 100%;
     margin-top: 30px;
     background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -23,10 +25,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    <strong>Reported issues</strong><br><br>
-    <ul>
-        <li>Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved and integrated</li>
-    </ul>
+    Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is properly solved
 </div>
 </div>
 
@@ -48,7 +47,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) You will need **Node**, **NPM**, **Ionic** and **Cordova** to serve the app. Install them with the following command
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g ionic@latest
 sudo npm install -g cordova@latest
@@ -160,7 +159,9 @@ To deploy the iOS app you will need first to follow [this guide](https://beta.io
     width: 100%;
     margin-top: 30px;
     background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -315,11 +316,13 @@ As we are using Ionic and Angular framework, a good approach for managing the re
 
 <div style="
     display: table;
-    border: 1px solid #0088aa;
+    border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #0088aa;

@@ -490,7 +490,7 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
 
 <br>
 
-- **WHAT SHOULD YOUR JS CODE DO**: by making use of [`openvidu-browser.js`](https://github.com/OpenVidu/openvidu/releases){:target="_blank"} library, you need to connect a _recorder_ participant to the session. This means:<br><br>
+- **WHAT SHOULD YOUR JS CODE DO**: by making use of *[`openvidu-browser.js`](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}* library, you need to connect a _recorder_ participant to the session. This means:<br><br>
 
     **1) Your layout must connect to the session using a _token_ like this:**
 
@@ -707,7 +707,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.7.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.8.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>

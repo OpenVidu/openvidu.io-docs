@@ -66,7 +66,7 @@ git clone https://github.com/OpenVidu/openvidu-call-react.git
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 

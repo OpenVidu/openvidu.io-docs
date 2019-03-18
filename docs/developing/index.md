@@ -4,8 +4,8 @@ Developing OpenVidu
 
 | Dependecy     | Check version   | Install                               |
 | ------------- | --------------- |-------------------------------------- |
-| java 8 JDK    | `java -version` | `sudo apt-get install -y default-jdk` |
-| node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_8.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+| java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
+| node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 | maven         | `mvn -v`        | `sudo apt-get install -y maven`       |
 | angular-cli   | `ng -v`         | `sudo npm install -g @angular/cli`    |
 
@@ -34,7 +34,7 @@ sudo npm link
 **4)** `openvidu/`
 
 ```bash
-mvn -DskipTests=true compile && mvn -DskipTests=true install
+mvn -DskipTests=true clean install
 ```
 
 **5)** `openvidu/openvidu-testapp/`

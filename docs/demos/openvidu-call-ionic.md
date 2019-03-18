@@ -11,8 +11,10 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
     border-radius: 5px;
     width: 100%;
     margin-top: 30px;
-	background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -23,8 +25,7 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    <strong>Bugs reported:</strong><br>
-    <li>Android 5 and 6.0 will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is solved and integrated</li>
+    Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is properly solved
 </div>
 </div>
 
@@ -145,7 +146,9 @@ ionic cordova run android
     width: 100%;
     margin-top: 30px;
     background-color: #FFFBF1;
-    margin-bottom: 25px;"><div style="display: table-cell; vertical-align: middle;">
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
