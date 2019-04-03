@@ -45,7 +45,7 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -283,7 +283,7 @@ function changeLangTab(event) {
         for (var j = 0; j < child.children.length; j++) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
-                btn.style.backgroundColor = btn === event.target ? '#eee' : '#f9f9f9';
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
                 btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
             }
         }

@@ -251,6 +251,8 @@ That said, one of the most important features OpenVidu will offer is the possibi
       
         http-server -S
 
+---
+
 ### 11. My Safari users with role `SUBSCRIBER` are not able to receive any remote video
 
   Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](/../api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
@@ -268,5 +270,17 @@ var video = document.getElementById("hidden-video").play();
 ```
 
   After this JavaScript line has been executed any remote video will start playing. This process is not necessary for future subscribed videos, when there is already some audio being played in the DOM.
+
+---
+
+### 12. Videos are freezing on Safari for iOS
+
+Again, Apple's browser has "special" needs when it comes to video playback. In iPhones and iPads, Safari doesn't support out of the box the playback of multiple videos at the same time if they have audio tracks. Here you have a [link](https://bugs.webkit.org/show_bug.cgi?id=176282#c4){:target="_blank"} to a bug related to this behavior.
+
+Possible solutions to this issue? Tweaking muted property on videos to have only one playing audio at a time. Maybe using user gestures to directly play videos can help too. There is not a clear solution to this problem, and depending on the web application some workarounds can succeed and some may not. On our tests we have even seen different behaviors in video playback from one execution to another, breaking the supposed consistency of the browser. It is really a matter of testing different approaches until you find a good enough solution.
+
+Usually any other WebRTC based service we have tested redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with Ionic ([see the tutorial](/tutorials/openvidu-ionic/){:target="_blank"})
+
+---
 
 <br>

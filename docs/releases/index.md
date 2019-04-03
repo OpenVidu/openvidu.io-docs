@@ -99,6 +99,14 @@
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
   </tr>
 
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.9.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.9.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
 </table>
 
 ### Release Notes
@@ -239,6 +247,14 @@ Even though this is not a major update with incompatibility changes according to
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
   </tr>
 
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.8.1</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.8.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
 </table>
 
 ### Release Notes
@@ -364,6 +380,14 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
     <td>2.6.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.8.1</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.8.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>

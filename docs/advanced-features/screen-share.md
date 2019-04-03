@@ -6,10 +6,12 @@ To share your screen instead of your webcam, the process is exactly the same as 
 OV.initPublisher("html-element-id", { videoSource: "screen" });
 ```
 
-**Chrome**, **Firefox** and **Opera** support screen sharing. Chrome (and Opera) need an extension and Firefox supports native screen sharing since version 52. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
+**Chrome**, **Firefox** and **Opera** support screen sharing. **Chrome >=72** and **Firefox >=66** supports native screen sharing.
 
-- `SCREEN_SHARING_NOT_SUPPORTED`: if the browser does not support screen sharing.
-- `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
+Chrome <72 (and Opera based on Chrome <72) need an extension. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
+
+- `SCREEN_SHARING_NOT_SUPPORTED`: if the client does not support screen sharing.
+- `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome <72 needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
 - `SCREEN_EXTENSION_DISABLED`: if Chrome's screen extension is installed but disabled
 - `SCREEN_CAPTURE_DENIED`: if the user doesn't grant permissions to capture the screen when the browser asks to.
 
@@ -32,12 +34,12 @@ OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
 });
 ```
 
-For **Firefox** two different `videoSource` strings are allowed in order to screen share:
+For **Firefox <66** two different `videoSource` strings are allowed in order to screen share:
 
 - `"screen"`: entire screen
 - `"window"`: specific application window
 
-In Chrome and Opera `"screen"` value will give access to both entire screen and specific application windows.
+In Chrome and Opera both values will always give access to both entire screen and specific application windows.
 
 <br><br>
 <hr>
