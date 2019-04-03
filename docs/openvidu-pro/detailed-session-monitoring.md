@@ -446,39 +446,28 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <br>
 
-You can create powerful visualizations and dashboards by using these documents. Let's see a quick example. Imagine that you are interested in knowing how many users are connected to your OpenVidu sessions over time. 
-
-First thing is navigating to "Visualize" section in Kibana and clicking on the button to add a new visualization.
+You can create powerful visualizations and dashboards by using these documents. Let's see a quick example. Imagine that you are interested in knowing **how many users are connected to your OpenVidu sessions over time**.
 
 <div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
+    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro3" data-caption="First thing is navigating to 'Visualize' section in Kibana and clicking on the button to add a new visualization" href="/img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
+        <a data-fancybox="gallery-pro3" data-caption="Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice" href="/img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
+        <a data-fancybox="gallery-pro3" data-caption="We select 'openvidu' index, because that's the index of every OpenVidu Pro event stored in Elasticsearch" href="/img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
+        <a data-fancybox="gallery-pro3" data-caption="The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the 'userSummary' event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field 'elastic_type.keyword' is 'userSummary'" href="/img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
+        <a data-fancybox="gallery-pro3" data-caption="Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply 'Count', because there is one 'userSummary' event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using 'timestamp' field of the event" href="/img/docs/openvidu-pro/elastic/tutorial5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial5.png"/></a>
+        <a data-fancybox="gallery-pro3" data-caption="To store the new visualization just click on 'Save' button in the upper menu and give it a meaningful name" href="/img/docs/openvidu-pro/elastic/tutorial6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial6.png"/></a>
+    </div>
+    <div class="slick-captions">
+      <div class="caption"><p>First thing is navigating to <strong>Visualize</strong> section in Kibana and clicking on the button to add a new visualization</p></div>
+      <div class="caption"><p>Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice</p></div>
+      <div class="caption"><p>We select <strong>openvidu</strong> index, because that's the index of every OpenVidu Pro event stored in Elasticsearch</p></div>
+      <div class="caption"><p>The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the <strong>userSummary</strong> event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field <strong>elastic_type.keyword</strong> is <strong>userSummary</strong></p></div>
+      <div class="caption"><p>Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply <strong>Count</strong>, because there is one "userSummary" event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using <strong>timestamp</strong> field of the event</p></div>
+      <div class="caption"><p>To store the new visualization just click on <strong>Save</strong> button in the upper menu and give it a meaningful name</p></div>
     </div>
 </div>
 
-Then we have to choose a visualization type. In this case a vertical bar graph can be a pretty good choice.
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
-    </div>
-</div>
-
-We select "openvidu" index, because that's the index of every OpenVidu Pro event stored in Elasticsearch.
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
-    </div>
-</div>
-
-The visualization page will be shown. Now we have to filter
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
-    </div>
-</div>
+> The example above is a very simple visualization, but you can apply any metric to any property (or set of properties) of any event (or set of events). You can explore pre-existing visualizations included by default in OpenVidu Pro, and for further info visit **[Kibana docs](https://www.elastic.co/guide/en/kibana/current/createvis.html){:target="_blank"}**
 
 <br>
 
@@ -527,4 +516,40 @@ function changeLangTab(event) {
     }
   }
 }
+</script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script>
+    $('.slick-captions').slick({
+      asNavFor: '.pro-gallery-steps',
+      arrows: false,
+      infinite: false,
+      speed: 200,
+      fade: true,
+      dots: false
+    });
+    $('.pro-gallery-steps').slick({
+      asNavFor: '.slick-captions',
+      autoplay: false,
+      arrows: true,
+      prevArrow: '<div class="slick-btn slick-btn-prev"><i class="icon ion-chevron-left"></i></div>',
+      nextArrow: '<div class="slick-btn slick-btn-next"><i class="icon ion-chevron-right"></i></div>',
+      infinite: false,
+      dots: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          slidesToShow: 1
+        }
+      },
+    ]
+    });
 </script>
