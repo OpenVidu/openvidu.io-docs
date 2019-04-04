@@ -14,7 +14,7 @@ This dashboard presents a summary of your video sessions and the server resource
 - The location of your users
 - The number of publishers and subscribers you have at any time
 - The total streamed minutes over time
-- Some low-level but interesting stats related to the media connections
+- Some low-level interesting stats related to the media connections
 
 The last point includes things like the average time to select a pair candidate during the negotiation process, the average milliseconds your clients take to complete the ICE gathering process with OpenVidu Server, the ratio of successful and failed connections, and some WebRTC stats for your published and subscribed streams (Jitter, packet loss, Round-Trip-Time, target bitrate...)
 
@@ -69,6 +69,16 @@ The dashboards presented above, by default included in OpenVidu Pro, are just an
 
 Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic_type` field to identify the specific type of event. This field may be:
 
+<div>
+
+<div class="monitoring-div">
+
+<div class="version-buttons">
+  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0</a>
+</div>
+
+<div id="list-290" class="version-container" markdown="1">
+
 - `cdr`: event of Call Detail Record (see [OpenVidu CDR](/reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber)
 - `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Pro host
@@ -80,7 +90,9 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 - `publisherSummary`: summary of a publisher, stored once its session is closed
 - `subscriberSummary`: summary of a subscriber, stored once its session is closed
 
-<div class="lang-tabs-container elastic-events" markdown="1">
+</div>
+
+<div id="content-290" class="lang-tabs-container elastic-events version-container" markdown="1">
 
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
@@ -423,7 +435,15 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "duration": 144,
   "reason": "disconnect",
   "streamId": "dbslbhe2jzhhybvj_CAMERA_CSBVI",
-  "receivingFrom": "dbslbhe2jzhhybvj",
+  "receivingFrom": "dbslbhif (child.classList.contains('lang-tabs-header')) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains('lang-tabs-btn')) {
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }e2jzhhybvj",
   "videoSource": "CAMERA",
   "videoFramerate": 30,
   "videoDimensions": "{\"width\":640,\"height\":480}",
@@ -437,6 +457,9 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
+</div>
+</div>
+</div>
 </div>
 
 <br>
@@ -471,6 +494,65 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 <br>
 
+<script>
+function changeVersion(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\./g, '');
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of version buttons
+    if (child.classList.contains('version-buttons')) {
+        for (var j = 0; j < child.children.length; j++) {
+          var a = child.children[j];
+          if (a === event.target) {
+            a.classList.add('pressed-btn');
+          } else {
+            a.classList.remove('pressed-btn');
+          }
+        }
+    }
+    // Change visibility of version content
+    if (child.classList.contains('version-container')) {
+      if (child.id === ('list-' + txt) || child.id === ('content-' + txt)) {
+        child.style.display = 'block';
+      } else {
+        child.style.display = 'none';
+      }
+    }
+  }
+}
+</script>
+
+<script>
+function changeLangTab(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\s/g, "-").toLowerCase();
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of language buttons
+    if (child.classList.contains('lang-tabs-header')) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains('lang-tabs-btn')) {
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }
+    // Change visibility of language content
+    if (child.classList.contains('lang-tabs-content')) {
+        if (child.id === txt) {
+            child.style.display = 'block';
+        } else {
+            child.style.display = 'none';
+        }
+    }
+  }
+}
+</script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script>
@@ -487,35 +569,6 @@ You can create powerful visualizations and dashboards by using these documents. 
     clickOutside : 'close',
     clickSlide   : 'close',
   });
-</script>
-
-<script>
-function changeLangTab(event) {
-  var parent = event.target.parentNode.parentNode;
-  var txt = event.target.textContent || event.target.innerText;
-  var txt = txt.replace(/\s/g, "-").toLowerCase();
-  for (var i = 0; i < parent.children.length; i++) {
-    var child = parent.children[i];
-    // Change appearance of language buttons
-    if (child.classList.contains("lang-tabs-header")) {
-        for (var j = 0; j < child.children.length; j++) {
-            var btn = child.children[j];
-            if (btn.classList.contains("lang-tabs-btn")) {
-                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
-            }
-        }
-    }
-    // Change visibility of language content
-    if (child.classList.contains("lang-tabs-content")) {
-        if (child.id === txt) {
-            child.style.display = "block";
-        } else {
-            child.style.display = "none";
-        }
-    }
-  }
-}
 </script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
