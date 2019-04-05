@@ -3,17 +3,29 @@
 
 ## Installation process
 
-Only **Ubuntu xenial 16.04** is supported.
+**Ubuntu Xenial 16.04** and **Ubuntu Bionic 18.04** are supported (see [Ubuntu Bionic limitations](#ubuntu-bionic-limitations)).
 
 #### 1. Install KMS
+
+**Ubuntu Xenial 16.04**
+
 ```bash
-sudo echo "deb http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
 ```
 
-Change the default user running KMS to the current one with this line:
+**Ubuntu Bionic 18.04**
+
+```bash
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+sudo apt-get update
+sudo apt-get -y install kurento-media-server
+```
+
+After installing KMS, it is necessary to change the default user running it to the current one with this line:
 
 ```bash
 sudo sed -i "s/DAEMON_USER=\"kurento\"/DAEMON_USER=\"${USER}\"/g" /etc/default/kurento-media-server
@@ -93,6 +105,8 @@ You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACH
 
 To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, check out [Connecting your app to OpenVidu](/deployment/deploying-app/#connecting-your-external-app-to-openvidu){:target="_blank"}.
 
+<br>
+
 ---
 
 ## Server network requirements
@@ -108,6 +122,8 @@ In order for this deployment to work, you will have to meet 2 sets of needs in t
       - **49152 - 65535 UDP** (these ports are strongly recommended to be opened, as WebRTC randomly exchanges media through any of them)
   
   > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws){:target="_blank"}.
+
+<br>
 
 ---
 
@@ -141,5 +157,17 @@ java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_ke
 
 <br>
 > Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/deployment/deploying-aws#4-complete-the-configuration-fields){:target="_blank"}**
+
+<br>
+
+---
+
+## Ubuntu Bionic limitations
+
+OpenVidu supports **Ubuntu Xenial 16.04** and **Ubuntu Bionic 18.04**. OpenCV filters will not work in Bionic.
+
+Regarding filters explained in [Voice and video filters](https://openvidu.io/docs/advanced-features/filters/){:target="_blank} section, this will affect *FaceOverlayFilter* and *ChromaFilter*. In fact, no built-in module explained in [Kurento Docs](https://doc-kurento.readthedocs.io/en/stable/features/kurento_modules.html){:target="_blank} will work in Ubuntu Bionic (*PointerDetectorFilter*, *CrowdDetectorFilter*, *PlateDetectorFIlter*).
+
+*ZBarFilter* and *GStreamer* filters work fine in Ubuntu Bionic.
 
 <br>

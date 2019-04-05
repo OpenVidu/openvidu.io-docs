@@ -429,21 +429,13 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 <div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
-  "sessionId": "TestSession",
+  "sessionId": "weih6kaewklr4i05",
   "timestamp": 1553694100398,
   "startTime": 1553693956035,
   "duration": 144,
   "reason": "disconnect",
   "streamId": "dbslbhe2jzhhybvj_CAMERA_CSBVI",
-  "receivingFrom": "dbslbhif (child.classList.contains('lang-tabs-header')) {
-        for (var j = 0; j < child.children.length; j++) {
-            var btn = child.children[j];
-            if (btn.classList.contains('lang-tabs-btn')) {
-                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
-            }
-        }
-    }e2jzhhybvj",
+  "receivingFrom": "dbslbhe2jzhhybvj",
   "videoSource": "CAMERA",
   "videoFramerate": 30,
   "videoDimensions": "{\"width\":640,\"height\":480}",

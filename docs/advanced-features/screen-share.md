@@ -6,7 +6,9 @@ To share your screen instead of your webcam, the process is exactly the same as 
 OV.initPublisher("html-element-id", { videoSource: "screen" });
 ```
 
-**Chrome**, **Firefox** and **Opera** support screen sharing. **Chrome >=72** and **Firefox >=66** supports native screen sharing.
+**Chrome**, **Firefox** and **Opera** support screen sharing.
+
+**Chrome >=72** and **Firefox >=66** support native screen sharing.
 
 Chrome <72 (and Opera based on Chrome <72) need an extension. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
 
