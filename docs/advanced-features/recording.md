@@ -100,7 +100,7 @@ You can use [REST API](/reference-docs/REST-API/){:target="_blank"} or any of th
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -186,7 +186,7 @@ You can use the default layout, that will evenly distribute each stream in the a
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -240,7 +240,7 @@ For example, for a session with two publishers the video file will look like thi
 
 > **Notes on COMPOSED recordings**<br>
 >
-> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be up to **4x more efficient**<br><br>
+> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
 > - You can configure the resolution of the MP4 file for COMPOSED recordings by using `resolution` property when starting the recording<br><br>
 > - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
 
@@ -255,7 +255,7 @@ Every publisher stream is recorded in its own file. The final result is a ZIP fi
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -372,7 +372,7 @@ By default recordings will be generated with both audio and video, but you can c
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -444,7 +444,7 @@ You can always manually stop any recording at any time:
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -584,7 +584,7 @@ You must store your custom layouts in the server under default path `/opt/openvi
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -635,7 +635,7 @@ You can implement as many custom recording layouts as you want. Simply store eac
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #eee; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
 </div>
@@ -755,7 +755,7 @@ function changeLangTab(event) {
         for (var j = 0; j < child.children.length; j++) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
-                btn.style.backgroundColor = btn === event.target ? '#eee' : '#f9f9f9';
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
                 btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
             }
         }

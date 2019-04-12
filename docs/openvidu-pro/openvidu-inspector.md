@@ -10,7 +10,7 @@ A powerful, easy-to-use and visually attractive dashboard that will help you mon
 #### Full in-depth visualization of your ongoing video sessions
 Review each client connected to a video session and the media streams each one is sending and receiving. Our intuitive graph visualization will give you a complete summary of your sessions.
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro2.png"/></a>
         <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro3.png"/></a>
@@ -24,7 +24,7 @@ Review each client connected to a video session and the media streams each one i
 #### Moderation capabilities of ongoing video sessions
 Through OpenVidu Inspector you are able to administrate your video sessions just by pressing buttons: cut the video or audio of any publisher, force the disconnection of any participant, start and stop the recording of any video session and close them whenever you want.
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro5.png"/></a>
         <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro6.png"/></a>
@@ -37,7 +37,7 @@ Through OpenVidu Inspector you are able to administrate your video sessions just
 #### Recording management
 OpenVidu Inspector allows you to review all your recordings in a simple way. Preview them, download them or delete those you don't need anymore. Just with a couple of clicks.
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div style="margin: 25px 15px 15px 15px">
         <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro9.png"/></a>
     </div>
@@ -48,7 +48,7 @@ OpenVidu Inspector allows you to review all your recordings in a simple way. Pre
 #### Session history
 Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. This way you can review any past session in OpenVidu Inspector: its duration, the total streaming time, the users connected to it, who published and subscribed, the recordings started for the session... Lots of data to analyse your sessions once they are closed.
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro14.png"/></a>
         <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro15.png"/></a>
@@ -61,7 +61,7 @@ Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. T
 #### Client geographic location
 OpenVidu Pro is able to locate your clients by city and country to make easier the identification of the users connecting to your sessions. You can consult this property to OpenVidu Server whenever you want with REST API or any server SDK. You also have available this info in OpenVidu Inspector:<br><br>
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div style="margin: 25px 15px 15px 15px">
         <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="/img/docs/openvidu-pro/pro12.png"/></a>
     </div>
@@ -79,7 +79,7 @@ OpenVidu Pro supports programmatic reset. You may call a [REST API method](/open
 
 You may also restart OpenVidu Server Pro directly in OpenVidu Inspector:<br><br>
 
-<div class="row wow fadeInUp">
+<div class="row">
     <div style="margin: 25px 15px 15px 15px">
         <a data-fancybox="gallery-pro6" href="/img/docs/openvidu-pro/pro13.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee; max-height: 650px" src="/img/docs/openvidu-pro/pro13.png"/></a>
     </div>

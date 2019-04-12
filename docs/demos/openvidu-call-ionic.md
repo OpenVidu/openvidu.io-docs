@@ -165,7 +165,7 @@ ionic cordova run android
 </div>
 </div>
 
-<div class="row wow fadeInUp">
+<div class="row">
 
 <div class="screenshots-gallery" style="text-align: -webkit-center; width: 90%; margin: auto;" >
 	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic1.png">

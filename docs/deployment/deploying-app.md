@@ -64,7 +64,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
           
-    Now your `/etc/supervisor/conf.d/openvidu.conf` must looks like this:
+    Now your `/etc/supervisor/conf.d/openvidu.conf` must look like this:
 
           [supervisord]
           nodaemon=true
@@ -129,7 +129,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true
           
-    Now your `/etc/supervisor/conf.d/openvidu.conf` must looks like this:
+    Now your `/etc/supervisor/conf.d/openvidu.conf` must look like this:
 
           [supervisord]
           nodaemon=true
