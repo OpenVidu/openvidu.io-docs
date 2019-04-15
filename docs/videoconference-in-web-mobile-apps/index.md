@@ -646,3 +646,38 @@ Your needs may be met simply by using a third-party application as a non-integra
         </div>
     </div>
 </div>
+
+<h3 id="section-title">Decision tree</h3>
+<hr>
+
+<div class="docs-gallery">
+  <a data-fancybox="gallery-wellcome" href="/img/docs/technologies/flowchartTech.jpg"><img class="img-responsive img-wellcome" src="/img/docs/technologies/flowchartTech.jpg"/></a>
+</div>
+
+<h4>OpenVidu</h4>
+Once we have learned the differences between live streaming and video conferences and its subcategories, we will be able to clarify what openvidu is. 
+
+First of all, OpenVidu is an **on premise open and closed source video conferences platform**. This means that OpenVidu is an OpenSource project lisenced under [Apache Lisence v2](https://choosealicense.com/licenses/apache-2.0/){target: "_blank"} and you can use it for free.  
+However, OpenVidu Team have developed [OpenVidu PRO](http://openvidu.io/docs/openvidu-pro/) which consists of different modules working over OpenVidu Community Edition.
+
+And secondly, OpenVidu offers **as a service external app videoconference** ([call.openvidu.io](https://call.openvidu.io)) and **on premise external app videoconference** ([OpenVidu Call](https://github.com/OpenVidu/openvidu-call/releases)).
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox="gallery-wellcome"]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>
