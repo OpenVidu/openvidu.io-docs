@@ -76,9 +76,143 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="/contact" target="_blank">custom professional support</a>
+	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="/commercial" target="_blank">custom professional support</a>
 </div>
 </div>
+
+<table class="table table-striped table-pricing" style="background: #e7e7e7">
+    <thead>
+        <tr>
+            <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
+            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu Community</th>
+            <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu Pro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">WebRTC media streams</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Recording</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Screen sharing</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Audio and video filters</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Tutorials (JS, Angular, React, Ionic)</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Deployment on Premise <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Deploy OpenVidu in your own Ubuntu server"></th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-information-circled pricing-table-icon"
+                    data-toggle="tooltip" data-placement="left"
+                    title="Contact us through COMMERCIAL page for deploying OpenVidu Pro on your own server"></i>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Deployment on Cloud <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Deploy OpenVidu in Amazon Web Services"></th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Kurento Media Server <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Support for Kurento as core media server"></th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">OpenVidu Inspector <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="A powerful, easy-to-use and visually attractive dashboard to help with session monitoring, management and historical data">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Advanced session monitoring <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Elastic stack integration. Elasticsearch and Kibana provide advanced analysis capabilities">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Other media servers <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Support for other open-source media servers"></th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Scalability <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Increment or decrement the number of media servers manually or automatically according to user load">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Fault Tolerance <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="If a media server crashes, redirect automatically all streams to a new instance">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Deployment on Kubernetes</th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">License</th>
+            <td>Apache 2.0</td>
+            <td>Copyrighted</td>
+        </tr>
+        <tr>
+            <th scope="row">Support</th>
+            <td>Community support</td>
+            <td>Priority support</td>
+        </tr>
+        <tr>
+            <th scope="row">Price</th>
+            <td>FREE</td>
+            <td>PAID <i class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="left"
+                    title="FREE TO USE WHILE PREVIEW VERSION"></td>
+        </tr>
+    </tbody>
+</table>
 
 <br>
 

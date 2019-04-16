@@ -10,7 +10,7 @@
 **Ubuntu Xenial 16.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.10.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -19,7 +19,7 @@ sudo apt-get -y install kurento-media-server
 **Ubuntu Bionic 18.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.10.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -113,7 +113,7 @@ To connect your application to OpenVidu Server, use the same URL `https://YOUR_O
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks (**[learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them){:target="_blank"}**). If the _COTURN_ itself is running inside an unreachable machine, your video transmission will probably fail.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks (**[learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them){:target="_blank"}**). If the *COTURN* itself is running inside an unreachable machine, your video transmission will probably fail. And also make sure the server bandwidth is significant, as each media connection can potentially consume up to several MBs.
 
   - Besides, the server needs some **ports** opened in the firewall:
 

@@ -62,7 +62,7 @@ If you have changed your HTML, JavaScript or CSS code, refreshed the page and ca
 ##### Share your app through your network to test with multiple devices
 Making your app accessible to any device connected to your WiFi is very useful for quickly testing your app with different devices at the same time. To achieve this, you just have to indicate OpenVidu Server to use your dev machine LAN IP address as public url. For example, let's say that your machine has assigned ip `192.168.0.107` in your network:
 
-`docker run -p 4443:4443 -e openvidu.publicurl=https://192.168.0.107:4443/ openvidu/openvidu-server-kms:6.9.0`
+`docker run -p 4443:4443 -e openvidu.publicurl=https://192.168.0.107:4443/ openvidu/openvidu-server-kms:2.9.0`
 
 Then you just have to configure your app (REST API address / OpenVidu Java Client / OpenVidu Node Client) to connect to OpenVidu through `https://192.168.0.107:4443/`. Any user connecting to your app through `https://192.168.0.107:WHICHEVER_PORT_YOUR_APP_IS_LISTENING_THROUGH` will be able to send and receive video.
 
@@ -77,13 +77,13 @@ First of all, you must launch the developing Docker container of OpenVidu Server
 What in Linux/Mac is... 
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.8.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.9.0
 ```
 
 ...in Windows is...
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.8.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.9.0
 ```
 
 Then, to let your applications know how to connect to OpenVidu Server:

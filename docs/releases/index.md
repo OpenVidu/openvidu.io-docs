@@ -117,15 +117,15 @@
 <br>
 ##### Ubuntu 18.04 bionic support
 
-Our team has released Kurento 6.10.0, which can now be installed in Ubuntu 18.04 systems. This is a milestone we've been working on for quite some time, and we finally believe we're ready to launch official support for the newest Ubuntu LTS version. Deployment section in OpenVidu Docs is properly updated to inform about this.
+Our team has released [Kurento 6.10.0](https://doc-kurento.readthedocs.io/en/6.10.0/project/relnotes/v6_10_0.html){:target="_blank"}, which can now be installed in Ubuntu 18.04 systems. This is a milestone we've been working on for quite some time, and we finally believe we're ready to launch official support for the newest Ubuntu LTS version. Deployment section in OpenVidu Docs is properly updated to inform about this.
 
-We still consider Ubuntu Bionic to be in a preliminary support state, and some bugs may appear. In fact, we know for sure there's one limitation: no OpenCV filters will work in Ubuntu 18.04 at this moment. OpenVidu has supported audio and video filters for a long time now, and it is a cool feature that allows developers to implement some advanced audio and video real-time processing in the server side. But unfortunately Kurento has not been updated yet to support it in Bionic, so no FaceOverlayFilter or ChromaFilter will work in new Ubuntu version. But you can still use GStreamer filters!
+We still consider Ubuntu Bionic to be in a preliminary support state, and some bugs may appear. In fact, we know for sure there's one limitation: no OpenCV filters will work in Ubuntu 18.04 at this moment. OpenVidu has supported [audio and video filters](https://openvidu.io/docs/advanced-features/filters/){:target="_blank"} for a long time now, and it is a cool feature that allows developers to implement some advanced audio and video real-time processing in the server side. But unfortunately Kurento has not been updated yet to support it in Bionic, so no FaceOverlayFilter or ChromaFilter will work in new Ubuntu version. But you can still use [GStreamer filters](https://openvidu.io/docs/advanced-features/filters/#gstreamer-filters){:target="_blank"}!
 
 <br>
 
 ##### OpenVidu Server boot process greatly improved
 
-OpenVidu Server now checks all requiered conditions at boot time, which helps solving missconfiguration problems when deploying on Ubuntu. This includes every requirement related to permissions and installed software. If something is missing, wrong or there are not enough permissions in certain path, the OpenVidu Server process immediately exits with a clear description about what happened and a possible solution to fix it.
+OpenVidu Server now checks all requiered conditions at boot time, which helps solving missconfiguration problems when [deploying on Ubuntu](https://openvidu.io/docs/deployment/deploying-ubuntu/){:target="_blank"}. This includes every requirement related to permissions and installed software. If something is missing, wrong or there are not enough permissions in certain path, the OpenVidu Server process immediately exits with a clear description about what happened and a possible solution to fix it.
 
 In our experience, this makes the process of installing OpenVidu Server directly in Ubuntu so much easier and manageable.
 
@@ -133,7 +133,7 @@ In our experience, this makes the process of installing OpenVidu Server directly
 
 ##### OpenVidu reconnection to Kurento Media Server
 
-If OpenVidu Server loses its connection to Kurento Media Server, now it will try to reconnect automatically. When it does so, if it is a new instance of Kurento, every stream of every previously active session will be destroyed with reason mediaServerDisconnect and every active recording will be stopped with same reason, but your users will not be disconnected from your sessions. This way you can directly re-publish and re-subscribe any desired stream right away.
+If OpenVidu Server loses its connection to Kurento Media Server, now it will try to reconnect automatically. When it does so, if it is a new instance of Kurento, every stream of every previously active session will be destroyed with reason `mediaServerDisconnect` and every active recording will be stopped with same reason, but your users will not be disconnected from your sessions. This way you can directly re-publish and re-subscribe any desired stream right away.
 
 This may help in case Kurento crashes: your users will have lost their media connections, but they will still be connected to their OpenVidu sessions and will only have to re-establish streams once OpenVidu Server is connected to a new Kurento instance.
 
@@ -141,13 +141,13 @@ This may help in case Kurento crashes: your users will have lost their media con
 
 ##### OpenVidu upgrade process
 
-Do you want to upgrade your OpenVidu deployment? Now you have a section entirely dedicated to it in the documentation. If you have deployed OpenVidu in AWS, it's as easy as launching a single command. If you have chosen Ubuntu deployment, then you will have to manually run some commands. Either way, you have available proper instructions now.
+Do you want to upgrade your OpenVidu deployment? Now you have a section entirely dedicated to it in the [documentation](https://openvidu.io/docs/deployment/upgrading/){:target="_blank"}. If you have deployed OpenVidu in AWS, it's as easy as launching a single command. If you have chosen Ubuntu deployment, then you will have to manually run some commands. Either way, you have available proper instructions now.
 
 <br>
 
 ##### Native screen-sharing for Chrome
 
-OpenVidu has supported native screen-sharing for Firefox since its inception, but Google decided to have Chrome require an extension to allow screen-sharing. Finally they changed their mind and brought Chrome up to the standard, supporting getDisplayMedia API.
+OpenVidu has supported native screen-sharing for Firefox since its inception, but Google decided to have Chrome require an extension to allow screen-sharing. Finally they changed their mind and brought Chrome up to the standard, supporting *[getDisplayMedia](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia){:target="_blank"}* API.
 
 So, our client library openvidu-browser now supports native screen-sharing for Chrome≥72. No extension needed for these browsers!
 
@@ -161,24 +161,24 @@ Our best demo application has been updated with some exciting new features:
 - The chat is better integrated now.
 - You can enlarge as many videos as you want, not just one. Available space will be automatically managed by the application for best fit.
 - Preview window for camera and mic selection has undergone many necessary fixes. Now it works fine in every OS and client supported by OpenVidu.
-openvidu-call-ionic (Ionic version of OpenVidu Call for mobile devices) now supports Ionic 4 and works fine in iOS.ready to
+[openvidu-call-ionic](https://openvidu.io/docs/demos/openvidu-call-ionic/){:target="_blank"} (Ionic version of OpenVidu Call for mobile devices) now supports Ionic 4 and works fine in iOS.ready to
 
 <br>
 
 #### BUG FIXES
 
 - For COMPOSED recording with video, when multiple screen sharing streams were being published it crashed. Now it doesn't.
-- For COMPOSED recordings with video, when stopping them immediatley after started, sometimes the generated video file would not be playable. Now in this cases failed status is set to this recordings, so you can take care of them properly.
+- For COMPOSED recordings with video, when stopping them immediatley after started, sometimes the generated video file would not be playable. Now in this cases `failed` status is set to this recordings, so you can take care of them properly.
 - After manually stopping ALWAYS recordings (sessions that are automatically recorded once first publisher starts) in an ongoing session, now publishing a stream when no publishers are active in the session won't start automatically a new recording.
-- Active sessions retrieval now returns sessions created with REST API or server SDKs that have not received any client connection (before this fix they would not be returned until some user had connected to it)
-- Call Detail Record: recordingStopped event for INDIVIDUAL recordings wasn't updating their duration and size values (both properties had value 0)
-- streamPropertyChanged event was firing an exception in the browser for streams for which a user wasn't subscribed to.
-- Avoid 500 error when sending no body on POST operations of the REST API, such as POST /api/sessions
+- Active sessions retrieval now returns sessions created with [REST API](https://openvidu.io/docs/reference-docs/REST-API/#get-apisessions){:target="_blank"} or server SDKs that have not received any client connection (before this fix they would not be returned until some user had connected to it)
+- [Call Detail Record](https://openvidu.io/docs/reference-docs/openvidu-server-cdr/){:target="_blank"}: `recordingStopped` event for INDIVIDUAL recordings wasn't updating their duration and size values (both properties had value 0)
+- *[streamPropertyChanged](https://openvidu.io/api/openvidu-browser/classes/streampropertychangedevent.html){:target="_blank"}* event was firing an exception in the browser for streams for which a user wasn't subscribed to.
+- Avoid 500 error when sending no body on POST operations of the REST API, such as `POST /api/sessions`
 - Minor bug fixes in openvidu-java-client.
 
 <br>
 
-#### OpenVidu Pro
+#### OPENVIDU PRO
 
 We are excited to announce OpenVidu Pro: a commercial tier for OpenVidu platform. Check it out **[here](https://openvidu.io/docs/openvidu-pro/){:target="_blank"}**.
 

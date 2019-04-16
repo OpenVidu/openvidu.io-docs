@@ -73,9 +73,23 @@ First one is a Java process that may be killed with a simple `kill -9 PID_NUMBER
 It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](/releases){:target="_blank"}** page.
 You should be able to reinstall a new version of KMS while maintaining all the configuration files with these commands:
 
+**For Ubuntu Xenial 16.04**  *(do not run below command if you run this one)*
+
+```bash
+export DISTRO=xenial
+```
+
+**For Ubuntu Bionic 18.04**  *(do not run above command if you run this one)*
+
+```bash
+export DISTRO=bionic
+```
+
+Now you can reinstall Kurento Media Server indicating the proper version number in the first command
+
 ```bash
 # Change version number in url http://ubuntu.openvidu.io/6.9.0 to the proper one depending on OpenVidu version
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 $DISTRO kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-get update
 sudo apt-get remove --auto-remove --yes kurento-media-server
 sudo apt-get install --yes -o Dpkg::Options::="--force-confold" kurento-media-server

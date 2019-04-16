@@ -43,7 +43,7 @@ OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will
 
 ##### C) Option _Specify an Amazon S3 template URL_ with the following URL
 
-  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-latest.json</code>
+  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CloudformationOpenViduPro.yaml</code>
   <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                                 title="Copy to Clipboard">Copy</button>
 
@@ -53,11 +53,11 @@ OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will
 
 <br>
 
-
+---
 
 ### 2) Configure your OpenVidu Server Pro
 
-Fill the form with the appropriate values as stated below
+Fill each section of the form with the appropriate values as stated below.
 
 #### Stack name
 The name of your deployment
@@ -107,14 +107,24 @@ These fields allow you to limit the IPs that will be able to connect to OpenVidu
 >
 > - **Port 4443 access Range**: OpenVidu Server Pro REST API and client access point. This should be set to `0.0.0.0/0` if you want any client to be able to use your deployment
 > - **Port 3478 access Range**: TURN server port. This should be set to `0.0.0.0/0` if you want any client to be able to use your deployment, as you never know which user might need a TURN connection to be able to send and receive media
-> - **UDP Port access Range** and **TCP Port access Range**: limits the clients that will be able to establish TCP and UDP connections to your OpenVidu Server Pro. So again, if you want to provide service to any client these should be set to `0.0.0.0/0`
-> - **MinOpenPort** and **MaxOpenPort**: determine what ports will be available to establish the media connections, so the generous default value is a good choice
-> - **Port 80 access Range**: if you are using Let's Encrypt SSL configuration, set it to `0.0.0.0/0`, as Let's Encrypt will need to access your server through port 80
 > - **SSH Port access Range** can be limited as you want, as it provides SSH access to the server with the proper private key through port 22
+> - **HTTPS and HTTP (ports 443 and 80) access Range**: HTTPS access range will determine the directions able to connect to Kibana dashboard. If you are using Let's Encrypt SSL configuration, set HTTP access range to `0.0.0.0/0`, as Let's Encrypt will need to access your server through port 80.
+> - **UDP Port access Range** and **TCP Port access Range**: limits the clients that will be able to establish TCP and UDP connections to your OpenVidu Server Pro. So again, if you want to provide service to any client these should be set to `0.0.0.0/0`
+> - **MinOpenPort** and **MaxOpenPort**: determine what ports will be available to establish the media connections, so the generous default value is a good choice. If you change the values leaving out any of the previously stated ports, the deployment may fail
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
         <a data-fancybox="gallery-pro10" href="/img/docs/openvidu-pro/marketplace/marketSecurity.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketSecurity.png"/></a>
+    </div>
+</div>
+
+#### Kibana Dashboard
+
+Set the user and password for accessing Kibana dashboard.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketKibana.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketKibana.png"/></a>
     </div>
 </div>
 
@@ -124,7 +134,7 @@ Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshootin
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
+        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
     </div>
 </div>
 
