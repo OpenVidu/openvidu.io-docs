@@ -156,6 +156,8 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
+To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-246-186-94.eu-west-1.compute.amazonaws.com:4443`
+
 <br>
 
 >Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.9.0, use the artifact versions indicated in [2.9.0 release table](/releases#290){:target="_blank"}
