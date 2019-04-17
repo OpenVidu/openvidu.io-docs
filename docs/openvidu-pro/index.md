@@ -160,6 +160,15 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">P2P sessions <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Support for direct P2P sessions without a media server"></th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
             <th scope="row">Other media servers <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
