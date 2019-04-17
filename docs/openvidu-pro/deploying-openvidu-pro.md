@@ -140,11 +140,25 @@ Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshootin
 
 You are ready to go. Click on **Next** 🡆 **Next** 🡆 **Create stack** to finally deploy your OpenVidu Server Pro.
 
-Wait until Stack status is set to `CREATE_COMPLETE`. Then you will have a production-ready setup with all the advanced features provided by OpenVidu Pro.
+<br>
+
+---
+
+### 3) Connecting to your OpenVidu Server Pro
+
+Now you just have to wait until Stack status is set to `CREATE_COMPLETE`. Then you will have a production-ready setup with all the advanced features provided by OpenVidu Pro.
+
+To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access `Outputs` tab. There you will have both URLs to access both services.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
+    </div>
+</div>
 
 <br>
 
->Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.8.0, use the artifact versions indicated in [2.8.0 release table](/releases#280){:target="_blank"}
+>Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.9.0, use the artifact versions indicated in [2.9.0 release table](/releases#290){:target="_blank"}
 
 <br>
 
