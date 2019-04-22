@@ -148,6 +148,10 @@ You are ready to go. Click on **Next** 🡆 **Next** 🡆 **Create stack** to fi
 
 Now you just have to wait until Stack status is set to `CREATE_COMPLETE`. Then you will have a production-ready setup with all the advanced features provided by OpenVidu Pro.
 
+> If status reaches `CREATE_FAILED`, check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
+
+<br>
+
 To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access `Outputs` tab. There you will have both URLs to access both services.
 
 <div class="row">

@@ -114,6 +114,8 @@ No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Creat
 
 **_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_** (between 6-10 minutes).
 
+> If status reaches **CREATE_FAILED**, check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
+
 #### 6. Access and test your OpenVidu Server through your new IP
 
 After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it).
