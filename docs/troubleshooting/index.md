@@ -283,4 +283,11 @@ Usually any other WebRTC based service we have tested redirected to a native app
 
 ---
 
+### 13. Deploying OpenVidu in AWS is failing
+
+If you are deploying [OpenVidu Community](/deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](/openvidu-pro/deploying-openvidu-pro/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
+
+You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
+And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"} 
+
 <br>
