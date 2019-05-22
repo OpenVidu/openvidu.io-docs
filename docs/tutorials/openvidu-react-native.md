@@ -25,7 +25,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    Openvidu-browser library needs to support React Native for openvidu-react-native tutorial works. Contact with <a href="mailto:openvidu@gmail.com">openvidu@gmail.com</a> to get it.
+    <strong>Openvidu-browser library needs to support React Native for openvidu-react-native tutorial works. Contact with <a href="mailto:openvidu@gmail.com">openvidu@gmail.com</a> to get it.</strong>
 </div>
 </div>
 
@@ -65,7 +65,7 @@ cd openvidu-tutorials/openvidu-react-native
 npm install
 ```
 
-4) Install openvidu-browser with React Native support:
+4) Install openvidu-browser **with React Native support**:
 Add the artifact in the root project 
 
 ```bash
@@ -95,12 +95,62 @@ npm install openvidu-browser-Y.Y.Z.tgz
 </div>
 </div>
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    You should check your network is powerfull or connect your devide to 4G. We have had several problems with the network when we were tried to do a streaming communication.
+</div>
+</div>
+
 Now depending on the platform you want to run your app...
 
 
-#### In an Android device with native app
+#### In an Android device
 
-To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, React Native provide us a [great guide](https://facebook.github.io/react-native/docs/getting-started){:target="_blank"} to allows us to configure step by step all the requirements. This tutorial is made with **React Native CLI** so you should select and check the React Native CLI requirements inside of React guide website.
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	This tutorial has been tested with Android 5.1 (Lollipop) and Android 9 (Pie)
+</div>
+</div>
+
+
+To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, React Native provide us a [great guide](https://facebook.github.io/react-native/docs/getting-started){:target="_blank"} to allows us to configure step by step all the requirements. This tutorial is made with **React Native CLI Quickstart** so you should select and check the **React Native CLI** requirements inside of React guide website.
 
 After we have completed all the steps of the React Native CLI guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
 
@@ -108,7 +158,7 @@ After we have completed all the steps of the React Native CLI guide and performe
 
 4) Connect the device to the same network as your PC
 
-5) Connect the device to the PC. You must enable USB debugging and give permissions (check out [last section here in Ionic docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
+5) Connect the device to the PC. You must enable USB debugging and give permissions (check out [first section here in React Native docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
 
 6) Run the tutorial. The app will be automatically launched in your Android device
 
@@ -118,11 +168,50 @@ react-native run-android
 ```
 
 
-<!-- #### In an iOS device with native app
+#### In an iOS device
+
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	This tutorial has been tested with iPhone 7 (iOS 12.2) iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
+</div>
+</div>
+
+
+After we have completed all the steps of the performed steps 1), 2) and 3) stated above, we must continue with the following commands:
+
+4) Connect the device to the same network as your PC
+
+5) Plug in your device via USB
+
+6) Configure code signing
+
+7) Build and Run your app
+
+To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device) to properly configure your development environment.
 
 To actually see the real implementation of this class, check out [iOS specific requirements](#ios-specific-requirements) section, as most of its code is just adjustments to make it work on iOS devices.
 
- -->
+ 
 
 ## Understanding the code
 
@@ -130,7 +219,7 @@ This is an React Native project generated with React Native CLI tool, and theref
 
 - `App.js`: defines *App* component, main component of the app. It contains the functionalities for joining a video-call and for handling the video-calls themselves.
 
-Let's see first how `app.component.ts` uses NPM package `openvidu-browser`:
+Let's see first how `App.js` uses NPM package `openvidu-browser`:
 
 ---
 
@@ -160,7 +249,7 @@ this.state = {
 
 ---
 
-#### Whenever a user clicks on the join button defined in `app.component.html`, `joinSession()` method is called:
+#### Whenever a user clicks on the join button defined in `App.js`, `joinSession()` method is called:
 
 <br>
 
@@ -223,16 +312,16 @@ Here we subscribe to the Session events that interest us. As we are using React 
         {this.state.subscribers.map((item, index) => {
             if(!!item){
                 return (
-                    <View key={index} style={styles.selfView}>
-                        <RTCView zOrder={0}  objectFit="cover" style={styles.selfView}  ref={(rtcVideo) => {
+                    <View key={index}>
+                        <Text>{this.getNicknameTag(item.stream)}</Text>
+                        <RTCView zOrder={0}  objectFit="cover" style={styles.remoteView}  ref={(rtcVideo) => {
                             if (!!rtcVideo){
                                 item.addVideoElement(rtcVideo);
                             }
                         }} />
                     </View>
                 )
-            }
-        })}
+        }
 	
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so React will automatically delete the required *RTCView* component. 
 
@@ -291,49 +380,44 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 // 'getToken' method is simulating what your server-side should do.
 // 'token' parameter should be retrieved and returned by your own backend
-this.getToken()
-    .then((token) => {
-        // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
-        mySession
-            .connect(token, { clientData: this.state.myUserName })
-            .then(() => {
-                console.log('SESSION CONNECTED');
+this.getToken().then((token) => {
+    // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
+    // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
+    mySession.connect(token, { clientData: this.state.myUserName })
+        .then(() => {
+            if (Platform.OS == 'android') {
+                this.checkAndroidPermissions();
+            }
+            
+            // --- 5) Get your own camera stream ---
+            if (this.state.role !== 'SUBSCRIBER') {
+                // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
+                // element: we will manage it on our own) and with the desired properties
+                let publisher = this.OV.initPublisher(undefined, {
+                    audioSource: undefined, // The source of audio. If undefined default microphone
+                    videoSource: undefined, // The source of video. If undefined default webcam
+                    publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+                    publishVideo: true, // Whether you want to start publishing with your video enabled or not
+                    resolution: '640x480', // The resolution of your video
+                    frameRate: 30, // The frame rate of your video
+                    insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
+                });
 
-                if (Platform.OS === 'android') {
-                    this.requestCameraPermission();
-                }
-                
-                // --- 5) Get your own camera stream ---
-                if (this.state.role !== 'SUBSCRIBER') {
-                    // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
-                    // element: we will manage it on our own) and with the desired properties
-                    let publisher = this.OV.initPublisher(undefined, {
-                        audioSource: undefined, // The source of audio. If undefined default microphone
-                        videoSource: undefined, // The source of video. If undefined default webcam
-                        publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
-                        publishVideo: true, // Whether you want to start publishing with your video enabled or not
-                        resolution: '640x480', // The resolution of your video
-                        frameRate: 30, // The frame rate of your video
-                        insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
-                        mirror: false, // Whether to mirror your local video or not
-                    });
+                // --- 6) Publish your stream ---
 
-                    // --- 6) Publish your stream ---
-
-                    // Set the main video in the page to display our webcam and store our Publisher
-                    this.setState({
-                        mainStreamManager: publisher
-                    });
-                    mySession.publish(publisher);
-                }
-                
-            })
-            .catch((error) => {
-                console.log('There was an error connecting to the session:', error.code, error.message);
-            });
+                // Set the main video in the page to display our webcam and store our Publisher
+                this.setState({
+                    mainStreamManager: publisher
+                });
+                mySession.publish(publisher);
+            }
+            
+        })
+        .catch((error) => {
+            console.log('There was an error connecting to the session:', error.code, error.message);
+        });
     })
     .catch((error) => console.log('Error', error));
-
 ```
 
 In `session.connect` method first param is the recently retrieved user token. Second param is the value every user will receive in `event.stream.connection.data` property on `streamCreated` event. (this value will be used to show the user's nickname to the his video).
@@ -368,9 +452,10 @@ We now proceed to publish our webcam to the session. To do so we get a `Publishe
 
 Also we store the Publisher object under `this.state.mainStreamManager` variable. This way our webcam will be appended along all remote subscribers, in exactly the same way they are shown.
 
-```JSX
-<View>
-    <Text>Local Stream</Text>
+```
+<View style={styles.container}>
+    <Text>Session: {this.state.mySessionId}</Text>
+    <Text>{this.getNicknameTag(this.state.mainStreamManager.stream)}</Text>
     <RTCView zOrder={0}  objectFit="cover"
         ref={(rtcVideo) => {
             if (!!rtcVideo) {
@@ -460,6 +545,71 @@ protected List<ReactPackage> getPackages() {
         new WebRTCModulePackage() // <-- Add this line
     );
 }
+```
+
+## iOS specific requirements
+
+iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by the following steps bellow. 
+
+These configurations are already included in this **openvidu-react-native project**, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with React Native and OpenVidu**, you should follow these simple steps:
+
+1) Add Files Into Project
+
+* in Xcode: Right click on `Libraries` and  `Add Files to {project}`
+* Go to `node_modules/openvidu-browser/node_modules/react-native-webrtc/ios/RCTWebRTC.xcodeproj` and click on `Add`
+* Also add `node_modules/react-native-webrtc/ios/WebRTC.framework` to `Frameworks` folder
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-12">
+		<a data-fancybox="gallery" href="/img/tutorials/xcode1.png">
+		<img class="img-responsive" src="/img/tutorials/xcode1.png">
+	</a>
+	</div>
+</div>
+
+
+2) Add Library Search Path
+
+* Select **Build Settings** section and find `Search Paths`
+* Edit both **Framework Search Paths** and **Library Search Paths** adding `$(SRCROOT)/../node_modules/openvidu-browser/node_modules/react-native-webrtc/ios` with `recursive`
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-12">
+		<a data-fancybox="gallery" href="/img/tutorials/xcode2.png">
+		<img class="img-responsive" src="/img/tutorials/xcode2.png">
+	</a>
+	</div>
+</div>
+
+3) Change General Setting and Embed Framework
+
+* Go to **General** section and change **Deployment Target** to `8.0`
+* Add **Embedded Binaries** like below:
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-12">
+		<a data-fancybox="gallery" href="/img/tutorials/xcode3.png">
+		<img class="img-responsive" src="/img/tutorials/xcode3.png">
+	</a>
+	</div>
+</div>
+
+4) Link/Include Necessary Libraries
+
+* Go to **Build Phases** tab, open **Link Binary With Libraries**
+* Add `libRCTWebRTC.a`
+* Make sure `WebRTC.framework` is linked
+* Under **Build setting** set **Dead Code Stripping** to `No` also under **Build Options** set **Enable Bitcode** to `No` as well
+
+5) Add Permissions
+* Navigate to `<ProjectFolder>/ios/<ProjectName>/`
+* Edit **Info.plist** and add the following lines
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Camera Permission</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Microphone Permission</string>
 ```
 
 <div style="
