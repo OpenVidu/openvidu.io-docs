@@ -229,7 +229,7 @@ In the future OpenVidu team plans to support **[React Native](https://facebook.g
 
 ### 9. Which is the current status of OpenVidu on scalability and fault tolerance?
 
-OpenVidu load testing process is described in detail in this **[Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"}**. Results are the following for 7-to-7 sessions were every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until CPU reaches 100% use.
+OpenVidu load testing process is described in detail in this **[Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"}**. Results are the following for 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until CPU reaches 100% use.
 
 <div class="row" style="margin-bottom: 10px; text-align: center; text-align: -webkit-center">
   <img class="img-responsive" src="/img/docs/troubleshooting/load_test_results.png">

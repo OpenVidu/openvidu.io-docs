@@ -25,7 +25,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    <strong>Openvidu-browser library needs to support React Native for openvidu-react-native tutorial works. Contact with <a href="mailto:openvidu@gmail.com">openvidu@gmail.com</a> to get it.</strong>
+    <strong>React Native support is a paid feature. A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work. Contact us through <a href="/community">Commercial page support</a> to get it</strong>
 </div>
 </div>
 
@@ -115,7 +115,7 @@ npm install openvidu-browser-Y.Y.Z.tgz
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    You should check your network is powerfull or connect your devide to 4G. We have had several problems with the network when we were tried to do a streaming communication.
+    Some problems have been encountered while streaming with iOS devices in some networks with complex restrictions. With mobile networks (4G) these problems have not taken place. Make sure there is no problem with the network you are using in your development environment before posting issues about it
 </div>
 </div>
 
@@ -145,7 +145,7 @@ Now depending on the platform you want to run your app...
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested with Android 5.1 (Lollipop) and Android 9 (Pie)
+	This tutorial has been tested from Android 5.1 (Lollipop) to Android 9 (Pie)
 </div>
 </div>
 
@@ -192,7 +192,7 @@ react-native run-android
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested with iPhone 7 (iOS 12.2) iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
+	This tutorial has been tested with iPhone 7 (iOS 12.2), iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
 </div>
 </div>
 
@@ -215,7 +215,7 @@ To actually see the real implementation of this class, check out [iOS specific r
 
 ## Understanding the code
 
-This is an React Native project generated with React Native CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `App.js` file:
+This is a React Native project generated with React Native CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `App.js` file:
 
 - `App.js`: defines *App* component, main component of the app. It contains the functionalities for joining a video-call and for handling the video-calls themselves.
 
@@ -253,7 +253,7 @@ this.state = {
 
 <br>
 
-We first get an OpenVidu object and initialize a session property in a state.
+We first get an OpenVidu object and initialize a session property inside the state.
 
 ```javascript
 // --- 1) Get an OpenVidu object ---
@@ -284,7 +284,7 @@ mySession.on('streamCreated', (event) => {
     // so OpenVidu doesn't create an HTML video by its own
     var subscriber = mySession.subscribe(event.stream, undefined);
 
-    //We use an auxiliar array to push the new stream
+    //We use an auxiliary array to push the new stream
     var subscribers = this.state.subscribers;
 
     subscribers.push(subscriber);
@@ -305,9 +305,9 @@ mySession.on('streamDestroyed', (event) => {
 
 // See next step
 ```
-Here we subscribe to the Session events that interest us. As we are using React Native framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be *RTCView* and is provided from *react-native-webrtc* library. To do this, we need to store each new Subscriber we received in array `subscribers`, and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
+Here we subscribe to the Session events that interest us. As we are using React Native framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be *RTCView* and is provided from ***react-native-webrtc*** library. To do this, we need to store each new Subscriber we received in array `subscribers`, and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
 
-- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM is not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We get the reference to RTCView and we will run *addVideoElement* function with the aim of the video appears.
+- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM does not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We get the reference to RTCView and we will run openvidu-browser method *addVideoElement*, passing the reference of the RTCView when it is defined.
 
         {this.state.subscribers.map((item, index) => {
             if(!!item){
@@ -518,7 +518,7 @@ These configurations are already included in this **openvidu-react-native** proj
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
 
-2) In `android/settings.gradle`, includes WebRTCModule
+2) In `android/settings.gradle`, include WebRTCModule
 
 ```javascript
 include ':WebRTCModule', ':app'
@@ -549,11 +549,11 @@ protected List<ReactPackage> getPackages() {
 
 ## iOS specific requirements
 
-iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by the following steps bellow. 
+iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by following the steps bellow.
 
 These configurations are already included in this **openvidu-react-native project**, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with React Native and OpenVidu**, you should follow these simple steps:
 
-1) Add Files Into Project
+1) Add these files into your project
 
 * in Xcode: Right click on `Libraries` and  `Add Files to {project}`
 * Go to `node_modules/openvidu-browser/node_modules/react-native-webrtc/ios/RCTWebRTC.xcodeproj` and click on `Add`

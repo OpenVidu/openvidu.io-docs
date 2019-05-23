@@ -79,7 +79,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 4)  Install NPM dependencies of Angular app:
 
 ```
-cd openvidu-call-react/front/openvidu-call-react
+cd openvidu-call-react/openvidu-call-react
 npm install
 ```
 
