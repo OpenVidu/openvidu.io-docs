@@ -192,7 +192,7 @@ react-native run-android
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested with iPhone 7 (iOS 12.2), iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
+	This tutorial has been tested with Xcode (10.2.1) and iPhone 7 (iOS 12.2), iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
 </div>
 </div>
 
