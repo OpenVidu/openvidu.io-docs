@@ -29,7 +29,7 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not enabled right now for OpenVidu 2.9.0</strong> due to Ubuntu Bionic support. These affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>
+	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not enabled right now for OpenVidu >= 2.9.0</strong> due to Ubuntu Bionic support. These affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>
 </div>
 </div>
 

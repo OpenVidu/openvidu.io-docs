@@ -65,7 +65,7 @@ ionic serve
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.9.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.10.0
 ```
 
 5) Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -126,7 +126,7 @@ Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https
 5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.9.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.10.0
 ```
 
 6) Connect the device to the PC. You can check if your device is authoriced with the `adb devices` command.
