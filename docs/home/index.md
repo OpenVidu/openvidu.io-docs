@@ -211,7 +211,7 @@ These are the recommended steps for getting started with OpenVidu:
 
 3. Try now any of our **[Client-Side + Server-Side](/tutorials/#client-side-server-side){:target="_blank"}** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
 
-4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/deployment/deploying-demos-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](/deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](/deployment/deploying-app/){:target="_blank"}**).
+4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/deployment/deploying-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](/deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](/deployment/deploying-app/){:target="_blank"}**).
 
 ----------
 

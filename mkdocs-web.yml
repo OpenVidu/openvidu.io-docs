@@ -38,7 +38,6 @@ pages:
 - ['reference-docs/REST-API.md','Reference Documentation', 'REST  API']
 - ['reference-docs/openvidu-server-params.md','Reference Documentation', 'OpenVidu Server configuration']
 - ['reference-docs/openvidu-server-cdr.md','Reference Documentation', 'OpenVidu Server CDR']
-- ['deployment/deploying-demos-aws.md','Deployment', 'Deploying OpenVidu Demos on AWS (TUTORIAL)']
 - ['deployment/deploying-aws.md','Deployment', 'Deploying OpenVidu on AWS']
 - ['deployment/deploying-ubuntu.md','Deployment', 'Deploying OpenVidu on Ubuntu']
 - ['deployment/deploying-app.md','Deployment', 'Deploying your OpenVidu app']
