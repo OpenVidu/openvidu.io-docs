@@ -28,7 +28,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-	Current version of OpenVidu Pro matches <strong>version 2.9.0</strong> of OpenVidu Community Edition. We are not currently charging anything for using OpenVidu Pro, as we intend these first versions to be a beta. The only price you will have to pay is the cost of the Amazon instance, as you would do when <a href="/docs/deployment/deploying-aws/" target="_blank">deploying OpenVidu Community Edition in AWS</a>
+	Current version of OpenVidu Pro matches <strong>version 2.10.0</strong> of OpenVidu Community Edition. We are not currently charging anything for using OpenVidu Pro, as we intend these first versions to be a beta. The only price you will have to pay is the cost of the Amazon instance, as you would do when <a href="/docs/deployment/deploying-aws/" target="_blank">deploying OpenVidu Community Edition in AWS</a>
 </div>
 </div>
 

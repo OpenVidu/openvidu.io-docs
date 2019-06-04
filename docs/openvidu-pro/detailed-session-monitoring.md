@@ -74,7 +74,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 <div class="monitoring-div">
 
 <div class="version-buttons">
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0</a>
+  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0/2.10.0</a>
 </div>
 
 <div id="list-290" class="version-container" markdown="1">
@@ -489,7 +489,7 @@ You can create powerful visualizations and dashboards by using these documents. 
 <script>
 function changeVersion(event) {
   var parent = event.target.parentNode.parentNode;
-  var txt = event.target.textContent || event.target.innerText;
+  var txt = event.target.getAttribute('title');
   var txt = txt.replace(/\./g, '');
   for (var i = 0; i < parent.children.length; i++) {
     var child = parent.children[i];
