@@ -3,7 +3,7 @@
 
 <!-- Start Blog Classic -->
 <section id="blog" class="docs-tutorials">
-    <div class="container">
+    <div class="container tutorials-doc-home">
 
         <div class="col-md-12 text-center wow fadeInUp">
             <h3 id="hello-world" class="section-title">Hello World</h3>
@@ -37,13 +37,14 @@
 
         <div class="row">
 
-            <div class="col-md-6 col-sm-6 team-member">
+            <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-js" class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-js"
+                                        class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -55,13 +56,14 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 team-member">
+            <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-angular"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-angular"><i
+                                            class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -73,13 +75,14 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 team-member">
+            <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/react.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-react/"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-react/"><i
+                                            class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -91,13 +94,38 @@
                 </div>
             </div>
 
-            <div class="col-md-6 col-sm-6 team-member">
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4 team-member">
+                <div class="effect effects wow fadeInUp">
+                    <div class="img">
+                        <img src="/img/assets/react-native.png" class="img-responsive img-tutorials" alt="" />
+                        <div class="overlay">
+                            <ul class="expand">
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-react-native/"><i
+                                            class="icon ion-edit"></i></a></li>
+                            </ul>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-info wow fadeInUp">
+                    <h4>React Native</h4>
+                    <p>This React Native tutorial will get your mobile app going in the blink of an eye</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-ionic/"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-ionic/"><i
+                                            class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -109,7 +137,27 @@
                 </div>
             </div>
 
+            <div class="col-md-4 col-sm-4 team-member">
+                <div class="effect effects wow fadeInUp">
+                    <div class="img">
+                        <img src="/img/assets/electron.png" class="img-responsive img-tutorials" alt="" />
+                        <div class="overlay">
+                            <ul class="expand">
+                                <li class="social-icon"><a href="/docs/tutorials/openvidu-electron/"><i
+                                            class="icon ion-edit"></i></a></li>
+                            </ul>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-info wow fadeInUp">
+                    <h4>Electron</h4>
+                    <p>Build an OpenVidu native desktop application for Windows, OSX and Linux in just a few minutes</p>
+                </div>
+            </div>
+
         </div>
+
         <!-- End Row -->
 
         <div class="row no-margin row-more-info">

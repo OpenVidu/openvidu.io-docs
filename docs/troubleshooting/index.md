@@ -219,11 +219,33 @@ But there's also a bunch of features supported by Kurento or WebRTC that will be
 
 ---
 
-### 8. Does OpenVidu support Android and iOS?
+### 8. What platforms are supported by OpenVidu?
 
-Since release 2.7.0 **Android** and **iOS** are supported through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native application compatible with both Android ang iOS working in minutes.
+OpenVidu supports a wide range of platforms:
 
-In the future OpenVidu team plans to support **[React Native](https://facebook.github.io/react-native/){:target="_blank"}** and **[Native Script](https://www.nativescript.org/){:target="_blank"}** frameworks in the same manner.
+<br>
+##### Desktop browsers
+
+**Chrome**, **Firefox**, **Opera**, **Safari** and **Internet Explorer**
+
+<br>
+##### Mobile browsers
+
+**Chrome**, **Firefox** and **Opera** in Android and **Safari** on iOS
+
+<br>
+##### Mobile native applications
+
+**Android** and **iOS** are supported:
+
+- Since release **2.7.0** through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
+
+- Since release **2.10.0** through **[React Native](https://facebook.github.io/react-native/){:target="_blank"}**. You can try [openvidu-react-native](/tutorials/openvidu-react-native/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application working in minutes.
+
+<br>
+##### Desktop native applications
+
+- **Windows**, **OSX** and **Linux** are supported since release **2.10.0** through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](/tutorials/openvidu-electron/){:target="_blank"} tutorial and you will have an OpenVidu native desktop application working in minutes.
 
 ---
 
