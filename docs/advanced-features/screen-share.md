@@ -74,7 +74,7 @@ desktopCapturer.getSources({
 });
 ```
 
-You can check out [openvidu-electron tutorial](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-electron){:target="_blank"}, which includes a fully functional screen selector dialog.
+You can check out [openvidu-electron tutorial](/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
 
 <br><br>
 <hr>

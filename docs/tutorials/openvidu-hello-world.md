@@ -42,7 +42,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 This application is very simple. It has only 4 files:
 
 - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
-- `app.js`: sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_.
+- `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_.
 - `style.css`: some CSS classes to style _index.html_.
 - `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. It has two links to both JavaScript files: 
 
@@ -62,7 +62,7 @@ var OV;
 var session;
 ```
 
-`OV` will be our OpenVidu object (entrypoint to the libray). `session` will be the video-call we will connect to. As first sentence in the `joinSession()` method, we initialize the variable that will identify our video-call retrieving the value from the HTML input.
+`OV` will be our OpenVidu object (entrypoint to the library). `session` will be the video-call we will connect to. As first sentence in the `joinSession()` method, we initialize the variable that will identify our video-call retrieving the value from the HTML input.
 
 ```javascript
 var mySessionId = document.getElementById("sessionId").value;
@@ -159,7 +159,7 @@ Last but not least, we publish this `publisher` object thanks to `session.publis
 
 ---
 
-#### Leaving the session:
+#### Leaving the session
 
 ```javascript
 session.disconnect();

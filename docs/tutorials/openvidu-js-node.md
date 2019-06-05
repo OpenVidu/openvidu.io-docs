@@ -87,7 +87,7 @@ This is a very basic web application with a pretty simple JS/HTML/CSS frontend a
 
   - **Frontend**: Plain JS/HTML/CSS files (`/public` folder)
     - `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file.
-    - `app.js` : sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_.
+    - `app.js` : sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_.
     - `index.html` : HTML code for the form to login, the form to connect to a video-call and for the video-call itself. It has two links to both JavaScript files:
 
 	        <script src="openvidu-browser-VERSION.js"></script>

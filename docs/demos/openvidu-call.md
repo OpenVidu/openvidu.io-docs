@@ -174,7 +174,7 @@ By default, the app will be served in `localhost:8080` address. You will need go
 
 ## Extra features
 
-Using the OpenVidu Call release, you can set up the address where you app will be served with `http-server -a "your_address"`. Moreover, includying a **JSON** file named **ov-settings.json** in the root directory, you will can configure the `openvidu_url` and `openvidu_secret` on this way:
+Using the OpenVidu Call release, you can set up the address where your app will be served with `http-server -a "your_address"`. Moreover, by including a **JSON** file named **ov-settings.json** in the root directory, you can configure the `openvidu_url` and `openvidu_secret`;
 
 ```json
 {
@@ -185,7 +185,7 @@ Using the OpenVidu Call release, you can set up the address where you app will b
 }
 ```
 
-Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters but also, you can customize the session interface adding an extra JSON object named  **openviduSettings** inside of the file. We have explained in detail how **openviduSettings** object must be treated [here](/tutorials/openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
+Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters, but also you can customize the session interface adding an extra JSON object named  **openviduSettings** inside of the file. You have explained how **openviduSettings** object must be treated in detail [here](/tutorials/openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

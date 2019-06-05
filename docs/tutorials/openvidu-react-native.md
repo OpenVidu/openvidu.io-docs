@@ -154,8 +154,6 @@ To deploy the Android APK not only you need to have **Java JDK8**, **Android Stu
 
 After we have completed all the steps of the React Native CLI guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
 
-<br>
-
 4) Connect the device to the PC. You must enable USB debugging and give permissions (check out [first section here in React Native docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
 
 5) Run the tutorial. The app will be automatically launched in your Android device
@@ -203,9 +201,6 @@ After we have completed all the steps of the performed steps 1), 2) and 3) state
 6) Build and Run your app
 
 To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device) to properly configure your development environment.
-
-To actually see the real implementation of this class, check out [iOS specific requirements](#ios-specific-requirements) section, as most of its code is just adjustments to make it work on iOS devices.
-
 
 ## Understanding the code
 
@@ -463,7 +458,7 @@ Also we store the Publisher object under `this.state.mainStreamManager` variable
 
 ---
 
-#### Leaving the session:
+#### Leaving the session
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `app.component.ts`:
 

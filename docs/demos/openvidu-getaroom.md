@@ -78,7 +78,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 This application is very simple. It has only 4 files:
 
   - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
-  - `app.js`: sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
+  - `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
   - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
 
         <script src="openvidu-browser-VERSION.js.js"></script>

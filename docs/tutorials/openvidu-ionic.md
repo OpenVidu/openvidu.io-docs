@@ -538,7 +538,7 @@ To actually see the real implementation of this class, check out [iOS specific r
 
 ---
 
-#### Leaving the session:
+#### Leaving the session
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `app.component.ts`:
 

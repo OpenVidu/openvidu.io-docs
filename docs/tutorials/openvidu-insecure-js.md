@@ -93,7 +93,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 This application is very simple. It has only 4 files:
 
 - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
-- `app.js`: sample application main JavaScritp file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
+- `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
 - `style.css`: some CSS classes to style _index.html_. You can manipulate this file to suit your needs.
 - `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
 
@@ -113,7 +113,7 @@ var OV;
 var session;
 ```
 
-`OV` will be our OpenVidu object (entrypoint to the libray). `session` will be the video-call we will connect to. As first sentences in the join method, we initialize the two parameters whose value is retrieved from the HTML inputs.
+`OV` will be our OpenVidu object (entrypoint to the library). `session` will be the video-call we will connect to. As first sentences in the join method, we initialize the two parameters whose value is retrieved from the HTML inputs.
 
 ```javascript
 var mySessionId = document.getElementById("sessionId").value; 	// Session the user will join
@@ -279,7 +279,7 @@ Finally we just have to publish `publisher` object through `Session.publish` met
 
 ---
 
-#### Leaving the session:
+#### Leaving the session
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method:
 

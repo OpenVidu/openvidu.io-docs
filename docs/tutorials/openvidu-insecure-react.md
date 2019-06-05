@@ -367,7 +367,7 @@ export default class OpenViduVideoComponent extends Component {
 
 ---
 
-#### Leaving the session:
+#### Leaving the session
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `App.js`:
 
