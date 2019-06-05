@@ -104,8 +104,8 @@
   <tr>
     <td>Kurento Media Server</td>
     <td>Ubuntu package</td>
-    <td>6.9.0</td>
-    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.9.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td>6.10.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.10.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
