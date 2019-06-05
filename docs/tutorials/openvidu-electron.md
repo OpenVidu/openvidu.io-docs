@@ -1,7 +1,7 @@
 # openvidu-electron
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-electron" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Electron**. It can be compiled into a native desktop application for **Windows**, **OSX** and **Linux**. It includes [electron-forge](https://www.electronforge.io/){:target="_blank"} as a dependency so the compilation process is as simple as running a single command.
+A client-side only application built with **Electron**. It can be compiled into a native desktop application for **Windows**, **OSX** and **Linux**. It includes [electron-forge](https://www.electronforge.io/){:target="_blank"} as a dependency so the compilation process is as simple as running a single command: `npm run make`
 
 If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being an Electron app and being a little more complex for OpenVidu starters.
 
