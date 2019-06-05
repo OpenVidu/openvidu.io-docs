@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.10.0](#2100)
 - [2.9.0](#290)
 - [2.8.0](#280)
 - [2.7.0](#270)
@@ -14,6 +15,149 @@
 - [1.9.0-beta-1](#190-beta-1)
 
 ---
+
+## 2.10.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.10.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.10.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.10.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.10.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.10.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.9.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.9.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+This release brings support to more and more clients, so you can expand your OpenVidu client-side range. Of course, they are all compatible with each other and with every other platform already supported.
+
+<br>
+##### Electron support
+
+OpenVidu has supported most popular browsers since its inception, and past releases brought official support to Android and iOS through [Ionic](https://openvidu.io/docs/tutorials/openvidu-ionic/){:target="_blank"}. But there was still a gap regarding desktop applications. With 2.10.0 we are happy to announce that you are now able to implement your Windows, OSX and Linux native app with OpenVidu through Electron.
+
+> What is Electron? It is great framework for building native desktop applications with classic web technologies (simple, good old HTML, CSS and JS).
+
+Electron is to desktop operating systems what Ionic is to mobile operating systems. Some examples of great applications built with Electron are Slack, Skype, Atom or Visual Studio Code
+Using Electron means that the same codebase you are already using for your web and mobile application can be used to build a desktop app that will work on Windows, OSX and Linux. Take a look to our brand new [openvidu-electron](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-electron){:target="_blank"} tutorial, and you will have a desktop OpenVidu app working in minutes. It even brings screen-sharing!
+
+<br>
+
+##### React Native support
+
+You’re not convinced by Ionic? Now you can choose React Native framework for developing your OpenVidu mobile app. React Native is rather similar to Ionic from the developers perspective, but at the same time its nature is very different. Essentially, it really uses native Android and iOS UI components under the hood while Ionic is based on WebView (in a nutshell, it runs on the browser).
+
+> React Native support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-react-native](https://openvidu.io/docs/tutorials/openvidu-react-native/){:target="_blank"} tutorial to quickly get started
+
+<br>
+
+##### Internet Explorer support
+
+Yes, it’s 2019. But there’s still a lot of companies out there that provide/require IE support and need videoconferencing systems to work in this browser relic. So that’s why we have brought OpenVidu support to IE through Temasys plugin. Only IE 11 is supported (going further back was too much of a pain).
+
+> Internet Explorer support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-internet-explorer](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-internet-explorer/){:target="_blank"} tutorial to quickly get started
+
+<br>
+
+#### BUG FIXES
+
+- *openvidu-angular* and *openvidu-webcomponent* were failing when screen sharing. Now they don’t.
+- *openvidu-browser*: screen-sharing streams are not mirrored in the local videos now by default.
+- *openvidu-browser*: event streamPlaying was being triggered anormally when calling [`StreamManager.addVideoElement`](https://openvidu.io/api/openvidu-browser/classes/streammanager.html#addvideoelement){:target="_blank"} method. Now it doesn’t.
+- *openvidu-node-client* and *openvidu-java-client*: removed static methods and properties from OpenVidu object. Now it is possible to keep a collection of OpenVidu objects from same Node or Java app by using SDK clients, which allows to manage multiple OpenVidu Servers from the same application.
+- *openvidu-browser* now checks version compatibility with openvidu-server. If version numbers are not equal, an error will be printed in the browser’s console when calling Session.connect method, so developers know they must use same version number on both sides. This gives devs very useful information about a very common mistake that usually leads to bugs that can be very difficult to trace but have a really simple solution, which is simply upgrading openvidu-browser library version. This new verification is not really a bug fix, but for sure will help avoiding future bugs.
+
+<br>
+
+---
+
+<br>
 
 ## 2.9.0
 
