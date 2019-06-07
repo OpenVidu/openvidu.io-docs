@@ -246,7 +246,7 @@ ionic cordova run ios
 You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca){:target="_blank"}:
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="https://help.apple.com/xcode/mac/current/en.lproj/Art/pr_launch_app_on_device.png">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="/img/tutorials/xcode_sign.png">
 </p>
 
 <br>
