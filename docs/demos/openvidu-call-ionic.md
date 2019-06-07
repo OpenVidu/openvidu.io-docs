@@ -100,19 +100,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android){:target="_blank"} to allows us to configure step by step all the requirements.
 
-After we have finished the Ionic tutorial, we must have to follow these steps:
-
-1) Clone the repo:
-
-```bash
-git clone https://github.com/OpenVidu/openvidu-call-ionic.git
-```
-
-2) You will need ionic-cli (and of course node 8.9 or greater) to serve the Ionic app. You can install it with the following command:
-
-```bash
-npm install -g ionic@latest
-```
+After we have completed all the steps of the Ionic guide and performed steps 1) and 2) stated above, we must continue with the following commands:
 
 3) Connect the device to the same network as the PC. 
 
@@ -164,6 +152,59 @@ ionic cordova run android
     To deploy apps to an Android device and debug them, developer mode must be enabled and allow for USB debugging turned on. Check out <a href="https://developer.android.com/studio/debug/dev-options#enable" target="blank">these instructions</a> to do this on a device.
 </div>
 </div>
+
+
+#### In an iOS device with native app
+
+To deploy the iOS app you will need first to follow [this guide](https://beta.ionicframework.com/docs/installation/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
+
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    iOS devices will require OpenVidu Server to be deployed in a valid domain well-protected with a certificate.<br>No iPhone or iPad will allow connections to a non-secure OpenVidu Server from within a native application. To facilitate first steps with OpenVidu and Ionic on iOS devices, if no custom url is defined <a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19" target="_blank">here in the app</a> then our demos OpenVidu Server will be used. <strong>Note: this is a publicly accessible OpenVidu Server. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
+</div>
+</div>
+
+After we have completed all the steps of the Ionic guide and performed steps 1) and 2) stated above, we must continue with the following commands:
+
+<br>
+
+4) Add ios platform
+
+```bash
+# In openvidu-tutorials/openvidu-ionic
+ionic cordova platform add ios
+```
+
+5) Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
+
+```bash
+# In openvidu-tutorials/openvidu-ionic
+ionic cordova run ios
+```
+
+You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca){:target="_blank"}:
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="/img/tutorials/xcode_sign.png">
+</p>
 
 <div class="row">
 
