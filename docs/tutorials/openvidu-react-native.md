@@ -71,6 +71,12 @@ Add the artifact in the root project
 ```bash
 npm install openvidu-browser-Y.Y.Z.tgz
 ```
+
+4) Start Metro Bundler :
+
+```bash
+npm start
+```
 <div style="
     display: table;
     border: 2px solid #ffb600;
@@ -152,11 +158,11 @@ Now depending on the platform you want to run your app...
 
 To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, React Native provide us a [great guide](https://facebook.github.io/react-native/docs/getting-started){:target="_blank"} to allows us to configure step by step all the requirements. This tutorial is made with **React Native CLI Quickstart** so you should select and check the **React Native CLI** requirements inside of React guide website.
 
-After we have completed all the steps of the React Native CLI guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
+After we have completed all the steps of the React Native CLI guide and performed steps 1) , 2), 3) and 4) stated above, we must continue with the following commands:
 
-4) Connect the device to the PC. You must enable USB debugging and give permissions (check out [first section here in React Native docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
+5) Connect the device to the PC. You must enable USB debugging and give permissions (check out [first section here in React Native docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
 
-5) Run the tutorial. The app will be automatically launched in your Android device
+6) Run the tutorial. The app will be automatically launched in your Android device
 
 ```bash
 # In openvidu-tutorials/openvidu-react-native
@@ -194,11 +200,11 @@ react-native run-android
 
 After we have completed all the steps of the performed steps 1), 2) and 3) stated above, we must continue with the following commands:
 
-4) Plug in your device via USB
+5) Plug in your device via USB
 
-5) Configure code signing
+6) Configure code signing
 
-6) Build and Run your app
+7) Build and Run your app
 
 To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device) to properly configure your development environment.
 
