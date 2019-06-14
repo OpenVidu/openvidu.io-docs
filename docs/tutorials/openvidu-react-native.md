@@ -125,6 +125,30 @@ npm start
 </div>
 </div>
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+After deploying on your device and trying to join the session, you will get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions NOT match". This error is not significant so just click on the dismiss button. 
+</div>
+</div>
+
 Now depending on the platform you want to run your app...
 
 
