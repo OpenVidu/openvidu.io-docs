@@ -43,7 +43,7 @@ OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will
 
 ##### C) Option _Specify an Amazon S3 template URL_ with the following URL
 
-  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CloudformationOpenViduPro.yaml</code>
+  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CloudformationOpenViduPro-latest.yaml</code>
   <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                                 title="Copy to Clipboard">Copy</button>
 
