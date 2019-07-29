@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.11.0](#2110)
 - [2.10.0](#2100)
 - [2.9.0](#290)
 - [2.8.0](#280)
@@ -13,6 +14,161 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.11.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.11.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.11.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.11.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.11.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.11.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.11.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.11.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES IN OPENVIDU COMMUNITY
+
+<br>
+
+##### OpenVidu Webhook service
+
+You are now able to receive OpenVidu events in your application server by using the brand new Webhook service. This is a feature that has been requested for a long time, and you can start using it right now.
+
+> You have all the information in the official documentation: [OpenVidu Server Webhook](https://openvidu.io/docs/reference-docs/openvidu-server-webhook/){:target="_blank"}
+
+<br>
+
+##### Externalizing configuration of OpenVidu Server
+
+Are you tired of having to write all the configuration parameters in openvidu-server launch command? Well, now you can externalize all your configuration into a separate file. You just need to use property `spring.config.additional-location` like this:
+
+```bash
+java -Dspring.config.additional-location=/path/to/application.properties -jar openvidu-server.jar
+```
+
+Then all configuration parameters listed in that file will be used.
+
+> You have all the information in the official documentation: [Externalizing configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params/#externalizing-configuration){:target="_blank"}
+
+#### NEW FEATURES IN OPENVIDU PRO
+
+<br>
+
+##### First version of scalability
+
+Finally OpenVidu brings the possibility of deploying a cluster with multiple media server instances. OpenVidu Pro will distribute your sessions among all available media servers based on their current load. Take a look to the official OpenVidu Pro tier documentation to learn more: [Scalability](https://openvidu.io/docs/openvidu-pro/scalability){:target="_blank"}
+
+<br>
+
+##### Persistent configuration when restarting OpenVidu Server Pro
+Whenever you restart OpenVidu Server Pro by using the [REST API](https://openvidu.io/docs/openvidu-pro/REST-API-pro/#post-prorestart){:target="_blank"}, the new parameters you provide will be saved to disk. This way you will be able to stop the service or even the host without losing the last configuration you provided when restarting OpenVidu Server Pro through REST API.
+
+#### BUG FIXES
+
+- _openvidu-browser_: when sharing the entire screen in Electron, no Publisher was being initalized. Now it does.
+- _openvidu-browser_: mobile devices where sending a streamPropertyChanged event when rotating the phone even when the Publisher wasn't being published to the session (error on the websocket connection). Now they don't.
+- _openvidu-server_: when KMS crashed and was rebooted, sometimes the first user republishing a Stream would get an error. Now it doesn't.
+- _openvidu-pro_: restarting OpenVidu Pro from Inspector and enabling CDR failed. Now it doesn't.
+- _openvidu-pro_: Kibana failed returning documents before running a session. Now it doesn't.
+- _openvidu-pro_: Inspector loggin process may failed when connecting through Firefox. Now it doesn't.
+
+#### OTHER NOTEWORTHY CHANGES
+
+Although this is not a visible feature for OpenVidu final users, we would like to mention that we have updated OpenVidu Server to **Spring Boot 2**. OpenVidu Server core has been based on Spring Boot 1 since the beginning of the project, but we decided to invest some time to upgrade it to the latest stable version to take advantage of its many new improvements. This should translate in better performance, stability and security.
+
+#### BREAKING CHANGES
+
+OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated in favour of `recordingStatusChanged` event. Check this new event [here](https://openvidu.io/docs/reference-docs/openvidu-server-cdr){:target="_blank"}. Besides, event `recordingStopped` now won't provide the final values of the recording (specifically its `duration` and `size` properties, that will be 0). You will have to listen to `recordingStatusChanged` with status `ready` to get them.
+
+<br>
 
 ---
 
@@ -1526,10 +1682,10 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 
 - Now when any participant unexpectedly disconnects from a session (for example, due to a network failure), `connectionDestroyed` event is sent to the rest of participants with property `reason` set to `networkDisconnect`.
 - When OpenVidu Server is stopped, it will try to gracefully finish every in progress session and recording. This way no recording file will end corrupted upon OpenVidu Server termination (this cannot be granted if the process crashes or is forcibly terminated)
-- Now both STUN and TURN [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/#list-of-additional-configuration-parameters-when-launching-openvidu-server-kms-docker-container){:target="_blank"} can be set up at the same time with no overwritings.
+- Now both STUN and TURN [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/#extra-configuration-parameters-for-openVidu-server-docker-container){:target="_blank"} can be set up at the same time with no overwritings.
 - Tons of small fixes and code refactoring that makes OpenVidu more stable and easy to test and develop
 
-#### BREAKING CHANGES LIST
+#### BREAKING CHANGES
 
 - **OpenVidu Browser**
     - [`OpenVidu.initSession`](../../api/openvidu-browser/classes/openvidu.html#initsession){:target="_blank"} now doesn't receive any input parameter.

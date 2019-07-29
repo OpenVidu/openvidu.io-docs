@@ -51,9 +51,9 @@ This dashboard presents at a glance the status of your recordings. It includes i
 
 #### Accessing Kibana
 
-OpenVidu Pro serves Kibana through path **/kibana**. So, if you have deployed OpenVidu Pro with domain **my.domain.com**, you will be able to access OpenVidu Inspector through **https://my.domain.com:4443** and Kibana through **https://my.domain.com/kibana**
+OpenVidu Pro serves Kibana through path **/kibana**. So, if you have deployed OpenVidu Pro with domain **my.domain.com**, you will be able to access OpenVidu Inspector through **https://my.domain.com/inspector** and Kibana through **https://my.domain.com/kibana**
 
-This path is secured with Basic Auth, so when connecting to it for the first time you will have to enter the user and password specified when [deploying OpenVidu Pro](/openvidu-pro/deploying-openvidu-pro){:target="_blank"}.
+This path is secured with Basic Auth, so when connecting to it for the first time you will have to enter the user and password specified when deploying OpenVidu Pro.
 
 <br>
 
@@ -75,12 +75,13 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <div class="version-buttons">
   <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0/2.10.0</a>
+  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.11.0">2.11.0</a>
 </div>
 
-<div id="list-290" class="version-container" markdown="1">
+<div id="list-290" class="version-container" markdown="1" style="margin-right: 5px">
 
-- `cdr`: event of Call Detail Record (see [OpenVidu CDR](/reference-docs/openvidu-server-cdr/){:target="_blank"})
-- `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber)
+- `cdr`: event of Call Detail Record. Can take multiple forms according to the type of event (see [OpenVidu CDR](/reference-docs/openvidu-server-cdr/){:target="_blank"})
+- `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
 - `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Pro host
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Kurento Media Server
 - `sessionSummary`: summary of a session, stored once it is closed
@@ -456,8 +457,10 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <br>
 
-> `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
+> **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
 > To sum up, this is just a denormalization of the `sessionSummary` document, so Elasticsearch requests and Kibana visualizations are more flexible and easier to accomplish
+> ---
+> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](/reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}). There you will have all properties of the recording well defined
 
 <br>
 

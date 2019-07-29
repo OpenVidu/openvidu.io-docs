@@ -39,6 +39,7 @@ pages:
 - ['reference-docs/REST-API.md','Reference Documentation', 'REST  API']
 - ['reference-docs/openvidu-server-params.md','Reference Documentation', 'OpenVidu Server configuration']
 - ['reference-docs/openvidu-server-cdr.md','Reference Documentation', 'OpenVidu Server CDR']
+- ['reference-docs/openvidu-server-webhook.md','Reference Documentation', 'OpenVidu Server Webhook']
 - ['deployment/deploying-aws.md','Deployment', 'Deploying OpenVidu on AWS']
 - ['deployment/deploying-ubuntu.md','Deployment', 'Deploying OpenVidu on Ubuntu']
 - ['deployment/deploying-app.md','Deployment', 'Deploying your OpenVidu app']
@@ -49,6 +50,7 @@ pages:
 - ['openvidu-pro/index.md','OpenVidu Pro', 'Home']
 - ['openvidu-pro/openvidu-inspector.md','OpenVidu Pro', 'OpenVidu Inspector']
 - ['openvidu-pro/detailed-session-monitoring.md','OpenVidu Pro', 'Detailed session monitoring']
+- ['openvidu-pro/scalability.md','OpenVidu Pro', 'Scalability']
 - ['openvidu-pro/deploying-openvidu-pro.md','OpenVidu Pro', 'Deploying OpenVidu Pro']
 - ['openvidu-pro/REST-API-pro.md','OpenVidu Pro', 'REST API Pro']
 theme: null

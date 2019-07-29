@@ -56,6 +56,10 @@ export OV_NEW_VERSION=2.8.0
 ./openvidu_update_stack.sh
 ```
 
+#### 4) Update _openvidu-browser_ library version in your clients
+
+Comply version compatibility according to **[Releases](/releases){:target="_blank"}** page.
+
 <br>
 
 ---
@@ -105,5 +109,9 @@ wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-
 #### 3) Restart OpenVidu Server and Kurento Media Server services
 
 Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](/deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
+
+#### 4) Update _openvidu-browser_ library version in your clients
+
+Comply version compatibility according to **[Releases](/releases){:target="_blank"}** page.
 
 <br><br>

@@ -1,12 +1,21 @@
 <h2 id="section-title">OpenVidu Server configuration parameters</h2>
 <hr>
 
-### List of configuration parameters when launching openvidu-server
+<br>
 
-| Parameter                          | Description   										             | Default value   |
+- **[Configuration parameters for OpenVidu Server](#configuration-parameters-for-openvidu-server)**
+- **[Extra configuration parameters for OpenVidu Server Docker container](#extra-configuration-parameters-for-openvidu-server-docker-container)**
+- **[Extra configuration parameters for OpenVidu Server Pro](#extra-configuration-parameters-for-openvidu-server-pro)**
+- **[Externalizing configuration](#externalizing-configuration)**
+
+---
+
+### Configuration parameters for OpenVidu Server
+
+| Parameter                          | Description   										           | Default value   |
 | ---------------------------------- | --------------------------------------------------------------- | --------------- |
 | `server.port`                      | Port where OpenVidu Server will listen to client's connections  | ***4443***      |
-| `kms.uris`                         | KMS URL's to which OpenVidu Server will try to connect. They are tested in order until a valid one is found | ***[\"ws://localhost:8888/kurento\"]***<br>(default value for a KMS running in the same machine as OpenVidu Server) |
+| `kms.uris`                         | KMS URL's to which OpenVidu Server will try to connect. They are tested in order until a valid one is found | ***["ws://localhost:8888/kurento"]***<br>(default value for a KMS running in the same machine as OpenVidu Server) |
 | `openvidu.secret`                  | Secret used to connect to OpenVidu Server. This value is required when using the [REST API](/reference-docs/REST-API/){:target="_blank"} or any server client ([openvidu-java-client](/reference-docs/openvidu-java-client){:target="_blank"}, [openvidu-node-client](/reference-docs/openvidu-node-client){:target="_blank"}), as well as when connecting to openvidu-server dashboard     | ***MY_SECRET*** |
 | `openvidu.publicurl`               | URL to connect clients to OpenVidu Server. This can be the full IP (protocol, host and port) or just a domain name if you have configured it. For example:<br>• `https://my.openvidu.server.com`<br>• `https://12.34.56.78:4443/` | ***local***<br>(with default value _local_ this parameter will be set to `localhost:PORT`, being _PORT_ the param `server.port`) |
 | `openvidu.cdr`                     | Whether to enable Call Detail Record or not (check [Call Detail Record](/reference-docs/openvidu-server-cdr){:target="_blank"}) | ***false*** |
@@ -16,10 +25,14 @@
 | `openvidu.recording.notification`  | Which users should receive the recording events in the client side (`recordingStarted`, `recordingStopped`). Can be `all` (every user connected to the session), `publisher_moderator` (users with role 'PUBLISHER' or 'MODERATOR'), `moderator` (only users with role 'MODERATOR') or `none` (no user will receive these events) | ***publisher_moderator*** |
 | `openvidu.recording.custom-layout` | System path where OpenVidu Server should look for custom recording layouts  | ***/opt/openvidu/custom-layout*** |
 | `openvidu.recording.autostop-timeout` | Timeout in seconds for recordings to automatically stop (and the session involved to be closed) when conditions are met: a session recording is started but no user is publishing to it or a session is being recorded and last user disconnects. If a user publishes within the timeout in either case, the automatic stop of the recording is cancelled | ***120*** |
-| `openvidu.streams.video.max-recv-bandwidth` | Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | 1000 |
-| `openvidu.streams.video.min-recv-bandwidth` | Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | 300  |
-| `openvidu.streams.video.max-send-bandwidth` | Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | 1000 |
-| `openvidu.streams.video.min-send-bandwidth` | Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | 300  |
+| `openvidu.webhook` | Whether to enable webhook service or not (check [OpenVidu Server Webhook](/reference-docs/openvidu-server-webhook/){:target="_blank"}) | ***false*** |
+| `openvidu.webhook.endpoint` | HTTP endpoint where OpenVidu Server will send the POST messages with webhook events |  |
+| `openvidu.webhook.headers` | Array of strings with the HTTP headers that OpenVidu Server will append to each POST message of webhook events. For example, you may configure a Basic Auth header _name:pass_ setting this property to `[\"Authorization:\ Basic\ bmFtZTpwYXNz\"]` | ***[ ]*** |
+| `openvidu.webhook.events` | Array of strings with the type of events you want OpenVidu Server to send to your webhook | <span style="word-break: break-word; font-weight: bold; font-style: italic">["sessionCreated","sessionDestroyed","participantJoined","participantLeft","webrtcConnectionCreated","webrtcConnectionDestroyed","recordingStatusChanged"]</span><br>(all available events) |
+| `openvidu.streams.video.max-recv-bandwidth` | Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***1000*** |
+| `openvidu.streams.video.min-recv-bandwidth` | Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***300***  |
+| `openvidu.streams.video.max-send-bandwidth` | Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***1000*** |
+| `openvidu.streams.video.min-send-bandwidth` | Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***300***  |
 | `server.ssl.key-store`             | Path for using custom JKS certificate                           | _(selfsigned OpenVidu key-store)_ |
 | `server.ssl.key-store-password`    | Password for the custom JKS                                     | _(selfsigned OpenVidu password)_  |
 | `server.ssl.key-alias`             | Alias for the custom JKS                                        | _(selfsigned OpenVidu alias)_     |
@@ -27,16 +40,14 @@
 Examples:
 
 ```console
-java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.server.ip:3333 -Dopenvidu.cdr=true -Dserver.port=3333 -Dkms.uris=[\"ws://my.kms.ip:8888/kurento\"] -jar openvidu-server.jar
-```
-
-```console
-docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e kms.uris=[\"ws://my.kms.ip:8888/kurento\"] openvidu/openvidu-server:2.6.0
+java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.server.ip:3333/ -Dopenvidu.cdr=true -Dserver.port=3333 -Dkms.uris=["ws://my.kms.ip:8888/kurento"] -jar openvidu-server.jar
 ```
 
 <br>
 
-### List of additional configuration parameters when launching [openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} Docker container
+---
+
+### Extra configuration parameters for [OpenVidu Server Docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}
 
 | Parameter       | Description                               | Sample value                                       |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
@@ -47,7 +58,49 @@ docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=
 Example:
 
 ```console
-docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333 -e openvidu.cdr=true -e server.port=3333 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e KMS_TURN_URL=myuser:mypass@54.54.54.54:3478 openvidu/openvidu-server-kms:2.10.0
+docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333/ -e openvidu.cdr=true -e server.port=3333 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e KMS_TURN_URL=myuser:mypass@54.54.54.54:3478 openvidu/openvidu-server-kms:2.11.0
+```
+
+<br>
+
+---
+
+### Extra configuration parameters for [OpenVidu Server Pro](/openvidu-pro/){:target="_blank"}
+
+| Parameter       | Description                               | Default value                                      |
+| --------------- | ----------------------------------------- | -------------------------------------------------- |
+| `openvidu.pro.stats.monitoring-interval` | Interval in seconds for CPU, memory and net usage stats gathering in OpenVidu Server Pro host. 0 for no gathering at all | 30 |
+| `openvidu.pro.stats.webrtc-interval`     | Interval in seconds for WebRTC stats gathering from media servers WebRTC endpoints. 0 for no gathering at all | 30 |
+| `openvidu.pro.cluster`                   | Whether to launch OpenVidu in cluster mode or not. See [Scalability](/openvidu-pro/scalability/){:target="_blank"} section to learn more | false |
+| `openvidu.pro.cluster.load.strategy`     | What parameter should be used to distribute the creation of new sessions (and therefore distribution of load) among all available media servers. Can be: [streams, sessions, mediaObjects, cpu] | `streams` |
+
+Example:
+
+```console
+java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.server.ip:4443/ -Dopenvidu.cdr=true -Dopenvidu.pro.cluster=true -Dopenvidu.pro.cluster.load.strategy=mediaObjects -Dkms.uris=["ws://my.kms.ip:8888/kurento","ws://my.other.kms.ip:8888/kurento"] -Dopenvidu.pro.stats.webrtc-interval=0 -jar openvidu-server-pro.jar
+```
+
+<br>
+
+---
+
+### Externalizing configuration
+
+You can use an external file to configure OpenVidu Server. Simply write the properties you want in a `*.properties` file and launch Java process with property **`spring.config.additional-location`** setting the path to the file. For example:
+
+```console
+java -Dspring.config.additional-location=/opt/openvidu/application.properties -jar openvidu-server.jar
+```
+
+And having file _/opt/openvidu/application.properties_ one property per line. For example:
+
+```console
+openvidu.cdr=true
+openvidu.secret=1234
+openvidu.webhook=true
+openvidu.webhook.endpoint=http://my.webhook.com
+openvidu.webhook.events=["sessionCreated","sessionDestroyed"]
+openvidu.recording=false
 ```
 
 <br>

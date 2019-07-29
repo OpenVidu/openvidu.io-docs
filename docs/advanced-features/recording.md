@@ -64,7 +64,7 @@ docker run -p 4443:4443 --rm \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
-openvidu/openvidu-server-kms:2.10.0
+openvidu/openvidu-server-kms:2.11.0
 ```
 
 - `openvidu.recording`: _same as in OpenVidu Server JAR_
@@ -565,7 +565,7 @@ docker run -p 4443:4443 --rm \
     -e openvidu.recording=true \
     -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
     -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.10.0
+openvidu/openvidu-server-kms:2.11.0
 ```
 
 > **WARNING**: remember to add the `-v` option mounting the path defined with `openvidu.recording.custom-layout`

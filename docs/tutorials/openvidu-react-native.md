@@ -145,7 +145,7 @@ npm start
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-After deploying on your device and trying to join the session, you will get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions NOT match". This error is not significant so just click on the dismiss button. 
+After deploying on your device and trying to join the session, you may get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions do NOT match". This error is not significant so just click on the dismiss button.
 </div>
 </div>
 

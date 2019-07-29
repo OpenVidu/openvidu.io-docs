@@ -43,7 +43,7 @@ npm start
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.10.0
+docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.11.0
 ```
 
 5) The app will start automatically as a native desktop application, regardless of the OS you are using. If you are on Windows, it will launch as a Windows app. In OSX as an OSX app, and in Linux as a Linux app.
@@ -211,7 +211,7 @@ Whenever we want a user to leave the session, we just need to call `session.disc
 
 #### Screen sharing
 
-The process to screen-share is slightly different from the rest of platforms that support it. Electron does not provide a default screen selector dialog as browser do, so we must implement it ourselves (that is the purpose of `modal.html` file). We need a screen unique identifier to initialize our Publisher object like this:
+The process to screen-share is slightly different from the rest of platforms that support it. Electron does not provide a default screen selector dialog as browsers do, so we must implement it ourselves (that is the purpose of `modal.html` file). We need a screen unique identifier to initialize our Publisher object like this:
 
 ```javascript
 OpenVidu.initPublisher({videoSource: "screen:" + SCREEN_ID});

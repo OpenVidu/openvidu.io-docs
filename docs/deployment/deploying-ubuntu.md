@@ -10,7 +10,7 @@
 **Ubuntu Xenial 16.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.10.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -19,7 +19,7 @@ sudo apt-get -y install kurento-media-server
 **Ubuntu Bionic 18.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.10.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server

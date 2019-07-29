@@ -5,8 +5,6 @@
 A powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences. Some features already available in the current version of OpenVidu Pro are:
 </p>
 
-<br>
-
 #### Full in-depth visualization of your ongoing video sessions
 Review each client connected to a video session and the media streams each one is sending and receiving. Our intuitive graph visualization will give you a complete summary of your sessions.
 

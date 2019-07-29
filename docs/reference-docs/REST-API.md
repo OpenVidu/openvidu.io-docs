@@ -415,9 +415,11 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**     | GET                                                                                                                      |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/config                                                                            |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                     |
-| **Sample return** | ```{"version": "2.7.0", "openviduPublicurl": "https://localhost:4443/", "openviduCdr": false, "maxRecvBandwidth": 1000, "minRecvBandwidth": 300, "maxSendBandwidth": 1000, "minSendBandwidth": 300, "openviduRecording": true, "openviduRecordingVersion": "2.8.0", "openviduRecordingPath": "/opt/openvidu/recordings/", "openviduRecordingPublicAccess": true, "openviduRecordingNotification": "publisher_moderator", "openviduRecordingCustomLayout": "/opt/openvidu/custom-layout/"}``` |
+| **Sample return** | ```{"version": "2.9.0", "openviduPublicurl": "https://localhost:4443/", "openviduCdr": false, "maxRecvBandwidth": 1000, "minRecvBandwidth": 300, "maxSendBandwidth": 1000, "minSendBandwidth": 300, "openviduRecording": true, "openviduRecordingVersion": "2.8.0", "openviduRecordingPath": "/opt/openvidu/recordings/", "openviduRecordingPublicAccess": true, "openviduRecordingNotification": "publisher_moderator", "openviduRecordingCustomLayout": "/opt/openvidu/custom-layout/", "openviduRecordingAutostopTimeout": 120, "openviduWebhook": true, "openviduWebhookEndpoint": "http://localhost:7777/webhook/", "openviduWebhookHeaders": ["Authorization: Basic YWJjZDphYmNk"], "openviduWebhookEvents": ["recordingStatusChanged"]}``` |
 
 > **Returned JSON**
 >
 > - `version`: version of OpenVidu Server
 > - **Rest of properties**: values given to **[system properties](/reference-docs/openvidu-server-params/){:target="_blank"}** on OpenVidu Server launch
+
+<br>

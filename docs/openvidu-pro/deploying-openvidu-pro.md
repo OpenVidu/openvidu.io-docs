@@ -1,27 +1,44 @@
 <h2 id="section-title">Deploying OpenVidu Pro</h2>
-<hr>
+
+<br>
+
+- **[Deploying OpenVidu Pro on AWS](#deploying-openvidu-pro-on-aws)**
+- **[Deploying OpenVidu Pro on premise](#deploying-openvidu-pro-on-premise)**
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	Before deploying OpenVidu Pro you need to contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process
+</div>
+</div>
+
+<br>
+
+---
+
+## Deploying OpenVidu Pro on AWS
 
 <p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
 OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will need an <a href="https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start" target="_blank">AWS account</a>)
 </p>
-
-
-
-<!--### 1) Steps towards configuration
-
-<p style="text-align: center; margin-top: 30px">
-    <a href="https://aws.amazon.com/marketplace/pp/B07N6JNC63?qid=1551707515999&sr=0-1&ref_=srh_res_product_title" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro" target="_blank"><span style="display: table-cell; vertical-align:middle">Go to </span><i style="margin-left: 10px; margin-right: 10px; font-size: 45px; vertical-align: middle; font-weight: 100" class="fab fa-aws"></i><span style="display: table-cell; vertical-align:middle"> marketplace</span></a>
-</p>
-
-<div class="row">
-    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market1.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market2.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market3.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market4.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market5.png"/></a>
-    </div>
-</div>-->
 
 ### 1) Steps towards configuration
 
@@ -36,14 +53,14 @@ OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will
 ##### B) Click on _Create Stack_
 
   <p>
-    <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_newstack.png">
+    <img class="img-responsive deploy-img" style="max-height: 400px" src="/img/docs/deployment/CF_newstack.png">
   </p>
 
 <br>
 
 ##### C) Option _Specify an Amazon S3 template URL_ with the following URL
 
-  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CloudformationOpenViduPro-latest.yaml</code>
+  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cfn-OpenViduServerPro-cluster-latest.yaml</code>
   <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                                 title="Copy to Clipboard">Copy</button>
 
@@ -91,13 +108,21 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 #### OpenVidu Configuration
 
-These fields respectively configure the following [system properties](/reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server: `openvidu.secret`, `openvidu.recording.public-access`, `openvidu.recording.notification`, `openvidu.streams.video.max-recv-bandwidth`, `openvidu.streams.video.min-recv-bandwidth`, `openvidu.streams.video.max-send-bandwidth`, `openvidu.streams.video.min-send-bandwidth`
+These fields respectively configure different [system properties](https://openvidu.io/docs/reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server.
+
+Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUsername_ and _OpenViduProPassword_). We provide those credentials for you and with them you'll be able to access the OpenVidu Pro artifact (contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get them).
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
         <a data-fancybox="gallery-pro9" href="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"/></a>
     </div>
 </div>
+
+> If you want to enable [OpenVidu Webhook module](/reference-docs/openvidu-server-webhook/){:target="_blank"} by setting **OpenViduWebhook** field to true, your endpoint defined in field **OpenViduWebhookEndpoint** will probably be secured in some way. The syntax for the webhook header (field **OpenViduWebhookHeaders**) should be used to provide the security credentials. For example:
+>
+> `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
+>
+> for a basic auth token.
 
 #### Openvidu Security Group
 
@@ -128,9 +153,31 @@ Set the user and password for accessing Kibana dashboard.
     </div>
 </div>
 
+#### Networking info
+
+Because Kurento Media Server cluster runs in an Autoscaling Group this CloudFormation template will create a VPC and a Subnet with all they need to provide internet access to the instances and public IPs. Then all the instances will be connected to this VPC.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"/></a>
+    </div>
+</div>
+
+#### Clustering Options
+
+How many Kurento Media Servers do you want to deploy? Default to 1. Keep in mind AWS has limits to the amount of instances you can launch in EC2. Also, you will pay for every instance individually.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
+    </div>
+</div>
+
 #### Other parameters
 
-Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshooting/#9-which-is-the-current-status-of-openvidu-on-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
+Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshooting/#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
+
+You can choose different sizes for OpenVidu Server machine and KMS machines.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -138,7 +185,19 @@ Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshootin
     </div>
 </div>
 
-You are ready to go. Click on **Next** 🡆 **Next** 🡆 **Create stack** to finally deploy your OpenVidu Server Pro.
+You are ready to go. Click on **Next** 🡆 **Next** and complete the following point to deploy OpenVidu Pro cluster.
+
+#### Roles
+
+Before you can deploy the stack, you have to agree that this template will create Roles which will perform request to AWS API in you behalf from the instances. The Role's policy is only _ec2:DescribeInstances_, is the minimum required permission and it's needed to discover other cluster members. Every instance is tagged and the query to the API will simply filter by this tag.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketCapabilities.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/marketCapabilities.png"/></a>
+    </div>
+</div>
+
+After clicking the checkbox, you can now finally press **Create stack** button and deploy OpenVidu Pro cluster.
 
 <br>
 
@@ -156,15 +215,208 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
+        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
     </div>
 </div>
 
-To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-246-186-94.eu-west-1.compute.amazonaws.com:4443`
+To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443`
 
 <br>
 
->Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.9.0, use the artifact versions indicated in [2.9.0 release table](/releases#290){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+
+<br>
+
+---
+
+## Deploying OpenVidu Pro on premise
+
+<p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
+OpenVidu Pro is available through <strong>Ansible</strong> for deploying on premise.
+</p>
+
+### 1) Prerequisites
+
+#### In your local machine
+
+You need Ansible installed on your laptop or wherever you are running this playbook. You can install Ansible with:
+
+```bash
+sudo apt-add-repository -y ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install -y ansible
+```
+
+Besides you need to install this role for Docker:
+
+```bash
+sudo ansible-galaxy install -p /etc/ansible/roles geerlingguy.docker
+```
+
+#### In your cluster machines
+
+You must have **at least 2 different instances** with a clean installation of **Ubuntu 16.04**
+
+- One instance for the **OpenVidu Server Pro** node
+- One instance for a **Media Server** node
+
+You can actually have as many instances as you want for Media Server nodes. The number of Media Server nodes determines the size of your cluster: the more Media Server nodes, the more video sessions your cluster will be able to handle.
+
+Besides, be sure to meet the following criteria in your cluster instances:
+
+- Have at least a minimum of **2 CPUs and 8GB of RAM**, and a generous network bandwidth
+- Have **Python 3** installed (check version with `python3 --version`)
+
+<br>
+
+---
+
+### 2) Network requirements
+
+These ports need to be opened for each type of instance in your cluster:
+
+#### OpenVidu Server Pro instance
+
+- **4443 TCP** (OpenVidu Server listens on port 4443 by default)
+- **3478 TCP** (coturn listens on port 3478 by default)
+- **49152 - 65535 UDP** (these ports are strongly recommended to be opened, as WebRTC randomly exchanges media through any of them and coturn server may need them when relaying media streams)
+
+#### Media Server instance(s)
+
+- **8888 TCP** (Kurento Media Server listens on port 8888 by default)
+- **1024 - 65535 UDP** (WebRTC connections with clients may be established using a random port inside this range)
+- **1024 - 65535 TCP** (WebRTC connections with clients may be established using a random port inside this range, if UDP can't be used)
+
+<br>
+
+> **NOTE**: in production environments you will have to configure a **fully qualified domain name** in your **OpenVidu Server Pro instance**. You can register a FQDN for the OpenVidu Server Pro instance using a DNS server, pairing the OpenVidu Server Pro instance public IP with your domain name. This is the only way to later set up a valid certificate in OpenVidu Server Pro instance, so clients don't get a warning when connecting to a video session
+
+<br>
+
+---
+
+### 3) Ansible's inventory
+
+Ansible uses an inventory file to know which instances connect to and how to configure them. Let's clone OpenVidu's Ansible repository to modify this file and prepare the cluster deployment:
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-pro-clustering
+git checkout v2.11.0
+cd openvidu-pro-clustering # This will be our working directory from now on
+```
+
+File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Server instance, but you can add as many _kurento-server_ hosts as you want, as you can see in the commented lines.
+
+```yaml
+---
+all:
+  hosts:
+    openvidu-server:
+      ansible_host: OPENVIDU_SERVER_IP
+    media-server-1:
+      ansible_host: MEDIA_SERVER_1_IP
+    # media-server-2:
+    #   ansible_host: MEDIA_SERVER_2_IP
+    # ...
+    # media-server-N:
+    #   ansible_host: MEDIA_SERVER_N_IP
+  vars:
+      ansible_become: true
+      ansible_user: USER
+      ansible_ssh_private_key_file: /PATH/TO/SSH_public_key
+  children:
+    media-servers:
+      hosts:
+        media-server-1:
+      #   media-server-2:
+      #   ...
+      #   media-server-N:
+    openvidu:
+      hosts:
+        openvidu-server:
+```
+
+You need to change:
+
+- **Variable `ansible_user`**: the user you use to connect to the instances, i.e. Ubuntu Server Cloud uses `ubuntu`. If you've deployed those instances in OpenStack using Ubuntu Official Image, `ubuntu` will be the user.
+- **Variable `ansible_ssh_private_key_file`**: path to the RSA private key you use to connect to your instances.
+- **Value `OPENVIDU_SERVER_IP`**: public IP to connect to the OpenVidu Server Pro instance.
+- **Value `MEDIA_SERVER_X_IP`**: public IP to connect to the Kurento Media Server instance(s).
+
+<br>
+
+---
+
+### 4) Ansible's variables
+
+In `./group_vars/all` file you will find all the parameters used to configure the infrastructure. Two of them will be the credentials needed to deploy OpenVidu Pro (contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get them)
+
+<br>
+
+> **WARNING**: go through all variables carefully as some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about many of them check out [OpenVidu Server params section](/reference-docs/openvidu-server-params/){:target="_blank"}
+
+<br>
+
+---
+
+### 5) Deployment
+
+First time you connect to an instance through SSH, it will ask you to confirm the instance's fingerprint, so try to **login into all the instances** to accept the fingerprint so Ansible can automatically do the job.
+
+```bash
+ssh -i /PATH/TO/SSH_public_key USER@INSTANCE_IP
+```
+
+Check that Ansible can access the instances. The following command (run it in the repository root folder) will perform a _ping_ to all the instances declared in `./inventory.yaml` file. You should see a successful log message for each one of them if everything is correct.
+
+```bash
+ansible -i inventory.yaml -m ping all
+```
+
+Finally, launch the Ansible's playbook to deploy your cluster:
+
+```bash
+ansible-playbook -i inventory.yaml play.yaml
+```
+
+The playbook command will end with the following log:
+
+```console
+*********************************************************
+ TASK [check-app-ready : check every 60 seconds for 10 attempts if openvidu is up and ready]
+*********************************************************
+FAILED - RETRYING: check every 60 seconds for 10 attempts if openvidu is up and ready (10 retries left).
+FAILED - RETRYING: check every 60 seconds for 10 attempts if openvidu is up and ready ( 9 retries left).
+ok: [openvidu-server]
+
+*********************************************************
+ PLAY RECAP
+*********************************************************
+kurento-server-1       : ok=21  changed=18  unreachable=0   failed=0   skipped=0   rescued=0   ignored=0
+kurento-server-2       : ok=21  changed=18  unreachable=0   failed=0   skipped=0   rescued=0   ignored=0
+openvidu-server        : ok=53  changed=43  unreachable=0   failed=0   skipped=14  rescued=0   ignored=0
+```
+
+Once the playbook command has successfully finished, you will have OpenVidu Pro services accessible through the following URLs:
+
+- **OpenVidu Pro Inspector** ([more info](/openvidu-pro/openvidu-inspector/){:target="_blank"}) : `https://YOUR_DNS_NAME/inspector`
+- **OpenVidu Pro Kibana dashboard** ([more info](/openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
+- **OpenVidu Pro REST endpoint** ([more info](/openvidu-pro/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
+
+<br>
+
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+
+<br>
+
+---
+
+### Troubleshooting
+
+If you get stuck deploying this playbook remember we're here to help you. So please, when you open a new issue provide the **full Ansible output log** and, if you were able to deploy OpenVidu Server Pro role, please provide also the content of the following files of OpenVidu Server pro instance:
+
+- Instance boot log: `/var/log/cloud-init-output.log`
+- OpenVidu Server Pro JAR artifact log: `sudo journalctl -u openvidu` (this command will output the log)
 
 <br>
 

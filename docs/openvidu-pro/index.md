@@ -7,31 +7,6 @@
 </div>
 </pre>-->
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	Current version of OpenVidu Pro matches <strong>version 2.10.0</strong> of OpenVidu Community Edition. We are not currently charging anything for using OpenVidu Pro, as we intend these first versions to be a beta. The only price you will have to pay is the cost of the Amazon instance, as you would do when <a href="/docs/deployment/deploying-aws/" target="_blank">deploying OpenVidu Community Edition in AWS</a>
-</div>
-</div>
-
 <p style="text-align: center; margin-top: 50px">
     <a href="/docs/openvidu-pro/deploying-openvidu-pro/" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
 </p>
@@ -50,10 +25,11 @@ OpenVidu is an **open source project**, and for sure will remain this way in the
 
 ## What
 
-OpenVidu Pro consists of different modules working over OpenVidu Community Edition. The ultimate goal of OpenVidu Pro is to offer **automated scalability and fault-tolerance** integrated in most popular cloud providers, so your real-time communication systems can keep up with your business growth. But this will be available in future releases. For now OpenVidu Pro offers:
+OpenVidu Pro consists of different modules working over OpenVidu Community Edition. For now OpenVidu Pro offers:
 
-- **[OpenVidu Inspector](/openvidu-pro/openvidu-inspector/){:target="_blank"}**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](/openvidu-pro/detailed-session-monitoring/){:target="_blank"}**: the Elastic stack integration provides a powerful and flexible way to monitor your sessions.
+- **[OpenVidu Inspector](/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
+- **[Detail session monitoring](/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and flexible way to monitor your sessions.
+- **[Scalability](/openvidu-pro/scalability/)**: launch OpenVidu with multiple media server instances to increase the number and size of video sessions.
 
 <div style="
     display: table;
@@ -110,7 +86,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Tutorials (JS, Angular, React, Ionic)</th>
+            <th scope="row">Tutorials: JS, Angular, React, Ionic, Electron</th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
@@ -120,10 +96,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
                     data-toggle="tooltip" data-placement="right"
                     title="Deploy OpenVidu in your own Ubuntu server"></th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-            <td><i class="icon ion-information-circled pricing-table-icon"
-                    data-toggle="tooltip" data-placement="left"
-                    title="Contact us through COMMERCIAL page for deploying OpenVidu Pro on your own server"></i>
-            </td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Deployment on Cloud <i
@@ -160,6 +133,25 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">Scalability <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Increment or decrement the number of media servers manually or automatically according to user load">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Fault Tolerance <i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="If a media server crashes, redirect automatically all streams to a new instance">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
             <th scope="row">P2P sessions <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
@@ -173,26 +165,6 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Support for other open-source media servers"></th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Scalability <i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers manually or automatically according to user load">
-            </th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Fault Tolerance <i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="If a media server crashes, redirect automatically all streams to a new instance">
-            </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
@@ -216,9 +188,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         <tr>
             <th scope="row">Price</th>
             <td>FREE</td>
-            <td>PAID <i class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="left"
-                    title="FREE TO USE WHILE PREVIEW VERSION"></td>
+            <td><a href="/pricing#ov-pricing"><strong>PAID</strong></a></td>
         </tr>
     </tbody>
 </table>
@@ -229,9 +199,10 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
 
 ## How
 
-<!--OpenVidu Pro is available through **AWS Marketplace**. Check out [Deploying OpenVidu Pro](/openvidu-pro/deploying-openvidu-pro/) section to learn how to do it in just a few minutes.-->
+You can deploy OpenVidu Pro:
 
-OpenVidu Pro is available now through **Amazon Web Services**. Check out [Deploying OpenVidu Pro](/openvidu-pro/deploying-openvidu-pro/) section to learn how to do it in just a few minutes.
+- On Amazon Web Services: **[Deploying OpenVidu Pro on AWS](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-aws){:target="_blank"}**
+- On premise using your own infrastructure: **[Deploying OpenVidu Pro on premise](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"}**
 
 <br>
 
@@ -239,14 +210,10 @@ OpenVidu Pro is available now through **Amazon Web Services**. Check out [Deploy
 
 ## Pricing
 
-OpenVidu Pro will be priced through AWS Marketplace. Any piece of software offered in AWS Marketplace has two different charges: the cost of the AWS resources running the software and the cost of the software itself. Software manufacturers specify this second charge, and it is the only revenue they receive from the total cost of the stack. Having made this clear:
-
-- The moment you cancel your OpenVidu Pro subscription in AWS Marketplace, no more charges will be applied. You only pay for the time you are running the service.
-- OpenVidu Pro is considered a beta version right now, and for this reason no extra fees will be charged for the software part.
-<!--- When releasing a final version, OpenVidu team may decide to offer OpenVidu Pro free of charge when deploying it on certain AWS instance types, so companies are able to try it on small machines before acquiring a bigger instance for real production setups.-->
+Check out <a href="/pricing#ov-pricing"><strong>Pricing section</strong></a>.
 
 <p style="text-align: center; margin-top: 50px">
-    <a href="/docs/openvidu-pro/deploying-openvidu-pro/" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
+    <a href="/docs/openvidu-pro/deploying-openvidu-pro-aws/" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
 </p>
 
 <br>

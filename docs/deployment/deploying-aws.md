@@ -103,15 +103,15 @@ All of these properties configure OpenVidu Server. You have a list of all availa
       <td><em>Your choice</em></td>
     </tr>
       <tr>
-      <td class="first-col">OpenviduStreamsVideoMinRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server" target="_blank"><code>openvidu.streams.video.min-recv-bandwidth</code></a><span></td>
+      <td class="first-col">OpenviduStreamsVideoMinRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.min-recv-bandwidth</code></a><span></td>
       <td><em>Your choice</em></td>
     </tr>
       <tr>
-      <td class="first-col">OpenviduStreamsVideoMinSendBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server" target="_blank"><code>openvidu.streams.video.max-send-bandwidth</code></a><span></td>
+      <td class="first-col">OpenviduStreamsVideoMinSendBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.max-send-bandwidth</code></a><span></td>
       <td><em>Your choice</em></td>
     </tr>
       <tr>
-      <td class="first-col">OpenviduStreamsVideoMaxRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#list-of-configuration-parameters-when-launching-openvidu-server" target="_blank"><code>openvidu.streams.video.min-send-bandwidth</code></a><span></td>
+      <td class="first-col">OpenviduStreamsVideoMaxRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.min-send-bandwidth</code></a><span></td>
       <td><em>Your choice</em></td>
     </tr>
     <tr>

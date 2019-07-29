@@ -267,7 +267,7 @@ A list of interesting values for `GSTREAMER_COMMAND` parameter is stated below. 
 - Many effects of **[effectv project](https://wiki.gnome.org/Projects/GnomeVideoEffects/Effects){:target="_blank"}** : funny filters for the video stream like `agingtv`, `dicetv`, `optv`, `quarktv`, `radioactv`, `revtv`, `rippletv`, `shagadelictv`, `streaktv`, `vertigotv`, `warptv`<br>Example: `radioactv`
 
 
-All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins.html){:target="_blank"}.
+All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins_doc.html){:target="_blank"}.
 
 <br>
 
