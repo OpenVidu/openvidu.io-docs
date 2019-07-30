@@ -4,16 +4,67 @@ Developing OpenVidu
 
 | Dependecy     | Check version   | Install                               |
 | ------------- | --------------- |-------------------------------------- |
-| java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
-| node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
-| maven         | `mvn -v`        | `sudo apt-get install -y maven`       |
-| angular-cli   | `ng -v`         | `sudo npm install -g @angular/cli`    |
+| Java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
+| Maven         | `mvn -v`        | `sudo apt-get install -y maven`       |
+| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 
-
-Setup for development
+Compiling OpenVidu Server
 ------------------
 
-Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want.
+**1)** Clone OpenVidu parent repository and install local dependencies. **This is only necessary the first time you compile openvidu-server**
+
+```bash
+git clone https://github.com/OpenVidu/openvidu.git
+cd openvidu
+mvn -DskipTests=true clean install
+```
+
+**2)** Build openvidu-server
+
+```bash
+cd openvidu-server
+mvn clean compile package
+```
+
+Compiling OpenVidu Browser
+------------------
+
+**1)** Clone OpenVidu parent repository and install openvidu-browser dependencies
+
+```bash
+git clone https://github.com/OpenVidu/openvidu.git
+cd openvidu/openvidu-browser
+npm install
+```
+
+**2)** Build openvidu-browser
+
+```bash
+npm run build
+```
+
+**3)** To install openvidu-browser as local NPM dependency
+
+```bash
+sudo npm link
+
+# You can link this local dependency to any project that has openvidu-browser as
+# dependency in its package.json, by calling "sudo npm link openvidu-browser"
+```
+
+**4)** To obtain static JavaScript files
+
+```bash
+VERSION=2.0.0 npm run browserify # Regular JS version
+VERSION=2.0.0 npm run browserify-prod # Minified JS version
+
+# Static files will be built in path ./static/js/
+```
+
+Example: setup for development
+------------------
+
+Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install -g @angular/cli`.
 
 **1)** Run Kurento Media Server Docker container (`docker run -d -p 8888:8888 kurento/kurento-media-server:latest`) or [install and run KMS](#installing-kms) (only for Ubuntu 16.04)
 
@@ -34,7 +85,7 @@ sudo npm link
 **4)** `openvidu/`
 
 ```bash
-mvn -DskipTests=true clean install
+mvn -DskipTests=true install
 ```
 
 **5)** `openvidu/openvidu-testapp/`
@@ -73,11 +124,12 @@ At these point, you can start modifying *openvidu-testapp*, *openvidu-browser* o
 
 ---
 
-Setup for advanced development: share the app through your network
+Example: setup for advanced development (share the app through your network)
 ------------------
+
 You can also use **different machines** in the **same network** to build a more advanced development environment, so you can test the application in different devices at the same time. It's very similar to the process outlined above:
 
-Run exactly the same commands as the process above, but:
+Run exactly the same commands as in the previous section, but:
 
 1. On step **5)** extend `ng serve` command with:
 

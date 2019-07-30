@@ -14,10 +14,10 @@
 
 ## OpenVidu Pro architecture
 
-OpenVidu Pro consists of different nodes that work together to offer OpenVidu services in a distributed, scalable way. Currently, OpenVidu Pro has two types of nodes:
+OpenVidu Pro consists of different nodes that work together to offer OpenVidu services in a distributed, scalable way. Currently, OpenVidu Pro has two types of nodes, following a **Master-Slave** model:
 
-- **OpenVidu Server Pro node**: this is the control node. It runs openvidu-server-pro Java process, which manages the control plane of the stack. It takes care of OpenVidu sessions, forwarding events and messages to clients and distributing the load across the available Media Server nodes.<br><br>
-- **Media Server node**: this is the node in charge of managing the media streams. For that reason, Media Server nodes are the actual bottleneck of the OpenVidu cluster and the ones that determine its capacity: more Media Server nodes means more concurrent OpenVidu sessions. Each OpenVidu session is currently hosted in one Media Server node. Each Media Server node can manage multiple OpenVidu sessions.
+- **OpenVidu Server Pro node**: this is the master node. It runs openvidu-server-pro Java process, which manages the control plane of the stack. It takes care of OpenVidu sessions, forwarding events and messages to clients and distributing the load across the available Media Server nodes.<br><br>
+- **Media Server node**: these are the slave nodes, in charge of managing the media streams. For that reason, Media Server nodes are the actual bottleneck of the OpenVidu cluster and the ones that determine its capacity: more Media Server nodes means more concurrent OpenVidu sessions. Each OpenVidu session is currently hosted in one Media Server node. Each Media Server node can manage multiple OpenVidu sessions.
 
 <br>
 
