@@ -56,7 +56,7 @@ listening-port=3478
 fingerprint
 lt-cred-mech
 max-port=65535
-min-port=49152
+min-port=40000
 pidfile="/var/run/turnserver.pid"
 realm=openvidu
 simple-log
@@ -119,7 +119,7 @@ In order for this deployment to work, you will have to meet 2 sets of needs in t
 
       - **4443 TCP** (_OpenVidu Server_ listens on port 4443 by default)
       - **3478 TCP** (_COTURN_ listens on port 3478 by default)
-      - **49152 - 65535 UDP** (these ports are strongly recommended to be opened, as WebRTC randomly exchanges media through any of them)
+      - **40000 - 65535 UDP and TCP** (WebRTC will randomly exchange media through any of these ports. TCP might be used if client network blocks UDP connections)
   
   > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws){:target="_blank"}.
 

@@ -86,7 +86,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Tutorials: JS, Angular, React, Ionic, Electron</th>
+            <th scope="row">Clients: JS, Angular, React, Ionic, Electron</th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
@@ -133,13 +133,22 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Scalability <i
+            <th scope="row">Manual scalability <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers manually or automatically according to user load">
+                    title="Increment or decrement the number of media servers manually">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Elasticity<i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Increment or decrement the number of media servers automatically according to user load">
+            </th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Fault Tolerance <i
@@ -161,7 +170,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
-            <th scope="row">Other media servers <i
+            <th scope="row">Other media servers<i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Support for other open-source media servers"></th>
@@ -170,7 +179,25 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
-            <th scope="row">Deployment on Kubernetes</th>
+            <th scope="row">VP9<i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Advanced codec when supported by devices"></th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Simulcast and SVC<i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="To provide improved quality"></th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Kubernetes deployment</th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
@@ -182,13 +209,28 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         </tr>
         <tr>
             <th scope="row">Support</th>
-            <td>Community support</td>
-            <td>Priority support</td>
+            <td>Community support on forums</td>
+            <td>Email support in business hours</td>
         </tr>
         <tr>
             <th scope="row">Price</th>
-            <td>FREE</td>
-            <td><a href="/pricing#ov-pricing"><strong>PAID</strong></a></td>
+            <td><span style="font-size: 2em">Free</span></td>
+            <td>
+                <div style="margin: 1em"><span style="font-size: 2em">$10 / month</span><br>
+                    <span style="font-size: 1.2em">with 14000 minutes of cores of Media Nodes included</span><br>
+                    <span style="font-size: 2em; margin-top: 1em">$0.00071</span><br>
+                    <span style="font-size: 1.2em"> per additional core of Media Nodes per minute</span><br><br>
+                    <span style="font-size: 1em; margin-top: 1em">(see below)</span>
+                </div>
+            </td>
+    </div>
+    </tr>
+    <tr>
+    <th scope="row"></th>
+    <td><a href="/docs/home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
+        OpenVidu Community Docs</a></td>
+        <td><a href="/docs/openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
+        OpenVidu Pro Docs</a></td>
         </tr>
     </tbody>
 </table>

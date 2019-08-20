@@ -257,10 +257,10 @@ sudo ansible-galaxy install -p /etc/ansible/roles geerlingguy.docker
 
 You must have **at least 2 different instances** with a clean installation of **Ubuntu 16.04**
 
-- One instance for the **OpenVidu Server Pro** node
-- One instance for a **Media Server** node
+- One instance for the **OpenVidu Server Pro Node**
+- One instance for a **Media Node**
 
-You can actually have as many instances as you want for Media Server nodes. The number of Media Server nodes determines the size of your cluster: the more Media Server nodes, the more video sessions your cluster will be able to handle.
+You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](/openvidu-pro/scalability/){:target="_blank"} section for further details.
 
 Besides, be sure to meet the following criteria in your cluster instances:
 
@@ -273,19 +273,19 @@ Besides, be sure to meet the following criteria in your cluster instances:
 
 ### 2) Network requirements
 
-These ports need to be opened for each type of instance in your cluster:
+These ports need to be opened and publicly accessible for each type of instance in your cluster:
 
 #### OpenVidu Server Pro instance
 
 - **4443 TCP** (OpenVidu Server listens on port 4443 by default)
 - **3478 TCP** (coturn listens on port 3478 by default)
-- **49152 - 65535 UDP** (these ports are strongly recommended to be opened, as WebRTC randomly exchanges media through any of them and coturn server may need them when relaying media streams)
 
-#### Media Server instance(s)
+#### Media instance(s)
 
-- **8888 TCP** (Kurento Media Server listens on port 8888 by default)
-- **1024 - 65535 UDP** (WebRTC connections with clients may be established using a random port inside this range)
-- **1024 - 65535 TCP** (WebRTC connections with clients may be established using a random port inside this range, if UDP can't be used)
+- **40000 - 65535 UDP** (WebRTC connections with clients may be established using a random port inside this range)
+- **40000 - 65535 TCP** (WebRTC connections with clients may be established using a random port inside this range, if UDP can't be used because client network is blocking it)
+- **8888 TCP (must only be accessible for OpenVidu Server Pro instance)** (Kurento Media Server listens on port 8888 by default)
+
 
 <br>
 

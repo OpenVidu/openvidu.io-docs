@@ -16,8 +16,8 @@
 
 OpenVidu Pro consists of different nodes that work together to offer OpenVidu services in a distributed, scalable way. Currently, OpenVidu Pro has two types of nodes, following a **Master-Slave** model:
 
-- **OpenVidu Server Pro node**: this is the master node. It runs openvidu-server-pro Java process, which manages the control plane of the stack. It takes care of OpenVidu sessions, forwarding events and messages to clients and distributing the load across the available Media Server nodes.<br><br>
-- **Media Server node**: these are the slave nodes, in charge of managing the media streams. For that reason, Media Server nodes are the actual bottleneck of the OpenVidu cluster and the ones that determine its capacity: more Media Server nodes means more concurrent OpenVidu sessions. Each OpenVidu session is currently hosted in one Media Server node. Each Media Server node can manage multiple OpenVidu sessions.
+- **OpenVidu Server Pro Node**: this is the master node. It runs openvidu-server-pro Java process, which manages the control plane of the stack. It takes care of OpenVidu sessions, forwarding events and messages to clients and distributing the load across the available Media Nodes.<br><br>
+- **Media Node**: these are the slave nodes, in charge of managing the media streams. For that reason, Media Nodes are the actual bottleneck of the OpenVidu cluster and the ones that determine its capacity: more Media Nodes means more concurrent OpenVidu sessions. Each OpenVidu session is currently hosted in one Media Node. Each Media Node can manage multiple OpenVidu sessions.
 
 <br>
 
@@ -55,7 +55,7 @@ In section **[Other parameters](/openvidu-pro/deploying-openvidu-pro/#other-para
 
 #### Setting the number of media servers on startup
 
-When [deploying OpenVidu Pro on premise](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"} with Ansible, you first have to prepare the number of media server instances you want. For example, if you want your cluster to have 3 media server instances, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server pro node and three for each Media Server node. Check out the [Cluster machines prerequisites](/openvidu-pro/deploying-openvidu-pro/#in-your-cluster-machines){:target="_blank"} for further information.
+When [deploying OpenVidu Pro on premise](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"} with Ansible, you first have to prepare the number of media server instances you want. For example, if you want your cluster to have 3 media server instances, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server pro node and three for each Media Node. Check out the [Cluster machines prerequisites](/openvidu-pro/deploying-openvidu-pro/#in-your-cluster-machines){:target="_blank"} for further information.
 
 Then you just need to properly [configure the `inventory.yml` file](/openvidu-pro/deploying-openvidu-pro/#3-ansibles-inventory){:target="_blank"} with each instance IP before running Ansible's playbook.
 
@@ -82,9 +82,9 @@ There are 3 [configuration properties](/reference-docs/openvidu-server-params/){
 
 This is the (non-prioritized) list of features scheduled for OpenVidu Pro regarding scalability:
 
-- **Adding and removing Media Server nodes on the fly**: current release only allows to launch the cluster with a fixed number of Media Server nodes. In the near future it will be possible to change its number dynamically without restarting the service.
+- **Adding and removing Media Nodes on the fly**: current release only allows to launch the cluster with a fixed number of Media Nodes. In the near future it will be possible to change its number dynamically without restarting the service.
 - **Remove composed recording module from OpenVidu Server Pro node**: right now [composed recordings](/advanced-features/recording/#composed-recording){:target="_blank"} are hosted in OpenVidu Server Pro node, which means that launching multiple simultaneous composed recordings may increase the load on this node to a dangerous point. So a necessary change to improve scalability for this particular use case is to get this module out of OpenVidu Server Pro node.
-- **Elasticity**: the automated scale-in and scale-out of Media Server nodes according to server load is an important feature that OpenVidu Pro will provide.
+- **Elasticity**: the automated scale-in and scale-out of Media Nodes according to server load is an important feature that OpenVidu Pro will provide.
 - **AWS S3 recording**: instead of storing recording files into the cluster nodes, OpenVidu Pro will provide an easy way of uploading them to S3 buckets (in real-time when possible). This way the recording files persistance will be greatly improved: you will be able to drop your cluster nodes (or even manage multiple clusters) without worrying about your recordings.
 - **Kubernetes support**: we intend to provide a Kubernetes version of OpenVidu Pro cluster.
 

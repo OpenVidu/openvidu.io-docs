@@ -26,6 +26,33 @@ cd openvidu-server
 mvn clean compile package
 ```
 
+### Compiling OpenVidu Server dashboard
+
+You need Angular to compile OpenVidu Server dashboard:
+
+```bash
+sudo npm install -g @angular/cli
+```
+
+Enter the Angular project and install NPM dependencies. **This is only necessary the first time you compile openvidu-server dashboard**
+
+```bash
+cd openvidu/openvidu-server/src/dashboard
+npm install
+```
+
+Build the project. This npm command will copy the output files into the static files folder of openvidu-server. Next time you compile openvidu-server it will serve this last compilation of the dashboard.
+
+```bash
+npm run build
+# For production compilation: npm run build-prod
+```
+
+
+<br>
+
+---
+
 Compiling OpenVidu Browser
 ------------------
 
@@ -61,12 +88,16 @@ VERSION=2.0.0 npm run browserify-prod # Minified JS version
 # Static files will be built in path ./static/js/
 ```
 
+<br>
+
+---
+
 Example: setup for development
 ------------------
 
 Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install -g @angular/cli`.
 
-**1)** Run Kurento Media Server Docker container (`docker run -d -p 8888:8888 kurento/kurento-media-server:latest`) or [install and run KMS](#installing-kms) (only for Ubuntu 16.04)
+**1)** Run Kurento Media Server Docker container (`docker run -d -p 8888:8888 kurento/kurento-media-server:latest`) or [install and run KMS](#installing-kms) (only for Ubuntu 16.04 or Ubuntu 18.04)
 
 **2)** Clone repo:
 
@@ -105,7 +136,9 @@ mvn exec:java
 *(or if you prefer you can just run the Java application in your favourite IDE)*
 
 
-----------
+<br>
+
+---
 
 
 At these point, you can start modifying *openvidu-testapp*, *openvidu-browser* or *openvidu-server*.
@@ -121,6 +154,8 @@ At these point, you can start modifying *openvidu-testapp*, *openvidu-browser* o
       */openvidu/openvidu-server*: `mvn clean exec:java`
 
     *(or re-launch the Java application in your IDE. Some IDE's support automatic re-launch in response to changes)*
+
+<br>
 
 ---
 
@@ -144,15 +179,28 @@ This way we first tell AngularCLI to serve our app through https and to expose t
 
 To connect to the application from any device, be sure to be connected to the same WiFi network and navigate to `https://HOST_LOCAL_IP:4200` (being `HOST_LOCAL_IP` the local IP that your machine serving the app has in your WiFi network).
 
+<br>
+
 ---
 
 Installing KMS
 ------------------
 
-How to *install* and *run* KMS in your development machine (Ubuntu 16.04):
+How to *install* and *run* KMS in your development machine (Ubuntu 16.04 and Ubuntu 18.04):
+
+**Ubuntu Xenial 16.04**
 
 ```bash
 sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
+sudo apt-get update
+sudo apt-get -y install kurento-media-server
+```
+
+**Ubuntu Bionic 18.04**
+
+```bash
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
