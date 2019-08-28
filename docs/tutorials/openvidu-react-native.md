@@ -566,6 +566,32 @@ protected List<ReactPackage> getPackages() {
 }
 ```
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+<strong>INFO: </strong>react-native-webrtc provide us more information about these requeriments <a target="blank" href="https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md">here</a>
+</div>
+</div>
+<br>
+
 ## iOS specific requirements
 
 iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by following the steps bellow.
@@ -587,40 +613,27 @@ These configurations are already included in this **openvidu-react-native projec
 </div>
 
 
-2) Add Library Search Path
+2) iOS Podfile
 
-* Select **Build Settings** section and find `Search Paths`
-* Edit both **Framework Search Paths** and **Library Search Paths** adding `$(SRCROOT)/../node_modules/openvidu-browser/node_modules/react-native-webrtc/ios` with `recursive`
+You can use the included podspec in your podfile to take care of all dependencies instead of manually adding files to the project. If you prefer to add it manually, you should check the [official tutorial](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/iOSInstallation.md){:target="_blank"}. 
 
-<div class="row no-margin row-gallery">
-	<div class="col-md-12">
-		<a data-fancybox="gallery" href="/img/tutorials/xcode2.png">
-		<img class="img-responsive" src="/img/tutorials/xcode2.png">
-	</a>
-	</div>
-</div>
+Include in the Podfile in your react-native iOS directory:
 
-3) Change General Setting and Embed Framework
+```js
+pod 'react-native-webrtc', :path => '../node_modules/openvidu-browser/node_modules/react-native-webrtc'
+```
 
-* Go to **General** section and change **Deployment Target** to `8.0`
-* Add **Embedded Binaries** like below:
+You may have to change the ```platform``` field in your Podfile, as **react-native-webrtc** doesn't support iOS 9 - set it to '10.0' or above (otherwise you get an error when doing ```pod install```):
 
-<div class="row no-margin row-gallery">
-	<div class="col-md-12">
-		<a data-fancybox="gallery" href="/img/tutorials/xcode3.png">
-		<img class="img-responsive" src="/img/tutorials/xcode3.png">
-	</a>
-	</div>
-</div>
+```js
+platform :ios, '10.0'
+```
 
-4) Link/Include Necessary Libraries
+3) Set up parameters
 
-* Go to **Build Phases** tab, open **Link Binary With Libraries**
-* Add `libRCTWebRTC.a`
-* Make sure `WebRTC.framework` is linked
 * Under **Build setting** set **Dead Code Stripping** to `No` also under **Build Options** set **Enable Bitcode** to `No` as well
 
-5) Add Permissions
+4) Add Permissions
 * Navigate to `<ProjectFolder>/ios/<ProjectName>/`
 * Edit **Info.plist** and add the following lines
 
@@ -629,6 +642,15 @@ These configurations are already included in this **openvidu-react-native projec
 <string>Camera Permission</string>
 <key>NSMicrophoneUsageDescription</key>
 <string>Microphone Permission</string>
+```
+
+5) Install pod
+
+You will install the Podfile that we have set up in step 2:
+
+```bash
+cd ios
+pod install 
 ```
 
 <div style="
@@ -652,7 +674,7 @@ These configurations are already included in this **openvidu-react-native projec
     padding-left: 20px;
     padding-right: 20px;
     ">
-<strong>INFO: </strong>react-native-webrtc provide us more information about these requeriments <a href="https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md">here</a>
+<strong>INFO: </strong>react-native-webrtc provide us more information about these requeriments <a target="blank" href="https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/iOSInstallation.md">here</a>
 </div>
 </div>
 <br>
