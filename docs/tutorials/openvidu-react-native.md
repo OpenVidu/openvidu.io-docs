@@ -44,6 +44,33 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <div>
+    <strong>openvidu-react-native</strong> tutorial uses the last React Native version (above version 0.60.0) . React Native, from version 0.60.0 onwards, include some <strong>breaking changes for Andorid and iOS</strong> like migration to <strong>AndroidX</strong> and <strong>split React.podspec</strong> into separate podspecs for each Xcode project.</div> 
+    <div>  If you prefer to use the previous version that does not include these breaking changes you can use <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-react-native-59.9" target="blank"><i>openvidu-react-native-59.9 </i></a> tutorial.</div>
+</div>
+
+</div>
+
 1) You will need **Node 8.3 ** or newer, **NPM**, **React Native CLI** to serve the app. Install them with the following command
 
 ```bash
@@ -59,6 +86,8 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
 3) Install dependencies
+
+*Remember! If you want to use the previous version withoud AndroidX and separate podspecs for each Xcode project you need to use openvidu-react-native-59.9:* ```openvidu-tutorials/openvidu-react-native-59.9```
 
 ```bash
 cd openvidu-tutorials/openvidu-react-native
@@ -519,7 +548,7 @@ leaveSession() {
 
 ## Android specific requirements
 
-Android apps need to actively ask for permissions in the code to access camera and microphone using *[react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc)* plugin. By following steps below we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu.
+Android apps need to actively ask for permissions in the code to access camera and microphone using *[react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"}* plugin. By following steps below we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu.
 
 These configurations are already included in this **openvidu-react-native** project, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with React Native and OpenVidu**, you should follow these simple steps:
 
@@ -554,9 +583,15 @@ dependencies {
 ```
 
 
-4) In `android/app/src/main/java/com/xxx/MainApplication.java`
+4) In `android/app/src/main/java/com/xxx/MainApplication.java` import and add **WebRTCModulePackage**:
+
+If you are using a version prior to 0.60.0:
 
 ```java
+import com.oney.WebRTCModule.WebRTCModulePackage;
+
+...
+
 @Override
 protected List<ReactPackage> getPackages() {
     return Arrays.<ReactPackage>asList(
@@ -565,6 +600,25 @@ protected List<ReactPackage> getPackages() {
     );
 }
 ```
+
+If you are using a version above to 0.60.0:
+
+```java
+import com.oney.WebRTCModule.WebRTCModulePackage;
+
+....
+
+@Override
+    protected List<ReactPackage> getPackages() {
+      @SuppressWarnings("UnnecessaryLocalVariable")
+      List<ReactPackage> packages = new PackageList(this).getPackages();
+      // Packages that cannot be autolinked yet can be added manually here, for example:
+      // packages.add(new MyReactNativePackage());
+      packages.add(new WebRTCModulePackage()); // <-- Add this line
+      return packages;
+    }
+```
+
 
 <div style="
     display: table;
@@ -631,7 +685,7 @@ platform :ios, '10.0'
 
 3) Set up parameters
 
-* Under **Build setting** set **Dead Code Stripping** to `No` also under **Build Options** set **Enable Bitcode** to `No` as well
+Under **Build setting** set **Dead Code Stripping** to `No` also under **Build Options** set **Enable Bitcode** to `No` as well
 
 4) Add Permissions
 * Navigate to `<ProjectFolder>/ios/<ProjectName>/`
