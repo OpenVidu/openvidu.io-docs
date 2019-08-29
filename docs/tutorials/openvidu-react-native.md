@@ -65,7 +65,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
     display: table-cell;
     padding: 10px 20px;">
     <div>
-    <strong>openvidu-react-native</strong> tutorial uses the last React Native version (above version 0.60.0) . React Native, from version 0.60.0 onwards, include some <strong>breaking changes for Andorid and iOS</strong> like migration to <strong>AndroidX</strong> and <strong>split React.podspec</strong> into separate podspecs for each Xcode project.</div> 
+    <strong>openvidu-react-native</strong> tutorial uses the latest version of React Native (above version 0.60.0) . React Native, from version 0.60.0 onwards, include some <strong>breaking changes for Andorid and iOS</strong> like migration to <strong>AndroidX</strong> and <strong>split React.podspec</strong> into separate podspecs for each Xcode project.</div> 
     <div>  If you prefer to use the previous version that does not include these breaking changes you can use <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-react-native-59.9" target="blank"><i>openvidu-react-native-59.9 </i></a> tutorial.</div>
 </div>
 
