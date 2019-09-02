@@ -307,6 +307,8 @@ cd openvidu-pro-clustering # This will be our working directory from now on
 
 File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Server instance, but you can add as many _kurento-server_ hosts as you want, as you can see in the commented lines.
 
+The IPs in the inventory file should be the addresses which can be reached from the Ansible host. In example, if your Ansible host is on the 192.168.x.x network should be ok to use that address range in your inventory file.
+
 ```yaml
 ---
 all:
