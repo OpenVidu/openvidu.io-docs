@@ -22,7 +22,7 @@ OpenVidu Pro is available through **AWS Marketplace** (you will need an [Amazon 
 <div class="row wow fadeInUp">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
         <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market1.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market6.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market6.png"/></a>
         <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market2.png"/></a>
         <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market3.png"/></a>
         <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market4.png"/></a>
