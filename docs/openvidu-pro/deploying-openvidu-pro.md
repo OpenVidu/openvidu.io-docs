@@ -2,71 +2,33 @@
 
 <br>
 
-- **[Deploying OpenVidu Pro on AWS](#deploying-openvidu-pro-on-aws)**
+- **[Deploying OpenVidu Pro with Marketplace](#deploying-openvidu-with-aws-marketplace)**
 - **[Deploying OpenVidu Pro on premise](#deploying-openvidu-pro-on-premise)**
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	Before deploying OpenVidu Pro you need to contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process
-</div>
-</div>
 
 <br>
 
 ---
 
-## Deploying OpenVidu Pro on AWS
+## Deploying OpenVidu With AWS Marketplace
 
-<p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
-OpenVidu Pro is available through <strong>Amazon Web Services</strong> (you will need an <a href="https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start" target="_blank">AWS account</a>)
-</p>
+OpenVidu Pro is available through **AWS Marketplace** (you will need an [Amazon Web Services account](https://portal.aws.amazon.com/billing/signup?redirect_url=https%3A%2F%2Faws.amazon.com%2Fregistration-confirmation#/start){:target="_blank"})
 
 ### 1) Steps towards configuration
 
-<br>
+<p style="text-align: center; margin-top: 30px">
+    <a href="https://aws.amazon.com/marketplace/pp/prodview-mngn2m3lxhtce?qid=1567758504396&sr=0-2&ref_=srh_res_product_title" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro" target="_blank"><span style="display: table-cell; vertical-align:middle">Go to </span><i style="margin-left: 10px; margin-right: 10px; font-size: 45px; vertical-align: middle; font-weight: 100" class="fab fa-aws"></i><span style="display: table-cell; vertical-align:middle"> marketplace</span></a>
+</p>
 
-##### A) Access to the console of AWS Cloud Formation
-
-  <p><a href="https://console.aws.amazon.com/cloudformation" class="btn btn-xs btn-primary" title="Developing OpenVidu" target="_blank">Go to CloudFormation<span class="icon icon-circle-arrow-right"></span></a></p>
-
-<br>
-
-##### B) Click on _Create Stack_
-
-  <p>
-    <img class="img-responsive deploy-img" style="max-height: 400px" src="/img/docs/deployment/CF_newstack.png">
-  </p>
-
-<br>
-
-##### C) Option _Specify an Amazon S3 template URL_ with the following URL
-
-  <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cfn-OpenViduServerPro-cluster-latest.yaml</code>
-  <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                                title="Copy to Clipboard">Copy</button>
-
-  <p>
-    <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_url.png">
-  </p>
+<div class="row wow fadeInUp">
+    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market1.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market6.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market2.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market3.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market4.png"/></a>
+        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market5.png"/></a>
+    </div>
+</div>
 
 <br>
 
@@ -230,6 +192,31 @@ To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use
 ---
 
 ## Deploying OpenVidu Pro on premise
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+    Before deploying OpenVidu Pro you need to contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process
+</div>
+</div>
 
 <p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
 OpenVidu Pro is available through <strong>Ansible</strong> for deploying on premise.
