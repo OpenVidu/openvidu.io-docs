@@ -2,7 +2,7 @@
 OpenVidu Server RPC protocol
 ===================
 
-OpenVidu Server offers a WebSocket endpoint at path `/openvidu` where clients are able to connect to ...
+OpenVidu Server offers a WebSocket endpoint at path `/openvidu` where clients must connect to ...
 
 - **Call methods**: clients are able to directly call OpenVidu Server methods. Some of them will only be available if the user has the proper role inside the session.
 - **Receive server events**: OpenVidu Server will send session events to clients connected to that specific session.
