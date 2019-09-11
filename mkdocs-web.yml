@@ -45,6 +45,7 @@ pages:
 - ['deployment/deploying-app.md','Deployment', 'Deploying your OpenVidu app']
 - ['deployment/upgrading.md','Deployment', 'Upgrading OpenVidu']
 - ['developing/index.md','Contribute', 'Developing OpenVidu']
+- ['developing/rpc.md','Contribute', 'OpenVidu Server RPC protocol']
 - ['troubleshooting/index.md','Troubleshooting / FAQ']
 - ['releases/index.md','Releases']
 - ['openvidu-pro/index.md','OpenVidu Pro', 'Home']
