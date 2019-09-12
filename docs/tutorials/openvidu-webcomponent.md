@@ -143,24 +143,38 @@ In this tutorial, we just alternate the view between the form and the web compon
 Method `joinSession()` gets:
 
  - The form input values, with the video-call to connect and the nickname the user will have in it.
- - The `token` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
+ - The `tokens` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
 
-When we have our token available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and  `token`.
+When we have our tokens available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and  `tokens`.
 
 - `sessionName`: the session name that will be displayed inside the component
 - `user`: the nickname that the user will have in the session
-- `token`: the retrieved token from OpenVidu Server
+- `tokens`: the retrieved tokens from OpenVidu Server
 
+However, if we give the *openvidu-url* and *openvidu-secret*, the webcomponent will build the token for us.
 
 ```javascript
 function joinSession() {
     var sessionName = document.getElementById('sessionName').value;
     var user = document.getElementById('user').value;
+    var tokens = [];
+    var form = document.getElementById('main');
+    var webComponent = document.querySelector('openvidu-webcomponent');
+   
+    form.style.display = 'none';
+    webComponent.style.display = 'block';
 
-    getToken(sessionName).then((token) => {
-        var webComponent = document.querySelector('openvidu-webcomponent');
-        webComponent.sessionConfig = { sessionName, user, token };
-    });
+    if(webComponent.getAttribute("openvidu-secret") != undefined && webComponent.getAttribute("openvidu-server-url") != undefined ){
+        location.reload();
+    }else {
+        getToken(sessionName).then((token1) => {
+            tokens.push(token1);
+            getToken(sessionName).then((token2) => {
+                tokens.push(token2);
+                webComponent.sessionConfig = { sessionName, user, tokens };
+            });    
+        });
+    }
 }
 ```
 
@@ -235,6 +249,9 @@ webComponent.sessionConfig = { sessionName, user, token, ovSettings };
 </div>
 </div>
 
+_The token must has inside of an array. If you want that the app allows the screen sharing you must include two differents tokens in the array. If you only add one, the app doesn't allow the screen sharing funcionality._
+
+
 ```javascript
 getToken(sessionName).then((token) => {
     // Send the 'token' to OpenVidu web component
@@ -264,7 +281,7 @@ webComponent.sessionConfig = { sessionId, user, token };
 But you can also set them statically, for example if you are building your template in the backend:
 
 ```html
-<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1", "token": "TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER"}'></openvidu-webcomponent>
+<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1", "token": "[TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER]"}'></openvidu-webcomponent>
 ```
 
 Besides, openvidu-webcomponent allows you to add **ovSettings** parameter statically:
