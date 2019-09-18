@@ -6,6 +6,31 @@ A client-side only **Android native** application built with **Java**.
 
 If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="\_blank"}** tutorial due to this being a native Android app and being a little more complex for OpenVidu starters.
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	 OpenVidu does not provide an Android client SDK yet, so this application directly implements OpenVidu Server RPC protocol. In other words, it internally implements what <a target="_blank" href="/docs/reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
+</div>
+</div>
+
 ## Understanding this tutorial
 
 <p align="center">
@@ -90,7 +115,7 @@ In this example that would be: `https://192.168.0.105:4443/`
    In the **Select Deployment Target** window, select your device, and click **OK**.
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="/img/demos/openvidu-android-devices.png">
+  <img class="img-responsive" style="padding: 25px 0" src="/img/demos/openvidu-android-devices.png">
 </p>
 
 <br>
@@ -121,7 +146,7 @@ This is an Android project generated with Android Studio, and therefore you will
 
 ---
 
-#### WebSocket address, session name and participant name:
+#### WebSocket address, session name and participant name
 
 As we have said above, you have to modify the value of `default_openvidu_url` with the IP of your PC. For example:
 
@@ -172,47 +197,41 @@ private void getToken(String sessionId) {
 }
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/reference-docs/REST-API/){:target="\_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="\_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="\_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/reference-docs/REST-API/){:target="\_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="\_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="\_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()`. Without going into too much detail, this method performs two _POST_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them. We use an http-client we have wrapped in class [`CustomHttpClient`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/utils/CustomHttpClient.java){:target="_blank"}.
 
--   First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
--   Second ajax request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
+- First request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with the value retrieved from the view's formulary.
+- Second request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/7e685c38fbefe5d1a2ff95fe975cad1e6448c33d/openvidu-android/app/src/main/java/com/example/openviduandroid/activities/SessionActivity.java#L137){:target="\_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java#L136){:target="\_blank"}.
 
+#### Initialize the view, camera and websocket
 
-#### Initialize the session
+Once we have gotten the token, we can set up our session object, our camera and the websocket.
+We create our **session**, our **localParticipant** and **capture the camera**:
 
-Once we have gotten the token, we can set up the session and the websocket.
-We create our **localParticipant** and **capture the camera**:
+<p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java" target="_blank">src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java</a></p>
 
 ```java
-...
-String participantName = participant_name.getText().toString();
+private void getTokenSuccess(String token, String sessionId) {
+    // Initialize our session object
+    session = new Session(sessionId, token, views_container, this);
 
-// Creating a session instance and setting up the PeerConnectionFactory
-session = new Session(sessionId, token, views_container, thisActivity);
+    // Initialize our local participant and start local camera
+    String participantName = participant_name.getText().toString();
+    LocalParticipant localParticipant = new LocalParticipant(participantName, session, this.getApplicationContext(), localVideoView);
+    localParticipant.startCamera();
+    runOnUiThread(() -> {
+        // Update local participant view
+        main_participant.setText(participant_name.getText().toString());
+        main_participant.setPadding(20, 3, 20, 3);
+    });
 
-// Creating the local participant instance
-LocalParticipant localParticipant = new LocalParticipant(participantName, session, thisActivity.getApplicationContext(), localVideoView);
-
-// Capturing the camera device. See next point to see the camera methods
-localParticipant.startCamera();
-
-runOnUiThread(() -> {
-    main_participant.setText(participant_name.getText().toString());
-    main_participant.setPadding(20, 3, 20, 3);
-});
-
-// Creating a webSocket instance
-CustomWebSocket webSocket = new CustomWebSocket(session, OPENVIDU_URL, thisActivity);
-
-//Setting up the webSocket
-webSocket.execute();
-session.setWebSocket(webSocket);
-
+    // Initialize and connect the websocket to OpenVidu Server
+    startWebSocket();
+}
 ```
 
-To configure the **session**, we are going to initialize and build the `PeerConnectionFactory`.
+To configure the **session**, we are going to initialize and build the `PeerConnectionFactory`. This object allows us to initialize WebRTC peer connections in Android.
 
 ```Java
 //Creating a new PeerConnectionFactory instance
@@ -237,7 +256,7 @@ peerConnectionFactory = PeerConnectionFactory.builder()
 
 #### Capture the camera
 
-Android provides us a very easy way to use **Camera** API. This API includes support for various cameras and camera features available on devices, allowing you to capture pictures and videos in your application.
+Android provides us a very easy way to use **Camera** API. This API includes support for various cameras and camera features available on devices, allowing you to capture pictures and videos in your application. In the end we need to store the video track.
 
 ```java
 public void startCamera() {
@@ -303,14 +322,11 @@ private VideoCapturer createCameraCapturer() {
 
 We also have to think about the media permissions. You can take a look to the Android permissions under section [Android specific requirements](#android-specific-requirements).
 
-
-#### Connect to the session:
+#### Connect the websocket to OpenVidu Server
 
 In this point, we are trying to establish a connection between **openvidu-server** and our android application through the websocket:
 
 ```java
-...
-
 WebSocketFactory factory = new WebSocketFactory();
 
 //Returns a SSLContext object that implements the specified secure socket protocol
@@ -327,9 +343,17 @@ websocket.addListener(this);
 websocket.connect();
 ```
 
-#### We listen the server events
+---
 
-We need an extra method to handle de messages from openvidu server. This will be essential in order to know when the **ice candidates** arrives, when a **new user has been joined** to the room or when the **participant has left** the session.
+### Using OpenVidu Server RPC protocol
+
+Taking the references from [OpenVidu Server RPC protocol](https://openvidu.io/docs/developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive the events** from OpenVidu Server.
+
+As OpenVidu Server implements standard [JsonRpc 2.0](https://www.jsonrpc.org/specification){:target="_blank"}, each call to a remote method must include a unique `id` property to identify it. This `id` helps us identify which message received afterwards is the response to that particular call. In this case, our `CustomWebSocket` class stores this information in atomic integer objects (one for each type of RPC method).
+
+#### Listening to OpenVidu Server events
+
+We need an extra method to handle de messages from openvidu server. This will be essential in order to know when **ice candidates** arrive, when a **new user joined** the session, when a **user published a video to the session** or when some **participant left** the session.
 
 ```java
 private void handleServerEvent(JSONObject json) throws JSONException {
@@ -358,57 +382,139 @@ private void handleServerEvent(JSONObject json) throws JSONException {
 }
 ```
 
-#### Add remotes users connected:
+On `participantLeftEvent` we simply dispose the proper remote participant and update our view. The real interest lies in events `iceCandidate`, `participantJoined` and `participantPublished`.<br><br>
 
-**OpenVidu Server** will notify us if someone is connected in our room. We need to hanlde this type of events and do the right thing. In this case we have to add a new participant in our app.
+##### iceCandidate
+
+Whenever we receive an ICE candidate from OpenVidu Server, we must add it to the proper PeerConnection object (we receive ICE candidates for our local PeerConnection and for each remote PeerConnection). To avoid timing problems, if the PeerConnection is not in `STABLE` state and with the SDP remote description successfully set, we store the ICE candidate to add it later, taking advantage of `onSignalingChange` event of the PeerConnection (see method in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/openvidu/Session.java#L103){:target="_blank"})
+
+```java
+private void iceCandidateEvent(JSONObject params) throws JSONException {
+    IceCandidate iceCandidate = new IceCandidate(
+        params.getString("sdpMid"),
+        params.getInt("sdpMLineIndex"),
+        params.getString("candidate"));
+    final String connectionId = params.getString("senderConnectionId");
+    boolean isRemote = !session.getLocalParticipant().getConnectionId().equals(connectionId);
+    final Participant participant = isRemote ? session.getRemoteParticipant(connectionId) :
+        session.getLocalParticipant();
+    final PeerConnection pc = participant.getPeerConnection();
+
+    switch (pc.signalingState()) {
+        case CLOSED:
+            Log.e("saveIceCandidate error", "PeerConnection object is closed");
+            break;
+        case STABLE:
+            if (pc.getRemoteDescription() != null) {
+                participant.getPeerConnection().addIceCandidate(iceCandidate);
+            } else {
+                participant.getIceCandidateList().add(iceCandidate);
+            }
+            break;
+        default:
+            participant.getIceCandidateList().add(iceCandidate);
+    }
+}
+```
+
+<br>
+
+##### participantJoined
+
+This event tells us a new participant has joined our session. We must initialize a new PeerConnection to receive his video and update our view. We do so with this auxiliary method:
 
 ```java
 private RemoteParticipant newRemoteParticipantAux(JSONObject participantJson) throws JSONException {
     final String connectionId = participantJson.getString(JsonConstants.ID);
     final String participantName = new JSONObject(participantJson.getString(JsonConstants.METADATA)).getString("clientData");
-
-    // Creating a remote participant and saving it in a remoteParticipants Map
     final RemoteParticipant remoteParticipant = new RemoteParticipant(connectionId, participantName, this.session);
-
-    //Creating a remote participant video view 
     this.activity.createRemoteParticipantVideo(remoteParticipant);
     this.session.createRemotePeerConnection(remoteParticipant.getConnectionId());
     return remoteParticipant;
 }
 ```
 
+<br>
 
----
+##### participantPublished
 
-### Using OpenVidu Server RPC protocol
+This event tells us a user has started sending a video to the session. We must negotiate ICE protocol for this participants PeerConnection and call RPC method `receiveVideoFrom`:
 
-Taking the references from [OpenVidu Server RPC protocol](https://openvidu.io/docs/developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive the events** from OpenVidu Server 
+```java
+private void subscribeAux(RemoteParticipant remoteParticipant, String streamId) {
+    remoteParticipant.getPeerConnection().createOffer(new CustomSdpObserver("remote offer sdp") {
+        @Override
+        public void onCreateSuccess(SessionDescription sessionDescription) {
+            super.onCreateSuccess(sessionDescription);
+            remoteParticipant.getPeerConnection().setLocalDescription(new CustomSdpObserver("remoteSetLocalDesc"), sessionDescription);
+            receiveVideoFrom(sessionDescription, remoteParticipant, streamId);
+        }
 
+        @Override
+        public void onCreateFailure(String s) {
+            Log.e("createOffer error", s);
+        }
+    }, new MediaConstraints());
+}
+```
 
+<br>
 
-#### Whenever a the websocket is connected successfully, `joinSession()` method is called:
+#### Joining a session with `joinRoom` method
 
-Once the connection is established, we need to join to the room. Using a JSON using RPC 2.0 with `joinRoom` method and the followings parameteres we'll be able to connect to the room:
+Once the connection is established, we need to join to the session. By sending a JSON-RPC method `joinRoom` with the followings parameters we'll be able to connect to the session:
 
 ```java
 public void joinRoom() {
     Map<String, String> joinRoomParams = new HashMap<>();
-    
+
     // Setting the joinRoom parameters
     joinRoomParams.put(JsonConstants.METADATA, "{\"clientData\": \"" + this.session.getLocalParticipant().getParticipantName() + "\"}");
     joinRoomParams.put("secret", "");
     joinRoomParams.put("session", this.session.getId());
     joinRoomParams.put("platform", "Android " + android.os.Build.VERSION.SDK_INT);
     joinRoomParams.put("token", this.session.getToken());
-    
+
     //Sending JSON through websocket specifying 'joinRoom' method.
     this.ID_JOINROOM.set(this.sendJson(JsonConstants.JOINROOM_METHOD, joinRoomParams));
 }
 ```
 
-#### Finally publish your webcam calling `publishVideo()` method:
+As response we will receive an object with all the existing participants in the session and all the published streams. We initialize the ICE negotiation with openvidu-server for our local stream by creating our SDP local offer. This is this way because we want to publish our camera right after we connect to the session. The response to `joinRoom` brings us all the information about already connected participants and streams. We must initialize and subscribe to all of them as explained in [participantJoined](#participantjoined){:target="_blank"} and [participantPublished](#participantpublished){:target="_blank"} events (method `addRemoteParticipantsAlreadyInRoom` will run all the logic of those event handlers for each existing participant and stream)
 
-JSON RPC 2.0 helps us again. We need to send a JSON through the websocket with the required params that it's shown below:
+```java
+...
+} else if (rpcId == this.ID_JOINROOM.get()) {
+    // Response to joinRoom
+    activity.viewToConnectedState();
+
+    final LocalParticipant localParticipant = this.session.getLocalParticipant();
+    final String localConnectionId = result.getString(JsonConstants.ID);
+    localParticipant.setConnectionId(localConnectionId);
+
+    PeerConnection localPeerConnection = session.createLocalPeerConnection();
+    localParticipant.setPeerConnection(localPeerConnection);
+
+    MediaStream stream = this.session.getPeerConnectionFactory().createLocalMediaStream("102");
+    stream.addTrack(localParticipant.getAudioTrack());
+    stream.addTrack(localParticipant.getVideoTrack());
+    localParticipant.getPeerConnection().addStream(stream);
+
+    MediaConstraints sdpConstraints = new MediaConstraints();
+    sdpConstraints.mandatory.add(new MediaConstraints.KeyValuePair("offerToReceiveAudio", "true"));
+    sdpConstraints.mandatory.add(new MediaConstraints.KeyValuePair("offerToReceiveVideo", "true"));
+    session.createLocalOffer(sdpConstraints);
+
+    if (result.getJSONArray(JsonConstants.VALUE).length() > 0) {
+        // There were users already connected to the session
+        addRemoteParticipantsAlreadyInRoom(result);
+    }
+}
+```
+
+#### Publishing the camera with `publishVideo` method
+
+We need to send a JSO-RPC message through the websocket with the required params as shown below:
 
 ```Java
 public void publishVideo(SessionDescription sessionDescription) {
@@ -424,15 +530,30 @@ public void publishVideo(SessionDescription sessionDescription) {
     publishVideoParams.put("typeOfVideo", "CAMERA");
     publishVideoParams.put("videoDimensions", "{\"width\":320, \"height\":240}");
     publishVideoParams.put("sdpOffer", sessionDescription.description);
-    
+
     //Sending JSON through websocket specifying 'publishVideo' method.
     this.ID_PUBLISHVIDEO.set(this.sendJson(JsonConstants.PUBLISHVIDEO_METHOD, publishVideoParams));
 }
 ```
 
-#### Leaving the session
+#### Subscribing to a remote video with `receiveVideo` method
 
-Whenever we want that an user leaves the session, we just need to call `leaveSession`::
+We need to send a JSON-RPC through the websocket with the required params as shown below:
+
+```Java
+public void receiveVideoFrom(SessionDescription sessionDescription, RemoteParticipant remoteParticipant, String streamId) {
+    Map<String, String> receiveVideoFromParams = new HashMap<>();
+    receiveVideoFromParams.put("sdpOffer", sessionDescription.description);
+    receiveVideoFromParams.put("sender", streamId);
+    this.IDS_RECEIVEVIDEO.put(
+        this.sendJson(JsonConstants.RECEIVEVIDEO_METHOD, receiveVideoFromParams),
+            remoteParticipant.getConnectionId());
+}
+```
+
+#### Leaving the session with 'leaveRoom' method
+
+Whenever we want that an user leaves the session, we just need to call `leaveSession`:
 
 ```java
 public void leaveRoom() {

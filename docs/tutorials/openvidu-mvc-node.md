@@ -1,7 +1,7 @@
 # openvidu-mvc-node
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-mvc-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Node backend and a traditional MVC frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-node](/tutorials/openvidu-js-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Embedded JavaScript](http://www.embeddedjs.com/){:target="_blank"} is the template engine of choice for this tutorial.
+A secure OpenVidu sample app with a Node backend and a traditional MVC frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-node](/tutorials/openvidu-js-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Embedded JavaScript](https://ejs.co/){:target="_blank"} is the template engine of choice for this tutorial.
 
 ## Understanding this tutorial
 
@@ -80,7 +80,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 ## Understanding the code
 
-This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Node backend built with [_express_](http://expressjs.com){:target="_blank"} that serves HTML files with a MVC approach, building the templates with the help of [Embedded JavaScript](http://www.embeddedjs.com/){:target="_blank"}. OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session){:target="_blank"} API.
+This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Node backend built with [_express_](http://expressjs.com){:target="_blank"} that serves HTML files with a MVC approach, building the templates with the help of [Embedded JavaScript](https://ejs.co/){:target="_blank"}. OpenVidu assumes you can identify your users so you can tell which users can connect to which video-calls, and what role (and therefore what permissions) each one of them will have in the calls. You can do this as you prefer. Here our backend will manage the users and their sessions with the easy-to-use and non-intrusive [_express-session_](https://github.com/expressjs/session){:target="_blank"} API.
 
   - **Backend**: node server
     - `server.js` : single file which handles all operations of server. It returns HTML templates as response to HTTP requests.

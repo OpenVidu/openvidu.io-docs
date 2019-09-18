@@ -148,7 +148,8 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
                     title="Increment or decrement the number of media servers automatically according to user load">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
             <th scope="row">Fault Tolerance <i
