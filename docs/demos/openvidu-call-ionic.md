@@ -1,7 +1,7 @@
 # openvidu-call-ionic
 <a href="https://github.com/OpenVidu/openvidu-call-ionic" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 7</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
+OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 8</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
 OpenVidu-Call-Ionic is composed by the five Angular components displayed in the image below.
 

@@ -1,7 +1,7 @@
 # openvidu-call
 <a href="https://github.com/OpenVidu/openvidu-call.git" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call demo, built with <strong>Angular 7</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
+OpenVidu Call demo, built with <strong>Angular 8</strong>,  allows users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
 OpenVidu-Call is composed by the six Angular components displayed in the image below.
 
