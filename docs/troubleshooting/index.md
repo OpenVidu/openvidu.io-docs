@@ -86,11 +86,11 @@ Then you just have to configure your app (REST API address / OpenVidu Java Clien
 
 ### 3. I am using Windows to run the tutorials / develop my app. Anything I should know?
 
-Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accesible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`). 
+Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accessible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`).
 
-First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting paramater `openvidu.publicurl` to the IP allocated for Docker in your Windows machine.
+First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `openvidu.publicurl` to the IP allocated for Docker in your Windows machine.
 
-What in Linux/Mac is... 
+What in Linux/Mac is...
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.11.0
