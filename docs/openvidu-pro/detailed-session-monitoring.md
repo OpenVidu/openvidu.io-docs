@@ -74,9 +74,11 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 <div class="monitoring-div">
 
 <div class="version-buttons">
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0/2.10.0</a>
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.11.0">2.11.0</a>
+  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0 / 2.10.0 / 2.11.0</a>
+  <!--<a onclick="changeVersion(event)" class="btn btn-xs btn-primary" title="2.12.0">2.12.0</a>-->
 </div>
+
+<!-- 2.9.0 / 2.10.0 / 2.11.0 -->
 
 <div id="list-290" class="version-container" markdown="1" style="margin-right: 5px">
 
@@ -451,6 +453,76 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 </div>
 
 </div>
+
+<!-- 2.12.0 -->
+
+<div id="content-2120" class="lang-tabs-container elastic-events version-container" markdown="1" style="display: none">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">kms</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">monitoringStats</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcStats</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">sessionSummary</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">recordingSummary</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">userSummary</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">connectionSummary</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">publisherSummary</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">subscriberSummary</button>
+</div>
+
+<div id="cdr" class="lang-tabs-content" markdown="1">
+```json
+```
+</div>
+
+<div id="kms" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="monitoringstats" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="webrtcstats" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="sessionsummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="recordingsummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="usersummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="connectionsummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="publishersummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+
+<div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+```
+</div>
+</div>
+
+
 </div>
 </div>
 </div>
