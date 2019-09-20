@@ -31,7 +31,10 @@ All responses from OpenVidu Server to each one of these operations are a JSON ob
 
 - `jsonrpc`: version of JSON-RPC protocol. Always `"2.0"`
 - `id`: an integer matching the `id` property of the operation call that generated this response. This allows pairing the operation call sent from the client with its respective server response
-- `result`: a JSON object with the operation result. Its fields are obviously dependent on the method that generated this response
+- `result`: a JSON object with the operation result. Its fields are obviously dependent on the method that generated this response. Not included if `error` property is defined
+- `error`: a JSON object with information about an error triggered during the operation call. Not included if `result` property is defined. This JSON object has 2 properties:
+    - `code`: a number identifying the type of error
+    - `message`: a string with a detailed description about the error
 
 <br>
 Complete list of operations:
