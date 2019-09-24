@@ -7,7 +7,7 @@
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
 - **[Custom recording layouts](#custom-recording-layouts)**
     - [Configuring multiple custom layouts](#configuring-multiple-custom-layouts)
-    - [Using an external custom layout](#using-an-external-custom-layout)
+    <!-- - [Using an external custom layout](#using-an-external-custom-layout)-->
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
 - **[Local recording in the browser](#local-recording-in-the-browser)**
@@ -700,7 +700,7 @@ In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu
 
 You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout in a recording, just configure in recording properties `recordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `customLayout` to `layout1` or `layout2`.
 
-<br>
+<!--<br>
 
 ---
 
@@ -755,7 +755,7 @@ openvidu.startRecording(sessionId, {
 
 <br><br>
 
-> As you can see, this URL may have Basic Authentication credentials and any query parameter you may need in your custom layout. In the snippets above, you could access value `123` in your layout JS code just by calling <br>`new URL(window.location.href).searchParams.get("myParam");`
+> As you can see, this URL may have Basic Authentication credentials and any query parameter you may need in your custom layout. In the snippets above, you could access value `123` in your layout JS code just by calling <br>`new URL(window.location.href).searchParams.get("myParam");`-->
 
 <br>
 
