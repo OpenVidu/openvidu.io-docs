@@ -381,7 +381,7 @@ Taking the references from [OpenVidu Server RPC protocol](https://openvidu.io/do
 
 #### Listening to OpenVidu Server events
 
-We need an extra method to handle de messages from openvidu server. This will be essential in order to know when **ice candidates** arrive, when a **new user joined** the session, when a **user published a video to the session** or when some **participant left** the session.
+The app implements a method to handle event messages received from openvidu server. This will be essential in order to know when **ice candidates** arrive, when a **new user joined** the session, when a **user published a video to the session** or when some **participant left** the session.
 
 <p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px; word-break: break-word"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/websocket/CustomWebSocket.java" target="_blank">src/main/java/io/openvidu/openvidu_android/openvidu/CustomWebSocket.java</a></p>
 
