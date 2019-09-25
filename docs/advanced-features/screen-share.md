@@ -1,5 +1,15 @@
 # Screen share
 
+- **[How to screen share](#how-to-screen-share)**
+- **[How to know when the user stops sharing the screen](#how-to-know-when-the-user-stops-sharing-the-screen)**
+- **[Custom Screen Sharing extension for Chrome](#custom-screen-sharing-extension-for-chrome)**
+
+<br>
+
+---
+
+## How to screen share
+
 **Chrome**, **Opera**, **Firefox**  and **desktop Electron apps** support screen sharing.
 
 ### Chrome >=72, Opera (based on Chrome >=72) and Firefox >=66
@@ -7,7 +17,8 @@
 To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](/cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
-OV.initPublisher("html-element-id", { videoSource: "screen" });
+var OV = new OpenVidu();
+var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 ```
 
 ### Chrome <72 and Opera (based on Chrome <72)
@@ -20,7 +31,8 @@ In these cases there's need of a browser extension. An OpenViduError object may 
 - `SCREEN_CAPTURE_DENIED`: if the user doesn't grant permissions to capture the screen when the browser asks to.
 
 ```javascript
-OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
+var OV = new OpenVidu();
+var publisher = OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
     if (error.name == 'SCREEN_EXTENSION_NOT_INSTALLED') {
         showWarning(error.message);
 
@@ -45,7 +57,7 @@ For **Firefox <66** two different `videoSource` strings are allowed in order to 
 - `"screen"`: entire screen
 - `"window"`: specific application window
 
-In Chrome and Opera both values will always give access to both entire screen and specific application windows.
+In Chrome, Opera and Firefox >=66 both values will always give access to both entire screen and specific application windows.
 
 ### Desktop Electron apps
 
@@ -68,6 +80,7 @@ desktopCapturer.getSources({
         console.log(source.id);
 
         if (my_condition) {
+            var OV = new OpenVidu();
             var publisher = OV.initPublisher("html-element-id", { videoSource: "screen:" + source.id });
         }
     });
@@ -76,11 +89,37 @@ desktopCapturer.getSources({
 
 You can check out [openvidu-electron tutorial](/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
 
-<br><br>
-<hr>
-
-# Custom Screen Sharing extension for Chrome
 <br>
+
+---
+
+## How to know when the user stops sharing the screen
+
+You can use native Web API to add a listener for determining when the user pressed the "Stop sharing" button shown by browsers when sharing a window or screen. You can do it like this:
+
+```javascript
+var OV = new OpenVidu();
+var publisher = OV.initPublisherAsync({
+    videoSource: "screen"
+}).then(publisher => {
+    publisher.stream.getMediaStream().addEventListener('inactive', () => {
+        console.log('User pressed the "Stop sharing" button');
+        // You can send a signal with Session.signal method to warn other participants
+    });
+});
+```
+<br>
+
+> [Event ended of MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/ended_event){:target="_blank"} servers the same purpose. If you have any problem with **inactive** event of **MediaStream** object, you can try with **ended** event of **MediaStreamTrack** object. In the snippet above, that would be:
+
+> `publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => { ... })`
+
+<br>
+
+---
+
+## Custom Screen Sharing extension for Chrome
+
 We provide a default extension that will work on any domain in case the client is using Chrome <72 or Opera based on it. But you can create your own Chrome extension always based on ours ([OpenVidu Screen Sharing extension](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension){:target="_blank"}). This way your extension may have your own icon, name, description and custom valid domains.
 
 To use your extension, just configure OpenVidu object like this after initializing it:
