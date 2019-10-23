@@ -12,7 +12,7 @@ _This is a Node library wrapping [OpenVidu Server REST API](/reference-docs/REST
 ### Create a session
 
 ```javascript
-var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var properties = {};
 openVidu.createSession(properties).then(session => { ... });
 ```
@@ -31,9 +31,9 @@ session.generateToken(tokenOptions).then(token => { ... });
 
 ```javascript
 // Fetch all session info from OpenVidu Server
-openvidu.fetch()
+openVidu.fetch()
   .then(anyChange => {
-      var activeSessions = openvidu.activeSessions;
+      var activeSessions = openVidu.activeSessions;
   }):
 
 // Fetch one session info from OpenVidu Server
@@ -72,10 +72,10 @@ openVidu.startRecording(sessionId).then(recordingStarted => ... );
 
 // Stop recording
 var recordingId = recordingStarted.id;
-openvidu.stopRecording(recordingId).then(recordingStopped => ... );
+openVidu.stopRecording(recordingId).then(recordingStopped => ... );
 
 // Get recording
-openvidu.getRecording(recordingId).then(recordingRetrieved => ... );
+openVidu.getRecording(recordingId).then(recordingRetrieved => ... );
 
 // List recordings
 openVidu.listRecordings().then(recordingList => ... );
