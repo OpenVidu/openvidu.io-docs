@@ -34,7 +34,7 @@ session.generateToken(tokenOptions).then(token => { ... });
 openvidu.fetch()
   .then(anyChange => {
       var activeSessions = openvidu.activeSessions;
-  }):
+  });
 
 // Fetch one session info from OpenVidu Server
 session.fetch()
