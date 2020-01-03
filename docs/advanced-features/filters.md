@@ -113,7 +113,12 @@ Use [PublisherProperties](/../api/openvidu-browser/interfaces/publisherpropertie
 var OV = new OpenVidu();
 var publisher = OV.initPublisher(
     targetElement,
-    {filter: {type: "GStreamerFilter", options: "videoflip method=vertical-flip"}}
+    filter: {
+        type: "GStreamerFilter",
+        options: {
+	    command: "videoflip method=vertical-flip"
+	}
+    }
 );
 
 // ... user already connected to "session" with the appropriate token
@@ -127,7 +132,7 @@ session.publish(publisher);
 // ... user already connected to the session with the appropriate token
 // and successfully publishing the Publisher object
 
-publisher.stream.applyFilter("GStreamerFilter", "videoflip method=vertical-flip")
+publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=vertical-flip" })
     .then(() => {
         console.log("Video rotated!");
     })
