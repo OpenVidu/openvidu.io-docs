@@ -266,8 +266,9 @@ These ports need to be opened and publicly accessible for each type of instance 
 
 - **4443 TCP** (OpenVidu Server listens on port 4443 by default)
 - **3478 TCP** (coturn listens on port 3478 by default)
+- **3479 UDP** (opening also UDP port has been proved to facilitate connections with certain type of clients)
 
-#### Media instance(s)
+#### Media Node instances
 
 - **40000 - 65535 UDP** (WebRTC connections with clients may be established using a random port inside this range)
 - **40000 - 65535 TCP** (WebRTC connections with clients may be established using a random port inside this range, if UDP can't be used because client network is blocking it)
@@ -288,11 +289,11 @@ Ansible uses an inventory file to know which instances connect to and how to con
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-pro-clustering
-git checkout v2.11.0
+git checkout 2.11.0
 cd openvidu-pro-clustering # This will be our working directory from now on
 ```
 
-File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Server instance, but you can add as many _kurento-server_ hosts as you want, as you can see in the commented lines.
+File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Node, but you can add as many _kurento-server_ hosts as you want, as you can see in the commented lines.
 
 The IPs in the inventory file should be the addresses which can be reached from the Ansible host. In example, if your Ansible host is on the 192.168.x.x network should be ok to use that address range in your inventory file.
 
@@ -302,24 +303,24 @@ all:
   hosts:
     openvidu-server:
       ansible_host: OPENVIDU_SERVER_IP
-    media-server-1:
-      ansible_host: MEDIA_SERVER_1_IP
-    # media-server-2:
-    #   ansible_host: MEDIA_SERVER_2_IP
+    media-node-1:
+      ansible_host: MEDIA_NODE_1_IP
+    # media-node-2:
+    #   ansible_host: MEDIA_NODE_2_IP
     # ...
-    # media-server-N:
-    #   ansible_host: MEDIA_SERVER_N_IP
+    # media-node-N:
+    #   ansible_host: MEDIA_NODE_N_IP
   vars:
       ansible_become: true
       ansible_user: USER
       ansible_ssh_private_key_file: /PATH/TO/SSH_public_key
   children:
-    media-servers:
+    media-nodes:
       hosts:
-        media-server-1:
-      #   media-server-2:
+        media-node-1:
+      #   media-node-2:
       #   ...
-      #   media-server-N:
+      #   media-node-N:
     openvidu:
       hosts:
         openvidu-server:
@@ -330,7 +331,7 @@ You need to change:
 - **Variable `ansible_user`**: the user you use to connect to the instances, i.e. Ubuntu Server Cloud uses `ubuntu`. If you've deployed those instances in OpenStack using Ubuntu Official Image, `ubuntu` will be the user.
 - **Variable `ansible_ssh_private_key_file`**: path to the RSA private key you use to connect to your instances.
 - **Value `OPENVIDU_SERVER_IP`**: public IP to connect to the OpenVidu Server Pro instance.
-- **Value `MEDIA_SERVER_X_IP`**: public IP to connect to the Kurento Media Server instance(s).
+- **Value `MEDIA_NODE_X_IP`**: public IP to connect to the Kurento Media Server instance(s).
 
 <br>
 
@@ -402,10 +403,49 @@ Once the playbook command has successfully finished, you will have OpenVidu Pro 
 
 ### Troubleshooting
 
-If you get stuck deploying this playbook remember we're here to help you. So please, when you open a new issue provide the **full Ansible output log** and, if you were able to deploy OpenVidu Server Pro role, please provide also the content of the following files of OpenVidu Server pro instance:
+Sometimes things just doesn’t work as expected, but we’re here to help, to do that we’ll need some information about what was going on in the instance when the deployment exploded. Don't doubt to contact us [here](https://openvidu.discourse.group/c/openvidu-deployment){:target="_blank"}
 
-- Instance boot log: `/var/log/cloud-init-output.log`
-- OpenVidu Server Pro JAR artifact log: `sudo journalctl -u openvidu` (this command will output the log)
+#### Troubleshooting in AWS and Cloudformation
+
+If you're deploying through CloudFormation you need to do this steps:
+
+- **1**. Fill up the form and click next. In Configure stack options under Advanced Options and then in Stack creation options check Disabled under Rollback on failure. This will prevent the instance to be terminated in case of failure. Once you’ve configured this, you’ll be able to access the instance through ssh and recover some files.
+
+<div class="row">
+    <div style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro13" href="/img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="/img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
+    </div>
+</div>
+
+- **2**. Also we will need the parameters you've used to deploy, to check problems in the configuration.
+
+<div class="row">
+    <div style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro14" href="/img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="/img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
+    </div>
+</div>
+
+- **3**. SSH into the instances created and share with us these logs
+
+    - `/var/log/cloud-init.log`
+    - `/var/log/cloud-init-output.log`
+<br><br>
+
+- **4**. Get the log output of openvidu with this command and share with us the file openvidu.log:
+
+    - `journalctl -u openvidu > openvidu.log`
+
+
+#### Troubleshooting Deployment on premise
+
+To troubleshoot problems with deployments on premise you need to do this steps:
+
+- **1**  Provide us `ansible-playbook` logs.
+
+- **2** As in AWS with Cloudformation, SSH in to the OpenVidu machine and provide us Openvidu logs:
+
+    - `journalctl -u openvidu > openvidu.log`
+
 
 <br>
 
