@@ -51,9 +51,9 @@ pages:
 - ['troubleshooting/index.md','Troubleshooting / FAQ']
 - ['releases/index.md','Releases']
 - ['openvidu-pro/index.md','OpenVidu Pro', 'Home']
+- ['openvidu-pro/scalability.md','OpenVidu Pro', 'Scalability']
 - ['openvidu-pro/openvidu-inspector.md','OpenVidu Pro', 'OpenVidu Inspector']
 - ['openvidu-pro/detailed-session-monitoring.md','OpenVidu Pro', 'Detailed session monitoring']
-- ['openvidu-pro/scalability.md','OpenVidu Pro', 'Scalability']
 - ['openvidu-pro/deploying-openvidu-pro.md','OpenVidu Pro', 'Deploying OpenVidu Pro']
 - ['openvidu-pro/REST-API-pro.md','OpenVidu Pro', 'REST API Pro']
 theme: null

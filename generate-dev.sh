@@ -1,4 +1,4 @@
-sudo mkdocs build --clean -f mkdocs-web.yml
+sudo mkdocs build --clean -f mkdocs.yml
 cd ../openvidu.io
 rm -rf docs
 cd ../openvidu.io-docs
