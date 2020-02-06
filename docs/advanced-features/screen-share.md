@@ -14,7 +14,7 @@
 
 ### Chrome >=72, Opera (based on Chrome >=72) and Firefox >=66
 
-To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](/cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
+To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](/docs/cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 var OV = new OpenVidu();
@@ -23,7 +23,7 @@ var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 
 ### Chrome <72 and Opera (based on Chrome <72)
 
-In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](../../api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
+In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](/api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
 
 - `SCREEN_SHARING_NOT_SUPPORTED`: if the client does not support screen sharing.
 - `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome <72 needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
@@ -87,7 +87,7 @@ desktopCapturer.getSources({
 });
 ```
 
-You can check out [openvidu-electron tutorial](/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
+You can check out [openvidu-electron tutorial](/docs/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
 
 <br>
 

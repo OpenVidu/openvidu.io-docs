@@ -1,6 +1,6 @@
 # Switch camera
 
-As a first step, we strongly recommend taking a look at *[Publish/Unpublish stream](/cheatsheet/publish-unpublish/){:target="_blank"}* documentation, as we need to be very clear about those concepts before we address the switching camera operation.
+As a first step, we strongly recommend taking a look at *[Publish/Unpublish stream](/docs/cheatsheet/publish-unpublish/){:target="_blank"}* documentation, as we need to be very clear about those concepts before we address the switching camera operation.
 
 That being said, there are two ways of switching the media source of a published stream:
 
@@ -15,7 +15,7 @@ Native WebAPI allows to replace a MediaStreamTrack on the fly. In OpenVidu Brows
 myPublisher.stream.getRTCPeerConnection().getSenders()[0].replaceTrack(myTrack);
 ```
 
-You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](/../api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} method.
+You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](/api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} method.
 
 <br>
 

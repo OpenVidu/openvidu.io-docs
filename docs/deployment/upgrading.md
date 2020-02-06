@@ -31,34 +31,28 @@
 
 # For AWS deployments
 
-We provide an automated script to easily update the OpenVidu version of your AWS deployment.
+The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation dashboard](https://console.aws.amazon.com/cloudformation){:target="_blank"}** and follow below steps:
 
-#### 1) Connect through *ssh* to your AWS instance
+<div class="row">
+    <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="/img/docs/upgrading/CF_update1.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update1.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="/img/docs/upgrading/CF_update2.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update2.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="/img/docs/upgrading/CF_update3.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update3.png"/></a>
+    </div>
+    <div class="slick-captions">
+      <div class="caption"><p><strong>1)</strong> Click on <strong>Update</strong> button</p></div>
+      <div class="caption"><p><strong>2)</strong> Select <strong>Use current template</strong> and click on <strong>Next</strong></p></div>
+      <div class="caption"><p><strong>3)</strong> Change field <strong>OpenVidu Version</strong> inside OpenVidu Configuration section and at the bottom of the page click on <strong>Next 🡆 Next 🡆 Update stack</stack></p></div>
+    </div>
+</div>
 
-```console
-ssh -i /path/to/your/private/key/file.pem ubuntu@12.34.56.78
-```
+<br>
 
-#### 2) Download the script from GitHub
+After performing the steps above, you will be redirect to Events page, where you will see a new `UPDATE_IN_PROGRESS` status. Wait until `UPDATE_COMPLETE` and your new version of OpenVidu will be ready.
 
-```console
-wget https://raw.githubusercontent.com/OpenVidu/adm-scripts/master/scripts/openvidu_update_stack.sh
-sudo chmod 777 openvidu_update_stack.sh
-```
+<br>
 
-#### 3) Run the script, indicating the OpenVidu version you want to upgrade to
-
-Better do this as the *root* user. **WARNING**: running the script will stop OpenVidu Server. After upgrading all the services, it will be automatically restarted.
-
-```console
-sudo -s
-export OV_NEW_VERSION=2.8.0
-./openvidu_update_stack.sh
-```
-
-#### 4) Update _openvidu-browser_ library version in your clients
-
-Comply version compatibility according to **[Releases](/releases){:target="_blank"}** page.
+> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](/docs/releases){:target="_blank"}** page
 
 <br>
 
@@ -74,7 +68,7 @@ First one is a Java process that may be killed with a simple `kill -9 PID_NUMBER
 
 #### 2) Upgrade kurento-media-server package and replace openvidu-server JAR file for the new version
 
-It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](/releases){:target="_blank"}** page.
+It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](/docs/releases){:target="_blank"}** page.
 You should be able to reinstall a new version of KMS while maintaining all the configuration files with these commands:
 
 **For Ubuntu Xenial 16.04**  *(do not run below command if you run this one)*
@@ -108,10 +102,64 @@ wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-
 
 #### 3) Restart OpenVidu Server and Kurento Media Server services
 
-Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](/deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
+Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](/docs/deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
 
-#### 4) Update _openvidu-browser_ library version in your clients
+<br>
 
-Comply version compatibility according to **[Releases](/releases){:target="_blank"}** page.
+> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](/docs/releases){:target="_blank"}** page
 
 <br><br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
+
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script>
+    $('.slick-captions').slick({
+      asNavFor: '.upgrade-cf-steps',
+      arrows: false,
+      infinite: false,
+      speed: 200,
+      fade: true,
+      dots: false
+    });
+    $('.upgrade-cf-steps').slick({
+      asNavFor: '.slick-captions',
+      autoplay: false,
+      arrows: true,
+      prevArrow: '<div class="slick-btn slick-btn-prev"><i class="icon ion-chevron-left"></i></div>',
+      nextArrow: '<div class="slick-btn slick-btn-next"><i class="icon ion-chevron-right"></i></div>',
+      infinite: false,
+      dots: true,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+          slidesToShow: 1
+        }
+      },
+    ]
+    });
+</script>

@@ -66,7 +66,7 @@ git clone https://github.com/OpenVidu/openvidu-call-react.git
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
@@ -91,9 +91,9 @@ npm start
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/docs/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/docs/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 
 

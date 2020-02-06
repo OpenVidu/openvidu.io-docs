@@ -3,7 +3,7 @@
 
 A client-side only application built with **Electron**. It can be compiled into a native desktop application for **Windows**, **OSX** and **Linux**. It includes [electron-forge](https://www.electronforge.io/){:target="_blank"} as a dependency so the compilation process is as simple as running a single command: `npm run make`
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being an Electron app and being a little more complex for OpenVidu starters.
+If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being an Electron app and being a little more complex for OpenVidu starters.
 
 ## Understanding this tutorial
 
@@ -22,7 +22,7 @@ OpenVidu is composed by the three modules displayed on the image above.
 1) You will need **Node** and **NPM**. Install them with the following commands
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
@@ -50,7 +50,7 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/docs/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
 ## Understanding the code
 
@@ -166,7 +166,7 @@ getToken(mySessionId).then(token => {
 </div>
 </div>
 
-In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/docs/reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](/docs/reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](/docs/reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
   - First HTTP request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second ajax request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)

@@ -36,7 +36,7 @@ OpenVidu recording module may use a Docker image that needs to be downloaded fro
 `Exception connecting to Docker daemon: you need Docker installed in this machine to enable OpenVidu recorder service`
 
 <br>
-> **[OpenVidu AWS deployment](/deployment/deploying-aws/){:target="_blank"} already includes the Docker image for recording service and is always launched with recording module enabled. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server. You can go straight to [step 3](#3-configure-your-sessions-to-be-recorded)**
+> **[OpenVidu AWS deployment](/docs/deployment/deploying-aws/){:target="_blank"} already includes the Docker image for recording service and is always launched with recording module enabled. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server. You can go straight to [step 3](#3-configure-your-sessions-to-be-recorded)**
 
 <br>
 
@@ -58,7 +58,7 @@ openvidu-server.jar
 
 <br>
 
-> There are other environment variables related to recordings configuration that may be set. To see the full list, visit [OpenVidu Server configuration parameters](/reference-docs/openvidu-server-params/){:target="_blank"}
+> There are other environment variables related to recordings configuration that may be set. To see the full list, visit [OpenVidu Server configuration parameters](/docs/reference-docs/openvidu-server-params/){:target="_blank"}
 
 #### For OpenVidu Server Docker image _(development environment)_
 
@@ -99,7 +99,7 @@ In both cases you can stop the recording manually, and every recording will alwa
 
 <br>
 
-You can use [REST API](/reference-docs/REST-API/){:target="_blank"} or any of the server SDKs ([openvidu-java-client](/reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](/reference-docs/openvidu-node-client/){:target="_blank"}) to manage your recorded sessions.
+You can use [REST API](/docs/reference-docs/REST-API/){:target="_blank"} or any of the server SDKs ([openvidu-java-client](/docs/reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](/docs/reference-docs/openvidu-node-client/){:target="_blank"}) to manage your recorded sessions.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -111,13 +111,13 @@ You can use [REST API](/reference-docs/REST-API/){:target="_blank"} or any of th
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-1. Initialize your sessions with this POST method: [POST /api/sessions](/reference-docs/REST-API#post-apisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+1. Initialize your sessions with this POST method: [POST /api/sessions](/docs/reference-docs/REST-API#post-apisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
 
 2. If you have configured your session with `"recordingMode": "MANUAL"`
 
-    - Start the recording with this POST method: [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"}<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
+    - Start the recording with this POST method: [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"}<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
 
-    - Stop the recording with this POST method: [POST /api/recordings/stop](/reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
+    - Stop the recording with this POST method: [POST /api/recordings/stop](/docs/reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
 
 </div>
 
@@ -132,7 +132,7 @@ You can use [REST API](/reference-docs/REST-API/){:target="_blank"} or any of th
             .build();
         Session session = openVidu.createSession(properties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/../api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
 
         RecordingProperties properties = new RecordingProperties.Builder()
             .outputMode(Recording.OutputMode.COMPOSED)
@@ -154,7 +154,7 @@ You can use [REST API](/reference-docs/REST-API/){:target="_blank"} or any of th
         };
         var mySession = openvidu.createSession(properties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/../api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
 
         var recording;
 
@@ -197,7 +197,7 @@ You can use the default layout, that will evenly distribute each stream in the a
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
 
 </div>
 
@@ -266,7 +266,7 @@ Every publisher stream is recorded in its own file. The final result is a ZIP fi
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameter `{"outputMode:"INDIVIDUAL"}`
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameter `{"outputMode:"INDIVIDUAL"}`
 
 </div>
 
@@ -383,7 +383,7 @@ By default recordings will be generated with both audio and video, but you can c
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
 
 </div>
 
@@ -431,7 +431,7 @@ openvidu.startRecording(sessionId, {
 
 # Automatic stop of recordings
 
-Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `openvidu.recording.autostop-timeout`](/reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
+Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `openvidu.recording.autostop-timeout`](/docs/reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
 
 - For any recorded session, if last user disconnects from the session
 
@@ -455,7 +455,7 @@ You can always manually stop any recording at any time:
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-[POST /api/recordings/stop/&lt;RECORDING_ID&gt;](/reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
+[POST /api/recordings/stop/&lt;RECORDING_ID&gt;](/docs/reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
 
 </div>
 
@@ -575,7 +575,7 @@ openvidu/openvidu-server-kms:2.11.0
 > **WARNING**: remember to add the `-v` option mounting the path defined with `openvidu.recording.custom-layout`
 
 <br>
-**[OpenVidu AWS deployment](/deployment/deploying-aws/){:target="_blank"}**
+**[OpenVidu AWS deployment](/docs/deployment/deploying-aws/){:target="_blank"}**
 
 You must store your custom layouts in the server under default path `/opt/openvidu/custom-layout`
 
@@ -595,7 +595,7 @@ You must store your custom layouts in the server under default path `/opt/openvi
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
 
 </div>
 
@@ -646,7 +646,7 @@ You can implement as many custom recording layouts as you want. Simply store eac
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
 
 </div>
 
@@ -718,7 +718,7 @@ OpenVidu allows you to configure a recording to use a custom layout deployed out
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"}`
+When starting the recording of a session with method [POST /api/recordings/start](/docs/reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"}`
 
 </div>
 
@@ -772,7 +772,7 @@ Then, by using your OpenVidu application, start a session and as many publishers
 Being:
 
 - `SECRET`: parameter `openvidu.secret` configured when launching openvidu-server
-- `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
+- `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](/docs/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
 - `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](http://localhost:4000/docs/reference-docs/REST-API/#post-apisessions){:target="_blank"}, [openvidu-java-client](http://localhost:4000/docs/reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](http://localhost:4000/docs/reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 
 <br>
@@ -822,7 +822,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 
 # Local recording in the browser
 
-OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](../../api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
+OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](/api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
 
 <br>
 

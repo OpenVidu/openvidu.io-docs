@@ -7,7 +7,7 @@ OpenVidu Server offers a WebSocket endpoint at path `/openvidu` where clients mu
 - **Call methods**: clients are able to directly call OpenVidu Server methods. Some of them will only be available if the user has the proper role inside the session.
 - **Receive server events**: OpenVidu Server will send session events to clients connected to that specific session.
 
-OpenVidu hides all this implementation with _OpenVidu Browser_ JavaScript library, that can be used in all **[officially supported platforms](/troubleshooting/#8-what-platforms-are-supported-by-openvidu){:target="_blank"}**.
+OpenVidu hides all this implementation with _OpenVidu Browser_ JavaScript library, that can be used in all **[officially supported platforms](/docs/troubleshooting/#8-what-platforms-are-supported-by-openvidu){:target="_blank"}**.
 But of course it would be possible to develop an SDK implementing this WebSocket based RPC protocol using any desired language or technology.
 
 For example, **[openvidu-android](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-android){:target="_blank"}** tutorial is a native Android app, so it cannot make use of _OpenVidu Browser_ JavaScript library. The solution to this problem: the application internally implements the OpenVidu Server RPC protocol. But to do so, it is necessary to be very clear about what operations-responses and what server events are defined in OpenVidu Server.

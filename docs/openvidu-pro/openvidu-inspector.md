@@ -70,9 +70,9 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
 > This product includes GeoLite2 data created by MaxMind, available from <a href="http://www.maxmind.com" target="_blank">http://www.maxmind.com</a>
 
 #### Programmatic reset
-OpenVidu Pro supports programmatic reset. You may call a [REST API method](/openvidu-pro/REST-API-pro#post-prorestart){:target="_blank"} to restart your OpenVidu Server process. This way you can:
+OpenVidu Pro supports programmatic reset. You may call a [REST API method](/docs/openvidu-pro/REST-API-pro#post-prorestart){:target="_blank"} to restart your OpenVidu Server process. This way you can:
 
-- A) Change OpenVidu Server [configuration properties](/reference-docs/openvidu-server-params/){:target="_blank"}
+- A) Change OpenVidu Server [configuration properties](/docs/reference-docs/openvidu-server-params/){:target="_blank"}
 - B) Easily clean up any garbage process or file that may have been stranded
 
 You may also restart OpenVidu Server Pro directly in OpenVidu Inspector:<br><br>

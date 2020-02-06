@@ -1,7 +1,7 @@
 # openvidu-mvc-node
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-mvc-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Node backend and a traditional MVC frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-node](/tutorials/openvidu-js-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Embedded JavaScript](https://ejs.co/){:target="_blank"} is the template engine of choice for this tutorial.
+A secure OpenVidu sample app with a Node backend and a traditional MVC frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-js-node](/docs/tutorials/openvidu-js-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with MVC web architectures for their frontends. [Embedded JavaScript](https://ejs.co/){:target="_blank"} is the template engine of choice for this tutorial.
 
 ## Understanding this tutorial
 
@@ -27,7 +27,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 1) You will need _node_ to execute the app. You can install them with:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
@@ -49,9 +49,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <br>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/docs/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/docs/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

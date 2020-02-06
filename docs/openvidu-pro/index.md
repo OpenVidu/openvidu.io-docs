@@ -27,9 +27,9 @@ OpenVidu is an **open source project**, and for sure will remain this way in the
 
 OpenVidu Pro consists of different modules working over OpenVidu Community Edition. For now OpenVidu Pro offers:
 
-- **[OpenVidu Inspector](/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and flexible way to monitor your sessions.
-- **[Scalability](/openvidu-pro/scalability/)**: launch OpenVidu with multiple media server instances to increase the number and size of video sessions.
+- **[OpenVidu Inspector](/docs/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
+- **[Detail session monitoring](/docs/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and flexible way to monitor your sessions.
+- **[Scalability](/docs/openvidu-pro/scalability/)**: launch OpenVidu with multiple media nodes instances to increase the number and size of video sessions.
 
 <div style="
     display: table;
@@ -136,7 +136,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Manual scalability <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers manually">
+                    title="Increment or decrement the number of Media Nodes manually">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
@@ -145,7 +145,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Elasticity<i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers automatically according to user load">
+                    title="Increment or decrement the number of Media Nodes automatically according to user load">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -155,7 +155,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Fault Tolerance <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="If a media server crashes, redirect automatically all streams to a new instance">
+                    title="If a Media Node crashes, redirect automatically all streams to a new instance">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -165,7 +165,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">P2P sessions <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Support for direct P2P sessions without a media server"></th>
+                    title="Support for direct P2P sessions without a Media Node"></th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
@@ -244,8 +244,8 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
 
 You can deploy OpenVidu Pro:
 
-- On Amazon Web Services: **[Deploying OpenVidu Pro on AWS](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-aws){:target="_blank"}**
-- On premise using your own infrastructure: **[Deploying OpenVidu Pro on premise](/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"}**
+- On Amazon Web Services: **[Deploying OpenVidu Pro on AWS](/docs/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-aws){:target="_blank"}**
+- On premise using your own infrastructure: **[Deploying OpenVidu Pro on premise](/docs/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"}**
 
 <br>
 

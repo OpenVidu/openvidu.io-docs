@@ -4,7 +4,8 @@ Developing OpenVidu
 
 - **[Prerequisites](#prerequisites)**
 - **[Compiling OpenVidu Server](#compiling-openvidu-server)**
-    - **[Compiling OpenVidu Server dashboard](#compiling-openvidu-server-dashboard)**
+    - [Compiling OpenVidu Server dashboard](#compiling-openvidu-server-dashboard)
+- **[Compiling OpenVidu Browser](#compiling-openvidu-browser)**
 - **[Running KMS](#running-kms)**
 - **[Example: setup for development](#example-setup-for-development)**
 - **[Example: setup for advanced development](#example-setup-for-advanced-development-share-the-app-through-your-network)**
@@ -15,7 +16,7 @@ Developing OpenVidu
 | ------------- | --------------- |---------------------------------------- |
 | Java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
 | Maven         | `mvn -v`        | `sudo apt-get install -y maven`         |
-| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 
 ## Compiling OpenVidu Server
 

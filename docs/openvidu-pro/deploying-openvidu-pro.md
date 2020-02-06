@@ -80,7 +80,7 @@ Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUserna
     </div>
 </div>
 
-> If you want to enable [OpenVidu Webhook module](/reference-docs/openvidu-server-webhook/){:target="_blank"} by setting **OpenViduWebhook** field to true, your endpoint defined in field **OpenViduWebhookEndpoint** will probably be secured in some way. The syntax for the webhook header (field **OpenViduWebhookHeaders**) should be used to provide the security credentials. For example:
+> If you want to enable [OpenVidu Webhook module](/docs/reference-docs/openvidu-server-webhook/){:target="_blank"} by setting **OpenViduWebhook** field to true, your endpoint defined in field **OpenViduWebhookEndpoint** will probably be secured in some way. The syntax for the webhook header (field **OpenViduWebhookHeaders**) should be used to provide the security credentials. For example:
 >
 > `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
 >
@@ -137,7 +137,7 @@ How many Kurento Media Servers do you want to deploy? Default to 1. Keep in mind
 
 #### Other parameters
 
-Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshooting/#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
+Choose the size of your instance (see [OpenVidu performance FAQ](/docs/troubleshooting/#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
 
 You can choose different sizes for OpenVidu Server machine and KMS machines.
 
@@ -169,7 +169,7 @@ After clicking the checkbox, you can now finally press **Create stack** button a
 
 Now you just have to wait until Stack status is set to `CREATE_COMPLETE`. Then you will have a production-ready setup with all the advanced features provided by OpenVidu Pro.
 
-> If status reaches `CREATE_FAILED`, check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
+> If status reaches `CREATE_FAILED`, check out [this FAQ](/docs/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
 
 <br>
 
@@ -181,11 +181,11 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
-To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443`
+To consume [OpenVidu REST API](/docs/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443`
 
 <br>
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/docs/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/docs/releases#2100){:target="_blank"}
 
 <br>
 
@@ -247,7 +247,7 @@ You must have **at least 2 different instances** with a clean installation of **
 - One instance for the **OpenVidu Server Pro Node**
 - One instance for a **Media Node**
 
-You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](/openvidu-pro/scalability/){:target="_blank"} section for further details.
+You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](/docs/openvidu-pro/scalability/){:target="_blank"} section for further details.
 
 Besides, be sure to meet the following criteria in your cluster instances:
 
@@ -343,7 +343,7 @@ In `./group_vars/all` file you will find all the parameters used to configure th
 
 <br>
 
-> **WARNING**: go through all variables carefully as some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about many of them check out [OpenVidu Server params section](/reference-docs/openvidu-server-params/){:target="_blank"}
+> **WARNING**: go through all variables carefully as some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about many of them check out [OpenVidu Server params section](/docs/reference-docs/openvidu-server-params/){:target="_blank"}
 
 <br>
 
@@ -389,13 +389,13 @@ openvidu-server        : ok=53  changed=43  unreachable=0   failed=0   skipped=1
 
 Once the playbook command has successfully finished, you will have OpenVidu Pro services accessible through the following URLs:
 
-- **OpenVidu Pro Inspector** ([more info](/openvidu-pro/openvidu-inspector/){:target="_blank"}) : `https://YOUR_DNS_NAME/inspector`
-- **OpenVidu Pro Kibana dashboard** ([more info](/openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
-- **OpenVidu Pro REST endpoint** ([more info](/openvidu-pro/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
+- **OpenVidu Pro Inspector** ([more info](/docs/openvidu-pro/openvidu-inspector/){:target="_blank"}) : `https://YOUR_DNS_NAME/inspector`
+- **OpenVidu Pro Kibana dashboard** ([more info](/docs/openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
+- **OpenVidu Pro REST endpoint** ([more info](/docs/openvidu-pro/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
 
 <br>
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/docs/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/docs/releases#2100){:target="_blank"}
 
 <br>
 

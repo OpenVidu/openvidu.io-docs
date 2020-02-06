@@ -3,7 +3,7 @@
 
 Adding your own app to OpenVidu AWS deployment
 ------------------
-In order to show how an application that makes use of OpenVidu might be deployed, here you have a guide to do so in AWS after launching it with [CloudFormation OpenVidu](/deployment/deploying-aws/){:target="_blank"}.
+In order to show how an application that makes use of OpenVidu might be deployed, here you have a guide to do so in AWS after launching it with [CloudFormation OpenVidu](/docs/deployment/deploying-aws/){:target="_blank"}.
 
 Once you have checked that your AWS OpenVidu Server is up and running, adding your own application to the same instance is not hard. Follow these steps:
   
@@ -11,11 +11,11 @@ Once you have checked that your AWS OpenVidu Server is up and running, adding yo
 
 In Linux/Mac you can use [scp](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html#AccessingInstancesLinuxSCP){:target="_blank"} command. In Windows (or If you prefer a more friendly GUI) you can use [FileZilla](https://beamtic.com/connect-to-aws-ec2-with-ftp){:target="_blank"}. Furthermore, if your app is stored in a GitHub repo, you can directly clone it once you connect to your instance.
 
-Remember that the key will be the same you indicated when configuring the [CloudFormation fields](/deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. 
+Remember that the key will be the same you indicated when configuring the [CloudFormation fields](/docs/deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. 
 
 #### 2. Connect to your EC2 instance through SSH
 
-Remember that the key will be the same you indicated when configuring the [CloudFormation fields](/deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. In case of doubt, check [AWS docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html){:target="_blank"}.
+Remember that the key will be the same you indicated when configuring the [CloudFormation fields](/docs/deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. In case of doubt, check [AWS docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html){:target="_blank"}.
 
 #### 3. Configure your app
 
@@ -79,7 +79,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true          
 
-      > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the _[REST API](/reference-docs/REST-API/){:target="_blank"}_ or _[openvidu-java-client](/reference-docs/openvidu-java-client/){:target="_blank"})_, you will need to use the URL `https://localhost:4443`. _localhost_ because in this case both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/4ea5f6849762bc7eaa501217b145ede0339092e3/openvidu-js-java/src/main/resources/application.properties#L8){:target="_blank"}
+      > To connect your Java app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the _[REST API](/docs/reference-docs/REST-API/){:target="_blank"}_ or _[openvidu-java-client](/docs/reference-docs/openvidu-java-client/){:target="_blank"})_, you will need to use the URL `https://localhost:4443`. _localhost_ because in this case both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-java_ sets this parameter as an environment variable [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/4ea5f6849762bc7eaa501217b145ede0339092e3/openvidu-js-java/src/main/resources/application.properties#L8){:target="_blank"}
             
   - Restart Nginx: `systemctl restart nginx`
   
@@ -144,7 +144,7 @@ Depending on the framework of your app:
           command=/bin/bash /opt/YOUR_LAUNCHER.sh YOUR_APP_PARAM_1 YOUR_APP_PARAM_2 ...
           redirect_stderr=true    
 
-      > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the _[REST API](/reference-docs/REST-API/){:target="_blank"}_ or _[openvidu-node-client](/reference-docs/openvidu-node-client/){:target="_blank"}_), you will need to use the URL `https://localhost:4443`. _localhost_ because in this case both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/4ea5f6849762bc7eaa501217b145ede0339092e3/openvidu-js-node/server.js#L62){:target="_blank"}
+      > To connect your Node app to OpenVidu Server in order to get your sessionIds and tokens (whether you use the _[REST API](/docs/reference-docs/REST-API/){:target="_blank"}_ or _[openvidu-node-client](/docs/reference-docs/openvidu-node-client/){:target="_blank"}_), you will need to use the URL `https://localhost:4443`. _localhost_ because in this case both your app and OpenVidu Server run in the same machine. _4443_ because there's where OpenVidu Server listens for petitions. For example, our tutorial _openvidu-js-node_ expects this parameter as the first argument on launch command [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/4ea5f6849762bc7eaa501217b145ede0339092e3/openvidu-js-node/server.js#L62){:target="_blank"}
           
   - Restart Supervisor: `systemctl restart supervisor`
 
@@ -205,7 +205,7 @@ The best production setup for OpenVidu is having your application deployed in a 
 Once you have deployed OpenVidu and checked that it is up and running, and after setting up your own application in its dedicated server:
 
 - Make sure you know your **OpenVidu Server public IP**. That includes the protocol (`https`), the location and the port. For example: `https://OPENVIDUSERVER_PUBLIC_IP:4443/`. Or if you have set up a domain name you can use it instead of the public ip (this is highly recommended for production setups)
-- Use it in your application server to perform the **[REST](/reference-docs/REST-API/){:target="_blank"}** operations, or to initialize your OpenVidu object if you are making use of **[openvdiu-java-client](/reference-docs/openvidu-java-client/){:target="_blank"}** or **[openvidu-node-client](/reference-docs/openvidu-node-client/){:target="_blank"}** :
+- Use it in your application server to perform the **[REST](/docs/reference-docs/REST-API/){:target="_blank"}** operations, or to initialize your OpenVidu object if you are making use of **[openvdiu-java-client](/docs/reference-docs/openvidu-java-client/){:target="_blank"}** or **[openvidu-node-client](/docs/reference-docs/openvidu-node-client/){:target="_blank"}** :
     - _REST_ operations to `https://OPENVIDUSERVER_PUBLIC_IP:4443/api/METHOD` 
     - _openvidu-java-client_ entrypoint is `new OpenVidu(https://OPENVIDUSERVER_PUBLIC_IP:4443/, OPENVIDU_SECRET)`
     - _openvidu-node-client_ entrypoint is `new OpenVidu(https://OPENVIDUSERVER_PUBLIC_IP:4443/, OPENVIDU_SECRET)` 

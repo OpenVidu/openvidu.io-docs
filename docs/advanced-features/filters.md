@@ -29,7 +29,7 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not enabled right now for OpenVidu >= 2.9.0</strong> due to Ubuntu Bionic support. These affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>
+	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not available for OpenVidu installations in Ubuntu Bionic 18.04</strong>. These affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>
 </div>
 </div>
 
@@ -52,7 +52,7 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When generating a token with operation [POST /api/tokens](/reference-docs/REST-API#post-apitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When generating a token with operation [POST /api/tokens](/docs/reference-docs/REST-API#post-apitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```json  
 {
@@ -87,7 +87,7 @@ String token = session.generateToken(tokenOptions);
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, include in [TokenOptions](/../api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When generating a token, include in [TokenOptions](/api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
 var tokenOptions = {
@@ -107,7 +107,7 @@ session.generateToken(tokenOptions).then(token => { ... });
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](/../api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](/../api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
+Use [PublisherProperties](/api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](/api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
 
 ```javascript
 var OV = new OpenVidu();
@@ -116,8 +116,8 @@ var publisher = OV.initPublisher(
     filter: {
         type: "GStreamerFilter",
         options: {
-	    command: "videoflip method=vertical-flip"
-	}
+            command: "videoflip method=vertical-flip"
+        }
     }
 );
 

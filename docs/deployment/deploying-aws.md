@@ -82,7 +82,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### OpenVidu Configuration
 
-All of these properties configure OpenVidu Server. You have a list of all available properties [here](/reference-docs/openvidu-server-params){:target="_blank"}.
+All of these properties configure OpenVidu Server. You have a list of all available properties [here](/docs/reference-docs/openvidu-server-params){:target="_blank"}.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray">
@@ -146,7 +146,7 @@ No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Creat
 
 **_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_** (between 6-10 minutes).
 
-> If status reaches **CREATE_FAILED**, check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
+> If status reaches **CREATE_FAILED**, check out [this FAQ](/docs/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
 
 #### 6. Access and test your OpenVidu Server through your new IP
 
@@ -162,7 +162,7 @@ You will connect to your OpenVidu dashboard. Credentials to access to it:
 - `OPENVIDUAPP` as username
 - The secret you chose on [Step 4](#openvidu-configuration) as password (field **OpenViduSecret** in the table).
 
-At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/deployment/deploying-app/).
+At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/docs/deployment/deploying-app/).
 
 <br>
 

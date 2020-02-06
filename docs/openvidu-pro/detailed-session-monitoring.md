@@ -37,7 +37,7 @@ This dashboard presents at a glance the status of your recordings. It includes i
 - The total number of recordings per day
 - Average duration and size of your recorded files
 - The distributions of you recordings by duration and size
-- The ratio of recordings according to their output mode ([COMPOSED](/advanced-features/recording/#composed-recording){:target="_blank"} or [INDIVIDUAL](/advanced-features/recording/#individual-stream-recording){:target="_blank"} recordings) and their recorded tracks ([audio/video recordings](/advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"})
+- The ratio of recordings according to their output mode ([COMPOSED](/docs/advanced-features/recording/#composed-recording){:target="_blank"} or [INDIVIDUAL](/docs/advanced-features/recording/#individual-stream-recording){:target="_blank"} recordings) and their recorded tracks ([audio/video recordings](/docs/advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"})
 
 <br>
 
@@ -82,7 +82,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <div id="list-290" class="version-container" markdown="1" style="margin-right: 5px">
 
-- `cdr`: event of Call Detail Record. Can take multiple forms according to the type of event (see [OpenVidu CDR](/reference-docs/openvidu-server-cdr/){:target="_blank"})
+- `cdr`: event of Call Detail Record. Can take multiple forms according to the type of event (see [OpenVidu CDR](/docs/reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
 - `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Pro host
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Kurento Media Server
@@ -532,7 +532,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 > **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
 > To sum up, this is just a denormalization of the `sessionSummary` document, so Elasticsearch requests and Kibana visualizations are more flexible and easier to accomplish
 > ---
-> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](/reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}). There you will have all properties of the recording well defined
+> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](/docs/reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}). There you will have all properties of the recording well defined
 
 <br>
 

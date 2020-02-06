@@ -1,64 +1,77 @@
+strict: true
 site_name: OpenVidu Docs
-pages:
-- ['home/index.md','What is OpenVidu?']
-- ['tutorials/index.md','Tutorials', 'Intro']
-- ['tutorials/openvidu-webcomponent.md','Tutorials', 'openvidu-webcomponent']
-- ['tutorials/openvidu-hello-world.md','Tutorials', 'openvidu-hello-world']
-- ['tutorials/openvidu-insecure-js.md','Tutorials', 'openvidu-insecure-js']
-- ['tutorials/openvidu-insecure-angular.md','Tutorials', 'openvidu-insecure-angular']
-- ['tutorials/openvidu-library-angular.md','Tutorials', 'openvidu-library-angular']
-- ['tutorials/openvidu-insecure-react.md','Tutorials', 'openvidu-insecure-react']
-- ['tutorials/openvidu-library-react.md','Tutorials', 'openvidu-library-react']
-- ['tutorials/openvidu-android.md','Tutorials', 'openvidu-android']
-- ['tutorials/openvidu-ionic.md','Tutorials', 'openvidu-ionic']
-- ['tutorials/openvidu-react-native.md','Tutorials', 'openvidu-react-native']
-- ['tutorials/openvidu-electron.md','Tutorials', 'openvidu-electron']
-- ['tutorials/openvidu-js-java.md','Tutorials', 'openvidu-js-java']
-- ['tutorials/openvidu-mvc-java.md','Tutorials', 'openvidu-mvc-java']
-- ['tutorials/openvidu-js-node.md','Tutorials', 'openvidu-js-node']
-- ['tutorials/openvidu-mvc-node.md','Tutorials', 'openvidu-mvc-node']
-- ['demos/openvidu-getaroom.md','Demos', 'openvidu-getaroom']
-- ['demos/openvidu-call.md','Demos', 'openvidu-call']
-- ['demos/openvidu-call-react.md','Demos', 'openvidu-call-react']
-- ['demos/openvidu-call-ionic.md','Demos', 'openvidu-call-ionic']
-- ['demos/openvidu-classroom.md','Demos', 'openvidu-classroom']
-- ['cheatsheet/join-session.md', 'Cheatsheet', 'Join a session']
-- ['cheatsheet/leave-session.md', 'Cheatsheet', 'Leave a session']
-- ['cheatsheet/subscribe-unsubscribe.md', 'Cheatsheet', 'Subscribe/Unsubscribe from a stream']
-- ['cheatsheet/publish-unpublish.md', 'Cheatsheet', 'Publish/Unpublish a stream']
-- ['cheatsheet/mute-audio-video.md', 'Cheatsheet', 'Mute/Unmute audio and video']
-- ['cheatsheet/manage-videos.md', 'Cheatsheet', 'Manage video players']
-- ['cheatsheet/share-data.md', 'Cheatsheet', 'Share data between users']
-- ['cheatsheet/send-messages.md', 'Cheatsheet', 'Send text messages']
-- ['advanced-features/recording.md', 'Advanced features', 'Recording']
-- ['advanced-features/screen-share.md', 'Advanced features', 'Screen share']
-- ['advanced-features/speech-detection.md', 'Advanced features', 'Speech detection']
-- ['advanced-features/filters.md', 'Advanced features', 'Voice and video filters']
-- ['advanced-features/switch-camera.md', 'Advanced features', 'Switch camera']
-- ['reference-docs/openvidu-browser.md','Reference Documentation', 'openvidu-browser API']
-- ['reference-docs/openvidu-java-client.md','Reference Documentation', 'openvidu-java-client API']
-- ['reference-docs/openvidu-node-client.md','Reference Documentation', 'openvidu-node-client API']
-- ['reference-docs/REST-API.md','Reference Documentation', 'REST  API']
-- ['reference-docs/openvidu-server-params.md','Reference Documentation', 'OpenVidu Server configuration']
-- ['reference-docs/openvidu-server-cdr.md','Reference Documentation', 'OpenVidu Server CDR']
-- ['reference-docs/openvidu-server-webhook.md','Reference Documentation', 'OpenVidu Server Webhook']
-- ['deployment/deploying-aws.md','Deployment', 'Deploying OpenVidu on AWS']
-- ['deployment/deploying-ubuntu.md','Deployment', 'Deploying OpenVidu on Ubuntu']
-- ['deployment/deploying-app.md','Deployment', 'Deploying your OpenVidu app']
-- ['deployment/upgrading.md','Deployment', 'Upgrading OpenVidu']
-- ['developing/index.md','Contribute', 'Developing OpenVidu']
-- ['developing/rpc.md','Contribute', 'OpenVidu Server RPC protocol']
-- ['troubleshooting/index.md','Troubleshooting / FAQ']
-- ['releases/index.md','Releases']
-- ['openvidu-pro/index.md','OpenVidu Pro', 'Home']
-- ['openvidu-pro/scalability.md','OpenVidu Pro', 'Scalability']
-- ['openvidu-pro/openvidu-inspector.md','OpenVidu Pro', 'OpenVidu Inspector']
-- ['openvidu-pro/detailed-session-monitoring.md','OpenVidu Pro', 'Detailed session monitoring']
-- ['openvidu-pro/deploying-openvidu-pro.md','OpenVidu Pro', 'Deploying OpenVidu Pro']
-- ['openvidu-pro/REST-API-pro.md','OpenVidu Pro', 'REST API Pro']
-theme: null
-theme_dir: 'custom_theme'
+use_directory_urls: true
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
+nav:
+- What is OpenVidu?: home/index.md
+- Tutorials:
+  - Intro: tutorials/index.md
+  - openvidu-webcomponent: tutorials/openvidu-webcomponent.md
+  - openvidu-hello-world: tutorials/openvidu-hello-world.md
+  - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
+  - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
+  - openvidu-library-angular: tutorials/openvidu-library-angular.md
+  - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
+  - openvidu-library-react: tutorials/openvidu-library-react.md
+  - openvidu-android: tutorials/openvidu-android.md
+  - openvidu-ionic: tutorials/openvidu-ionic.md
+  - openvidu-react-native: tutorials/openvidu-react-native.md
+  - openvidu-electron: tutorials/openvidu-electron.md
+  - openvidu-js-java: tutorials/openvidu-js-java.md
+  - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
+  - openvidu-js-node: tutorials/openvidu-js-node.md
+  - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
+- Demos:
+  - openvidu-getaroom: demos/openvidu-getaroom.md
+  - openvidu-call: demos/openvidu-call.md
+  - openvidu-call-react: demos/openvidu-call-react.md
+  - openvidu-call-ionic: demos/openvidu-call-ionic.md
+  - openvidu-classroom: demos/openvidu-classroom.md
+- Cheatsheet:
+  - Join a session: cheatsheet/join-session.md
+  - Leave a session: cheatsheet/leave-session.md
+  - Subscribe/Unsubscribe from a stream: cheatsheet/subscribe-unsubscribe.md
+  - Publish/Unpublish a stream: cheatsheet/publish-unpublish.md
+  - Mute/Unmute audio and video: cheatsheet/mute-audio-video.md
+  - Manage video players: cheatsheet/manage-videos.md
+  - Share data between users: cheatsheet/share-data.md
+  - Send text messages: cheatsheet/send-messages.md
+- Advanced features:
+  - Recording: advanced-features/recording.md
+  - Screen share: advanced-features/screen-share.md
+  - Speech detection: advanced-features/speech-detection.md
+  - Voice and video filters: advanced-features/filters.md
+  - Switch camera: advanced-features/switch-camera.md
+- Reference Documentation:
+  - openvidu-browser API: reference-docs/openvidu-browser.md
+  - openvidu-java-client API: reference-docs/openvidu-java-client.md
+  - openvidu-node-client API: reference-docs/openvidu-node-client.md
+  - REST API: reference-docs/REST-API.md
+  - OpenVidu Server configuration: reference-docs/openvidu-server-params.md
+  - OpenVidu Server CDR: reference-docs/openvidu-server-cdr.md
+  - OpenVidu Server Webhook: reference-docs/openvidu-server-webhook.md
+- Deployment:
+  - Deploying OpenVidu on AWS: deployment/deploying-aws.md
+  - Deploying OpenVidu on Ubuntu: deployment/deploying-ubuntu.md
+  - Deploying your OpenVidu app: deployment/deploying-app.md
+  - Upgrading OpenVidu: deployment/upgrading.md
+- Contribute:
+  - Developing OpenVidu: developing/index.md
+  - OpenVidu Server RPC protocol: developing/rpc.md
+- Troubleshooting / FAQ: troubleshooting/index.md
+- Releases: releases/index.md
+- OpenVidu Pro:
+  - Home: openvidu-pro/index.md
+  - Scalability: openvidu-pro/scalability.md
+  - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
+  - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
+  - Deploying OpenVidu Pro: openvidu-pro/deploying-openvidu-pro.md
+  - REST API Pro: openvidu-pro/REST-API-pro.md
+docs_dir: docs
+site_dir: ../openvidu.io/docs/
+theme:
+    name: mkdocs
+    custom_dir: custom_theme
 
 markdown_extensions:
   - markdown.extensions.extra

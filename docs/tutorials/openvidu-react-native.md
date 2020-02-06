@@ -3,7 +3,7 @@
 
 A client-side only application built with **React Native** framework using React and JavaScript. It can be compiled into a **native Android app**, a **native iOS app** .
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being a native app and being a little more complex for OpenVidu starters.
+If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being a native app and being a little more complex for OpenVidu starters.
 
 <div style="
     display: table;
@@ -74,7 +74,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) You will need **Node 8.3 ** or newer, **NPM**, **React Native CLI** to serve the app. Install them with the following command
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g react-native-cli
 ```
@@ -412,12 +412,12 @@ this.getToken().then((token) => {
 });
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `fetch` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/docs/reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](/docs/reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](/docs/reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `fetch` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
   - First request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-react-native/App.js#L268){:target="_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-react-native/App.js#L390){:target="_blank"}.
 
 ---
 
