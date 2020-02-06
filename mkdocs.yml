@@ -1,4 +1,4 @@
-strict: true
+strict: false
 site_name: OpenVidu Docs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 nav:
