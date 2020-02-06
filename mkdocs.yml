@@ -1,6 +1,5 @@
 strict: true
 site_name: OpenVidu Docs
-use_directory_urls: true
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 nav:
 - What is OpenVidu?: home/index.md
@@ -68,7 +67,6 @@ nav:
   - Deploying OpenVidu Pro: openvidu-pro/deploying-openvidu-pro.md
   - REST API Pro: openvidu-pro/REST-API-pro.md
 docs_dir: docs
-site_dir: ../openvidu.io/docs/
 theme:
     name: mkdocs
     custom_dir: custom_theme
