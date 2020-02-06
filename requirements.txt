@@ -1,5 +1,5 @@
 # requirements.txt
-mkdocs==0.16.3
+mkdocs==1.0.4
 # mkdocs-bootstrap==0.1.1
 # mkdocs-bootswatch==0.1.0
 # markdown>=2.3.1,<2.5
