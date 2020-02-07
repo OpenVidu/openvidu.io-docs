@@ -173,7 +173,7 @@ sudo npm link
 **4)** `openvidu/`
 
 ```bash
-mvn -DskipTests=true in{:target="_blank"}stall
+mvn -DskipTests=true install
 ```
 
 **5)** `openvidu/openvidu-testapp/`
@@ -201,7 +201,7 @@ At these point, you can start modifying *openvidu-testapp*, *openvidu-browser* o
  - **_openvidu-testapp_** :  the "ng serve" command will take care of refreshing the browser's page whenever any change takes place
 
  - **_openvidu-browser_** : after modifying any typescript file, you will need to run the following command to update your changes:
- 
+
       */openvidu/openvidu-browser*:  `npm run build`
 
  - **_openvidu-server_** : after modifying any file, there is no other alternative but to re-launch the java application if you want to update your changes
