@@ -4,14 +4,63 @@ title: OpenVidu Documentation{% if page.title %} - {{ page.title }}{% endif %}
 active: documentation
 ---
 
-<script src="/js/plugins/jquery.min.js"></script>
-
 <link rel="stylesheet" href="/css/syntax.css" />
 <script src="/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="/js/plugins/jquery.min.js"></script>
+<script src="/js/perfect-scrollbar.min.js"></script>
+<link rel="stylesheet" href="/css/perfect-scrollbar.css" />
+
+<div id="doc-container" class="container text-justify">
+	<div id="sticky-menu" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+
+		{# SIDE NAV, TOGGLES ON MOBILE #}
+		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+			<div class="wy-menu wy-menu-vertical" role="navigation" aria-label="main navigation">
+				<div id="site-menu-title">
+					<h3>Explore docs</h3>
+					<hr>
+				</div>
+				<ul id="menu-list">
+					{% for nav_item in nav %} {% if nav_item.title != "**HIDDEN**" %}
+					<li>
+						<ul class="top-ul {% if nav_item.active%}current{%endif%}">{% include "toc.html" %}</ul>
+					</li>
+					{% endif %} {% endfor %}
+				</ul>
+			</div>
+			&nbsp;
+		</nav>
+	</div>
+
+	<section class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+		{# PAGE CONTENT #}
+		<div>
+			<div>
+
+				<div role="main">
+					<div class="section">
+						{% block content %} {{ page.content }} {% endblock %}
+					</div>
+				</div>
+				{%- block footer %} {% include "footer.html" %} {% endblock %}
+			</div>
+		</div>
+	</section>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function () {
+
+		const ps = new PerfectScrollbar('#menu-list', {
+			wheelSpeed: 1,
+			wheelPropagation: true,
+			suppressScrollX: true
+		});
+
 		$('li.subnav_drop').find('ul.subnav').hide();
 		$(".subnav").find("li:contains('{{ page.title }}')").each(function (i, e) {
 			var currentElement = $(e);
@@ -26,7 +75,11 @@ active: documentation
 		});
 		$('li.subnav_drop div').click(function (i, e) {
 			//$('li.subnav_drop span').not(this).find('ul.subnav').hide();
-			$(this).parent().find('ul.subnav').toggle();
+			let submenu = $(this).parent().find('ul.subnav');
+			submenu.toggle();
+			submenu.parent().find('span.arrow-up').toggle();
+			submenu.parent().find('span.arrow-down').toggle();
+			ps.update();
 		});
 
 		var minHeight = $('#sticky-menu').outerHeight() + 100;
@@ -35,41 +88,3 @@ active: documentation
 
 	$(".wy-nav-content").find("li:contains('{{ page.title }}')").css('color', 'red');
 </script>
-
-<div id="doc-container" class="container text-justify">
-		<div id="sticky-menu" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-
-			{# SIDE NAV, TOGGLES ON MOBILE #}
-			<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-				<div class="wy-menu wy-menu-vertical" role="navigation" aria-label="main navigation">
-					<div id="site-menu-title">
-						<h3>Explore docs</h3>
-						<hr>
-					</div>
-					<ul id="menu-list" class="current">
-						{% for nav_item in nav %} {% if nav_item.title != "**HIDDEN**" %}
-						<li>
-							<ul>{% include "toc.html" %}</ul>
-						</li>
-						{% endif %} {% endfor %}
-					</ul>
-				</div>
-				&nbsp;
-			</nav>
-		</div>
-
-		<section class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-			{# PAGE CONTENT #}
-			<div>
-				<div>
-
-					<div role="main">
-						<div class="section">
-							{% block content %} {{ page.content }} {% endblock %}
-						</div>
-					</div>
-					{%- block footer %} {% include "footer.html" %} {% endblock %}
-				</div>
-			</div>
-		</section>
-</div>
