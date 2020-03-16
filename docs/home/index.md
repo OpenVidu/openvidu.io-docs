@@ -147,12 +147,22 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
   </div>
   <hr>
-  <div class="row feature-row">
+    <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature15.svg"/>
+      <img class="feature-img icon-img" style="max-height: 160px" src="/img/docs/home/feature16.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
-      <h3 style="text-align: left">Supported plans and professional support</h3>
+      <h3 style="text-align: left">IP cameras</h3>
+      <span class="feature-text">You can receive <a href="/docs/advanced-features/ip-cameras/" target="_blank">IP cameras</a> in OpenVidu. Implementing a surveillance system has never been so easy!</span>
+    </div>
+  </div>
+  <hr>
+  <div class="row feature-row">
+    <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
+      <img class="feature-img icon-img" src="/img/docs/home/feature15.svg"/>
+    </div>
+    <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
+      <h3 style="text-align: right">Supported plans and professional support</h3>
       <span class="feature-text">We offer <a href="/docs/openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="/commercial" target="_blank">Contact us now!</a></span>
     </div>
   </div>

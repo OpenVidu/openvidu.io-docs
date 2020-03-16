@@ -210,7 +210,6 @@ Once you have deployed OpenVidu and checked that it is up and running, and after
     - _openvidu-java-client_ entrypoint is `new OpenVidu(https://OPENVIDUSERVER_PUBLIC_IP:4443/, OPENVIDU_SECRET)`
     - _openvidu-node-client_ entrypoint is `new OpenVidu(https://OPENVIDUSERVER_PUBLIC_IP:4443/, OPENVIDU_SECRET)` 
 
-<br>
 > In the one-server-scenario of the [previous section](#adding-your-own-app-to-openvidu-aws-deployment) the OpenVidu Server public IP would be `https://localhost:4443`, as both OpenVidu Server and your app live in the same host.
 
 <br>

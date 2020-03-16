@@ -10,7 +10,7 @@
 **Ubuntu Xenial 16.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -19,7 +19,7 @@ sudo apt-get -y install kurento-media-server
 **Ubuntu Bionic 18.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -45,9 +45,13 @@ sudo apt-get -y install redis-server
 
 #### 4. File `/etc/kurento/modules/kurento/WebRtcEndpoint.conf.ini`
 ```console
-stunServerAddress=YOUR_MACHINE_PUBLIC_IP
-stunServerPort=3478
+externalAddress=YOUR_MACHINE_PUBLIC_IP
 ```
+
+> You can also add optional parameter `networkInterfaces` to optimize and speed up the negotiation process. It is a comma-separated list with the network interfaces that OpenVidu should only try when negotiating media connections. For example:
+>
+>     externalAddress=YOUR_MACHINE_PUBLIC_IP
+>     networkInterfaces=eth0,enp0s25
 
 #### 5. File `/etc/turnserver.conf`
 ```console
@@ -79,12 +83,10 @@ sudo service kurento-media-server restart
 #### 8. Init Openvidu Server JAR executable
 
 ```console
-java -jar -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server-{VERSION}.jar
+java -jar -Dopenvidu.secret=MY_SECRET -Dopenvidu.publicurl=https://YOUR_MACHINE_PUBLIC_IP:4443/ openvidu-server-{VERSION}.jar
 ```
 
-Being `YOUR_SECRET` the password you want for securing your OpenVidu Server. This will be needed for connecting to OpenVidu Server dashboard and for consuming OpenVidu Server REST API. Keep it safe!
-
-<br>
+Being `MY_SECRET` the password you want for securing your OpenVidu Server. This will be needed for connecting to OpenVidu Server dashboard and for consuming OpenVidu Server REST API. Keep it safe!
 
 > **1)** You will need Java 8 to run OpenVidu Server:
 > 
@@ -101,7 +103,7 @@ Go to [Using your own certificate](#using-your-own-certificate) to add your cert
 
 #### 9. Finally check your server
 
-You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:YOUR_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
+You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:MY_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
 To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, check out [Connecting your app to OpenVidu](/docs/deployment/deploying-app/#connecting-your-external-app-to-openvidu){:target="_blank"}.
 
@@ -155,7 +157,6 @@ In order to use your JKS, just give the proper value to the following OpenVidu S
 java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_keystore.jks -Dserver.ssl.key-store-password=MY_KEYSTORE_SECRET -Dserver.ssl.key-alias=my_cert_alias openvidu-server-2.5.0.jar
 ```
 
-<br>
 > Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/docs/deployment/deploying-aws#4-complete-the-configuration-fields){:target="_blank"}**
 
 <br>

@@ -40,17 +40,15 @@ The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation 
         <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="/img/docs/upgrading/CF_update3.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update3.png"/></a>
     </div>
     <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Click on <strong>Update</strong> button</p></div>
+      <div class="caption"><p><strong>1)</strong> Select your CloudFormation stack and click on <strong>Update</strong> button</p></div>
       <div class="caption"><p><strong>2)</strong> Select <strong>Use current template</strong> and click on <strong>Next</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Change field <strong>OpenVidu Version</strong> inside OpenVidu Configuration section and at the bottom of the page click on <strong>Next 🡆 Next 🡆 Update stack</stack></p></div>
+      <div class="caption"><p><strong>3)</strong> Change field <strong>OpenVidu version</strong> inside "Other configuration" section and at the bottom of the page click on <strong>Next 🡆 Next 🡆 Update stack</stack></p></div>
     </div>
 </div>
 
 <br>
 
 After performing the steps above, you will be redirect to Events page, where you will see a new `UPDATE_IN_PROGRESS` status. Wait until `UPDATE_COMPLETE` and your new version of OpenVidu will be ready.
-
-<br>
 
 > Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](/docs/releases){:target="_blank"}** page
 
@@ -103,8 +101,6 @@ wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-
 #### 3) Restart OpenVidu Server and Kurento Media Server services
 
 Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](/docs/deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
-
-<br>
 
 > Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](/docs/releases){:target="_blank"}** page
 

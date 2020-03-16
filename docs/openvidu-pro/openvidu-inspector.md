@@ -56,6 +56,18 @@ Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. T
 
 <br>
 
+#### Cluster management
+OpenVidu Pro provides clustering features for scalable video sessions. You can manage your cluster from OpenVidu Inspector, launching and dropping Media Nodes with the click of a button to adapt your cluster according to user load.
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro7" href="/img/docs/openvidu-pro/pro17.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro17.png"/></a>
+        <a data-fancybox="gallery-pro7" href="/img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro18.png"/></a>
+    </div>
+</div>
+
+<br>
+
 #### Client geographic location
 OpenVidu Pro is able to locate your clients by city and country to make easier the identification of the users connecting to your sessions. You can consult this property to OpenVidu Server whenever you want with REST API or any server SDK. You also have available this info in OpenVidu Inspector:<br><br>
 
@@ -65,12 +77,10 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
     </div>
 </div>
 
-<br>
-
 > This product includes GeoLite2 data created by MaxMind, available from <a href="http://www.maxmind.com" target="_blank">http://www.maxmind.com</a>
 
 #### Programmatic reset
-OpenVidu Pro supports programmatic reset. You may call a [REST API method](/docs/openvidu-pro/REST-API-pro#post-prorestart){:target="_blank"} to restart your OpenVidu Server process. This way you can:
+OpenVidu Pro supports programmatic reset. You may call a [REST API method](/docs/openvidu-pro/reference-docs/REST-API-pro#post-prorestart){:target="_blank"} to restart your OpenVidu Server process. This way you can:
 
 - A) Change OpenVidu Server [configuration properties](/docs/reference-docs/openvidu-server-params/){:target="_blank"}
 - B) Easily clean up any garbage process or file that may have been stranded

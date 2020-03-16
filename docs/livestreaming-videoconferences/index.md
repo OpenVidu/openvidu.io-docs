@@ -1,5 +1,4 @@
-<h2>Adding videoconference to web and mobile apps</h2>
-<hr>
+# Adding videoconference to web and mobile apps
 
 <h3 id="section-title">Video Conference or Live Streaming</h3>
 <hr>
@@ -658,7 +657,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 Once we have learned the differences between live streaming and video conferences and its subcategories, we will be able to clarify what openvidu is. 
 
 First of all, OpenVidu is an **on premise open and closed source video conferences platform**. This means that OpenVidu is an OpenSource project lisenced under [Apache Lisence v2](https://choosealicense.com/licenses/apache-2.0/){target: "_blank"} and you can use it for free.  
-However, OpenVidu Team have developed [OpenVidu PRO](http://openvidu.io/docs/openvidu-pro/) which consists of different modules working over OpenVidu Community Edition.
+However, OpenVidu Team have developed [OpenVidu PRO](http://openvidu.io/docs/openvidu-pro/) which consists of different modules working over OpenVidu Community Edition (OpenVidu CE).
 
 And secondly, OpenVidu offers **as a service external app videoconference** ([call.openvidu.io](https://call.openvidu.io)) and **on premise external app videoconference** ([OpenVidu Call](https://github.com/OpenVidu/openvidu-call/releases)).
 

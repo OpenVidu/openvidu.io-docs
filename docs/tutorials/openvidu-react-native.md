@@ -13,8 +13,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     margin-top: 30px;
     background-color: #FFFBF1;
     margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -88,8 +87,7 @@ npm start
     margin-top: 30px;
     background-color: #FFFBF1;
     margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -112,8 +110,7 @@ npm start
     margin-top: 30px;
     background-color: #FFFBF1;
     margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;
@@ -136,8 +133,7 @@ npm start
     margin-top: 30px;
     background-color: #FFFBF1;
     margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
     color: #ffb600;

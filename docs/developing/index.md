@@ -1,6 +1,5 @@
-
-Developing OpenVidu
-===================
+<h2 id="section-title">Developing OpenVidu</h2>
+<hr>
 
 - **[Prerequisites](#prerequisites)**
 - **[Compiling OpenVidu Server](#compiling-openvidu-server)**
@@ -9,6 +8,8 @@ Developing OpenVidu
 - **[Running KMS](#running-kms)**
 - **[Example: setup for development](#example-setup-for-development)**
 - **[Example: setup for advanced development](#example-setup-for-advanced-development-share-the-app-through-your-network)**
+
+---
 
 ## Prerequisites
 
@@ -106,7 +107,7 @@ How to *install* and *run* KMS in your development machine (**Ubuntu 16.04** or 
 **Ubuntu Xenial 16.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -115,7 +116,7 @@ sudo apt-get -y install kurento-media-server
 **Ubuntu Bionic 18.04**
 
 ```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.11.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
+sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
 sudo apt-get update
 sudo apt-get -y install kurento-media-server
@@ -227,8 +228,8 @@ Run exactly the same commands as in the previous section, but:
 2. On step **6)** extend `mvn exec:java` command with:
 
         mvn -Dopenvidu.publicurl=https://HOST_LOCAL_IP:4443/ exec:java
-        # Being HOST_LOCAL_IP the local IP that your machine serving the app has in your WiFi network
+        # Being HOST_LOCAL_IP the local IP that your machine serving the app has in your LAN network
 
-This way we first tell AngularCLI to serve our app through https and to expose the port in our WiFi network, and secondly we set OpenVidu Server public url to the public IP of the machine in our WiFi network. This way our devices will be able to reach it as long as they are connected to the same network.
+This way we first tell AngularCLI to serve our app through https and to expose the port in our LAN network, and secondly we set OpenVidu Server public url to the public IP of the machine in our LAN network. This way our devices will be able to reach it as long as they are connected to the same network.
 
-To connect to the application from any device, be sure to be connected to the same WiFi network and navigate to `https://HOST_LOCAL_IP:4200` (being `HOST_LOCAL_IP` the local IP that your machine serving the app has in your WiFi network).
+To connect to the application from any device, be sure to be connected to the same LAN network and navigate to `https://HOST_LOCAL_IP:4200` (being `HOST_LOCAL_IP` the local IP that your machine serving the app has in your LAN network).

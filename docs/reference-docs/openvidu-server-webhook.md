@@ -5,7 +5,7 @@ OpenVidu offers a webhook service since **release 2.11.0** to receive session ev
 
 ### Enable Webhook service
 
-The following [system properties](/reference-docs/openvidu-server-params){:target="_blank"} allow enabling and configuring OpenVidu Server Webhook service:
+The following [system properties](/docs/reference-docs/openvidu-server-params){:target="_blank"} allow enabling and configuring OpenVidu Server Webhook service:
 
 - **`openvidu.webhook`**: set it to true to enable webhook service.
 - **`openvidu.webhook.endpoint`**: configure the HTTP endpoint where OpenVidu Server will send the POST messages with session events. This property is mandatory if `openvidu.webhook` is set to true.
@@ -39,7 +39,7 @@ If OpenVidu Server cannot successfully send the HTTP POST messages to the endpoi
 
 ### Available events in Webhook service
 
-OpenVidu Server Webhook service is able to send the same events as defined for [OpenVidu CDR](/reference-docs/openvidu-server-cdr){:target="_blank"}. The structure of each event is slightly different to the CDR ones: instead of having a single key named after the type of event and containing all of the event properties in a single object, webhook events have the type of event defined in an `event` property at the same level as the rest of properties. For example:
+OpenVidu Server Webhook service is able to send the same events as defined for [OpenVidu CDR](/docs/reference-docs/openvidu-server-cdr){:target="_blank"}. The structure of each event is slightly different to the CDR ones: instead of having a single key named after the type of event and containing all of the event properties in a single object, webhook events have the type of event defined in an `event` property at the same level as the rest of properties. For example:
 
 ```json
 {"sessionId":"TestSession","timestamp":1561969010392,"event":"sessionCreated"}

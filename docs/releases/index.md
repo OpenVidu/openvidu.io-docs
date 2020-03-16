@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.12.0](#2120)
 - [2.11.0](#2110)
 - [2.10.0](#2100)
 - [2.9.0](#290)
@@ -14,6 +15,226 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.12.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.12.0" target="_blank">GitHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="3">openvidu-server</td>
+    <td>JAR</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.12.0" target="_blank">GitHub</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>Docker container</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+    <tr>
+    <td>Docker container (+KMS)</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.12.1</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.12.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.12.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.13.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES IN OPENVIDU CE
+
+<br>
+
+##### IP cameras support
+
+You can now publish IP cameras into an OpenVidu Session!. You users will be able to receive it as they receive any other regular webcam stream. With this new feature you can for example implement surveillance systems in the blink of an eye. How about receiving your IP camera video in your mobile app? And what about building a web dashboard where you can observe all of your security cameras footage in real-time? So many possibilities…
+
+> You can check out [IP cameras](/docs/advanced-features/ip-cameras/){:target="_blank"} section of
+OpenVidu official documentation to learn more
+
+<br>
+
+##### Send signals from your backend
+
+You are now able to send messages to the participants of an OpenVidu Session from your application’s backend with method [POST /api/signal](/docs/reference-docs/REST-API/#post-apisignal){:target="_blank"}. This feature brings the power of [client side messaging](/docs/cheatsheet/send-messages/){:target="_blank"} to your server side.
+
+<br>
+
+##### Record your webapp with COMPOSITE layout
+
+You can now use custom recording layouts deployed outside of OpenVidu Server host. Before it was mandatory to build an HTML/CSS layout and upload it to OpenVidu Server host before you could use it as a custom recording layout. But now you can record any webpage hosted anywhere. More information [here](/docs/advanced-features/recording/#using-an-external-custom-layout){:target="_blank"}.
+
+<br>
+
+##### New CDR/Webhook event `filterEventDispatched`
+
+You can now register [filterEventDispatched](/docs/reference-docs/openvidu-server-cdr/#filtereventdispatched){:target="_blank"} events in OpenVidu CDR and OpenVidu Webhook services. This way you can know when a [voice or video filter](/docs/advanced-features/filters/){:target="_blank"} has emitted an event from your application’s server side (once you add an event listener to a filter).
+
+<br>
+
+##### New data in CDR/Webhook event `participantJoined` and `participantLeft`
+
+Both [participantJoined](/docs/reference-docs/openvidu-server-cdr/#participantjoined){:target="_blank"} and [participantLeft](/docs/reference-docs/openvidu-server-cdr/#participantleft){:target="_blank"} CDR/Webhook events include now `clientData` and `serverData` properties. This allows you to better identify your users from your application’s server side.
+
+<br>
+
+##### Automatic reconnection when connection is lost
+
+Now your clients can listen to brand new reconnection events triggered by [Session](https://openvidu.io/api/openvidu-browser/classes/session.html){:target="_blank"} object: `reconnecting` and `reconnected` events. `reconnecting` event is triggered when a client connected to a Session loses its network connection with OpenVidu. Automatically openvidu-browser tries to reconnect to the Session with an endless polling. Once the client recovers its network connection, openvidu-browser will automatically try to reset the user state in the session. If it is too late and OpenVidu has already evicted the user due to inactivity, then a [SessionDisconnectedEvent](https://openvidu.io/api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} with reason `networkDisconnect` will be triggered. If the user reconnected on time, everything’s back to normal, event `reconnected` will be  dispatched by the Session object and media connections will be automatically re-established if necessary (see [Media freeze bug](#media-freeze-bug) in BUG FIXES).
+
+> You can check out [Automatic reconnection](/docs/advanced-features/automatic-reconnection/){:target="_blank"} section of OpenVidu official documentation to learn more
+
+<br>
+
+##### Switch from camera to screenshare instantly
+
+You can use new [Publisher.replaceTrack()](/api/openvidu-browser/classes/publisher.html#replacetrack){:target="_blank"} method available in openvidu-browser to change the audio or video tracks of a Publisher object on the fly, without unpublishing and re-publishing again (so, no need of WebRTC renegotiation!). This also helps changing the video track (front camera for back camera, webcam for screenshare…) keeping your audio connection at all times.
+
+> You can check out [Switch camera](/docs/advanced-features/switch-camera/){:target="_blank"} section of OpenVidu official documentation to learn more
+
+<br>
+
+##### Change publisherSpeakingEvents configuration on the fly in your clients
+
+New method [StreamManager.updatePublisherSpeakingEventsOptions()](/api/openvidu-browser/classes/streammanager.html#updatepublisherspeakingeventsoptions){:target="_blank"} allows you to dynamically change the threshold for audio events in openvidu-browser. Affected events are `publisherStartSpeaking`, `publisherStopSpeaking` and `streamAudioVolumeChange`. This way you can adjust in real time the limits and frequency of audio stream polling in the browser to make better use of these events.
+
+<br>
+
+##### All the goodnes from Kurento 6.12.0 and 6.13.0 releases
+
+OpenVidu 2.12.0 is now using the latest 6.13.0 version of [Kurento](https://doc-kurento.readthedocs.io/en/6.13.0/){:target="_blank"}. There are lots of improvements in both Kurento 6.12.0 and 6.13.0, including some several critical bug fixes. You can take a look to all of them here:
+
+- [Kurento 6.12.0 Release Notes](https://doc-kurento.readthedocs.io/en/6.13.0/project/relnotes/v6_12_0.html#){:target="_blank"}
+- [Kurento 6.13.0 Release Notes](https://doc-kurento.readthedocs.io/en/6.13.0/project/relnotes/v6_13_0.html){:target="_blank"}
+
+<br>
+
+#### NEW FEATURES IN OPENVIDU PRO
+
+<br>
+
+##### New payment method
+
+This is possibly the biggest change for this release. The number of customers of our OpenVidu Pro tier has increased considerably in recent times, and we needed to facilitate the process of subscribing to OpenVidu Pro. We have introduced a new **license key** system for deploying OpenVidu Pro. Now anyone can create an [OpenVidu account](/account){:target="_blank"}, and in just a few clicks you will be able to purchase an OpenVidu Pro license to launch as many OpenVidu Pro clusters as you want.
+
+> Visit [Pricing](/pricing){:target="_blank"} section to learn more about the new OpenVidu Pro subscription model. You have a **15-day free trial period** when registering as an OpenVidu user!
+
+<br>
+
+##### Simplified pricing
+
+Related to previous point, we have now removed the minimum 10$ per month fee and users receive a 15-day free trial period when they [register as OpenVidu users](/account){:target="_blank"}. Check it out now for free!
+
+<br>
+
+##### Dynamic scalability
+
+OpenVidu Pro 2.11.0 allowed you to initialize your OpenVidu Pro cluster with a fixed number of Media Nodes. Now you can add and remove as many Media Nodes as you want on the fly from **OpenVidu Inspector **or through **OpenVidu Pro REST API**. Visit [Scalability](/docs/openvidu-pro/scalability/){:target="_blank"} section to learn more.
+
+<br>
+
+##### OpenVidu Inspector big upgrade
+
+[OpenVidu Inspector](/docs/openvidu-pro/openvidu-inspector/){:target="_blank"} has undergone a major upgrade to support the new clustering features of OpenVidu Pro 2.12.0. You can now [manage your cluster](/docs/openvidu-pro/openvidu-inspector/#cluster-management){:target="_blank"} directly from OpenVidu Inspector. Besides, it is now built with Angular 9, which makes it even more efficient and less heavy!
+
+<br>
+
+##### Detailed session monitoring improved
+
+OpenVidu Pro is now using the [latest Elasticsearch and Kibana version](https://www.elastic.co/blog/elastic-stack-7-6-0-released){:target="_blank"}. And every new event and important piece of information generated by 2.12.0 is of course stored and processed for later use. Visit [Detailed session monitoring](/docs/openvidu-pro/detailed-session-monitoring/){:target="_blank"} section to learn more.
+
+<br>
+
+
+
+#### BUG FIXES
+
+- _Media freeze bug_: media connections are now automatically re-negotiated under the hood if they remain freezed after a user is successfully reconnected following a network failure. This happens when a user loses its Internet connection and manages to reconnect to OpenVidu before it was automatically evicted from the Session, but its media streams are broken. This is so because media connections flow through their own plane, separated from Client-OpenViduServer signaling plane.
+- _openvidu-server_: race condition fixed for same final user establishing more than one connection to a session at the same time. This might be related to some sessions getting stuck even when no participants are connected to it.
+- _openvidu-server_: concurrency problems when closing a session being recorded in COMPOSED video mode (fix for [issue 364](https://github.com/OpenVidu/openvidu/issues/364){:target="_blank"}). Other possible concurrency problems of the same nature have also been addressed, so stability of OpenVidu Server should have improved for these kind of corner cases.
+- _openvidu-server_: configuration parameter `openvidu.recording.public-access` could not take effect when set to false. Now it always does.
+- _openvidu-browser_: [LocalRecorder](/api/openvidu-browser/classes/localrecorder.html){:target="_blank"} was broken for recent versions of Firefox. Now [LocalRecorder.record()](/api/openvidu-browser/classes/localrecorder.html#record){:target="_blank"} method has an optional string parameter to indicate the desired *mimeType*. If none is provided, then default browser codecs wil be used to record media streams in the browser.
+- _openvidu-browser_: method [OpenVidu.getUserMedia()](/api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} was broken when requesting screen sharing. Now it works just fine.
+- _openvidu-browser_: setting a listener for [streamAudioVolumeChange](/api/openvidu-browser/classes/streammanagerevent.html){:target="_blank"} event just after initializing a Publisher or Subscriber object could trigger an Exception. Now it doesn’t.
+- _openvidu-browser_: [Session.signal()](/api/openvidu-browser/classes/session.html#signal){:target="_blank"} wrong `to` array now does not trigger a fatal error.
+- _openvidu-node-client_: [OpenVidu](/api/openvidu-node-client/classes/openvidu.html#constructor){:target="_blank"} entrypoint object would throw an error if initialized with a URL with no port. Now you can use your openvidu-server domain name without a port (default 443) to initialized it.
+- _OpenVidu Inspector_: thumbnails of recording files were sometimes asking for the secret in order to be loaded. Now they don’t.
+
+<br>
 
 ---
 
@@ -149,7 +370,7 @@ Finally OpenVidu brings the possibility of deploying a cluster with multiple Med
 <br>
 
 ##### Persistent configuration when restarting OpenVidu Server Pro
-Whenever you restart OpenVidu Server Pro by using the [REST API](https://openvidu.io/docs/openvidu-pro/REST-API-pro/#post-prorestart){:target="_blank"}, the new parameters you provide will be saved to disk. This way you will be able to stop the service or even the host without losing the last configuration you provided when restarting OpenVidu Server Pro through REST API.
+Whenever you restart OpenVidu Server Pro by using the [REST API](https://openvidu.io/docs/openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}, the new parameters you provide will be saved to disk. This way you will be able to stop the service or even the host without losing the last configuration you provided when restarting OpenVidu Server Pro through REST API.
 
 #### BUG FIXES
 
@@ -894,7 +1115,7 @@ Do not worry about their lifecycle: they are linked to the video file itself. If
 <br>
 ##### Important fix for increasing success rate in establishing media connections
 
-Time ago we ran into a pretty ugly bug that was causing some problems during WebRTC negotiation, resulting in some clients located in complex networks (like a company's WiFi network) not being able to connect to OpenVidu Server. What developers perceived was that in certain scenarios some users simply couldn't receive or send any media connection.
+Time ago we ran into a pretty ugly bug that was causing some problems during WebRTC negotiation, resulting in some clients located in complex networks (like a company's internal network) not being able to connect to OpenVidu Server. What developers perceived was that in certain scenarios some users simply couldn't receive or send any media connection.
 
 This bug has been completely solved in OpenVidu 2.6.0. Now media connections will work fine in almost every client network configuration.
 

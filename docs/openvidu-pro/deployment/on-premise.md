@@ -103,7 +103,7 @@ Ansible uses an inventory file to know which instances connect to and how to con
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-pro-clustering
-git checkout 2.11.0-on-premise
+git checkout 2.12.0-on-premise
 cd openvidu-pro-clustering # This will be our working directory from now on
 ```
 

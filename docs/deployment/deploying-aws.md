@@ -5,13 +5,21 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
 
 ### 1. Access to the console of AWS Cloud Formation
 
-  <p><a href="https://console.aws.amazon.com/cloudformation" class="btn btn-xs btn-primary" title="Developing OpenVidu" target="_blank">Go to CloudFormation<span class="icon icon-circle-arrow-right"></span></a></p>
+  <p style="text-align: center; margin-top: 20px"><a href="https://console.aws.amazon.com/cloudformation" class="btn btn-xs btn-primary" title="Developing OpenVidu" target="_blank">Go to CloudFormation<span class="icon icon-circle-arrow-right"></span></a></p>
 
-### 2. Click on _Create Stack_
+<br>
+
+---
+
+### 2. Select _Create Stack_ 🠚 _With new resources_
 
   <p>
     <img class="img-responsive deploy-img" style="max-height: 400px" src="/img/docs/deployment/CF_newstack.png">
   </p>
+
+<br>
+
+---
 
 ### 3. Option _Specify template_ 🠚 _Amazon S3 URL_ with the following URL
 
@@ -23,16 +31,20 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
     <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_url.png">
   </p>
 
+<br>
+
+---
+
 ### 4. Specify stack details
 
-First of all, indicate a name for your deployment. Next fill the **Parameters** form depending on the certificate configuration you want.
+First of all, indicate a name for your deployment. Next fill each section of the **Parameters** formulary:
 
-#### SSL Certificate Configuration
+#### SSL certificate configuration
 
 Configuration for your CloudFormation stack certificate. We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFICATE** stored in the application (users will need to accept the browser security alert) or if you have a custom domain, either allow **LET'S ENCRYPT** to automatically generate a valid and free certificate for your domain or use your own **CUSTOM CERTIFICATE** if you already have one.
 
 <div style="text-align: center" class="table-responsive">
-  <table class="deploy-fields-table color-table">
+  <table class="deploy-fields-table color-table" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
       <th></th>
       <th>Self-Signed certificate</th>
@@ -40,129 +52,106 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
       <th>Custom certificate</th>
     </tr>
     <tr>
-      <td class="first-col">WhichCert</td>
+      <td class="first-col">Choose the certificate</td>
       <td>selfsigned</td>
       <td>letsencrypt</td>
       <td>owncert</td>
     </tr>
     <tr>
-      <td class="first-col">LetsEncryptEmail</td>
+      <td class="first-col">Email for Let's Encrypt certification authority</td>
       <td></td>
       <td><em>Your choice</em></td>
       <td><em></em></td>
     </tr>
     <tr>
-      <td class="first-col">MyDomainName</td>
+      <td class="first-col">My domain name</td>
       <td></td>
       <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
       <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
     </tr>
     <tr>
-      <td class="first-col">PublicElasticIP</td>
+      <td class="first-col">Public elastic IP (EIP)</td>
       <td></td>
       <td><em>One AWS Elastic IP you generated</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating" target="_blank">AWS Docs</a> to generate a new one)</span></td>
       <td><em>One AWS Elastic IP you generated</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating" target="_blank">AWS Docs</a> to generate a new one)</span></td>
     </tr>
     <tr>
-      <td class="first-col">OwnCertCRT</td>
+      <td class="first-col">URL to the CRT file</td>
       <td></td>
       <td></td>
-      <td><em>URL to your public key file</em></td>
+      <td><em>URL to your public key file</em></br><span class="field-comment">The CloudFormation stack must have access to this URL, at least temporarily</span></td>
     </tr>
     <tr>
-      <td class="first-col">OwnCertKEY</td>
+      <td class="first-col">URL to the key file</td>
       <td></td>
       <td></td>
-      <td><em>URL to your private key file</em></td>
+      <td><em>URL to your private key file</em></br><span class="field-comment">The CloudFormation stack must have access to this URL, at least temporarily</span></td>
     </tr>
   </table>
 </div>
 
 > If you are using ***LET'S ENCRYPT CERTIFICATE***, of course you will need to register your ElasticIP in your DNS hosting service and associate it with the fully qualified domain name. Until your domain name is not accessible through the public IP you chose, this deployment won't work
 
-#### OpenVidu Configuration
+#### OpenVidu configuration
 
-All of these properties configure OpenVidu Server. You have a list of all available properties [here](/docs/reference-docs/openvidu-server-params){:target="_blank"}.
+All of these properties configure OpenVidu Server. You have a complete description of all available properties **[here](/docs/reference-docs/openvidu-server-params){:target="_blank"}**.
+
+#### Other configuration
+
+These properties configure specific details of the CloudFormation stack.
 
 <div style="text-align: center" class="table-responsive">
-  <table class="deploy-fields-table color-table-gray">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">
     <tr>
-      <td class="first-col">OpenViduSecret</td>
-      <td><em>Your choice</em></td>
-    </tr>
-    <tr>
-      <td class="first-col">FreeHTTPAccesToRecordingVideos<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params" target="_blank"><code>openvidu.recording.public-access</code></a><span></td>
+      <td class="first-col">Instance type<br><span class="field-comment">Type of EC2 Instance where to deploy OpenVidu<span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">OpenviduRecordingNotification<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params" target="_blank"><code>openvidu.recording.notification</code></a><span></td>
+      <td class="first-col">Key name<br><span class="field-comment">SSH key for your EC2 Instance<span></td>
+      <td><em>Choose from the drop-down button</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank">AWS Docs</a> to create a new one)</span></td>
+    </tr>
+    <tr>
+      <td class="first-col">Ubuntu version<br><span class="field-comment">Version of Ubuntu where to deploy OpenVidu<span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">OpenviduStreamsVideoMaxRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params" target="_blank"><code>openvidu.streams.video.max-recv-bandwidth</code></a><span></td>
-      <td><em>Your choice</em></td>
-    </tr>
-      <tr>
-      <td class="first-col">OpenviduStreamsVideoMinRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.min-recv-bandwidth</code></a><span></td>
-      <td><em>Your choice</em></td>
-    </tr>
-      <tr>
-      <td class="first-col">OpenviduStreamsVideoMinSendBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.max-send-bandwidth</code></a><span></td>
-      <td><em>Your choice</em></td>
-    </tr>
-      <tr>
-      <td class="first-col">OpenviduStreamsVideoMaxRecvBandwidth<br><span class="field-comment">Property <a href="/docs/reference-docs/openvidu-server-params/#configuration-parameters-for-openvidu-server" target="_blank"><code>openvidu.streams.video.min-send-bandwidth</code></a><span></td>
-      <td><em>Your choice</em></td>
+      <td class="first-col">Deploy Demos<br><span class="field-comment">Choose if you want to deploy OpenVidu demo applications.<br>If true, then parameter <code>openvidu.secret</code> must be MY_SECRET for the demos to work out-of-the-box<span></td>
+      <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">WantToDeployDemos<br><span class="field-comment">True if you want to deploy OpenVidu Demos. If so OpenViduSecret must be MY_SECRET<span></td>
+      <td class="first-col">Do you want to send info to OpenVidu?<br><span class="field-comment">True if don't mind sending OpenVidu team some anonymous info about your deployment (AWS zone and date)<span></td>
       <td><em>Choose from the drop-down button</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">OpenVidu version<br><span class="field-comment">WARNING: this parameter must only be modified when upgrading an existing stack.<br>See <a href="/docs/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a><span></td>
+      <td><em><strong>Default value</strong> if not upgrading an existing stack</em><br><span class="field-comment">(see <a href="/docs/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a>)</span></td>
     </tr>
   </table>
 </div>
 
-#### Other parameters
+<br>
 
-<div style="text-align: center" class="table-responsive">
-  <table class="deploy-fields-table color-table-gray">
-    <tr>
-      <td class="first-col">Instance Type</td>
-      <td><em>Your choice</em></td>
-    </tr>
-    <tr>
-      <td class="first-col">KeyName</td>
-      <td><em>Your choice</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank">AWS Docs</a> to create a new one)</span></td>
-    </tr>
-    <tr>
-      <td class="first-col">WantToSendInfo<br><span class="field-comment">True if don't mind sending OpenVidu team some info about your deployment (AWS zone and date)<span></td>
-      <td><em>Choose from the drop-down button</em></td>
-    </tr>
-  </table>
-</div>
+---
 
-#### 5. Create your Stack
+### 5. Create your stack
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create stack_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes until it shows **_CREATE_COMPLETE_** (between 6-10 minutes).
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes (about 10) until it shows **_CREATE_COMPLETE_**. If status reaches **CREATE_FAILED**, check out [this FAQ](/docs/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}.
 
-> If status reaches **CREATE_FAILED**, check out [this FAQ](/docs/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}
+After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it instead).
 
-#### 6. Access and test your OpenVidu Server through your new IP
-
-After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it)
-
-  <p>
+  <p style="margin-top: 20px">
     <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_output.png">
   </p>
 
 <br>
-You will connect to your OpenVidu dashboard. Credentials to access to it:
+That URL will give you access to your OpenVidu dashboard. Credentials to access to it:
 
 - `OPENVIDUAPP` as username
-- The secret you chose on [Step 4](#openvidu-configuration) as password (field **OpenViduSecret** in the table).
+- The secret you chose on [Step 4](#openvidu-configuration) as password (parameter `openvidu.secret`)
 
-At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/docs/deployment/deploying-app/).
+At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/docs/deployment/deploying-app/){:target="_blank"}.
 
 <br>
 

@@ -29,7 +29,7 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not available for OpenVidu installations in Ubuntu Bionic 18.04</strong>. These affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>
+	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not available for OpenVidu installations in Ubuntu 18.04</strong>, only in Ubuntu 16.04. This affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>. All other filters work fine in Ubuntu 18.04
 </div>
 </div>
 
@@ -188,7 +188,6 @@ publisher.stream.removeFilter()
         console.error(error);
     });
 ```
-<br>
 
 > Moderators are not only able to call all of these methods over their `Publisher.stream` object, but also over any `Subscriber.stream` object. Also, they don't need any special token permission to apply filters and can bypass any token restriction set to other user tokens
 
@@ -197,6 +196,51 @@ publisher.stream.removeFilter()
 ---
 
 ## Filter samples
+
+#### GStreamer filters
+
+These filters are set with _type_ `GStreamerFilter` and an _options_ parameter like this:
+
+```javascript
+publisher.stream.applyFilter("GStreamerFilter", {"command": "GSTREAMER_COMMAND"})
+```
+
+A list of interesting values for `GSTREAMER_COMMAND` parameter is stated below. Replace `GSTREAMER_COMMAND` in the upper code snippet for any of the examples provided in the following list items:
+
+<br>
+
+##### Video overlay filters
+
+- **gdkpixbufoverlay** : overlays an image on top of the video. This is very useful, for example, to add a logo<br>Example: `gdkpixbufoverlay location=/images/img.png offset-x=10 offset-y=10 overlay-height=200 overlay-width=200`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/gdkpixbuf/gdkpixbufoverlay.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **textoverlay** : overlays an embedded text on top of the video<br>Example: `textoverlay text="Embedded text" valignment=top halignment=right font-desc="Cantarell 25"`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/pango/textoverlay.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **timeoverlay** : overlays the time the video stream has been playing<br>Example: `timeoverlay valignment=bottom halignment=right font-desc="Sans, 20"`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/pango/timeoverlay.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **clockoverlay** : overlays a clock with the local time (in OpenVidu Server host)<br>Example: `clockoverlay valignment=bottom halignment=right shaded-background=true font-desc="Sans, 20"`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/pango/clockoverlay.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+
+<br>
+
+##### Video effect filters
+
+- **videoflip** : rotates the video stream<br>Example: `videoflip method=vertical-flip`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videofilter/videoflip.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **videocrop** : crops the video steam<br>Example: `videocrop top=100 left=35 right=0 bottom=0`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videocrop/videocrop.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **videobox** : resizes a video stream by adding borders or cropping<br>Example: `videobox fill=black top=20 bottom=20 left=-10 right=-10`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videobox/index.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **chromahold** : removes all colors from the video stream except the RGB indicated one<br>Example: `chromahold target-r=0 target-g=0 target-b=255 tolerance=90`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/coloreffects/chromahold.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **coloreffects** : applies different color filters to the video stream<br>Example: `coloreffects preset=heat`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/coloreffects/coloreffects.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **videobalance** : changes different properties of the video stream such as brightness, contrast, hue or saturation<br>Example: `videobalance saturation=0.0`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videofilter/videobalance.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **gamma** : adjusts gamma level of the video stream<br>Example: `gamma gamma=5.0`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videofilter/gamma.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **videomedian** : adds a median filter to the video stream<br>Example: `videomedian filtersize=9 lum-only=false`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/videofilter/videomedian.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- Many effects of **[effectv project](https://wiki.gnome.org/Projects/GnomeVideoEffects/Effects){:target="_blank"}** : funny filters for the video stream like `agingtv`, `dicetv`, `optv`, `quarktv`, `radioactv`, `revtv`, `rippletv`, `shagadelictv`, `streaktv`, `vertigotv`, `warptv`<br>Example: `radioactv`
+
+<br>
+
+##### Audio filters
+
+- **audioecho** : adds reverb to the audio stream<br>Example: `audioecho delay=50000000 intensity=0.6 feedback=0.4`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/audiofx/audioecho.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **audioamplify** : amplifies an audio stream by a given factor<br>Example: `audioamplify amplification=1.5 clipping-method=wrap-positive`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/audiofx/audioamplify.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- **pitch** : controls the pitch of an audio stream<br>Example: `pitch pitch=1.2`<br>Documentation: [Link](https://gstreamer.freedesktop.org/documentation/soundtouch/pitch.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+- Other audio filters: check them out in [GStreamer site](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-plugin-audiofx.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
+
+> All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins_doc.html){:target="_blank"}.
+
 
 #### Kurento filters
 
@@ -245,34 +289,6 @@ publisher.stream.removeFilter()
                     console.log('Bar code found!. Data: ' + filterEvent.data);
                 }
             });
-
-
-#### GStreamer filters
-
-These filters are set with _type_ `GStreamerFilter` and an _options_ parameter like this:
-
-```javascript
-publisher.stream.applyFilter("GStreamerFilter", {"command": "GSTREAMER_COMMAND"})
-```
-
-A list of interesting values for `GSTREAMER_COMMAND` parameter is stated below. Replace `GSTREAMER_COMMAND` in the upper code snippet for any of the examples provided in the following list items:
-
-- **coloreffects**: apply different color filters to the video stream<br>Example: `coloreffects preset=heat`<div style="margin-bottom: 7px"></div>
-- **videobalance**: change different properties of the video stream such as brightness, contrast, hue or saturation<br>Example: `videobalance saturation=0.0`<div style="margin-bottom: 7px"></div>
-- **videoflip**: rotate the video stream<br>Example: `videoflip method=vertical-flip`<div style="margin-bottom: 7px"></div>
-- **videobox**: crop the video stream<br>Example: `videobox fill=black top=20 bottom=20 left=-10 right=-10`<div style="margin-bottom: 7px"></div>
-- **gamma**: adjust gamma level of the video stream<br>Example: `gamma gamma=5.0`<div style="margin-bottom: 7px"></div>
-- **videomedian**: add a median filter to the video stream<br>Example: `videomedian filtersize=9 lum-only=false`<div style="margin-bottom: 7px"></div>
-- **textoverlay**: add an embedded text to the video<br>Example: `textoverlay text="Embedded text" valignment=top halignment=right font-desc="Cantarell 25"`<div style="margin-bottom: 7px"></div>
-- **timeoverlay**: embed the time the video stream has been playing<br>Example: `timeoverlay valignment=bottom halignment=right font-desc="Sans, 20"`<div style="margin-bottom: 7px"></div>
-- **clockoverlay**: embed a clock with the local time (in OpenVidu Server)<br>Example: `clockoverlay valignment=bottom halignment=right shaded-background=true font-desc="Sans, 20"`<div style="margin-bottom: 7px"></div>
-- **audioecho**: add reverb to the audio stream<br>Example: `audioecho delay=50000000 intensity=0.6 feedback=0.4`<div style="margin-bottom: 7px"></div>
-- **audioamplify**: amplifies an audio stream by a given factor<br>Example: `audioamplify amplification=1.5 clipping-method=wrap-positive`<div style="margin-bottom: 7px"></div>
-- Other audio filters: check them out in [GStreamer site](https://gstreamer.freedesktop.org/data/doc/gstreamer/head/gst-plugins-good-plugins/html/gst-plugins-good-plugins-plugin-audiofx.html){:target="_blank"}<div style="margin-bottom: 7px"></div>
-- Many effects of **[effectv project](https://wiki.gnome.org/Projects/GnomeVideoEffects/Effects){:target="_blank"}** : funny filters for the video stream like `agingtv`, `dicetv`, `optv`, `quarktv`, `radioactv`, `revtv`, `rippletv`, `shagadelictv`, `streaktv`, `vertigotv`, `warptv`<br>Example: `radioactv`
-
-
-All available GStreamer plugins can be found in [GStreamer site](https://gstreamer.freedesktop.org/documentation/plugins_doc.html){:target="_blank"}.
 
 <br>
 

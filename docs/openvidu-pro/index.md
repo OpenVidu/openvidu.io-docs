@@ -1,21 +1,10 @@
 <h2 id="section-title">OpenVidu Pro</h2>
 <hr>
 
-<!--<pre class="pre-video-responsive">
-<div class="video-responsive">
-    <iframe width="100%" src="https://www.youtube.com/embed/xcJtL7QggTI?rel=0&amp;controls=2&amp;showinfo=0;autohide=2" frameborder="0" allowfullscreen></iframe>
-</div>
-</pre>-->
-
-<p style="text-align: center; margin-top: 50px">
-    <a href="/docs/openvidu-pro/deploying-openvidu-pro/" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
-</p>
-
-
 ## Why
 
 OpenVidu is an **open source project**, and for sure will remain this way in the future. But OpenVidu team needs some source of income to continue working on this amazing project. The approach we'll be taking here is pretty straightforward: OpenVidu features themselves will always be open source, and only some tools or improvements related to **production environments** may end up being part of OpenVidu Pro stack. To sum up:
-<br><br>
+<br>
 
 > You will always be able to access OpenVidu awesome features and build whatever you want with them. Our intention is to make OpenVidu platform long-term sustainable by offering **advanced production stage monitoring and management tools** for those companies interested in such capabilities
 
@@ -25,11 +14,11 @@ OpenVidu is an **open source project**, and for sure will remain this way in the
 
 ## What
 
-OpenVidu Pro consists of different modules working over OpenVidu Community Edition. For now OpenVidu Pro offers:
+OpenVidu Pro consists of different modules working on top of OpenVidu Community Edition (OpenVidu CE). For now OpenVidu Pro offers:
 
+- **[Scalability](/docs/openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
 - **[OpenVidu Inspector](/docs/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](/docs/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and flexible way to monitor your sessions.
-- **[Scalability](/docs/openvidu-pro/scalability/)**: launch OpenVidu with multiple media nodes instances to increase the number and size of video sessions.
+- **[Detail session monitoring](/docs/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
 
 <div style="
     display: table;
@@ -60,7 +49,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
     <thead>
         <tr>
             <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
-            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu Community</th>
+            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu CE</th>
             <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu Pro</th>
         </tr>
     </thead>
@@ -82,6 +71,11 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         </tr>
         <tr>
             <th scope="row">Audio and video filters</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">IP cameras</th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
@@ -216,20 +210,15 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         <tr>
             <th scope="row">Price</th>
             <td><span style="font-size: 2em">Free</span></td>
-            <td>
-                <div style="margin: 1em"><span style="font-size: 2em">$10 / month</span><br>
-                    <span style="font-size: 1.2em">with 14000 minutes of cores of Media Nodes included</span><br>
-                    <span style="font-size: 2em; margin-top: 1em">$0.00071</span><br>
-                    <span style="font-size: 1.2em"> per additional core of Media Nodes per minute</span><br><br>
-                    <span style="font-size: 1em; margin-top: 1em">(see below)</span>
-                </div>
+            <td><span style="font-size: 2em">0.0006$ core/minute</span><br>
+                <span style="font-size: 1em"><a href="/pricing" target="_blank"><strong>Visit Pricing</strong></a></span>
             </td>
     </div>
     </tr>
     <tr>
     <th scope="row"></th>
     <td><a href="/docs/home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
-        OpenVidu Community Docs</a></td>
+        OpenVidu CE Docs</a></td>
         <td><a href="/docs/openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
         OpenVidu Pro Docs</a></td>
         </tr>
@@ -244,8 +233,8 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
 
 You can deploy OpenVidu Pro:
 
-- On Amazon Web Services: **[Deploying OpenVidu Pro on AWS](/docs/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-aws){:target="_blank"}**
-- On premise using your own infrastructure: **[Deploying OpenVidu Pro on premise](/docs/openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"}**
+- **[On AWS](/docs/openvidu-pro/deployment/aws){:target="_blank"}**
+- **[On premises in your own infrastructure](/docs/openvidu-pro/deployment/on-premise/){:target="_blank"}**
 
 <br>
 

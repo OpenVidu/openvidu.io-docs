@@ -30,7 +30,7 @@ git clone https://github.com/OpenVidu/openvidu.io-docs
 	```
 	```bash
 	# Latest Mkdocs
-	sudo pip3 install mkdocs==1.0.4
+	sudo pip3 install mkdocs==1.1
 	```
 	
 	- Visit [`http://localhost:4000`](http://localhost:4000) in order to preview _openvidu.io_ web with your new documentation integrated. Whenever you update a file in `openvidu.io-docs/docs` folder, you can relaunch `generate.sh` script to update _openvidu.io_ web served by Jekyll's Docker container, listening in localhost:4000)

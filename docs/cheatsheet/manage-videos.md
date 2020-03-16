@@ -30,7 +30,6 @@ Every Publisher and Subscriber object can display a media stream in as many vide
 
         subscriber.createVideoElement(targetElement, 'APPEND');
 
-<br>
 > Publisher and Subscriber objects will dispatch a `videoElementCreated` event for every video inserted into DOM by these methods.
 > Also these videos will be automatically removed from DOM when required and Publisher and Subscriber objects will dispatch a
 > `videoElementDestroyed` event for every one of them
@@ -57,7 +56,6 @@ Every Publisher and Subscriber object can display a media stream in as many vide
         });
 
 
-<br>
 > This way of managing the video players is very useful when developing your application with some frontend declarative framework such as **Angular**,
 > **React** or **Vue.js**. It allows you to add to the proper `Publisher` or `Subscriber` any video element managed by the framework. Besides, it is possible to
 > treat both Publishers and Subscribers the same way regarding their rendering in the page, as they both inherit from the parent class `StreamManager`. If you are

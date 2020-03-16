@@ -108,7 +108,6 @@ var publisher = OV.initPublisherAsync({
     });
 });
 ```
-<br>
 
 > [Event ended of MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/ended_event){:target="_blank"} servers the same purpose. If you have any problem with **inactive** event of **MediaStream** object, you can try with **ended** event of **MediaStreamTrack** object. In the snippet above, that would be:
 

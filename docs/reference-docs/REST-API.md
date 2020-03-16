@@ -14,9 +14,11 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 - Generate a token: [**POST /api/tokens**](#post-apitokens)
 - Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
 - Retrieve all active sessions info: [**GET /api/sessions**](#get-apisessions)
+- Send a signal to a session: [**POST /api/signal**](#post-apisignal)
 - Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionsltsession_idgt)
 - Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionsltsession_idgtconnectionltconnection_idgt)
 - Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionsltsession_idgtstreamltstream_idgt)
+- Publish a stream from an IP camera: [**POST /api/sessions/&lt;SESSION_ID&gt;/connection**](#post-apisessionsltsession_idgtconnection)
 - Start the recording of a session: [**POST /api/recordings/start**](#post-apirecordingsstart)
 - Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstopltrecording_idgt)
 - Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsltrecording_idgt)
@@ -47,13 +49,13 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session
 >     - `MANUAL` _(default)_ : If you want to manage when start and stop the recording<br><br>
 > - **customSessionId** _(optional string)_
->     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you<br><br>
+>     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`)<br><br>
 > - **defaultOutputMode** _(optional string)_
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout
 >     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file<br><br>
 > - **defaultRecordingLayout** _(optional string. Only applies if `defaultOutputMode` is set to `COMPOSED`)_
 >     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](/advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
+>     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](/docs/advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
 > - **defaultCustomLayout** _(optional string. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
 >     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](openvidu-server-params/){:target="_blank"} property `openvidu.recording.custom-layout`)
@@ -89,8 +91,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **session** _(mandatory string)_: the sessionId for which the token should be associated<br><br>
-> - **role** _(optional string. Check [OpenViduRole](../../api/openvidu-node-client/enums/openvidurole.html){:target="_blank"} section of OpenVidu Node Client for a complete description)_
+> - **session** _(mandatory string)_ : the sessionId for which the token should be associated<br><br>
+> - **role** _(optional string. Check [OpenViduRole](/api/openvidu-node-client/enums/openvidurole.html){:target="_blank"} section of OpenVidu Node Client for a complete description)_
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
@@ -100,13 +102,13 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.min-recv-bandwidth`) for every incoming stream of the user owning the token.
 >     - **videoMaxSendBandwidth**: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.max-send-bandwidth`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._
 >     - **videoMinSendBandwidth**: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](https://openvidu.io/docs/reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.min-send-bandwidth`) for every outgoing stream of the user owning the token.
->     - **allowedFilters**: array of strings containing the names of the filters the user owning the token will be able to apply (see [Voice and video filters](/advanced-features/filters/){:target="_blank"})
+>     - **allowedFilters**: array of strings containing the names of the filters the user owning the token will be able to apply (see [Voice and video filters](/docs/advanced-features/filters/){:target="_blank"})
 
 <div></div>
 
 > **Returned JSON**
 >
-> - `token`: token value. Send it to one client to pass it as a parameter in openvidu-browser method _[`Session.connect`](/../api/openvidu-browser/classes/session.html#connect){:target="_blank"}_
+> - `token`: token value. Send it to one client to pass it as a parameter in openvidu-browser method _[`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"}_
 > - `session`: same as in the body request
 > - `role`: same as in the body request
 > - `data`: same as in the body request
@@ -150,7 +152,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `location`: geo location of the participant <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
 >     - `platform`: complete description of the platform used by the participant to connect to the session
 >     - `role`: role of the connection
->     - `clientData`: data defined in OpenVidu Browser when calling _[`Session.connect`](/../api/openvidu-browser/classes/session.html#connect){:target="_blank"}_ (_metadata_ parameter)
+>     - `clientData`: data defined in OpenVidu Browser when calling _[`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"}_ (_metadata_ parameter)
 >     - `serverData`: data assigned to the user's token when generating the token in OpenVidu Server
 >     - `token`: user's token
 >     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo", "filter")
@@ -187,6 +189,36 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 ---
 
+### POST `/api/signal`
+
+| _SEND A SIGNAL_   | _PARAMETERS_                                                         |
+| ----------------- | -------------------------------------------------------------------- |
+| **Operation**     | POST                                                                 |
+| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/signal                    |
+| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
+| **Body**          | ```{"session": "SESSION_ID", "to": ["connectionId1", "connectionId2"], "type": "MY_TYPE", "data": "This is my signal data"}```    |
+| **Sample return** | _Returns nothing_                                                    |
+
+> **Body parameters**
+>
+> ---
+>
+> - **session** _(mandatory string)_ : the sessionId of the session you want to send the signal to<br><br>
+> - **to** _(optional array of strings)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session<br><br>
+> - **type** _(optional string)_ : type of the signal. In the body example of the table above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type<br><br>
+> - **data** _(optional string)_ : actual data of the signal<br><br>
+
+<div></div>
+
+> **HTTP responses**
+>
+> - `200`: signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal
+> - `400`: there is a problem with some body parameter
+> - `404`: no session exists for the passed SESSION_ID
+> - `406`: no connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct)
+
+---
+
 ### DELETE `/api/sessions/<SESSION_ID>`
 
 | _CLOSE SESSION_   | _PARAMETERS_                                                                                                             |
@@ -198,7 +230,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **HTTP responses**
 >
-> - `204`: the session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html){:target="_blank"}, [`connectionDestroyed`](/../api/openvidu-browser/classes/connectionevent.html){:target="_blank"} and [`sessionDisconnected`](/../api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others (the first one will only receive the events related to himself, last one will receive every possible event)
+> - `204`: the session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}, [`connectionDestroyed`](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"} and [`sessionDisconnected`](/api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others (the first one will only receive the events related to himself, last one will receive every possible event)
 > - `404`: no session exists for the passed SESSION_ID
 
 ---
@@ -214,7 +246,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **HTTP responses**
 >
-> - `204`: the user has been successfully evicted from the session. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html){:target="_blank"} if the user was publishing, [`connectionDestroyed`](/../api/openvidu-browser/classes/connectionevent.html){:target="_blank"} for the remaining users and [`sessionDisconnected`](/../api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer"
+> - `204`: the user has been successfully evicted from the session. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](/api/openvidu-browser/classes/streamevent.html){:target="_blank"} if the user was publishing, [`connectionDestroyed`](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"} for the remaining users and [`sessionDisconnected`](/api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer"
 > - `400`: no session exists for the passed SESSION_ID
 > - `404`: no connection exists for the passed CONNECTION_ID
 
@@ -231,9 +263,60 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **HTTP responses**
 >
-> - `204`: the stream has been successfully unpublished. Every participant will have received the proper [`streamDestroyed`](/../api/openvidu-browser/classes/streamevent.html){:target="_blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer"
+> - `204`: the stream has been successfully unpublished. Every participant will have received the proper [`streamDestroyed`](/api/openvidu-browser/classes/streamevent.html){:target="_blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer"
 > - `400`: no session exists for the passed SESSION_ID
 > - `404`: no stream exists for the passed STREAM_ID
+> - `405`: you cannot directly delete the stream of an IPCAM participant (any participant created with method [POST /api/sessions/&lt;SESSION_ID&gt;/connection](#post-apisessionsltsession_idgtconnection){:target="_blank"}). Instead you must delete the connection object with [DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](#delete-apisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}
+
+---
+
+### POST `/api/sessions/<SESSION_ID>/connection`
+
+_Available from **OpenVidu >= 2.12.0**_
+
+| _PUBLISH IP CAMERA_ | _PARAMETERS_                                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| **Operation**       | POST                                                                                                                     |
+| **URL**             | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/connection                                        |
+| **Headers**         | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                  |
+| **Body**            | ```{"type": "IPCAM", "rtspUri": "rtsp://b1.dnsdojo.com:1935/live/sys3.stream", "adaptativeBitrate": true, "onlyPlayWithSubscribers": true, "data": "Office security camera"}``` |
+| **Sample return**   | ```{"connectionId": "ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "createdAt": 1582121476379, "location": "unknown", "platform": "IPCAM", "role": "PUBLISHER", "serverData": "MY_IP_CAMERA", "publishers": [{"createdAt": 1582121476439, "streamId": "str_IPC_XC1W_ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "rtspUri": "rtsp://91.191.213.49:554/live_mpeg4.sdp", "mediaOptions": {"hasAudio": true, "audioActive": true, "hasVideo": true, "videoActive": true, "typeOfVideo": "IPCAM", "frameRate": null, "videoDimensions": null, "filter": {}, "adaptativeBitrate": true, "onlyPlayWithSubscribers": true}} ], "subscribers": []}``` |
+
+> **Body parameters**
+>
+> ---
+>
+> - **type** _(optional string)_ : which type of stream will be published. For now can only be `IPCAM`. Default to `IPCAM`<br><br>
+> - **rtspUri** _(mandatory string)_ : RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
+> - **adaptativeBitrate** _(optional boolean)_ : whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
+> - **onlyPlayWithSubscribers** _(optional boolean)_ : enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
+> - **data** _(optional string)_ : metadata you want to associate to the camera's participant. This will be included as [Connection.data](/api/openvidu-browser/classes/connection.html#data){:target="_blank"} property received by your clients on [connectionCreated](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"} event, and will also be available in backend events ([CDR](/docs/reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](/docs/reference-docs/openvidu-server-webhook){:target="_blank"})
+
+<div></div>
+
+> **Returned JSON**
+>
+> Returns the new Connection object. This object is the same as each JSON object in the `connections.content` array returned by method [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
+>
+> - `connectionId`: identifier of the camera's connection. Store it to perform other operations such as unpublish the IP camera from the session
+> - `createdAt`: time when the connection was established in UTC milliseconds
+> - `location`: geo location of the IP camera <a href="/docs/openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
+> - `platform`: `"IPCAM"`
+> - `role`: `"PUBLISHER"`
+> - `clientData`: `""` (IP camera connections cannot be initialized from the client-side)
+> - `serverData`: data associated to the IP camera connection with query parameter `data`
+> - `token`: `undefined` (IP camera connections do not have a token associated)
+> - `publishers`: array of Publisher objects (streams the camera is publishing. There will only be one object). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo", "hasAudio", "videoActive", "audioActive", "frameRate", "videoDimensions", "typeOfVideo", "filter")
+> - `subscribers`: `[]` (camera is always a send-only connection, so it won't have any subscriber object)
+
+<div></div>
+
+> **HTTP responses**
+>
+> - `200`: the IP camera has been successfully published to the session. Every participant will have received the proper events in OpenVidu Browser: [`connectionCreated`](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"} identifying the new camera participant and [`streamCreated`](/api/openvidu-browser/classes/streamevent.html){:target="_blank"} so they can subscribe to the IP camera stream.
+> - `400`: problem with some body parameter
+> - `404`: no session exists for the passed SESSION_ID
+> - `500`: unexpected error when publishing the IP camera stream into the session. See the error message for further information
 
 ---
 
@@ -251,7 +334,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **session** _(mandatory string)_: the sessionId belonging to the session you want to start recording<br><br>
+> - **session** _(mandatory string)_ : the sessionId belonging to the session you want to start recording<br><br>
 > - **name** _(optional string)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording<br><br>
 > - **outputMode** _(optional string)_ : record all streams in a single file in a grid layout or record each stream in its own separate file. This property will override the `defaultOutputMode` property set on [POST /api/sessions](#post-apisessions) for this particular recording
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout
@@ -260,7 +343,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - **hasVideo** _(optional boolean)_ : whether to record video or not. Default to true <br><br>
 > - **recordingLayout** _(optional string. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the layout to be used in this recording. This property will override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording.
 >     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](/advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
+>     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](/docs/advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
 > - **customLayout** _(optional string. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server system property](openvidu-server-params/){:target="_blank"} `openvidu.recording.custom-layout`) . This property will override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording<br><br>
 > - **resolution** _(optional string. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999
@@ -321,7 +404,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `createdAt`: time when the recording started in UTC milliseconds
 > - `size`: size in bytes of the video file
 > - `duration`: duration of the video file in seconds
-> - `url`: set to `null` or `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"` depending on whether [openvidu-server system property `openvidu.recording.public-access`](openvidu-server-params/){:target="_blank"} is false or true
+> - `url`: set to `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`. This path will be protected with OpenVidu credentials depending on whether [openvidu-server system property `openvidu.recording.public-access`](openvidu-server-params/){:target="_blank"} is false or true
 > - `status`: set to `"stopped"` or `"available"` depending on whether [openvidu-server system property `openvidu.recording.public-access`](openvidu-server-params/){:target="_blank"} is false or true
 
 <div></div>
@@ -357,7 +440,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `createdAt`: time when the recording started in UTC milliseconds
 > - `size`: size in bytes of the video file (0 until stop operation is called)
 > - `duration`: duration of the video file in seconds (0 until stop operation is called)
-> - `url`: set to `null` until stop operation is called. Then can be `null` or `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"` depending on whether [openvidu-server system property `openvidu.recording.public-access`](openvidu-server-params/){:target="_blank"} is false or true.
+> - `url`: set to `null` until stop operation is called. Then it will be `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`, path that may be protected with OpenVidu credentials depending on whether [openvidu-server system property `openvidu.recording.public-access`](openvidu-server-params/){:target="_blank"} is false or true.
 > - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"available"`, `"failed"`)
 
 <div></div>
@@ -420,6 +503,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > **Returned JSON**
 >
 > - `version`: version of OpenVidu Server
-> - **Rest of properties**: values given to **[system properties](/reference-docs/openvidu-server-params/){:target="_blank"}** on OpenVidu Server launch
+> - **Rest of properties**: values given to **[system properties](/docs/reference-docs/openvidu-server-params/){:target="_blank"}** on OpenVidu Server launch
 
 <br>
