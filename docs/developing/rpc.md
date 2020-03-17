@@ -55,7 +55,7 @@ Complete list of operations:
 - **[execFilterMethod](#execfiltermethod)**
 - **[addFilterEventListener](#addfiltereventlistener)**
 - **[removeFilterEventListener](#removefiltereventlistener)**
-- **[reconnectStream](#reconnectstream)**
+- **[reconnectStream](#reconnectstream-2120)**
 
 ---
 

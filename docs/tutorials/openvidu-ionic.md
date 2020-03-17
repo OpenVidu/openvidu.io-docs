@@ -1,33 +1,9 @@
 # openvidu-ionic
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-ionic" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Ionic v4** and **Angular 8** frameworks. It can be compiled into a **native Android app**, a **native iOS app** and into a standard **web app**.
+A client-side only application built with **Ionic v5** and **Angular 9** frameworks. It can be compiled into a **native Android app**, a **native iOS app** and into a standard **web app**.
 
 If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being a cordova ionic app and being a little more complex for OpenVidu starters.
-
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
-    Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is properly solved
-</div>
-</div>
-
 
 ## Understanding this tutorial
 
