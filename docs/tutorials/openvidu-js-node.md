@@ -36,7 +36,7 @@ sudo apt-get install -y nodejs
 ```bash
 cd openvidu-tutorials/openvidu-js-node
 npm install
-node server.js localhost:4443 MY_SECRET
+node server.js https://localhost:4443 MY_SECRET
 ```
 
 4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
