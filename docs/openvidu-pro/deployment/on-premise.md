@@ -82,7 +82,8 @@ These ports need to be opened and publicly accessible for each type of instance 
 
 #### OpenVidu Server Pro instance
 
-- **4443 TCP** (OpenVidu Server listens on port 4443 by default)
+- **443 TCP** (OpenVidu Inspector is served on port 443 by default)
+- **4443 TCP** (OpenVidu Server Pro REST API endpoint listens on port 4443 by default)
 - **3478 TCP** (coturn listens on port 3478 by default)
 - **3478 UDP** (opening also UDP port has been proved to facilitate connections with certain type of clients)
 
@@ -103,11 +104,12 @@ Ansible uses an inventory file to know which instances connect to and how to con
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-pro-clustering
-git checkout 2.12.0-on-premise
 cd openvidu-pro-clustering # This will be our working directory from now on
+git fetch --all
+git checkout origin/2.12.0-on-premise # Latest release
 ```
 
-File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Node, but you can add as many _kurento-server_ hosts as you want, as you can see in the commented lines.
+File `./inventory.yaml` defines our cluster instances. By default it is ready to use a single Media Node, but you can add as many _media-node_ hosts as you want, as you can see in the commented lines.
 
 The IPs in the inventory file should be the addresses which can be reached from the Ansible host. In example, if your Ansible host is on the 192.168.x.x network should be ok to use that address range in your inventory file.
 
@@ -223,13 +225,18 @@ You can launch and drop Media Nodes dynamically in two different ways:
 
 #### From OpenVidu Inspector
 
-In Cluster page you can launch and drop Media Nodes just by pressing buttons.
+In Cluster page you can launch and drop Media Nodes just by pressing buttons. You need to have the new Media Node already up and running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)) and define its URI like this: `ws://NEW_MEDIA_NODE_IP:8888/kurento`
 
 <div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/pro18.png"/></a>
+    <div style="margin: 5px 15px 5px 15px">
+        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro19.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/pro19.png"/></a>
     </div>
 </div>
+
+> **WARNING**: Launching/Dropping Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically start/terminate your instances:
+>
+> - To launch a new Media Node you need to have the new Media Node already up and running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)) and define its URI like stated in the image above.<br><br>
+> - To drop an existing Media Node you will have to terminate the instance yourself after clicking the terminate button, if that's what you want. Clicking the button will just disconnect the Media Node from the cluster (you won't be charged for it anymore), but won't terminate the machine. You can listen to [mediaNodeStatusChanged](/docs/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance (listen to `terminated` status).
 
 #### With OpenVidu Pro REST API
 
@@ -240,8 +247,48 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in on premises OpenVidu Pro clusters:
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.
-> - Launching and dropping Media Nodes in on premise deployments will not automatically start and terminate your instances. So to launch a new Media Node in on premise deployments you are required to have the Media Node already running and to provide the Media Node's URI when calling [POST /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter). When dropping it you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](/docs/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Launching/Dropping Media Nodes in on premise deployments will not automatically start/terminate your instances:
+>     - To launch a new Media Node you are required to have the Media Node already running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter) or [like this in OpenVidu Inspector](#from-openvidu-inspector).
+>     - To drop an existing Media Node you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](/docs/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+
+#### Launching new Media Nodes with Ansible
+
+To easily launch one or more new Media Nodes, you just have to run the Ansible playbook again with the following change in **`inventory.yml`** file: comment the _openvidu-server_ elements. We just want to deploy Media Nodes, not OpenVidu Server Pro Node. Remove `openvidu-server` from `all.hosts` and `all.children` entries and add as many `media-node-N` elements as you want.
+
+```yaml
+---
+all:
+  hosts:
+    #openvidu-server:
+    #  ansible_host: OPENVIDU_SERVER_IP
+    media-node-1:
+      ansible_host: MEDIA_NODE_1_IP
+    # ...
+    # media-node-N:
+    #   ansible_host: MEDIA_NODE_N_IP
+  vars:
+      ansible_become: true
+      ansible_user: USER
+      ansible_ssh_private_key_file: /PATH/TO/SSH_public_key
+  children:
+    media-nodes:
+      hosts:
+        media-node-1:
+      #   ...
+      #   media-node-N:
+    # openvidu:
+    #   hosts:
+    #     openvidu-server:
+```
+
+Then you can simply run the playbook again:
+
+```bash
+ansible-playbook -i inventory.yaml play.yaml
+```
+
+This will install a new Media Node in your empty instance(s) without interfering with your existing OpenVidu Pro cluster. After successful installation, you can add the new Media Node to the cluster from [OpenVidu Inspector](#from-openvidu-inspector) or with [REST API Pro](#with-openvidu-pro-rest-api).
 
 <br>
 
