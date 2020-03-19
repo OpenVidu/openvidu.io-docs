@@ -238,14 +238,6 @@ You can deploy OpenVidu Pro:
 
 <br>
 
----
-
-## Pricing
-
-Check out <a href="/pricing#ov-pricing"><strong>Pricing section</strong></a>.
-
-<p style="text-align: center; margin-top: 50px">
-    <a href="/docs/openvidu-pro/deploying-openvidu-pro-aws/" class="btn btn-xs btn-primary" style="font-size: 15px; display: table; margin: auto" title="OpenVidu Pro"><span style="display: table-cell; vertical-align:middle">Run OpenVidu Pro</span></a>
-</p>
+Visit <a href="/pricing#ov-pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Pro.
 
 <br>
