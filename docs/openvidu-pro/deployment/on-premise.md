@@ -245,7 +245,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 - **Launch a Media Node**: **[POST /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
 - **Drop a Media Node**: **[DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
-> **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in on premises OpenVidu Pro clusters:
+> **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes through REST API in on premises OpenVidu Pro clusters:
 >
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premise deployments will not automatically start/terminate your instances:
