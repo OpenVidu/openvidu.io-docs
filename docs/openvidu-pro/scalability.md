@@ -55,10 +55,10 @@ There are 3 important aspects to consider:
 
 Different environments are supported when deploying an OpenVidu Pro cluster. At the current moment you can:
 
-- [Deploy your OpenVidu Pro cluster in AWS](/docs/openvidu-pro/deployment/aws){:target="_blank"}
-- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](/docs/openvidu-pro/deployment/on-premise){:target="_blank"}
+- [Deploy your OpenVidu Pro cluster in AWS](/openvidu-pro/deployment/aws){:target="_blank"}
+- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](/openvidu-pro/deployment/on-premise){:target="_blank"}
 
-> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premise](/docs/openvidu-pro/deployment/on-premise){:target="_blank"}
+> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premise](/openvidu-pro/deployment/on-premise){:target="_blank"}
 
 > **Kubernetes** support will also be available soon. Stay tuned!
 
@@ -70,8 +70,8 @@ Different environments are supported when deploying an OpenVidu Pro cluster. At 
 
 When deploying your OpenVidu Pro cluster, you can set the initial desired number of Media Nodes. Each type of deployment has a way of setting this number. Visit your specific OpenVidu Pro cluster deployment instructions to learn more:
 
-- **[AWS](/docs/openvidu-pro/deployment/aws#scalability){:target="_blank"}**
-- **[On premise](/docs/openvidu-pro/deployment/on-premise#scalability){:target="_blank"}**
+- **[AWS](/openvidu-pro/deployment/aws#scalability){:target="_blank"}**
+- **[On premise](/openvidu-pro/deployment/on-premise#scalability){:target="_blank"}**
 
 <br>
 
@@ -95,13 +95,13 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /pro/media-nodes](/docs/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: depending on the environment where your OpenVidu Pro cluster is deployed, you must take into account some important aspects regarding the launch and drop of Media Nodes. Visit the specific documentation page for your environment to learn more:
 >
-> - [AWS](/docs/openvidu-pro/deployment/aws/#with-openvidu-pro-rest-api){:target="_blank"}
-> - [On premise](/docs/openvidu-pro/deployment/on-premise/#with-openvidu-pro-rest-api){:target="_blank"}
+> - [AWS](/openvidu-pro/deployment/aws/#with-openvidu-pro-rest-api){:target="_blank"}
+> - [On premise](/openvidu-pro/deployment/on-premise/#with-openvidu-pro-rest-api){:target="_blank"}
 
 <br>
 
@@ -109,9 +109,9 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 ## OpenVidu Pro cluster events
 
-OpenVidu Pro provides an specific server-side event that will inform you every time there is a change in the status of the cluster. You can listen to this event by using [OpenVidu Webhook](/docs/reference-docs/openvidu-server-webhook){:target="_blank"} (it will also be registered in [OpenVidu CDR](/docs/reference-docs/openvidu-server-cdr){:target="_blank"}).
+OpenVidu Pro provides an specific server-side event that will inform you every time there is a change in the status of the cluster. You can listen to this event by using [OpenVidu Webhook](/reference-docs/openvidu-server-webhook){:target="_blank"} (it will also be registered in [OpenVidu CDR](/reference-docs/openvidu-server-cdr){:target="_blank"}).
 
-This event is **[mediaNodeStatusChanged](/docs/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"}**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro REST API](/docs/openvidu-pro/reference-docs/REST-API-pro){:target="_blank"} to retrieve the status of the whole cluster at any time.
+This event is **[mediaNodeStatusChanged](/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"}**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro REST API](/openvidu-pro/reference-docs/REST-API-pro){:target="_blank"} to retrieve the status of the whole cluster at any time.
 
 #### Media Node statuses
 
@@ -122,7 +122,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 - `running`: the Media Node is up and running. New sessions can now be established in this Media Node. This status can be reached from _launching_ and _waiting-idle-to-terminate_ statuses.
 - `waiting-idle-to-terminate`: the Media Node is waiting until the last of its sessions is closed. Once this happens, it will automatically enter _terminating_ status. The Media Node won't accept new sessions during this status. This status can be reached from _running_ status.
 - `terminating`: the Media Node is shutting down. This status can be reached from _running_ and _waiting-idle-to-terminate_ statuses.
-- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For OpenVidu Pro clusters running in _manual_ mode ([property `openvidu.pro.cluster.mode`](/docs/openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} set to `manual`), this status means that the Media Node instance can be safely shut down.
+- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For OpenVidu Pro clusters running in _manual_ mode ([property `openvidu.pro.cluster.mode`](/openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} set to `manual`), this status means that the Media Node instance can be safely shut down.
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
@@ -142,7 +142,7 @@ That being said, there is no single answer to this question. The load each Media
 
 - The topology of each OpenVidu Session (1:1, 1:N, N:M)
 - The type of media streams being published to the Session (only audio, only video, audio + video)
-- Whether your Sessions are using advanced features such as [recording](/docs/advanced-features/recording){:target="_blank"} or [audio/video filters](/docs/advanced-features/filters){:target="_blank"}
+- Whether your Sessions are using advanced features such as [recording](/advanced-features/recording){:target="_blank"} or [audio/video filters](/advanced-features/filters){:target="_blank"}
 
 You will need to perform some tests for your specific use case, and adapt the size of your cluster accordingly. OpenVidu team can perform these tests for you as part of their commercial services (contact us through [Commercial page](/commercial){:target="_blank"} to ask for an estimate).
 
@@ -164,7 +164,7 @@ Below are stated the current limitations regarding the scalability of an OpenVid
 
 #### Composed video recording is not scalable
 
-Right now [composed recordings with video](/docs/advanced-features/recording/#composed-recording){:target="_blank"} are hosted in OpenVidu Server Pro node, which means that launching multiple simultaneous composed recordings may increase the load on this node to a dangerous point. So a necessary change to improve scalability for this particular use case is to get this module out of OpenVidu Server Pro Node.
+Right now [composed recordings with video](/advanced-features/recording/#composed-recording){:target="_blank"} are hosted in OpenVidu Server Pro node, which means that launching multiple simultaneous composed recordings may increase the load on this node to a dangerous point. So a necessary change to improve scalability for this particular use case is to get this module out of OpenVidu Server Pro Node.
 
 For the moment, we recommend limiting the number of simultaneous composed recordings with video and using a more powerful machine in OpenVidu Server Pro Node if required. This doesn't affect either individual recordings or composed recordings with audio-only.
 

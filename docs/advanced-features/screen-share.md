@@ -14,7 +14,7 @@
 
 ### Chrome >=72, Opera (based on Chrome >=72) and Firefox >=66
 
-To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](/docs/cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
+To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](/cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 var OV = new OpenVidu();
@@ -87,7 +87,7 @@ desktopCapturer.getSources({
 });
 ```
 
-You can check out [openvidu-electron tutorial](/docs/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
+You can check out [openvidu-electron tutorial](/tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
 
 <br>
 

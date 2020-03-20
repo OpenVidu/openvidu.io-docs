@@ -92,11 +92,11 @@ Being `MY_SECRET` the password you want for securing your OpenVidu Server. This 
 > 
 > `sudo apt-get install -y openjdk-8-jre`</br>
 > 
-> **2)** You can get any [version](/docs/releases/){:target="_blank"} of OpenVidu Server with the command below. To ensure compatibility comply with version numbers listed in [releases page](/docs/releases/){:target="_blank"}
+> **2)** You can get any [version](/releases/){:target="_blank"} of OpenVidu Server with the command below. To ensure compatibility comply with version numbers listed in [releases page](/releases/){:target="_blank"}
 > 
 > `wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar`</br>
 >
-> **3)** If you want to enable recording module of OpenVidu Server to record your sessions, you must install [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/){:target="_blank"} and add [some more system properties](/docs/advanced-features/recording/#2-launch-openvidu-server-with-new-properties){:target="_blank"} to the `java -jar` command. Check out [Recording](/docs/advanced-features/recording){:target="_blank"} section to learn more
+> **3)** If you want to enable recording module of OpenVidu Server to record your sessions, you must install [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/){:target="_blank"} and add [some more system properties](/advanced-features/recording/#2-launch-openvidu-server-with-new-properties){:target="_blank"} to the `java -jar` command. Check out [Recording](/advanced-features/recording){:target="_blank"} section to learn more
 
 <br>
 Go to [Using your own certificate](#using-your-own-certificate) to add your certificate to the JAR instead of using the self-signed default one (which will launch a security warning on the user's browser).
@@ -105,7 +105,7 @@ Go to [Using your own certificate](#using-your-own-certificate) to add your cert
 
 You can connect to OpenVidu dashboard through `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443` (authorization is `OPENVIDUAPP:MY_SECRET`). Make sure you allow TCP and UDP inbound connections to your machine!
 
-To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, check out [Connecting your app to OpenVidu](/docs/deployment/deploying-app/#connecting-your-external-app-to-openvidu){:target="_blank"}.
+To connect your application to OpenVidu Server, use the same URL `https://YOUR_OPENVIDU_SERVER_MACHINE_PUBLIC_IP:4443`. To learn more, check out [Connecting your app to OpenVidu](/deployment/deploying-app/#connecting-your-external-app-to-openvidu){:target="_blank"}.
 
 <br>
 
@@ -115,7 +115,7 @@ To connect your application to OpenVidu Server, use the same URL `https://YOUR_O
 
 In order for this deployment to work, you will have to meet 2 sets of needs in the machine hosting your services:
   
-  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks (**[learn more](/docs/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them){:target="_blank"}**). If the *COTURN* itself is running inside an unreachable machine, your video transmission will probably fail. And also make sure the server bandwidth is significant, as each media connection can potentially consume up to several MBs.
+  - First of all, you certainly need the machine to have a **public, reachable IP**. The reason is pretty simple: we are precisely installing _COTURN_ service to cover those situations where the final users are hidden behind NATs or complex networks (**[learn more](/troubleshooting#6-what-are-stun-and-turn-servers-and-why-do-i-need-them){:target="_blank"}**). If the *COTURN* itself is running inside an unreachable machine, your video transmission will probably fail. And also make sure the server bandwidth is significant, as each media connection can potentially consume up to several MBs.
 
   - Besides, the server needs some **ports** opened in the firewall:
 
@@ -123,7 +123,7 @@ In order for this deployment to work, you will have to meet 2 sets of needs in t
       - **3478 UDP and TCP** (_COTURN_ listens on port 3478 by default)
       - **40000 - 65535 UDP and TCP** (WebRTC will randomly exchange media through any of these ports. TCP might be used if client network blocks UDP connections)
   
-  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/docs/deployment/deploying-aws){:target="_blank"}.
+  > If you were still in trouble, we provide a ready-to-use Amazon CloudFormation Stack to easily deploy OpenVidu in just a few minutes [here](/deployment/deploying-aws){:target="_blank"}.
 
 <br>
 
@@ -157,7 +157,7 @@ In order to use your JKS, just give the proper value to the following OpenVidu S
 java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_keystore.jks -Dserver.ssl.key-store-password=MY_KEYSTORE_SECRET -Dserver.ssl.key-alias=my_cert_alias openvidu-server-2.5.0.jar
 ```
 
-> Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/docs/deployment/deploying-aws#4-complete-the-configuration-fields){:target="_blank"}**
+> Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](/deployment/deploying-aws#4-complete-the-configuration-fields){:target="_blank"}**
 
 <br>
 
@@ -167,7 +167,7 @@ java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_ke
 
 OpenVidu supports **Ubuntu Xenial 16.04** and **Ubuntu Bionic 18.04**. OpenCV filters will not work in Bionic. All filters will work fine in Xenial.
 
-Regarding filters explained in [Voice and video filters](https://openvidu.io/docs/advanced-features/filters/){:target="_blank} section, this will affect *FaceOverlayFilter* and *ChromaFilter*. In fact, no built-in module explained in [Kurento Docs](https://doc-kurento.readthedocs.io/en/stable/features/kurento_modules.html){:target="_blank} will work in Ubuntu Bionic (*PointerDetectorFilter*, *CrowdDetectorFilter*, *PlateDetectorFIlter*).
+Regarding filters explained in [Voice and video filters](https://docs.openvidu.io/advanced-features/filters/){:target="_blank} section, this will affect *FaceOverlayFilter* and *ChromaFilter*. In fact, no built-in module explained in [Kurento Docs](https://doc-kurento.readthedocs.io/en/stable/features/kurento_modules.html){:target="_blank} will work in Ubuntu Bionic (*PointerDetectorFilter*, *CrowdDetectorFilter*, *PlateDetectorFIlter*).
 
 *ZBarFilter* and *GStreamer* filters work fine in Ubuntu Bionic.
 

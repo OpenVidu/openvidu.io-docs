@@ -18,7 +18,7 @@
                         <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa"><h3 style="line-height: 100px; border-top: none; margin: 0; color: #0088aa">Hello World!</h3></div>
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-hello-world" class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/tutorials/openvidu-hello-world" class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -43,7 +43,7 @@
                         <img src="/img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-js"
+                                <li class="social-icon"><a href="/tutorials/openvidu-insecure-js"
                                         class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -62,7 +62,7 @@
                         <img src="/img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-angular"><i
+                                <li class="social-icon"><a href="/tutorials/openvidu-insecure-angular"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -81,7 +81,7 @@
                         <img src="/img/assets/react.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-insecure-react/"><i
+                                <li class="social-icon"><a href="/tutorials/openvidu-insecure-react/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -105,7 +105,7 @@
                         <img src="/img/assets/react-native.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-react-native/"><i
+                                <li class="social-icon"><a href="/tutorials/openvidu-react-native/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -124,7 +124,7 @@
                         <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-ionic/"><i
+                                <li class="social-icon"><a href="/tutorials/openvidu-ionic/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -143,7 +143,7 @@
                         <img src="/img/assets/electron.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-electron/"><i
+                                <li class="social-icon"><a href="/tutorials/openvidu-electron/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -192,7 +192,7 @@
                         <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-js-java"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/tutorials/openvidu-js-java"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -211,7 +211,7 @@
                         <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-mvc-java"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/tutorials/openvidu-mvc-java"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -234,7 +234,7 @@
                         <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-js-node"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/tutorials/openvidu-js-node"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -253,7 +253,7 @@
                         <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="/docs/tutorials/openvidu-mvc-node"><i class="icon ion-edit"></i></a></li>
+                                <li class="social-icon"><a href="/tutorials/openvidu-mvc-node"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>

@@ -1,6 +1,6 @@
 # Switch camera
 
-As a first step, we strongly recommend taking a look at *[Publish/Unpublish stream](/docs/cheatsheet/publish-unpublish/){:target="_blank"}* documentation, as we need to be very clear about those concepts before we address the switching camera operation.
+As a first step, we strongly recommend taking a look at *[Publish/Unpublish stream](/cheatsheet/publish-unpublish/){:target="_blank"}* documentation, as we need to be very clear about those concepts before we address the switching camera operation.
 
 That being said, there are two ways of switching the media source of a published stream:
 

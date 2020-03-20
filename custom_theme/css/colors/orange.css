@@ -1,0 +1,132 @@
+::-moz-selection {
+    background: #E47911;
+}
+::selection {
+	background: #E47911;
+}
+
+
+.btn-home a,
+#filters li span.active,
+#filters li span:hover,
+#filters li span:focus,
+.btn-primary,
+.label-primary,
+#contact input.submit,
+.blog-list li:hover,
+.cbp-l-filters-button .cbp-filter-item-active,
+.cbp-l-filters-button .cbp-filter-counter,
+.nav > li > a:hover, .nav > li > a:focus,
+.shop-btn-box:hover,
+.pagination > .active > a,
+.progress-bar,
+.btn-primary-full,
+#back-to-top,
+.btn-buy,
+.navbar-default .navbar-toggle .icon-bar,
+.btn-primary:hover,
+.cbp-l-filters-alignRight .cbp-filter-item-active,
+.cbp-l-filters-alignRight .cbp-filter-counter,
+.cbp-l-filters-alignCenter .cbp-filter-item-active,
+.cbp-l-filters-alignCenter .cbp-filter-counter,
+.cbp-l-filters-alignRight .cbp-filter-item:hover,
+.cbp-l-filters-alignCenter .cbp-filter-item:hover,
+.clients .client .logo-light, 
+.clients .client a .logo-light,
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus,
+.home-signin .btn-primary-full:hover,
+.cbp-l-loadMore-button .cbp-l-loadMore-button-link:hover,
+.pager li>a:hover, .pager li>a:focus 
+{
+	background: #E47911;
+}
+
+
+a,
+.about-icon .fa-circle,
+.highlight,
+figure figcaption a:hover,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus
+.navbar-default .navbar-nav > .hovernav:hover > a,
+.navbar-default .navbar-nav > .hovernav:hover > a:hover,
+.navbar-default .navbar-nav > .hovernav:hover > a:focus
+.nav > li > a:hover,
+
+.nav > li > span:hover,
+.nav > li > span:focus,
+.navbar-default .navbar-nav > li > a:hover,
+
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, 
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus,
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:hover, 
+.navbar-default .navbar-nav>.active>a:focus,
+.dropdown-menu > .active > a, 
+.dropdown-menu > .active > a:hover, 
+.dropdown-menu > .active > a:focus,
+.portfolio-links a:hover,
+.portfolio-links .icon:hover,
+.connected-icon a:focus,
+.connected-icon a:hover,
+.btn-link,
+.post-title a:hover,
+.post-title a:focus,
+#main-nav .current,
+.star-rating span,
+.twitter-logo .fa,
+.footer-logo a:hover,
+.social-icons a:hover,
+footer #social-icons li a:hover,
+.mega-list > li > a:hover,
+.mega-list > li > a:focus,
+.breadcrumb>li+li:before,
+.contact-details-social li a:hover,
+.cbp-l-filters-dropdownList .cbp-filter-item-active,
+.member-list a:hover, 
+.effects .img a:hover,
+.connected-icon a:hover h4,
+.connected-icon a:hover span,
+.home-bottom a:hover,
+#notification .success,
+.cbp-item .img a,
+.section-links a:hover,
+.blog-post-title a:hover
+ {
+	color: #E47911;
+}
+
+.cbp-l-filters-alignRight .cbp-filter-counter:before,
+.cbp-l-filters-alignCenter .cbp-filter-counter:before,
+.cbp-l-filters-button .cbp-filter-counter:before {
+	border-top: 4px solid #E47911;
+}
+.btn-primary-full {
+    box-shadow: 0 -3px rgba(0, 0, 0, 0.4) inset;
+}
+.color-overlay,
+.btn-home a:hover,
+.btn-home a:focus {
+    background-color: rgba(228, 121, 17, 0.9);
+}
+.label-primary:after {
+    border-bottom-color: #E47911;
+}
+.mega-menu .dropdown-menu {
+    border-bottom: 2px solid #E47911;
+    border-top: none!important;
+}
+
+.btn-effect:hover,
+.btn-effect:focus,
+.btn-effect:active,
+.btn-effect:after {
+    background: #E47911;
+}
+.btn-effect:hover {
+    background: none; 
+    border-color: #E47911;
+    transition: all 0.4s;
+}
+ 

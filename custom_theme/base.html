@@ -1,8 +1,62 @@
----
-layout: docs-layout
-title: OpenVidu Documentation{% if page.title %} - {{ page.title }}{% endif %}
-active: documentation
----
+<head>
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="keywords" content="OpenVidu, openvidu, WebRTC, Video, mobile" />
+	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+	<!-- Stlylesheet -->
+	<link href="/css/style.css" rel="stylesheet" type="text/css" />
+	<link href="/css/style-custom.css" rel="stylesheet" type="text/css" />
+	<link href="/css/docs-layout.css" rel="stylesheet" type="text/css" />
+	<!-- Skin Color -->
+	<link rel="stylesheet" href="/css/colors/yellow.css" id="color-skins" />
+	<link rel="stylesheet" type="text/css"
+		href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+	<script src="/js/plugins/jquery.min.js"></script>
+</head>
+
+<header>
+	<nav class="navbar navbar-default navbar-alt navbar-small">
+		<div class="container">
+			<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" rel="home" href="/">
+				<img class="logo-small" src="/img/logos/openvidu_vert_grey_bg_transp_cropped.png"/>
+			</a>
+		</div>
+		<div class="collapse navbar-collapse" id="main-nav">
+			<ul class="nav navbar-nav  navbar-right">
+			<li class="to-section"><a href="https://openvidu.io/index">Home</a></li>
+			<li class="to-section"><a href="https://openvidu.io/demos">Demos</a></li>
+			<li class="to-section"><a href="https://openvidu.io/tutorials">Tutorials</a></li>
+			<li class="to-section"><a href="https://openvidu.io/support">Support</a></li>
+			<li class="to-section"><a href="https://openvidu.io/commercial">Commercial</a></li>
+			<li class="to-section"><a href="https://openvidu.io/pricing">Pricing</a></li>
+			<li class="active to-section" ><a href="https://docs.openvidu.io/home">Docs</a></li>
+			<li><a class="social-icon" target="_blank" href="https://twitter.com/openvidu" style="padding-left: 12px"><i class="icon ion-social-twitter"></i></a></li>
+			<li><a class="social-icon" target="_blank" href="https://github.com/OpenVidu/openvidu"><i class="icon ion-social-github"></i></a></li>        
+			<li class="to-section" style="display: flex; padding-left: 18px" id="account-menu-btn"><div id="login-loader" class="lds-ripple"><div></div><div></div></div></li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+  <!-- We need this component here to check if user is logged in in ay page -->
+  <script type="text/javascript" src="/openvidu-register/openvidu-register.js"></script>
+
+</header>
+
+<!-- We need this component here to check if user is logged in in ay page -->
+{% if page.active != "account" %}
+<openvidu-register></openvidu-register>
+{% endif %}
 
 <link rel="stylesheet" href="/css/syntax.css" />
 <script src="/js/highlight.pack.js"></script>
@@ -14,14 +68,17 @@ active: documentation
 <script src="/js/perfect-scrollbar.min.js"></script>
 <link rel="stylesheet" href="/css/perfect-scrollbar.css" />
 
-<div id="doc-container" class="container text-justify">
+<div id="doc-container" class="container text-justify" style="padding-top: 100px; padding-bottom: 60px">
 	<div id="sticky-menu" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 
 		{# SIDE NAV, TOGGLES ON MOBILE #}
 		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
 			<div class="wy-menu wy-menu-vertical" role="navigation" aria-label="main navigation">
 				<div id="site-menu-title">
-					<h3>Explore docs</h3>
+					<div id="explore-docs">
+						<h3 style="margin: 0">Explore docs</h3>
+						<button id="version-button">2.12.0</button>
+					</div>
 					<hr>
 				</div>
 				<ul id="menu-list">
@@ -87,4 +144,74 @@ active: documentation
 	});
 
 	$(".wy-nav-content").find("li:contains('{{ page.title }}')").css('color', 'red');
+</script>
+
+
+
+
+<script src="/js/plugins/moderniz.min.js"></script>
+<script src="/js/plugins/smoothscroll.min.js"></script>
+<script src="/js/plugins/revslider.min.js"></script>
+<script src="/js/plugins/bootstrap.min.js"></script>
+<script src="/js/plugins/waypoints.min.js"></script>
+<script src="/js/plugins/parallax.min.js"></script>
+<script src="/js/plugins/easign1.3.min.js"></script>
+<script src="/js/plugins/cubeportfolio.min.js"></script>
+<script src="/js/plugins/owlcarousel.min.js"></script>
+<script src="/js/plugins/wow.min.js"></script>
+<script src="/js/plugins/counterup.min.js"></script>
+<script src="/js/scripts.js"></script>
+
+<script>
+	(function (i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function () {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o),
+			m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+	ga('create', 'UA-101392924-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+	window.addEventListener("load", function () {
+		window.cookieconsent.initialise({
+			"palette": {
+				"popup": {
+					"background": "#000"
+				},
+				"button": {
+					"background": "#0088aa",
+					"color": "#fff",
+					"padding": "9px 22px",
+					"box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+					"-moz-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+					"-webkit-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+					"-o-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+					"margin": "0 7px 0 7px",
+					"text-transform": "uppercase",
+					"text-decoration": "none",
+					"color": "#ff7302",
+					"text-shadow": "none",
+					"-webkit-transition": "all .2s ease-out",
+					"-moz-transition": "all .2s ease-out",
+					"-o-transition": "all .2s ease-out",
+					"-ms-transition": "all .2s ease-out"
+				}
+			},
+			"theme": "classic",
+			"position": "bottom-right",
+			"content": {
+				"href": "https://openvidu.io/conditions/cookie-policy",
+				"policy": 'Cookie Policy',
+			}
+		})
+	});
 </script>

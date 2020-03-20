@@ -16,9 +16,9 @@ OpenVidu is an **open source project**, and for sure will remain this way in the
 
 OpenVidu Pro consists of different modules working on top of OpenVidu Community Edition (OpenVidu CE). For now OpenVidu Pro offers:
 
-- **[Scalability](/docs/openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
-- **[OpenVidu Inspector](/docs/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](/docs/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
+- **[Scalability](/openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
+- **[OpenVidu Inspector](/openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
+- **[Detail session monitoring](/openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
 
 <div style="
     display: table;
@@ -217,9 +217,9 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     </tr>
     <tr>
     <th scope="row"></th>
-    <td><a href="/docs/home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
+    <td><a href="/home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
         OpenVidu CE Docs</a></td>
-        <td><a href="/docs/openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
+        <td><a href="/openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
         OpenVidu Pro Docs</a></td>
         </tr>
     </tbody>
@@ -233,8 +233,8 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
 
 You can deploy OpenVidu Pro:
 
-- **[On AWS](/docs/openvidu-pro/deployment/aws){:target="_blank"}**
-- **[On premises in your own infrastructure](/docs/openvidu-pro/deployment/on-premise/){:target="_blank"}**
+- **[On AWS](/openvidu-pro/deployment/aws){:target="_blank"}**
+- **[On premises in your own infrastructure](/openvidu-pro/deployment/on-premise/){:target="_blank"}**
 
 <br>
 

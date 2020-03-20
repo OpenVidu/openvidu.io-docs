@@ -21,14 +21,14 @@
 
 You have an app that uses OpenVidu to stream some video user-to-user, and the process looks perfectly okey. No errors on the console and all the OpenVidu events you are subscribed to are correctly triggered. So what's happening?
 
-99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy our ready-to-use [OpenVidu Server in Amazon](/docs/deployment/deploying-aws){:target="_blank"}.
+99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy our ready-to-use [OpenVidu Server in Amazon](/deployment/deploying-aws){:target="_blank"}.
 
-If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself in Ubuntu 16.04. Check [Deploying OpenVidu on Ubuntu](/docs/deployment/deploying-ubuntu/){:target="_blank"} section to learn how to properly do it.
+If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself in Ubuntu 16.04. Check [Deploying OpenVidu on Ubuntu](/deployment/deploying-ubuntu/){:target="_blank"} section to learn how to properly do it.
 
 Besides that, these are the recommended steps to follow when videos are not received:
 
   - Access your OpenVidu dashboard (`https://YOUR_OPENVIDU_IP:4443`) to quickly test the video transmission (user: _OPENVIDUAPP_, pass: _[your private secret]_)
-  - Please be sure that your OpenVidu Server host meets the [network requirements](/docs/deployment/deploying-ubuntu#server-network-requirements){:target="_blank"}.
+  - Please be sure that your OpenVidu Server host meets the [network requirements](/deployment/deploying-ubuntu#server-network-requirements){:target="_blank"}.
 
 The other 1% of the time this can be an attempt of **accessing the same camera from two different browsers at the same time**. Remember that Chrome, Firefox, Opera and Safari are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera from different tabs of the same browser is tipically possible.
 
@@ -106,7 +106,7 @@ Then, to let your applications know how to connect to OpenVidu Server:
 
 #### Applications _Client-Side Only_
 
-(For example _[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="_blank"}_, _[openvidu-insecure-js](/docs/tutorials/openvidu-insecure-js/){:target="_blank"}_, _[openvidu-insecure-angular](/docs/tutorials/openvidu-insecure-angular/){:target="_blank"}_, _[openvidu-getaroom](/docs/demos/openvidu-getaroom/){:target="_blank"}_)
+(For example _[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="_blank"}_, _[openvidu-insecure-js](/tutorials/openvidu-insecure-js/){:target="_blank"}_, _[openvidu-insecure-angular](/tutorials/openvidu-insecure-angular/){:target="_blank"}_, _[openvidu-getaroom](/demos/openvidu-getaroom/){:target="_blank"}_)
 
 When consuming openvidu-server REST API, change `location.hostname` to the IP of the Docker container running openvidu-server (usually `192.168.99.100`). For every one of the insecure tutorials listed above, the url where to send the REST operations ...
 
@@ -135,11 +135,11 @@ Change this url in every insecure tutorial right here:
 
 #### Applications _Client-Side + Server-Side_
 
-(Tutorials _[openvidu-js-java](/docs/tutorials/openvidu-js-java/){:target="_blank"}_, _[openvidu-mvc-java](/docs/tutorials/openvidu-mvc-java/){:target="_blank"}_, _[openvidu-js-node](/docs/tutorials/openvidu-js-node/){:target="_blank"}_, _[openvidu-mvc-node](/docs/tutorials/openvidu-mvc-node/){:target="_blank"}_)
+(Tutorials _[openvidu-js-java](/tutorials/openvidu-js-java/){:target="_blank"}_, _[openvidu-mvc-java](/tutorials/openvidu-mvc-java/){:target="_blank"}_, _[openvidu-js-node](/tutorials/openvidu-js-node/){:target="_blank"}_, _[openvidu-mvc-node](/tutorials/openvidu-mvc-node/){:target="_blank"}_)
 
 You must let know your app/tutorial how to initialize _openvidu-java-client_ or _openvidu-node-client_ (or where to send your REST API operations in case you are not using any of these clients). For example:
 
-  - **Java tutorials** (tutorials _[openvidu-js-java](/docs/tutorials/openvidu-js-java/){:target="_blank"}_, _[openvidu-mvc-java](/docs/tutorials/openvidu-mvc-java/){:target="_blank"}_): override the default value of the property `openvidu.url`:
+  - **Java tutorials** (tutorials _[openvidu-js-java](/tutorials/openvidu-js-java/){:target="_blank"}_, _[openvidu-mvc-java](/tutorials/openvidu-mvc-java/){:target="_blank"}_): override the default value of the property `openvidu.url`:
 
         mvn package exec:java
 
@@ -149,7 +149,7 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
     > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-java-client** will receive in [its constructor](/api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#OpenVidu-java.lang.String-java.lang.String-){:target="_blank"}. This change is something related to these specific applications.
 
-  - **Node tutorials** (tutorials _[openvidu-js-node](/docs/tutorials/openvidu-js-node/){:target="_blank"}_, _[openvidu-mvc-node](/docs/tutorials/openvidu-mvc-node/){:target="_blank"}_): change the URL param passed on launch:
+  - **Node tutorials** (tutorials _[openvidu-js-node](/tutorials/openvidu-js-node/){:target="_blank"}_, _[openvidu-mvc-node](/tutorials/openvidu-mvc-node/){:target="_blank"}_): change the URL param passed on launch:
 
         node server.js https://localhost:4443/ MY_SECRET
 
@@ -165,10 +165,10 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
 First of all, let's differentiate between OpenVidu server-side and your application's server-side. 
 
-  - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](/docs/deployment/deploying-aws/){:target="_blank"} to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
+  - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](/deployment/deploying-aws/){:target="_blank"} to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
   - You will generally want your application to have its own server-side. Why?
 
-Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="_blank"}, [openvidu-insecure-js](/docs/tutorials/openvidu-insecure-js/){:target="_blank"}, [openvidu-getaroom](/docs/demos/openvidu-getaroom/){:target="_blank"}
+Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="_blank"}, [openvidu-insecure-js](/tutorials/openvidu-insecure-js/){:target="_blank"}, [openvidu-getaroom](/demos/openvidu-getaroom/){:target="_blank"}
 
 The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-insecure-js/web/app.js#L177){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/ff2c3b74658baf70b18ed03e3d3998ebeb011894/openvidu-getaroom/web/app.js#L259){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
 
@@ -200,7 +200,7 @@ The problem here is pretty evident: if you don't have any kind of server side to
 
 ### 5. The CloudFormation Stack is a nice option for Amazon, but I don't like it. I want more control
 
-You can always deploy everything by yourself. To do so, check [Deploying OpenVidu on Ubuntu](/docs/deployment/deploying-ubuntu/){:target="_blank"} section.
+You can always deploy everything by yourself. To do so, check [Deploying OpenVidu on Ubuntu](/deployment/deploying-ubuntu/){:target="_blank"} section.
  What platforms are supported by OpenVidu?
 ---
 
@@ -215,8 +215,8 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
 
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
 
-  - Our ready-to-use [CloudFormation stack](/docs/deployment/deploying-aws){:target="_blank"} already includes a properly configured COTURN server.
-  - If you are deploying OpenVidu Server by your own, there are detailed instructions in the [Deploying OpenVidu on Ubuntu](/docs/deployment/deploying-ubuntu/){:target="_blank"} section, which explains how to install, configure and run COTURN on Ubuntu.
+  - Our ready-to-use [CloudFormation stack](/deployment/deploying-aws){:target="_blank"} already includes a properly configured COTURN server.
+  - If you are deploying OpenVidu Server by your own, there are detailed instructions in the [Deploying OpenVidu on Ubuntu](/deployment/deploying-ubuntu/){:target="_blank"} section, which explains how to install, configure and run COTURN on Ubuntu.
 
     > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
@@ -252,14 +252,14 @@ OpenVidu supports a wide range of platforms:
 
 **Android** and **iOS** are supported:
 
-- Since release **2.7.0** through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](/docs/tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
+- Since release **2.7.0** through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](/tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
 
-- Since release **2.10.0** through **[React Native](https://facebook.github.io/react-native/){:target="_blank"}**. You can try [openvidu-react-native](/docs/tutorials/openvidu-react-native/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application working in minutes.
+- Since release **2.10.0** through **[React Native](https://facebook.github.io/react-native/){:target="_blank"}**. You can try [openvidu-react-native](/tutorials/openvidu-react-native/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application working in minutes.
 
 <br>
 ##### Desktop native applications
 
-- **Windows**, **OSX** and **Linux** are supported since release **2.10.0** through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](/docs/tutorials/openvidu-electron/){:target="_blank"} tutorial and you will have an OpenVidu native desktop application working in minutes.
+- **Windows**, **OSX** and **Linux** are supported since release **2.10.0** through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](/tutorials/openvidu-electron/){:target="_blank"} tutorial and you will have an OpenVidu native desktop application working in minutes.
 
 ---
 
@@ -271,7 +271,7 @@ In terms of **performance**, OpenVidu load testing process is described in detai
   <img class="img-responsive" src="/img/docs/troubleshooting/load_test_results.png">
 </div>
 
-About **scalability**, you can try [OpenVidu Pro scalability features](/docs/openvidu-pro/scalability/){:target="_blank"}. With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable.
+About **scalability**, you can try [OpenVidu Pro scalability features](/openvidu-pro/scalability/){:target="_blank"}. With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable.
 
 We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pro tier in the near future. Always seamlessly integrated with most popular cloud providers and platforms (AWS, Azure, Ansible, Kubernetes...) with the final goal of providing automated server scale-in and scale-out capabilities depending on the workload of your application.
 
@@ -317,13 +317,13 @@ Again, Apple's browser has "special" needs when it comes to video playback. In i
 
 Possible solutions to this issue? Tweaking muted property on videos to have only one playing audio at a time. Maybe using user gestures to directly play videos can help too. Other users have reported that it usually works fine if dynamically adding audio tracks to the same MediaStream object. There is not a clear solution to this problem, and depending on the web application some workarounds can succeed and some may not. On our tests we have even seen different behaviors in video playback from one execution to another, breaking the supposed consistency of the browser. It is really a matter of testing different approaches until you find a good enough solution.
 
-Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](/docs/tutorials/openvidu-ionic/){:target="_blank"}) or [Ractt Native](/docs/tutorials/openvidu-react-native/){:target="_blank"}).
+Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](/tutorials/openvidu-ionic/){:target="_blank"}) or [Ractt Native](/tutorials/openvidu-react-native/){:target="_blank"}).
 
 ---
 
 ### 13. Deploying OpenVidu in AWS is failing
 
-If you are deploying [OpenVidu CE](/docs/deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](/docs/openvidu-pro/deploying-openvidu-pro-aws/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
+If you are deploying [OpenVidu CE](/deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](/openvidu-pro/deploying-openvidu-pro-aws/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
 
 You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
 And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"}

@@ -112,9 +112,9 @@ npm install
 ng serve --open
 ```
 
-> If you are using **Windows**, read this **[FAQ](/docs/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/docs/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 #### Using the Release
 
@@ -183,7 +183,7 @@ Using the OpenVidu Call release, you can set up the address where your app will 
 }
 ```
 
-Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters, but also you can customize the session interface adding an extra JSON object named  **openviduSettings** inside of the file. You have explained how **openviduSettings** object must be treated in detail [here](/docs/tutorials/openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
+Not only you can establish your own **openvidu_url** and **openvidu_secret** parameters, but also you can customize the session interface adding an extra JSON object named  **openviduSettings** inside of the file. You have explained how **openviduSettings** object must be treated in detail [here](/tutorials/openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

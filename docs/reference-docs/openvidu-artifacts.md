@@ -144,27 +144,27 @@
   
   <tr>
     <td>openvidu-js-node</td>
-    <td><a href="/docs/tutorials/openvidu-js-node/#running-this-tutorial" target="_blank">Go</a></td>
+    <td><a href="/tutorials/openvidu-js-node/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
   
   <tr>
     <td>openvidu-mvc-node</td>
-    <td><a href="/docs/tutorials/openvidu-mvc-node/#running-this-tutorial" target="_blank">Go</a></td>
+    <td><a href="/tutorials/openvidu-mvc-node/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
     <td>openvidu-insecure-js<br><em>(basic-videoconference-demo)</em></td>
-    <td><a href="/docs/tutorials/openvidu-insecure-js/#running-this-tutorial" target="_blank">Go</a></td>
+    <td><a href="/tutorials/openvidu-insecure-js/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
     <td>openvidu-insecure-angular</td>
-    <td><a href="/docs/tutorials/openvidu-insecure-angular/#running-this-tutorial" target="_blank">Go</a></td>
+    <td><a href="/tutorials/openvidu-insecure-angular/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
 
   <tr>
     <td>openvidu-getaroom</td>
-    <td><a href="/docs/tutorials/openvidu-getaroom/#running-this-tutorial" target="_blank">Go</a></td>
+    <td><a href="/tutorials/openvidu-getaroom/#running-this-tutorial" target="_blank">Go</a></td>
   </tr>
   
 </table>

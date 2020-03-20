@@ -94,7 +94,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### OpenVidu configuration
 
-All of these properties configure OpenVidu Server. You have a complete description of all available properties **[here](/docs/reference-docs/openvidu-server-params){:target="_blank"}**.
+All of these properties configure OpenVidu Server. You have a complete description of all available properties **[here](/reference-docs/openvidu-server-params){:target="_blank"}**.
 
 #### Other configuration
 
@@ -123,8 +123,8 @@ These properties configure specific details of the CloudFormation stack.
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">OpenVidu version<br><span class="field-comment">WARNING: this parameter must only be modified when upgrading an existing stack.<br>See <a href="/docs/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a><span></td>
-      <td><em><strong>Default value</strong> if not upgrading an existing stack</em><br><span class="field-comment">(see <a href="/docs/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a>)</span></td>
+      <td class="first-col">OpenVidu version<br><span class="field-comment">WARNING: this parameter must only be modified when upgrading an existing stack.<br>See <a href="/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a><span></td>
+      <td><em><strong>Default value</strong> if not upgrading an existing stack</em><br><span class="field-comment">(see <a href="/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a>)</span></td>
     </tr>
   </table>
 </div>
@@ -137,7 +137,7 @@ These properties configure specific details of the CloudFormation stack.
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create stack_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes (about 10) until it shows **_CREATE_COMPLETE_**. If status reaches **CREATE_FAILED**, check out [this FAQ](/docs/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}.
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes (about 10) until it shows **_CREATE_COMPLETE_**. If status reaches **CREATE_FAILED**, check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}.
 
 After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it instead).
 
@@ -151,7 +151,7 @@ That URL will give you access to your OpenVidu dashboard. Credentials to access 
 - `OPENVIDUAPP` as username
 - The secret you chose on [Step 4](#openvidu-configuration) as password (parameter `openvidu.secret`)
 
-At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/docs/deployment/deploying-app/){:target="_blank"}.
+At OpenVidu dashboard you can test the video transmission. You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](/deployment/deploying-app/){:target="_blank"}.
 
 <br>
 

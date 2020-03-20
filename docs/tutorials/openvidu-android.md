@@ -4,7 +4,7 @@
 
 A client-side only **Android native** application built with **Java** and using official **Google WebRTC library**.
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/docs/tutorials/openvidu-hello-world/){:target="\_blank"}** tutorial due to this being a native Android app and being a little more complex for OpenVidu starters.
+If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](/tutorials/openvidu-hello-world/){:target="\_blank"}** tutorial due to this being a native Android app and being a little more complex for OpenVidu starters.
 
 <div style="
     display: table;
@@ -27,7 +27,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     padding-left: 20px;
     padding-right: 20px;
     ">
-	 OpenVidu does not provide an Android client SDK yet, so this application directly implements <a href="/docs/developing/rpc/" target="_blank">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="/docs/reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
+	 OpenVidu does not provide an Android client SDK yet, so this application directly implements <a href="/developing/rpc/" target="_blank">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="/reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
 </div>
 </div>
 
@@ -142,7 +142,7 @@ This is an Android project generated with Android Studio, and therefore you will
 - `SessionActivity.java`: this class defines the only Android activity of the app.
 - `Participant.java`: it is related to the participants info, such as connection information and their UI elements. This is the parent class of `RemoteParticipant` and `LocalParticipant`.
 - `Session.java`: this manages the collection of Participant objects, the behavior of SessionActivity layout and takes care of the creation of PeerConnection objects.
-- `CustomWebSocket.java`: the negotiation with **openvidu-server** takes place in this class. Its responsibility is to send RPC methods and listen to openvidu-server events through a websocket connection. To sum up, it implements [OpenVidu Server RPC protocol](http://localhost:4000/docs/developing/rpc/).
+- `CustomWebSocket.java`: the negotiation with **openvidu-server** takes place in this class. Its responsibility is to send RPC methods and listen to openvidu-server events through a websocket connection. To sum up, it implements [OpenVidu Server RPC protocol](/developing/rpc/).
 
 <br>
 
@@ -203,7 +203,7 @@ private void getToken(String sessionId) {
 }
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/docs/reference-docs/REST-API/){:target="\_blank"}_, _[OpenVidu Java Client](/docs/reference-docs/openvidu-java-client/){:target="\_blank"}_ or _[OpenVidu Node Client](/docs/reference-docs/openvidu-node-client/){:target="\_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()`. Without going into too much detail, this method performs two _POST_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them. We use an http-client we have wrapped in class [`CustomHttpClient`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/utils/CustomHttpClient.java){:target="_blank"}.
+Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](/reference-docs/REST-API/){:target="\_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="\_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="\_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()`. Without going into too much detail, this method performs two _POST_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them. We use an http-client we have wrapped in class [`CustomHttpClient`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/utils/CustomHttpClient.java){:target="_blank"}.
 
 - First request performs a POST to `/api/sessions` (we send a `customSessionId` field to force the id of the session to be the value retrieved from the view's form. This way we don't need a server side to connect multiple users to the same session)
 - Second request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)
@@ -346,7 +346,7 @@ We also have to think about the media permissions. You can take a look to the An
 
 #### Connect the websocket to OpenVidu Server
 
-Ath this point, we will establish a connection between **openvidu-server** and our Android app through the websocket. This way will be able to consume [OpenVidu Server RPC protocol](/docs/developing/rpc/){:target="_blank"} to interact with the session (in the future, when OpenVidu Android SDK is available, this won't be necessary). We do so in background as an async task so the main execution thread is not blocked.
+Ath this point, we will establish a connection between **openvidu-server** and our Android app through the websocket. This way will be able to consume [OpenVidu Server RPC protocol](/developing/rpc/){:target="_blank"} to interact with the session (in the future, when OpenVidu Android SDK is available, this won't be necessary). We do so in background as an async task so the main execution thread is not blocked.
 
 <p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px; word-break: break-word"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/websocket/CustomWebSocket.java" target="_blank">src/main/java/io/openvidu/openvidu_android/openvidu/CustomWebSocket.java</a></p>
 
@@ -377,7 +377,7 @@ protected Void doInBackground(SessionActivity... sessionActivities) {
 
 ### Using OpenVidu Server RPC protocol
 
-Taking the references from [OpenVidu Server RPC protocol](https://openvidu.io/docs/developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive events** from OpenVidu Server.
+Taking the references from [OpenVidu Server RPC protocol](https://docs.openvidu.io/developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive events** from OpenVidu Server.
 
 #### Listening to OpenVidu Server events
 

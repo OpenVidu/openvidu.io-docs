@@ -53,7 +53,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Easy to deploy</h3>
-      <span class="feature-text">Developing your app is just the beginning. And of course we know that the go-to-production process can sometimes be pretty annoying. OpenVidu makes this a seamless process by supporting the <a href="/docs/deployment/deploying-aws/" target="_blank">deployment in the most popular cloud provider</a> in a few clicks. Or if you prefer, we have a very short <a href="/docs/deployment/deploying-ubuntu/" target="_blank">step-by-step guide</a> on how to successfully deploy OpenVidu on Ubuntu</span>
+      <span class="feature-text">Developing your app is just the beginning. And of course we know that the go-to-production process can sometimes be pretty annoying. OpenVidu makes this a seamless process by supporting the <a href="/deployment/deploying-aws/" target="_blank">deployment in the most popular cloud provider</a> in a few clicks. Or if you prefer, we have a very short <a href="/deployment/deploying-ubuntu/" target="_blank">step-by-step guide</a> on how to successfully deploy OpenVidu on Ubuntu</span>
     </div>
   </div>
   <hr>
@@ -113,7 +113,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Message broadcasting</h3>
-      <span class="feature-text">You can implement a chat within just a few lines of code with OpenVidu. Any <a href="/docs/cheatsheet/send-messages/" target="_blank">user to user text-based communication</a> your app may need can be implemented very easily</span>
+      <span class="feature-text">You can implement a chat within just a few lines of code with OpenVidu. Any <a href="/cheatsheet/send-messages/" target="_blank">user to user text-based communication</a> your app may need can be implemented very easily</span>
     </div>
   </div>
   <hr>
@@ -123,7 +123,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Recording</h3>
-      <span class="feature-text"><a href="/docs/advanced-features/recording/" target="_blank">Record your videocalls</a> with complete freedom: OpenVidu provides predefined layouts, but you can use your own custom layouts to accomplish any kind of result</span>
+      <span class="feature-text"><a href="/advanced-features/recording/" target="_blank">Record your videocalls</a> with complete freedom: OpenVidu provides predefined layouts, but you can use your own custom layouts to accomplish any kind of result</span>
     </div>
   </div>
   <hr>
@@ -133,7 +133,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Screen sharing</h3>
-      <span class="feature-text">OpenVidu allows your clients to <a href="/docs/advanced-features/screen-share/" target="_blank">share their screens</a></span>
+      <span class="feature-text">OpenVidu allows your clients to <a href="/advanced-features/screen-share/" target="_blank">share their screens</a></span>
     </div>
   </div>
   <hr>
@@ -143,7 +143,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Audio and video filters</h3>
-      <span class="feature-text">OpenVidu is the only WebRTC technology that allows you to apply <a href="/docs/advanced-features/filters/" target="_blank">real-time audio and video filters</a>. Detecting bar codes, settting a chroma key background or amplifying your clients voices are only just a few examples of what you can achieve with OpenVidu filters. And all of this perfectly integrated in OpenVidu simple high-level API</span>
+      <span class="feature-text">OpenVidu is the only WebRTC technology that allows you to apply <a href="/advanced-features/filters/" target="_blank">real-time audio and video filters</a>. Detecting bar codes, settting a chroma key background or amplifying your clients voices are only just a few examples of what you can achieve with OpenVidu filters. And all of this perfectly integrated in OpenVidu simple high-level API</span>
     </div>
   </div>
   <hr>
@@ -153,7 +153,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">IP cameras</h3>
-      <span class="feature-text">You can receive <a href="/docs/advanced-features/ip-cameras/" target="_blank">IP cameras</a> in OpenVidu. Implementing a surveillance system has never been so easy!</span>
+      <span class="feature-text">You can receive <a href="/advanced-features/ip-cameras/" target="_blank">IP cameras</a> in OpenVidu. Implementing a surveillance system has never been so easy!</span>
     </div>
   </div>
   <hr>
@@ -163,7 +163,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Supported plans and professional support</h3>
-      <span class="feature-text">We offer <a href="/docs/openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="/commercial" target="_blank">Contact us now!</a></span>
+      <span class="feature-text">We offer <a href="/openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="/commercial" target="_blank">Contact us now!</a></span>
     </div>
   </div>
 
@@ -215,13 +215,13 @@ Get started
 
 These are the recommended steps for getting started with OpenVidu:
 
-1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](/docs/tutorials/openvidu-hello-world/){:target="_blank"}**.
+1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](/tutorials/openvidu-hello-world/){:target="_blank"}**.
 
-2. After that, you can try any of our **[Client-Side-Only](/docs/tutorials/#client-side-only){:target="_blank"}** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
+2. After that, you can try any of our **[Client-Side-Only](/tutorials/#client-side-only){:target="_blank"}** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
 
-3. Try now any of our **[Client-Side + Server-Side](/docs/tutorials/#client-side-server-side){:target="_blank"}** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
+3. Try now any of our **[Client-Side + Server-Side](/tutorials/#client-side-server-side){:target="_blank"}** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
 
-4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/docs/deployment/deploying-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](/docs/deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](/docs/deployment/deploying-app/){:target="_blank"}**).
+4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](/deployment/deploying-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](/deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](/deployment/deploying-app/){:target="_blank"}**).
 
 ----------
 
