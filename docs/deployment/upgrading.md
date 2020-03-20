@@ -35,9 +35,9 @@ The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation 
 
 <div class="row">
     <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="/img/docs/upgrading/CF_update1.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="/img/docs/upgrading/CF_update2.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="/img/docs/upgrading/CF_update3.png"><img class="img-responsive img-pro" src="/img/docs/upgrading/CF_update3.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/CF_update1.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update1.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/CF_update2.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update2.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/CF_update3.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update3.png"/></a>
     </div>
     <div class="slick-captions">
       <div class="caption"><p><strong>1)</strong> Select your CloudFormation stack and click on <strong>Update</strong> button</p></div>
@@ -128,7 +128,7 @@ Run Kurento Media Server with `sudo service kurento-media-server start` and laun
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
 <script>

@@ -80,13 +80,13 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/insecure-join.png">
-		<img class="img-responsive" src="/img/demos/insecure-join.png">
+		<a data-fancybox="gallery" href="img/demos/insecure-join.png">
+		<img class="img-responsive" src="img/demos/insecure-join.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/insecure-session.png">
-		<img class="img-responsive" src="/img/demos/insecure-session.png">
+		<a data-fancybox="gallery" href="img/demos/insecure-session.png">
+		<img class="img-responsive" src="img/demos/insecure-session.png">
 	</a>
 	</div>
 </div>

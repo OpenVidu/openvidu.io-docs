@@ -34,7 +34,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 ## Understanding this tutorial
 
 <p align="center">
-  <img class="img-responsive" src="/img/tutorials/openvidu-android.png">
+  <img class="img-responsive" src="img/tutorials/openvidu-android.png">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
@@ -115,20 +115,20 @@ In this example that would be: `https://192.168.0.105:4443/`
    In the **Select Deployment Target** window, select your device, and click **OK**.
 
 <p align="center">
-  <img class="img-responsive" style="padding: 25px 0" src="/img/demos/openvidu-android-devices.png">
+  <img class="img-responsive" style="padding: 25px 0" src="img/demos/openvidu-android-devices.png">
 </p>
 
 <br>
 
 <div class="row no-margin ">
 	<div class="col-md-6 col-sm-6">
-		<a data-fancybox="gallery2" href="/img/demos/ov-android.png">
-		<img class="img-responsive" src="/img/demos/ov-android.png">
+		<a data-fancybox="gallery2" href="img/demos/ov-android.png">
+		<img class="img-responsive" src="img/demos/ov-android.png">
 	</a>
 	</div>
 	<div class="col-md-6 col-sm-6">
-		<a data-fancybox="gallery2" href="/img/demos/ov-android2.png">
-		<img class="img-responsive" src="/img/demos/ov-android2.png">
+		<a data-fancybox="gallery2" href="img/demos/ov-android2.png">
+		<img class="img-responsive" src="img/demos/ov-android2.png">
 	</a>
 	</div>
 </div>

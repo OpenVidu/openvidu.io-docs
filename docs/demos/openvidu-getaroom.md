@@ -4,7 +4,7 @@
 OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/){:target="_blank"} does.
 
 <p align="center">
-  <img  class="img-responsive" src="/img/tutorials/openvidu-getaroom.png">
+  <img  class="img-responsive" src="img/tutorials/openvidu-getaroom.png">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
@@ -47,25 +47,25 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/getaroom-index.png">
-			<img class="img-responsive" src="/img/demos/getaroom-index.png">
+		<a data-fancybox="gallery" href="img/demos/getaroom-index.png">
+			<img class="img-responsive" src="img/demos/getaroom-index.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/getaroom-session-1.png">
-			<img class="img-responsive" src="/img/demos/getaroom-session-1.png">
+		<a data-fancybox="gallery" href="img/demos/getaroom-session-1.png">
+			<img class="img-responsive" src="img/demos/getaroom-session-1.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/getaroom-session-6.png">
-			<img class="img-responsive" src="/img/demos/getaroom-session-6.png">
+		<a data-fancybox="gallery" href="img/demos/getaroom-session-6.png">
+			<img class="img-responsive" src="img/demos/getaroom-session-6.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/getaroom-session-6-mob.png">
-			<img id="img-mob" class="img-responsive" src="/img/demos/getaroom-session-6-mob.png">
+		<a data-fancybox="gallery" href="img/demos/getaroom-session-6-mob.png">
+			<img id="img-mob" class="img-responsive" src="img/demos/getaroom-session-6-mob.png">
 		</a>
 	</div>
 </div>

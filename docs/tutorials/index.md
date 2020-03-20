@@ -40,7 +40,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-insecure-js"
@@ -59,7 +59,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-insecure-angular"><i
@@ -78,7 +78,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/react.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/react.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-insecure-react/"><i
@@ -102,7 +102,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/react-native.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/react-native.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-react-native/"><i
@@ -121,7 +121,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/ionic.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-ionic/"><i
@@ -140,7 +140,7 @@
             <div class="col-md-4 col-sm-4 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/electron.png" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/electron.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-electron/"><i
@@ -165,7 +165,7 @@
             <div id="info-client-only" class="collapse more-info-tutorials">
                 <div class="row no-margin more-info-tutorials-int">
                     <div class="col-lg-12 col-md-12 col-img-more-info">
-                        <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture-client.png">
+                        <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture-client.png">
                     </div>
                     <div class="col-lg-12 col-md-12 more-info-desc">
                         <p><strong>OpenVidu</strong> is present on both client-side and server-side, but the <strong>application</strong> is only present on client-side.</p>
@@ -189,7 +189,7 @@
             <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-js-java"><i class="icon ion-edit"></i></a></li>
@@ -208,7 +208,7 @@
             <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-mvc-java"><i class="icon ion-edit"></i></a></li>
@@ -231,7 +231,7 @@
             <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-js-node"><i class="icon ion-edit"></i></a></li>
@@ -250,7 +250,7 @@
             <div class="col-md-6 col-sm-6 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
-                        <img src="/img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
+                        <img src="img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
                                 <li class="social-icon"><a href="/tutorials/openvidu-mvc-node"><i class="icon ion-edit"></i></a></li>
@@ -272,7 +272,7 @@
             <div id="info-client-server" class="collapse more-info-tutorials">
                 <div class="row no-margin more-info-tutorials-int">
                     <div class="col-lg-12 col-md-12 col-img-more-info">
-                        <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture.png">
+                        <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture.png">
                     </div>
                     <div class="col-lg-12 col-md-12 more-info-desc">
                         <p><strong>OpenVidu</strong> and the <strong>application</strong> are present on both client-side and server-side.</p>

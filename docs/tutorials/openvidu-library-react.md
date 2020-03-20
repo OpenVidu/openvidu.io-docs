@@ -35,13 +35,13 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu-library-react1.png">
-		<img class="img-responsive" src="/img/demos/openvidu-library-react1.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu-library-react1.png">
+		<img class="img-responsive" src="img/demos/openvidu-library-react1.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu-library-react2.png">
-		<img class="img-responsive" src="/img/demos/openvidu-library-react2.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu-library-react2.png">
+		<img class="img-responsive" src="img/demos/openvidu-library-react2.png">
 	</a>
 	</div>
 </div>

@@ -51,25 +51,25 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-login.png">
-			<img class="img-responsive" src="/img/demos/secure-login.png">
+		<a data-fancybox="gallery" href="img/demos/secure-login.png">
+			<img class="img-responsive" src="img/demos/secure-login.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-join.png">
-			<img class="img-responsive" src="/img/demos/secure-join.png">
+		<a data-fancybox="gallery" href="img/demos/secure-join.png">
+			<img class="img-responsive" src="img/demos/secure-join.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-session-2.png">
-			<img class="img-responsive" src="/img/demos/secure-session-2.png">
+		<a data-fancybox="gallery" href="img/demos/secure-session-2.png">
+			<img class="img-responsive" src="img/demos/secure-session-2.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-session-1.png">
-			<img class="img-responsive" src="/img/demos/secure-session-1.png">
+		<a data-fancybox="gallery" href="img/demos/secure-session-1.png">
+			<img class="img-responsive" src="img/demos/secure-session-1.png">
 		</a>
 	</div>
 </div>
@@ -103,7 +103,7 @@ Let's describe the code following this scenario: a user logs into the app and co
 At path `/` a login form will be displayed:
 
 <p align="center">
-  <img class="img-responsive login-form-img" style="padding: 25px 0;" src="/img/docs/tutorials/login-form.png">
+  <img class="img-responsive login-form-img" style="padding: 25px 0;" src="img/docs/tutorials/login-form.png">
 </p>
 
 The form will execute a POST operation to path `/dashboard` whenever "Log in" button is clicked, passing the username and the password:
@@ -166,7 +166,7 @@ public String login(@RequestParam(name = "user", required = false) String user,
 `dashboard.html` template will display a form asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field:
 
 <p align="center">
-  <img class="img-responsive join-form-img" style="padding: 25px 0;" src="/img/docs/tutorials/join-form.png">
+  <img class="img-responsive join-form-img" style="padding: 25px 0;" src="img/docs/tutorials/join-form.png">
 </p>
 
 The form will execute a POST operation to path `/session` whenever "Join!" button is clicked, passing the nickname and the session name:

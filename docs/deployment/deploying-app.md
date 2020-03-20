@@ -194,7 +194,7 @@ The other steps explained above also need some adjustments related to paths:
           command=/bin/bash /opt/YOUR_APP_2/YOUR_LAUNCHER_2.sh YOUR_APP2_PARAM_1 YOUR_APP2_PARAM_2 ...
           redirect_stderr=true
 
-<script src="/js/copy-btn.js"></script>
+<script src="js/copy-btn.js"></script>
 
 ---
 

@@ -72,18 +72,18 @@ Go to [https://localhost:5000](https://localhost:5000){:target="_blank"} to test
 
 <div class="row no-margin row-gallery">
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom.png">
-      <img class="img-responsive" src="/img/demos/openvidu-classroom.png">
+    <a data-fancybox="gallery" href="img/demos/openvidu-classroom.png">
+      <img class="img-responsive" src="img/demos/openvidu-classroom.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom-dashboard.png">
-      <img class="img-responsive" src="/img/demos/openvidu-classroom-dashboard.png">
+    <a data-fancybox="gallery" href="img/demos/openvidu-classroom-dashboard.png">
+      <img class="img-responsive" src="img/demos/openvidu-classroom-dashboard.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="/img/demos/openvidu-classroom-video.png">
-      <img class="img-responsive" src="/img/demos/openvidu-classroom-video.png">
+    <a data-fancybox="gallery" href="img/demos/openvidu-classroom-video.png">
+      <img class="img-responsive" src="img/demos/openvidu-classroom-video.png">
     </a>
   </div>
 </div>

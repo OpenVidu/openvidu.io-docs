@@ -35,13 +35,13 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent2.png">
-		<img class="img-responsive" src="/img/demos/ov-webcomponent2.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent2.png">
+		<img class="img-responsive" src="img/demos/ov-webcomponent2.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent1.png">
-		<img class="img-responsive" src="/img/demos/ov-webcomponent1.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent1.png">
+		<img class="img-responsive" src="img/demos/ov-webcomponent1.png">
 	</a>
 	</div>
 </div>
@@ -207,13 +207,13 @@ webComponent.sessionConfig = { sessionName, user, token, ovSettings };
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent3.png">
-		<img class="img-responsive" src="/img/demos/ov-webcomponent3.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent3.png">
+		<img class="img-responsive" src="img/demos/ov-webcomponent3.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent4.png">
-		<img class="img-responsive" src="/img/demos/ov-webcomponent4.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent4.png">
+		<img class="img-responsive" src="img/demos/ov-webcomponent4.png">
 	</a>
 	</div>
 </div>
@@ -340,13 +340,13 @@ OpenVidu  allows you to choose between two themes. By default, the theme selecte
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent5.png">
-		    <img class="img-responsive" src="/img/demos/ov-webcomponent5.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent5.png">
+		    <img class="img-responsive" src="img/demos/ov-webcomponent5.png">
 	    </a>
 	</div>
     <div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-webcomponent6.png">
-		    <img class="img-responsive" src="/img/demos/ov-webcomponent6.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent6.png">
+		    <img class="img-responsive" src="img/demos/ov-webcomponent6.png">
 	    </a>
 	</div>
 </div>

@@ -27,7 +27,7 @@ This is the most versatile solution. Using a media server to route your clients 
 <div class="row no-margin row-gallery">
     <div class="col-md-6 col-sm-6" align="center">
         <div class="img">
-            <img class="img-responsive" src="/img/docs/technologies/streaming.png">
+            <img class="img-responsive" src="img/docs/technologies/streaming.png">
         </div>
         <div class=" wow fadeInUp">
             <h4>Live Streaming</h4>
@@ -36,7 +36,7 @@ This is the most versatile solution. Using a media server to route your clients 
     </div>
     <div class="col-md-6 col-sm-6" align="center">
         <div class="img" >
-            <img class="img-responsive" src="/img/docs/technologies/videoconferences.png">
+            <img class="img-responsive" src="img/docs/technologies/videoconferences.png">
         </div>
         <div class="member-info wow fadeInUp">
               <h4>Video Conferences</h4>
@@ -108,7 +108,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/periscope.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/periscope.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.pscp.tv/" target="_blank" class="cbp-singlePage">Periscope</a></li>
@@ -120,7 +120,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/twitch.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/twitch.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.twitch.tv/">Twitch</a></li>
@@ -132,7 +132,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/youtube.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/youtube.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.youtube.com/" target="_blank" class="cbp-singlePage">YouTube</a></li>
@@ -144,7 +144,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/fb.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/fb.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://live.fb.com/" target="_blank" class="cbp-singlePage">FB Live</a></li>
@@ -156,7 +156,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/boxcast.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/boxcast.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.boxcast.com/" target="_blank" class="cbp-singlePage">Boxcast</a></li>
@@ -168,7 +168,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/vimeo.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/vimeo.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://vimeo.com" target="_blank" class="cbp-singlePage">Vimeo</a></li>
@@ -186,7 +186,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://call.openvidu.io/" target="_blank" class="cbp-singlePage">OpenVidu</a></li>
@@ -198,7 +198,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/skype.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/skype.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.skype.com" target="_blank" class="cbp-singlePage">Skype</a></li>
@@ -210,7 +210,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/hangouts.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/hangouts.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://hangouts.google.com/">Hangouts</a></li>
@@ -222,7 +222,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/appear.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/appear.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://appear.in/" target="_blank" class="cbp-singlePage">Appear.in</a></li>
@@ -234,7 +234,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/zoom.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/zoom.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://zoom.us/" target="_blank" class="cbp-singlePage">Zoom</a></li>
@@ -246,7 +246,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/gotomeeting.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/gotomeeting.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.gotomeeting.com/features" target="_blank" class="cbp-singlePage">GoToMeeting</a></li>
@@ -265,7 +265,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-4 col-sm-4 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://github.com/OpenVidu/openvidu-call/releases" target="_blank" class="cbp-singlePage">OpenVidu</a></li>
@@ -277,7 +277,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-4 col-sm-4 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/bbb.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/bbb.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://bigbluebutton.org/" target="_blank" class="cbp-singlePage">BigBlueButton</a></li>
@@ -289,7 +289,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-4 col-sm-4 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/jitsi.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/jitsi.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://jitsi.org/" target="_blank" class="cbp-singlePage">Jitsi</a></li>
@@ -313,7 +313,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 <div class="col-md-6 col-sm-6 col-xs-6 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://antmedia.io/" target="_blank" class="cbp-singlePage">AntMedia</a></li>
@@ -325,7 +325,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-6 col-sm-6 col-xs-6 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/wowza.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/wowza.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.wowza.com/" target="_blank" class="cbp-singlePage">Wowza</a></li>
@@ -342,7 +342,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/tokbox.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/tokbox.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.tokbox.com" target="_blank" class="cbp-singlePage">Tokbox</a></li>
@@ -354,7 +354,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/twilio.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/twilio.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.twilio.com/">Twilio</a></li>
@@ -366,7 +366,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/agora.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/agora.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.agora.io/en/" target="_blank" class="cbp-singlePage">Agora.io</a></li>
@@ -378,7 +378,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/vidyo.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/vidyo.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://vidyo.io/" target="_blank" class="cbp-singlePage">Vidyo.io</a></li>
@@ -390,7 +390,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/temasys.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/temasys.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://temasys.io/" target="_blank" class="cbp-singlePage">Temasys</a></li>
@@ -402,7 +402,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/apiRTC.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/apiRTC.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://apirtc.com/" target="_blank" class="cbp-singlePage">apiRTC</a></li>
@@ -424,7 +424,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/kurento.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/kurento.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="http://www.kurento.org/" target="_blank" class="cbp-singlePage">Kurento</a></li>
@@ -436,7 +436,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://openvidu.io/" target="_blank" class="cbp-singlePage">OpenVidu</a></li>
@@ -448,7 +448,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/janus.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/janus.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://janus.conf.meetecho.com/index.html">Janus</a></li>
@@ -460,7 +460,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/medooze.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/medooze.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="http://www.medooze.com/" target="_blank" class="cbp-singlePage">Medooze</a></li>
@@ -472,7 +472,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/licode.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/licode.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="http://lynckia.com/licode/" target="_blank" class="cbp-singlePage">Licode</a></li>
@@ -484,7 +484,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/mediasoup.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/mediasoup.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://mediasoup.org/" target="_blank" class="cbp-singlePage">Mediasoup</a></li>
@@ -502,7 +502,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/openvidu.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://openvidu.io/" target="_blank" class="cbp-singlePage">OpenVidu Pro</a></li>
@@ -514,7 +514,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/frozen.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/frozen.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.frozenmountain.com/" target="_blank" class="cbp-singlePage">Frozen Mountain</a></li>
@@ -526,7 +526,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/flashphoner.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/flashphoner.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://flashphoner.com/" target="_blank" class="cbp-singlePage">Flashphoner</a></li>
@@ -538,7 +538,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/dialogic.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/dialogic.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.dialogic.com/" target="_blank" class="cbp-singlePage">Dialogic</a></li>
@@ -550,7 +550,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-2 col-sm-2 col-xs-4 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/quobis.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/quobis.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.quobis.com/" target="_blank" class="cbp-singlePage">Quobis</a></li>
@@ -568,7 +568,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-6 col-sm-6 col-xs-6 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://antmedia.io/" target="_blank" class="cbp-singlePage">AntMedia</a></li>
@@ -580,7 +580,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-6 col-sm-6 col-xs-6 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/red5.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/red5.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="http://red5.org/" target="_blank" class="cbp-singlePage">Red5</a></li>
@@ -599,7 +599,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-3 col-sm-3 col-xs-3 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/ant.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://antmedia.io/" target="_blank" class="cbp-singlePage">AntMedia</a></li>
@@ -611,7 +611,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-3 col-sm-3 col-xs-3 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/wowza.jpg" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/wowza.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://www.wowza.com/" target="_blank" class="cbp-singlePage">Wowza</a></li>
@@ -623,7 +623,7 @@ Your needs may be met simply by using a third-party application as a non-integra
         <div class="col-md-3 col-sm-3 col-xs-3 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/flashphoner.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/flashphoner.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://flashphoner.com/" target="_blank" class="cbp-singlePage">Flashphoner</a></li>
@@ -635,7 +635,7 @@ Your needs may be met simply by using a third-party application as a non-integra
     <div class="col-md-3 col-sm-3 col-xs-3 team-member">
         <div class="effect effects wow fadeInUp">
             <div class="img">
-                <img src="/img/docs/technologies/red5pro.png" class="img-responsive img-tutorials" alt="" />
+                <img src="img/docs/technologies/red5pro.png" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
                         <li><a href="https://red5pro.com/" target="_blank" class="cbp-singlePage">Red5 Pro</a></li>
@@ -650,7 +650,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 <hr>
 
 <div class="docs-gallery">
-  <a data-fancybox="gallery-wellcome" href="/img/docs/technologies/flowchartTech.jpg"><img class="img-responsive img-wellcome" src="/img/docs/technologies/flowchartTech.jpg"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/docs/technologies/flowchartTech.jpg"><img class="img-responsive img-wellcome" src="img/docs/technologies/flowchartTech.jpg"/></a>
 </div>
 
 <h4>OpenVidu</h4>

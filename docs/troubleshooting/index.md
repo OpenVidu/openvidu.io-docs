@@ -50,10 +50,10 @@ There you can find logs reporting important stuff. Error messages can help you t
 
 <div class="row" style="margin-bottom: 10px">
   <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 20px">
-    <img class="img-responsive img-more-info" src="/img/docs/troubleshooting/chrome_logging.png">
+    <img class="img-responsive img-more-info" src="img/docs/troubleshooting/chrome_logging.png">
   </div>
   <div class="col-md-6 col-sm-6 col-xs-12" style="margin-top: 20px">
-    <img class="img-responsive img-more-info" src="/img/docs/troubleshooting/firefox_logging.png">
+    <img class="img-responsive img-more-info" src="img/docs/troubleshooting/firefox_logging.png">
   </div>
   <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">
     <p style="text-align: justify">
@@ -176,10 +176,10 @@ The problem here is pretty evident: if you don't have any kind of server side to
 
 <div class="row" style="margin-bottom: 50px">
   <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 40px">
-    <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture-client.png">
+    <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture-client.png">
   </div>
   <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 40px">
-    <img class="img-responsive img-more-info" src="/img/docs/home/openvidu-new-architecture.png">
+    <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture.png">
   </div>
   <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top: 40px">
     <p style="text-align: justify; font-size: 13px">
@@ -268,7 +268,7 @@ OpenVidu supports a wide range of platforms:
 In terms of **performance**, OpenVidu load testing process is described in detail in this [Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"}. Results are the following for 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until CPU reaches 100% use.
 
 <div class="row" style="margin-bottom: 10px; text-align: center; text-align: -webkit-center">
-  <img class="img-responsive" src="/img/docs/troubleshooting/load_test_results.png">
+  <img class="img-responsive" src="img/docs/troubleshooting/load_test_results.png">
 </div>
 
 About **scalability**, you can try [OpenVidu Pro scalability features](/openvidu-pro/scalability/){:target="_blank"}. With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable.

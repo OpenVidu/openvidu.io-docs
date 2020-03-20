@@ -229,7 +229,7 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons. Yo
 
 <div class="row">
     <div style="margin: 5px 15px 5px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro19.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/pro19.png"/></a>
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/pro19.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/pro19.png"/></a>
     </div>
 </div>
 
@@ -365,7 +365,7 @@ To troubleshoot problems with OpenVidu Pro on premises deployments follow these 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
 <script>

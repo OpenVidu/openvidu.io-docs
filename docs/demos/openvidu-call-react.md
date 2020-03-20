@@ -7,7 +7,7 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 
 <br>
 <p align="center">
-  <img  class="img-responsive" src="/img/demos/openvidu_call_react_diagram.png">
+  <img  class="img-responsive" src="img/demos/openvidu_call_react_diagram.png">
 </p>
 
 
@@ -18,16 +18,16 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 		<p>This is the main component of <strong>OpenVidu-Call-React</strong>. It allows you to establish a connection with your video roommates. This component allows the user to mute the microphone, unpublish the webcam, share the screen, open the chat and leave the session.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call_react1.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call_react1.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call_react1.png">
+			<img class="img-responsive" src="img/demos/openvidu_call_react1.png">
 		</a>
 	</div>
 </div>
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call_react_chat.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call_react_chat.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call_react_chat.png">
+			<img class="img-responsive" src="img/demos/openvidu_call_react_chat.png">
 		</a>
 	</div>
 	<div class="col-md-6">
@@ -43,8 +43,8 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 		<p> With OpenVidu Layout, this component is the responsible of displaying the video stream of each user in a nice way. On the right, we can see four streams displayed in the same videoconference.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call_react2.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call_react2.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call_react2.png">
+			<img class="img-responsive" src="img/demos/openvidu_call_react2.png">
 		</a>
 	</div>
 </div>

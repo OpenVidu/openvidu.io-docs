@@ -23,7 +23,7 @@ OpenVidu Pro consists of different nodes that work together to offer OpenVidu se
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="/img/docs/openvidu-pro/openvidu-cluster.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/openvidu-cluster.png"/></a>
     </div>
 </div>
 
@@ -87,7 +87,7 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro18.png"/></a>
+        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro18.png"/></a>
     </div>
 </div>
 
@@ -126,7 +126,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="/img/docs/openvidu-pro/instance-status.png"/></a>
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
     </div>
 </div>
 
@@ -149,7 +149,7 @@ You will need to perform some tests for your specific use case, and adapt the si
 For a quick reference, these are the results of some load tests performed in an OpenVidu Pro cluster deployed on Amazon Web Services with just 1 Media Node. These particular scenario is testing 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until the Media Node CPU reaches 100% use. Take into account from a pricing point that the number of cores in each column header does not sum up the total number of cores of the cluster (OpenVidu Server Pro Node cores should also be counted).
 
 <div class="row" style="margin-bottom: 10px; text-align: center; text-align: -webkit-center">
-  <img class="img-responsive" src="/img/docs/troubleshooting/load_test_results2.png">
+  <img class="img-responsive" src="img/docs/troubleshooting/load_test_results2.png">
 </div>
 
 [Here](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"} you can find the full article presenting these results.

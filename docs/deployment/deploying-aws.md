@@ -14,7 +14,7 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
 ### 2. Select _Create Stack_ 🠚 _With new resources_
 
   <p>
-    <img class="img-responsive deploy-img" style="max-height: 400px" src="/img/docs/deployment/CF_newstack.png">
+    <img class="img-responsive deploy-img" style="max-height: 400px" src="img/docs/deployment/CF_newstack.png">
   </p>
 
 <br>
@@ -28,7 +28,7 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
                                 title="Copy to Clipboard">Copy</button>
 
   <p>
-    <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_url.png">
+    <img class="img-responsive deploy-img" src="img/docs/deployment/CF_url.png">
   </p>
 
 <br>
@@ -142,7 +142,7 @@ No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Creat
 After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it instead).
 
   <p style="margin-top: 20px">
-    <img class="img-responsive deploy-img" src="/img/docs/deployment/CF_output.png">
+    <img class="img-responsive deploy-img" src="img/docs/deployment/CF_output.png">
   </p>
 
 <br>
@@ -155,4 +155,4 @@ At OpenVidu dashboard you can test the video transmission. You can now add your 
 
 <br>
 
-<script src="/js/copy-btn.js"></script>
+<script src="js/copy-btn.js"></script>

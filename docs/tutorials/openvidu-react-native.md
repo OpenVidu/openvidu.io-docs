@@ -32,7 +32,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 ## Understanding this tutorial
 
 <p align="center">
-  <img class="img-responsive" src="/img/tutorials/openvidu-insecure-react.png">
+  <img class="img-responsive" src="img/tutorials/openvidu-insecure-react.png">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
@@ -630,8 +630,8 @@ These configurations are already included in this **openvidu-react-native projec
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-12">
-		<a data-fancybox="gallery" href="/img/tutorials/xcode1.png">
-		<img class="img-responsive" src="/img/tutorials/xcode1.png">
+		<a data-fancybox="gallery" href="img/tutorials/xcode1.png">
+		<img class="img-responsive" src="img/tutorials/xcode1.png">
 	</a>
 	</div>
 </div>

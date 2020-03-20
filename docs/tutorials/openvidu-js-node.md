@@ -53,25 +53,25 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-login.png">
-			<img class="img-responsive" src="/img/demos/secure-login.png">
+		<a data-fancybox="gallery" href="img/demos/secure-login.png">
+			<img class="img-responsive" src="img/demos/secure-login.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-join.png">
-			<img class="img-responsive" src="/img/demos/secure-join.png">
+		<a data-fancybox="gallery" href="img/demos/secure-join.png">
+			<img class="img-responsive" src="img/demos/secure-join.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-session-1.png">
-			<img class="img-responsive" src="/img/demos/secure-session-1.png">
+		<a data-fancybox="gallery" href="img/demos/secure-session-1.png">
+			<img class="img-responsive" src="img/demos/secure-session-1.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/secure-session-2.png">
-			<img class="img-responsive" src="/img/demos/secure-session-2.png">
+		<a data-fancybox="gallery" href="img/demos/secure-session-2.png">
+			<img class="img-responsive" src="img/demos/secure-session-2.png">
 		</a>
 	</div>
 </div>
@@ -110,7 +110,7 @@ Where `url` is the path of the POST operation, `body` the object to send as data
 `index.html` will first show a form to log in:
 
 <p align="center">
-  <img class="img-responsive login-form-img" style="padding: 25px 0;" src="/img/docs/tutorials/login-form.png">
+  <img class="img-responsive login-form-img" style="padding: 25px 0;" src="img/docs/tutorials/login-form.png">
 </p>
 
 `app.js` sends a POST request to "/api-login/login" passing the username and the password retrieved from the HTML form whenever "Log in" button is clicked:
@@ -160,7 +160,7 @@ app.post('/api-login/login', function (req, res) {
 HTML will display now the user has logged a different form, asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field and press "Join!" button:
 
 <p align="center">
-  <img class="img-responsive join-form-img" style="padding: 25px 0;" src="/img/docs/tutorials/join-form.png">
+  <img class="img-responsive join-form-img" style="padding: 25px 0;" src="img/docs/tutorials/join-form.png">
 </p>
 
 `app.js` will execute `joinSession()` method, which starts like this:

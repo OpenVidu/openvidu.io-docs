@@ -8,7 +8,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 ## Understanding this tutorial
 
 <p align="center">
-  <img class="img-responsive" src="/img/tutorials/openvidu-ionic.png">
+  <img class="img-responsive" src="img/tutorials/openvidu-ionic.png">
 </p>
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
@@ -64,13 +64,13 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ionic-chrome1.png">
-		<img class="img-responsive" src="/img/demos/ionic-chrome1.png">
+		<a data-fancybox="gallery" href="img/demos/ionic-chrome1.png">
+		<img class="img-responsive" src="img/demos/ionic-chrome1.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ionic-chrome2.png">
-		<img class="img-responsive" src="/img/demos/ionic-chrome2.png">
+		<a data-fancybox="gallery" href="img/demos/ionic-chrome2.png">
+		<img class="img-responsive" src="img/demos/ionic-chrome2.png">
 	</a>
 	</div>
 </div>
@@ -217,25 +217,25 @@ ionic cordova run ios
 You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca){:target="_blank"}:
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="/img/tutorials/xcode_sign.png">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="img/tutorials/xcode_sign.png">
 </p>
 
 <br>
 
 <div class="row no-margin ">
 	<div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="/img/demos/ov-ionic1.png">
-		<img class="img-responsive" src="/img/demos/ov-ionic1.png">
+		<a data-fancybox="gallery2" href="img/demos/ov-ionic1.png">
+		<img class="img-responsive" src="img/demos/ov-ionic1.png">
 	</a>
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="/img/demos/ov-ionic2.png">
-		<img class="img-responsive" src="/img/demos/ov-ionic2.png">
+		<a data-fancybox="gallery2" href="img/demos/ov-ionic2.png">
+		<img class="img-responsive" src="img/demos/ov-ionic2.png">
 	</a>
 	</div>
     <div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="/img/demos/ov-ionic3.png">
-		<img class="img-responsive" src="/img/demos/ov-ionic3.png">
+		<a data-fancybox="gallery2" href="img/demos/ov-ionic3.png">
+		<img class="img-responsive" src="img/demos/ov-ionic3.png">
 	</a>
 	</div>
 </div>

@@ -31,7 +31,7 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
 
 <br>
 <p align="center">
-  <img  class="img-responsive" src="/img/demos/openvidu-call-ionic-diagram.png">
+  <img  class="img-responsive" src="img/demos/openvidu-call-ionic-diagram.png">
 </p>
 
 <hr>
@@ -75,13 +75,13 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-call-ionic-browser.png">
-		<img class="img-responsive" src="/img/demos/ov-call-ionic-browser.png">
+		<a data-fancybox="gallery" href="img/demos/ov-call-ionic-browser.png">
+		<img class="img-responsive" src="img/demos/ov-call-ionic-browser.png">
 	</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/ov-call-ionic-browser2.png">
-		<img class="img-responsive" src="/img/demos/ov-call-ionic-browser2.png">
+		<a data-fancybox="gallery" href="img/demos/ov-call-ionic-browser2.png">
+		<img class="img-responsive" src="img/demos/ov-call-ionic-browser2.png">
 	</a>
 	</div>
 </div>
@@ -198,26 +198,26 @@ ionic cordova run ios
 You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca){:target="_blank"}:
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="/img/tutorials/xcode_sign.png">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="img/tutorials/xcode_sign.png">
 </p>
 
 <div class="row">
 
 <div class="screenshots-gallery" style="text-align: -webkit-center; width: 90%; margin: auto;" >
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic1.png">
-		<img class="/img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic1.png"/>
+	<a data-fancybox="gallery-screenshot" href="img/demos/ov-call-ionic1.png">
+		<img class="/img-responsive img-gallery" style="max-height: 600px" src="img/demos/ov-call-ionic1.png"/>
 	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic2.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic2.png"/>
+	<a data-fancybox="gallery-screenshot" href="img/demos/ov-call-ionic2.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="img/demos/ov-call-ionic2.png"/>
 	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic5.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic5.png"/>
+	<a data-fancybox="gallery-screenshot" href="img/demos/ov-call-ionic5.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="img/demos/ov-call-ionic5.png"/>
 	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic3.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic3.png"/>
+	<a data-fancybox="gallery-screenshot" href="img/demos/ov-call-ionic3.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="img/demos/ov-call-ionic3.png"/>
 	</a>
-	<a data-fancybox="gallery-screenshot" href="/img/demos/ov-call-ionic4.png">
-		<img class="img-responsive img-gallery" style="max-height: 600px" src="/img/demos/ov-call-ionic4.png"/>
+	<a data-fancybox="gallery-screenshot" href="img/demos/ov-call-ionic4.png">
+		<img class="img-responsive img-gallery" style="max-height: 600px" src="img/demos/ov-call-ionic4.png"/>
 	</a>
 </div>
 </div>
@@ -244,7 +244,7 @@ You will need to sign your application in Xcode (opening folder _openvidu-ionic/
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
 <script>

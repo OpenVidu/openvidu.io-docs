@@ -7,14 +7,14 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 
 <br>
 <p align="center">
-  <img  class="img-responsive" src="/img/demos/openvidu_call_diagram.png">
+  <img  class="img-responsive" src="img/demos/openvidu_call_diagram.png">
 </p>
 
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call_login.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call_login.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call_login.png">
+			<img class="img-responsive" src="img/demos/openvidu_call_login.png">
 		</a>
 	</div>
 	<div class="col-md-6">
@@ -29,16 +29,16 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 		<p>This is the main component of <strong>OpenVidu-Call</strong>. It allows you to set up the session before join to the room. You will can check and set your microphone and your webcam device, create your own avatar or to choose the default avatar and to establish the nickname.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call1.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call1.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call1.png">
+			<img class="img-responsive" src="img/demos/openvidu_call1.png">
 		</a>
 	</div>
 </div>
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call2.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call2.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call2.png">
+			<img class="img-responsive" src="img/demos/openvidu_call2.png">
 		</a>
 	</div>
 	<div class="col-md-6">
@@ -54,8 +54,8 @@ OpenVidu-Call is composed by the six Angular components displayed in the image b
 		<p> With OpenVidu Layout, this component is the responsible of displaying the video stream of each user in a nice way. On the right, we can see four streams displayed in the same videoconference.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="/img/demos/openvidu_call3.png">
-			<img class="img-responsive" src="/img/demos/openvidu_call3.png">
+		<a data-fancybox="gallery" href="img/demos/openvidu_call3.png">
+			<img class="img-responsive" src="img/demos/openvidu_call3.png">
 		</a>
 	</div>
 </div>

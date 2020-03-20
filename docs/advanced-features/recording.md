@@ -233,7 +233,7 @@ For example, for a session with two publishers the video file will look like thi
 <br>
 
 <p>
-    <img class="img-responsive" src="/img/docs/advanced-features/recorded-video.png">
+    <img class="img-responsive" src="img/docs/advanced-features/recorded-video.png">
 </p>
 
 > **Notes on COMPOSED recordings**<br>

@@ -17,7 +17,7 @@ ul#menu-list {
     position: sticky;
     top: 0;
     bottom: 0;
-    height: calc(100% - 210px);
+    height: 80vh;
     padding-right: 10px;
     margin-right: -10px;
     padding-bottom: 15px;
@@ -269,8 +269,9 @@ ul#menu-list {
 
 ul#menu-list > li > ul.top-ul {
 	padding-left: 8px;
-	padding-right: 8px;
-	border-radius: 2px;
+    padding-right: 8px;
+    padding-top: 0;
+    border-radius: 2px;
 }
 
 ul#menu-list li.subnav_drop {

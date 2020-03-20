@@ -9,7 +9,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
 
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img" src="/img/docs/home/feature2.png"/>
+      <img class="feature-img" src="img/docs/home/feature2.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">WebRTC videoconferences</h3>
@@ -19,7 +19,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature1-2.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature1-2.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Open source</h3>
@@ -29,7 +29,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img" src="/img/docs/home/feature3-2.png"/>
+      <img class="feature-img" src="img/docs/home/feature3-2.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Multiplatform</h3>
@@ -39,7 +39,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature4.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature4.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Easy to use</h3>
@@ -49,7 +49,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature5.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature5.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Easy to deploy</h3>
@@ -59,7 +59,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature6.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature6.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Tutorials/Demos available</h3>
@@ -69,7 +69,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature7.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature7.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Keep your videoconferences private</h3>
@@ -79,7 +79,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
       <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature8.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature8.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Compatible with lots of frontend technologies</h3>
@@ -89,7 +89,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature9.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature9.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Compatible with any backend technology</h3>
@@ -99,7 +99,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature10.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature10.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Limit client capabilities with predefined roles</h3>
@@ -109,7 +109,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature11.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature11.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Message broadcasting</h3>
@@ -119,7 +119,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature12.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature12.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Recording</h3>
@@ -129,7 +129,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature13.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature13.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Screen sharing</h3>
@@ -139,7 +139,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img" style="filter: none" src="/img/docs/home/feature14.png"/>
+      <img class="feature-img" style="filter: none" src="img/docs/home/feature14.png"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Audio and video filters</h3>
@@ -149,7 +149,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
     <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 feature-img-col">
-      <img class="feature-img icon-img" style="max-height: 160px" src="/img/docs/home/feature16.svg"/>
+      <img class="feature-img icon-img" style="max-height: 160px" src="img/docs/home/feature16.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">IP cameras</h3>
@@ -159,7 +159,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
-      <img class="feature-img icon-img" src="/img/docs/home/feature15.svg"/>
+      <img class="feature-img icon-img" src="img/docs/home/feature15.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Supported plans and professional support</h3>
@@ -187,11 +187,11 @@ Some interesting use cases you can implement with OpenVidu:
 The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
 
 <div class="docs-gallery">
-  <a data-fancybox="gallery-wellcome" href="/img/demos/call-good2.png"><img class="img-responsive img-wellcome" src="/img/demos/call-good2.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="/img/demos/insecure-session.png"><img class="img-responsive img-wellcome" src="/img/demos/insecure-session.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="/img/demos/getaroom-session-6.png"><img class="img-responsive img-wellcome" src="/img/demos/getaroom-session-6.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="/img/demos/getaroom-session-6-mob.png"><img class="img-responsive img-wellcome" src="/img/demos/getaroom-session-6-mob.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="/img/demos/openvidu-classroom-video.png"><img class="img-responsive img-wellcome" src="/img/demos/openvidu-classroom-video.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/call-good2.png"><img class="img-responsive img-wellcome" src="img/demos/call-good2.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/insecure-session.png"><img class="img-responsive img-wellcome" src="img/demos/insecure-session.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6-mob.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6-mob.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/openvidu-classroom-video.png"><img class="img-responsive img-wellcome" src="img/demos/openvidu-classroom-video.png"/></a>
 </div>
 
 ----------
@@ -200,7 +200,7 @@ OpenVidu Architecture
 ===
 
 <p align="center" style="margin-top: 50px; margin-bottom: 50px">
-  <img class="img-responsive" style="max-height: 550px;" src="/img/docs/home/openvidu-new-architecture.png">
+  <img class="img-responsive" style="max-height: 550px;" src="img/docs/home/openvidu-new-architecture.png">
 </p>
 
 OpenVidu is divided into two parts:
@@ -234,10 +234,10 @@ How does OpenVidu work?
 
 <div class="row no margin" style="margin-top: 2em; margin-bottom: 2em">
   <div class="col-sm-6">
-    <img class="img-responsive" style="max-height: 110px; margin: auto" src="/img/assets/webrtc2.png">
+    <img class="img-responsive" style="max-height: 110px; margin: auto" src="img/assets/webrtc2.png">
   </div>
   <div class="col-sm-6">
-    <img class="img-responsive" style="max-height: 130px; margin: auto" src="/img/assets/kurento.png">
+    <img class="img-responsive" style="max-height: 130px; margin: auto" src="img/assets/kurento.png">
   </div>
 </div>
 
@@ -254,8 +254,8 @@ Acknowledgments
 OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research.
 
 <p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
-  <img class="img-acknowledgments" width="400px" src="/img/sponsors/footer-ministerio-economia-400-optimized.png">
-  <img class="img-acknowledgments" width="400px" src="/img/sponsors/footer-european-union-400-optimized.png">
+  <img class="img-acknowledgments" width="400px" src="img/sponsors/footer-ministerio-economia-400-optimized.png">
+  <img class="img-acknowledgments" width="400px" src="img/sponsors/footer-european-union-400-optimized.png">
 </p>
 
 
@@ -278,7 +278,7 @@ OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by
 </script>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
-<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
 <script>
