@@ -2,7 +2,8 @@
 	<base href="/">
 	<meta charset="utf-8">
 	<meta name="format-detection" content="telephone=no">
-	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="viewport"
+		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="keywords" content="OpenVidu, openvidu, WebRTC, Video, mobile" />
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -15,41 +16,58 @@
 	<link rel="stylesheet" type="text/css"
 		href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 	<script src="js/plugins/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			var pathname = window.location.href.split('#')[0];
+			$('a[href^="#"]').each(function () {
+				var $this = $(this),
+					link = $this.attr('href');
+				$this.attr('href', pathname + link);
+			});
+		});
+	</script>
 </head>
 
 <header>
 	<nav class="navbar navbar-default navbar-alt navbar-small">
 		<div class="container">
 			<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" rel="home" href="/">
-				<img class="logo-small" src="img/logos/openvidu_vert_grey_bg_transp_cropped.png"/>
-			</a>
-		</div>
-		<div class="collapse navbar-collapse" id="main-nav">
-			<ul class="nav navbar-nav  navbar-right">
-			<li class="to-section"><a href="https://openvidu.io/index">Home</a></li>
-			<li class="to-section"><a href="https://openvidu.io/demos">Demos</a></li>
-			<li class="to-section"><a href="https://openvidu.io/tutorials">Tutorials</a></li>
-			<li class="to-section"><a href="https://openvidu.io/support">Support</a></li>
-			<li class="to-section"><a href="https://openvidu.io/commercial">Commercial</a></li>
-			<li class="to-section"><a href="https://openvidu.io/pricing">Pricing</a></li>
-			<li class="active to-section" ><a href="https://docs.openvidu.io/home">Docs</a></li>
-			<li><a class="social-icon" target="_blank" href="https://twitter.com/openvidu" style="padding-left: 12px"><i class="icon ion-social-twitter"></i></a></li>
-			<li><a class="social-icon" target="_blank" href="https://github.com/OpenVidu/openvidu"><i class="icon ion-social-github"></i></a></li>        
-			<li class="to-section" style="display: flex; padding-left: 18px" id="account-menu-btn"><div id="login-loader" class="lds-ripple"><div></div><div></div></div></li>
-			</ul>
-		</div>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" rel="home" href="/">
+					<img class="logo-small" src="img/logos/openvidu_vert_grey_bg_transp_cropped.png" />
+				</a>
+			</div>
+			<div class="collapse navbar-collapse" id="main-nav">
+				<ul class="nav navbar-nav  navbar-right">
+					<li class="to-section"><a href="https://openvidu.io/index">Home</a></li>
+					<li class="to-section"><a href="https://openvidu.io/demos">Demos</a></li>
+					<li class="to-section"><a href="https://openvidu.io/tutorials">Tutorials</a></li>
+					<li class="to-section"><a href="https://openvidu.io/support">Support</a></li>
+					<li class="to-section"><a href="https://openvidu.io/commercial">Commercial</a></li>
+					<li class="to-section"><a href="https://openvidu.io/pricing">Pricing</a></li>
+					<li class="active to-section"><a href="https://docs.openvidu.io/home">Docs</a></li>
+					<li><a class="social-icon" target="_blank" href="https://twitter.com/openvidu"
+							style="padding-left: 12px"><i class="icon ion-social-twitter"></i></a></li>
+					<li><a class="social-icon" target="_blank" href="https://github.com/OpenVidu/openvidu"><i
+								class="icon ion-social-github"></i></a></li>
+					<li class="to-section" style="display: flex; padding-left: 18px" id="account-menu-btn">
+						<div id="login-loader" class="lds-ripple">
+							<div></div>
+							<div></div>
+						</div>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</nav>
 
-  <!-- We need this component here to check if user is logged in in ay page -->
-  <script type="text/javascript" src="/openvidu-register/openvidu-register.js"></script>
+	<!-- We need this component here to check if user is logged in in ay page -->
+	<script type="text/javascript" src="/openvidu-register/openvidu-register.js"></script>
 
 </header>
 

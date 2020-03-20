@@ -82,3 +82,5 @@ theme:
 
 markdown_extensions:
   - markdown.extensions.extra
+  - toc:
+        permalink: " 🔗"
