@@ -41,7 +41,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="/commercial" target="_blank">custom professional support</a>
+	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="commercial" target="_blank">custom professional support</a>
 </div>
 </div>
 
@@ -211,15 +211,15 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <th scope="row">Price</th>
             <td><span style="font-size: 2em">Free</span></td>
             <td><span style="font-size: 2em">0.0006$ core/minute</span><br>
-                <span style="font-size: 1em"><a href="/pricing" target="_blank"><strong>Visit Pricing</strong></a></span>
+                <span style="font-size: 1em"><a href="pricing" target="_blank"><strong>Visit Pricing</strong></a></span>
             </td>
     </div>
     </tr>
     <tr>
     <th scope="row"></th>
-    <td><a href="/home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
+    <td><a href="home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
         OpenVidu CE Docs</a></td>
-        <td><a href="/openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
+        <td><a href="openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
         OpenVidu Pro Docs</a></td>
         </tr>
     </tbody>
@@ -238,6 +238,6 @@ You can deploy OpenVidu Pro:
 
 <br>
 
-Visit <a href="/pricing#ov-pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Pro.
+Visit <a href="pricing#ov-pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Pro.
 
 <br>

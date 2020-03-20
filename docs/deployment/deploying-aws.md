@@ -123,8 +123,8 @@ These properties configure specific details of the CloudFormation stack.
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">OpenVidu version<br><span class="field-comment">WARNING: this parameter must only be modified when upgrading an existing stack.<br>See <a href="/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a><span></td>
-      <td><em><strong>Default value</strong> if not upgrading an existing stack</em><br><span class="field-comment">(see <a href="/deployment/upgrading/" target="_blank">Upgrading OpenVidu</a>)</span></td>
+      <td class="first-col">OpenVidu version<br><span class="field-comment">WARNING: this parameter must only be modified when upgrading an existing stack.<br>See <a href="deployment/upgrading/" target="_blank">Upgrading OpenVidu</a><span></td>
+      <td><em><strong>Default value</strong> if not upgrading an existing stack</em><br><span class="field-comment">(see <a href="deployment/upgrading/" target="_blank">Upgrading OpenVidu</a>)</span></td>
     </tr>
   </table>
 </div>

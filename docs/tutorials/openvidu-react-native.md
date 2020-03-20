@@ -24,7 +24,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="/commercial">Commercial page support</a> to get it
+    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="commercial">Commercial page support</a> to get it
 </div>
 </div>
 

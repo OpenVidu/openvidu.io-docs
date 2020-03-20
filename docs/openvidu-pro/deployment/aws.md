@@ -37,7 +37,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-    Before deploying OpenVidu Pro you need to <strong><a href="/account" target="_blank">create an OpenVidu account</a></strong> to get your license key.<br>There's a <strong>15 day free trial</strong> waiting for you!
+    Before deploying OpenVidu Pro you need to <strong><a href="https://openvidu.io/account" target="_blank">create an OpenVidu account</a></strong> to get your license key.<br>There's a <strong>15 day free trial</strong> waiting for you!
 </div>
 </div>
 
@@ -165,11 +165,11 @@ These properties configure specific details of the CloudFormation stack.
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">
     <tr>
-      <td class="first-col">Instance type for Openvidu Server Pro Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="/openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">OpenVidu Server Pro Node</a><span></td>
+      <td class="first-col">Instance type for Openvidu Server Pro Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">OpenVidu Server Pro Node</a><span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="/openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Media Nodes</a><span></td>
+      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Media Nodes</a><span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
@@ -375,7 +375,7 @@ If that is not the problem, then follow these steps:
     padding-left: 20px;
     padding-right: 20px;
     ">
-    Before deploying OpenVidu Pro in AWS Marketplace you need to contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process. For this outdated way of deploying an OpenVidu Pro cluster you don't need an OpenVidu account, but you will need some special credentials we need to provide to you.
+    Before deploying OpenVidu Pro in AWS Marketplace you need to contact us through <a href="commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process. For this outdated way of deploying an OpenVidu Pro cluster you don't need an OpenVidu account, but you will need some special credentials we need to provide to you.
 </div>
 </div>
 
@@ -438,7 +438,7 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 These fields respectively configure different [system properties](https://docs.openvidu.io/reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server.
 
-Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUsername_ and _OpenViduProPassword_). We provide those credentials for you and with them you'll be able to access the OpenVidu Pro artifact (contact us through <a href="/commercial" target="_blank"><strong>Commercial page</strong></a> to get them).
+Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUsername_ and _OpenViduProPassword_). We provide those credentials for you and with them you'll be able to access the OpenVidu Pro artifact (contact us through <a href="commercial" target="_blank"><strong>Commercial page</strong></a> to get them).
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -570,7 +570,7 @@ To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 
