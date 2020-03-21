@@ -92,7 +92,7 @@ Ping message for the ping-pong mechanism. This is necessary to make OpenVidu Ser
 
 #### joinRoom
 
-Join a client to an already initialized session. The equivalent method in OpenVidu Browser is [Session#connect](https://openvidu.io/api/openvidu-browser/classes/session.html#connect){:target="_blank"}
+Join a client to an already initialized session. The equivalent method in OpenVidu Browser is [Session#connect](api/openvidu-browser/classes/session.html#connect){:target="_blank"}
 
 **Method sent by client**
 
@@ -152,7 +152,7 @@ Join a client to an already initialized session. The equivalent method in OpenVi
 
 #### publishVideo
 
-Start publishing a stream to the session. The equivalent method in OpenVidu Browser is [Session#publish](https://openvidu.io/api/openvidu-browser/classes/session.html#publish){:target="_blank"}
+Start publishing a stream to the session. The equivalent method in OpenVidu Browser is [Session#publish](api/openvidu-browser/classes/session.html#publish){:target="_blank"}
 
 **Method sent by client**
 
@@ -194,7 +194,7 @@ Start publishing a stream to the session. The equivalent method in OpenVidu Brow
 
 #### receiveVideoFrom
 
-Subscribe to a stream being published to the session. The equivalent method in OpenVidu Browser is [Session#subscribe](https://openvidu.io/api/openvidu-browser/classes/session.html#subscribe){:target="_blank"}
+Subscribe to a stream being published to the session. The equivalent method in OpenVidu Browser is [Session#subscribe](api/openvidu-browser/classes/session.html#subscribe){:target="_blank"}
 
 **Method sent by client**
 
@@ -261,7 +261,7 @@ Send and ICE candidate to the server.
 
 #### unpublishVideo
 
-Stop publishing a stream to the session. The equivalent method in OpenVidu Browser is [Session#unpublish](https://openvidu.io/api/openvidu-browser/classes/session.html#unpublish){:target="_blank"}
+Stop publishing a stream to the session. The equivalent method in OpenVidu Browser is [Session#unpublish](api/openvidu-browser/classes/session.html#unpublish){:target="_blank"}
 
 **Method sent by client**
 
@@ -290,7 +290,7 @@ Stop publishing a stream to the session. The equivalent method in OpenVidu Brows
 
 #### unsubscribeFromVideo
 
-Stop the subscription from a stream to which the user is currently subscribed. The equivalent method in OpenVidu Browser is [Session#unsubscribe](https://openvidu.io/api/openvidu-browser/classes/session.html#unsubscribe){:target="_blank"}
+Stop the subscription from a stream to which the user is currently subscribed. The equivalent method in OpenVidu Browser is [Session#unsubscribe](api/openvidu-browser/classes/session.html#unsubscribe){:target="_blank"}
 
 **Method sent by client**
 
@@ -321,7 +321,7 @@ Stop the subscription from a stream to which the user is currently subscribed. T
 
 #### leaveRoom
 
-Disconnect a client from a session. The equivalent method in OpenVidu Browser is [Session#disconnect](https://openvidu.io/api/openvidu-browser/classes/session.html#disconnect){:target="_blank"}
+Disconnect a client from a session. The equivalent method in OpenVidu Browser is [Session#disconnect](api/openvidu-browser/classes/session.html#disconnect){:target="_blank"}
 
 **Method sent by client**
 
@@ -350,7 +350,7 @@ Disconnect a client from a session. The equivalent method in OpenVidu Browser is
 
 #### sendMessage
 
-Send a signal to the session. The equivalent method in OpenVidu Browser is [Session#signal](https://openvidu.io/api/openvidu-browser/classes/session.html#signal){:target="_blank"}
+Send a signal to the session. The equivalent method in OpenVidu Browser is [Session#signal](api/openvidu-browser/classes/session.html#signal){:target="_blank"}
 
 **Method sent by client**
 
@@ -381,7 +381,7 @@ Send a signal to the session. The equivalent method in OpenVidu Browser is [Sess
 
 #### forceUnpublish
 
-Force another client to unpublish its stream from the session. Only possible for clients with role MODERATOR inside the session. The equivalent method in OpenVidu Browser is [Session#forceUnpublish](https://openvidu.io/api/openvidu-browser/classes/session.html#forceunpublish){:target="_blank"}
+Force another client to unpublish its stream from the session. Only possible for clients with role MODERATOR inside the session. The equivalent method in OpenVidu Browser is [Session#forceUnpublish](api/openvidu-browser/classes/session.html#forceunpublish){:target="_blank"}
 
 **Method sent by client**
 
@@ -412,7 +412,7 @@ Force another client to unpublish its stream from the session. Only possible for
 
 #### forceDisconnect
 
-Force another client to disconnect from the session. Only possible for clients with role MODERATOR inside the session. The equivalent method in OpenVidu Browser is [Session#forceDisconnect](https://openvidu.io/api/openvidu-browser/classes/session.html#forcedisconnect){:target="_blank"}
+Force another client to disconnect from the session. Only possible for clients with role MODERATOR inside the session. The equivalent method in OpenVidu Browser is [Session#forceDisconnect](api/openvidu-browser/classes/session.html#forcedisconnect){:target="_blank"}
 
 **Method sent by client**
 
@@ -443,7 +443,7 @@ Force another client to disconnect from the session. Only possible for clients w
 
 #### applyFilter
 
-Apply a filter to a published stream. The equivalent method in OpenVidu Browser is [Stream#applyFilter](https://openvidu.io/api/openvidu-browser/classes/stream.html#applyfilter){:target="_blank"}
+Apply a filter to a published stream. The equivalent method in OpenVidu Browser is [Stream#applyFilter](api/openvidu-browser/classes/stream.html#applyfilter){:target="_blank"}
 
 **Method sent by client**
 
@@ -476,7 +476,7 @@ Apply a filter to a published stream. The equivalent method in OpenVidu Browser 
 
 #### removeFilter
 
-Removed an applied filter from a stream. The equivalent method in OpenVidu Browser is [Stream#removeFilter](https://openvidu.io/api/openvidu-browser/classes/stream.html#removefilter){:target="_blank"}
+Removed an applied filter from a stream. The equivalent method in OpenVidu Browser is [Stream#removeFilter](api/openvidu-browser/classes/stream.html#removefilter){:target="_blank"}
 
 **Method sent by client**
 
@@ -507,7 +507,7 @@ Removed an applied filter from a stream. The equivalent method in OpenVidu Brows
 
 #### execFilterMethod
 
-Execute a method offered by an applied filter. The equivalent method in OpenVidu Browser is [Filter#execMethod](https://openvidu.io/api/openvidu-browser/classes/filter.html#execmethod){:target="_blank"}
+Execute a method offered by an applied filter. The equivalent method in OpenVidu Browser is [Filter#execMethod](api/openvidu-browser/classes/filter.html#execmethod){:target="_blank"}
 
 **Method sent by client**
 
@@ -540,7 +540,7 @@ Execute a method offered by an applied filter. The equivalent method in OpenVidu
 
 #### addFilterEventListener
 
-Add a listener to an applied filter. The equivalent method in OpenVidu Browser is [Filter#addEventListener](https://openvidu.io/api/openvidu-browser/classes/filter.html#addeventlistener){:target="_blank"}
+Add a listener to an applied filter. The equivalent method in OpenVidu Browser is [Filter#addEventListener](api/openvidu-browser/classes/filter.html#addeventlistener){:target="_blank"}
 
 **Method sent by client**
 
@@ -572,7 +572,7 @@ Add a listener to an applied filter. The equivalent method in OpenVidu Browser i
 
 #### removeFilterEventListener
 
-Remove a listener from an applied filter. The equivalent method in OpenVidu Browser is [Filter#removeEventListener](https://openvidu.io/api/openvidu-browser/classes/filter.html#removeeventlistener){:target="_blank"}
+Remove a listener from an applied filter. The equivalent method in OpenVidu Browser is [Filter#removeEventListener](api/openvidu-browser/classes/filter.html#removeeventlistener){:target="_blank"}
 
 **Method sent by client**
 
@@ -801,7 +801,7 @@ Some client has unpublished a stream from the session.
 
 #### streamPropertyChanged
 
-Some client has changed a property of a stream. See [StreamPropertyChangedEvent](https://openvidu.io/api/openvidu-browser/classes/streampropertychangedevent.html){:target="_blank"}
+Some client has changed a property of a stream. See [StreamPropertyChangedEvent](api/openvidu-browser/classes/streampropertychangedevent.html){:target="_blank"}
 
 ```json
 {

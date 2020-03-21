@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Arciform';
+    src: url('fonts/Arciform.eot');
+    /* IE9 Compat Modes */
+    src: url('fonts/Arciform.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('fonts/Arciform.woff') format('woff'),
+        /* Modern Browsers */
+        url('fonts/Arciform.ttf') format('truetype'),
+        /* Safari, Android, iOS */
+        url('fonts/Arciform.svg#svgFontName') format('svg');
+    /* Legacy iOS */
+}

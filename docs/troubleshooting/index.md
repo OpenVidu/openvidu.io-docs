@@ -147,7 +147,7 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
         mvn -Dopenvidu.url=https://192.168.99.100:4443/ package exec:java
 
-    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-java-client** will receive in [its constructor](/api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#OpenVidu-java.lang.String-java.lang.String-){:target="_blank"}. This change is something related to these specific applications.
+    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-java-client** will receive in [its constructor](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#OpenVidu-java.lang.String-java.lang.String-){:target="_blank"}. This change is something related to these specific applications.
 
   - **Node tutorials** (tutorials _[openvidu-js-node](tutorials/openvidu-js-node/){:target="_blank"}_, _[openvidu-mvc-node](tutorials/openvidu-mvc-node/){:target="_blank"}_): change the URL param passed on launch:
 
@@ -157,7 +157,7 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
         node server.js https://192.168.99.100:4443/ MY_SECRET
 
-    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](/api/openvidu-node-client/classes/openvidu.html#constructor){:target="_blank"}. This change is something related to these specific applications.
+    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](api/openvidu-node-client/classes/openvidu.html#constructor){:target="_blank"}. This change is something related to these specific applications.
 
 ---
 
@@ -293,7 +293,7 @@ We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pr
 
 ### 11. My Safari users with role `SUBSCRIBER` are not able to receive any remote video
 
-  Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](/api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
+  Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
   
   So, in this particular case developers must show a button their SUBSCRIBER users must click (any other action that counts as user-gesture is also suitable), and the action executed upon click event should include a call to `video.play()`. The actual video element is completely irrelevant. It can be hidden and with no media attached at all. For example:
 
@@ -323,7 +323,7 @@ Due to these problems, any other WebRTC based service we have tested usually red
 
 ### 13. Deploying OpenVidu in AWS is failing
 
-If you are deploying [OpenVidu CE](deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](openvidu-pro/deploying-openvidu-pro-aws/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
+If you are deploying [OpenVidu CE](deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](openvidu-pro/deployment/aws/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
 
 You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
 And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"}

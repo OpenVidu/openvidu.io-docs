@@ -155,7 +155,7 @@ You need to change:
 
 In `./group_vars/all` file you will find all the parameters used to configure the infrastructure.
 
-One of them is your **OpenVidu Pro license key**. You need an **[OpenVidu account](/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
+One of them is your **OpenVidu Pro license key**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 
 > **WARNING**: when giving value to the variables in `./group_vars/all` file, go through all of them very carefully. Some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about them check out [OpenVidu Server CE configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}
 

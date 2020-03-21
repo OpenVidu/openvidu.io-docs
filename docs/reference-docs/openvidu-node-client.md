@@ -3,7 +3,7 @@
 
 _This is a Node library wrapping [OpenVidu Server REST API](reference-docs/REST-API/){:target="_blank"}_
 
-<h3>Check <a href="../../../api/openvidu-node-client/" target="blank">TypeDoc documentation</a></h3>
+<h3>Check <a href="api/openvidu-node-client" target="blank">TypeDoc documentation</a></h3>
 
 <hr>
 

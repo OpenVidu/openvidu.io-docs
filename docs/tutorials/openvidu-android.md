@@ -377,7 +377,7 @@ protected Void doInBackground(SessionActivity... sessionActivities) {
 
 ### Using OpenVidu Server RPC protocol
 
-Taking the references from [OpenVidu Server RPC protocol](https://docs.openvidu.io/developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive events** from OpenVidu Server.
+Taking the references from [OpenVidu Server RPC protocol](developing/rpc/){:target="_blank"}, we will be able call to the **OpenVidu Server methods** and **receive events** from OpenVidu Server.
 
 #### Listening to OpenVidu Server events
 

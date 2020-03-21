@@ -87,7 +87,7 @@ String token = session.generateToken(tokenOptions);
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, include in [TokenOptions](/api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When generating a token, include in [TokenOptions](api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
 var tokenOptions = {
@@ -107,7 +107,7 @@ session.generateToken(tokenOptions).then(token => { ... });
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](/api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](/api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
+Use [PublisherProperties](api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
 
 ```javascript
 var OV = new OpenVidu();

@@ -48,7 +48,7 @@ java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.serv
 
 > **WARNING: container not suitable for production deployments of OpenVidu.**
 > 
-> This container lacks some services mandatory for production set ups. To deploy OpenVidu CE in a production environment, you can do it on [AWS](https://docs.openvidu.io/deployment/deploying-aws/){:target="_blank"} or on [Ubuntu](https://docs.openvidu.io/deployment/deploying-ubuntu/){:target="_blank"}
+> This container lacks some services mandatory for production set ups. To deploy OpenVidu CE in a production environment, you can do it on [AWS](deployment/deploying-aws/){:target="_blank"} or on [Ubuntu](deployment/deploying-ubuntu/){:target="_blank"}
 
 | Parameter       | Description                               | Sample value                                       |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |

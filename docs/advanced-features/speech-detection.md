@@ -1,6 +1,6 @@
 # Speech detection
 
-A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through [PublisherSpeakingEvents](/api/openvidu-browser/classes/publisherspeakingevent.html){:target="_blank"} that can be configured for [Session](/api/openvidu-browser/classes/session.html){:target="_blank"} objects:
+A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through [PublisherSpeakingEvents](api/openvidu-browser/classes/publisherspeakingevent.html){:target="_blank"} that can be configured for [Session](api/openvidu-browser/classes/session.html){:target="_blank"} objects:
 
 ```javascript
 session.on('publisherStartSpeaking', (event) => {
@@ -14,7 +14,7 @@ session.on('publisherStopSpeaking', (event) => {
 
 > PublisherSpeakingEvents only apply to Subscribers. This means that `publisherStartSpeaking` and `publisherStopSpeaking` **will only be triggered for remote Streams**: those owned by a Subscriber object
 
-You can further globally configure the behavior of these two events by using [OpenVidu.setAdvancedConfiguration](/api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} method:
+You can further globally configure the behavior of these two events by using [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} method:
 
 ```javascript
 var OV = new OpenVidu();
@@ -26,7 +26,7 @@ OV.setAdvancedConfiguration({
 });
 ```
 
-You can adjust dynamically this property for each specific Stream by using [StreamManager.updatePublisherSpeakingEventsOptions](/api/openvidu-browser/classes/streammanager.html#updatepublisherspeakingeventsoptions){:target="_blank"} method:
+You can adjust dynamically this property for each specific Stream by using [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/streammanager.html#updatepublisherspeakingeventsoptions){:target="_blank"} method:
 
 ```javascript
 // 'streamManager' being a Publisher or Subscriber object
@@ -42,7 +42,7 @@ With these events it is really easy to build a layout that can make the main spe
 
 ### Audio volume detection
 
-Since release 2.7.0, you have also available a new [StreamManagerEvent](/api/openvidu-browser/classes/streammanagerevent.html){:target="_blank"} called `streamAudioVolumeChange`. You can get the audio volume (-100 being silence to 0 being max volume) of any Publisher or Subscriber by doing this:
+Since release 2.7.0, you have also available a new [StreamManagerEvent](api/openvidu-browser/classes/streammanagerevent.html){:target="_blank"} called `streamAudioVolumeChange`. You can get the audio volume (-100 being silence to 0 being max volume) of any Publisher or Subscriber by doing this:
 
 ```javascript
 publisher.on('streamAudioVolumeChange', (event) => {
@@ -52,6 +52,6 @@ publisher.on('streamAudioVolumeChange', (event) => {
 
 > Event `streamAudioVolumeChange` will be triggered by both Subscriber and Publisher objects (while PublisherSpeakingEvents only work with Subscriber objects). By working fine with Publisher objects, you can for example build a volume meter to inform your users that their microphone is working ok, showing the volume being received by the input device.
 
-> The frequency `streamAudioVolumeChange` event is fired with is defined by property `interval` of [OpenVidu.setAdvancedConfiguration](/api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} (default 100ms). You can also adjust these values for each specific Publisher or Subscriber object with method [StreamManager.updatePublisherSpeakingEventsOptions](/api/openvidu-browser/classes/streammanager.html#updatepublisherspeakingeventsoptions){:target="_blank"}
+> The frequency `streamAudioVolumeChange` event is fired with is defined by property `interval` of [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} (default 100ms). You can also adjust these values for each specific Publisher or Subscriber object with method [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/streammanager.html#updatepublisherspeakingeventsoptions){:target="_blank"}
 
 <br>

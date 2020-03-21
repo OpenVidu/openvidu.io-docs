@@ -128,7 +128,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
             .build();
         Session session = openVidu.createSession(properties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
 
         RecordingProperties properties = new RecordingProperties.Builder()
             .outputMode(Recording.OutputMode.COMPOSED)
@@ -150,7 +150,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
         };
         var mySession = openvidu.createSession(properties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](/api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
 
         var recording;
 
@@ -812,7 +812,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 
 # Local recording in the browser
 
-OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](/api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
+OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
 
 <br>
 

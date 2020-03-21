@@ -157,7 +157,7 @@ In order to use your JKS, just give the proper value to the following OpenVidu S
 java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_keystore.jks -Dserver.ssl.key-store-password=MY_KEYSTORE_SECRET -Dserver.ssl.key-alias=my_cert_alias openvidu-server-2.5.0.jar
 ```
 
-> Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](deployment/deploying-aws#4-complete-the-configuration-fields){:target="_blank"}**
+> Remember we provide a super simple way of using a **FREE**, **AUTOMATIC** and 100% **VALID** certificate thanks to Let's Encrypt technology: when deploying your CloudFormation Stack, just fill in the form fields with the values from the column **[LET'S ENCRYPT CERTIFICATE](deployment/deploying-aws#4-specify-stack-details){:target="_blank"}**
 
 <br>
 
@@ -167,7 +167,7 @@ java -jar -Dopenvidu.secret=MY_SECRET -Dserver.ssl.key-store=/opt/openvidu/my_ke
 
 OpenVidu supports **Ubuntu Xenial 16.04** and **Ubuntu Bionic 18.04**. OpenCV filters will not work in Bionic. All filters will work fine in Xenial.
 
-Regarding filters explained in [Voice and video filters](https://docs.openvidu.io/advanced-features/filters/){:target="_blank} section, this will affect *FaceOverlayFilter* and *ChromaFilter*. In fact, no built-in module explained in [Kurento Docs](https://doc-kurento.readthedocs.io/en/stable/features/kurento_modules.html){:target="_blank} will work in Ubuntu Bionic (*PointerDetectorFilter*, *CrowdDetectorFilter*, *PlateDetectorFIlter*).
+Regarding filters explained in [Voice and video filters](advanced-features/filters/){:target="_blank} section, this will affect *FaceOverlayFilter* and *ChromaFilter*. In fact, no built-in module explained in [Kurento Docs](https://doc-kurento.readthedocs.io/en/stable/features/kurento_modules.html){:target="_blank} will work in Ubuntu Bionic (*PointerDetectorFilter*, *CrowdDetectorFilter*, *PlateDetectorFIlter*).
 
 *ZBarFilter* and *GStreamer* filters work fine in Ubuntu Bionic.
 

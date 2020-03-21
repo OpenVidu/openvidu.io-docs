@@ -208,10 +208,10 @@ public ovSessionComponent: OpenviduSessionComponent;
 
 3) After that, **ovSessionComponent** will provides us some methods to get the internal variables we need. These methods are:
 
-* **getSession**: This method will provide you the Session. Check the Session documentation [here](https://openvidu.io/api/openvidu-browser/classes/session.html){:target="_blank"}
-* **getLocalUser**: This method will provide you the User. You can check the documentation about the User Class [here](./user-doc/classes/user_model.usermodel.html){:target="_blank"}
-* **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](./layout-doc/classes/openvidu_layout.openvidulayout.html){:target="_blank"}
-* **getOpenviduLayoutOptions**: This method will return the layout options. Click [here](./layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html){:target="_blank"} to more information.
+* **getSession**: This method will provide you the Session. Check the Session documentation [here](api/openvidu-browser/classes/session.html){:target="_blank"}
+* **getLocalUser**: This method will provide you the User. You can check the documentation about the User Class [here](tutorials/user-doc/classes/user_model.usermodel.html){:target="_blank"}
+* **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](tutorials/layout-doc/classes/openvidu_layout.openvidulayout.html){:target="_blank"}
+* **getOpenviduLayoutOptions**: This method will return the layout options. Click [here](tutorials/layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html){:target="_blank"} to more information.
 
 ```typescript
 myMethod() {
@@ -237,7 +237,7 @@ ovLayoutOptions: OpenViduLayoutOptions;
 ovSettings: OvSettings;
 ```
 
-Moreover, if you want to customize the interface of **opv-session-component** you can provide a parameter `ovSettings` to the component. Further details on this topic [here](openvidu-webcomponent.md#interface-configuration){:target="_blank"}.
+Moreover, if you want to customize the interface of **opv-session-component** you can provide a parameter `ovSettings` to the component. Further details on this topic [here](tutorials/openvidu-webcomponent#interface-configuration){:target="_blank"}.
 
 
 And initializate it with the config properties:

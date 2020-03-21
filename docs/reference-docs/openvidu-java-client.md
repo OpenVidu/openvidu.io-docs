@@ -3,7 +3,7 @@
 
 _This is a Java library wrapping [OpenVidu Server REST API](reference-docs/REST-API/){:target="_blank"}_
 
-<h3>Check <a href="../../../api/openvidu-java-client/" target="_blank">JavaDoc documentation</a></h3>
+<h3>Check <a href="api/openvidu-java-client" target="_blank">JavaDoc documentation</a></h3>
 
 <hr>
 

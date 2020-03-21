@@ -5,7 +5,7 @@ OpenVidu Pro provides all of [OpenVidu CE configuration parameters](reference-do
 
 | Parameter       | Description                               | Default value                                      |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
-| `openvidu.pro.license` | License key of your OpenVidu Pro account. This parameter is mandatory to launch OpenVidu Pro clusters.<br>**[Sign up now to get your free trial!](/account)** |  |
+| `openvidu.pro.license` | License key of your OpenVidu Pro account. This parameter is mandatory to launch OpenVidu Pro clusters.<br>**[Sign up now to get your free trial!](https://openvidu.io/account)** |  |
 | `openvidu.pro.cluster`                   | Whether to launch OpenVidu in cluster mode or not. See [Scalability](openvidu-pro/scalability/){:target="_blank"} section to learn more | ***false*** |
 | `openvidu.pro.cluster.id`                | Unique identifier of your cluster. Each OpenVidu Server Pro instance corresponds to one cluster. You can launch as many clusters as you want with your license key. Cluster ID will always be stored to disk so restarting OpenVidu Server Pro will keep the same previous cluster ID if this configuration parameter is not given a distinct value | _A random string_ |
 | `openvidu.pro.cluster.environment`       | Where is OpenVidu Pro cluster deployed. This way OpenVidu Pro will be able to manage the infrastructure on its own. Can be: [`docker`, `aws`, `on_premise`]. See [Scalability](openvidu-pro/scalability/){:target="_blank"} section to learn more | ***docker*** (suitable for development environments) |

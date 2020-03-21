@@ -41,10 +41,10 @@ Use method **[POST /sessions/{sessionId}/connection](reference-docs/REST-API#pos
 Whenever you call this method, a new participant will join the chosen session, and a new stream will be published to it. All the expected events are triggered in every client connected to the Session, just as when a regular client joins and publishes to a session. The workflow is:
 
 1. Your backend publishes an IP Camera to the session as shown in the code snippets above
-2. Every client connected to that session will receive a **[connectionCreated](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session
-3. Every client connected to that session will receive a **[streamCreated](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property `typeOfVideo` set to `"IPCAM"`. Users can subscribe to this stream as any other regular stream (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"})
+2. Every client connected to that session will receive a **[connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session
+3. Every client connected to that session will receive a **[streamCreated](api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property `typeOfVideo` set to `"IPCAM"`. Users can subscribe to this stream as any other regular stream (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"})
 
-After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}** and **[connectionDestroyed](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** events.
+After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](api/openvidu-browser/classes/streamevent.html){:target="_blank"}** and **[connectionDestroyed](api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** events.
 
 #### Events dispatched in the backend
 
@@ -90,7 +90,7 @@ Use method **[DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_
 session.forceDisconnect(connection);
 ```
 
-See [JavaDoc](/api/openvidu-java-client/io/openvidu/java/client/Session.html){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html){:target="_blank"}
 
 </div>
 
@@ -101,7 +101,7 @@ See [JavaDoc](/api/openvidu-java-client/io/openvidu/java/client/Session.html){:t
 session.forceDisconnect(connection);
 ```
 
-See [TypeDoc](/api/openvidu-node-client/classes/session.html#forcedisconnect){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:target="_blank"}
 
 </div>
 

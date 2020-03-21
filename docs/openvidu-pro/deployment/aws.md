@@ -76,7 +76,7 @@ First of all, indicate a name for your deployment. Next fill each section of the
 
 #### OpenVidu Pro License
 
-Your OpenVidu Pro License key. You need an **[OpenVidu account](/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
+Your OpenVidu Pro License key. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 
 #### SSL certificate configuration
 
@@ -375,7 +375,7 @@ If that is not the problem, then follow these steps:
     padding-left: 20px;
     padding-right: 20px;
     ">
-    Before deploying OpenVidu Pro in AWS Marketplace you need to contact us through <a href="commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process. For this outdated way of deploying an OpenVidu Pro cluster you don't need an OpenVidu account, but you will need some special credentials we need to provide to you.
+    Before deploying OpenVidu Pro in AWS Marketplace you need to contact us through <a href="https://openvidu.io/commercial" target="_blank"><strong>Commercial page</strong></a> to get the credentials you will need during the deployment process. For this outdated way of deploying an OpenVidu Pro cluster you don't need an OpenVidu account, but you will need some special credentials we need to provide to you.
 </div>
 </div>
 
@@ -436,9 +436,9 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 #### OpenVidu Configuration
 
-These fields respectively configure different [system properties](https://docs.openvidu.io/reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server.
+These fields respectively configure different [system properties](reference-docs/openvidu-server-params/){:target="_blank"} of OpenVidu Server.
 
-Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUsername_ and _OpenViduProPassword_). We provide those credentials for you and with them you'll be able to access the OpenVidu Pro artifact (contact us through <a href="commercial" target="_blank"><strong>Commercial page</strong></a> to get them).
+Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUsername_ and _OpenViduProPassword_). We provide those credentials for you and with them you'll be able to access the OpenVidu Pro artifact (contact us through <a href="https://openvidu.io/commercial" target="_blank"><strong>Commercial page</strong></a> to get them).
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">

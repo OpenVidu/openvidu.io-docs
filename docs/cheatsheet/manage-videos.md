@@ -8,25 +8,25 @@ Every Publisher and Subscriber object can display a media stream in as many vide
 <br>
 ##### A) Publisher videos
 
-- When initalizing a Publisher object, you can insert a video player by passing a valid `targetElement` in method `OpenVidu.initPublisher` (can be an HTMLElement or its `id` attribute). Second parameter allows you to customize the publisher's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](/api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}):
+- When initalizing a Publisher object, you can insert a video player by passing a valid `targetElement` in method `OpenVidu.initPublisher` (can be an HTMLElement or its `id` attribute). Second parameter allows you to customize the publisher's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}):
 
         var publisher = OV.initPublisher(targetElement, {insertMode: 'APPEND'});
 
-- After getting the Publisher object, you can create more video players to display its media stream just by calling `Publisher.createVideoElement`. Pass a valid `targetElement` and the [insertMode](/api/openvidu-browser/enums/videoinsertmode.html){:target="_blank"}:
+- After getting the Publisher object, you can create more video players to display its media stream just by calling `Publisher.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/videoinsertmode.html){:target="_blank"}:
 
         publisher.createVideoElement(targetElement, 'APPEND');
 
 <br>
 ##### B) Subscriber videos
 
-- When subscribing to a Stream, you can insert a video player by passing a valid `targetElement` in method `Session.subscribe` (can be an HTMLElement or its `id` attribute). Third parameter allows you to customize the subscriber's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](/api/openvidu-browser/interfaces/subscriberproperties.html){:target="_blank"}):
+- When subscribing to a Stream, you can insert a video player by passing a valid `targetElement` in method `Session.subscribe` (can be an HTMLElement or its `id` attribute). Third parameter allows you to customize the subscriber's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/subscriberproperties.html){:target="_blank"}):
 
         var subscriber;
         session.on('streamCreated', event => {
             subscriber = session.subscribe(event.stream, targetElement, {insertMode: 'APPEND'});
         });
 
-- After getting the Subscriber object, you can create more video players to display its media stream just by calling `Subscriber.createVideoElement`. Pass a valid `targetElement` and the [insertMode](/api/openvidu-browser/enums/videoinsertmode.html){:target="_blank"}:
+- After getting the Subscriber object, you can create more video players to display its media stream just by calling `Subscriber.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/videoinsertmode.html){:target="_blank"}:
 
         subscriber.createVideoElement(targetElement, 'APPEND');
 

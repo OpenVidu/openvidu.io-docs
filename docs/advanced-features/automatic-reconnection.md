@@ -21,8 +21,8 @@ Both the signaling plane and the media plane are fine. Nothing else must be done
 
 OpenVidu thinks the client has disconnected with no chance of recovery and proceeds to kick him out of the Session. Once the user recovers their connection, they will receive a rejection message from OpenVidu. They are by all means no longer part of the Session, and they need to join it again as a new user. Every other participant of the Session will already have received the proper events with `reason` property set to `networkDisconnect`
 
-- [streamDestroyed](/api/openvidu-browser/classes/streamevent.html){:target="_blank"} event (only if the disconnected participant was publishing to the Session)
-- [connectionDestroyed](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"} event
+- [streamDestroyed](api/openvidu-browser/classes/streamevent.html){:target="_blank"} event (only if the disconnected participant was publishing to the Session)
+- [connectionDestroyed](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} event
 
 <br>
 
@@ -40,12 +40,12 @@ In this case, the only solution is to renegotiate the whole media connections wi
 
 ## Reconnection events
 
-To help managing the 3 scenarios of the previous section, the [Session](/api/openvidu-browser/classes/session.html){:target="_blank"} object owned by the affected user will dispatch the following events during the reconnection process:
+To help managing the 3 scenarios of the previous section, the [Session](api/openvidu-browser/classes/session.html){:target="_blank"} object owned by the affected user will dispatch the following events during the reconnection process:
 
 1. Event `reconnecting` is triggered once the client realizes its connection to OpenVidu is broken
 2. Once the connection ir recovered:
     - If OpenVidu has not evicted the user yet, `reconnected` event is dispatched. Media streams may be renegotiated under the hood if necessary
-    - If OpenVidu has evicted the user, [`sessionDisconnected`](/api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} event is fired with reason set to `networkDisconnect`
+    - If OpenVidu has evicted the user, [`sessionDisconnected`](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} event is fired with reason set to `networkDisconnect`
 
 ```javascript
 session.on('reconnecting', () => console.warn('Oops! Trying to reconnect to the session'));

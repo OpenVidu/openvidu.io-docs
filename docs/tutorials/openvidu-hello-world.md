@@ -83,7 +83,7 @@ As you can see in the code, the process is very simple: get an OpenVidu object a
 
 Then you can subscribe to all the events you want for your session. In this case we just want to subscribe to every stream that is being created in the session: on `streamCreated` we subscribe to the specific stream, available at `event.stream` property.
 
-> You can take a look at all the events in the [Reference Documentation](/api/openvidu-browser/classes/event.html){:target="_blank"}
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/event.html){:target="_blank"}
 
 ---
 

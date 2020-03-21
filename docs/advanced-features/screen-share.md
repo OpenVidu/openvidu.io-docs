@@ -23,7 +23,7 @@ var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 
 ### Chrome <72 and Opera (based on Chrome <72)
 
-In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](/api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
+In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
 
 - `SCREEN_SHARING_NOT_SUPPORTED`: if the client does not support screen sharing.
 - `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome <72 needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.

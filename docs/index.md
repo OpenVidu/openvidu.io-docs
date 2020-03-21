@@ -163,7 +163,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Supported plans and professional support</h3>
-      <span class="feature-text">We offer <a href="openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="commercial" target="_blank">Contact us now!</a></span>
+      <span class="feature-text">We offer <a href="openvidu-pro/" target="_blank" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="https://openvidu.io/commercial" target="_blank">Contact us now!</a></span>
     </div>
   </div>
 

@@ -11,11 +11,11 @@ Once you have checked that your AWS OpenVidu Server is up and running, adding yo
 
 In Linux/Mac you can use [scp](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html#AccessingInstancesLinuxSCP){:target="_blank"} command. In Windows (or If you prefer a more friendly GUI) you can use [FileZilla](https://beamtic.com/connect-to-aws-ec2-with-ftp){:target="_blank"}. Furthermore, if your app is stored in a GitHub repo, you can directly clone it once you connect to your instance.
 
-Remember that the key will be the same you indicated when configuring the [CloudFormation fields](deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. 
+Remember that the key will be the same you indicated when configuring the [CloudFormation fields](deployment/deploying-aws/#4-specify-stack-details){:target="_blank"}. 
 
 #### 2. Connect to your EC2 instance through SSH
 
-Remember that the key will be the same you indicated when configuring the [CloudFormation fields](deployment/deploying-aws/#4-complete-the-configuration-fields){:target="_blank"}. In case of doubt, check [AWS docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html){:target="_blank"}.
+Remember that the key will be the same you indicated when configuring the [CloudFormation fields](deployment/deploying-aws/#4-specify-stack-details){:target="_blank"}. In case of doubt, check [AWS docs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html){:target="_blank"}.
 
 #### 3. Configure your app
 

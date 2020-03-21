@@ -72,7 +72,7 @@ Recorded when a user has connected to a session.
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
 | `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 
 Example:
@@ -93,7 +93,7 @@ Recorded when a user has left a session.
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
 | `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
@@ -171,7 +171,7 @@ Recorded when a new session has started to be recorded
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
 | `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] |
 | `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](/api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file                 | `0`              |
 | `duration`        | Duration of the video file                 | `0`              |
@@ -198,7 +198,7 @@ Recorded when a new session has stopped being recorded
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
 | `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
 | `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](/api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file                 | Bytes                                         |
 | `duration`        | Duration of the video file                 | Seconds                                       |
@@ -230,7 +230,7 @@ Recorded when the status of a recording has changed. The status may be:
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
 | `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
 | `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](/api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file. 0 until status is _stopped_ | Bytes                            |
 | `duration`        | Duration of the video file. 0 until status is _stopped_ | Seconds                          |
