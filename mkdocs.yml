@@ -3,7 +3,7 @@ site_url: https://openvidu.io/
 site_name: OpenVidu Docs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 nav:
-- What is OpenVidu?: home/index.md
+- What is OpenVidu?: index.md
 - Tutorials:
   - Intro: tutorials/index.md
   - openvidu-webcomponent: tutorials/openvidu-webcomponent.md

@@ -243,9 +243,9 @@ You will need to sign your application in Xcode (opening folder _openvidu-ionic/
   });
 </script>
 
-<link rel="stylesheet" type="text/css" href="/cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+<link rel="stylesheet" type="text/css" href="css/downloads/slick-1.6.0.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+<script type="text/javascript" src="js/downloads/slick-1.6.0.min.js"></script>
 
 <script>
     $('.screenshots-gallery').slick({
