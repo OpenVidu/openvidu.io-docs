@@ -86,7 +86,6 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#forcemediareconnectionafternetworkdrop" class="tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#iceservers" class="tsd-kind-icon">ice<wbr>Servers</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#publisherspeakingeventsoptions" class="tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#screensharechromeextension" class="tsd-kind-icon">screen<wbr>Share<wbr>Chrome<wbr>Extension</a></li>
@@ -98,31 +97,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="forcemediareconnectionafternetworkdrop" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop</h3>
-					<div class="tsd-signature tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L53">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:53</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Determines the automatic reconnection process policy. Whenever the client&#39;s network drops, OpenVidu Browser starts a reconnection process with OpenVidu Server. After network is recovered, OpenVidu Browser automatically
-							inspects all of its media streams to see their status. For any of them that are broken, it asks OpenVidu Server for a forced and silent reconnection.</p>
-						</div>
-						<p>This policy is technically enough to recover any broken media connection after a network drop, but in practice it has been proven that OpenVidu Browser may think a media connection has properly recovered when in fact it has not.
-						This is not a common case, and it only affects Publisher streams, but it may occur. This property allows <strong>forcing OpenVidu Browser to reconnect all of its outgoing media streams</strong> after a network drop regardless of their supposed status.</p>
-						<p>Default to <code>false</code>.</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="iceservers" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ice<wbr>Servers</h3>
 					<div class="tsd-signature tsd-kind-icon">ice<wbr>Servers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RTCIceServer</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L27">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L27">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -138,18 +118,17 @@
 					<div class="tsd-signature tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L42">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L40">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Custom configuration for the <a href="../classes/publisherspeakingevent.html">PublisherSpeakingEvent</a> feature and the <a href="/api/openvidu-browser/classes/streammanagerevent.html">StreamManagerEvent.streamAudioVolumeChange</a> feature. It is an object which includes the following optional properties:</p>
+							<p>Custom configuration for the <a href="../classes/publisherspeakingevent.html">PublisherSpeakingEvent</a> feature. It is an object which includes the following optional properties:</p>
 							<ul>
-								<li><code>interval</code>: (number) how frequently the analyser polls the audio stream to check if speaking has started/stopped or audio volume has changed. Default <strong>100</strong> (ms)</li>
+								<li><code>interval</code>: (number) how frequently the analyser polls the audio stream to check if speaking has started or stopped. Default <strong>50</strong> (ms)</li>
 								<li><code>threshold</code>: (number) the volume at which <em>publisherStartSpeaking</em> and <em>publisherStopSpeaking</em> events will be fired. Default <strong>-50</strong> (dB)</li>
 							</ul>
 						</div>
-						<p>This sets the global default configuration that will affect all streams, but you can later customize these values for each specific stream by calling <a href="../classes/streammanager.html#updatepublisherspeakingeventsoptions">StreamManager.updatePublisherSpeakingEventsOptions</a></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -158,7 +137,7 @@
 					<div class="tsd-signature tsd-kind-icon">screen<wbr>Share<wbr>Chrome<wbr>Extension<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L33">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L33">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -266,9 +245,6 @@
 					<li class="current tsd-kind-interface">
 						<a href="openviduadvancedconfiguration.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Advanced<wbr>Configuration</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="openviduadvancedconfiguration.html#forcemediareconnectionafternetworkdrop" class="tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="openviduadvancedconfiguration.html#iceservers" class="tsd-kind-icon">ice<wbr>Servers</a>
 							</li>

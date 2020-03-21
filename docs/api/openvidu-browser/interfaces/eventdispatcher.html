@@ -103,13 +103,13 @@
 					<a name="off" class="tsd-anchor"></a>
 					<h3>off</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
+						<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L41">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L41">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -123,7 +123,7 @@
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handler: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handler: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
@@ -135,13 +135,13 @@
 					<a name="on" class="tsd-anchor"></a>
 					<h3>on</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L27">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L27">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -155,10 +155,10 @@
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>handler: <span class="tsd-signature-type">function</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -185,13 +185,13 @@
 					<a name="once" class="tsd-anchor"></a>
 					<h3>once</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">once<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
+						<li class="tsd-signature tsd-kind-icon">once<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/68dfd44/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L34">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/91c06a0/openvidu-browser/src/OpenViduInternal/Interfaces/Public/EventDispatcher.ts#L34">OpenViduInternal/Interfaces/Public/EventDispatcher.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,10 +205,10 @@
 									<h5>type: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<h5>handler: <span class="tsd-signature-type">function</span></h5>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../classes/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
