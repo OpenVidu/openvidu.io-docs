@@ -1,7 +1,7 @@
 # openvidu-getaroom
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](/tutorials/openvidu-insecure-js/){:target="_blank"} does.
+OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](tutorials/openvidu-insecure-js/){:target="_blank"} does.
 
 <p align="center">
   <img  class="img-responsive" src="img/tutorials/openvidu-getaroom.png">
@@ -41,9 +41,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 5) Go to [`localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

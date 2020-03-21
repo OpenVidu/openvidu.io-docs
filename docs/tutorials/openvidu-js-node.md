@@ -1,7 +1,7 @@
 # openvidu-js-node
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Node backend and a SPA frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-mvc-node](/tutorials/openvidu-mvc-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with a SPA (Single Page Application) architecture for their frontends.
+A secure OpenVidu sample app with a Node backend and a SPA frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-mvc-node](tutorials/openvidu-mvc-node){:target="_blank"}. This tutorial is intended for developers who feel more comfortable with a SPA (Single Page Application) architecture for their frontends.
 
 ## Understanding this tutorial
 
@@ -47,9 +47,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 
 5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -467,7 +467,7 @@ When the last user leaves the session `delete mapSessions[sessionName]` will be 
 
 > At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
 >
-> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](/reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](/reference-docs/openvidu-node-client/){:target="_blank"} or the [REST API](/reference-docs/REST-API/){:target="_blank"}) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
+> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"} or the [REST API](reference-docs/REST-API/){:target="_blank"}) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

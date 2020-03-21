@@ -46,9 +46,9 @@ docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-serv
 	</div>
 </div>
 
-> If you are using **Windows**, read this **[FAQ](/troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](/troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 ## Understanding the code
 
@@ -256,7 +256,7 @@ getToken(sessionName).then((token) => {
 });
 ```
 
-In a production environment we would perform this operations in our application backend, by making use of the _[API REST](/reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](/reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](/reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+In a production environment we would perform this operations in our application backend, by making use of the _[API REST](reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
 -   First ajax request performs a POST to `/api/sessions` (we send a `customSessionId` field to name the session with our `sessionName` value retrieved from HTML input)
 -   Second ajax request performs a POST to `/api/tokens` (we send a `session` field to assign the token to this same session)

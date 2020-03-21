@@ -22,7 +22,7 @@ From **release 2.12.0** you can publish any IP camera sending video over **[RTSP
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Use method **[POST /sessions/{sessionId}/connection](/reference-docs/REST-API#post-apisessionsltsession_idgtconnection)**
+Use method **[POST /sessions/{sessionId}/connection](reference-docs/REST-API#post-apisessionsltsession_idgtconnection)**
 
 </div>
 
@@ -42,13 +42,13 @@ Whenever you call this method, a new participant will join the chosen session, a
 
 1. Your backend publishes an IP Camera to the session as shown in the code snippets above
 2. Every client connected to that session will receive a **[connectionCreated](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session
-3. Every client connected to that session will receive a **[streamCreated](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property `typeOfVideo` set to `"IPCAM"`. Users can subscribe to this stream as any other regular stream (see [Subscribe/Unsubscribe from a stream](/cheatsheet/subscribe-unsubscribe){:target="_blank"})
+3. Every client connected to that session will receive a **[streamCreated](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property `typeOfVideo` set to `"IPCAM"`. Users can subscribe to this stream as any other regular stream (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"})
 
 After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](/api/openvidu-browser/classes/streamevent.html){:target="_blank"}** and **[connectionDestroyed](/api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** events.
 
 #### Events dispatched in the backend
 
-Your backend side will also receive the expected events in the [CDR](/reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](/reference-docs/openvidu-server-webhook){:target="_blank"}. Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user:
+Your backend side will also receive the expected events in the [CDR](reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="_blank"}. Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user:
 
 - ***participantJoined*** event fot the new IP camera participant
 ```json
@@ -79,7 +79,7 @@ To unpublish an IP camera stream you must remove the connection owning the strea
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Use method **[DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](/reference-docs/REST-API#delete-apisessionsltsession_idgtconnectionltconnection_idgt)**
+Use method **[DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-apisessionsltsession_idgtconnectionltconnection_idgt)**
 
 </div>
 
@@ -107,7 +107,7 @@ See [TypeDoc](/api/openvidu-node-client/classes/session.html#forcedisconnect){:t
 
 </div>
 
-> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](/reference-docs/REST-API#delete-apisessionsltsession_idgtstreamltstream_idgt){:target="_blank"}
+> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](reference-docs/REST-API#delete-apisessionsltsession_idgtstreamltstream_idgt){:target="_blank"}
 
 <br>
 

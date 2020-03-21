@@ -73,7 +73,7 @@ Recorded when a user has connected to a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](/reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 
 Example:
 ```json
@@ -94,7 +94,7 @@ Recorded when a user has left a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](/api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](/reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
 | `reason`        | How the participant left the session                                                   | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
@@ -247,7 +247,7 @@ Example:
 #### filterEventDispatched
 
 _From OpenVidu 2.12.0_<br>
-Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](/advanced-features/filters){:target="_blank"} to learn more.
+Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](advanced-features/filters){:target="_blank"} to learn more.
 
 | Property          | Description                                | Value                                         |
 | ----------------- | ------------------------------------------ | --------------------------------------------- |

@@ -67,7 +67,7 @@ You must have **at least 2 different instances** with a clean installation of **
 - One instance for the **OpenVidu Server Pro Node**
 - One instance for a **Media Node**
 
-You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](/openvidu-pro/scalability/){:target="_blank"} section for further details.
+You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](openvidu-pro/scalability/){:target="_blank"} section for further details.
 
 Besides, be sure to meet the following criteria in your cluster instances:
 
@@ -157,7 +157,7 @@ In `./group_vars/all` file you will find all the parameters used to configure th
 
 One of them is your **OpenVidu Pro license key**. You need an **[OpenVidu account](/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 
-> **WARNING**: when giving value to the variables in `./group_vars/all` file, go through all of them very carefully. Some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about them check out [OpenVidu Server CE configuration](/reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](/openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}
+> **WARNING**: when giving value to the variables in `./group_vars/all` file, go through all of them very carefully. Some of them do not have default values, as they are dependant on your infrastructure. Be also very careful to not delete any of them, as the deployment will fail if any variable is missing. For further information about them check out [OpenVidu Server CE configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}
 
 ---
 
@@ -201,11 +201,11 @@ openvidu-server        : ok=53  changed=43  unreachable=0   failed=0   skipped=1
 
 Once the playbook command has successfully finished, you will have OpenVidu Pro services accessible through the following URLs:
 
-- **OpenVidu Pro Inspector** ([more info](/openvidu-pro/openvidu-inspector/){:target="_blank"}) : `https://YOUR_DNS_NAME/inspector`
-- **OpenVidu Pro Kibana dashboard** ([more info](/openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
-- **OpenVidu Pro REST endpoint** ([more info](/openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
+- **OpenVidu Pro Inspector** ([more info](openvidu-pro/openvidu-inspector/){:target="_blank"}) : `https://YOUR_DNS_NAME/inspector`
+- **OpenVidu Pro Kibana dashboard** ([more info](openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
+- **OpenVidu Pro REST endpoint** ([more info](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](releases#2100){:target="_blank"}
 
 <br>
 
@@ -236,21 +236,21 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons. Yo
 > **WARNING**: Launching/Dropping Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically start/terminate your instances:
 >
 > - To launch a new Media Node you need to have the new Media Node already up and running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)) and define its URI like stated in the image above.<br><br>
-> - To drop an existing Media Node you will have to terminate the instance yourself after clicking the terminate button, if that's what you want. Clicking the button will just disconnect the Media Node from the cluster (you won't be charged for it anymore), but won't terminate the machine. You can listen to [mediaNodeStatusChanged](/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance (listen to `terminated` status).
+> - To drop an existing Media Node you will have to terminate the instance yourself after clicking the terminate button, if that's what you want. Clicking the button will just disconnect the Media Node from the cluster (you won't be charged for it anymore), but won't terminate the machine. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance (listen to `terminated` status).
 
 #### With OpenVidu Pro REST API
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes through REST API in on premises OpenVidu Pro clusters:
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premise deployments will not automatically start/terminate your instances:
->     - To launch a new Media Node you are required to have the Media Node already running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter) or [like this in OpenVidu Inspector](#from-openvidu-inspector).
->     - To drop an existing Media Node you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](/openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+>     - To launch a new Media Node you are required to have the Media Node already running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter) or [like this in OpenVidu Inspector](#from-openvidu-inspector).
+>     - To drop an existing Media Node you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
 #### Launching new Media Nodes with Ansible
 
@@ -298,21 +298,21 @@ This will install a new Media Node in your empty instance(s) without interfering
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu Server CE configuration](/reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Server Pro configuration](/openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu Server CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
+- [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 
-When deploying an OpenVidu Pro cluster you give value to these parameters directly or indirectly, depending on the [deployment environment](/openvidu-pro/scalability/#how-to-deploy-your-openvidu-pro-cluster){:target="_blank"}. Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
+When deploying an OpenVidu Pro cluster you give value to these parameters directly or indirectly, depending on the [deployment environment](openvidu-pro/scalability/#how-to-deploy-your-openvidu-pro-cluster){:target="_blank"}. Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
 ### 1) With OpenVidu Inspector
 
-OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](/openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
+OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
 
 ### 2) With OpenVidu Pro REST API
 
-You can consume REST API method **[POST /pro/restart](/openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
+You can consume REST API method **[POST /pro/restart](openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future

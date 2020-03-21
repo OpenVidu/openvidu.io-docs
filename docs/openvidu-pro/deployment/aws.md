@@ -133,15 +133,15 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### OpenVidu CE configuration
 
-Configuration properties specific for **OpenVidu Server CE**. You have a complete description of all available properties **[here](/reference-docs/openvidu-server-params){:target="_blank"}**.
+Configuration properties specific for **OpenVidu Server CE**. You have a complete description of all available properties **[here](reference-docs/openvidu-server-params){:target="_blank"}**.
 
 #### OpenVidu Pro configuration
 
-Configuration properties specific for **OpenVidu Server Pro**. You have a complete description of all available properties **[here](/openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}**.
+Configuration properties specific for **OpenVidu Server Pro**. You have a complete description of all available properties **[here](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}**.
 
 #### Kibana configuration
 
-Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](/openvidu-pro/detailed-session-monitoring){:target="_blank"} for further information.
+Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](openvidu-pro/detailed-session-monitoring){:target="_blank"} for further information.
 
 #### Networking configuration
 
@@ -197,7 +197,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
-To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
+To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
 
 <br>
 
@@ -241,12 +241,12 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployemnts, specially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](/openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.
 
 <br>
 
@@ -256,21 +256,21 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu Server CE configuration](/reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Server Pro configuration](/openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu Server CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
+- [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 
-When deploying an OpenVidu Pro cluster you give value to these parameters directly or indirectly, depending on the [deployment environment](/openvidu-pro/scalability/#how-to-deploy-your-openvidu-pro-cluster){:target="_blank"}. Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
+When deploying an OpenVidu Pro cluster you give value to these parameters directly or indirectly, depending on the [deployment environment](openvidu-pro/scalability/#how-to-deploy-your-openvidu-pro-cluster){:target="_blank"}. Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
 ### 1) With OpenVidu Inspector
 
-OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](/openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
+OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
 
 ### 2) With OpenVidu Pro REST API
 
-You can consume REST API method **[POST /pro/restart](/openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
+You can consume REST API method **[POST /pro/restart](openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
@@ -291,7 +291,7 @@ To validate your changes and check that everything went well, you should take a 
 
 ## Troubleshooting
 
-First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](/troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} to learn how to fix it.
+First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} to learn how to fix it.
 
 If that is not the problem, then follow these steps:
 
@@ -321,7 +321,7 @@ If that is not the problem, then follow these steps:
 
     - `journalctl -u openvidu > openvidu.log`
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](releases#2100){:target="_blank"}
 
 <br>
 
@@ -446,7 +446,7 @@ Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUserna
     </div>
 </div>
 
-> If you want to enable [OpenVidu Webhook module](/reference-docs/openvidu-server-webhook/){:target="_blank"} by setting **OpenViduWebhook** field to true, your endpoint defined in field **OpenViduWebhookEndpoint** will probably be secured in some way. The syntax for the webhook header (field **OpenViduWebhookHeaders**) should be used to provide the security credentials. For example:
+> If you want to enable [OpenVidu Webhook module](reference-docs/openvidu-server-webhook/){:target="_blank"} by setting **OpenViduWebhook** field to true, your endpoint defined in field **OpenViduWebhookEndpoint** will probably be secured in some way. The syntax for the webhook header (field **OpenViduWebhookHeaders**) should be used to provide the security credentials. For example:
 >
 > `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
 >
@@ -503,7 +503,7 @@ How many Kurento Media Servers do you want to deploy? Default to 1. Keep in mind
 
 #### Other parameters
 
-Choose the size of your instance (see [OpenVidu performance FAQ](/troubleshooting/#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
+Choose the size of your instance (see [OpenVidu performance FAQ](troubleshooting/#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance){:target="_blank"}) and a Key Pair ([create one if you don't have any](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#having-ec2-create-your-key-pair){:target="_blank"}).
 
 You can choose different sizes for OpenVidu Server machine and KMS machines.
 
@@ -545,7 +545,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
-To consume [OpenVidu REST API](/reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443`
+To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443`
 
 <br>
 
