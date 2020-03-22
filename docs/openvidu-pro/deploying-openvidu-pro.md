@@ -21,12 +21,12 @@ OpenVidu Pro is available through **AWS Marketplace** (you will need an [Amazon 
 
 <div class="row wow fadeInUp">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market1.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market6.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market2.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market3.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market4.png"/></a>
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/marketplace/market5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/market5.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market1.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market6.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market2.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market3.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market4.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/marketplace/market5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/market5.png"/></a>
     </div>
 </div>
 
@@ -48,7 +48,7 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro6" href="/img/docs/openvidu-pro/marketplace/marketSelfsigned.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketSelfsigned.png"/></a>
+        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/marketplace/marketSelfsigned.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketSelfsigned.png"/></a>
     </div>
 </div>
 
@@ -56,7 +56,7 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro7" href="/img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"/></a>
+        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketLetsencrypt.png"/></a>
     </div>
 </div>
 
@@ -64,7 +64,7 @@ This is the kind of certificate you will be using in your deployment. Three diff
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro8" href="/img/docs/openvidu-pro/marketplace/marketOwncert.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOwncert.png"/></a>
+        <a data-fancybox="gallery-pro8" href="img/docs/openvidu-pro/marketplace/marketOwncert.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOwncert.png"/></a>
     </div>
 </div>
 
@@ -76,7 +76,7 @@ Besides, you'll find two fields for OpenVidu Pro credentials (_OpenViduProUserna
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro9" href="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"/></a>
+        <a data-fancybox="gallery-pro9" href="img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOpenviduconf.png"/></a>
     </div>
 </div>
 
@@ -101,7 +101,7 @@ These fields allow you to limit the IPs that will be able to connect to OpenVidu
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro10" href="/img/docs/openvidu-pro/marketplace/marketSecurity.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketSecurity.png"/></a>
+        <a data-fancybox="gallery-pro10" href="img/docs/openvidu-pro/marketplace/marketSecurity.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketSecurity.png"/></a>
     </div>
 </div>
 
@@ -111,7 +111,7 @@ Set the user and password for accessing Kibana dashboard.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketKibana.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketKibana.png"/></a>
+        <a data-fancybox="gallery-pro11" href="img/docs/openvidu-pro/marketplace/marketKibana.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketKibana.png"/></a>
     </div>
 </div>
 
@@ -121,7 +121,7 @@ Because Kurento Media Server cluster runs in an Autoscaling Group this CloudForm
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"/></a>
+        <a data-fancybox="gallery-pro11" href="img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketNetworkingOptions.png"/></a>
     </div>
 </div>
 
@@ -131,7 +131,7 @@ How many Kurento Media Servers do you want to deploy? Default to 1. Keep in mind
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
+        <a data-fancybox="gallery-pro11" href="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
     </div>
 </div>
 
@@ -143,7 +143,7 @@ You can choose different sizes for OpenVidu Server machine and KMS machines.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
+        <a data-fancybox="gallery-pro12" href="img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
     </div>
 </div>
 
@@ -155,7 +155,7 @@ Before you can deploy the stack, you have to agree that this template will creat
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketCapabilities.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/marketCapabilities.png"/></a>
+        <a data-fancybox="gallery-pro11" href="img/docs/openvidu-pro/marketplace/marketCapabilities.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/marketCapabilities.png"/></a>
     </div>
 </div>
 
@@ -177,7 +177,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
+        <a data-fancybox="gallery-pro12" href="img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
     </div>
 </div>
 
@@ -289,7 +289,6 @@ Ansible uses an inventory file to know which instances connect to and how to con
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-pro-clustering
-git checkout 2.11.0
 cd openvidu-pro-clustering # This will be our working directory from now on
 ```
 
@@ -413,7 +412,7 @@ If you're deploying through CloudFormation please do these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro13" href="/img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="/img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
+        <a data-fancybox="gallery-pro13" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
     </div>
 </div>
 
@@ -421,7 +420,7 @@ If you're deploying through CloudFormation please do these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro14" href="/img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="/img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
+        <a data-fancybox="gallery-pro14" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
     </div>
 </div>
 

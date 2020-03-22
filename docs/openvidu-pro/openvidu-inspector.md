@@ -10,10 +10,10 @@ Review each client connected to a video session and the media streams each one i
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro2.png"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro3.png"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro4.gif"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro4.gif"/></a>
-        <a data-fancybox="gallery-pro1" href="/img/docs/openvidu-pro/pro8.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro8.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro2.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro3.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro4.gif"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro4.gif"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro8.png"/></a>
     </div>
 </div>
 
@@ -24,9 +24,9 @@ Through OpenVidu Inspector you are able to administrate your video sessions just
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro5.png"/></a>
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro6.png"/></a>
-        <a data-fancybox="gallery-pro2" href="/img/docs/openvidu-pro/pro7.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro7.png"/></a>
+        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro5.png"/></a>
+        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro6.png"/></a>
+        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro7.png"/></a>
     </div>
 </div>
 
@@ -37,7 +37,7 @@ OpenVidu Inspector allows you to review all your recordings in a simple way. Pre
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro3" href="/img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro9.png"/></a>
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro9.png"/></a>
     </div>
 </div>
 
@@ -48,9 +48,9 @@ Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. T
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro14.png"/></a>
-        <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro15.png"/></a>
-        <a data-fancybox="gallery-pro4" href="/img/docs/openvidu-pro/pro16.png"><img class="img-responsive img-pro" src="/img/docs/openvidu-pro/pro16.png"/></a>
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro14.png"/></a>
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro15.png"/></a>
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro16.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16.png"/></a>
     </div>
 </div>
 
@@ -61,7 +61,7 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro5" href="/img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="/img/docs/openvidu-pro/pro12.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="img/docs/openvidu-pro/pro12.png"/></a>
     </div>
 </div>
 
@@ -79,7 +79,7 @@ You may also restart OpenVidu Server Pro directly in OpenVidu Inspector:<br><br>
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro6" href="/img/docs/openvidu-pro/pro13.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee; max-height: 650px" src="/img/docs/openvidu-pro/pro13.png"/></a>
+        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/pro13.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee; max-height: 650px" src="img/docs/openvidu-pro/pro13.png"/></a>
     </div>
 </div>
 

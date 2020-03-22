@@ -35,7 +35,7 @@ When [deploying OpenVidu Pro on AWS](openvidu-pro/deploying-openvidu-pro#deployi
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro11" href="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
+        <a data-fancybox="gallery-pro11" href="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
     </div>
 </div>
 
@@ -43,7 +43,7 @@ In section **[Other parameters](openvidu-pro/deploying-openvidu-pro/#other-param
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro12" href="/img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="/img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
+        <a data-fancybox="gallery-pro12" href="img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
     </div>
 </div>
 
