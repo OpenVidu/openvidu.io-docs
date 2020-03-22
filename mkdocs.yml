@@ -39,11 +39,9 @@ nav:
 - Advanced features:
   - Recording: advanced-features/recording.md
   - Screen share: advanced-features/screen-share.md
-  - IP cameras: advanced-features/ip-cameras.md
   - Speech detection: advanced-features/speech-detection.md
   - Voice and video filters: advanced-features/filters.md
   - Switch camera: advanced-features/switch-camera.md
-  - Automatic reconnection: advanced-features/automatic-reconnection.md
 - Reference Documentation:
   - openvidu-browser API: reference-docs/openvidu-browser.md
   - openvidu-java-client API: reference-docs/openvidu-java-client.md
@@ -67,14 +65,8 @@ nav:
   - Scalability: openvidu-pro/scalability.md
   - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
   - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
-  - Deploying OpenVidu Pro:
-    - AWS: openvidu-pro/deployment/aws.md
-    - On premise: openvidu-pro/deployment/on-premise.md
-    - Kubernetes: openvidu-pro/deployment/kubernetes.md
-  - Reference Documentation:
-    - REST API Pro: openvidu-pro/reference-docs/REST-API-pro.md
-    - OpenVidu Server Pro configuration: openvidu-pro/reference-docs/openvidu-server-pro-params.md
-    - OpenVidu Server Pro CDR: openvidu-pro/reference-docs/openvidu-server-pro-cdr.md
+  - Deploying OpenVidu Pro: openvidu-pro/deploying-openvidu-pro.md
+  - REST API Pro: openvidu-pro/REST-API-pro.md
 docs_dir: docs
 theme:
     name: mkdocs

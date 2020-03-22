@@ -20,7 +20,6 @@ So every entry is a JSON object identified by a specific event name, and all of 
 - [**recordingStarted**](#recordingstarted) _(removed in OpenVidu 2.11.0. Use **recordingStatusChanged**)_
 - [**recordingStopped**](#recordingstopped) _(removed in OpenVidu 2.11.0. Use **recordingStatusChanged**)_
 - [**recordingStatusChanged**](#recordingstatuschanged) _(from OpenVidu 2.11.0)_
-- [**filterEventDispatched**](#filtereventdispatched) _(from OpenVidu 2.12.0)_
 
 <br>
 
@@ -72,12 +71,10 @@ Recorded when a user has connected to a session.
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 
 Example:
 ```json
-{"participantJoined":{"sessionId":"ses_SuXO99zeb1","timestamp":1584008771500,"participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit","clientData":"Mike","serverData":"{'user': 'client1'}"}}
+{"participantJoined":{"sessionId":"ses_SuXO99zeb1","timestamp":1584008771500,"participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit"}}
 ```
 
 <hr>
@@ -93,15 +90,13 @@ Recorded when a user has left a session.
 | `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
 | `reason`        | How the participant left the session                                                   | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
 
 Example:
 ```json
-{"participantLeft":{"sessionId":"ses_SuXO99zeb1","timestamp":1584009224993,"startTime":1584008771500,"duration":453,"reason":"disconnect","participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit","clientData":"Mike","serverData":"{'user': 'client1'}"}}
+{"participantLeft":{"sessionId":"ses_SuXO99zeb1","timestamp":1584009224993,"startTime":1584008771500,"duration":453,"reason":"disconnect","participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit"}}
 ```
 
 <hr>
@@ -240,28 +235,6 @@ Recorded when the status of a recording has changed. The status may be:
 Example:
 ```json
 {"recordingStatusChanged":{"sessionId":"TestSession","timestamp":1549015640859,"startTime":1549015630563,"duration":5.967,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":true,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":617509,"status":"stopped","reason":"sessionClosedByServer"}}
-```
-
-<hr>
-
-#### filterEventDispatched
-
-_From OpenVidu 2.12.0_<br>
-Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](advanced-features/filters){:target="_blank"} to learn more.
-
-| Property          | Description                                | Value                                         |
-| ----------------- | ------------------------------------------ | --------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
-| `participantId`   | Identifier of the participant              | A string with the participant unique identifier |
-| `streamId`        | Identifier of the stream for which the filter is applied | A string with the stream unique identifier |
-| `filterType`      | Type of the filter applied to the stream   | A string with the type of filter              |
-| `eventType`       | Event of the filter that was triggered     | A string with the type of event               |
-| `data`            | Data of the filter event                   | A string with the data returned by the filter event. Its value will depend on the type of filter and event |
-
-Example:
-```json
-{"filterEventDispatched":{"sessionId":"TestSession","timestamp":1568645808285,"participantId":"oklnb2wgsisr0sd3","streamId":"oklnb2wgsisr0sd3_CAMERA_GXTRU","filterType":"ZBarFilter","eventType":"CodeFound","data":"{timestampMillis=1568645808285, codeType=EAN-13, source=23353-1d3c_kurento.MediaPipeline/1f56f4a5-807c-71a30d40_kurento.ZBarFilter, type=CodeFound, value=0012345678905, tags=[], timestamp=1568645808}"}}
 ```
 
 <br>

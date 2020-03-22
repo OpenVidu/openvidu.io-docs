@@ -14,11 +14,9 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 - Generate a token: [**POST /api/tokens**](#post-apitokens)
 - Retrieve active session info: [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
 - Retrieve all active sessions info: [**GET /api/sessions**](#get-apisessions)
-- Send a signal to a session: [**POST /api/signal**](#post-apisignal)
 - Close a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;**](#delete-apisessionsltsession_idgt)
 - Force the disconnection of a user from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionsltsession_idgtconnectionltconnection_idgt)
 - Force the unpublishing of a user's stream from a session: [**DELETE /api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](#delete-apisessionsltsession_idgtstreamltstream_idgt)
-- Publish a stream from an IP camera: [**POST /api/sessions/&lt;SESSION_ID&gt;/connection**](#post-apisessionsltsession_idgtconnection)
 - Start the recording of a session: [**POST /api/recordings/start**](#post-apirecordingsstart)
 - Stop the recording of a session: [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstopltrecording_idgt)
 - Get recording info: [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsltrecording_idgt)
@@ -189,36 +187,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 ---
 
-### POST `/api/signal`
-
-| _SEND A SIGNAL_   | _PARAMETERS_                                                         |
-| ----------------- | -------------------------------------------------------------------- |
-| **Operation**     | POST                                                                 |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/signal                    |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**          | ```{"session": "SESSION_ID", "to": ["connectionId1", "connectionId2"], "type": "MY_TYPE", "data": "This is my signal data"}```    |
-| **Sample return** | _Returns nothing_                                                    |
-
-> **Body parameters**
->
-> ---
->
-> - **session** _(mandatory string)_ : the sessionId of the session you want to send the signal to<br><br>
-> - **to** _(optional array of strings)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session<br><br>
-> - **type** _(optional string)_ : type of the signal. In the body example of the table above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type<br><br>
-> - **data** _(optional string)_ : actual data of the signal<br><br>
-
-<div></div>
-
-> **HTTP responses**
->
-> - `200`: signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal
-> - `400`: there is a problem with some body parameter
-> - `404`: no session exists for the passed SESSION_ID
-> - `406`: no connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct)
-
----
-
 ### DELETE `/api/sessions/<SESSION_ID>`
 
 | _CLOSE SESSION_   | _PARAMETERS_                                                                                                             |
@@ -267,56 +235,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `400`: no session exists for the passed SESSION_ID
 > - `404`: no stream exists for the passed STREAM_ID
 > - `405`: you cannot directly delete the stream of an IPCAM participant (any participant created with method [POST /api/sessions/&lt;SESSION_ID&gt;/connection](#post-apisessionsltsession_idgtconnection){:target="_blank"}). Instead you must delete the connection object with [DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](#delete-apisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}
-
----
-
-### POST `/api/sessions/<SESSION_ID>/connection`
-
-_Available from **OpenVidu >= 2.12.0**_
-
-| _PUBLISH IP CAMERA_ | _PARAMETERS_                                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**       | POST                                                                                                                     |
-| **URL**             | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/connection                                        |
-| **Headers**         | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                  |
-| **Body**            | ```{"type": "IPCAM", "rtspUri": "rtsp://b1.dnsdojo.com:1935/live/sys3.stream", "adaptativeBitrate": true, "onlyPlayWithSubscribers": true, "data": "Office security camera"}``` |
-| **Sample return**   | ```{"connectionId": "ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "createdAt": 1582121476379, "location": "unknown", "platform": "IPCAM", "role": "PUBLISHER", "serverData": "MY_IP_CAMERA", "publishers": [{"createdAt": 1582121476439, "streamId": "str_IPC_XC1W_ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "rtspUri": "rtsp://91.191.213.49:554/live_mpeg4.sdp", "mediaOptions": {"hasAudio": true, "audioActive": true, "hasVideo": true, "videoActive": true, "typeOfVideo": "IPCAM", "frameRate": null, "videoDimensions": null, "filter": {}, "adaptativeBitrate": true, "onlyPlayWithSubscribers": true}} ], "subscribers": []}``` |
-
-> **Body parameters**
->
-> ---
->
-> - **type** _(optional string)_ : which type of stream will be published. For now can only be `IPCAM`. Default to `IPCAM`<br><br>
-> - **rtspUri** _(mandatory string)_ : RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
-> - **adaptativeBitrate** _(optional boolean)_ : whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
-> - **onlyPlayWithSubscribers** _(optional boolean)_ : enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
-> - **data** _(optional string)_ : metadata you want to associate to the camera's participant. This will be included as [Connection.data](api/openvidu-browser/classes/connection.html#data){:target="_blank"} property received by your clients on [connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} event, and will also be available in backend events ([CDR](reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="_blank"})
-
-<div></div>
-
-> **Returned JSON**
->
-> Returns the new Connection object. This object is the same as each JSON object in the `connections.content` array returned by method [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
->
-> - `connectionId`: identifier of the camera's connection. Store it to perform other operations such as unpublish the IP camera from the session
-> - `createdAt`: time when the connection was established in UTC milliseconds
-> - `location`: geo location of the IP camera <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
-> - `platform`: `"IPCAM"`
-> - `role`: `"PUBLISHER"`
-> - `clientData`: `""` (IP camera connections cannot be initialized from the client-side)
-> - `serverData`: data associated to the IP camera connection with query parameter `data`
-> - `token`: `undefined` (IP camera connections do not have a token associated)
-> - `publishers`: array of Publisher objects (streams the camera is publishing. There will only be one object). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo", "hasAudio", "videoActive", "audioActive", "frameRate", "videoDimensions", "typeOfVideo", "filter")
-> - `subscribers`: `[]` (camera is always a send-only connection, so it won't have any subscriber object)
-
-<div></div>
-
-> **HTTP responses**
->
-> - `200`: the IP camera has been successfully published to the session. Every participant will have received the proper events in OpenVidu Browser: [`connectionCreated`](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} identifying the new camera participant and [`streamCreated`](api/openvidu-browser/classes/streamevent.html){:target="_blank"} so they can subscribe to the IP camera stream.
-> - `400`: problem with some body parameter
-> - `404`: no session exists for the passed SESSION_ID
-> - `500`: unexpected error when publishing the IP camera stream into the session. See the error message for further information
 
 ---
 
