@@ -510,4 +510,4 @@ To troubleshoot problems with deployments on premise you need to do this steps:
     });
 </script>
 
-<script src="/js/copy-btn.js"></script>
+<script src="js/copy-btn.js"></script>
