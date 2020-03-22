@@ -60,7 +60,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
     <thead>
         <tr>
             <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
-            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu Community</th>
+            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu CE</th>
             <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu Pro</th>
         </tr>
     </thead>
@@ -82,6 +82,11 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         </tr>
         <tr>
             <th scope="row">Audio and video filters</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">IP cameras</th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
@@ -136,7 +141,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Manual scalability <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers manually">
+                    title="Increment or decrement the number of Media Nodes manually">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
@@ -145,7 +150,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Elasticity<i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of media servers automatically according to user load">
+                    title="Increment or decrement the number of Media Nodes automatically according to user load">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -155,7 +160,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">Fault Tolerance <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="If a media server crashes, redirect automatically all streams to a new instance">
+                    title="If a Media Node crashes, redirect automatically all streams to a new instance">
             </th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -165,7 +170,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <th scope="row">P2P sessions <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Support for direct P2P sessions without a media server"></th>
+                    title="Support for direct P2P sessions without a Media Node"></th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
@@ -216,21 +221,16 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
         <tr>
             <th scope="row">Price</th>
             <td><span style="font-size: 2em">Free</span></td>
-            <td>
-                <div style="margin: 1em"><span style="font-size: 2em">$10 / month</span><br>
-                    <span style="font-size: 1.2em">with 14000 minutes of cores of Media Nodes included</span><br>
-                    <span style="font-size: 2em; margin-top: 1em">$0.00071</span><br>
-                    <span style="font-size: 1.2em"> per additional core of Media Nodes per minute</span><br><br>
-                    <span style="font-size: 1em; margin-top: 1em">(see below)</span>
-                </div>
+            <td><span style="font-size: 2em">0.0006$ core/minute</span><br>
+                <span style="font-size: 1em"><a href="https://openvidu.io/pricing" target="_blank"><strong>Visit Pricing</strong></a></span>
             </td>
     </div>
     </tr>
     <tr>
     <th scope="row"></th>
-    <td><a href="home/index.html" class="btn-primary btn-scroll try-now-btn" target="_blank">
-        OpenVidu Community Docs</a></td>
-        <td><a href="openvidu-pro/index.html" class="btn-primary btn-scroll pro-btn" target="_blank">
+    <td><a href="/" class="btn-primary btn-scroll try-now-btn" target="_blank">
+        OpenVidu CE Docs</a></td>
+        <td><a href="openvidu-pro/" class="btn-primary btn-scroll pro-btn" target="_blank">
         OpenVidu Pro Docs</a></td>
         </tr>
     </tbody>
