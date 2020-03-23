@@ -70,18 +70,12 @@ The dashboards presented above, by default included in OpenVidu Pro, are just an
 Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic_type` field to identify the specific type of event. This field may be:
 
 <div>
+
 <div class="monitoring-div">
 
-<div class="version-buttons">
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0 / 2.10.0 / 2.11.0</a>
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary" title="2.12.0">2.12.0</a>
-</div>
+<div></div>
 
-<!-- 2.9.0 / 2.10.0 / 2.11.0 -->
-
-<div id="list-290" class="event-container" markdown="1">
-
-<div markdown="1" style="margin-right: 5px">
+<div class="version-container" markdown="1" style="margin-right: 5px; margin-top: 15px">
 
 - `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
@@ -96,7 +90,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 </div>
 
-<div class="lang-tabs-container elastic-events">
+<div class="lang-tabs-container elastic-events version-container" markdown="1">
 
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
@@ -111,387 +105,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">subscriberSummary</button>
 </div>
 
-<div id="cdr" class="lang-tabs-content">
-```json
-{
-  "sessionId": "weih6kaewklr4i05",
-  "timestamp": 1554191848252,
-  "startTime": 1554191765889,
-  "duration": 82,
-  "reason": "lastParticipantLeft",
-  "event": "sessionDestroyed",
-  "elastic_type": "cdr"
-}
-```
-</div>
-
-<div id="kms" class="lang-tabs-content" style="display:none">
-```json
-{
-  "streamId": 1,
-  "componentId": 1,
-  "state": "READY",
-  "type": "IceComponentStateChange",
-  "timestamp": 1554191839098,
-  "session": "weih6kaewklr4i05",
-  "user": "6596FB7B9D1A7C25",
-  "connection": "ewztvkfl8dttvcxk",
-  "endpoint": "ewztvkfl8dttvcxk_bahnv2b0n5fxbohy_CAMERA_XHIHV",
-  "msSinceEndpointCreation": 11104,
-  "elastic_type": "kms"
-}
-```
-</div>
-
-<div id="monitoringstats" class="lang-tabs-content" style="display:none">
-```json
-{
-  "timestamp": 1554212258873,
-  "cpu": 11.887875624741168,
-  "mem": {
-    "used": 7287344,
-    "percentage": 45.13347034796033
-  },
-  "net": {
-    "veth2b4c47c": {
-      "rxBytes": 0,
-      "txBytes": 0
-    },
-    "wlp58s0": {
-      "rxBytes": 0,
-      "txBytes": 0
-    }
-  },
-  "elastic_type": "monitoringStats"
-}
-```
-</div>
-
-<div id="webrtcstats" class="lang-tabs-content" style="display:none">
-```json
-{
-  "session": "weih6kaewklr4i05",
-  "user": "6596FB7B9D1A7C25",
-  "connection": "bahnv2b0n5fxbohy",
-  "endpoint": "bahnv2b0n5fxbohy_CAMERA_XHIHV",
-  "mediaType": "video",
-  "jitter": 0.005244444590061903,
-  "bytesReceived": 6455233,
-  "packetsReceived": 6666,
-  "packetsLost": 0,
-  "timestamp": 1554191847505,
-  "fractionLost": 0,
-  "remb": 533208,
-  "firCount": 6,
-  "pliCount": 0,
-  "nackCount": 0,
-  "sliCount": 0,
-  "elastic_type": "webrtcStats"
-}
-```
-</div>
-
-<div id="sessionsummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "createdAt": 1554191765889,
-  "destroyedAt": 1554191848252,
-  "sessionId": "weih6kaewklr4i05",
-  "customSessionId": "",
-  "mediaMode": "ROUTED",
-  "recordingMode": "MANUAL",
-  "duration": 82,
-  "reason": "lastParticipantLeft",
-  "users": {
-    "numberOfElements": 1,
-    "content": [
-      {
-        "id": "6596FB7B9D1A7C25",
-        "location": "Mumbai, India",
-        "platform": "Chrome 72.0.3626.109 on Linux 64-bit",
-        "connections": {
-          "numberOfElements": 1,
-          "content": [
-            {
-              "createdAt": 1554191765994,
-              "destroyedAt": 1554191848249,
-              "connectionId": "bahnv2b0n5fxbohy",
-              "clientData": "",
-              "serverData": "",
-              "duration": 82,
-              "reason": "disconnect",
-              "publishers": {
-                "numberOfElements": 1,
-                "content": [
-                  {
-                    "sessionId": "weih6kaewklr4i05",
-                    "timestamp": 1554191848247,
-                    "startTime": 1554191767577,
-                    "duration": 80,
-                    "reason": "disconnect",
-                    "streamId": "bahnv2b0n5fxbohy_CAMERA_XHIHV",
-                    "videoSource": "CAMERA",
-                    "videoFramerate": -1,
-                    "videoDimensions": "{\"width\":640,\"height\":480}",
-                    "audioEnabled": true,
-                    "videoEnabled": true,
-                    "session": "weih6kaewklr4i05",
-                    "user": "6596FB7B9D1A7C25",
-                    "connection": "bahnv2b0n5fxbohy",
-                    "elastic_type": "publisherSummary"
-                  }
-                ]
-              },
-              "subscribers": {
-                "numberOfElements": 0,
-                "content": []
-              },
-              "geoPoints": "19.09,72.87",
-              "session": "weih6kaewklr4i05",
-              "user": "6596FB7B9D1A7C25",
-              "timestamp": 1554191848252,
-              "elastic_type": "connectionSummary"
-            }
-          ]
-        },
-        "session": "weih6kaewklr4i05",
-        "timestamp": 1554191848252,
-        "elastic_type": "userSummary"
-      }
-    ]
-  },
-  "recordings": {
-    "numberOfElements": 1,
-    "content": [
-      {
-        "sessionId": "weih6kaewklr4i05",
-        "timestamp": 1554191784531,
-        "startTime": 1554191770662,
-        "duration": 9.734,
-        "reason": "recordingStoppedByServer",
-        "id": "weih6kaewklr4i05",
-        "name": "RecordingTest",
-        "outputMode": "COMPOSED",
-        "resolution": "1920x1080",
-        "recordingLayout": "BEST_FIT",
-        "hasAudio": true,
-        "hasVideo": true,
-        "size": 1968384,
-        "elastic_type": "recordingSummary"
-      }
-    ]
-  }
-}
-```
-</div>
-
-<div id="recordingsummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "sessionId": "weih6kaewklr4i05",
-  "timestamp": 1554191784531,
-  "startTime": 1554191770662,
-  "duration": 9.734,
-  "reason": "recordingStoppedByServer",
-  "id": "weih6kaewklr4i05",
-  "name": "RecordingTest",
-  "outputMode": "COMPOSED",
-  "resolution": "1920x1080",
-  "recordingLayout": "BEST_FIT",
-  "hasAudio": true,
-  "hasVideo": true,
-  "size": 1968384,
-  "elastic_type": "recordingSummary"
-}
-```
-</div>
-
-<div id="usersummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "id": "6596FB7B9D1A7C25",
-  "location": "Mumbai, India",
-  "platform": "Chrome 72.0.3626.109 on Linux 64-bit",
-  "connections": {
-    "numberOfElements": 1,
-    "content": [
-      {
-        "createdAt": 1554191765994,
-        "destroyedAt": 1554191848249,
-        "connectionId": "bahnv2b0n5fxbohy",
-        "clientData": "",
-        "serverData": "",
-        "duration": 82,
-        "reason": "disconnect",
-        "publishers": {
-          "numberOfElements": 1,
-          "content": [
-            {
-              "sessionId": "weih6kaewklr4i05",
-              "timestamp": 1554191848247,
-              "startTime": 1554191767577,
-              "duration": 80,
-              "reason": "disconnect",
-              "streamId": "bahnv2b0n5fxbohy_CAMERA_XHIHV",
-              "videoSource": "CAMERA",
-              "videoFramerate": -1,
-              "videoDimensions": "{\"width\":640,\"height\":480}",
-              "audioEnabled": true,
-              "videoEnabled": true,
-              "session": "weih6kaewklr4i05",
-              "user": "6596FB7B9D1A7C25",
-              "connection": "bahnv2b0n5fxbohy",
-              "elastic_type": "publisherSummary"
-            }
-          ]
-        },
-        "subscribers": {
-          "numberOfElements": 0,
-          "content": []
-        },
-        "geoPoints": "19.09,72.87",
-        "session": "weih6kaewklr4i05",
-        "user": "6596FB7B9D1A7C25",
-        "timestamp": 1554191848252,
-        "elastic_type": "connectionSummary"
-      }
-    ]
-  },
-  "session": "weih6kaewklr4i05",
-  "timestamp": 1554191848252,
-  "elastic_type": "userSummary"
-}
-```
-</div>
-
-<div id="connectionsummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "createdAt": 1554191765994,
-  "destroyedAt": 1554191848249,
-  "connectionId": "bahnv2b0n5fxbohy",
-  "clientData": "",
-  "serverData": "",
-  "duration": 82,
-  "reason": "disconnect",
-  "publishers": {
-    "numberOfElements": 1,
-    "content": [
-      {
-        "sessionId": "weih6kaewklr4i05",
-        "timestamp": 1554191848247,
-        "startTime": 1554191767577,
-        "duration": 80,
-        "reason": "disconnect",
-        "streamId": "bahnv2b0n5fxbohy_CAMERA_XHIHV",
-        "videoSource": "CAMERA",
-        "videoFramerate": -1,
-        "videoDimensions": "{\"width\":640,\"height\":480}",
-        "audioEnabled": true,
-        "videoEnabled": true,
-        "session": "weih6kaewklr4i05",
-        "user": "6596FB7B9D1A7C25",
-        "connection": "bahnv2b0n5fxbohy",
-        "elastic_type": "publisherSummary"
-      }
-    ]
-  },
-  "subscribers": {
-    "numberOfElements": 0,
-    "content": []
-  },
-  "session": "weih6kaewklr4i05",
-  "user": "6596FB7B9D1A7C25",
-  "timestamp": 1554191848252,
-  "elastic_type": "connectionSummary"
-}
-```
-</div>
-
-<div id="publishersummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "sessionId": "weih6kaewklr4i05",
-  "timestamp": 1554191848247,
-  "startTime": 1554191767577,
-  "duration": 80,
-  "reason": "disconnect",
-  "streamId": "bahnv2b0n5fxbohy_CAMERA_XHIHV",
-  "videoSource": "CAMERA",
-  "videoFramerate": -1,
-  "videoDimensions": "{\"width\":640,\"height\":480}",
-  "audioEnabled": true,
-  "videoEnabled": true,
-  "session": "weih6kaewklr4i05",
-  "user": "6596FB7B9D1A7C25",
-  "connection": "bahnv2b0n5fxbohy",
-  "elastic_type": "publisherSummary"
-}
-```
-</div>
-
-<div id="subscribersummary" class="lang-tabs-content" style="display:none">
-```json
-{
-  "sessionId": "weih6kaewklr4i05",
-  "timestamp": 1553694100398,
-  "startTime": 1553693956035,
-  "duration": 144,
-  "reason": "disconnect",
-  "streamId": "dbslbhe2jzhhybvj_CAMERA_CSBVI",
-  "receivingFrom": "dbslbhe2jzhhybvj",
-  "videoSource": "CAMERA",
-  "videoFramerate": 30,
-  "videoDimensions": "{\"width\":640,\"height\":480}",
-  "audioEnabled": true,
-  "videoEnabled": true,
-  "session": "TestSession",
-  "user": "A06BB386A40BBC83",
-  "connection": "c1tgrtyzlmeix6l3",
-  "elastic_type": "subscriberSummary"
-}
-```
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- 2.12.0 -->
-
-<div id="list-2120" class="event-container" markdown="1" style="display: none">
-
-<div markdown="1" style="margin-right: 5px">
-
-- `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
-- `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
-- `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Pro host
-- `webrtcStats`: event of WebRTC statistics for each media endpoint established in Kurento Media Server
-- `sessionSummary`: summary of a session, stored once it is closed
-- `recordingSummary`: summary of a recording, stored once its session is closed
-- `userSummary`: summary of a user, stored once its session is closed
-- `connectionSummary`: summary of a connection, stored once its session is closed
-- `publisherSummary`: summary of a publisher, stored once its session is closed
-- `subscriberSummary`: summary of a subscriber, stored once its session is closed
-
-</div>
-
-<div class="lang-tabs-container elastic-events">
-
-<div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">kms</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">monitoringStats</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcStats</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">sessionSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">recordingSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">userSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">connectionSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">publisherSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">subscriberSummary</button>
-</div>
-
-<div id="cdr" class="lang-tabs-content">
+<div id="cdr" class="lang-tabs-content" markdown="1">
 ```json
 {
   "sessionId": "TestSession",
@@ -510,7 +124,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="kms" class="lang-tabs-content" style="display:none">
+<div id="kms" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "state": "FLOWING",
@@ -528,7 +142,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="monitoringstats" class="lang-tabs-content" style="display:none">
+<div id="monitoringstats" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "timestamp": 1582276785036,
@@ -552,7 +166,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="webrtcstats" class="lang-tabs-content" style="display:none">
+<div id="webrtcstats" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "sessionId": "TestSession",
@@ -576,7 +190,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="sessionsummary" class="lang-tabs-content" style="display:none">
+<div id="sessionsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "createdAt": 1582277158591,
@@ -720,7 +334,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="recordingsummary" class="lang-tabs-content" style="display:none">
+<div id="recordingsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "sessionId": "TestSession",
@@ -741,7 +355,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="usersummary" class="lang-tabs-content" style="display:none">
+<div id="usersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "id": "7636DE7CA51A6EEC",
@@ -798,7 +412,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="connectionsummary" class="lang-tabs-content" style="display:none">
+<div id="connectionsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "createdAt": 1582277341959,
@@ -842,7 +456,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="publishersummary" class="lang-tabs-content" style="display:none">
+<div id="publishersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "sessionId": "TestSession",
@@ -863,7 +477,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 ```
 </div>
 
-<div id="subscribersummary" class="lang-tabs-content" style="display:none">
+<div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
   "sessionId": "TestSession",
@@ -883,12 +497,14 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "elastic_type": "subscriberSummary"
 }
 ```
+
+
 </div>
 </div>
 </div>
 </div>
 
-</div>
+<br>
 
 > **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
 > To sum up, this is just a denormalization of the `sessionSummary` document, so Elasticsearch requests and Kibana visualizations are more flexible and easier to accomplish
@@ -921,37 +537,6 @@ You can create powerful visualizations and dashboards by using these documents. 
 > The example above is a very simple visualization, but you can apply any metric to any property (or set of properties) of any event (or set of events). You can explore pre-existing visualizations included by default in OpenVidu Pro, and for further info visit **[Kibana docs](https://www.elastic.co/guide/en/kibana/current/visualize.html){:target="_blank"}**
 
 <br>
-
-<script>
-function changeVersion(event) {
-  var parent = event.target.parentNode.parentNode;
-  var txt = event.target.getAttribute('title');
-  var txt = txt.replace(/\./g, '');
-  for (var i = 0; i < parent.children.length; i++) {
-    var child = parent.children[i];
-    // Change appearance of version buttons
-    if (child.classList.contains('version-buttons')) {
-        for (var j = 0; j < child.children.length; j++) {
-          var a = child.children[j];
-          if (a === event.target) {
-            a.classList.add('pressed-btn');
-          } else {
-            a.classList.remove('pressed-btn');
-          }
-        }
-    }
-  }
-  // Change visibility of version content
-  var list = document.getElementsByClassName('event-container');
-  for (var i = 0; i < list.length; i++) {
-    if (list[i].id === 'list-' + txt) {
-      list[i].style.display = 'block';
-    } else {
-      list[i].style.display = 'none';
-    }
-  }
-}
-</script>
 
 <script>
 function changeLangTab(event) {
