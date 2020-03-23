@@ -185,7 +185,7 @@ To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use 
 
 <br>
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/en/stable/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/en/stable/releases#2100){:target="_blank"}
 
 <br>
 
@@ -394,7 +394,7 @@ Once the playbook command has successfully finished, you will have OpenVidu Pro 
 
 <br>
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/en/stable/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/en/stable/releases#2100){:target="_blank"}
 
 <br>
 
