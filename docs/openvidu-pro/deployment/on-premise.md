@@ -205,7 +205,7 @@ Once the playbook command has successfully finished, you will have OpenVidu Pro 
 - **OpenVidu Pro Kibana dashboard** ([more info](openvidu-pro/detailed-session-monitoring/){:target="_blank"}) :  `https://YOUR_DNS_NAME/kibana`
 - **OpenVidu Pro REST endpoint** ([more info](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"}) : `https://YOUR_DNS_NAME:4443` (or the port you defined in property `openvidu_server_port` in file `./group_vars/all`)
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](releases#2100){:target="_blank"}
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/en/stable/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/en/stable/releases#2100){:target="_blank"}
 
 <br>
 
