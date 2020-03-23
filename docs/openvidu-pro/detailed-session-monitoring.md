@@ -73,14 +73,9 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <div class="monitoring-div">
 
-<div class="version-buttons">
-  <a onclick="changeVersion(event)" class="btn btn-xs btn-primary pressed-btn" title="2.9.0">2.9.0 / 2.10.0 / 2.11.0</a>
-  <!--<a onclick="changeVersion(event)" class="btn btn-xs btn-primary" title="2.12.0">2.12.0</a>-->
-</div>
+<div></div>
 
-<!-- 2.9.0 / 2.10.0 / 2.11.0 -->
-
-<div id="list-290" class="version-container" markdown="1" style="margin-right: 5px">
+<div class="version-container" markdown="1" style="margin-right: 5px; margin-top: 15px">
 
 - `cdr`: event of Call Detail Record. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
@@ -95,7 +90,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 </div>
 
-<div id="content-290" class="lang-tabs-container elastic-events version-container" markdown="1">
+<div class="lang-tabs-container elastic-events version-container" markdown="1">
 
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
@@ -450,79 +445,9 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "elastic_type": "subscriberSummary"
 }
 ```
+
+
 </div>
-
-</div>
-
-<!-- 2.12.0 -->
-
-<div id="content-2120" class="lang-tabs-container elastic-events version-container" markdown="1" style="display: none">
-
-<div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">kms</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">monitoringStats</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcStats</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">sessionSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">recordingSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">userSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">connectionSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">publisherSummary</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">subscriberSummary</button>
-</div>
-
-<div id="cdr" class="lang-tabs-content" markdown="1">
-```json
-```
-</div>
-
-<div id="kms" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="monitoringstats" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="webrtcstats" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="sessionsummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="recordingsummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="usersummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="connectionsummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="publishersummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-
-<div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-```
-</div>
-</div>
-
-
 </div>
 </div>
 </div>
