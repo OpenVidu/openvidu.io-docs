@@ -17,8 +17,6 @@ So every entry is a JSON object identified by a specific event name, and all of 
 - [**participantLeft**](#participantleft)
 - [**webrtcConnectionCreated**](#webrtcconnectioncreated)
 - [**webrtcConnectionDestroyed**](#webrtcconnectiondestroyed)
-- [**recordingStarted**](#recordingstarted) _(removed in OpenVidu 2.11.0. Use **recordingStatusChanged**)_
-- [**recordingStopped**](#recordingstopped) _(removed in OpenVidu 2.11.0. Use **recordingStatusChanged**)_
 - [**recordingStatusChanged**](#recordingstatuschanged) _(from OpenVidu 2.11.0)_
 - [**filterEventDispatched**](#filtereventdispatched) _(from OpenVidu 2.12.0)_
 
@@ -153,60 +151,6 @@ Recorded when any media stream connection is closed.
 Example:
 ```json
 {"webrtcConnectionDestroyed":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481449060,"startTime":1538481419726,"duration":29,"reason":"disconnect","participantId":"ges2furjsjjmyi0b","connection":"INBOUND","receivingFrom":"wsalcr1r72goj8sk","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}}
-```
-
-<hr>
-
-#### recordingStarted
-
-_REMOVED IN OPENVIDU 2.11.0. Use [**recordingStatusChanged**](#recordingstatuschanged)_<br>
-Recorded when a new session has started to be recorded
-
-| Property          | Description                                | Value                                                                                                         |
-| ----------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds |
-| `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
-| `name`            | Name given to the recording file           | A string with the recording name |
-| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
-| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`] |
-| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`] |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
-| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
-| `size`            | The size of the video file                 | `0`              |
-| `duration`        | Duration of the video file                 | `0`              |
-
-Example:
-```json
-{"recordingStarted":{"sessionId":"TestSession","timestamp":1549015630563,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":false,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":0,"duration":0.0}}
-```
-
-<hr>
-
-#### recordingStopped
-
-_REMOVED IN OPENVIDU 2.11.0. Use [**recordingStatusChanged**](#recordingstatuschanged)_<br>
-Recorded when a new session has stopped being recorded
-
-| Property          | Description                                | Value                                         |
-| ----------------- | ------------------------------------------ | --------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
-| `startTime`       | Time when the stopped recording started    | UTC milliseconds                              |
-| `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
-| `name`            | Name given to the recording file           | A string with the recording name              |
-| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
-| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
-| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
-| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
-| `size`            | The size of the video file                 | Bytes                                         |
-| `duration`        | Duration of the video file                 | Seconds                                       |
-| `reason`          | Why the recording stopped                  | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"automaticStop"`,<br>`"openviduServerStopped"`, <br>`"mediaServerDisconnect"`] |
-
-Example:
-```json
-{"recordingStopped":{"sessionId":"TestSession","timestamp":1549015640859,"startTime":1549015630563,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":false,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":617509,"duration":5.967,"reason":"recordingStoppedByServer"}}
 ```
 
 <hr>
