@@ -18,14 +18,12 @@ if [ "$COPY_STYLES" = true ]; then
     rm -rf custom_theme/fonts
     rm -rf custom_theme/img
     rm -rf custom_theme/js
-    rm -rf custom_theme/openvidu-register
 
     # Copy all required files from openviu.io repository
     cp -R ../openvidu.io/css custom_theme/css
     cp -R ../openvidu.io/fonts custom_theme/fonts
     cp -R ../openvidu.io/img custom_theme/img
     cp -R ../openvidu.io/js custom_theme/js
-    cp -R ../openvidu.io/openvidu-register custom_theme/openvidu-register
 
 fi
 
