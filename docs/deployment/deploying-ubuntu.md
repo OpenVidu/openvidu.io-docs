@@ -92,7 +92,7 @@ Being `MY_SECRET` the password you want for securing your OpenVidu Server. This 
 > 
 > `sudo apt-get install -y openjdk-8-jre`</br>
 > 
-> **2)** You can get any [version](releases/){:target="_blank"} of OpenVidu Server with the command below. To ensure compatibility comply with version numbers listed in [releases page](releases/){:target="_blank"}
+> **2)** You can get any [version](https://docs.openvidu.io/releases/){:target="_blank"} of OpenVidu Server with the command below. To ensure compatibility comply with version numbers listed in [releases page](https://docs.openvidu.io/releases/){:target="_blank"}
 > 
 > `wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar`</br>
 >

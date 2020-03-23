@@ -24,7 +24,7 @@
     ">
     <ul style="margin-bottom: 0">
         <li style="color: #1c1c1c">These instructions are only compatible for <strong>OpenVidu >= 2.6.0</strong></li>
-        <li style="color: #1c1c1c">Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk</li>
+        <li style="color: #1c1c1c">Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="https://docs.openvidu.io/en/stable/releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk</li>
     </ul>
 </div>
 </div>
@@ -50,7 +50,7 @@ The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation 
 
 After performing the steps above, you will be redirect to Events page, where you will see a new `UPDATE_IN_PROGRESS` status. Wait until `UPDATE_COMPLETE` and your new version of OpenVidu will be ready.
 
-> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases){:target="_blank"}** page
+> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](https://docs.openvidu.io/releases){:target="_blank"}** page
 
 <br>
 
@@ -66,7 +66,7 @@ First one is a Java process that may be killed with a simple `kill -9 PID_NUMBER
 
 #### 2) Upgrade kurento-media-server package and replace openvidu-server JAR file for the new version
 
-It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](releases){:target="_blank"}** page.
+It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](https://docs.openvidu.io/releases){:target="_blank"}** page.
 You should be able to reinstall a new version of KMS while maintaining all the configuration files with these commands:
 
 **For Ubuntu Xenial 16.04**  *(do not run below command if you run this one)*
@@ -102,7 +102,7 @@ wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-
 
 Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
 
-> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases){:target="_blank"}** page
+> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](https://docs.openvidu.io/releases){:target="_blank"}** page
 
 <br><br>
 
