@@ -31,7 +31,7 @@
 
 # For AWS deployments
 
-The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation dashboard](https://console.aws.amazon.com/cloudformation){:target="_blank"}** and follow below steps:
+The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation dashboard](https://console.aws.amazon.com/cloudformation#stacks){:target="_blank"}** and follow below steps:
 
 <div class="row">
     <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
