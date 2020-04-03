@@ -45,7 +45,7 @@ There are 3 important aspects to consider:
 2. You pay for every available core at any given time: if you cluster grows for one hour, that hour you will pay more. If your cluster decreases the next hour, next hour will be cheaper. Currently all Nodes have the same core per minute price.
 3. Your cluster (specifically your OpenVidu Server Pro Node) needs Internet access at all times. If your specific use case doesn't allow your cluster to have Internet access, please contact us through [Commercial page](https://openvidu.io/commercial){:target="_blank"}.
 
-> In **[Pricing](/pricing){:target="_blank"}** section you will find a detailed with different use cases of OpenVidu Pro clusters and their associated cost depending on their size and running time
+> In **[Pricing](https://openvidu.io/pricing){:target="_blank"}** section you will find a detailed with different use cases of OpenVidu Pro clusters and their associated cost depending on their size and running time
 
 <br>
 
