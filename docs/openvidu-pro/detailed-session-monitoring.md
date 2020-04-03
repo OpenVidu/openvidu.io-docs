@@ -2,7 +2,7 @@
 <hr>
 
 <p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
-OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blank">Elastic Stack</a>. Events and monitoring stats are sent to <a href="https://www.elastic.co/products/elasticsearch/" target="_blank">Elasticsearch</a> and can be visualized through <a href="https://www.elastic.co/products/kibana/" target="_blank">Kibana</a>.
+OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blank">Elastic Stack</a>. Events and monitoring stats are sent to <a href="https://www.elastic.co/elasticsearch/" target="_blank">Elasticsearch</a> and can be visualized through <a href="https://www.elastic.co/kibana/" target="_blank">Kibana</a>.
 </p>
 
 #### OpenVidu Sessions dahsboard
