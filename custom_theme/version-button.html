@@ -1,7 +1,7 @@
 <div id="version-button-content"></div>
 <script>
     $.ajax({
-        url: "http://127.0.0.1:8000/common/version-button.html", //"https://docs.openvidu.io/en/stable/common/version-button.html",
+        url: "https://docs.openvidu.io/en/stable/common/version-button.html",
         context: document.body,
         success: response => {
             $('#version-button-content').html(response);
