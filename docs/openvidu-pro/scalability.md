@@ -56,9 +56,9 @@ There are 3 important aspects to consider:
 Different environments are supported when deploying an OpenVidu Pro cluster. At the current moment you can:
 
 - [Deploy your OpenVidu Pro cluster in AWS](openvidu-pro/deployment/aws){:target="_blank"}
-- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](openvidu-pro/deployment/on-premise){:target="_blank"}
+- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](openvidu-pro/deployment/on-premises){:target="_blank"}
 
-> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premise](openvidu-pro/deployment/on-premise){:target="_blank"}
+> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premises](openvidu-pro/deployment/on-premises){:target="_blank"}
 
 > **Kubernetes** support will also be available soon. Stay tuned!
 
@@ -71,7 +71,7 @@ Different environments are supported when deploying an OpenVidu Pro cluster. At 
 When deploying your OpenVidu Pro cluster, you can set the initial desired number of Media Nodes. Each type of deployment has a way of setting this number. Visit your specific OpenVidu Pro cluster deployment instructions to learn more:
 
 - **[AWS](openvidu-pro/deployment/aws#scalability){:target="_blank"}**
-- **[On premise](openvidu-pro/deployment/on-premise#scalability){:target="_blank"}**
+- **[On premises](openvidu-pro/deployment/on-premises#scalability){:target="_blank"}**
 
 <br>
 
@@ -101,7 +101,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 > **WARNING**: depending on the environment where your OpenVidu Pro cluster is deployed, you must take into account some important aspects regarding the launch and drop of Media Nodes. Visit the specific documentation page for your environment to learn more:
 >
 > - [AWS](openvidu-pro/deployment/aws/#with-openvidu-pro-rest-api){:target="_blank"}
-> - [On premise](openvidu-pro/deployment/on-premise/#with-openvidu-pro-rest-api){:target="_blank"}
+> - [On premises](openvidu-pro/deployment/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}
 
 <br>
 

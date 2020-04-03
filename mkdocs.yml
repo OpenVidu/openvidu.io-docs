@@ -69,7 +69,7 @@ nav:
   - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
   - Deploying OpenVidu Pro:
     - AWS: openvidu-pro/deployment/aws.md
-    - On premise: openvidu-pro/deployment/on-premise.md
+    - On premises: openvidu-pro/deployment/on-premises.md
     - Kubernetes: openvidu-pro/deployment/kubernetes.md
   - Reference Documentation:
     - REST API Pro: openvidu-pro/reference-docs/REST-API-pro.md

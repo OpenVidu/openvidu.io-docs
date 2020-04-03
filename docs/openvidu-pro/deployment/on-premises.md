@@ -1,4 +1,4 @@
-<h2 id="section-title">Deploy OpenVidu Pro on premise</h2>
+<h2 id="section-title">Deploy OpenVidu Pro on premises</h2>
 <hr>
 
 - **[Deployment instructions](#deployment-instructions)**
@@ -248,7 +248,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes through REST API in on premises OpenVidu Pro clusters:
 >
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
-> - Launching/Dropping Media Nodes in on premise deployments will not automatically start/terminate your instances:
+> - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your instances:
 >     - To launch a new Media Node you are required to have the Media Node already running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter) or [like this in OpenVidu Inspector](#from-openvidu-inspector).
 >     - To drop an existing Media Node you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 

@@ -1,0 +1,24 @@
+<style>
+    select {
+        width: auto;
+        margin: 0;
+        padding: 4px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+    }
+</style>
+<select id="version-selector" onchange="location = this.value">
+    <option value="/en/2.12.0/"><a href="/en/2.12.0/">2.12.0</a></option>
+    <option value="/en/2.11.0/"><a href="/en/2.11.0/">≤ 2.11.0</a></option>
+</select>
+
+<script>
+    $(document).ready(function () {
+        const urlVersion = window.location.pathname.split("/").filter(function (el) {
+            return el.length != 0
+        })[1];
+        document.getElementById('version-selector').value = '/en/' + urlVersion + "/";
+    });
+</script>
