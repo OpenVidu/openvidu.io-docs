@@ -1,10 +1,2 @@
-<div id="version-button-content"></div>
-<script>
-    $.ajax({
-        url: "https://docs.openvidu.io/en/stable/common/version-button.html",
-        context: document.body,
-        success: response => {
-            $('#version-button-content').html(response);
-        }
-    });
-</script>
+<div id="version-button-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="version-button.html" data-elementId="version-button-wrapper" data-runAnchorScript="false"></script>
