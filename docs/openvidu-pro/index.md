@@ -96,7 +96,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Deployment on Premise <i
+            <th scope="row">Deployment on Premises <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Deploy OpenVidu in your own Ubuntu server"></th>
@@ -245,7 +245,7 @@ OpenVidu Pro consists of different modules working over OpenVidu Community Editi
 You can deploy OpenVidu Pro:
 
 - On Amazon Web Services: **[Deploying OpenVidu Pro on AWS](openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-aws){:target="_blank"}**
-- On premise using your own infrastructure: **[Deploying OpenVidu Pro on premise](openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"}**
+- On premises using your own infrastructure: **[Deploying OpenVidu Pro on premises](openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premises){:target="_blank"}**
 
 <br>
 

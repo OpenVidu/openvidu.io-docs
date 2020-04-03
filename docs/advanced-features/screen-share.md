@@ -109,9 +109,18 @@ var publisher = OV.initPublisherAsync({
 });
 ```
 
-> [Event ended of MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/ended_event){:target="_blank"} servers the same purpose. If you have any problem with **inactive** event of **MediaStream** object, you can try with **ended** event of **MediaStreamTrack** object. In the snippet above, that would be:
+If that doesn't work (it may only work in certain clients, but not in others) you can also try [event ended of MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/ended_event){:target="_blank"}, which serves the same purpose. Following the same example above that would be:
 
-> `publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => { ... })`
+```javascript
+var OV = new OpenVidu();
+var publisher = OV.initPublisherAsync({
+    videoSource: "screen"
+}).then(publisher => {
+    publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => {
+        console.log('User pressed the "Stop sharing" button');
+    });
+});
+```
 
 <br>
 

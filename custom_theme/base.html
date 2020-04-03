@@ -1,3 +1,6 @@
+<!-- Exclude all templates under ./common folder -->
+{% if page.title != 'Releases content' %}
+
 <head>
 	<base href="/en/2.11.0/">
 	<title>OpenVidu Docs</title>
@@ -87,23 +90,22 @@
 
 <div id="doc-container" class="container text-justify" style="padding-top: 100px; padding-bottom: 60px">
 	<div id="sticky-menu" class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-
 		{# SIDE NAV, TOGGLES ON MOBILE #}
 		<nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
 			<div class="wy-menu wy-menu-vertical" role="navigation" aria-label="main navigation">
 				<div id="site-menu-title">
 					<div id="explore-docs">
 						<h3 style="margin: 0">Explore docs</h3>
-						<button id="version-button">2.12.0</button>
+						{% include "version-button.html" %}
 					</div>
 					<hr>
 				</div>
 				<ul id="menu-list">
-					{% for nav_item in nav %} {% if nav_item.title != "**HIDDEN**" %}
+					{% for nav_item in nav %}
 					<li>
 						<ul class="top-ul {% if nav_item.active%}current{%endif%}">{% include "toc.html" %}</ul>
 					</li>
-					{% endif %} {% endfor %}
+					{% endfor %}
 				</ul>
 			</div>
 			&nbsp;
@@ -125,6 +127,8 @@
 		</div>
 	</section>
 </div>
+
+{% include "version-warning.html" %}
 
 <script type="text/javascript">
 	$(document).ready(function () {
@@ -162,8 +166,6 @@
 
 	$(".wy-nav-content").find("li:contains('{{ page.title }}')").css('color', 'red');
 </script>
-
-
 
 
 <script src="js/plugins/moderniz.min.js"></script>
@@ -232,3 +234,8 @@
 		})
 	});
 </script>
+{%else%}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+{{ page.content }}
+{%endif%}

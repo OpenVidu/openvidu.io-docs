@@ -5,7 +5,7 @@
 
 - **[OpenVidu Pro architecture](#openvidu-pro-architecture)**
 - **[Scalability when deploying on AWS](#scalability-when-deploying-on-aws)**
-- **[Scalability when deploying on premise](#scalability-when-deploying-on-premise)**
+- **[Scalability when deploying on premises](#scalability-when-deploying-on-premises)**
 - **[Roadmap](#roadmap)**
 
 <br>
@@ -51,11 +51,11 @@ In section **[Other parameters](openvidu-pro/deploying-openvidu-pro/#other-param
 
 ---
 
-## Scalability when deploying on premise
+## Scalability when deploying on premises
 
 #### Setting the number of media servers on startup
 
-When [deploying OpenVidu Pro on premise](openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premise){:target="_blank"} with Ansible, you first have to prepare the number of media server instances you want. For example, if you want your cluster to have 3 media server instances, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server pro node and three for each Media Node. Check out the [Cluster machines prerequisites](openvidu-pro/deploying-openvidu-pro/#in-your-cluster-machines){:target="_blank"} for further information.
+When [deploying OpenVidu Pro on premises](openvidu-pro/deploying-openvidu-pro#deploying-openvidu-pro-on-premises){:target="_blank"} with Ansible, you first have to prepare the number of media server instances you want. For example, if you want your cluster to have 3 media server instances, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server pro node and three for each Media Node. Check out the [Cluster machines prerequisites](openvidu-pro/deploying-openvidu-pro/#in-your-cluster-machines){:target="_blank"} for further information.
 
 Then you just need to properly [configure the `inventory.yml` file](openvidu-pro/deploying-openvidu-pro/#3-ansibles-inventory){:target="_blank"} with each instance IP before running Ansible's playbook.
 
