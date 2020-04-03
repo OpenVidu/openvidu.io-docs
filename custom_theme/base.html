@@ -124,11 +124,16 @@
 <script type="text/javascript">
 	$(document).ready(function () {
 
-		const ps = new PerfectScrollbar('#menu-list', {
-			wheelSpeed: 1,
-			wheelPropagation: true,
-			suppressScrollX: true
-		});
+		var menuCollapsed = window.innerWidth < 768;
+		var ps;
+
+		if (!menuCollapsed) {
+			ps = new PerfectScrollbar('#menu-list', {
+				wheelSpeed: 1,
+				wheelPropagation: true,
+				suppressScrollX: true
+			});
+		}
 
 		$('li.subnav_drop').find('ul.subnav').hide();
 		$(".subnav").find("li:contains('{{ page.title }}')").each(function (i, e) {
@@ -148,7 +153,7 @@
 			submenu.toggle();
 			submenu.parent().find('span.arrow-up').toggle();
 			submenu.parent().find('span.arrow-down').toggle();
-			ps.update();
+			if (ps) ps.update();
 		});
 
 		var minHeight = $('#sticky-menu').outerHeight() + 100;
