@@ -441,7 +441,7 @@ _Available from **OpenVidu >= 2.12.0**_
 > - `size`: size in bytes of the video file (0 until stop operation is called)
 > - `duration`: duration of the video file in seconds (0 until stop operation is called)
 > - `url`: set to `null` until stop operation is called. Then it will be `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`, path that may be protected with OpenVidu credentials depending on whether [openvidu-server system property `openvidu.recording.public-access`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true.
-> - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"available"`, `"failed"`)
+> - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"ready"`, `"failed"`)
 
 <div></div>
 
