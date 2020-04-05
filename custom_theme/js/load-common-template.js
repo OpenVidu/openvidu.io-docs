@@ -7,6 +7,7 @@ function runAjax(pathToFile, elementId, runAnchorScript) {
         url: "https://docs.openvidu.io/en/stable/common/" + pathToFile,
         // url: "http://127.0.0.1:8000/common/" + pathToFile,
         context: document.body,
+        dataType: "html",
         success: response => {
             $('#' + elementId).html(response);
             if (runAnchorScript) {

@@ -2270,19 +2270,6 @@ textarea {
 	margin: 10px 0; 
 	padding: 0; 
 } 
-.error_message {
-    top: -10px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 22px;
-    padding: 3px 15px 3px 15px;
-    color: #f4f4f4;
-    -webkit-border-radius: 3px;
-    background-color: #c0392b;
-    background-image: url(../img/error.gif);
-    background-position: 10px center;
-    background-repeat: no-repeat;
-}
 .loader { 
 	padding: 0 10px; 
 }
