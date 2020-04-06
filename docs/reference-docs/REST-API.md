@@ -156,7 +156,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `serverData`: data assigned to the user's token when generating the token in OpenVidu Server
 >     - `token`: user's token
 >     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo", "filter")
->     - `subscribers`: array of Subscriber objects (streams the user is subscribed to). Each on is defined by the unique `streamId` and a `publisher` property with the _connectionId_ to identify the connection publishing the stream (must be present inside the `connections.content` array of the session)
+>     - `subscribers`: array of Subscriber objects (streams the user is subscribed to). Each on is defined by their `streamId` (equal to the "streamId" property of its associated publisher, that must be present in some other connection of the session) and a `createdAt` property indicating the time it was created in UTC milliseconds
 
 <div></div>
 
