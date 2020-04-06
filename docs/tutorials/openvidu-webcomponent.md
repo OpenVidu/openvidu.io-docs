@@ -158,7 +158,7 @@ function joinSession() {
     var tokens = [];
     var form = document.getElementById('main');
     var webComponent = document.querySelector('openvidu-webcomponent');
-   
+
     form.style.display = 'none';
     webComponent.style.display = 'block';
 
@@ -170,7 +170,7 @@ function joinSession() {
             getToken(sessionName).then((token2) => {
                 tokens.push(token2);
                 webComponent.sessionConfig = { sessionName, user, tokens };
-            });    
+            });
         });
     }
 }
@@ -182,7 +182,7 @@ That's it. Once you configure the token into the webcomponent, it will automatic
 
 Optionally, you can add an extra JSON param inside of **webcomponent.sessionConfig** object named `ovSettings`. This parameter allows you to set up an extra custom interface. We have the choice to enabling or disabling the chat and each of the toolbar buttons. Besides, openvidu-webcomponent allows you configure your **camera** and **audio device**, your **avatar** and your **nickname** before join to the room. To do that, you only have to set `autopublish` property to `false`.
 
-To do that, is necessary to declare the following **ovSettings** variable:  
+To do that, is necessary to declare the following **ovSettings** variable:
 
 ```javascript
 var ovSettings = {
@@ -193,12 +193,13 @@ var ovSettings = {
     video: true,
     screenShare: true,
     fullscreen: true,
+    layoutSpeaking: true;
     exit: true,
   }
 };
 ```
 
-and add it inside of **webcomponent.sessionConfig** object: 
+and add it inside of **webcomponent.sessionConfig** object:
 
 ```javascript
 webComponent.sessionConfig = { sessionName, user, token, ovSettings };
@@ -270,7 +271,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 #### Alternatives to connect to OpenVidu session
 
-In the example above, **OpenVidu Web Component** receives the `sessionConfig` parameter dynamically like this: 
+In the example above, **OpenVidu Web Component** receives the `sessionConfig` parameter dynamically like this:
 
 ```javascript
 webComponent.sessionConfig = { sessionId, user, token };
@@ -286,7 +287,7 @@ Besides, openvidu-webcomponent allows you to add **ovSettings** parameter static
 
 ```html
 <openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1",               "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true,
- "video": true, "screenShare": true, "fullscreen": true, "exit": true }}}'>
+ "video": true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
 </openvidu-webcomponent>
 ```
 
