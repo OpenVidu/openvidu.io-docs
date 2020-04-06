@@ -143,13 +143,13 @@ As you can see here, you can use `<opv-session></opv-session>` component to embe
 
 ##### app.component.ts
 
-Method `joinSession()` gets the token which we provide to our component to connect to the session.
+Method `joinSession()` gets the tokens which we provide to our component to connect to the session.
 
 You can configure the opv-session with these parameters:
 
 -   `sessionName`: the session name that will be displayed inside the component
 -   `user`: the nickname that the user will have in the session
--   `token`: the retrieved token from OpenVidu Server
+-   `tokens`: the retrieved token from OpenVidu Server
 -   `ovSettings`: the configuration that the user want to have on the session
 
 
@@ -157,13 +157,15 @@ You can configure the opv-session with these parameters:
 <opv-session
   [sessionName]="mySessionId"
   [user]="myUserName"
-  [token]="token"
+  [token]="tokens"
   [ovSettings]="ovSettings"
   (leaveSession)="handlerLeaveSessionEvent($event)"
   (joinSession)="handlerJoinSessionEvent($event)"
   (error)="handlerErrorEvent($event)">
 </opv-session>
 ```
+
+_The token must has inside of an array. If you want that the app allows the screen sharing you must include two differents tokens in the array. If you only add one, the app doesn't allow the screen sharing funcionality._
 
 Moreover, opv-session emits events `leaveSession`, `joinSession` and `error`, we can handle them with the next code in `app.component.ts` file:
 
@@ -192,7 +194,7 @@ You can access to them through the following way:
   #ovSessionComponent
   [sessionName]="mySessionId"
   [user]="myUserName"
-  [token]="token"
+  [tokens]="tokens"
   [ovSettings]="ovSettings"
   (leaveSession)="handlerLeaveSessionEvent($event)"
   (joinSession)="handlerJoinSessionEvent($event)"
@@ -223,7 +225,7 @@ myMethod() {
 ```
 We are invoking *myMethod* inside of *handlerJoinSessionEvent*.
 
-4) Last but not least, you must stablish the local variables like this: 
+4) Last but not least, you must stablish the local variables like this:
 
 ```typescript
 import {OpenviduSessionComponent, StreamEvent, Session, UserModel, OpenViduLayout, OpenViduLayoutOptions, OvSettings} from 'openvidu-angular';
@@ -251,6 +253,7 @@ this.ovSettings = {
     video: true,
     screenShare: true,
     fullscreen: true,
+    layoutSpeaking: true,
     exit: true,
   }
 };
@@ -304,7 +307,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 #### Alternatives to connect to OpenVidu Angular
 
-In the example above, **opv-session** receives the `sessionName`, the `user` and the `token` parameters. If you want to let the opv-session get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the typescript code:
+In the example above, **opv-session** receives the `sessionName`, the `user` and the `tokens` parameters. If you want to let the opv-session get the tokens for you, you can just dispense with the tokens and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the typescript code:
 
 ```html
 <opv-session [sessionName]="mySessionId" [user]="myUserName" [openviduServerUrl]="'https://localhost:4443'" [openviduSecret]="'MY_SECRET'"></opv-session>
