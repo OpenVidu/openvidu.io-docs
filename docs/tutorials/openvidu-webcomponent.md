@@ -325,10 +325,10 @@ And if you want to let the webcomponent get the token for you, you can just disp
 
 #### Close the session dynamically
 
-You can also disconnect the user from the session assigning dynamically `undefined` to the **sessionConfig** property :
+You can also disconnect the user from the session assigning dynamically `empty object` to the **sessionConfig** property :
 
 ```javascript
-ov.sessionConfig = undefined;
+ov.sessionConfig = {};
 ```
 
 #### Choose a theme
