@@ -13,7 +13,7 @@ Darcula color scheme from the JetBrains family of IDEs
 }
 
 .hljs {
-  color: #bababa;
+  color: #c2c2c2;
 }
 
 .hljs-strong,
@@ -73,5 +73,5 @@ Darcula color scheme from the JetBrains family of IDEs
 .hljs-comment,
 .hljs-deletion,
 .hljs-meta {
-  color: #7f7f7f;
+  color: #8e8e8e;
 }
