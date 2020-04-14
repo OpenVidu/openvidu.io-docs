@@ -1,7 +1,7 @@
 # openvidu-call-ionic
 <a href="https://github.com/OpenVidu/openvidu-call-ionic" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 8</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
+OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 9</strong>,  allows users to make videoconference calls in theirs devices with many of the capabilities integrated by OpenVidu platform. It is a frontend-only application.
 
 OpenVidu-Call-Ionic is composed by the five Angular components displayed in the image below.
 
@@ -61,9 +61,12 @@ npm install
 ionic serve
 ```
 
-4) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
+
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.12.0
 ```
 
@@ -108,9 +111,12 @@ Your `public_url` will be `https://192.168.0.105` with the port `4443` (https://
 Finally, you will must set the `OPENVIDU_SERVER_URL` variable [in the app](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11){:target="_blank"} and the `openvidu.publicurl` parameter used to run *openvidu-server* with your *public_url* and the *port*. 
 
 
-5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+5) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
+
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl="your_public_url":4443 openvidu/openvidu-server-kms:2.12.0
 ```
 
