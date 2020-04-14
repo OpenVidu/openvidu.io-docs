@@ -54,7 +54,7 @@ nav:
   - OpenVidu Server Webhook: reference-docs/openvidu-server-webhook.md
 - Deployment:
   - Deploying OpenVidu on AWS: deployment/deploying-aws.md
-  - Deploying OpenVidu on Ubuntu: deployment/deploying-ubuntu.md
+  - Deploying OpenVidu on premises: deployment/deploying-on-premises.md
   - Deploying your OpenVidu app: deployment/deploying-app.md
   - Upgrading OpenVidu: deployment/upgrading.md
 - Contribute:
