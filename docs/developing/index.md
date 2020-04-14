@@ -5,6 +5,7 @@
 - **[Compiling OpenVidu Server](#compiling-openvidu-server)**
     - [Compiling OpenVidu Server dashboard](#compiling-openvidu-server-dashboard)
 - **[Compiling OpenVidu Browser](#compiling-openvidu-browser)**
+- **[Compiling OpenVidu WebComponent](#compiling-openvidu-webcomponent)**
 - **[Running KMS](#running-kms)**
 - **[Example: setup for development](#example-setup-for-development)**
 - **[Example: setup for advanced development](#example-setup-for-advanced-development-share-the-app-through-your-network)**
@@ -94,6 +95,35 @@ VERSION=2.0.0 npm run browserify # Regular JS version
 VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
 # Static files will be built in path ./static/js/
+```
+
+<br>
+
+---
+
+## Compiling OpenVidu WebComponent
+
+**1)** Clone OpenVidu Call repository (openvidu-webcomponent is compiled from it) and install dependencies
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-call.git
+cd openvidu-call/front/openvidu-call
+npm install
+```
+
+**2)** Build openvidu-webcomponent
+
+```bash
+npm run build:openvidu-webcomponent
+```
+
+If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/). Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
+
+```bash
+# Same path as "git clone https://github.com/OpenVidu/openvidu-call.git"
+git clone https://github.com/OpenVidu/openvidu-tutorials.git
+# Serve the tutorial. Build command of the webcomponent will update its files
+http-server openvidu-tutorials/openvidu-webcomponent/web
 ```
 
 <br>
