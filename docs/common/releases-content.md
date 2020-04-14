@@ -646,7 +646,7 @@ We still consider Ubuntu Bionic to be in a preliminary support state, and some b
 
 ##### OpenVidu Server boot process greatly improved
 
-OpenVidu Server now checks all requiered conditions at boot time, which helps solving missconfiguration problems when [deploying on Ubuntu](deployment/deploying-ubuntu/){:target="_blank"}. This includes every requirement related to permissions and installed software. If something is missing, wrong or there are not enough permissions in certain path, the OpenVidu Server process immediately exits with a clear description about what happened and a possible solution to fix it.
+OpenVidu Server now checks all required conditions at boot time, which helps solving misconfiguration problems when [deploying on Ubuntu](/en/2.11.0/deployment/deploying-ubuntu/){:target="_blank"}. This includes every requirement related to permissions and installed software. If something is missing, wrong or there are not enough permissions in certain path, the OpenVidu Server process immediately exits with a clear description about what happened and a possible solution to fix it.
 
 In our experience, this makes the process of installing OpenVidu Server directly in Ubuntu so much easier and manageable.
 
@@ -1686,7 +1686,7 @@ We have included a first way to set the maximum and minimum bandwidths for the m
 
 OpenVidu now offers **integrated and automated support for TURN server**. We encourage developers to check out our **[post on Medium](https://medium.com/@openvidu/openvidu-2-2-0-turn-made-easy-9d7e145f8905){:target="_blank"}** to learn more about it.
 
-The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](deployment/deploying-aws/){:target="_blank"} with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](deployment/deploying-ubuntu/){:target="_blank"}.
+The platform now integrates by default a COTURN server as part of its ecosystem. This means that media connections will work OK even when clients are located on restricted networks. When [deploying OpenVidu Server in Amazon Web Services](deployment/deploying-aws/){:target="_blank"} with our Cloud Formation template no changes are required at all. If you are deploying OpenVidu Server on your own in an Ubuntu machine, installation instructions have changed a little bit. You have them properly updated [here](/en/2.11.0/deployment/deploying-ubuntu/){:target="_blank"}.
 
 <br>
 
