@@ -341,6 +341,8 @@ To troubleshoot problems with OpenVidu Pro on premises deployments follow these 
 
     - `journalctl -u openvidu > openvidu.log`
 
+> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](https://docs.openvidu.io/en/stable/releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](https://docs.openvidu.io/en/stable/releases#2100){:target="_blank"}
+
 <br>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

@@ -289,7 +289,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **NOTES**
 >
-> This method will restart OpenVidu Server Pro with the new provided configuration parameters. If your have [externalized OpenVidu Server Pro configuration](reference-docs/openvidu-server-params/#externalizing-configuration){:target="_blank"}, the new variables will be stored in the configuration file, so you will be able to restart the host without losing your new configuration
+> This method will restart OpenVidu Server Pro with the new provided configuration parameters. The new values will be stored in disk in the configuration file, so you will be able to restart the host without losing your new configuration
 
 ---
 
