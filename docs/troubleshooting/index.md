@@ -23,12 +23,12 @@ You have an app that uses OpenVidu to stream some video user-to-user, and the pr
 
 99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy our ready-to-use [OpenVidu Server in Amazon](deployment/deploying-aws){:target="_blank"}.
 
-If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself in Ubuntu 16.04. Check [Deploying OpenVidu on Ubuntu](deployment/deploying-ubuntu/){:target="_blank"} section to learn how to properly do it.
+If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself with Docker. Check [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section to learn how to properly do it.
 
 Besides that, these are the recommended steps to follow when videos are not received:
 
   - Access your OpenVidu dashboard (`https://YOUR_OPENVIDU_IP:4443`) to quickly test the video transmission (user: _OPENVIDUAPP_, pass: _[your private secret]_)
-  - Please be sure that your OpenVidu Server host meets the [network requirements](deployment/deploying-ubuntu#server-network-requirements){:target="_blank"}.
+  - Please be sure that your OpenVidu Server host meets the [network requirements](deployment/deploying-on-premises#1-prerequisites){:target="_blank"}.
 
 The other 1% of the time this can be an attempt of **accessing the same camera from two different browsers at the same time**. Remember that Chrome, Firefox, Opera and Safari are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera from different tabs of the same browser is tipically possible.
 
@@ -200,8 +200,8 @@ The problem here is pretty evident: if you don't have any kind of server side to
 
 ### 5. The CloudFormation Stack is a nice option for Amazon, but I don't like it. I want more control
 
-You can always deploy everything by yourself. To do so, check [Deploying OpenVidu on Ubuntu](deployment/deploying-ubuntu/){:target="_blank"} section.
- What platforms are supported by OpenVidu?
+You can always easily deploy everything by yourself with Docker. To do so, check [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section.
+
 ---
 
 ### 6. What are STUN and TURN servers and why do I need them?
@@ -216,7 +216,7 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
 
   - Our ready-to-use [CloudFormation stack](deployment/deploying-aws){:target="_blank"} already includes a properly configured COTURN server.
-  - If you are deploying OpenVidu Server by your own, there are detailed instructions in the [Deploying OpenVidu on Ubuntu](deployment/deploying-ubuntu/){:target="_blank"} section, which explains how to install, configure and run COTURN on Ubuntu.
+  - If you are deploying OpenVidu Server on your own, instructions in the [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section already include a COTURN server.
 
     > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
@@ -240,12 +240,12 @@ OpenVidu supports a wide range of platforms:
 <br>
 ##### Desktop browsers
 
-**Chrome**, **Firefox**, **Opera**, **Safari** and **Internet Explorer 11**
+**Chrome**, **Firefox**, **Opera**, **Safari**, **Microsoft Edge** and **Internet Explorer 11**
 
 <br>
 ##### Mobile browsers
 
-**Chrome**, **Firefox** and **Opera** in Android and **Safari** on iOS
+**Chrome**, **Firefox**, **Microsoft Edge** and **Opera** in Android and **Safari** in iOS
 
 <br>
 ##### Mobile native applications
