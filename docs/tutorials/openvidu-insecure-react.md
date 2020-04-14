@@ -60,9 +60,12 @@ npm install
 npm start
 ```
 
-3) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+3) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
+
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.12.0
 ```
 

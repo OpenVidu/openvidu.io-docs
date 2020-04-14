@@ -52,9 +52,12 @@ Now depending on the platform you want to run your app...
 ionic serve
 ```
 
-5) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
+5) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
 
 ```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
+
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.12.0
 ```
 
@@ -126,7 +129,7 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"} and in the `openvidu.publicurl` parameter used to run *openvidu-server* (see next point)
 
 
-6) _openvidu-server_ and _Kurento Media Server_ must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
+6) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
 
 ```bash
 docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
