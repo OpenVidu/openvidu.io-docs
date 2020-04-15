@@ -28,7 +28,7 @@
 
 # For AWS deployments
 
-We need connect to the Openvidu EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
+We need to connect to the Openvidu EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
 
 <div class="row">
     <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
