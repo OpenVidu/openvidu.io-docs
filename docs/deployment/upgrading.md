@@ -22,39 +22,36 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-    <ul style="margin-bottom: 0">
-        <li style="color: #1c1c1c">These instructions are only compatible for <strong>OpenVidu >= 2.13.0</strong></li>
-        <li style="color: #1c1c1c">Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="https://docs.openvidu.io/en/stable/releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk</li>
-    </ul>
+      Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="https://docs.openvidu.io/en/stable/releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk
 </div>
 </div>
 
 # For AWS deployments
 
-We need connect to Openvidu instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
+We need connect to the Openvidu EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
 
 <div class="row">
     <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_update1.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_update2.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_update3.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update3.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_update1.png"><img class="img-responsive img-pro" style="max-width: 800px" src="img/docs/upgrading/EC2_update1.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_update2.png"><img class="img-responsive img-pro" style="max-width: 700px" src="img/docs/upgrading/EC2_update2.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_update3.png"><img class="img-responsive img-pro" style="max-width: 600px" src="img/docs/upgrading/EC2_update3.png"/></a>
     </div>
     <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click <strong>Connect</strong> button</p></div>
-      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, input <strong>ubuntu</strong> into user name and click on <strong>Connect</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Input <strong>sudo su</strong> into web console and press <strong>Enter</strong></p></div>
+      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click on <strong>Connect</strong> button</p></div>
+      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, use default <strong>root</strong> user name and click on <strong>Connect</strong></p></div>
+      <div class="caption"><p><strong>3)</strong> Now you will be connected to a terminal of your EC2 instance as root user</p></div>
     </div>
 </div>
 
 <br>
 
-After connected into web EC2 console and loging with **root** we'll go to [Stop all services deployed with docker-compose](#1-stop-all-services-deployed-with-docker-compose) and we'll follow all the steps.
+After connected into web EC2 console of your OpenVidu instance as root user, all that remains to be done is following all the steps of [For on premises deployments](#for-on-premises-deployments).
 
 <br>
 
 ---
 
-# For Ubuntu deployments
+# For on premises deployments
 
 <div style="
     display: table;
@@ -77,38 +74,46 @@ After connected into web EC2 console and loging with **root** we'll go to [Stop 
     padding-left: 20px;
     padding-right: 20px;
     ">
-It tutorial suppose the installation of openvidu its in the  recommend folder <code>/opt/openvidu</code>. You keep in mind this if your installation is in other folder.
+These instructions suppose the installation of OpenVidu is done in the <strong>default and recommended folder <code>/opt/openvidu</code></strong>. Keep in mind this if your installation is located in a different path!
 </div>
 </div>
 
-You must perform the following general steps, that may vary depending on how you have configured your services:
+#### 1) Stop all docker-compose services
 
-#### 1) Stop all services deployed with docker-compose
+Navigate to the OpenVidu installation folder and stop the current execution.
 
-Firstly go to folder where installed openvidu with `cd /opt/openvidu` command, and secondly stop all services with `./openvidu stop`
+```bash
+cd /opt/openvidu # Modify this and the following commands if your installation isn't done in the default path
+./openvidu stop
+```
 
 #### 2) Upgrade docker-compose 
 
-First we will make a backup of the current installation in case we need something. To do this we execute the following commands:
+Now we will make a backup of the current installation just in case. To do this we execute the following commands:
 
-```
+```bash
 cd /opt
 mv openvidu openvidu.backup
 ```
 
-Now we will install the new version using the following command:
+Now install the new version using the following command:
 
-```
+```bash
 # Change {VERSION} for the desired one. e.g. install_openvidu_2.13.0.sh
 
 curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_{VERSION}.sh | bash
 ```
 
-Finally remember change the necessary information in the file `/opt/openvidu/.env`
+Finally remember to change your configuration properties in file `/opt/openvidu/.env`. The new installation brings the default values that **must** be updated.
 
 #### 3) Restart docker-compose
 
-Run all services with `./openvidu start` in `/opt/openvidu` folder.
+Run all services in the recently upgraded OpenVidu installation folder.
+
+```bash
+cd /opt/openvidu
+./openvidu start
+```
 
 > Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](https://docs.openvidu.io/en/stable/releases){:target="_blank"}** page
 
