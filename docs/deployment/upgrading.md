@@ -23,7 +23,7 @@
     padding-right: 20px;
     ">
     <ul style="margin-bottom: 0">
-        <li style="color: #1c1c1c">These instructions are only compatible for <strong>OpenVidu >= 2.6.0</strong></li>
+        <li style="color: #1c1c1c">These instructions are only compatible for <strong>OpenVidu >= 2.13.0</strong></li>
         <li style="color: #1c1c1c">Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="https://docs.openvidu.io/en/stable/releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk</li>
     </ul>
 </div>
@@ -31,26 +31,24 @@
 
 # For AWS deployments
 
-The upgrading process is 100% automatic. Just navigate to **[AWS CloudFormation dashboard](https://console.aws.amazon.com/cloudformation#stacks){:target="_blank"}** and follow below steps:
+We need connect to Openvidu instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
 
 <div class="row">
     <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/CF_update1.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/CF_update2.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/CF_update3.png"><img class="img-responsive img-pro" src="img/docs/upgrading/CF_update3.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_update1.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update1.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_update2.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update2.png"/></a>
+        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_update3.png"><img class="img-responsive img-pro" src="img/docs/upgrading/EC2_update3.png"/></a>
     </div>
     <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Select your CloudFormation stack and click on <strong>Update</strong> button</p></div>
-      <div class="caption"><p><strong>2)</strong> Select <strong>Use current template</strong> and click on <strong>Next</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Change field <strong>OpenVidu version</strong> inside "Other configuration" section and at the bottom of the page click on <strong>Next 🡆 Next 🡆 Update stack</stack></p></div>
+      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click <strong>Connect</strong> button</p></div>
+      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, input <strong>ubuntu</strong> into user name and click on <strong>Connect</strong></p></div>
+      <div class="caption"><p><strong>3)</strong> Input <strong>sudo su</strong> into web console and press <strong>Enter</strong></p></div>
     </div>
 </div>
 
 <br>
 
-After performing the steps above, you will be redirect to Events page, where you will see a new `UPDATE_IN_PROGRESS` status. Wait until `UPDATE_COMPLETE` and your new version of OpenVidu will be ready.
-
-> Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](https://docs.openvidu.io/en/stable/releases){:target="_blank"}** page
+After connected into web EC2 console and loging with **root** we'll go to [Stop all services deployed with docker-compose](#1-stop-all-services-deployed-with-docker-compose) and we'll follow all the steps.
 
 <br>
 
@@ -58,49 +56,59 @@ After performing the steps above, you will be redirect to Events page, where you
 
 # For Ubuntu deployments
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+It tutorial suppose the installation of openvidu its in the  recommend folder <code>/opt/openvidu</code>. You keep in mind this if your installation is in other folder.
+</div>
+</div>
+
 You must perform the following general steps, that may vary depending on how you have configured your services:
 
-#### 1) Stop OpenVidu Server and Kurento Media Server services
+#### 1) Stop all services deployed with docker-compose
 
-First one is a Java process that may be killed with a simple `kill -9 PID_NUMBER` command, and second one is usually stopped with `sudo service kurento-media-server stop`
+Firstly go to folder where installed openvidu with `cd /opt/openvidu` command, and secondly stop all services with `./openvidu stop`
 
-#### 2) Upgrade kurento-media-server package and replace openvidu-server JAR file for the new version
+#### 2) Upgrade docker-compose 
 
-It is mandatory to comply version compatibility between OpenVidu and Kurento Media Server. Check it out in **[Releases](https://docs.openvidu.io/en/stable/releases){:target="_blank"}** page.
-You should be able to reinstall a new version of KMS while maintaining all the configuration files with these commands:
+First we will make a backup of the current installation in case we need something. To do this we execute the following commands:
 
-**For Ubuntu Xenial 16.04**  *(do not run below command if you run this one)*
-
-```bash
-export DISTRO=xenial
+```
+cd /opt
+mv openvidu openvidu.backup
 ```
 
-**For Ubuntu Bionic 18.04**  *(do not run above command if you run this one)*
+Now we will install the new version using the following command:
 
-```bash
-export DISTRO=bionic
+```
+# Change {VERSION} for the desired one. e.g. install_openvidu_2.13.0.sh
+
+curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_{VERSION}.sh | bash
 ```
 
-Now you can reinstall Kurento Media Server indicating the proper version number in the first command
+Finally remember change the necessary information in the file `/opt/openvidu/.env`
 
-```bash
-# Change version number in url http://ubuntu.openvidu.io/6.9.0 to the proper one depending on OpenVidu version
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.9.0 $DISTRO kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-sudo apt-get update
-sudo apt-get remove --auto-remove --yes kurento-media-server
-sudo apt-get install --yes -o Dpkg::Options::="--force-confold" kurento-media-server
-```
+#### 3) Restart docker-compose
 
-You can download any openvidu-server JAR file with this command:
-
-```bash
-# Change {VERSION} for the desired one. e.g. /v2.8.0/openvidu-server-2.8.0.jar
-wget https://github.com/OpenVidu/openvidu/releases/download/v{VERSION}/openvidu-server-{VERSION}.jar
-```
-
-#### 3) Restart OpenVidu Server and Kurento Media Server services
-
-Run Kurento Media Server with `sudo service kurento-media-server start` and launch openvidu-server JAR file as stated in [Deploying OpenVidu in Ubuntu](deployment/deploying-ubuntu/#8-init-openvidu-server-jar-executable){:target="_blank"} section.
+Run all services with `./openvidu start` in `/opt/openvidu` folder.
 
 > Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](https://docs.openvidu.io/en/stable/releases){:target="_blank"}** page
 
