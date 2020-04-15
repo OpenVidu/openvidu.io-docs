@@ -132,44 +132,7 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
 
 ## Running KMS
 
-How to *install* and *run* KMS in your development machine (**Ubuntu 16.04** or **Ubuntu 18.04**)
-
-**Ubuntu Xenial 16.04**
-
-```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 xenial kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
-sudo apt-get update
-sudo apt-get -y install kurento-media-server
-```
-
-**Ubuntu Bionic 18.04**
-
-```bash
-sudo echo "deb [arch=amd64] http://ubuntu.openvidu.io/6.13.0 bionic kms6" | sudo tee /etc/apt/sources.list.d/kurento.list
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 5AFA7A83
-sudo apt-get update
-sudo apt-get -y install kurento-media-server
-```
-
-Change the default user running KMS to your current user with this line:
-
-```bash
-sudo sed -i "s/DAEMON_USER=\"kurento\"/DAEMON_USER=\"${USER}\"/g" /etc/default/kurento-media-server
-```
-
-To start and stop KMS service:
-
-```bash
-sudo service kurento-media-server start
-sudo service kurento-media-server stop
-```
-
-<br>
-
-**Running with Docker**
-
-You can also run Kurento on any OS that supports Docker with the following command:
+Run KMS in any OS that supports Docker with the following command:
 
 ```bash
 docker run -d --name kms -p 8888:8888 kurento/kurento-media-server:latest
