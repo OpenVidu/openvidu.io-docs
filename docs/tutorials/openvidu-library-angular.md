@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-library-angular" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Library Angular is one of the simplest and quickest tutorials to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-angular_ library.
+OpenVidu Library Angular is one of the simplest and quickest tutorials, developed in **Angular 9**, to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-angular_ library.
 
 ## Running this tutorial
 
@@ -162,22 +162,22 @@ You can configure the opv-session with these parameters:
   [user]="myUserName"
   [token]="tokens"
   [ovSettings]="ovSettings"
-  (leaveSession)="handlerLeaveSessionEvent($event)"
-  (joinSession)="handlerJoinSessionEvent($event)"
+  (sessionCreated)="handlerSessionCreatedEvent($event)"
+  (publisherCreated)="handlerPublisherCreatedEvent($event)"
   (error)="handlerErrorEvent($event)">
 </opv-session>
 ```
 
 _The token must has inside of an array. If you want that the app allows the screen sharing you must include two differents tokens in the array. If you only add one, the app doesn't allow the screen sharing funcionality._
 
-Moreover, opv-session emits events `leaveSession`, `joinSession` and `error`, we can handle them with the next code in `app.component.ts` file:
+Moreover, opv-session emits events `sessionCreated`, `publisherCreated` and `error`, we can handle them with the next code in `app.component.ts` file:
 
 ```javascript
-handlerJoinSessionEvent(event): void {
+  handlerSessionCreatedEvent(session: Session): void {
     // Do something
   }
 
-  handlerLeaveSessionEvent(event): void {
+  handlerPublisherCreatedEvent(publisher: Publisher): void {
     // Do something
   }
 
@@ -186,7 +186,10 @@ handlerJoinSessionEvent(event): void {
   }
 ```
 
-In addiction, **openvidu-library-angular** allows you to have access to specifics internals variables such as *OpenVidu Session*, *OpenVidu Layout*, *Local User* or *Remotes User*.
+Now, we will be able to use `session` and `publisher` in the same way as if we used **openvidu-browser** directly, and of course use <span><a href="api/openvidu-browser" target="blank">openvidu-browser API</a></span>
+<br>
+
+In addiction, **openvidu-library-angular** allows you to have access to specifics internals variables such as *OpenVidu Layout*, *Local User* or *Remotes User*.
 
 You can access to them through the following way:
 
@@ -199,8 +202,8 @@ You can access to them through the following way:
   [user]="myUserName"
   [tokens]="tokens"
   [ovSettings]="ovSettings"
-  (leaveSession)="handlerLeaveSessionEvent($event)"
-  (joinSession)="handlerJoinSessionEvent($event)"
+  (sessionCreated)="handlerSessionCreatedEvent($event)"
+  (publisherCreated)="handlerPublisherCreatedEvent($event)"
   (error)="handlerErrorEvent($event)">
 </opv-session>
 ```
@@ -213,7 +216,6 @@ public ovSessionComponent: OpenviduSessionComponent;
 
 3) After that, **ovSessionComponent** will provides us some methods to get the internal variables we need. These methods are:
 
-* **getSession**: This method will provide you the Session. Check the Session documentation [here](api/openvidu-browser/classes/session.html){:target="_blank"}
 * **getLocalUser**: This method will provide you the User. You can check the documentation about the User Class [here](tutorials/user-doc/classes/user_model.usermodel.html){:target="_blank"}
 * **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](tutorials/layout-doc/classes/openvidu_layout.openvidulayout.html){:target="_blank"}
 * **getOpenviduLayoutOptions**: This method will return the layout options. Click [here](tutorials/layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html){:target="_blank"} to more information.
@@ -231,15 +233,14 @@ We are invoking *myMethod* inside of *handlerJoinSessionEvent*.
 4) Last but not least, you must stablish the local variables like this:
 
 ```typescript
-import {OpenviduSessionComponent, StreamEvent, Session, UserModel, OpenViduLayout, OpenViduLayoutOptions, OvSettings} from 'openvidu-angular';
+import {OpenviduSessionComponent, StreamEvent, Session, Publisher, UserModel, OpenViduLayout, OpenViduLayoutOptions, OvSettingsModel} from 'openvidu-angular';
 ```
 ```typescript
-ovSession: Session;
 ovRemotesArray: UserModel[];
 ovLocalUser: UserModel;
 ovLayout: OpenViduLayout;
 ovLayoutOptions: OpenViduLayoutOptions;
-ovSettings: OvSettings;
+ovSettings: OvSettingsModel;
 ```
 
 Moreover, if you want to customize the interface of **opv-session-component** you can provide a parameter `ovSettings` to the component. Further details on this topic [here](tutorials/openvidu-webcomponent#interface-configuration){:target="_blank"}.
@@ -248,18 +249,7 @@ Moreover, if you want to customize the interface of **opv-session-component** yo
 And initializate it with the config properties:
 
 ```typescript
-this.ovSettings = {
-  chat: false,
-  autopublish: true,
-  toolbarButtons: {
-    audio: true,
-    video: true,
-    screenShare: true,
-    fullscreen: true,
-    layoutSpeaking: true,
-    exit: true,
-  }
-};
+this.ovSettings = new new OvSettingsModel();
 ```
 
 ---
