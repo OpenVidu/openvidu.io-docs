@@ -114,26 +114,48 @@ As you can see, the `index.html` body has the form to connect to a video-session
 
 #### app.js (I): OpenVidu Web Component events
 
-OpenVidu Web Component emits events _`joinSession`_, _`leaveSession`_ or _`error`_, so we can handle them in our JavaScript code.
+OpenVidu Web Component emits events _`sessionCreated`_, _`publisherCreated`_ or _`error`_, so we can handle them in our JavaScript code.
+
 We just need to get the element once the document is ready and add all the listeners we want:
 
 ```javascript
 $(document).ready(() => {
     var webComponent = document.querySelector('openvidu-webcomponent');
 
-    webComponent.addEventListener('joinSession', (event) => {
-        // Do something
+    webComponent.addEventListener('sessionCreated', (event) => {
+        var session = event.detail;
+
+        session.on('connectionCreated', (e) => {
+            console.log("connectionCreated", e);
+        });
+
+        session.on('streamDestroyed', (e) => {
+            console.log("streamDestroyed", e);
+        });
+
+        session.on('streamCreated', (e) => {
+            console.log("streamCreated", e);
+        });
+        ...
     });
-    webComponent.addEventListener('leaveSession', (event) => {
-        // Do something
+
+    webComponent.addEventListener('publisherCreated', (event) => {
+        console.log("publisherCreated event", event);
+        var publisher = event.detail;
+
+        publisher.on('streamCreated', (e) => {
+            console.log("Publisher streamCreated", e);
+        });
     });
     webComponent.addEventListener('error', (event) => {
         // Do something
     });
 });
 ```
+Now, we will be able to use `session` and `publisher` in the same way as if we used **openvidu-browser** directly, and of course use <span><a href="api/openvidu-browser" target="blank">openvidu-browser API</a></span>
+<br>
 
-In this tutorial, we just alternate the view between the form and the web component, hiding or showing them when receiving `joinSession` or `leaveSession` events.
+In this tutorial, we just alternate the view between the form and the web component, hiding or showing them when receiving `connectionCreated` or `sessionDisconnected` events.
 
 ---
 
@@ -155,7 +177,7 @@ When we have our tokens available, the only thing left to do is to give the desi
 However, if we give the *openvidu-url* and *openvidu-secret*, the webcomponent will build the token for us.
 
 ```javascript
-function joinSession() {
+async function joinSession() {
     var sessionName = document.getElementById('sessionName').value;
     var user = document.getElementById('user').value;
     var tokens = [];
@@ -168,18 +190,15 @@ function joinSession() {
     if(webComponent.getAttribute("openvidu-secret") != undefined && webComponent.getAttribute("openvidu-server-url") != undefined ){
         location.reload();
     }else {
-        getToken(sessionName).then((token1) => {
-            tokens.push(token1);
-            getToken(sessionName).then((token2) => {
-                tokens.push(token2);
-                webComponent.sessionConfig = { sessionName, user, tokens };
-            });
-        });
+        var token1 = await getToken(sessionName);
+        var token2 = await getToken(sessionName);
+        tokens.push(token1, token2);
+        webComponent.sessionConfig = { sessionName, user, tokens};
     }
 }
 ```
 
-That's it. Once you configure the token into the webcomponent, it will automatically join the proper session (`joinSession` event will be dispatched so you can update your web). The user will see in the webcomponent all other users joined to the same session and will publish the webcam. You have a video-call working!
+That's it. Once you configure the token into the webcomponent, it will automatically join the proper session (`sessionCreated` event will be dispatched so you can update your web). The user will see in the webcomponent all other users joined to the same session and will publish the webcam. You have a video-call working!
 
 ##### Interface Configuration
 
@@ -297,7 +316,7 @@ Besides, openvidu-webcomponent allows you to add **ovSettings** parameter static
 And if you want to let the webcomponent get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
 
 ```html
-<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "exit": true }}}'>
+<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
 </openvidu-webcomponent>
 ```
 
