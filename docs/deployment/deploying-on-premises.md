@@ -53,7 +53,13 @@ This procedure installs the following services:
 
 ### 2) Deployment
 
-Execute the following command to download and run the installation script.
+The recommended folder to install OpenVidu is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
+
+```
+cd /opt
+```
+
+Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
 <code id="code-2">curl https://raw.githubusercontent.com/OpenVidu/openvidu/master/openvidu-server/docker/openvidu-docker-compose/install_openvidu.sh | bash</code>
