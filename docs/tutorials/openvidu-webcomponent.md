@@ -116,6 +116,30 @@ As you can see, the `index.html` body has the form to connect to a video-session
 
 OpenVidu Web Component emits events _`sessionCreated`_, _`publisherCreated`_ or _`error`_, so we can handle them in our JavaScript code.
 
+
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <strong>NOTE</strong>: New event names and properties have been defined (<i>sessionCreated</i> , <i>publisherCreated</i> previous ones are still available (<i>joinSession</i> and <i>leaveSession</i>) but deprecated.
+</div>
+</div>
+
 We just need to get the element once the document is ready and add all the listeners we want:
 
 ```javascript
