@@ -53,8 +53,8 @@ nav:
   - OpenVidu Server CDR: reference-docs/openvidu-server-cdr.md
   - OpenVidu Server Webhook: reference-docs/openvidu-server-webhook.md
 - Deployment:
-  - Deploying OpenVidu on AWS: deployment/deploying-aws.md
-  - Deploying OpenVidu on premises: deployment/deploying-on-premises.md
+  - AWS: deployment/deploying-aws.md
+  - On premises: deployment/deploying-on-premises.md
   - Deploying your OpenVidu app: deployment/deploying-app.md
   - Upgrading OpenVidu: deployment/upgrading.md
 - Contribute:
@@ -67,10 +67,11 @@ nav:
   - Scalability: openvidu-pro/scalability.md
   - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
   - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
-  - Deploying OpenVidu Pro:
+  - Deployment:
     - AWS: openvidu-pro/deployment/aws.md
     - On premises: openvidu-pro/deployment/on-premises.md
     - Kubernetes: openvidu-pro/deployment/kubernetes.md
+    - Upgrading OpenVidu Pro: openvidu-pro/deployment/upgrading.md
   - Reference Documentation:
     - REST API Pro: openvidu-pro/reference-docs/REST-API-pro.md
     - OpenVidu Server Pro configuration: openvidu-pro/reference-docs/openvidu-server-pro-params.md
