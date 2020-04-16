@@ -31,8 +31,8 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
     <img class="img-responsive deploy-img" src="img/docs/deployment/CF_url.png">
   </p>
 
-  > To deploy a fixed version, including previous ones, replace `latest` with the desired version number<br>
-  > For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-<strong>2.12.0</strong>.yaml</code>
+> To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-<strong>2.12.0</strong>.yaml</code>
 
 <br>
 

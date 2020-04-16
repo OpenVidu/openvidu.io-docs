@@ -40,10 +40,9 @@ This procedure installs the following services:
     - **22 TCP**: to connect using SSH to admin OpenVidu.
     - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
     - **443 TCP**: OpenVidu server and application are published in standard https port.
-    - **3478 TCP**: used by TURN Server to stablish media connections.
-    - **3478 UDP**: used by TURN Server to stablish media connections.
-    - **40000 - 57000 UDP**: ports used by Kurento Media Server to stablish media connections.
-    - **57001 - 65535 UDP**: used by TURN Server to stablish media connections.<br><br>
+    - **3478 TCP+UDP**: used by TURN Server to establish media connections.
+    - **40000 - 57000 TCP+UDP**: ports used by Kurento Media Server to establish media connections.
+    - **57001 - 65535 TCP+UDP**: used by TURN server to establish media connections.<br><br>
 
 - **Get yourself a domain name**: OpenVidu is deployed using HTTPS because it is mandatory to use WebRTC. Then, if you do not have a domain name, an ugly warning will appear to your users when enter to your site. And of course you can suffer a man-in-the-middle attack. So you will need a domain name pointing to your machine's public IP. You don't need a valid SSL certificate as one can be automatically created for you by Let's Encrypt during the installation process.
 
@@ -62,7 +61,7 @@ cd /opt
 Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
-<code id="code-2">curl https://raw.githubusercontent.com/OpenVidu/openvidu/master/openvidu-server/docker/openvidu-docker-compose/install_openvidu.sh | bash</code>
+<code id="code-2">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_latest.sh | bash</code>
 <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -83,6 +82,9 @@ $ ./openvidu start
 
 For more information, check readme.md
 ```
+
+> To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.12.0</strong>.sh | bash</code>
 
 <br>
 
@@ -192,12 +194,13 @@ Then, `openvidu-server` service logs are shown. When OpenVidu Platform is ready 
 
 You can press `Ctrl+C` to come back to the shell and OpenVidu will be executed in the background.
 
-If the application is enabled, it will be available at `https://server/`
+#### Available services
 
-You can open OpenVidu Dashboard to verify if the platform is working as expected go to `https://server/dashboard/` with credentials:
-
-- user: OPENVIDUAPP
-- pass: the value of OPENVIDU_SECRET in `.env` file
+- Consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"} through `https://server/`
+- If the [application](#videoconference-application) is enabled, it will also be available at `https://server/`
+- You can open OpenVidu Dashboard to verify everything is working as expected at `https://server/dashboard/` with credentials:
+    - user: OPENVIDUAPP
+    - pass: the value of OPENVIDU_SECRET in `.env` file
 
 <br>
 
@@ -315,6 +318,10 @@ Configuration properties
 
 ...
 ```
+
+### Java options
+
+To use Java options in openvidu-server service change the property `JAVA_OPTIONS` in configuration file `.env`.<br>For further information about possible values for Java options visit [Configuring Java Options](https://docs.oracle.com/cd/E37116_01/install.111210/e23737/configuring_jvm.htm){:target="_blank"}.
 
 ### Change log level of the services
 

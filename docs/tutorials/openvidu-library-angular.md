@@ -254,7 +254,7 @@ myMethod() {
 ```
 We are invoking *myMethod* inside of *handlerJoinSessionEvent*.
 
-4) Last but not least, you must stablish the local variables like this:
+4) Last but not least, you must establish the local variables like this:
 
 ```typescript
 import {OpenviduSessionComponent, StreamEvent, Session, Publisher, UserModel, OpenViduLayout, OpenViduLayoutOptions, OvSettingsModel} from 'openvidu-angular';

@@ -3,15 +3,23 @@
 
 - **[Deployment instructions](#deployment-instructions)**
     - [1) Prerequisites](#1-prerequisites)
-    - [2) Network requirements](#2-network-requirements)
-    - [3) Ansible inventory](#3-ansible-inventory)
-    - [4) Ansible variables](#4-ansible-variables)
-    - [5) Deployment command](#5-deployment-command)
+    - [2) OpenVidu Server Pro Node](#2-openvidu-server-pro-node)
+        - [2.1) Deployment](#21-deployment)
+        - [2.2) Configuration](#22-configuration)
+        - [2.3) Execution](#23-execution)
+        - [2.4) Administration](#24-administration)
+    - [3) Media Nodes](#3-media-nodes)
+        - [3.1) Deployment](#31-deployment)
+        - [3.2) Configuration](#32-configuration)
+        - [3.3) Execution](#33-execution)
+        - [3.4) Administration](#34-administration)
 - **[Scalability](#scalability)**
     - [Set the number of Media Nodes on startup](#set-the-number-of-media-nodes-on-startup)
     - [Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)
 - **[Updating OpenVidu Pro configuration](#updating-openvidu-pro-configuration)**
 - **[Troubleshooting](#troubleshooting)**
+    - [Troubleshooting OpenVidu Server Pro Node](#troubleshooting-openvidu-server-pro-node)
+    - [Troubleshooting Media Nodes](#troubleshooting-media-nodes)
 
 ---
 
@@ -42,9 +50,11 @@
 
 ## Deployment instructions
 
-### 1) Prerequisites
+OpenVidu Pro is deployed on premises in a cluster of machines with **Docker** and **Docker Compose**.
 
-#### In your cluster machines
+> **NOTE** : Docker basic knowledge is not required, but recommended. If you are completely new to Docker and containers, take a few minutes to read the official [Docker _Get started_](https://docs.docker.com/get-started/){:target="_blank"} documentation.
+
+### 1) Prerequisites
 
 You must have **at least 2 different instances** with a clean installation of **any modern Linux distribution**.
 
@@ -53,50 +63,48 @@ You must have **at least 2 different instances** with a clean installation of **
 
 You can actually have as many instances as you want for Media Nodes. The number of Media Nodes determines the size of your cluster: the more Media Nodes, the more video sessions your cluster will be able to handle. Check out [Scalability](openvidu-pro/scalability/){:target="_blank"} section for further details.
 
-Besides, be sure to meet the following criteria in your cluster instances:
+Once you have your instances ready, be sure to meet the following criteria in them:
 
-- Have at least a minimum of **2 CPUs and 8GB of RAM**, and a generous network bandwidth
 - **[Install Docker](https://docs.docker.com/engine/install/#server){:target="_blank"}**
+
 - **[Install Docker Compose](https://docs.docker.com/compose/install/){:target="_blank"}**
 
----
+- **2 CPUs and 8GB of RAM at least**, as well as a generous network bandwidth
 
-### 2) Network requirements
+- **Opened ports in _OpenVidu Server Pro Node_**
 
-These ports need to be opened and publicly accessible for each type of instance in your cluster:
+    - **22 TCP**: to connect using SSH to admin OpenVidu.
+    - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
+    - **443 TCP**: OpenVidu Inspector is served in standard https port.
+    - **3478 TCP+UDP**: used by TURN server to establish media connections.<br><br>
 
-#### OpenVidu Server Pro instance
+- **Opened ports in _Media Nodes_**
 
-- **22 TCP**: to connect using SSH to admin OpenVidu.
-- **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
-- **443 TCP** (OpenVidu Inspector is served on port 443 by default)
-- **3478 TCP** (coturn listens on port 3478 by default)
-- **3478 UDP** (opening also UDP port has been proved to facilitate connections with certain type of clients)
+    - **22 TCP**: to connect using SSH to admin OpenVidu.
+    - **40000 - 65535 TCP+UDP**: ports used by Kurento Media Server to establish media connections.
+    - **8888 TCP (must only be accessible for OpenVidu Server Pro instance)**: Kurento Media Server handler listens on port 8888.<br><br>
 
-#### Media Node instances
+- **Get yourself a domain name**: OpenVidu Pro is deployed using HTTPS because it is mandatory to use WebRTC. Then, if you do not have a domain name, an ugly warning will appear to your users when enter to your site. And of course you can suffer a man-in-the-middle attack. So you will need a domain name pointing to the **OpenVidu Server Pro Node** public IP. You don't need a valid SSL certificate as one can be automatically created for you by Let's Encrypt during the installation process.
 
-- **22 TCP**: to connect using SSH to admin OpenVidu.
-- **40000 - 65535 UDP** (WebRTC connections with clients may be established using a random port inside this range)
-- **40000 - 65535 TCP** (WebRTC connections with clients may be established using a random port inside this range, if UDP can't be used because client network is blocking it)
-- **8888 TCP (must only be accessible for OpenVidu Server Pro instance)** (Kurento Media Server listens on port 8888 by default)
-
-
-> **NOTE**: in production environments you will have to configure a **fully qualified domain name** in your **OpenVidu Server Pro instance**. You can register a FQDN for the OpenVidu Server Pro instance using a DNS server, pairing the OpenVidu Server Pro instance public IP with your domain name. This is the only way to later set up a valid certificate in OpenVidu Server Pro instance, so clients don't get a warning when connecting to a video session
+<br>
 
 ---
 
-### 3) Deployment OpenVidu Server Pro instance
-First connect by ssh to Openvidu Server Pro instance, and move to `/opt` with the following command:
+### 2) OpenVidu Server Pro Node
 
-```bash
+#### 2.1) Deployment
+
+Connect through SSH to Openvidu Server Pro instance. The recommended folder to install OpenVidu Pro is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
+
+```
 cd /opt
 ```
 
-Execute the following command to download and run the installation script.
+Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
-<code id="code-2">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_latest.sh | bash</code>
-<button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-1">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_latest.sh | bash</code>
+<button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -117,16 +125,19 @@ $ ./openvidu start
 For more information, check readme.md
 ```
 
-<br>
+> To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.12.0</strong>.sh | bash</code>
 
-#### 3.1) Configuration
+---
 
-OpenVidu Platform configuration is specified in the **`.env`** file with environment variables.
+#### 2.2) Configuration
+
+OpenVidu Pro configuration is specified in the **`.env`** file with environment variables.
 
 - You _must_ give a value to properties **`OPENVIDU_DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`KIBANA_PASSWORD`**. Default empty values will fail. 
-- Other value that you _must_ give is  **`OPENVIDU_PRO_LICENSE`** You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
+- You _must_ also provide a value for  **`OPENVIDU_PRO_LICENSE`**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
-- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server CE configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"} for further information.
+- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"} for further information.
 
 The **`.env`** file is pretty self-explanatory. It looks like this:
 
@@ -165,6 +176,8 @@ LETSENCRYPT_EMAIL=user@example.com
 ...
 ```
 
+<br>
+
 ##### Videoconference application
 
 By default, the [OpenVidu Call](demos/openvidu-call/){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
@@ -185,13 +198,11 @@ You can configure any other application updating the content of `docker-compose.
     - `/openvidu/`
     - `/dashboard/`
 
-<br>
-
 ---
 
-#### 3.2) Execution
+#### 2.3) Execution
 
-To start OpenVidu Platform (and the application if enabled) you can execute this command:
+To start OpenVidu Platform (and the application if enabled) execute this command:
 
 ```
 ./openvidu start
@@ -226,36 +237,36 @@ Then, `openvidu-server` service logs are shown. When OpenVidu Platform is ready 
 ----------------------------------------------------
 ```
 
-You can press `Ctrl+C` to come back to the shell and OpenVidu will be executed in the background.
-
-If the application is enabled, it will be available at `https://server/`
-
-You can open OpenVidu Dashboard to verify if the platform is working as expected go to `https://server/dashboard/` with credentials:
-
-- user: OPENVIDUAPP
-- pass: the value of OPENVIDU_SECRET in `.env` file
+You can press `Ctrl+C` to come back to the shell and OpenVidu Pro will be executed in the background.
 
 <br>
 
+##### Available services
+
+- Consume [OpenVidu REST API Pro](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"} through `https://server/`
+- If the [application](#videoconference-application) is enabled, it will also be available at `https://server/`
+- You can access [OpenVidu Inspector](openvidu-pro/openvidu-inspector/){:target="_blank"} at `https://server/inspector/`
+- You can access [Kibana](openvidu-pro/detailed-session-monitoring/){:target="_blank"} at `https://server/kibana/`
+
 ---
 
-#### 3.3) Administration
+#### 2.4) Administration
 
-Run the following commands to manage OpenVidu Platform service:
+Run the following commands to manage OpenVidu Pro service:
 
-- Start OpenVidu
+- Start OpenVidu Pro
 
         ./openvidu start
 
-- Stop OpenVidu
+- Stop OpenVidu Pro
 
         ./openvidu stop
 
-- Restart OpenVidu
+- Restart OpenVidu Pro
 
         ./openvidu restart
 
-- Show logs of OpenVidu
+- Show logs of OpenVidu Pro
 
         ./openvidu logs
 
@@ -265,15 +276,19 @@ Run the following commands to manage OpenVidu Platform service:
 
 ---
 
-### 4) Deployment Media Node instance
+### 3) Media Nodes
 
-Follow these steps to add as many Media Nodes as you need. First connect by ssh to Media Node instance, and move to `/opt` with the following command:
+#### 3.1) Deployment
+
+Follow these steps to add one Media Nodes to the cluster. You can add as many Media Nodes as you want by repeating these instructions in different instances.
+
+Connect through SSH to the Media Node instance. The recommended folder to install the Media Node is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
 
 ```bash
 cd /opt
 ```
 
-Execute the following command to download and run the installation script.
+Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
 <code id="code-2">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_latest.sh | bash</code>
@@ -295,13 +310,24 @@ $ ./media_node start
 For more information, check readme.md
 ```
 
+> To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.12.0</strong>.sh | bash</code>
+
 <br>
 
 ---
 
-#### 4.1) Execution
+#### 3.2) Configuration
 
-To start Media Node (and the application if enabled) you can execute this command:
+No changes in the default configuration are necessary in Media Nodes.
+
+<br>
+
+---
+
+#### 3.3) Execution
+
+To start the Media Node execute this command:
 
 ```
 ./media_node start
@@ -316,11 +342,13 @@ Creating kms_kms_1   ... done
 Creating kms_nginx_1 ... done
 ```
 
+> **WARNING:** after the Media Node service is up and running, you must manually add the Media Node to the cluster. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
+
 <br>
 
 ---
 
-#### 4.2) Administration
+#### 3.4) Administration
 
 Run the following commands to manage Media Node service:
 
@@ -340,19 +368,27 @@ Run the following commands to manage Media Node service:
 
         ./media_node logs
 
+> **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
+
+> **WARNING 2:** a reboot of [OpenVidu Server Pro Node](#2-openvidu-server-pro-node) will make necessary to manually add all the running Media Nodes to the cluster before you can start using them. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
+
 <br>
 
 ---
 
-#### 4.3) Connect Media Node to Openvidu Server Pro
+## Scalability
 
-**IMPORTANT** If we reboot Openvidu Pro Instance we'll have to connect the media nodes again.
+### Set the number of Media Nodes on startup
 
-Every time we install a media node we must add it to Openvidu Pro. This can be done in one of the following ways:
+To deploy your OpenVidu Pro cluster with a specific initial number of Media Nodes you just need to . You first have to prepare the maximum number of Media Nodes you want. For example, if you want your cluster to be able to grow up to 3 Media Nodes, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server Pro Node and three for each Media Node. Check out the Cluster machines prerequisites.
 
-##### From OpenVidu Inspector
+Then you just need to properly configure the inventory.yml file with each instance IP before running Ansible's playbook. This way your cluster will start with the desired number of Media Nodes.
 
-In Cluster page you can launch and drop Media Nodes just by pressing buttons. You need to have the new Media Node already up and running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)) and define its URI like this: `ws://NEW_MEDIA_NODE_IP:8888/kurento`
+### Change the number of Media Nodes on the fly
+
+#### From OpenVidu Inspector
+
+In Cluster page you can add and remove Media Nodes from your cluster just by pressing buttons. To add a Media Node, you need to have it already up and running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one) and define its URI like this: `ws://NEW_MEDIA_NODE_IP:8888/kurento`
 
 <div class="row">
     <div style="margin: 5px 15px 5px 15px">
@@ -360,24 +396,26 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons. Yo
     </div>
 </div>
 
-> **WARNING**: Launching/Dropping Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically start/terminate your instances:
+> **WARNING**: adding/removing Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically launch/terminate your physical machines:
 >
-> - To launch a new Media Node you need to have the new Media Node already up and running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)) and define its URI like stated in the image above.<br><br>
-> - To drop an existing Media Node you will have to terminate the instance yourself after clicking the terminate button, if that's what you want. Clicking the button will just disconnect the Media Node from the cluster (you won't be charged for it anymore), but won't terminate the machine. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance (listen to `terminated` status).
+> - To add a new Media Node you need to have the new Media Node already up and running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one) and define its URI like stated in the image above.<br><br>
+> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
-##### With OpenVidu Pro REST API
+#### With OpenVidu Pro REST API
 
-You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
+You can programmatically add and remove Media Nodes from your cluster by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Add a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
+- **Remove a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes through REST API in on premises OpenVidu Pro clusters:
 >
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
-> - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your instances:
->     - To launch a new Media Node you are required to have the Media Node already running (see [Launching new Media Nodes with Ansible](#launching-new-media-nodes-with-ansible)). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} (using `uri` query parameter) or [like this in OpenVidu Inspector](#from-openvidu-inspector).
->     - To drop an existing Media Node you will have to terminate the instance yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+> - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your physical machines:
+>     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} using **`uri`** query parameter.
+>     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+
+<br>
 
 ---
 
@@ -409,11 +447,11 @@ You can consume REST API method **[POST /pro/restart](openvidu-pro/reference-doc
 The ultimate and most definitive way of updating the configuration parameters of an OpenVidu Pro cluster is connecting to the OpenVidu Server Pro Node through SSH and changing the desired values:
 
 1. SSH to the OpenVidu Server Pro machine using your private rsa key
-2. Using root user with `sudo su` command
-2. Go to folder `/opt/openvidu` and update file `.env` with the new configuration values
-3. Restart OpenVidu Server Pro with `./openvidu restart` in the folder `/opt/openvidu`
+2. Using root user with `sudo su` command, go to OpenVidu Pro installation folder (default and recommended is `/opt/openvidu`)
+2. Update file `.env` with the new configuration values
+3. Restart OpenVidu Server Pro with `./openvidu restart`
 
-To validate your changes and check that everything went well, you should take a look to OpenVidu Server Pro logs.
+Keep an eye on the OpenVidu logs that will automatically display after restarting the service to check that everything went well.
 
 <br>
 
@@ -421,7 +459,7 @@ To validate your changes and check that everything went well, you should take a 
 
 ## Troubleshooting
 
-### Openvidu Server Pro Instance
+### Troubleshooting Openvidu Server Pro Node
 
 #### Configuration errors
 
@@ -447,7 +485,7 @@ Fix config errors
 
 #### Docker compose
 
-To solve any other issue, it is important to understand how is OpenVidu executed. 
+To solve any other issue apart from configuration ones, it is important to understand how is OpenVidu service executed. 
 
 OpenVidu is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
 
@@ -509,19 +547,19 @@ Configuration properties
 
 #### Java options
 
-To use java options in openvidu-server change the property `JAVA_OPTIONS` in configuration file `.env`
-
-For more information about posible values for java option visit [Configuring Java Options](https://docs.oracle.com/cd/E37116_01/install.111210/e23737/configuring_jvm.htm#OUDIG00007)
+To use Java options in openvidu-server service change the property `JAVA_OPTIONS` in configuration file `.env`.<br>For further information about possible values for Java options visit [Configuring Java Options](https://docs.oracle.com/cd/E37116_01/install.111210/e23737/configuring_jvm.htm){:target="_blank"}.
 
 #### Change log level of the services
 
 To change the level of _openvidu-server_ logs change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
 
-### Media Node Instance
+---
+
+### Troubleshooting Media Nodes
 
 #### Docker compose
 
-To solve any other issue, it is important to understand how is Media Node executed. 
+First of all it is important to understand how is Media Nodes service executed. 
 
 Media Node is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
 
@@ -542,13 +580,13 @@ As you can see, logs of `kms` service are shown when platform is started or rest
 
 #### Show service logs
 
-Take a look to service logs to see what happened. First, see openvidu-server logs:
+Take a look to the Media Node service logs to see what happened:
 
 ```
 ./media_node logs
 ```
 
-You can also see all service logs together: 
+You can also see all services logs running in the Media Node together: 
 
 ```
 docker-compose logs -f
