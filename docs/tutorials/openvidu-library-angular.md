@@ -189,6 +189,29 @@ Moreover, opv-session emits events `sessionCreated`, `publisherCreated` and `err
 Now, we will be able to use `session` and `publisher` in the same way as if we used **openvidu-browser** directly, and of course use <span><a href="api/openvidu-browser" target="blank">openvidu-browser API</a></span>
 <br>
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <strong>NOTE</strong>: New event names and properties have been defined (<i>sessionCreated</i> , <i>publisherCreated</i> previous ones are still available (<i>joinSession</i> and <i>leaveSession</i>) but deprecated.
+</div>
+</div>
+
 In addiction, **openvidu-library-angular** allows you to have access to specifics internals variables such as *OpenVidu Layout*, *Local User* or *Remotes User*.
 
 You can access to them through the following way:
@@ -216,6 +239,7 @@ public ovSessionComponent: OpenviduSessionComponent;
 
 3) After that, **ovSessionComponent** will provides us some methods to get the internal variables we need. These methods are:
 
+* (_**Deprecated method**_, use *sessionCreated* event instead) **getSession**: This method will provide you the Session. Check the Session documentation [here](api/openvidu-browser/classes/session.html){:target="_blank"}
 * **getLocalUser**: This method will provide you the User. You can check the documentation about the User Class [here](tutorials/user-doc/classes/user_model.usermodel.html){:target="_blank"}
 * **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](tutorials/layout-doc/classes/openvidu_layout.openvidulayout.html){:target="_blank"}
 * **getOpenviduLayoutOptions**: This method will return the layout options. Click [here](tutorials/layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html){:target="_blank"} to more information.
@@ -240,7 +264,7 @@ ovRemotesArray: UserModel[];
 ovLocalUser: UserModel;
 ovLayout: OpenViduLayout;
 ovLayoutOptions: OpenViduLayoutOptions;
-ovSettings: OvSettingsModel;
+ovSettings: OvSettings;
 ```
 
 Moreover, if you want to customize the interface of **opv-session-component** you can provide a parameter `ovSettings` to the component. Further details on this topic [here](tutorials/openvidu-webcomponent#interface-configuration){:target="_blank"}.
@@ -249,7 +273,18 @@ Moreover, if you want to customize the interface of **opv-session-component** yo
 And initializate it with the config properties:
 
 ```typescript
-this.ovSettings = new new OvSettingsModel();
+this.ovSettings = {
+  chat: false,
+  autopublish: true,
+  toolbarButtons: {
+    audio: true,
+    video: true,
+    screenShare: true,
+    fullscreen: true,
+    layoutSpeaking: true,
+    exit: true,
+  }
+};
 ```
 
 ---
