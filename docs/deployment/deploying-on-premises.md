@@ -40,9 +40,9 @@ This procedure installs the following services:
     - **22 TCP**: to connect using SSH to admin OpenVidu.
     - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
     - **443 TCP**: OpenVidu server and application are published in standard https port.
-    - **3478 TCP+UDP**: used by TURN Server to establish media connections.
-    - **40000 - 57000 TCP+UDP**: ports used by Kurento Media Server to establish media connections.
-    - **57001 - 65535 TCP+UDP**: used by TURN server to establish media connections.<br><br>
+    - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
+    - **40000 - 57000 TCP+UDP**: used by Kurento Media Server to establish media connections.
+    - **57001 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 
 - **Get yourself a domain name**: OpenVidu is deployed using HTTPS because it is mandatory to use WebRTC. Then, if you do not have a domain name, an ugly warning will appear to your users when enter to your site. And of course you can suffer a man-in-the-middle attack. So you will need a domain name pointing to your machine's public IP. You don't need a valid SSL certificate as one can be automatically created for you by Let's Encrypt during the installation process.
 
@@ -318,10 +318,6 @@ Configuration properties
 
 ...
 ```
-
-### Java options
-
-To use Java options in openvidu-server service change the property `JAVA_OPTIONS` in configuration file `.env`.<br>For further information about possible values for Java options visit [Configuring Java Options](https://docs.oracle.com/cd/E37116_01/install.111210/e23737/configuring_jvm.htm){:target="_blank"}.
 
 ### Change log level of the services
 

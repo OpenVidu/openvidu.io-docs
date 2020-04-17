@@ -76,13 +76,14 @@ Once you have your instances ready, be sure to meet the following criteria in th
     - **22 TCP**: to connect using SSH to admin OpenVidu.
     - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
     - **443 TCP**: OpenVidu Inspector is served in standard https port.
-    - **3478 TCP+UDP**: used by TURN server to establish media connections.<br><br>
+    - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
+    - **40000 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 
 - **Opened ports in _Media Nodes_**
 
     - **22 TCP**: to connect using SSH to admin OpenVidu.
-    - **40000 - 65535 TCP+UDP**: ports used by Kurento Media Server to establish media connections.
-    - **8888 TCP (must only be accessible for OpenVidu Server Pro instance)**: Kurento Media Server handler listens on port 8888.<br><br>
+    - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
+    - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> Port 8888 **must only be accessible for OpenVidu Server Pro instance**. Access trough this port must be restricted from the Internet, or anyone could spy your sessions.<br><br>
 
 - **Get yourself a domain name**: OpenVidu Pro is deployed using HTTPS because it is mandatory to use WebRTC. Then, if you do not have a domain name, an ugly warning will appear to your users when enter to your site. And of course you can suffer a man-in-the-middle attack. So you will need a domain name pointing to the **OpenVidu Server Pro Node** public IP. You don't need a valid SSL certificate as one can be automatically created for you by Let's Encrypt during the installation process.
 
@@ -380,9 +381,9 @@ Run the following commands to manage Media Node service:
 
 ### Set the number of Media Nodes on startup
 
-To deploy your OpenVidu Pro cluster with a specific initial number of Media Nodes you just need to . You first have to prepare the maximum number of Media Nodes you want. For example, if you want your cluster to be able to grow up to 3 Media Nodes, then you will need 4 hosts in your infrastructure: one for the OpenVidu Server Pro Node and three for each Media Node. Check out the Cluster machines prerequisites.
+To deploy your OpenVidu Pro cluster with a specific initial number of Media Nodes you just need to install the Media Node service in as many machines as Media Nodes you want. For example, if you want your cluster to be able to grow up to 3 Media Nodes, then you will need 4 machines in your infrastructure: 1 for the OpenVidu Server Pro Node and 3 for each Media Node.
 
-Then you just need to properly configure the inventory.yml file with each instance IP before running Ansible's playbook. This way your cluster will start with the desired number of Media Nodes.
+Check out the [Prerequisites](#1-prerequisites) section and make sure that all of your machines intended to run a Media Node service fulfill the requirements for doing so. Then [install and run the Media Node service](#3-media-nodes) in all of them.
 
 ### Change the number of Media Nodes on the fly
 
@@ -399,7 +400,7 @@ In Cluster page you can add and remove Media Nodes from your cluster just by pre
 > **WARNING**: adding/removing Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically launch/terminate your physical machines:
 >
 > - To add a new Media Node you need to have the new Media Node already up and running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one) and define its URI like stated in the image above.<br><br>
-> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then, you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
 #### With OpenVidu Pro REST API
 
@@ -413,7 +414,7 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your physical machines:
 >     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} using **`uri`** query parameter.
->     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. You can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+>     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then. you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
 <br>
 
@@ -544,10 +545,6 @@ Configuration properties
 
 ...
 ```
-
-#### Java options
-
-To use Java options in openvidu-server service change the property `JAVA_OPTIONS` in configuration file `.env`.<br>For further information about possible values for Java options visit [Configuring Java Options](https://docs.oracle.com/cd/E37116_01/install.111210/e23737/configuring_jvm.htm){:target="_blank"}.
 
 #### Change log level of the services
 
