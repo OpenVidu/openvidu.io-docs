@@ -91,7 +91,7 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 
 > It will probably output something like `192.168.0.105`. Your **complete OpenVidu public url** would then be `https://192.168.0.105:4443/`
 
-When you have your OpenVidu public url, you must set it in `default_openvidu_url` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"} and in the `openvidu.publicurl` parameter used to run _openvidu-server_ (see next point)
+When you have your OpenVidu public url, you must set it in `default_openvidu_url` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"} and in the `OPENVIDU_PUBLICURL` parameter used to run _openvidu-server_ (see next point)
 
 **4)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"})
 
@@ -99,10 +99,10 @@ When you have your OpenVidu public url, you must set it in `default_openvidu_url
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
 
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
 ```
 
-> Remember changing `openvidu.publicurl` parameter to the actual value. In this example that would be:<br>`-e openvidu.publicurl=https://192.168.0.105:4443/`
+> Remember changing `OPENVIDU_PUBLICURL` parameter to the actual value. In this example that would be:<br>`-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`
 
 **5)** Connect the device to the same network as your PC
 

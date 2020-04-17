@@ -1,7 +1,7 @@
 <h2 id="section-title">OpenVidu Server CDR</h2>
 <hr>
 
-OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every media connection established by each one of the users (sending or receiving). To start OpenVidu Server with CDR enabled, launch it with option `openvidu.cdr=true`. The CDR file will be located under `log/` folder in the same path as your Java executable.
+OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every media connection established by each one of the users (sending or receiving). To start OpenVidu Server with CDR enabled, launch it with option `OPENVIDU_CDR=true`. The CDR file will be located under `log/` folder in the same path as your Java executable.
 
 The record is a plain text file containing one standard JSON entry for each line. All JSON entries have the following structure:
 

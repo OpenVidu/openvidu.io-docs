@@ -78,7 +78,7 @@ If you have changed your HTML, JavaScript or CSS code, refreshed the page and ca
 ##### Share your app through your network to test with multiple devices
 Making your app accessible to any device connected to your LAN network is very useful for quickly testing your app with different devices at the same time. To achieve this, you just have to indicate OpenVidu Server to use your dev machine LAN IP address as public url. For example, let's say that your machine has assigned ip `192.168.0.107` in your network:
 
-`docker run -p 4443:4443 -e openvidu.publicurl=https://192.168.0.107:4443/ openvidu/openvidu-server-kms:2.12.0`
+`docker run -p 4443:4443 -e OPENVIDU_PUBLICURL=https://192.168.0.107:4443/ openvidu/openvidu-server-kms:2.12.0`
 
 Then you just have to configure your app (REST API address / OpenVidu Java Client / OpenVidu Node Client) to connect to OpenVidu through `https://192.168.0.107:4443/`. Any user connecting to your app through `https://192.168.0.107:WHICHEVER_PORT_YOUR_APP_IS_LISTENING_THROUGH` will be able to send and receive video.
 
@@ -88,18 +88,18 @@ Then you just have to configure your app (REST API address / OpenVidu Java Clien
 
 Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accessible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`).
 
-First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `openvidu.publicurl` to the IP allocated for Docker in your Windows machine.
+First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `OPENVIDU_PUBLICURL` to the IP allocated for Docker in your Windows machine.
 
 What in Linux/Mac is...
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.12.0
 ```
 
 ...in Windows is...
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.12.0
 ```
 
 Then, to let your applications know how to connect to OpenVidu Server:

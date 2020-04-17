@@ -52,8 +52,8 @@ java -jar \
 openvidu-server.jar
 ```
 
-- `openvidu.recording`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/){:target="_blank"}) will be downloaded.
-- `openvidu.recording.path`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path
+- `OPENVIDU_RECORDING`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/){:target="_blank"}) will be downloaded.
+- `OPENVIDU_RECORDING_PATH`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path
 
 > There are other environment variables related to recordings configuration that may be set. To see the full list, visit [OpenVidu Server configuration parameters](reference-docs/openvidu-server-params/){:target="_blank"}
 
@@ -63,20 +63,20 @@ openvidu-server.jar
 docker run -p 4443:4443 --rm \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording=true \
-    -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
+    -e OPENVIDU_RECORDING=true \
+    -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
 openvidu/openvidu-server-kms:2.12.0
 ```
 
-- `openvidu.recording`: _same as in OpenVidu Server JAR_
-- `openvidu.recording.path`: _same as in OpenVidu Server JAR_
+- `OPENVIDU_RECORDING`: _same as in OpenVidu Server JAR_
+- `OPENVIDU_RECORDING_PATH`: _same as in OpenVidu Server JAR_
 
 It is also necessary to mount 2 volumes:
 
 - `-v /var/run/docker.sock:/var/run/docker.sock`: gives openvidu-server container access to the local Docker daemon
 - `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`: gives access to the recorded video files through the container
 
-> **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in property `openvidu.recording.path=/PATH/TO/VIDEO/FILES` and in both sides of flag `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`
+> **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in property `OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES` and in both sides of flag `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`
 
 <br>
 
@@ -423,7 +423,7 @@ openvidu.startRecording(sessionId, {
 
 # Automatic stop of recordings
 
-Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `openvidu.recording.autostop-timeout`](reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
+Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
 
 - For any recorded session, if last user disconnects from the session
 
@@ -536,7 +536,7 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
 
 ### 2. Add new properties when launching openvidu-server
 
-You can configure where should OpenVidu Server look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `openvidu.recording.custom-layout`. OpenVidu Server must have read access to that path, where you must have stored the `index.html` file of your layout.
+You can configure where should OpenVidu Server look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`. OpenVidu Server must have read access to that path, where you must have stored the `index.html` file of your layout.
 
 <br>
 **[openvidu-server.jar](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}**
@@ -558,13 +558,13 @@ docker run -p 4443:4443 --rm \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -v /PATH/TO/INDEX/CUSTOM/LAYOUT:/PATH/TO/INDEX/CUSTOM/LAYOUT \
     -e MY_UID=$(id -u $USER) \
-    -e openvidu.recording=true \
-    -e openvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -e openvidu.recording.custom-layout=/PATH/TO/INDEX/CUSTOM/LAYOUT \
+    -e OPENVIDU_RECORDING=true \
+    -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
+    -e OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT \
 openvidu/openvidu-server-kms:2.12.0
 ```
 
-> **WARNING**: remember to add the `-v` option mounting the path defined with `openvidu.recording.custom-layout`
+> **WARNING**: remember to add the `-v` option mounting the path defined with `OPENVIDU_RECORDING_CUSTOM_LAYOUT`
 
 <br>
 **[OpenVidu AWS deployment](deployment/deploying-aws/){:target="_blank"}**
@@ -626,7 +626,7 @@ openvidu.startRecording(sessionId, {
 
 ## Configuring multiple custom layouts
 
-You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path defined with system property `openvidu.recording.custom-layout` (default value `/opt/openvidu/custom-layout`). Then, when configuring your sessions as stated above in point 3, just add a new parameter:
+You can implement as many custom recording layouts as you want. Simply store each one of them (each one with its own `index.html` entrypoint file) in a subfolder under path defined with system property `OPENVIDU_RECORDING_CUSTOM_LAYOUT` (default value `/opt/openvidu/custom-layout`). Then, when configuring your sessions as stated above in point 3, just add a new parameter:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -675,7 +675,7 @@ openvidu.startRecording(sessionId, {
 
 <br>
 
-In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `openvidu.recording.custom-layout` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu Server host:
+In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `OPENVIDU_RECORDING_CUSTOM_LAYOUT` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu Server host:
 
 ```
 /opt
@@ -690,7 +690,7 @@ In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu
     ...
 ```
 
-You should start openvidu-server with property `openvidu.recording.custom-layout=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout in a recording, just configure in recording properties `recordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `customLayout` to `layout1` or `layout2`.
+You should start openvidu-server with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT=/opt/openvidu/my_custom_layouts` and you can use any of the 3 `index.html` files for recording any of your sessions. To use the outer layout in a recording, just configure in recording properties `recordingLayout` to `CUSTOM`. To use any of the inner layouts, also configure `customLayout` to `layout1` or `layout2`.
 
 <br>
 
@@ -755,7 +755,7 @@ openvidu.startRecording(sessionId, {
 
 ## Debugging your custom layouts
 
-To debug your custom layout, you just need to store it in the path declared with property `openvidu.recording.custom-layout`, as explained in section [Add new properties when launching openvidu-server](#2-add-new-properties-when-launching-openvidu-server).
+To debug your custom layout, you just need to store it in the path declared with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`, as explained in section [Add new properties when launching openvidu-server](#2-add-new-properties-when-launching-openvidu-server).
 
 Then, by using your OpenVidu application, start a session and as many publishers as you expect to be recorded in your custom layout. Finally you just have to connect to your layout through **Chrome** by entering url:
 
@@ -763,7 +763,7 @@ Then, by using your OpenVidu application, start a session and as many publishers
 
 Being:
 
-- `SECRET`: parameter `openvidu.secret` configured when launching openvidu-server
+- `SECRET`: parameter `OPENVIDU_SECRET` configured when launching openvidu-server
 - `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
 - `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-apisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 

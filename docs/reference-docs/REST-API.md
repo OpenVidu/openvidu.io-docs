@@ -58,7 +58,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
 > - **defaultCustomLayout** _(optional string. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
->     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-server-params/){:target="_blank"} property `openvidu.recording.custom-layout`)
+>     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-server-params/){:target="_blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`)
 
 <div></div>
 
@@ -98,10 +98,10 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - `MODERATOR`<br><br>
 > - **data** _(optional string)_ : metadata associated to this token (usually participant's information)<br><br>
 > - **kurentoOptions** _(optional JSON object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
->     - **videoMaxRecvBandwidth**: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.max-recv-bandwidth`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._
->     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.min-recv-bandwidth`) for every incoming stream of the user owning the token.
->     - **videoMaxSendBandwidth**: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.max-send-bandwidth`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._
->     - **videoMinSendBandwidth**: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `openvidu.streams.video.min-send-bandwidth`) for every outgoing stream of the user owning the token.
+>     - **videoMaxRecvBandwidth**: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._
+>     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.
+>     - **videoMaxSendBandwidth**: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._
+>     - **videoMinSendBandwidth**: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu Server configuration](reference-docs/openvidu-server-params){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.
 >     - **allowedFilters**: array of strings containing the names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/){:target="_blank"})
 
 <div></div>
@@ -345,7 +345,7 @@ _Available from **OpenVidu >= 2.12.0**_
 >     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
 >     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **customLayout** _(optional string. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server system property](reference-docs/openvidu-server-params/){:target="_blank"} `openvidu.recording.custom-layout`) . This property will override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording<br><br>
+> - **customLayout** _(optional string. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server system property](reference-docs/openvidu-server-params/){:target="_blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`) . This property will override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording<br><br>
 > - **resolution** _(optional string. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999
 
 <div></div>
@@ -377,7 +377,7 @@ _Available from **OpenVidu >= 2.12.0**_
 > - `404`: no session exists for the passed `sessionId` parameter
 > - `406`: the session has no connected participants
 > - `409`: the session is not configured for using MediaMode `ROUTED` or it is already being recorded
-> - `501`: OpenVidu Server recording module is disabled (`openvidu.recording` property set to `false`)
+> - `501`: OpenVidu Server recording module is disabled (`OPENVIDU_RECORDING` property set to `false`)
 
 ---
 
@@ -404,8 +404,8 @@ _Available from **OpenVidu >= 2.12.0**_
 > - `createdAt`: time when the recording started in UTC milliseconds
 > - `size`: size in bytes of the video file
 > - `duration`: duration of the video file in seconds
-> - `url`: set to `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`. This path will be protected with OpenVidu credentials depending on whether [openvidu-server system property `openvidu.recording.public-access`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true
-> - `status`: set to `"stopped"` or `"available"` depending on whether [openvidu-server system property `openvidu.recording.public-access`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true
+> - `url`: set to `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`. This path will be protected with OpenVidu credentials depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true
+> - `status`: set to `"stopped"` or `"available"` depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true
 
 <div></div>
 
@@ -440,7 +440,7 @@ _Available from **OpenVidu >= 2.12.0**_
 > - `createdAt`: time when the recording started in UTC milliseconds
 > - `size`: size in bytes of the video file (0 until stop operation is called)
 > - `duration`: duration of the video file in seconds (0 until stop operation is called)
-> - `url`: set to `null` until stop operation is called. Then it will be `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`, path that may be protected with OpenVidu credentials depending on whether [openvidu-server system property `openvidu.recording.public-access`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true.
+> - `url`: set to `null` until stop operation is called. Then it will be `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`, path that may be protected with OpenVidu credentials depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-server-params/){:target="_blank"} is false or true.
 > - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"ready"`, `"failed"`)
 
 <div></div>

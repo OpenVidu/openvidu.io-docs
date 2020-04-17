@@ -58,7 +58,7 @@ ionic serve
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
 
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.12.0
 ```
 
 6) Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -126,16 +126,16 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 
 > It will probably output something like `192.168.0.105`. Your **complete OpenVidu public url** would then be `https://192.168.0.105:4443/`
 
-When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"} and in the `openvidu.publicurl` parameter used to run *openvidu-server* (see next point)
+When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"} and in the `OPENVIDU_PUBLICURL` parameter used to run *openvidu-server* (see next point)
 
 
 6) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
 
 ```bash
-docker run -p 4443:4443 --rm -e openvidu.secret=MY_SECRET -e openvidu.publicurl=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
 ```
 
-> Remember changing `openvidu.publicurl` parameter to the actual value. In this example that would be:<br>`-e openvidu.publicurl=https://192.168.0.105:4443/`
+> Remember changing `OPENVIDU_PUBLICURL` parameter to the actual value. In this example that would be:<br>`-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`
 
 7) Connect the device to the PC. You must enable USB debugging and give permissions (check out [last section here in Ionic docs](https://beta.ionicframework.com/docs/installation/android/#set-up-an-android-device){:target="_blank"})
 

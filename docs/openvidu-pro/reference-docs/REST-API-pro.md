@@ -35,7 +35,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Query params**
 >
-> - `load` _(optional boolean, default to false)_ : whether to return Media Node load or not. The value will depend on [configuration property `openvidu.pro.cluster.load-strategy`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+> - `load` _(optional boolean, default to false)_ : whether to return Media Node load or not. The value will depend on [configuration property `OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 > - `sessions` _(optional boolean, default to false)_ : whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. Session information has same format as returned by method [GET /api/sessions/&lt;SESSION_ID&gt;](reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}
 > - `extra-info` _(optional boolean, default to false)_ : whether to return extra information about the Media Node or not. Only for advanced users
 >
@@ -65,7 +65,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: the Media Node information has been successfully retrieved
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
-> - `501`: [configuration property `openvidu.pro.cluster`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
+> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -81,7 +81,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Query params**
 >
-> - `load` _(optional boolean, default to false)_ : whether to return Media Nodes load or not. The value will depend on [configuration property `openvidu.pro.cluster.load-strategy`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+> - `load` _(optional boolean, default to false)_ : whether to return Media Nodes load or not. The value will depend on [configuration property `OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 > - `sessions` _(optional boolean, default to false)_ : whether to return session information along Media Nodes information or not.  Media Node will be retrieved. Session information has same format as returned by method [GET /api/sessions/&lt;SESSION_ID&gt;](reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}
 > - `extra-info` _(optional boolean, default to false)_ : whether to return extra information about the Media Nodes or not. Only for advanced users
 >
@@ -101,7 +101,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > **HTTP responses**
 >
 > - `200`: Media Nodes information has been successfully retrieved
-> - `501`: [configuration property `openvidu.pro.cluster`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
+> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -130,7 +130,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **uri** _(mandatory string only if `openvidu.pro.cluster.mode` is `manual`)_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account if [openvidu.pro.cluster.mode](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `manual`**. For mode `auto` a new Media Node will be automatically launched ignoring parameter `uri`
+> - **uri** _(mandatory string only if `OPENVIDU_PRO_CLUSTER_MODE` is `manual`)_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account if [OPENVIDU_PRO_CLUSTER_MODE](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `manual`**. For mode `auto` a new Media Node will be automatically launched ignoring parameter `uri`
 
 <div></div>
 
@@ -146,8 +146,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `400`: problem with some body parameter
 > - `404`: the Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration...
 > - `409`: the Media Node was already registered in OpenVidu Server
-> - `501`: configuration property [openvidu.pro.cluster](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false, or is true but property [`openvidu.pro.cluster.mode`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `manual` and no `uri` parameter was passed in the body request.
-> - `502`: the process of launching a new Media Node instance failed. Only possible if property [`openvidu.pro.cluster.mode`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `auto`
+> - `501`: configuration property [OPENVIDU_PRO_CLUSTER](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false, or is true but property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `manual` and no `uri` parameter was passed in the body request.
+> - `502`: the process of launching a new Media Node instance failed. Only possible if property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `auto`
 
 ---
 
@@ -181,8 +181,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the Media Node was successfully removed
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
 > - `409`: if query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all.
-> - `501`: configuration property [openvidu.pro.cluster](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
-> - `502`: error while terminating the Media Node instance. Only possible if property [`openvidu.pro.cluster.mode`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `auto`
+> - `501`: configuration property [OPENVIDU_PRO_CLUSTER](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
+> - `502`: error while terminating the Media Node instance. Only possible if property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to `auto`
 
 ---
 
@@ -216,7 +216,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the Media Node has not been modified because its status was the same as the provided through body parameters
 > - `400`: problem with some body parameter. This will also be the status if you try to set property `status` to an invalid one (`launching`, `failed`, `terminated`)
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
-> - `501`: [configuration property `openvidu.pro.cluster`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
+> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -240,7 +240,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: autodiscovery process has completed
 > - `405`: autodiscovery process is not possible. This may happen if OpenVidu Pro cluster environment is set to `on_premise` and no autodiscover script is available.
-> - `501`: [configuration property `openvidu.pro.cluster`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
+> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -251,7 +251,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**          | POST                                                                            |
 | **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/restart/                             |
 | **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**               | ```{"openvidu.secret": "MY_SECRET", "openvidu.cdr": true, "openvidu.recording": true, "openvidu.recording.public-access": true, "openvidu.recording.notification": "publisher_moderator", "openvidu.recording.path": "/opt/openvidu/recordings", "openvidu.recording.custom-layout": "/opt/openvidu/custom-layout", "openvidu.recording.autostop-timeout": 120, "openvidu.webhook": true, "openvidu.webhook.endpoint": "http://localhost:7777/webhook/", "openvidu.webhook.headers": [\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"], "openvidu.webhook.events": ["recordingStatusChanged"], "openvidu.streams.video.max-recv-bandwidth": 1000, "openvidu.streams.video.min-recv-bandwidth": 300, "openvidu.streams.video.max-send-bandwidth": 1000, "openvidu.streams.video.min-send-bandwidth": 300, "openvidu.pro.stats.monitoring-interval": 30, "openvidu.pro.stats.webrtc-interval": 20}``` |
+| **Body**               | ```{"OPENVIDU_SECRET": "MY_SECRET", "OPENVIDU_CDR": true, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_PUBLIC_ACCESS": true, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": true, "OPENVIDU_WEBHOOK_ENDPOINT": "http://localhost:7777/webhook/", "OPENVIDU_WEBHOOK_HEADERS": [\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"], "OPENVIDU_WEBHOOK_EVENTS": ["recordingStatusChanged"], "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 30, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 20}``` |
 
 > **Body parameters**
 >
@@ -259,24 +259,24 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **openvidu.secret** _(optional string)_ : new secret to secure OpenVidu Pro
-> - **openvidu.cdr** _(optional boolean)_ : whether to enable OpenVidu Call Detail Record or not
-> - **openvidu.recording** _(optional boolean)_ : whether to enable OpenVidu recording module or not
-> - **openvidu.recording.public-access** _(optional boolean)_ : whether to allow free http access to recorded sessions or not
-> - **openvidu.recording.notification** _(optional string)_ : which users should receive the recording events in the client side (`"all"`, `"publisher_moderator"`, `"moderator"` or `"none"`)
-> - **openvidu.recording.path** _(optional string)_ : system path where to store the video files of recorded session
-> - **openvidu.recording.custom-layout** _(optional string)_ : sytem path where OpenVidu Server should look for custom recording layouts
-> - **openvidu.recording.autostop-timeout** _(optional number)_ : timeout in seconds for recordings to automatically stop
-> - **openvidu.webhook** _(optional boolean)_ : whether to enable webhook service or not
-> - **openvidu.webhook.endpoint** _(optional string)_ : endpoint where OpenVidu Server should sent webhook events. Mandatory if `openvidu.webhook` is true
-> - **openvidu.webhook.headers**: _(optional array of strings)_ : HTTP headers OpenVidu Server should attach to each POST message of webhook events
-> - **openvidu.webhook.events** _(optional array of strings)_ : events for which a POST message will be sent by OpenVidu Server webhook service
-> - **openvidu.streams.video.max-recv-bandwidth** _(optional number)_ : maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
-> - **openvidu.streams.video.min-recv-bandwidth** _(optional number)_ : minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
-> - **openvidu.streams.video.max-send-bandwidth** _(optional number)_ : maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
-> - **openvidu.streams.video.min-send-bandwidth** _(optional number)_ : minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
-> - **openvidu.pro.stats.monitoring-interval** _(optional number)_ : interval in seconds for CPU, memory and net usage stats gathering in OpenVidu Server Pro host machine. 0 means no gathering at all
-> - **openvidu.pro.stats.webrtc-interval** _(optional number)_ : interval in seconds for WebRTC stats gathering from Kurento Media Server WebRTC endpoints. 0 means no gathering at all
+> - **OPENVIDU_SECRET** _(optional string)_ : new secret to secure OpenVidu Pro
+> - **OPENVIDU_CDR** _(optional boolean)_ : whether to enable OpenVidu Call Detail Record or not
+> - **OPENVIDU_RECORDING** _(optional boolean)_ : whether to enable OpenVidu recording module or not
+> - **OPENVIDU_RECORDING_PUBLIC_ACCESS** _(optional boolean)_ : whether to allow free http access to recorded sessions or not
+> - **OPENVIDU_RECORDING_NOTIFICATION** _(optional string)_ : which users should receive the recording events in the client side (`"all"`, `"publisher_moderator"`, `"moderator"` or `"none"`)
+> - **OPENVIDU_RECORDING_PATH** _(optional string)_ : system path where to store the video files of recorded session
+> - **OPENVIDU_RECORDING_CUSTOM_LAYOUT** _(optional string)_ : sytem path where OpenVidu Server should look for custom recording layouts
+> - **OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT** _(optional number)_ : timeout in seconds for recordings to automatically stop
+> - **OPENVIDU_WEBHOOK** _(optional boolean)_ : whether to enable webhook service or not
+> - **OPENVIDU_WEBHOOK_ENDPOINT** _(optional string)_ : endpoint where OpenVidu Server should sent webhook events. Mandatory if `OPENVIDU_WEBHOOK` is true
+> - **OPENVIDU_WEBHOOK_HEADERS**: _(optional array of strings)_ : HTTP headers OpenVidu Server should attach to each POST message of webhook events
+> - **OPENVIDU_WEBHOOK_EVENTS** _(optional array of strings)_ : events for which a POST message will be sent by OpenVidu Server webhook service
+> - **OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH** _(optional number)_ : maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
+> - **OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH** _(optional number)_ : minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
+> - **OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH** _(optional number)_ : maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
+> - **OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH** _(optional number)_ : minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
+> - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL** _(optional number)_ : interval in seconds for CPU, memory and net usage stats gathering in OpenVidu Server Pro host machine. 0 means no gathering at all
+> - **OPENVIDU_PRO_STATS_WEBRTC_INTERVAL** _(optional number)_ : interval in seconds for WebRTC stats gathering from Kurento Media Server WebRTC endpoints. 0 means no gathering at all
 
 <div></div>
 
