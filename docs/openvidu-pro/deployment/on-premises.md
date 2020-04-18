@@ -537,7 +537,7 @@ Configuration properties
 ---------------------  
 * CERTIFICATE_TYPE=selfsigned
 * OPENVIDU_CDR=false
-* OPENVIDU_CDR_PATH=log
+* OPENVIDU_CDR_PATH=/opt/openvidu/cdr
 * OPENVIDU_DOMAIN_OR_PUBLIC_IP=my.domain.com
 * OPENVIDU_RECORDING=true
 * OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT=120
