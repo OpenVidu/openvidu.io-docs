@@ -55,7 +55,7 @@ nav:
 - Deployment:
   - AWS: deployment/deploying-aws.md
   - On premises: deployment/deploying-on-premises.md
-  - Deploying your OpenVidu app: deployment/deploying-app.md
+  # - Deploying your OpenVidu app: deployment/deploying-app.md
   - Upgrading OpenVidu: deployment/upgrading.md
 - Contribute:
   - Developing OpenVidu: developing/index.md
