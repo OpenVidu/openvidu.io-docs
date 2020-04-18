@@ -498,11 +498,11 @@ _Available from **OpenVidu >= 2.12.0**_
 | **Operation**     | GET                                                                                                                      |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/config                                                                            |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                     |
-| **Sample return** | ```{"version": "2.9.0", "openviduPublicurl": "https://localhost:4443/", "openviduCdr": false, "maxRecvBandwidth": 1000, "minRecvBandwidth": 300, "maxSendBandwidth": 1000, "minSendBandwidth": 300, "openviduRecording": true, "openviduRecordingVersion": "2.8.0", "openviduRecordingPath": "/opt/openvidu/recordings/", "openviduRecordingPublicAccess": true, "openviduRecordingNotification": "publisher_moderator", "openviduRecordingCustomLayout": "/opt/openvidu/custom-layout/", "openviduRecordingAutostopTimeout": 120, "openviduWebhook": true, "openviduWebhookEndpoint": "http://localhost:7777/webhook/", "openviduWebhookHeaders": ["Authorization: Basic YWJjZDphYmNk"], "openviduWebhookEvents": ["recordingStatusChanged"]}``` |
+| **Sample return** | ```{"VERSION": "2.13.0", "KMS_URIS": ["ws://localhost:8888/kurento"], "OPENVIDU_PUBLICURL": "local", "OPENVIDU_CDR": false, "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_VERSION": "2.9.0", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/", "OPENVIDU_RECORDING_PUBLIC_ACCESS": false, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": true, "OPENVIDU_WEBHOOK_ENDPOINT": "https://webhook.openvidu.com/webhook", "OPENVIDU_WEBHOOK_HEADERS": [], "OPENVIDU_WEBHOOK_EVENTS": ["recordingStatusChanged", "mediaNodeStatusChanged"]}``` |
 
 > **Returned JSON**
 >
-> - `version`: version of OpenVidu Server
-> - **Rest of properties**: values given to **[system properties](reference-docs/openvidu-server-params/){:target="_blank"}** on OpenVidu Server launch
+> - `VERSION`: version of OpenVidu Server
+> - **Rest of properties**: current active values for the **[configuration properties](reference-docs/openvidu-server-params/){:target="_blank"}** of OpenVidu Server
 
 <br>

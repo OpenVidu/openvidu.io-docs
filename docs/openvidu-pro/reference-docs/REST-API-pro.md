@@ -251,32 +251,41 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**          | POST                                                                            |
 | **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/restart/                             |
 | **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**               | ```{"OPENVIDU_SECRET": "MY_SECRET", "OPENVIDU_CDR": true, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_PUBLIC_ACCESS": true, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": true, "OPENVIDU_WEBHOOK_ENDPOINT": "http://localhost:7777/webhook/", "OPENVIDU_WEBHOOK_HEADERS": [\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"], "OPENVIDU_WEBHOOK_EVENTS": ["recordingStatusChanged"], "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 30, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 20}``` |
+| **Body**               | ```{"OPENVIDU_SECRET": "MY_SECRET", "OPENVIDU_CDR": true, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_PUBLIC_ACCESS": true, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": true, "OPENVIDU_WEBHOOK_ENDPOINT": "http://localhost:7777/webhook/", "OPENVIDU_WEBHOOK_HEADERS": [\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"], "OPENVIDU_WEBHOOK_EVENTS": ["recordingStatusChanged"], "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 30, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 20}``` |
 
 > **Body parameters**
 >
-> The body of the POST request is a JSON object with the new [OpenVidu system properties](reference-docs/openvidu-server-params/){:target="_blank"} to be applied on the restart process. Not all of them are available, and a few are exclusive to [OpenVidu Pro](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}. The complete list of available properties is listed below
+> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Pro configuration properties](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"} (bear in mind not all of them are available for change using this method). All of them are optional. The complete list of available properties is listed below. Visit the configuration docs for a detailed description of each one of them.
 >
 > ---
 >
-> - **OPENVIDU_SECRET** _(optional string)_ : new secret to secure OpenVidu Pro
-> - **OPENVIDU_CDR** _(optional boolean)_ : whether to enable OpenVidu Call Detail Record or not
-> - **OPENVIDU_RECORDING** _(optional boolean)_ : whether to enable OpenVidu recording module or not
-> - **OPENVIDU_RECORDING_PUBLIC_ACCESS** _(optional boolean)_ : whether to allow free http access to recorded sessions or not
-> - **OPENVIDU_RECORDING_NOTIFICATION** _(optional string)_ : which users should receive the recording events in the client side (`"all"`, `"publisher_moderator"`, `"moderator"` or `"none"`)
-> - **OPENVIDU_RECORDING_PATH** _(optional string)_ : system path where to store the video files of recorded session
-> - **OPENVIDU_RECORDING_CUSTOM_LAYOUT** _(optional string)_ : sytem path where OpenVidu Server should look for custom recording layouts
-> - **OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT** _(optional number)_ : timeout in seconds for recordings to automatically stop
-> - **OPENVIDU_WEBHOOK** _(optional boolean)_ : whether to enable webhook service or not
-> - **OPENVIDU_WEBHOOK_ENDPOINT** _(optional string)_ : endpoint where OpenVidu Server should sent webhook events. Mandatory if `OPENVIDU_WEBHOOK` is true
-> - **OPENVIDU_WEBHOOK_HEADERS**: _(optional array of strings)_ : HTTP headers OpenVidu Server should attach to each POST message of webhook events
-> - **OPENVIDU_WEBHOOK_EVENTS** _(optional array of strings)_ : events for which a POST message will be sent by OpenVidu Server webhook service
-> - **OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH** _(optional number)_ : maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
-> - **OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH** _(optional number)_ : minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained
-> - **OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH** _(optional number)_ : maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
-> - **OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH** _(optional number)_ : minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained
-> - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL** _(optional number)_ : interval in seconds for CPU, memory and net usage stats gathering in OpenVidu Server Pro host machine. 0 means no gathering at all
-> - **OPENVIDU_PRO_STATS_WEBRTC_INTERVAL** _(optional number)_ : interval in seconds for WebRTC stats gathering from Kurento Media Server WebRTC endpoints. 0 means no gathering at all
+> - **OPENVIDU_SECRET** _(optional string)_
+> - **OPENVIDU_CDR** _(optional boolean)_
+> - **OPENVIDU_RECORDING** _(optional boolean)_
+> - **OPENVIDU_RECORDING_PATH** _(optional string)_
+> - **OPENVIDU_RECORDING_PUBLIC_ACCESS** _(optional boolean)_
+> - **OPENVIDU_RECORDING_NOTIFICATION** _(optional string)_
+> - **OPENVIDU_RECORDING_CUSTOM_LAYOUT** _(optional string)_
+> - **OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT** _(optional number)_
+> - **OPENVIDU_WEBHOOK** _(optional boolean)_
+> - **OPENVIDU_WEBHOOK_ENDPOINT** _(optional string)_
+> - **OPENVIDU_WEBHOOK_HEADERS**: _(optional array of strings)_
+> - **OPENVIDU_WEBHOOK_EVENTS** _(optional array of strings)_
+> - **OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH** _(optional number)_
+> - **OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH** _(optional number)_
+> - **OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH** _(optional number)_
+> - **OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH** _(optional number)_
+> - **OPENVIDU_SESSIONS_GARBAGE_INTERVAL** _(optional number)_
+> - **OPENVIDU_SESSIONS_GARBAGE_THRESHOLD** _(optional number)_
+> - **OPENVIDU_PRO_CLUSTER** _(optional boolean)_
+> - **OPENVIDU_PRO_CLUSTER_ENVIRONMENT** _(optional string)_
+> - **OPENVIDU_PRO_CLUSTER_MODE** _(optional string)_
+> - **OPENVIDU_PRO_CLUSTER_MEDIA_NODES** _(optional number)_
+> - **OPENVIDU_PRO_CLUSTER_AUTODISCOVERY** _(optional boolean)_
+> - **OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY** _(optional string)_
+> - **OPENVIDU_PRO_CLUSTER_PATH** _(optional string)_
+> - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL** _(optional number)_
+> - **OPENVIDU_PRO_STATS_WEBRTC_INTERVAL** _(optional number)_
 
 <div></div>
 
@@ -289,7 +298,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **NOTES**
 >
-> This method will restart OpenVidu Server Pro with the new provided configuration parameters. The new values will be stored in disk in the configuration file, so you will be able to restart the host without losing your new configuration
+> This method will restart OpenVidu Server Pro with the new provided configuration parameters. For those parameters for which no value has been provided, the previous existing will be used. The new applied values **will be stored in disk** in your configuration file, so you will be able to restart the host without losing your new configuration.
 
 ---
 
@@ -300,12 +309,12 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**     | GET                                                                  |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/config                    |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_ |
-| **Sample return** | ```{"version": "2.10.0", "openviduPublicurl": "https://localhost:4443/", "openviduCdr": false, "maxRecvBandwidth": 1000, "minRecvBandwidth": 300, "maxSendBandwidth": 1000, "minSendBandwidth": 300, "openviduRecording": true, "openviduRecordingVersion": "2.9.0", "openviduRecordingPath": "/opt/openvidu/recordings/", "openviduRecordingPublicAccess": false, "openviduRecordingNotification": "publisher_moderator", "openviduRecordingCustomLayout": "/opt/openvidu/custom-layout/", "openviduRecordingAutostopTimeout": 120, "openviduWebhook": true, "openviduWebhookEndpoint": "http://localhost:7777/webhook/", "openviduWebhookHeaders": ["Authorization: Basic YWJjZDphYmNk"], "openviduWebhookEvents": ["recordingStatusChanged"], "openviduServerDependencyVersion": "2.10.0", "openviduProStatsMonitoringInterval": 30, "openviduProStatsWebrtcInterval": 30, "openviduProCluster": false, "openviduProClusterLoadStrategy": "streams", "kmsUris": ["ws://localhost:8888/kurento"]}``` |
+| **Sample return** | ```{"VERSION": "2.13.0", "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.13.0", "OPENVIDU_PUBLICURL": "local", "OPENVIDU_CDR": true, "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_VERSION": "2.9.0", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/", "OPENVIDU_RECORDING_PUBLIC_ACCESS": false, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": false, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 0, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 5, "OPENVIDU_PRO_CLUSTER": true, "OPENVIDU_PRO_CLUSTER_ID": "TEST_CLUSTER_ID", "OPENVIDU_PRO_CLUSTER_MODE": "auto", "OPENVIDU_PRO_CLUSTER_ENVIRONMENT": "docker", "OPENVIDU_PRO_CLUSTER_AUTODISCOVERY": true, "OPENVIDU_PRO_CLUSTER_MEDIA_NODES": 1, "OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY": "streams", "OPENVIDU_PRO_CLUSTER_PATH": "/opt/openvidu/cluster/", "OPENVIDU_PRO_ELASTICSEARCH": true, "OPENVIDU_PRO_ELASTICSEARCH_HOST": "http://localhost:9200", "OPENVIDU_PRO_ELASTICSEARCH_VERSION": "7.6.2", "OPENVIDU_PRO_KIBANA": true, "OPENVIDU_PRO_KIBANA_HOST": "http://localhost:5601", "OPENVIDU_PRO_KIBANA_VERSION": "7.6.2"}``` |
 
 > **Returned JSON**
 >
-> - `version`: version of OpenVidu Server Pro
-> - `openviduServerDependencyVersion`: version of OpenVidu Server Community Edition upon which this version of OpenVidu Server Pro is built on
-> - **Rest of properties**: values given to **[system properties](reference-docs/openvidu-server-params/){:target="_blank"}** on OpenVidu Server Pro launch. These properties are mostly common to method [GET /config](reference-docs/REST-API/#get-config){:target="_blank"} of OpenVidu Server Community Edition. Some of them are [unique for OpenVidu Server Pro](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+> - `VERSION`: version of OpenVidu Server Pro
+> - `OPENVIDU_SERVER_DEPENDENCY_VERSION`: version of OpenVidu Server CE upon which this version of OpenVidu Server Pro is built on
+> - **Rest of properties**: current active values for the **[configuration properties](reference-docs/openvidu-server-params/){:target="_blank"}** of OpenVidu Server Pro. These properties are mostly common to method [GET /config](reference-docs/REST-API/#get-config){:target="_blank"} of OpenVidu Server CE. Some of them are [unique for OpenVidu Server Pro](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 
 <br>
