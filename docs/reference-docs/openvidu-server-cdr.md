@@ -17,8 +17,8 @@ So every entry is a JSON object identified by a specific event name, and all of 
 - [**participantLeft**](#participantleft)
 - [**webrtcConnectionCreated**](#webrtcconnectioncreated)
 - [**webrtcConnectionDestroyed**](#webrtcconnectiondestroyed)
-- [**recordingStatusChanged**](#recordingstatuschanged) _(from OpenVidu 2.11.0)_
-- [**filterEventDispatched**](#filtereventdispatched) _(from OpenVidu 2.12.0)_
+- [**recordingStatusChanged**](#recordingstatuschanged)
+- [**filterEventDispatched**](#filtereventdispatched)
 
 <br>
 
@@ -190,7 +190,6 @@ Example:
 
 #### filterEventDispatched
 
-_From OpenVidu 2.12.0_<br>
 Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](advanced-features/filters){:target="_blank"} to learn more.
 
 | Property          | Description                                | Value                                         |
