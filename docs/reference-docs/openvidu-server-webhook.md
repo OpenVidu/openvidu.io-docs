@@ -5,7 +5,7 @@ OpenVidu offers a webhook service to receive session events in your app server.
 
 ### Enable Webhook service
 
-The following [system properties](reference-docs/openvidu-server-params){:target="_blank"} allow enabling and configuring OpenVidu Server Webhook service:
+The following [configuration properties](reference-docs/openvidu-server-params){:target="_blank"} allow enabling and configuring OpenVidu Server Webhook service:
 
 - **`OPENVIDU_WEBHOOK`**: set it to true to enable webhook service.
 - **`OPENVIDU_WEBHOOK_ENDPOINT`**: configure the HTTP endpoint where OpenVidu Server will send the POST messages with session events. This property is mandatory if `OPENVIDU_WEBHOOK` is set to true.
@@ -19,8 +19,8 @@ For example, the configuration properties below will launch OpenVidu Server with
 ```console
 OPENVIDU_WEBHOOK=true
 OPENVIDU_WEBHOOK_ENDPOINT=http://12.34.56.78:5000/my_webhook
-OPENVIDU_WEBHOOK_HEADERS=[\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"] \
-OPENVIDU_WEBHOOK_EVENTS=["sessionCreated","sessionDestroyed","recordingStatusChanged"] \
+OPENVIDU_WEBHOOK_HEADERS=[\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"]
+OPENVIDU_WEBHOOK_EVENTS=["sessionCreated","sessionDestroyed","recordingStatusChanged"]
 ```
 
 ### How your webhook endpoint should be
