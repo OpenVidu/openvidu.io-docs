@@ -88,7 +88,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <th scope="row">Deployment on Premises <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Deploy OpenVidu in your own Ubuntu server"></th>
+                    title="Deploy OpenVidu in your own Linux server"></th>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>

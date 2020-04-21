@@ -1,6 +1,6 @@
 # Automatic reconnection
 
-Since release 2.12.0, clients are be able to automatically reconnect their media streams with OpenVidu after a network drop. To understand how this works, let's first differentiate between the two types of connections clients have with OpenVidu:
+Clients are be able to automatically reconnect their media streams with OpenVidu after a network drop. To understand how this works, let's first differentiate between the two types of connections that any client has with OpenVidu:
 
 - **Signaling plane**: this is the connection used by clients to send requests to OpenVidu (join a Session, publish a Stream...) and used by OpenVidu to send back to clients answers to those requests and one-way events.
 - **Media plane**: this is the connection used by clients and OpenVidu to actually send and receive audio/video data flows.

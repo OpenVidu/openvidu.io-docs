@@ -135,20 +135,20 @@
 			});
 		}
 
-		$('li.subnav_drop').find('ul.subnav').hide();
-		$(".subnav").find("li:contains('{{ page.title }}')").each(function (i, e) {
+		// Unfold menu fot the current selected section
+		$(".subnav").find("li.current:contains('{{ page.title }}')").each(function (i, e) {
 			var currentElement = $(e);
 			currentElement.parent().css({
 				"display": "block",
 				"visibility": "visible"
-			}); //css("background-color","blue");
+			});
 			currentElement.css({
 				"display": "block",
 				"visibility": "visible"
 			});
 		});
+		// Add click listener to menu items
 		$('li.subnav_drop div').click(function (i, e) {
-			//$('li.subnav_drop span').not(this).find('ul.subnav').hide();
 			let submenu = $(this).parent().find('ul.subnav');
 			submenu.toggle();
 			submenu.parent().find('span.arrow-up').toggle();
