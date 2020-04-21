@@ -95,16 +95,22 @@ Once you have your instances ready, be sure to meet the following criteria in th
 
 #### 2.1) Deployment
 
-Connect through SSH to Openvidu Server Pro instance. The recommended folder to install OpenVidu Pro is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
+Connect through SSH to Openvidu Server Pro instance. When you are on a terminal of the instance, change to root user. Root permissions are necessary to deploy OpenVidu.
 
+```bash
+sudo su
 ```
+
+The recommended folder to install OpenVidu Pro is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
+
+```bash
 cd /opt
 ```
 
 Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
-<code id="code-1">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_latest.sh | bash</code>
+<code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_latest.sh | bash</strong></code>
 <button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -283,7 +289,13 @@ Run the following commands to manage OpenVidu Pro service:
 
 Follow these steps to add one Media Nodes to the cluster. You can add as many Media Nodes as you want by repeating these instructions in different instances.
 
-Connect through SSH to the Media Node instance. The recommended folder to install the Media Node is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
+Connect through SSH to the Media Node instance. When you are on a terminal of the instance, change to root user. Root permissions are necessary to deploy OpenVidu.
+
+```bash
+sudo su
+```
+
+The recommended folder to install the Media Node is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
 
 ```bash
 cd /opt
@@ -292,7 +304,7 @@ cd /opt
 Now execute the following command to download and run the installation script.
 
 <p style="text-align: start">
-<code id="code-2">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_latest.sh | bash</code>
+<code id="code-2"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_latest.sh | bash</strong></code>
 <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -414,7 +426,7 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your physical machines:
 >     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"} using **`uri`** query parameter.
->     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then. you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+>     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. You can achieve this by setting the [Media Node status](openvidu-pro/scalability/#openvidu-pro-cluster-events){:target="_blank"} to `waiting-idle-to-terminate`. Then, you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance. The moment will come when `terminated` status is achieved: at that point it is safe to shut down the machine hosting the Media Node.
 
 <br>
 
@@ -424,8 +436,8 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu Server CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
+- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
@@ -539,7 +551,7 @@ Configuration properties
 * OPENVIDU_CDR=false
 * OPENVIDU_CDR_PATH=/opt/openvidu/cdr
 * OPENVIDU_DOMAIN_OR_PUBLIC_IP=my.domain.com
-* OPENVIDU_RECORDING=true
+* OPENVIDU_RECORDING=false
 * OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT=120
 * OPENVIDU_RECORDING_COMPOSED_URL=
 

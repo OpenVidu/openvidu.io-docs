@@ -52,9 +52,15 @@ This procedure installs the following services:
 
 ### 2) Deployment
 
+You need root permissions to deploy OpenVidu.
+
+```bash
+sudo su
+```
+
 The recommended folder to install OpenVidu is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
 
-```
+```bash
 cd /opt
 ```
 
@@ -312,7 +318,7 @@ Configuration properties
 * OPENVIDU_CDR=false
 * OPENVIDU_CDR_PATH=/opt/openvidu/cdr
 * OPENVIDU_DOMAIN_OR_PUBLIC_IP=my.domain.com
-* OPENVIDU_RECORDING=true
+* OPENVIDU_RECORDING=false
 * OPENVIDU_RECORDING_AUTOSTOP-TIMEOUT=120
 * OPENVIDU_RECORDING_COMPOSED-URL=
 
@@ -321,9 +327,9 @@ Configuration properties
 
 ### Change log level of the services
 
-To change the level of _openvidu-server_ logs change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
+To change the level of OpenVidu logs (***openvidu-server*** docker service) change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
 
-To change the level of Kurento Media Server _kms_ logs change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
+To change the level of Kurento Media Server logs (***kms*** docker service) change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
 ### Change Kurento Media Server docker image
 

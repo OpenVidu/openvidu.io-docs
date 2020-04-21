@@ -8,31 +8,6 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
 - You can **add and remove event listeners** to any event dispatched by an applied filter.
 - You must configure in the participant token the allowed filters the user can apply.
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: video filters that make use of <strong>OpenCV are not available for OpenVidu installations in Ubuntu 18.04</strong>, only in Ubuntu 16.04. This affects the following <a href="https://doc-kurento.readthedocs.io/en/latest/features/kurento_modules.html" target="_blank">Kurento filters</a>: <i>FaceOverlayFilter</i>, <i>ChromaFilter</i>, <i>PointerDetectorFilter</i>, <i>CrowdDetectorFilter</i>, <i>PlateDetectorFilter</i>. All other filters work fine in Ubuntu 18.04
-</div>
-</div>
-
 ---
 
 ## Step by step

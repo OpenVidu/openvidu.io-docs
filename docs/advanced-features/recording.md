@@ -15,11 +15,11 @@
 ---
 <br>
 
-OpenVidu Server can be configured to record sessions. Two types of recordings are available:
+OpenVidu Server can be configured to record sessions. Two modes of recordings are available:
 
-- **COMPOSED**: every publisher stream is composed in the same video file in a grid layout. You can use the default layout, that will evenly distribute each stream in the available space, or you can use your own custom layout.
+- **COMPOSED**: every publisher stream is composed in the same video file in a grid layout. You can use the default layout, that will evenly distribute each stream in the available space, or you can use your own custom layout implemented with HTML/CSS/JS.
 
-- **INDIVIDUAL**: every publisher stream is recorded in its own file, generating a ZIP file containing all videos along with a text file for synchronization data.
+- **INDIVIDUAL**: every publisher stream is recorded in its own file, generating a ZIP file containing all videos along with a text file with synchronization data. This recording mode cannot directly produce a single mixed video file of all the streams of the session, but is much more efficient than COMPOSED mode (which is quite demanding in terms of CPU).
 
 <br>
 
@@ -27,69 +27,61 @@ OpenVidu Server can be configured to record sessions. Two types of recordings ar
 
 # How to record sessions
 
-To start OpenVidu Server properly configured to allow session recording it is necessary to:
+### 1. Enable OpenVidu recording module
 
-### 1. Have Docker CE installed in the host machine
+#### For OpenVidu production deployments
 
-OpenVidu recording module may use a Docker image that needs to be downloaded from the cloud. The process is **100% automatic**, but you will need [Docker CE](https://docs.docker.com/install/linux/docker-ce/ubuntu/){:target="_blank"} installed in your server. If you enable OpenVidu recording service but there's no Docker installed, OpenVidu Server will fail to init, throwing the following exception:
+Configure the following property in the **`.env`** file at OpenVidu installation path (default to `/opt/openvidu`)
 
-`Exception connecting to Docker daemon: you need Docker installed in this machine to enable OpenVidu recorder service`
-
-> **[OpenVidu AWS deployment](deployment/deploying-aws/){:target="_blank"} already includes the Docker image for recording service and is always launched with recording module enabled. You don't need to install anything or wait during the first execution if you use this type of deployment for OpenVidu Server. You can go straight to [step 3](#3-configure-your-sessions-to-be-recorded)**
-
-<br>
-
----
-
-### 2. Launch OpenVidu Server with new properties
-
-#### For OpenVidu Server JAR
-
-```console
-java -jar \
-    -Dopenvidu.recording=true \
-    -Dopenvidu.recording.path=/PATH/TO/VIDEO/FILES \
-openvidu-server.jar
+```yaml
+OPENVIDU_RECORDING=true
 ```
 
-- `OPENVIDU_RECORDING`: if *true* OpenVidu recording service is enabled and sessions can be configured to be recorded. During the first execution of _openvidu-server.jar_, a Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/){:target="_blank"}) will be downloaded.
-- `OPENVIDU_RECORDING_PATH`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path
+> There are other environment variables related to recordings configuration that may be set.<br>
+> Visit [OpenVidu configuration](reference-docs/openvidu-server-params/){:target="_blank"} to see the full list.
 
-> There are other environment variables related to recordings configuration that may be set. To see the full list, visit [OpenVidu Server configuration parameters](reference-docs/openvidu-server-params/){:target="_blank"}
+#### For OpenVidu development docker container
 
-#### For OpenVidu Server Docker image _(development environment)_
+If your are using the official [openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"} docker container in your development environment and want to enable the recording module, then run it like this:
 
 ```console
 docker run -p 4443:4443 --rm \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
 openvidu/openvidu-server-kms:2.12.0
 ```
 
-- `OPENVIDU_RECORDING`: _same as in OpenVidu Server JAR_
-- `OPENVIDU_RECORDING_PATH`: _same as in OpenVidu Server JAR_
+The two configuration properties that must be set are:
+
+- `OPENVIDU_RECORDING`: enables OpenVidu recording module. Another Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/){:target="_blank"}) will be downloaded only during the first run of the container.
+- `OPENVIDU_RECORDING_PATH`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path.
 
 It is also necessary to mount 2 volumes:
 
-- `-v /var/run/docker.sock:/var/run/docker.sock`: gives openvidu-server container access to the local Docker daemon
-- `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`: gives access to the recorded video files through the container
+- `-v /var/run/docker.sock:/var/run/docker.sock`: gives OpenVidu development container access to the Docker daemon.
+- `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`: gives access to the recorded video files through the container.
 
-> **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in property `OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES` and in both sides of flag `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`
+> **IMPORTANT!** `/PATH/TO/VIDEO/FILES` must be the same in property `OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES` and in both sides of volume flag `-v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES`
+
+<p></p>
+
+> There are other environment variables related to recordings configuration that may be set.<br>
+> Visit [OpenVidu configuration](reference-docs/openvidu-server-params/){:target="_blank"} to see the full list.
 
 <br>
 
 ---
 
-### 3. Configure your Sessions to be recorded
+### 2. Configure your Sessions to be recorded
 
 <br>
 Recording can be configured in two ways:
 
 - **ALWAYS**: the session will be automatically recorded from the moment the first participant starts publishing.
 
-- **MANUAL**: you will have to tell openvidu-server when to start the recording of the session.
+- **MANUAL**: you will have to tell OpenVidu when to start the recording of the session.
 
 In both cases you can stop the recording manually, and every recording will always be automatically stopped if last user leaves the session and certain timeout elapses (see [Automatic stop of recordings](#automatic-stop-of-recordings)).
 
@@ -425,17 +417,15 @@ openvidu.startRecording(sessionId, {
 
 Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
 
-- For any recorded session, if last user disconnects from the session
+- For any recorded session, if last user disconnects from the session.
 
-- For sessions with recording mode `MANUAL`, if the recording is started and no user is publishing a stream
+- For sessions with recording mode `MANUAL`, if the recording is started and no user is publishing a stream.
 
 The only condition to abort the timeout is to have any user publishing a stream to the session within the timeout.
 
-Sessions will always remain opened and the recording active during the timeout. If it elapses and no stream is being published to the session, the recording will be stopped. If in addition there's no user connected to the session, the session will also be automatically closed.
+During the timeout sessions will always remain opened and the recording active. If the timeout elapses and no stream is being published to the session, the recording will be stopped. If in addition there's no user connected to the session, the session will also be immediately closed.
 
----
-
-You can always manually stop any recording at any time:
+You can always manually stop any recording at any time, even during the automatic stop timeout:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -490,14 +480,14 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
 
     **1) Your layout must connect to the session using a _token_ like this:**
 
-        'wss://' + location.hostname + ':4443?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+        'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
 
     Being `SESSION_ID` and `SECRET` two parameters that will be url-encoded under ids `sessionId` and `secret` respectively. So, for example:
 
         var url = new URL(window.location.href);
         var SESSION_ID = url.searchParams.get("sessionId");
         var SECRET = url.searchParams.get("secret");
-        var TOKEN = 'wss://' + location.hostname + ':4443?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+        var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
         var session = OV.initSession();
         session.connect(TOKEN);
 
@@ -508,7 +498,7 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
         var url = new URL(window.location.href);
         var SESSION_ID = url.searchParams.get("sessionId");
         var SECRET = url.searchParams.get("secret");
-        var TOKEN = 'wss://' + location.hostname + ':4443?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+        var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
         var session = OV.initSession();
 
         session.on("streamCreated", (event) => {
@@ -534,30 +524,27 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
 
 ---
 
-### 2. Add new properties when launching openvidu-server
+### 2. Configure custom layouts in OpenVidu Server
 
 You can configure where should OpenVidu Server look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`. OpenVidu Server must have read access to that path, where you must have stored the `index.html` file of your layout.
 
 <br>
-**[openvidu-server.jar](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}**
+**OpenVidu production deployments**
+
+Default path `/opt/openvidu/custom-layout` is the recommended one. But if for any reason you want to change it, then set the following property in the **`.env`** configuration file:
 
 ```console
-java -jar \
-    -Dopenvidu.recording=true \
-    -Dopenvidu.recording.path=/PATH/TO/VIDEO/FILES \
-    -Dopenvidu.recording.custom-layout: /PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu-server.jar
+OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES
 ```
 
 <br>
-**[openvidu/openvidu-server-kms Docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}** **_(development environment)_**
+**[OpenVidu development docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}** **_(development environment)_**
 
 ```console
 docker run -p 4443:4443 --rm \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
     -v /PATH/TO/INDEX/CUSTOM/LAYOUT:/PATH/TO/INDEX/CUSTOM/LAYOUT \
-    -e MY_UID=$(id -u $USER) \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -e OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT \
@@ -565,11 +552,6 @@ openvidu/openvidu-server-kms:2.12.0
 ```
 
 > **WARNING**: remember to add the `-v` option mounting the path defined with `OPENVIDU_RECORDING_CUSTOM_LAYOUT`
-
-<br>
-**[OpenVidu AWS deployment](deployment/deploying-aws/){:target="_blank"}**
-
-You must store your custom layouts in the server under default path `/opt/openvidu/custom-layout`
 
 <br>
 
@@ -755,19 +737,20 @@ openvidu.startRecording(sessionId, {
 
 ## Debugging your custom layouts
 
-To debug your custom layout, you just need to store it in the path declared with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`, as explained in section [Add new properties when launching openvidu-server](#2-add-new-properties-when-launching-openvidu-server).
+To debug your custom layout, you just need to store it in the path declared with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`, as explained in section [Configure custom layouts in OpenVidu Server](#2-configure-custom-layouts-in-openvidu-server).
 
 Then, by using your OpenVidu application, start a session and as many publishers as you expect to be recorded in your custom layout. Finally you just have to connect to your layout through **Chrome** by entering url:
 
-**https://OPENVIDUAPP:`SECRET`@`OPENVIDU_IP`:4443/layouts/custom/index.html?sessionId=`SESSION_ID`&secret=`SECRET`**
+**https://OPENVIDUAPP:`SECRET`@`OPENVIDU_IP`:`OPENVIDU_PORT`/layouts/custom/index.html?sessionId=`SESSION_ID`&secret=`SECRET`**
 
 Being:
 
 - `SECRET`: parameter `OPENVIDU_SECRET` configured when launching openvidu-server
 - `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
+- `OPENVIDU_PORT`: port where openvidu-server is listening. In OpenVidu production deployments this is by default `443` and if using the development container it is by default `4443`.
 - `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-apisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 
-> By connecting with Chrome to the above URL you will see the exact result obtained when recording a session with your custom layout. You can now start changing the HTML/CSS/JS files of your layout until you are happy with the outcome
+> By connecting with Chrome to the above URL you will see the exact result obtained when recording a session with your custom layout. You can open the browsers console to debug any error, and you can also change the HTML/CSS/JS files of your layout until you are happy with the outcome. Refresh the browser's tab after any change in the HTML/JS/CSS files to see the changes.
 
 <br>
 
@@ -790,7 +773,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     var url = new URL(window.location.href);
     var SESSION_ID = url.searchParams.get("sessionId");
     var SECRET = url.searchParams.get("secret");
-    var TOKEN = 'wss://' + location.hostname + ':4443?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+    var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
 
     var OV = new OpenVidu();
     var session = OV.initSession();

@@ -1,88 +1,61 @@
-<h2 id="section-title">OpenVidu Server configuration parameters</h2>
+<h2 id="section-title">OpenVidu Server configuration</h2>
 <hr>
 
-- **[Configuration parameters for OpenVidu Server](#configuration-parameters-for-openvidu-server)**
-- **[Extra configuration parameters for OpenVidu Server Docker container](#extra-configuration-parameters-for-openvidu-server-docker-container)**
-- **[Externalizing configuration](#externalizing-configuration)**
+This page lists all available configuration properties for OpenVidu Server, as well as their possible values and the default ones.<br>
+These properties may be set:
+
+- In any official production deployment of OpenVidu: in the **`.env`** config file at OpenVidu installation path (default `/opt/openvidu`).
+- In the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"}: passing them as environment variables with flag **`-e PROPERTY=value`**
 
 ---
 
-### Configuration parameters for OpenVidu Server
+- **[Configuration parameters for OpenVidu](#configuration-parameters-for-openvidu)**
+- **[Special conditions of OpenVidu development container](#special-conditions-of-openvidu-development-container)**
+
+---
+
+### Configuration parameters for OpenVidu
 
 | Parameter                          | Description   										           | Default value   |
 | ---------------------------------- | --------------------------------------------------------------- | --------------- |
-| `server.port`                      | Port where OpenVidu Server will listen to client's connections  | ***4443***      |
-| `kms.uris`                         | KMS URL's to which OpenVidu Server will try to connect. They are tested in order until a valid one is found | ***["ws://localhost:8888/kurento"]***<br>(default value for a KMS running in the same machine as OpenVidu Server) |
-| `openvidu.secret`                  | Secret used to connect to OpenVidu Server. This value is required when using the [REST API](reference-docs/REST-API/){:target="_blank"} or any server client ([openvidu-java-client](reference-docs/openvidu-java-client){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client){:target="_blank"}), as well as when connecting to openvidu-server dashboard     | ***MY_SECRET*** |
-| `openvidu.publicurl`               | URL to connect clients to OpenVidu Server. This can be the full IP (protocol, host and port) or just a domain name if you have configured it. For example:<br>• `https://my.openvidu.server.com`<br>• `https://12.34.56.78:4443/` | ***local***<br>(with default value _local_ this parameter will be set to `localhost:PORT`, being _PORT_ the param `server.port`) |
-| `openvidu.cdr`                     | Whether to enable Call Detail Record or not (check [Call Detail Record](reference-docs/openvidu-server-cdr){:target="_blank"}) | ***false*** |
-| `openvidu.recording`               | Whether to enable recording module or not (check [Recording](advanced-features/recording/){:target="_blank"})  | ***false*** |
-| `openvidu.recording.path`          | System path where to store the video files of recorded sessions | ***/opt/openvidu/recordings*** |
-| `openvidu.recording.public-access` | Whether to allow free http access to recorded sessions or not.<br>If *true* path `https://OPENVIDU_IP:[server.port]/[openvidu.recording.path]` will be publicly accessible through `https://OPENVIDU_IP:[server.port]/recordings` path. That means any client can connect to<br><strong style="word-break: break-all">https://OPENVIDU_IP:[server.port]/recordings/&lt;RECORDING_ID&gt;/&lt;RECORDING_NAME&gt;.&lt;EXTENSION&gt;</strong><br>and access the recorded video file.<br>If *false* this path will be secured with `openvidu.secret`.<br>For example, for OpenVidu Server launched in *my.url.com* and configured with *server.port=5000*, *openvidu.recording=true*, *openvidu.recording-path=/my/path* and *openvidu.recording.public-access=true* :<br>A session with id *foo* that has been recorded may generate a video file locally stored in the host machine under `/my/path/foo/foo.mp4` and accesible by any client connecting to `https://my.url.com:5000/recordings/foo/foo.mp4` | ***false*** |
-| `openvidu.recording.notification`  | Which users should receive the recording events in the client side (`recordingStarted`, `recordingStopped`). Can be `all` (every user connected to the session), `publisher_moderator` (users with role 'PUBLISHER' or 'MODERATOR'), `moderator` (only users with role 'MODERATOR') or `none` (no user will receive these events) | ***publisher_moderator*** |
-| `openvidu.recording.custom-layout` | System path where OpenVidu Server should look for custom recording layouts  | ***/opt/openvidu/custom-layout*** |
-| `openvidu.recording.autostop-timeout` | Timeout in seconds for recordings to automatically stop (and the session involved to be closed) when conditions are met: a session recording is started but no user is publishing to it or a session is being recorded and last user disconnects. If a user publishes within the timeout in either case, the automatic stop of the recording is cancelled | ***120*** |
-| `openvidu.webhook` | Whether to enable webhook service or not (check [OpenVidu Server Webhook](reference-docs/openvidu-server-webhook/){:target="_blank"}) | ***false*** |
-| `openvidu.webhook.endpoint` | HTTP endpoint where OpenVidu Server will send the POST messages with webhook events |  |
-| `openvidu.webhook.headers` | Array of strings with the HTTP headers that OpenVidu Server will append to each POST message of webhook events. For example, you may configure a Basic Auth header _name:pass_ setting this property to `[\"Authorization:\ Basic\ bmFtZTpwYXNz\"]` | ***[ ]*** |
-| `openvidu.webhook.events` | Array of strings with the type of events you want OpenVidu Server to send to your webhook | <span style="word-break: break-word; font-weight: bold; font-style: italic">["sessionCreated","sessionDestroyed","participantJoined","participantLeft","webrtcConnectionCreated","webrtcConnectionDestroyed","recordingStatusChanged"]</span><br>(all available events) |
-| `openvidu.streams.video.max-recv-bandwidth` | Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***1000*** |
-| `openvidu.streams.video.min-recv-bandwidth` | Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***300***  |
-| `openvidu.streams.video.max-send-bandwidth` | Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***1000*** |
-| `openvidu.streams.video.min-send-bandwidth` | Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***300***  |
-| `server.ssl.key-store`             | Path for using custom JKS certificate                           | _(selfsigned OpenVidu key-store)_ |
-| `server.ssl.key-store-password`    | Password for the custom JKS                                     | _(selfsigned OpenVidu password)_  |
-| `server.ssl.key-alias`             | Alias for the custom JKS                                        | _(selfsigned OpenVidu alias)_     |
-
-Examples:
-
-```console
-java -Dopenvidu.secret=YOUR_SECRET -Dopenvidu.publicurl=https://my.openvidu.server.ip:3333/ -Dopenvidu.cdr=true -Dserver.port=3333 -Dkms.uris=["ws://my.kms.ip:8888/kurento"] -jar openvidu-server.jar
-```
+| **`OPENVIDU_DOMAIN_OR_PUBLIC_IP`** | Domain name where OpenVidu Server will be available. If you do not have one, the public IP of the machine. Clients will use this to connect to OpenVidu Server. For example:<br>• `openvidu.example.com`<br>• `198.51.100.1` | |
+| **`OPENVIDU_SECRET`**                  | Secret used to connect to OpenVidu Server. This value is required when using the [REST API](reference-docs/REST-API/){:target="_blank"} or any server client ([openvidu-java-client](reference-docs/openvidu-java-client){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client){:target="_blank"}), as well as when connecting to openvidu-server dashboard     | |
+| **`CERTIFICATE_TYPE`** | Which type of certificate you want to use in your OpenVidu deployment. Can be:<br>• `selfsigned`<br>• `owncert`<br>• `letsencrypt` | ***selfsigned*** |
+| **`OPENVIDU_CDR`**                     | Whether to enable Call Detail Record or not (check [Call Detail Record](reference-docs/openvidu-server-cdr){:target="_blank"}) | ***false*** |
+| **`OPENVIDU_RECORDING`**               | Whether to enable recording module or not (check [Recording](advanced-features/recording/){:target="_blank"})  | ***false*** |
+| **`OPENVIDU_RECORDING_PATH`**          | System path where to store the video files of recorded sessions. **WARNING: for OpenVidu Pro 2.13.0 this property does not support other than the default value** | ***/opt/openvidu/recordings*** |
+| **`OPENVIDU_RECORDING_PUBLIC_ACCESS`** | Whether to allow free http access to recorded sessions or not.<br>If *true* path `/[OPENVIDU_RECORDING_PATH]` will be publicly accessible through `https://OPENVIDU_DOMAIN_OR_PUBLIC_IP/recordings` path. That means any client can connect to<br><strong style="word-break: break-all">https://OPENVIDU_DOMAIN_OR_PUBLIC_IP/recordings/RECORDING_ID/RECORDING_NAME.EXTENSION</strong><br>and access the recorded video file.<br>If *false* this path will be secured with `OPENVIDU_SECRET`.<br>For example, for OpenVidu Server configured with *OPENVIDU_DOMAIN_OR_PUBLIC_IP=my.url.com*<br>*OPENVIDU_RECORDING=true*<br>*OPENVIDU_RECORDING_PATH=/my/path*<br> *OPENVIDU_RECORDING_PUBLIC_ACCESS=true*<br>A session with id *foo* that has been recorded may generate a video file locally stored in the host machine under `/my/path/foo/foo.mp4` and accessible by any client connecting to `https://my.url.com/recordings/foo/foo.mp4` | ***false*** |
+| **`OPENVIDU_RECORDING_NOTIFICATION`**  | Which users should receive the recording events in the client side (`recordingStarted`, `recordingStopped`). Can be `all` (every user connected to the session), `publisher_moderator` (users with role 'PUBLISHER' or 'MODERATOR'), `moderator` (only users with role 'MODERATOR') or `none` (no user will receive these events) | ***publisher_moderator*** |
+| **`OPENVIDU_RECORDING_CUSTOM_LAYOUT`** | System path where OpenVidu Server should look for custom recording layouts  | ***/opt/openvidu/custom-layout*** |
+| **`OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`** | Timeout in seconds for recordings to automatically stop (and the session involved to be closed) when conditions are met. See [Automatic stop of recordings](advanced-features/recording/#automatic-stop-of-recordings) to learn more | ***120*** |
+| **`OPENVIDU_WEBHOOK`** | Whether to enable webhook service or not (check [OpenVidu Server Webhook](reference-docs/openvidu-server-webhook/){:target="_blank"}) | ***false*** |
+| **`OPENVIDU_WEBHOOK_ENDPOINT`** | HTTP endpoint where OpenVidu Server will send the POST messages with webhook events |  |
+| **`OPENVIDU_WEBHOOK_HEADERS`** | Array of strings with the HTTP headers that OpenVidu Server will append to each POST message of webhook events. For example, you may configure a Basic Auth header _name:pass_ setting this property to `[\"Authorization:\ Basic\ bmFtZTpwYXNz\"]` | ***[ ]*** |
+| **`OPENVIDU_WEBHOOK_EVENTS`** | Array of strings with the type of events you want OpenVidu Server to send to your webhook | <span style="word-break: break-word; font-weight: bold; font-style: italic">["sessionCreated","sessionDestroyed","participantJoined","participantLeft","webrtcConnectionCreated","webrtcConnectionDestroyed","recordingStatusChanged"]</span><br>(all available events) |
+| **`OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`** | Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***1000*** |
+| **`OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`** | Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained | ***300***  |
+| **`OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`** | Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***1000*** |
+| **`OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`** | Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means unconstrained | ***300***  |
+| **`OPENVIDU_SESSIONS_GARBAGE_INTERVAL`** | How often the garbage collector of non active sessions runs. This helps cleaning up sessions that have been initialized through REST API (and maybe tokens have been created for them) but have had no users connected. Default to 900s (15 mins). 0 to disable the non active sessions garbage collector | ***900***  |
+| **`OPENVIDU_SESSIONS_GARBAGE_THRESHOLD`** | Minimum time in seconds that a non active session must have been in existence for the garbage collector of non active sessions to remove it. Default to 3600s (1 hour). If non active sessions garbage collector is disabled (property `OPENVIDU_SESSIONS_GARBAGE_INTERVAL` is set to 0) this property is ignored | ***3600***  |
 
 <br>
 
 ---
 
-### Extra configuration parameters for [OpenVidu Server Docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}
+### Special conditions of OpenVidu development container
 
-> **WARNING: container not suitable for production deployments of OpenVidu.**
-> 
-> This container lacks some services mandatory for production set ups. To deploy OpenVidu CE in a production environment, you can do it on [AWS](deployment/deploying-aws/){:target="_blank"} or on [Ubuntu](deployment/deploying-ubuntu/){:target="_blank"}
+When using the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"} to develop your app in your LAN network, there are some restrictions and also some extra parameters that you should take into account.
 
-| Parameter       | Description                               | Sample value                                       |
-| --------------- | ----------------------------------------- | -------------------------------------------------- |
-| `KMS_STUN_IP`   | IP of STUN server used by KMS             | `stun.l.google.com` (free STUN server from Google) |
-| `KMS_STUN_PORT` | PORT of STUN server used by KMS           | `19302` (free STUN server from Google)             |
-| `KMS_TURN_URL`  | Configuration for TURN server used by KMS | `user:pass@turn_public_ip:turn_port` (_user_ and _pass_ of the TURN server, _turn_public_ip_ its publicly accessible url and _turn_port_ the port the TURN server listens to |
+In the development container **these configuration properties won't have effect**, or may have unknown effects if declared:
 
-Example:
+- `OPENVIDU_DOMAIN_OR_PUBLIC_IP`: use `OPENVIDU_PUBLICURL` instead (see below).
+- `CERTIFICATE_TYPE`: in LAN networks certificates don't make sense.
 
-```console
-docker run -d -p 3333:3333 -e openvidu.secret=YOUR_SECRET -e openvidu.publicurl=https://my.openvidu.server.ip:3333/ -e openvidu.cdr=true -e server.port=3333 -e KMS_STUN_IP=stun.l.google.com -e KMS_STUN_PORT=19302 -e KMS_TURN_URL=myuser:mypass@54.54.54.54:3478 openvidu/openvidu-server-kms:2.12.0
-```
+Rest of common configuration properties are available for the development container. You can also set the following ones that are **only suitable for the development container**:
 
-<br>
-
----
-
-### Externalizing configuration
-
-You can use an external file to configure OpenVidu Server. Simply write the properties you want in a `*.properties` file and launch Java process with property **`spring.config.additional-location`** setting the path to the file. For example:
-
-```console
-java -Dspring.config.additional-location=/opt/openvidu/application.properties -jar openvidu-server.jar
-```
-
-And having file _/opt/openvidu/application.properties_ one property per line. For example:
-
-```console
-openvidu.cdr=true
-openvidu.secret=1234
-openvidu.webhook=true
-openvidu.webhook.endpoint=http://my.webhook.com
-openvidu.webhook.events=["sessionCreated","sessionDestroyed"]
-openvidu.recording=false
-```
+| Parameter                          | Description   										           | Default value   |
+| ---------------------------------- | --------------------------------------------------------------- | --------------- |
+| **`OPENVIDU_PUBLICURL`** | Full URL where OpenVidu Server will be accessible. This includes the protocol, hostname and port. Clients will use this to connect to OpenVidu Server. This substitutes property `OPENVIDU_DOMAIN_OR_PUBLIC_IP` when OpenVidu is running in the dev container in your LAN network. For example:<br>• `https://localhost:4443/`<br>• `https://192.168.1.111:4443/` | ***https://localhost:PORT/***<br>Being _PORT_ the configuration parameter `server.port` (by default`4443`) |
 
 <br>

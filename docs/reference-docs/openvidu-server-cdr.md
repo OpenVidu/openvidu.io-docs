@@ -1,13 +1,15 @@
 <h2 id="section-title">OpenVidu Server CDR</h2>
 <hr>
 
-OpenVidu Server offers a CDR logging system, so you can easily keep record of every session, every user connecting to them and every media connection established by each one of the users (sending or receiving). To start OpenVidu Server with CDR enabled, launch it with option `OPENVIDU_CDR=true`. The CDR file will be located under `log/` folder in the same path as your Java executable.
+OpenVidu Server offers a CDR logging system, so you can easily keep record of every session and its internal behavior. To start OpenVidu Server with CDR enabled, set [configuration property **`OPENVIDU_CDR=true`**](reference-docs/openvidu-server-params/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH` (default to `/opt/openvidu/cdr`).
 
-The record is a plain text file containing one standard JSON entry for each line. All JSON entries have the following structure:
+The CDR file is a plain UTF-8 text file complying with [JSON Lines](http://jsonlines.org/){:target="_blank"} format: one standard JSON entry for each line. All JSON entries have the following structure:
 
-`{"EVENT_NAME": {"sessionId": "SESSION_ID", "timestamp": TIMESTAMP, "PROP_1": "VALUE_1","PROP_2": "VALUE_2", ... }}`
+```json
+{"EVENT_NAME": {"sessionId": "SESSION_ID", "timestamp": TIMESTAMP, "PROP_1": "VAL_1","PROP_2": "VAL_2", ... }}
+```
 
-So every entry is a JSON object identified by a specific event name, and all of them have as properties the `sessionId` identifying the video-session for which this event was registered and the `timestamp`. Besides this two common properties, there are custom properties for every specific event with useful information. The complete list of possible JSON entries is available below:
+So every entry is a JSON object with a single key (the event name) and a JSON object as value (the event content). For all available events, the event content always has as properties the `sessionId` identifying the video-session (that would be `SESSION_ID` in the example above) for which the event was registered and the `timestamp` (with fake value `TIMESTAMP` in the example above). Besides this two common properties shared by all events, there are custom properties for every specific event with useful information (those would be `PROP_1`, `PROP_2` ...). The complete list of possible JSON entries is available below.
 
 ### Events in OpenVidu CDR
 

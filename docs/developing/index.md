@@ -220,7 +220,7 @@ Run exactly the same commands as in the previous section, but:
 
 2. On step **6)** extend `mvn exec:java` command with:
 
-        mvn -Dopenvidu.publicurl=https://HOST_LOCAL_IP:4443/ exec:java
+        mvn -DOPENVIDU_PUBLICURL=https://HOST_LOCAL_IP:4443/ exec:java
         # Being HOST_LOCAL_IP the local IP that your machine serving the app has in your LAN network
 
 This way we first tell AngularCLI to serve our app through https and to expose the port in our LAN network, and secondly we set OpenVidu Server public url to the public IP of the machine in our LAN network. This way our devices will be able to reach it as long as they are connected to the same network.

@@ -67,8 +67,8 @@
     <img class="img-responsive deploy-img" src="img/docs/deployment/CF_url.png">
 </p>
 
-  > To deploy a previous version replace `latest` with the desired version number<br>
-  > For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.12.0</strong>.yaml</code>
+> To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.12.0</strong>.yaml</code>
 
 <br>
 
@@ -78,13 +78,9 @@
 
 First of all, indicate a name for your deployment. Next fill each section of the **Parameters** formulary:
 
-#### OpenVidu Pro License
+#### Domain and SSL certificate configuration
 
-Your OpenVidu Pro License key. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
-
-#### SSL certificate configuration
-
-Configuration for your CloudFormation stack certificate. We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFICATE** stored in the application (users will need to accept the browser security alert) or if you have a custom domain, either allow **LET'S ENCRYPT** to automatically generate a valid and free certificate for your domain or use your own **CUSTOM CERTIFICATE** if you already have one.
+Configuration for your CloudFormation stack certificate. We provide 3 different scenarios: you can use the default **SELF-SIGNED CERTIFICATE** stored in the application (users will need to accept the browser security alert) or if you have a custom domain, either allow **LET'S ENCRYPT** to automatically generate a valid and free certificate for your domain or use your own **CUSTOM CERTIFICATE** if you already have one (and for some unknown reason you still want to use that).
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table" style="margin-top: 10px; margin-bottom: 0px">
@@ -95,28 +91,22 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
       <th>Custom certificate</th>
     </tr>
     <tr>
-      <td class="first-col">Choose the certificate</td>
+      <td class="first-col">Certificate Type</td>
       <td>selfsigned</td>
       <td>letsencrypt</td>
       <td>owncert</td>
     </tr>
     <tr>
-      <td class="first-col">Email for Let's Encrypt certification authority</td>
-      <td></td>
-      <td><em>Your choice</em></td>
-      <td><em></em></td>
-    </tr>
-    <tr>
-      <td class="first-col">My domain name</td>
-      <td></td>
-      <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
-      <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: if your full URL is <em><strong>https://openvidu.io/</strong></em>  then this is <em><strong>openvidu.io</strong></em></span></td>
-    </tr>
-    <tr>
-      <td class="first-col">Public elastic IP (EIP)</td>
+      <td class="first-col">AWS Elastic IP (EIP)</td>
       <td></td>
       <td><em>One AWS Elastic IP you generated</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating" target="_blank">AWS Docs</a> to generate a new one)</span></td>
       <td><em>One AWS Elastic IP you generated</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating" target="_blank">AWS Docs</a> to generate a new one)</span></td>
+    </tr>
+    <tr>
+      <td class="first-col">Domain Name pointing to Elastic IP</td>
+      <td></td>
+      <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: <em><strong>openvidu.company.com</strong></em></span></td>
+      <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: <em><strong>openvidu.company.com</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">URL to the CRT file</td>
@@ -130,22 +120,75 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
       <td></td>
       <td><em>URL to your private key file</em></br><span class="field-comment">The CloudFormation stack must have access to this URL, at least temporarily</span></td>
     </tr>
+    <tr>
+      <td class="first-col">Email for Let's Encrypt</td>
+      <td></td>
+      <td><em>Your choice</em></td>
+      <td><em></em></td>
+    </tr>
   </table>
 </div>
 
 > If you are using ***LET'S ENCRYPT CERTIFICATE***, of course you will need to register your ElasticIP in your DNS hosting service and associate it with the fully qualified domain name. Until your domain name is not accessible through the public IP you chose, this deployment won't work
 
-#### OpenVidu CE configuration
+#### OpenVidu configuration
 
-Configuration properties specific for **OpenVidu Server CE**. You have a complete description of all available properties **[here](reference-docs/openvidu-server-params){:target="_blank"}**.
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
+    <tr>
+      <td class="first-col">OpenVidu Pro License key<br><span class="field-comment">Your purchased license key from your <a href="https://openvidu.io/account" target="_blank">OpenVidu account</a>.  There's a 15 day free trial waiting for you!<span></td>
+      <td><em>Your OpenVidu Pro License key</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">Initial number of Media Node in your cluster<br><span class="field-comment">How many Media Nodes do you want on startup (EC2 instances will be launched)<span></td>
+      <td><em>Your choice</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu deployment. No whitespaces or quotations allowed<span></td>
+      <td><em>Your choice</em></td>
+    </tr>
+  </table>
+</div>
 
-#### OpenVidu Pro configuration
-
-Configuration properties specific for **OpenVidu Server Pro**. You have a complete description of all available properties **[here](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}**.
+> There are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu CE configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}  for further information.
 
 #### Kibana configuration
 
 Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](openvidu-pro/detailed-session-monitoring){:target="_blank"} for further information.
+
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">Kibana username</td>
+      <td><em>You choice</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">Kibana password</td>
+      <td><em>Your choice</em></td>
+    </tr>
+  </table>
+</div>
+
+#### EC2 Instance configuration
+
+These properties configure specific details of the EC2 machines that will be launched by CloudFormation.
+
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px;">
+    <tr>
+      <td class="first-col">Instance type for Openvidu Server Pro Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">OpenVidu Server Pro Node</a><span></td>
+      <td><em>Choose from the drop-down button</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Media Nodes</a><span></td>
+      <td><em>Choose from the drop-down button</em></td>
+    </tr>
+    <tr>
+      <td class="first-col">SSH Key<br><span class="field-comment">SSH key for the EC2 Instances of the cluster<span></td>
+      <td><em>Choose from the drop-down button</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank">AWS Docs</a> to create a new one)</span></td>
+    </tr>
+  </table>
+</div>
 
 #### Networking configuration
 
@@ -164,21 +207,13 @@ Username and password for the Kibana service deployed with OpenVidu Pro. You wil
 
 #### Other configuration
 
-These properties configure specific details of the CloudFormation stack.
+These properties configure some other options of your stack.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">
     <tr>
-      <td class="first-col">Instance type for Openvidu Server Pro Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">OpenVidu Server Pro Node</a><span></td>
+      <td class="first-col">Deploy OpenVidu Call application<br><span class="field-comment">Choose if you want to deploy OpenVidu Call application alongside OpenVidu platform<span></td>
       <td><em>Choose from the drop-down button</em></td>
-    </tr>
-    <tr>
-      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Media Nodes</a><span></td>
-      <td><em>Choose from the drop-down button</em></td>
-    </tr>
-    <tr>
-      <td class="first-col">Key name<br><span class="field-comment">SSH key the EC2 Instances of the cluster<span></td>
-      <td><em>Choose from the drop-down button</em></br><span class="field-comment">(check <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html" target="_blank">AWS Docs</a> to create a new one)</span></td>
     </tr>
   </table>
 </div>
@@ -201,7 +236,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
-To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP:4443`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com:4443` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
+To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP/`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com/` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
 
 <br>
 
@@ -211,7 +246,7 @@ To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use 
 
 ### Set the number of Media Nodes on startup
 
-When filling the CloudFormation form, simply set the desired number in section [OpenVidu Pro configuration](#openvidu-pro-configuration).
+When filling the CloudFormation form, simply set the desired number in section [OpenVidu configuration](#openvidu-configuration).
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -219,7 +254,7 @@ When filling the CloudFormation form, simply set the desired number in section [
     </div>
 </div>
 
-In section [Other configuration](#other-configuration) you can choose the size of your OpenVidu Server Pro Node and your Media Nodes.
+In section [EC2 Instance configuration](#ec2-instance-configuration) you can choose the size of your OpenVidu Server Pro Node and your Media Nodes.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -248,9 +283,10 @@ You can programmatically launch and drop Media Nodes from your application by co
 - **Launch a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
 - **Drop a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
 
-> **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployemnts, specially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
+> **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployments, especially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} is triggered with value `terminated`.
 
 <br>
 
@@ -260,10 +296,10 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu Server CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
+- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
 
-When deploying an OpenVidu Pro cluster you give value to these parameters directly or indirectly, depending on the [deployment environment](openvidu-pro/scalability/#how-to-deploy-your-openvidu-pro-cluster){:target="_blank"}. Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
+Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
 ### 1) With OpenVidu Inspector
 
@@ -283,11 +319,12 @@ You can consume REST API method **[POST /pro/restart](openvidu-pro/reference-doc
 
 The ultimate and most definitive way of updating the configuration parameters of an OpenVidu Pro cluster is connecting to the OpenVidu Server Pro Node through SSH and changing the desired values:
 
-1. SSH to the OpenVidu Server Pro machine using your private rsa key
-2. Update file `/opt/openvidu/application.properties` with the new configuration values
-3. Restart OpenVidu Server Pro with `sudo systemctl restart openvidu`
+1. SSH to the OpenVidu Server Pro Node machine using your private rsa key
+2. Using root user with `sudo su` command, go to OpenVidu Pro installation folder (default and recommended is `/opt/openvidu`)
+2. Update file `.env` with the new configuration values
+3. Restart OpenVidu Server Pro with `./openvidu restart`
 
-To validate your changes and check that everything went well, you should take a look to OpenVidu Server Pro logs. If there were any errors with any configuration parameter, OpenVidu Server Pro log should help you fix the issue. You can show last 200 lines of the logs with command `journalctl -n 200 -u openvidu | cat`
+Keep an eye on the OpenVidu logs that will automatically display after restarting the service to check that everything went well.
 
 <br>
 
@@ -321,11 +358,11 @@ If that is not the problem, then follow these steps:
     - `/var/log/cloud-init-output.log`
 <br><br>
 
-- **4)** Get also the log output of openvidu with this command and share with us the output file:
+- **4)** Get also the log output of all the services with this command and share with us the output file:
 
-    - `journalctl -u openvidu > openvidu.log`
+    - `docker-compose logs -f`
 
-> Regarding the compatibility of **openvidu-browser** and **server SDKs** (REST API, openvidu-java-client, openvidu-node-client), use the same version numbers as stated for openvidu-server in [Releases page](releases/){:target="_blank"}. For example, for OpenVidu Pro 2.10.0, use the artifact versions indicated in [2.10.0 release table](releases#2100){:target="_blank"}
+> AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So **everything explained in [Troubleshooting](openvidu-pro/deployment/on-premises/#troubleshooting){:target="_blank"} section of on premises deployments also applies to AWS deployments**. There you have detailed instructions on how to debug all of OpenVidu Pro services in case some unexpected problem appears.
 
 <br>
 
