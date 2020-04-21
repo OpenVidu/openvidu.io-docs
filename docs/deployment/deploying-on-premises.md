@@ -102,14 +102,14 @@ OpenVidu Platform configuration is specified in the **`.env`** file with environ
 
 - You _must_ give a value to properties **`OPENVIDU_DOMAIN_OR_PUBLIC_IP`** and **`OPENVIDU_SECRET`**. Default empty values will fail.
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
-- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-server-params/){:target="_blank"} for further information.
+- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-config/){:target="_blank"} for further information.
 
 The **`.env`** file is pretty self-explanatory. It looks like this:
 
 ```bash
 # OpenVidu configuration
 # ----------------------
-# Documentation: https://docs.openvidu.io/en/stable/reference-docs/openvidu-server-params/
+# Documentation: https://docs.openvidu.io/en/stable/reference-docs/openvidu-config/
 
 # NOTE: This file doesn't need to quote assignment values, like most shells do.
 # All values are stored as-is, even if they contain spaces, so don't quote them.

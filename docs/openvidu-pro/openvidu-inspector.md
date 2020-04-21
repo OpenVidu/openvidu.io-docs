@@ -82,7 +82,7 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
 #### Programmatic reset
 OpenVidu Pro supports programmatic reset. You may call a [REST API method](openvidu-pro/reference-docs/REST-API-pro#post-prorestart){:target="_blank"} to restart your OpenVidu Server process. This way you can:
 
-- A) Change OpenVidu Server [configuration properties](reference-docs/openvidu-server-params/){:target="_blank"}
+- A) Change OpenVidu Server [configuration properties](reference-docs/openvidu-config/){:target="_blank"}
 - B) Easily clean up any garbage process or file that may have been stranded
 
 You may also restart OpenVidu Server Pro directly in OpenVidu Inspector:<br><br>

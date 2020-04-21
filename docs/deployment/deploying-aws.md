@@ -97,7 +97,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### OpenVidu configuration
 
-Here you will only be able to configure OpenVidu secret, but there are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu configuration](reference-docs/openvidu-server-params){:target="_blank"} for further information.
+Here you will only be able to configure OpenVidu secret, but there are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"} for further information.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">

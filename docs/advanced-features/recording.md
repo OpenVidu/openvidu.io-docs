@@ -38,7 +38,7 @@ OPENVIDU_RECORDING=true
 ```
 
 > There are other environment variables related to recordings configuration that may be set.<br>
-> Visit [OpenVidu configuration](reference-docs/openvidu-server-params/){:target="_blank"} to see the full list.
+> Visit [OpenVidu configuration](reference-docs/openvidu-config/){:target="_blank"} to see the full list.
 
 #### For OpenVidu development docker container
 
@@ -68,7 +68,7 @@ It is also necessary to mount 2 volumes:
 <p></p>
 
 > There are other environment variables related to recordings configuration that may be set.<br>
-> Visit [OpenVidu configuration](reference-docs/openvidu-server-params/){:target="_blank"} to see the full list.
+> Visit [OpenVidu configuration](reference-docs/openvidu-config/){:target="_blank"} to see the full list.
 
 <br>
 
@@ -415,7 +415,7 @@ openvidu.startRecording(sessionId, {
 
 # Automatic stop of recordings
 
-Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-server-params/){:target="_blank"}. The automatic recording stop timout will start:
+Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-config/){:target="_blank"}. The automatic recording stop timout will start:
 
 - For any recorded session, if last user disconnects from the session.
 

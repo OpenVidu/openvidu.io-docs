@@ -1,7 +1,7 @@
-<h2 id="section-title">OpenVidu Server CDR</h2>
+<h2 id="section-title">OpenVidu CDR</h2>
 <hr>
 
-OpenVidu Server offers a CDR logging system, so you can easily keep record of every session and its internal behavior. To start OpenVidu Server with CDR enabled, set [configuration property **`OPENVIDU_CDR=true`**](reference-docs/openvidu-server-params/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH` (default to `/opt/openvidu/cdr`).
+OpenVidu Server offers a CDR logging system, so you can easily keep record of every session and its internal behavior. To start OpenVidu Server with CDR enabled, set [configuration property **`OPENVIDU_CDR=true`**](reference-docs/openvidu-config/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH` (default to `/opt/openvidu/cdr`).
 
 The CDR file is a plain UTF-8 text file complying with [JSON Lines](http://jsonlines.org/){:target="_blank"} format: one standard JSON entry for each line. All JSON entries have the following structure:
 

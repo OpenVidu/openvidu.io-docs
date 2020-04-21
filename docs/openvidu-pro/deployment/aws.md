@@ -150,7 +150,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
   </table>
 </div>
 
-> There are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu CE configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"}  for further information.
+> There are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"}  for further information.
 
 #### Kibana configuration
 
@@ -296,8 +296,8 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu CE configuration](reference-docs/openvidu-config){:target="_blank"}
+- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 

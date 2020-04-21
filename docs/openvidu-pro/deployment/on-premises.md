@@ -144,14 +144,14 @@ OpenVidu Pro configuration is specified in the **`.env`** file with environment 
 - You _must_ give a value to properties **`OPENVIDU_DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`KIBANA_PASSWORD`**. Default empty values will fail. 
 - You _must_ also provide a value for  **`OPENVIDU_PRO_LICENSE`**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
-- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-server-params/){:target="_blank"} and [OpenVidu Server Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params/){:target="_blank"} for further information.
+- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} for further information.
 
 The **`.env`** file is pretty self-explanatory. It looks like this:
 
 ```bash
 # OpenVidu configuration
 # ----------------------
-# Documentation: https://docs.openvidu.io/en/stable/reference-docs/openvidu-server-params/
+# Documentation: https://docs.openvidu.io/en/stable/reference-docs/openvidu-config/
 
 # NOTE: This file doesn't need to quote assignment values, like most shells do.
 # All values are stored as-is, even if they contain spaces, so don't quote them.
@@ -436,8 +436,8 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu CE configuration](reference-docs/openvidu-server-params){:target="_blank"}
-- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-server-pro-params){:target="_blank"}
+- [OpenVidu CE configuration](reference-docs/openvidu-config){:target="_blank"}
+- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 

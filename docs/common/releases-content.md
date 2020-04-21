@@ -357,7 +357,7 @@ java -Dspring.config.additional-location=/path/to/application.properties -jar op
 
 Then all configuration parameters listed in that file will be used.
 
-> You have all the information in the official documentation: [Externalizing configuration](reference-docs/openvidu-server-params/#externalizing-configuration){:target="_blank"}
+> You have all the information in the official documentation: [Externalizing configuration](reference-docs/openvidu-config/#externalizing-configuration){:target="_blank"}
 
 #### NEW FEATURES IN OPENVIDU PRO
 
@@ -1602,7 +1602,7 @@ At last developers have available the new role that has been in our roadmap for 
 <br>
 ##### Configure global bandwidth for your WebRTC connections
 
-We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](reference-docs/openvidu-server-params/){:target="_blank"} sections:
+We have included a first way to set the maximum and minimum bandwidths for the media connections established between browsers and OpenVidu Server. You can configure it with the following system properties, as stated in [OpenVidu Server configuration](reference-docs/openvidu-config/){:target="_blank"} sections:
 
 - `openvidu.streams.video.max-recv-bandwidth`: Maximum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 1000)
 - `openvidu.streams.video.min-recv-bandwidth`: Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means unconstrained	(default 300)
@@ -1884,7 +1884,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 - **OpenVidu Browser events**
 
     - New events `accessDialogOpened` and `accessDialogClosed`: dispatched by Publisher objects when the browser asks the user to grant permissions to camera or michrophone by opening a pop-up. You can use them to warn your users about it.
-    - New events `recordingStarted` and `recordingStopped`: dispatched by Session object when the recording of a Session starts and stops. You can customize which clients will receive this event thanks to new property `openvidu.recording.notification` (see [OpenVidu Server configuration](reference-docs/openvidu-server-params/){:target="_blank"})
+    - New events `recordingStarted` and `recordingStopped`: dispatched by Session object when the recording of a Session starts and stops. You can customize which clients will receive this event thanks to new property `openvidu.recording.notification` (see [OpenVidu Server configuration](reference-docs/openvidu-config/){:target="_blank"})
     - Events `publisherStartSpeaking` and `publisherStopSpeaking` improved: more customizable thanks to [OpenVidu.setAdvancedConfiguration()](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} and better overall performance.
     - Events `streamDestroyed`, `connectionDestroyed` and `sessionDisconnected` have new property `reason`. This gives more information about why the events have been dispatched so you can take specific actions depending on the context: maybe a stream has been destroyed because the user publishing has deliberately diposed it or maybe the network connection has unexpectedly closed (see docs for [StreamEvent](api/openvidu-browser/classes/streamevent.html){:target="_blank"}, [ConnectionEvent](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} and [SessionDisconnectedEvent](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"})<br><br>
 
@@ -1903,7 +1903,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
 
 - Now when any participant unexpectedly disconnects from a session (for example, due to a network failure), `connectionDestroyed` event is sent to the rest of participants with property `reason` set to `networkDisconnect`.
 - When OpenVidu Server is stopped, it will try to gracefully finish every in progress session and recording. This way no recording file will end corrupted upon OpenVidu Server termination (this cannot be granted if the process crashes or is forcibly terminated)
-- Now both STUN and TURN [OpenVidu Server configuration parameters](reference-docs/openvidu-server-params/#extra-configuration-parameters-for-openVidu-server-docker-container){:target="_blank"} can be set up at the same time with no overwritings.
+- Now both STUN and TURN [OpenVidu Server configuration parameters](reference-docs/openvidu-config/#extra-configuration-parameters-for-openVidu-server-docker-container){:target="_blank"} can be set up at the same time with no overwritings.
 - Tons of small fixes and code refactoring that makes OpenVidu more stable and easy to test and develop
 
 #### BREAKING CHANGES

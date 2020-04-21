@@ -49,9 +49,9 @@ nav:
   - openvidu-java-client API: reference-docs/openvidu-java-client.md
   - openvidu-node-client API: reference-docs/openvidu-node-client.md
   - REST API: reference-docs/REST-API.md
-  - OpenVidu Server configuration: reference-docs/openvidu-server-params.md
-  - OpenVidu Server CDR: reference-docs/openvidu-server-cdr.md
-  - OpenVidu Server Webhook: reference-docs/openvidu-server-webhook.md
+  - OpenVidu configuration: reference-docs/openvidu-config.md
+  - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
+  - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
 - Deployment:
   - AWS: deployment/deploying-aws.md
   - On premises: deployment/deploying-on-premises.md
@@ -74,8 +74,8 @@ nav:
     - Upgrading OpenVidu Pro: openvidu-pro/deployment/upgrading.md
   - Reference Documentation:
     - REST API Pro: openvidu-pro/reference-docs/REST-API-pro.md
-    - OpenVidu Server Pro configuration: openvidu-pro/reference-docs/openvidu-server-pro-params.md
-    - OpenVidu Server Pro CDR: openvidu-pro/reference-docs/openvidu-server-pro-cdr.md
+    - OpenVidu Pro configuration: openvidu-pro/reference-docs/openvidu-pro-config.md
+    - OpenVidu Pro CDR: openvidu-pro/reference-docs/openvidu-server-pro-cdr.md
 docs_dir: docs
 theme:
     name: mkdocs

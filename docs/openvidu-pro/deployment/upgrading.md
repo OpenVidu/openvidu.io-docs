@@ -72,7 +72,7 @@ We need to connect to the Openvidu Server EC2 instance. Just navigate to **[AWS 
 
 <br>
 
-After connected into web EC2 console of your OpenVidu Server instance as root user, all that remains to be done is following all the steps of [OpenVidu Server Pro Node](#openvidu-server-pro-node_1).
+After connected into web EC2 console of your OpenVidu Server instance as root user, all that remains to be done is following all the steps for upgrading [OpenVidu Server Pro Node](#openvidu-server-pro-node_1) in on premises deployments.
 
 <br>
 
@@ -95,7 +95,7 @@ We need to connect to the Media Node EC2 instance. Just navigate to **[AWS EC2 d
 
 <br>
 
-After connected into web EC2 console of your Media Node instance as root user, all that remains to be done is following all the steps of [Media Nodes](#media-nodes_1).
+After connected into web EC2 console of your Media Node instance as root user, all that remains to be done is following all the steps for upgrading [Media Nodes](#media-nodes_1) in on premises deployments.
 
 <br>
 
@@ -130,7 +130,7 @@ These instructions suppose the installation of OpenVidu is done in the <strong>d
 
 ### OpenVidu Server Pro Node
 
-Connect through SSH to Openvidu Server Pro instance. The recommended folder to install OpenVidu Pro is /opt. Every other instruction in the documentation regarding on premise updates assumes this installation path.
+Connect through SSH to Openvidu Server Pro instance. The recommended installation folder of OpenVidu Pro is `/opt/openvidu`. Every other instruction in the documentation regarding on premises upgrades assumes this specific installation path.
 
 #### 1) Stop all docker-compose services
 
@@ -179,9 +179,9 @@ cd /opt/openvidu
 
 ### Media Nodes
 
-Follow these steps to add one Media Nodes to the cluster. You need to update all media nodes you have.
+Follow these steps to upgrade a specific Media Node.
 
-Connect through SSH to the Media Node instance. The recommended folder to install the Media Node is /opt. Every other instruction in the documentation regarding on premise updates assumes this installation path.
+Connect through SSH to the Media Node instance. The recommended installation folder of the Media Node service is `/opt/openvidu`. Every other instruction in the documentation regarding on premises upgrades assumes this installation path.
 
 #### 1) Stop all docker-compose services
 
@@ -219,6 +219,8 @@ cd /opt/kms
 ```
 
 > **NOTE 1**: Old Docker images will take up valuable disk space of your machines. If you don't plan to reuse them again, delete them to reclaim your GBs. **[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"}** command is very useful for doing so.
+
+> **NOTE 2**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
 
 <br><br>
 
