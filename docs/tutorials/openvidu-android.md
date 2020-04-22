@@ -497,7 +497,7 @@ public void receiveVideoFrom(SessionDescription sessionDescription, RemotePartic
 
 <br>
 
-##### Leaving the session with 'leaveRoom' method
+##### Leaving the session with `leaveRoom` method
 
 We need to send a JSON-RPC through the websocket (empty parameters in this case):
 
