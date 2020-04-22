@@ -534,7 +534,7 @@ You can configure where should OpenVidu Server look for your custom layout in th
 Default path `/opt/openvidu/custom-layout` is the recommended one. But if for any reason you want to change it, then set the following property in the **`.env`** configuration file:
 
 ```console
-OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES
+OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT
 ```
 
 <br>
