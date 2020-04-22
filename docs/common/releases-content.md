@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.13.0](#2130)
 - [2.12.0](#2120)
 - [2.11.0](#2110)
 - [2.10.0](#2100)
@@ -15,6 +16,144 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+---
+
+## 2.13.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu</td>
+    <td>On Premises</td>
+    <td>2.13.0</td>
+    <td><a class="" href="deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.13.0</td>
+    <td><a class="" href="deployment/deploying-aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.13.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.13.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.12.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.12.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.13.1</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES IN OPENVIDU CE
+
+<br>
+
+##### Docker-based deployment of OpenVidu
+
+OpenVidu 2.13.0 introduces a brand new Docker-based deployment. It uses docker-compose to manage all of the necessary services. Why did we make the decision of migrating to Docker after 2.12.0 release? It was a mix of two reasons:
+
+First reason: OpenVidu users have always asked for a Docker-based deployment. OpenVidu users are clever. Docker is the first thing an OpenVidu user will encounter when going through any of our tutorials, as we recommend to use a special OpenVidu dev container to quickly run them. And of course, Docker greatly simplifies the management of the services for those administrating them. Just look at this beauty: now you can restart your whole OpenVidu deployment with this command (and we mean all of its services, which are 6 in total for an OpenVidu CE deployment): `./openvidu restart `
+
+Second reason: OpenVidu developers (that's us :) have always had problems helping users of the platform due to the lack of homogeneity in OpenVidu deployments out there. The reality is that there's an astounding variety of cloud providers, virtual machines, OS flavours and other stuff that may influence how an OpenVidu installation behaves. Docker fixes this. Now every OpenVidu deployment will be basically the same to the other ones, so we will be able to reproduce any problem, and the proper fix for the affected user will generally apply to all OpenVidu installations. Isn't that awesome?
+
+> Visit [Deploying OpenVidu CE on premises](deployment/deploying-on-premises/){:target="_blank"} and [Deploying OpenVidu Pro on premises](openvidu-pro/deployment/on-premises/){:target="_blank"} to see for yourself how easy it is now to deploy OpenVidu.
+
+<br>
+
+##### Microsoft Edge support
+
+The new version of Microsoft Edge has joined the list of [supported platforms](troubleshooting/#8-what-platforms-are-supported-by-openvidu){:target="_blank"} by OpenVidu. Both the desktop Windows version and the Android version are now supported (of course, totally compatible with all other supported platforms).
+
+<br>
+
+##### Garbage collector for OpenVidu Sessions
+
+OpenVidu sessions are initialized through the REST API or with any supported server SDK (see [here](cheatsheet/join-session/){:target="_blank"}). And they are automatically closed once the last user connected to it leaves the session. But sessions initialized through the REST API that have no connected users remained in memory forever. Now this has been addressed with a garbage collector that will periodically clean up all those non-active sessions.
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-browser_: fixes for Publishers which have called `Publisher.subscribeToRemote`. If they called `Publisher.publishAudio`, `Publisher.publishVideo` and `Publisher.replaceTrack`, those where not taking effect. Now they do. And now they also properly stop their media stream tracks when disposing the Publisher object so the camera light of devices shuts down.
+- _openvidu-browser_: `Publisher.replaceTrack` method now can be used on unpublished Publishers. These are Publishers that have not been called with `Session.publish` or that have been called `Session.unpublish` after being published.
+- _openvidu-server_: critical concurrency bug fix. Subscription and unpublishing operations could interfere with each other with some bad luck, possibly causing ghost sessions and server events to have erroneous data. This is now fixed.
+- _openvidu-server-pro_: programmatic reset failed if `openvidu.pro.cluster.mode` was `manual`. Now it doesn't.
+- _openvidu-server-pro_: stats gathering threads for media endpoints could get stranded forever, consuming valuable CPU. Now they don't.
+- _openvidu-server-pro_: important fixes on the connection status between OpenVidu Server Pro Node and Media Nodes. Upon an unexpected broken connection between OpenVidu Server Pro Node and a Media Node, the affected Media Node could still be selected in some cases to initialize new Sessions, failing in the process. Now it doesn't. Besides this, the connection status returned by the REST API could remain as "disconnected" even after a successful reconnection. Now it doesn't.
+- _OpenVidu Inspector_: bug fixes in Session History page: 1) Sessions with same customSessionId could be missplaced when gathering their information. 2) Pagination position and size remembered when coming back from session detail. 3) Better click behavior for the selection checkboxes.
+
+<br>
 
 ---
 
