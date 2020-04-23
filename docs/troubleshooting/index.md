@@ -317,7 +317,7 @@ Again, Apple's browser has "special" needs when it comes to video playback. In i
 
 Possible solutions to this issue? Tweaking muted property on videos to have only one playing audio at a time. Maybe using user gestures to directly play videos can help too. Other users have reported that it usually works fine if dynamically adding audio tracks to the same MediaStream object. There is not a clear solution to this problem, and depending on the web application some workarounds can succeed and some may not. On our tests we have even seen different behaviors in video playback from one execution to another, breaking the supposed consistency of the browser. It is really a matter of testing different approaches until you find a good enough solution.
 
-Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](tutorials/openvidu-ionic/){:target="_blank"}) or [Ractt Native](tutorials/openvidu-react-native/){:target="_blank"}).
+Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](tutorials/openvidu-ionic/){:target="_blank"}) or [React Native](tutorials/openvidu-react-native/){:target="_blank"}).
 
 ---
 
