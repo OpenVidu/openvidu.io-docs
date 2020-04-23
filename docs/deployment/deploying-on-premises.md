@@ -19,7 +19,7 @@ You can deploy OpenVidu in **any modern Linux distribution**.
 This procedure installs the following services:
 
 - **OpenVidu Server (openvidu-server)**: this is the brain of OpenVidu platform. In charge of the signaling plane.
-- **Kurento Media Server (kms)**: this is the hearth of the OpenVidu platform. In charge of media plane.
+- **Kurento Media Server (kms)**: this is the heart of the OpenVidu platform. In charge of media plane.
 - **Coturn (coturn)**: server used to allow media communications with browsers in certain special networks.
 - **Redis (redis)**: database to manage users in Coturn server.
 - **Nginx (nginx)**: a reverse proxy used to configure SSL certificate and to allow both Openvidu Server and the Application to be served in the standard https port (443).
