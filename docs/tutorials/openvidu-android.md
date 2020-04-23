@@ -99,7 +99,7 @@ When you have your OpenVidu public url, you must set it in `default_openvidu_url
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.13.0
 ```
 
 > Remember changing `OPENVIDU_PUBLICURL` parameter to the actual value. In this example that would be:<br>`-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`

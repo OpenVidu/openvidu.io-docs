@@ -58,7 +58,7 @@ ionic serve
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.13.0
 ```
 
 6) Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -132,7 +132,7 @@ When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL`
 6) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.12.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.13.0
 ```
 
 > Remember changing `OPENVIDU_PUBLICURL` parameter to the actual value. In this example that would be:<br>`-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`

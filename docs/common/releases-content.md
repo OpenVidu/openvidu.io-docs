@@ -155,6 +155,14 @@ OpenVidu sessions are initialized through the REST API or with any supported ser
 
 <br>
 
+#### BREAKING CHANGES
+
+The new Docker deployment stack requires OpenVidu to manage its configuration properties following the [standard environment variable syntax rules](https://medium.com/r/?url=https%3A%2F%2Fpubs.opengroup.org%2Fonlinepubs%2F000095399%2Fbasedefs%2Fxbd_chap08.html){:target="_blank"}. For that reason, all of OpenVidu configuration properties have been renamed from `this.is.my-property=VALUE` to `THIS_IS_MY_PROPERTY=VALUE`
+
+[OpenVidu configuration docs](/en/2.12.0/reference-docs/openvidu-config/){:target="_blank"} are of course updated to this new syntax. As production deployments of OpenVidu 2.13.0 will requires users to re-install all of the services, new installations will already bring the new syntax by default. The official [OpenVidu development container] should also use now the new syntax for its configuration properties.
+
+<br>
+
 ---
 
 ## 2.12.0

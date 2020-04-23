@@ -10,7 +10,7 @@
 
 ## How to publish IP cameras
 
-From **release 2.12.0** you can publish any IP camera sending video over **[RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol){:target="_blank"}**. You perform this operation from your server by consuming OpenVidu Server REST API.
+You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol){:target="_blank"}**. You perform this operation from your server by consuming OpenVidu Server REST API.
 
 <div class="lang-tabs-container" markdown="1">
 
