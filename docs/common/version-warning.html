@@ -1,0 +1,89 @@
+<style>
+    #version-warning {
+        padding: 12px;
+        background-color: #ffcc00;
+        color: #4c4c4c;
+        position: fixed;
+        top: 0;
+        right: 0;
+        margin-right: 20px;
+        margin-top: 75px;
+        border: 1px solid transparent;
+        font-family: "Open Sans", sans-serif;
+        font-weight: bold;
+        border-radius: 4px;
+    }
+
+    .div-btns {
+        text-align: center;
+        margin-top: 5px;
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .alert-btn {
+        color: #4c4c4c;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .alert-btn:hover {
+        color: #0088aa;
+    }
+
+    @media all and (max-width: 767px) {
+        #version-warning {
+            padding: 4px;
+            font-size: 11px;
+            margin-right: 7px;
+            margin-bottom: 7px;
+        }
+
+        .div-btns {
+            margin-top: 0px;
+        }
+
+        .warning-text {
+            display: none;
+        }
+    }
+</style>
+
+<div id="version-warning" class="alert" style="display: none">
+    <span class="warning-text">Documentation of an old version</span>
+    <div class="div-btns">
+        <span><a id="link-to-stable" class="alert-btn" href='/en/stable/'>GO TO LATEST VERSION</a></span>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Wait for version button to be available
+        var waitForEl = function (selector, callback) {
+            if ($(selector).length) {
+                callback();
+            } else {
+                setTimeout(function () {
+                    waitForEl(selector, callback);
+                }, 100);
+            }
+        };
+        // Check if latest version from url path and top version button value
+        waitForEl("#version-selector", function () {
+            const pathSplitted = window.location.pathname.split("/").filter(function (el) {
+                return el.length != 0
+            });
+            const urlVersion = pathSplitted[1];
+            const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
+            const selectorValue = document.getElementById('version-selector')[0].value;
+            const hash = window.location.hash;
+            console.warn('/en/stable/' + restOfPath + '/' + hash);
+            if (selectorValue !== ("/en/" + urlVersion + "/")) {
+                document.getElementById('link-to-stable').href = '/en/stable/' + restOfPath + '/' +
+                    hash;
+                $("#version-warning").show();
+            }
+        });
+    });
+</script>
