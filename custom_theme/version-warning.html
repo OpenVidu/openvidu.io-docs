@@ -53,7 +53,7 @@
 <div id="version-warning" class="alert" style="display: none">
     <span class="warning-text">Documentation of an old version</span>
     <div class="div-btns">
-        <span><a class="alert-btn" href='/en/stable/'>GO TO LATEST VERSION</a></span>
+        <span><a id="link-to-stable" class="alert-btn" href='/en/stable/'>GO TO LATEST VERSION</a></span>
     </div>
 </div>
 
@@ -71,11 +71,17 @@
         };
         // Check if latest version from url path and top version button value
         waitForEl("#version-selector", function () {
-            const urlVersion = window.location.pathname.split("/").filter(function (el) {
+            const pathSplitted = window.location.pathname.split("/").filter(function (el) {
                 return el.length != 0
-            })[1];
+            });
+            const urlVersion = pathSplitted[1];
+            const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
             const selectorValue = document.getElementById('version-selector')[0].value;
+            const hash = window.location.hash;
+            console.warn('/en/stable/' + restOfPath + '/' + hash);
             if (selectorValue !== ("/en/" + urlVersion + "/")) {
+                document.getElementById('link-to-stable').href = '/en/stable/' + restOfPath + '/' +
+                    hash;
                 $("#version-warning").show();
             }
         });
