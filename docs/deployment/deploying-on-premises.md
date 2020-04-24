@@ -33,7 +33,7 @@ This procedure installs the following services:
 
 - **[Install Docker](https://docs.docker.com/engine/install/#server){:target="_blank"}**
 
-- **[Install Docker Compose](https://docs.docker.com/compose/install/){:target="_blank"}**
+- **[Install Docker Compose](https://docs.docker.com/compose/install/){:target="_blank"}**. NOTE: install docker-compose from the link (official Docker site) as minimum version `1.24` is required.
 
 - **Opened ports in the server**
 
