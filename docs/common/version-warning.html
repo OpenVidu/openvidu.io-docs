@@ -53,7 +53,7 @@
 <div id="version-warning" class="alert" style="display: none">
     <span class="warning-text">Documentation of an old version</span>
     <div class="div-btns">
-        <span><a id="link-to-stable" class="alert-btn" href='/en/stable/'>GO TO LATEST VERSION</a></span>
+        <span><a id="link-to-stable" class="alert-btn">GO TO LATEST VERSION</a></span>
     </div>
 </div>
 
@@ -78,10 +78,10 @@
             const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
             const selectorValue = document.getElementById('version-selector')[0].value;
             const hash = window.location.hash;
-            console.warn('/en/stable/' + restOfPath + '/' + hash);
             if (selectorValue !== ("/en/" + urlVersion + "/")) {
-                document.getElementById('link-to-stable').href = '/en/stable/' + restOfPath + '/' +
-                    hash;
+                document.getElementById('link-to-stable').onclick = function () {
+                    window.location.href = '/en/stable/' + restOfPath + '/' + hash;
+                }
                 $("#version-warning").show();
             }
         });
