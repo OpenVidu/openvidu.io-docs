@@ -1,6 +1,101 @@
 <h2 id="section-title">Upgrading OpenVidu Pro</h2>
 <hr>
 
+## Migrating from 2.12.0 to 2.13.0
+
+Unfortunately upgrading OpenVidu Pro to <strong>2.13.0</strong> from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. Good news is that from this point in time, upgrading or downgrading versions will be extremely quick and easy!
+
+The only thing to take into account is the data you may want to keep when upgrading to 2.13.0: recordings and Elasticsearch data.
+
+### Backup recordings
+
+Only if you have used the [recording](advanced-features/recording/){:target="_blank"} feature you may want to keep your old recorded files available in your new deployment. This is as straightforward as copying the entire recording folder before wiping out your old server (2.12.0 config property `openvidu.recording.path`, by default `/opt/openvidu/recordings`). After successfully installing 2.13.0, simply paste this same folder at the recording path of your new installation. All of your recordings will be immediately available in the new version.
+
+### Backup Elasticsearch data
+
+If you want to keep your [Elasticsearch data](openvidu-pro/detailed-session-monitoring/){:target="_blank"}, then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
+
+#### 1) Copy existing Elasticsearch data from your old 2.12.0 Openvidu Server Pro Node to your new 2.13.0 OpenVidu Server Pro Node
+
+First compress the Elasticsearch database in your old OpenVidu Server Pro Node and then download the file. You can do it like this (a standard ubuntu installation of Elasticsearch is presumed at `/var/lib/elasticsearch`. This path is the default one for 2.12.0 OpenVidu deployments on AWS and is also the default path where Elasticsearch stores its data in Linux systems).
+
+```bash
+ssh -i SSH_KEY ubuntu@OLD_OPENVIDU_PRO_IP "sudo tar zcvfP /tmp/elasticsearch.tar.gz -C /var/lib/elasticsearch nodes"
+scp -i SSH_KEY ubuntu@OLD_OPENVIDU_PRO_IP:/tmp/elasticsearch.tar.gz elasticsearch.tar.gz
+```
+
+We have zipped the old Elasticsearch data and downloaded to our computer. Now we will upload it to the new Openvidu Pro Instance:
+
+```bash
+scp -i SSH_KEY elasticsearch.tar.gz ubuntu@NEW_OPENVIDU_PRO_IP:/tmp/elasticsearch.tar.gz
+``` 
+
+#### 2) Unzip Elasticsearch data in your new 2.13.0 OpenVidu Server Pro Node and restart services
+
+Connect to your 2.13.0 Openvidu Server Pro instance through SSH:
+
+```bash
+ssh -i SSH_KEY ubuntu@NEW_OPENVIDU_PRO_IP
+```
+
+Change to `root` user:
+
+```bash
+sudo su
+```
+
+Stop OpenVidu Pro services (this assumes OpenVidu Pro is installed at the default recommended path `/opt/openvidu/`):
+
+```bash
+cd /opt/openvidu
+./openvidu stop
+```
+
+Unzip the data from the old database into the appropriate path:
+
+```
+rm -rf elasticsearch/*
+tar -zxvf /tmp/elasticsearch.tar.gz -C elasticsearch
+chown -R 1000:1000 elasticsearch
+rm /tmp/elasticsearch.tar.gz
+```
+
+Restart all services and you will have your Elasticsearch data available in your brand new OpenVidu Pro 2.13.0!
+
+```
+./openvidu start
+```
+
+> **NOTE**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+      For future upgrades from 2.13.0 to a higher version <strong>these steps won't be necessary anymore</strong>. The upgrade process will be as simple as upgrading some tags in the docker-compose file.
+</div>
+</div>
+
+<br><br>
+
+<!--
 <div style="
     display: table;
     border: 2px solid #0088aa9e;
@@ -47,7 +142,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-      Unfortunately upgrading OpenVidu Pro to <strong>2.13.0</strong> from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. If you are going to install 2.13.0 in the same machine, make sure to backup any data you want to keep and uninstall all of OpenVidu services before installing 2.13.0. Good news is that from this point in time, upgrading or downgrading versions will be extremely quick and easy!
+      Unfortunately upgrading OpenVidu Pro to <strong>2.13.0</strong> from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. If you are going to install 2.13.0 in the same machine, make sure to [backup the data]() you want to keep and uninstall all of OpenVidu services before installing 2.13.0. Good news is that from this point in time, upgrading or downgrading versions will be extremely quick and easy!
 </div>
 </div>
 
@@ -222,7 +317,7 @@ cd /opt/kms
 
 > **NOTE 2**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
 
-<br><br>
+<br><br>-->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
