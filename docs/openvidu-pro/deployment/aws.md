@@ -303,12 +303,16 @@ Once the cluster is running, there are different ways you can update the value o
 
 ### 1) With OpenVidu Inspector
 
+> **KNOWN ISSUE**: This feature is currently broken in 2.13.0 version. Look [here](https://docs.openvidu.io/en/2.13.0/openvidu-pro/deployment/on-premises/#bug-when-restarting-from-inspector-or-rest) for more details. Do not use it.
+
 OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
 
 ### 2) With OpenVidu Pro REST API
+
+> **KNOWN ISSUE**: This feature is currently broken in 2.13.0 version. Look [here](https://docs.openvidu.io/en/2.13.0/openvidu-pro/deployment/on-premises/#bug-when-restarting-from-inspector-or-rest) for more details. Do not use it.
 
 You can consume REST API method **[POST /pro/restart](openvidu-pro/reference-docs/REST-API-pro/#post-prorestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
