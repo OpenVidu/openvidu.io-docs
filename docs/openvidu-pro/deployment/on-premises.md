@@ -474,6 +474,24 @@ Keep an eye on the OpenVidu logs that will automatically display after restartin
 
 ### Troubleshooting Openvidu Server Pro Node
 
+### Knonw errors
+
+#### Bug when restarting from Inspector or REST
+
+Restarting OpenVidu server from inspector of with REST API is broken. Avoid it. 
+
+We detected a last minute bug when you try to restart the platform using a the web inspector or using `/restart` endpoint in the REST API. If you try to do, you will get the following error in `openvidu-server` logs:
+
+```
+openvidu-server_1  | [INFO] 2020-04-24 02:33:57,221 [main] io.openvidu.server.kurento.kms.KmsManager - OpenVidu Server Pro is deployed with 'OPENVIDU_PRO_CLUSTER_MODE' set to 'auto'. Ignoring uris defined in 'KMS_URIS'
+openvidu-server_1  | [INFO] 2020-04-24 02:33:57,227 [main] io.openvidu.server.core.SessionManager - Garbage collector for non active sessions initialized. Running every 900 seconds and cleaning up non active Sessions more than 3600 seconds old
+openvidu-server_1  | [INFO] 2020-04-24 02:33:57,271 [main] io.openvidu.server.pro.infrastructure.InfrastructureManager - Using path "/opt/openvidu/cluster/aws/aws/" as clustering path (set with property "OPENVIDU_PRO_CLUSTER_PATH")
+openvidu-server_1  | [ERROR] 2020-04-24 02:33:57,272 [main] io.openvidu.server.pro.infrastructure.onpremise.OnpremiseInfrastructureManager - Cluster environment "on_premise" requires file "/opt/openvidu/cluster/aws/aws/openvidu_launch_kms.sh" to exist, but cannot be found
+openvidu-server_1  | [ERROR] 2020-04-24 02:33:57,272 [main] io.openvidu.server.pro.infrastructure.onpremise.OnpremiseInfrastructureManager - Shutting down OpenVidu Server
+```
+
+To fix the issue, you have to enter to the machine with `ssh` and edit the `.env` file removing  `OPENVIDU_PRO_CLUSTER_PATH` variable and restarting the service with `./openvidu restart`.
+
 #### Configuration errors
 
 If there's any error with the configuration, a report detailing which configuration property has issues and a step-by-step guide to fix it will be immediately shown by OpenVidu. The report will be similar to this:
