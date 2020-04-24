@@ -55,7 +55,7 @@ This procedure installs the following services:
 You need root permissions to deploy OpenVidu.
 
 ```bash
-sudo su
+sudo su -
 ```
 
 The recommended folder to install OpenVidu is **`/opt`**. Every other instruction in the documentation regarding on premises deployment assumes this installation path.
