@@ -107,7 +107,7 @@ VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-call.git
-cd openvidu-call/front/openvidu-call
+cd openvidu-call/openvidu-call-front
 npm install
 ```
 
