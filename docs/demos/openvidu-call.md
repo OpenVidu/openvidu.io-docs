@@ -89,7 +89,7 @@ cd openvidu-call
 git checkout -b v2.12.0b v2.12.0
 ```
 
-2) You will need node, NPM and angular-cli to execute the app. You can install them with:
+2) You will need node, NPM and angular-cli to execute the app. You can install them with in linux with the following commands:
 
 ```bash
 sudo apt-get update
