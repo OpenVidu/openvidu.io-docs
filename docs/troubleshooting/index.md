@@ -163,7 +163,7 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
 ### 4. Does my app need a server-side?
 
-First of all, let's differentiate between OpenVidu server-side and your application's server-side. 
+First of all, let's differentiate between OpenVidu server-side and your application's server-side.
 
   - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](deployment/deploying-aws/){:target="_blank"} to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
   - You will generally want your application to have its own server-side. Why?
@@ -245,7 +245,7 @@ OpenVidu supports a wide range of platforms:
 <br>
 ##### Mobile browsers
 
-**Chrome**, **Firefox**, **Microsoft Edge** and **Opera** in Android and **Safari** in iOS
+**Chrome**, **Firefox**, **Microsoft Edge**, **Opera** and **Samsung Internet Browser** in Android and **Safari** in iOS
 
 <br>
 ##### Mobile native applications
@@ -286,7 +286,7 @@ We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pr
         openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
 
   - Run _http-server_ with SSL flag
-      
+
         http-server -S
 
 ---
@@ -294,7 +294,7 @@ We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pr
 ### 11. My Safari users with role `SUBSCRIBER` are not able to receive any remote video
 
   Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
-  
+
   So, in this particular case developers must show a button their SUBSCRIBER users must click (any other action that counts as user-gesture is also suitable), and the action executed upon click event should include a call to `video.play()`. The actual video element is completely irrelevant. It can be hidden and with no media attached at all. For example:
 
 ```html
