@@ -78,10 +78,12 @@ docker run -p 4443:4443 openvidu/openvidu-call
 #### Cloning GitHub Repository
 
 
-1)  Clone the repo:
+1)  Clone the repo and move to stable brach:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-call.git
+cd openvidu-call
+git checkout -b v2.12.0b v2.12.0
 ```
 
 2) You will need node, NPM and angular-cli to execute the app. You can install them with:
