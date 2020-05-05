@@ -239,7 +239,7 @@ var ovSettings = {
     video: true,
     screenShare: true,
     fullscreen: true,
-    layoutSpeaking: true;
+    layoutSpeaking: true,
     exit: true,
   }
 };
