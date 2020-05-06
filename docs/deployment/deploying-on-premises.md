@@ -86,7 +86,7 @@ Openvidu Platform successfully installed.
 1. Go to openvidu folder:
 $ cd openvidu
 
-2. Configure OPENVIDU_DOMAIN_OR_PUBLIC_IP and OPENVIDU_SECRET in .env file:
+2. Configure DOMAIN_OR_PUBLIC_IP and OPENVIDU_SECRET in .env file:
 $ nano .env
 
 3. Start OpenVidu
@@ -106,7 +106,7 @@ For more information, check readme.md
 
 OpenVidu Platform configuration is specified in the **`.env`** file with environment variables.
 
-- You _must_ give a value to properties **`OPENVIDU_DOMAIN_OR_PUBLIC_IP`** and **`OPENVIDU_SECRET`**. Default empty values will fail.
+- You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`** and **`OPENVIDU_SECRET`**. Default empty values will fail.
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
 - All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-config/){:target="_blank"} for further information.
 
@@ -122,7 +122,7 @@ The **`.env`** file is pretty self-explanatory. It looks like this:
 
 # Domain name. If you do not have one, the public IP of the machine.
 # For example: 198.51.100.1, or openvidu.example.com
-OPENVIDU_DOMAIN_OR_PUBLIC_IP=
+DOMAIN_OR_PUBLIC_IP=
 
 # OpenVidu SECRET used for apps to connect to OpenVidu server and users to access to OpenVidu Dashboard
 OPENVIDU_SECRET=
@@ -149,7 +149,7 @@ LETSENCRYPT_EMAIL=user@example.com
 By default, the [OpenVidu Call](demos/openvidu-call/){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
 
 ```console
-https://OPENVIDU_DOMAIN_OR_PUBLIC_IP/
+https://DOMAIN_OR_PUBLIC_IP/
 ```
 
 This application is defined in file `docker-compose.override.yml`. To disable OpenVidu Call application, you can delete the file `docker-compose.override.yml` (or just rename it in case you want to enable it again in the future).
@@ -158,7 +158,7 @@ You can configure any other application updating the content of `docker-compose.
 
 - Application server port must be binded to 5442 in the host, as this port is used by NGINX to publish your app in the default HTTPS port (443).
 - The app must be served in plain HTTP as NGINX is the responsible of managing SSL certificate, so disable HTTPS and SSL in your app.
-- Application has to know OpenVidu Server URL. You can use the environment variables ${OPENVIDU_DOMAIN_OR_PUBLIC_IP} and ${OPENVIDU_SECRET} in `docker-compose.override.yml` file.
+- Application has to know OpenVidu Server URL. You can use the environment variables ${DOMAIN_OR_PUBLIC_IP} and ${OPENVIDU_SECRET} in `docker-compose.override.yml` file.
 - The application and OpenVidu platform are deployed in the same domain. For that reason, the following URLs are reserved for OpenVidu and you cannot use them in the application:
     - `/api/`
     - `/openvidu/`
@@ -256,7 +256,7 @@ Configuration errors
 --------------------
 
 * Property OPENVIDU_SECRET is not set. Cannot be empty.
-* Property OPENVIDU_DOMAIN_OR_PUBLIC_IP is not set. Cannot be empty
+* Property DOMAIN_OR_PUBLIC_IP is not set. Cannot be empty
 
 
 Fix config errors
@@ -324,7 +324,7 @@ Configuration properties
 * CERTIFICATE_TYPE=selfsigned
 * OPENVIDU_CDR=false
 * OPENVIDU_CDR_PATH=/opt/openvidu/cdr
-* OPENVIDU_DOMAIN_OR_PUBLIC_IP=my.domain.com
+* DOMAIN_OR_PUBLIC_IP=my.domain.com
 * OPENVIDU_RECORDING=false
 * OPENVIDU_RECORDING_AUTOSTOP-TIMEOUT=120
 * OPENVIDU_RECORDING_COMPOSED-URL=

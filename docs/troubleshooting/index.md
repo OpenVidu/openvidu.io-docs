@@ -78,17 +78,19 @@ If you have changed your HTML, JavaScript or CSS code, refreshed the page and ca
 ##### Share your app through your network to test with multiple devices
 Making your app accessible to any device connected to your LAN network is very useful for quickly testing your app with different devices at the same time. To achieve this, you just have to indicate OpenVidu Server to use your dev machine LAN IP address as public url. For example, let's say that your machine has assigned ip `192.168.0.107` in your network:
 
-`docker run -p 4443:4443 -e OPENVIDU_PUBLICURL=https://192.168.0.107:4443/ openvidu/openvidu-server-kms:2.13.0`
+`docker run -p 4443:4443 -e DOMAIN_OR_PUBLIC_IP=192.168.0.107 openvidu/openvidu-server-kms:2.13.0`
 
-Then you just have to configure your app (REST API address / OpenVidu Java Client / OpenVidu Node Client) to connect to OpenVidu through `https://192.168.0.107:4443/`. Any user connecting to your app through `https://192.168.0.107:WHICHEVER_PORT_YOUR_APP_IS_LISTENING_THROUGH` will be able to send and receive video.
+Then you just have to configure your app (REST API address / OpenVidu Java Client / OpenVidu Node Client) to connect to OpenVidu through `https://192.168.0.107:4443/`. Any user connecting to your app through in your LAN network will be able to send and receive video through this OpenVidu Server.
 
 ---
 
 ### 3. I am using Windows to run the tutorials / develop my app. Anything I should know?
 
-Yes, some little changes are needed because of the way Docker runs on Windows. In Linux/Mac, Docker containers are easily accessible through `localhost`, but in Windows you will have to use the specific IP allocated to your container (usually `192.168.99.100`).
+Depending on how you are running Docker in your Windows system you may or may not require to do some changes. If you are using the modern and recommended [Docker for Windows](https://docs.docker.com/docker-for-windows/){:target="_blank"}, everything should work fine out-of-the-box just as explained in tutorials. No changes required.
 
-First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `OPENVIDU_PUBLICURL` to the IP allocated for Docker in your Windows machine.
+But if you are running Docker in Windows with the legacy [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/){:target="_blank"}, some little changes are needed just because you won't be able to use `localhost` as IP to connect to OpenVidu Server. You will have to use the specific IP allocated to your container. You can get it by running command `docker-machine ip default` (will output something similar to `192.168.99.100`, but the IP can vary).
+
+First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `DOMAIN_OR_PUBLIC_IP` to the IP allocated for Docker in your Windows machine.
 
 What in Linux/Mac is...
 
@@ -96,10 +98,10 @@ What in Linux/Mac is...
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.13.0
 ```
 
-...in Windows is...
+...in Windows with Docker Toolbox may be...
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=https://192.168.99.100:4443/ openvidu/openvidu-server-kms:2.13.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=192.168.99.100 openvidu/openvidu-server-kms:2.13.0
 ```
 
 Then, to let your applications know how to connect to OpenVidu Server:
@@ -240,17 +242,29 @@ OpenVidu supports a wide range of platforms:
 <br>
 ##### Desktop browsers
 
-**Chrome**, **Firefox**, **Opera**, **Safari**, **Microsoft Edge** and **Internet Explorer 11**
+- Chrome
+- Firefox
+- Opera
+- Safari
+- Microsoft Edge
+- Internet Explorer 11
 
 <br>
 ##### Mobile browsers
 
-**Chrome**, **Firefox**, **Microsoft Edge**, **Opera** and **Samsung Internet Browser** in Android and **Safari** in iOS
+- For Android
+    - Chrome
+    - Firefox
+    - Microsoft Edge
+    - Opera
+    - Samsung Internet Browser
+- For iOS
+    - Safari (Safari is the only browser in iOS with WebRTC support)
 
 <br>
 ##### Mobile native applications
 
-**Android** and **iOS** are supported:
+Both Android and iOS are supported:
 
 - Since release **2.7.0** through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
 

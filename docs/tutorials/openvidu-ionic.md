@@ -19,7 +19,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 
-1) You will need **Node**, **NPM**, **Ionic** and **Cordova** to serve the app. Install them with the following commands
+**1)** You will need **Node**, **NPM**, **Ionic** and **Cordova** to serve the app. Install them with the following commands
 
 ```bash
 sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
@@ -28,13 +28,13 @@ sudo npm install -g ionic@latest
 sudo npm install -g cordova@latest
 ```
 
-2) Clone the repo
+**2)** Clone the repo
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
-3) Install dependencies
+**3)** Install dependencies
 
 ```bash
 cd openvidu-tutorials/openvidu-ionic
@@ -45,14 +45,14 @@ Now depending on the platform you want to run your app...
 
 #### In the browser
 
-4) Run the tutorial
+**4)** Run the tutorial
 
 ```bash
 # In openvidu-tutorials/openvidu-ionic
 ionic serve
 ```
 
-5) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
+**5)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
@@ -61,9 +61,9 @@ ionic serve
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.13.0
 ```
 
-6) Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+**6)** Go to _[`localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
-7) To show the app with the device appearance, press `F12` button in your keyboard and the browser DevTools will be opened. You can find a button with a device icon at the top of the DevTools. By pressing this button the view will adapt to a mobile device aspect ratio. You can also choose predefined types of devices to see the behavior of your app in different resolutions.
+**7)** To show the app with the device appearance, press `F12` button in your keyboard and the browser DevTools will be opened. You can find a button with a device icon at the top of the DevTools. By pressing this button the view will adapt to a mobile device aspect ratio. You can also choose predefined types of devices to see the behavior of your app in different resolutions.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -106,7 +106,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested on Android 9 (Pie)
+	This tutorial has been tested on Android 8.1, 9 and 10
 </div>
 </div>
 
@@ -116,30 +116,28 @@ After we have completed all the steps of the Ionic guide and performed steps 1) 
 
 <br>
 
-4) Connect the device to the same network as your PC
+**4)** Connect the device to the same network as your PC
 
-5) Now you need the IP of your PC in the network. In Linux/OSX you can simply get it by running this command on your shell
+**5)** Now you need the IP of your PC in your LAN network, which we will use to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`)
 
 ```console
 awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 ```
 
-> It will probably output something like `192.168.0.105`. Your **complete OpenVidu public url** would then be `https://192.168.0.105:4443/`
-
-When you have your OpenVidu public url, you must set it in `OPENVIDU_SERVER_URL` variable [**in the app**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"} and in the `OPENVIDU_PUBLICURL` parameter used to run *openvidu-server* (see next point)
-
-
-6) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
+**6)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got. In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.13.0
+# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.13.0
 ```
 
-> Remember changing `OPENVIDU_PUBLICURL` parameter to the actual value. In this example that would be:<br>`-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`
+**7)** You must indicate the OpenVidu Server URL to the app. Set it in `OPENVIDU_SERVER_URL` variable [**right here**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"}. The complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example, running OpenVidu platform as in step 6), that would be: `https://192.168.1.111:4443`
 
-7) Connect the device to the PC. You must enable USB debugging and give permissions (check out [last section here in Ionic docs](https://beta.ionicframework.com/docs/installation/android/#set-up-an-android-device){:target="_blank"})
+**8)** Connect the device to the PC. You must enable USB debugging and give permissions (check out [last section here in Ionic docs](https://beta.ionicframework.com/docs/installation/android/#set-up-an-android-device){:target="_blank"})
 
-8) Run the tutorial. The app will be automatically launched in your Android device
+**9)** Run the tutorial. The app will be automatically launched in your Android device
 
 ```bash
 # In openvidu-tutorials/openvidu-ionic
@@ -203,14 +201,14 @@ After we have completed all the steps of the Ionic guide and performed steps 1),
 
 <br>
 
-4) Add ios platform
+**4)** Add ios platform
 
 ```bash
 # In openvidu-tutorials/openvidu-ionic
 ionic cordova platform add ios
 ```
 
-5) Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
+**5)** Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
 
 ```bash
 # In openvidu-tutorials/openvidu-ionic

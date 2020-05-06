@@ -83,27 +83,23 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 
 **2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_
 
-**3)** Now you need the IP of your PC in your LAN network, which we will use in points 4) and 5) to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running this command on your shell.
+**3)** Now you need the IP of your PC in your LAN network, which we will use in points 4) and 5) to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`)
 
 
 ```console
 awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 ```
 
-> It will probably output something like `192.168.0.105`. Your **complete OpenVidu public url** would then be `https://192.168.0.105:4443/`
-
-**4)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Provide `OPENVIDU_PUBLICURL` property built with the IP we just got. In the example below that could be `-e OPENVIDU_PUBLICURL=https://192.168.0.105:4443/`
+**4)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 3). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment/deploying-on-premises
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e OPENVIDU_PUBLICURL=YOUR_OPENVIDU_PUBLIC_URL openvidu/openvidu-server-kms:2.13.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.13.0
 ```
 
-**5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, go to `app > res > values > strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of uor OpenVidu Server (same value as you configured in property `OPENVIDU_PUBLICURL`).
-
-In this example that would be: `https://192.168.0.105:4443/`
+**5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, go to `app > res > values > strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your OpenVidu Server. Complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443/`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example that would be: `https://192.168.1.111:4443/`
 
 **6)** Connect the device to the same network as your PC
 
@@ -151,7 +147,7 @@ This is an Android project generated with Android Studio, and therefore you will
 As stated above in [Running this tutorial](#running-this-tutorial), you have to modify the value of `default_openvidu_url` with the IP of your PC in file `res > values > strings.xml`. For example:
 
 ```xml
-<string name="default_openvidu_url">https://192.168.0.105:4443/</string>
+<string name="default_openvidu_url">https://192.168.1.111:4443/</string>
 ```
 
 Besides, you can change the default values for the local participant name (`default_participant_name`) and session name (`default_session_name`). These will appear as default values in the form to connect to a session.

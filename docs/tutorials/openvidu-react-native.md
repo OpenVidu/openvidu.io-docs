@@ -174,7 +174,7 @@ Now depending on the platform you want to run your app...
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested from Android 5.1 (Lollipop) to Android 9 (Pie)
+	This tutorial has been tested from Android 5.1 to Android 10
 </div>
 </div>
 

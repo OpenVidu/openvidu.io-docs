@@ -138,6 +138,12 @@ Run KMS in any OS that supports Docker with the following command:
 docker run -d --name kms -p 8888:8888 kurento/kurento-media-server:latest
 ```
 
+Latest development version can be executed with:
+
+```bash
+docker run -d --name kms -p 8888:8888 kurento/kurento-media-server-dev:latest
+```
+
 [Here](http://doc-kurento.readthedocs.io/en/stable/user/installation.html){:target="_blank"} you can check Kurento's official documentation.
 
 <br>
@@ -181,7 +187,9 @@ ng serve
 **6)** `openvidu/openvidu-server/`
 
 ```bash
-mvn exec:java
+# Must indicate to OpenVidu Server the domain, port and secret
+
+mvn -DDOMAIN_OR_PUBLIC_IP=localhost -DHTTPS_PORT=4443 -DOPENVIDU_SECRET=MY_SECRET exec:java
 ```
 
 *(or if you prefer you can just run the Java application in your favourite IDE)*
