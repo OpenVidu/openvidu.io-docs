@@ -31,8 +31,7 @@
         - [Change log level of the services](#change-log-level-of-the-services_1)
         - [Change Kurento Media Server docker image](#change-kurento-media-server-docker-image)
         - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1)
-        - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
-
+        - [Kurento Media Server crash](#kurento-media-server-crash)
 
 ---
 
@@ -678,7 +677,7 @@ ufw allow 80/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw enable
 ```
 
-#### Kurento Media Server crash reports
+#### Kurento Media Server crash
 
 Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
 

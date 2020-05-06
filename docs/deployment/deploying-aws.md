@@ -10,7 +10,7 @@
     - [6) Administration](#6-administration)
 - **[Troubleshooting](#troubleshooting)**
     - [CREATE_FAILED CloudFormation stack](#create_failed-cloudformation-stack)
-    - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
+    - [Kurento Media Server crash](#kurento-media-server-crash)
 
 ---
 
@@ -234,7 +234,7 @@ If that is not the problem, then follow these steps:
 
 ---
 
-### Kurento Media Server crash reports
+### Kurento Media Server crash
 
 Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
 
