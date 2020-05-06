@@ -670,10 +670,10 @@ If your only choice is to manually configure a firewall, you can for example ins
 
 ```
 ufw allow ssh
-ufw allow 80/tcp
 ufw allow 40000:65535/tcp
 ufw allow 40000:65535/udp
 ufw allow 8888/tcp from <OPENVIDU_SERVER_PRO_IP>
+ufw allow 80/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw enable
 ```
 
