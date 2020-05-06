@@ -430,22 +430,24 @@ Now is the moment to replicate the KMS error. Use your OpenVidu application unti
 
 #### 3) Collect the KMS crash report
 
-Once the error has occurred, compress the crash report in a `core_dumps.tar.gz` file:
+Once the error has occurred, compress the crash report in a `core_dumps.tar.gz` file and download it. You can do so from your computer with the following SSH commands:
 
 ```bash
-cd ~ # Modify this if you prefer saving the report in other folder
-tar zcvfP core_dumps.tar.gz /opt/openvidu/kms-crashes/*
+ssh USER@OPENVIDU_IP "sudo tar zcvfP ~/core_dumps.tar.gz /opt/openvidu/kms-crashes/*"
+scp USER@OPENVIDU_IP:~/core_dumps.tar.gz core_dumps.tar.gz
 ```
 
-File `core_dumps.tar.gz` containing the KMS crash report is ready to be sent to us.
+Replace `USER` with a user of your server with `root` permissions and `OPENVIDU_IP` with the server's IP address. File `core_dumps.tar.gz` will be downloaded to your PC and it will be ready to be sent to us.
 
 #### 4) Clean the KMS crash report
 
 So as not to consume too much hard drive, remember to delete the crash reports once you have sent it to us. **IMPORTANT**: obviously, do NOT do this before zipping and sending the report.
 
 ```bash
-sudo rm /opt/openvidu/kms-crashes*
+ssh USER@OPENVIDU_IP "sudo rm /opt/openvidu/kms-crashes* && sudo rm ~/core_dumps.tar.gz"
 ```
+
+Replace `USER` with a user of your server with `root` permissions and `OPENVIDU_IP` with the server's IP address.
 
 <br>
 
