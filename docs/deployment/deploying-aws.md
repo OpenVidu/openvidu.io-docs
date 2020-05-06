@@ -1,6 +1,21 @@
 <h2 id="section-title">Deploying OpenVidu on AWS</h2>
 <hr>
 
+- **[Deployment instructions](#deployment-instructions)**
+    - [1) Access to the console of AWS Cloud Formation](#1-access-to-the-console-of-aws-cloud-formation)
+    - [2) Select Create Stack 🠚 With new resources](#2-select-create-stack-with-new-resources)
+    - [3) Option Specify template 🠚 Amazon S3 URL with the following URL](#3-option-specify-template-amazon-s3-url-with-the-following-url)
+    - [4) Specify stack details](#4-specify-stack-details)
+    - [5) Create your stack](#5-create-your-stack)
+    - [6) Administration](#6-administration)
+- **[Troubleshooting](#troubleshooting)**
+    - [CREATE_FAILED CloudFormation stack](#create_failed-cloudformation-stack)
+    - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
+
+---
+
+## Deployment instructions
+
 The deployment of OpenVidu can be a piece of cake if you have an AWS account. Just follow these steps:
 
 ### 1. Access to the console of AWS Cloud Formation
@@ -166,6 +181,83 @@ That URL is the one to be used to consume OpenVidu REST API. Besides:
 - You can access OpenVidu Server dashboard to make a quick test of your deployment through `/dashboard`. Credentials to access to it are `OPENVIDUAPP` as username and your [OpenVidu secret](#openvidu-configuration) as password.
 
 You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](deployment/deploying-app/){:target="_blank"}.
+
+<br>
+
+---
+
+### 6. Administration
+
+AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/deploying-on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
+
+cd into default installation path `/opt/openvidu` and manage the services as explained in [on premises administration](deployment/deploying-on-premises/#5-administration){:target="_blank"}.
+
+<br>
+
+---
+
+## Troubleshooting
+
+### CREATE_FAILED CloudFormation stack
+
+First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} on how to fix it.
+
+If that is not the problem, then follow these steps:
+
+- **1)** Try to deploy again, but this time disabling option `Rollback on failure` (Configure stack options 🡆 Advanced Options 🡆 Stack creation options). This will prevent the instance to be terminated in case of failure so logs can be gathered. Once you re-deploy with this option, the stack will still fail but you’ll be able to access instances through SSH and retrieve some files to debug the problem.
+
+<div class="row">
+    <div style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro13" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
+    </div>
+</div>
+
+- **2)** We will also need the parameters you've used to deploy, to check possible problems in their values
+
+<div class="row">
+    <div style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro14" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
+    </div>
+</div>
+
+- **3)** Once you have performed step 1) and the stack creation has failed, please SSH into the created EC2 instance and share with us CloudFormation logs
+
+    - `/var/log/cloud-init.log`
+    - `/var/log/cloud-init-output.log`
+<br><br>
+
+- **4)** Get also the log output of all the services with this command and share with us the output file:
+
+    - `docker-compose logs -f`
+
+> AWS deployments of OpenVidu CE work under the hood in the exact same manner as on premises deployments. So **everything explained in [Troubleshooting](deployment/deploying-on-premises/#troubleshooting){:target="_blank"} section of on premises deployments also applies to AWS deployments**. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
+
+---
+
+### Kurento Media Server crash reports
+
+Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
+
+In AWS deployments of OpenVidu CE, KMS crash reports are enabled by default. You can directly get them with the following steps:
+
+#### 1) Download the KMS crash report
+
+```bash
+ssh -i AWS_SSH_KEY ubuntu@OPENVIDU_IP "sudo tar zcvfP ~/core_dumps.tar.gz /opt/openvidu/kms-crashes/*"
+scp -i AWS_SSH_KEY ubuntu@OPENVIDU_IP:~/core_dumps.tar.gz .
+```
+
+Replace `AWS_SSH_KEY` with the path to the SSH key of the EC2 instance and `OPENVIDU_IP` with its IP address.
+
+#### 2) Clean the KMS crash report
+
+So as not to consume too much hard drive, delete the crash report once you have downloaded it. **IMPORTANT**: obviously, do NOT do this before downloading the report.
+
+```bash
+ssh -i AWS_SSH_KEY ubuntu@OPENVIDU_IP "sudo rm /opt/openvidu/kms-crashes/* && sudo rm ~/core_dumps.tar.gz"
+```
+
+Replace `AWS_SSH_KEY` with the path to the SSH key of the EC2 instance and `OPENVIDU_IP` with its IP address.
 
 <br>
 

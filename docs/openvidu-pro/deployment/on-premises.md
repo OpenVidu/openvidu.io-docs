@@ -19,7 +19,20 @@
 - **[Updating OpenVidu Pro configuration](#updating-openvidu-pro-configuration)**
 - **[Troubleshooting](#troubleshooting)**
     - [Troubleshooting OpenVidu Server Pro Node](#troubleshooting-openvidu-server-pro-node)
+        - [Configuration errors](#configuration-errors)
+        - [Docker compose](#docker-compose)
+        - [Show service logs](#show-service-logs)
+        - [Review the configuration](#review-the-configuration)
+        - [Change log level of the services](#change-log-level-of-the-services)
+        - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks)
     - [Troubleshooting Media Nodes](#troubleshooting-media-nodes)
+        - [Docker compose](#docker-compose_1)
+        - [Show service logs](#show-service-logs_1)
+        - [Change log level of the services](#change-log-level-of-the-services_1)
+        - [Change Kurento Media Server docker image](#change-kurento-media-server-docker-image)
+        - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1)
+        - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
+
 
 ---
 
@@ -75,7 +88,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
 
 - **Port configuration in _OpenVidu Server Pro Node_**
 
-    - **Open these ports** ([here](#close-ports-in-openvidu-server-pro-node-to-avoid-external-attacks) you have an UFW sample to configure a firewall)
+    - **Open these ports** ([here](#close-ports-to-avoid-external-attacks) you have an UFW sample to configure a firewall)
 
         - **22 TCP**: to connect using SSH to admin OpenVidu.
         - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
@@ -83,20 +96,20 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
         - **40000 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 
-    - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check troubleshooting section [Close ports in OpenVidu Server Pro Node to avoid external attacks](#close-ports-in-openvidu-server-pro-node-to-avoid-external-attacks) to learn more about this.
+    - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check OpenVidu Server Pro Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks) to learn more about this.
 
     - **Free ports inside the server**: OpenVidu Server Pro Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5442, 5443, 6379. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
 
 - **Port configuration in _Media Nodes_**
 
-    - **Open these ports** ([here](#close-ports-in-media-nodes-to-avoid-external-attacks) you have an UFW sample to configure a firewall)
+    - **Open these ports** ([here](#close-ports-to-avoid-external-attacks_1) you have an UFW sample to configure a firewall)
 
         - **22 TCP**: to connect using SSH to admin OpenVidu.
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> Port 8888 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could spy your sessions.
         - **80 TCP**: to allow OpenVidu Server Pro Node downloading recording files. <strong style="color: #990000">WARNING!!</strong> Port 80 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could download your recordings.<br><br>
 
-    - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check troubleshooting section [Close ports in Media Nodes to avoid external attacks](#close-ports-in-media-nodes-to-avoid-external-attacks) to learn more about this.
+    - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check Media Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1) to learn more about this.
 
     - **Free ports inside the server**: Media Node services will need the port 8888 to be available inside the machine.
 
@@ -582,7 +595,7 @@ Configuration properties
 
 To change the level of _openvidu-server_ logs change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
 
-#### Close ports in OpenVidu Server Pro Node to avoid external attacks
+#### Close ports to avoid external attacks
 
 Closing all non-necessary ports in your OpenVidu Server Pro Node machine is very important to avoid external attacks. Some administrators using OpenVidu have reported attacks because their ports weren't properly closed. Of course, all of the opened ports stated in [Prerequisites](#1-prerequisites) section must be accessible from the exterior, but the rest must be closed to grant proper protection.
 
@@ -648,7 +661,7 @@ To change the level of Kurento Media Server _kms_ logs change the property `KMS_
 
 OpenVidu and Kurento Media Server evolve at a different pace. Sometimes, it is possible that a new KMS is released but OpenVidu is not still updated. In that case, if you hit a bug that might be solved in the last KMS version, you can test if just updating KMS fixes your issue. `KMS_IMAGE` property allows you to specify the new KMS image in configuration file `.env`.
 
-#### Close ports in Media Nodes to avoid external attacks
+#### Close ports to avoid external attacks
 
 Closing all non-necessary ports in your Media Node machines is very important to avoid external attacks. Some administrators using OpenVidu have reported attacks because their ports weren't properly closed. Of course, all of the opened ports stated in [Prerequisites](#1-prerequisites) section must be accessible from the exterior, but the rest must be closed to grant proper protection.
 
@@ -664,6 +677,78 @@ ufw allow 8888/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw allow 80/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw enable
 ```
+
+#### Kurento Media Server crash reports
+
+Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
+
+You must perform these steps in all of the Media Nodes experiencing KMS crashes. Take into account that all of these instructions must be executed with `root` permissions:
+
+```bash
+sudo su
+```
+
+<br>
+
+##### 1) Enable KMS crash reporting
+
+```bash
+echo "/opt/openvidu/kms-crashes/core_%e_%p_%u_%t" | tee /proc/sys/kernel/core_pattern > /dev/null
+```
+
+Let's prove that crash reporting is properly working. Execute the followings commands:
+
+```bash
+docker container kill --signal=SIGSEGV $(docker ps --format "{{.Names}}" | grep kms | head -1)
+ls -l /opt/openvidu/kms-crashes
+```
+
+If you see something like this ...
+
+```html
+-rw------- 1 root root 227282944 abr 17 19:06 core_kurento-media-s_1_0_1587143183
+-rw------- 1 root root   3911680 abr 17 19:06 core_kurento-media-s_65_0_1587143183
+-rw------- 1 root root 227233792 abr 17 19:06 core_kurento-media-s_66_0_1587143183
+```
+
+... then everything is working as expected. Delete this test report and restart the Media Node services:
+
+```bash
+rm -rf /opt/openvidu/kms-crashes/*
+cd /opt/kms
+./media_node restart
+```
+
+<br>
+
+##### 2) Replicate the error
+
+Now is the moment to replicate the KMS error. Use your OpenVidu application until the error appears, and then we'll be ready to collect the crash report.
+
+<br>
+
+##### 3) Collect the KMS crash report
+
+Once the error has occurred, compress the crash report in a `core_dumps.tar.gz` file and download it. You can do so from your computer with the following SSH commands:
+
+```bash
+ssh USER@MEDIA_NODE_IP "sudo tar zcvfP ~/core_dumps.tar.gz /opt/openvidu/kms-crashes/*"
+scp USER@MEDIA_NODE_IP:~/core_dumps.tar.gz core_dumps.tar.gz
+```
+
+Replace `USER` with a user of your Media Node instance with `root` permissions and `MEDIA_NODE_IP` with the instance IP address. This only applies to a single Media Node. If you have more Media Nodes experiencing KMS crashes, perform these same steps in all of them. Send us the resulting zipped report files.
+
+<br>
+
+##### 4) Clean the KMS crash report
+
+So as not to consume too much hard drive, remember to delete the crash reports once you have sent it to us. **IMPORTANT**: obviously, do NOT do this before zipping and sending the report.
+
+```bash
+ssh USER@MEDIA_NODE_IP "sudo rm /opt/openvidu/kms-crashes* && sudo rm ~/core_dumps.tar.gz"
+```
+
+Replace `USER` with a user of your Media Node instance with `root` permissions and `MEDIA_NODE_IP` with the instance IP address. This only applies to a single Media Node and must be performed for each Media Node from which you downloaded a crash report.
 
 <br>
 

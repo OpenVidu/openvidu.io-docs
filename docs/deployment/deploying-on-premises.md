@@ -8,6 +8,14 @@
     - [4) Execution](#4-execution)
     - [5) Administration](#5-administration)
 - **[Troubleshooting](#troubleshooting)**
+    - [Configuration errors](#configuration-errors)
+    - [Docker compose](#docker-compose)
+    - [Show service logs](#show-service-logs)
+    - [Review the configuration](#review-the-configuration)
+    - [Change log level of the services](#change-log-level-of-the-services)
+    - [Change Kurento Media Server docker image](#change-kurento-media-server-docker-image)
+    - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks)
+    - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
 
 ---
 
@@ -269,6 +277,8 @@ Fix config errors
     $ ./openvidu restart
 ```
 
+---
+
 ### Docker compose
 
 To solve any other issue, it is important to understand how is OpenVidu executed. 
@@ -289,6 +299,8 @@ OpenVidu is executed as a docker-compose file. The commands executed by the scri
  
 <br>
 As you can see, logs of `openvidu-server` service are shown when platform is started or restarted. This log contains the most important information for the OpenVidu execution.
+
+---
 
 ### Show service logs
 
@@ -314,6 +326,8 @@ docker-compose logs -f redis
 docker-compose logs -f app
 ```
 
+---
+
 ### Review the configuration
 
 Sometimes we may have a typo when writing a property name. For this reason, openvidu-server prints in the log all the configuration properties you have set in `.env` file and the default values for all other configuration properties. In that way, you can double check what openvidu-server actually *sees*.
@@ -332,15 +346,21 @@ Configuration properties
 ...
 ```
 
+---
+
 ### Change log level of the services
 
 To change the level of OpenVidu logs (***openvidu-server*** docker service) change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
 
 To change the level of Kurento Media Server logs (***kms*** docker service) change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
+---
+
 ### Change Kurento Media Server docker image
 
 OpenVidu and Kurento Media Server evolve at a different pace. Sometimes, it is possible that a new KMS is released but OpenVidu is not still updated. In that case, if you hit a bug that might be solved in the last KMS version, you can test if just updating KMS fixes your issue. `KMS_IMAGE` property allows you to specify the new KMS image in configuration file `.env`.
+
+---
 
 ### Close ports to avoid external attacks
 
@@ -361,6 +381,70 @@ ufw allow 40000:57000/udp
 ufw allow 57001:65535/tcp
 ufw allow 57001:65535/udp
 ufw enable
+```
+
+---
+
+### Kurento Media Server crash reports
+
+Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
+
+You must perform these steps in the server hosting your OpenVidu deployment. Take into account that all of these instructions must be executed with `root` permissions:
+
+```bash
+sudo su
+```
+
+#### 1) Enable KMS crash reporting
+
+```bash
+echo "/opt/openvidu/kms-crashes/core_%e_%p_%u_%t" | tee /proc/sys/kernel/core_pattern > /dev/null
+```
+
+Let's prove that crash reporting is properly working. Execute the followings commands:
+
+```bash
+docker container kill --signal=SIGSEGV $(docker ps --format "{{.Names}}" | grep kms | head -1)
+ls -l /opt/openvidu/kms-crashes
+```
+
+If you see something like this ...
+
+```html
+-rw------- 1 root root 227282944 abr 17 19:06 core_kurento-media-s_1_0_1587143183
+-rw------- 1 root root   3911680 abr 17 19:06 core_kurento-media-s_65_0_1587143183
+-rw------- 1 root root 227233792 abr 17 19:06 core_kurento-media-s_66_0_1587143183
+```
+
+... then everything is working as expected. Delete this test report and restart OpenVidu:
+
+```bash
+rm -rf /opt/openvidu/kms-crashes/*
+cd /opt/openvidu
+./openvidu restart
+```
+
+#### 2) Replicate the error
+
+Now is the moment to replicate the KMS error. Use your OpenVidu application until the error appears, and then we'll be ready to collect the crash report.
+
+#### 3) Collect the KMS crash report
+
+Once the error has occurred, compress the crash report in a `core_dumps.tar.gz` file:
+
+```bash
+cd ~ # Modify this if you prefer saving the report in other folder
+tar zcvfP core_dumps.tar.gz /opt/openvidu/kms-crashes/*
+```
+
+File `core_dumps.tar.gz` containing the KMS crash report is ready to be sent to us.
+
+#### 4) Clean the KMS crash report
+
+So as not to consume too much hard drive, remember to delete the crash reports once you have sent it to us. **IMPORTANT**: obviously, do NOT do this before zipping and sending the report.
+
+```bash
+sudo rm /opt/openvidu/kms-crashes*
 ```
 
 <br>

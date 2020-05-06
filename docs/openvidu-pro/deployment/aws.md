@@ -7,11 +7,14 @@
     - [3) Option 'Specify template' 🠚 'Amazon S3 URL' with the following URL](#3-option-specify-template-amazon-s3-url-with-the-following-url)
     - [4) Specify stack details](#4-specify-stack-details)
     - [5) Create your stack](#5-create-your-stack)
+    - [6) Administration](#6-administration)
 - **[Scalability](#scalability)**
     - [Set the number of Media Nodes on startup](#set-the-number-of-media-nodes-on-startup)
     - [Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)
 - **[Updating OpenVidu Pro configuration](#updating-openvidu-pro-configuration)**
 - **[Troubleshooting](#troubleshooting)**
+    - [CREATE_FAILED CloudFormation stack](#create_failed-cloudformation-stack)
+    - [Kurento Media Server crash reports](#kurento-media-server-crash-reports)
 
 ---
 
@@ -150,7 +153,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
   </table>
 </div>
 
-> There are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"}  for further information.
+> There are many other configuration values that can be set once the deployment has completed. Check out section [Updating OpenVidu Pro configuration](#updating-openvidu-pro-configuration) once the deployment is done.
 
 #### Kibana configuration
 
@@ -237,6 +240,17 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
 </div>
 
 To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP/`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com/` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
+
+<br>
+
+---
+
+### 6. Administration
+
+AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
+
+- **OpenVidu Server Pro Node**: cd into default installation path `/opt/openvidu` and manage the services as explained in on premises [OpenVidu Server Pro Node administration](openvidu-pro/deployment/on-premises/#24-administration){:target="_blank"}.
+- **Media Nodes**: cd into default installation path `/opt/openvidu` and manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
 
 <br>
 
@@ -332,7 +346,9 @@ Keep an eye on the OpenVidu logs that will automatically display after restartin
 
 ## Troubleshooting
 
-First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} to learn how to fix it.
+### CREATE_FAILED CloudFormation stack
+
+First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} on how to fix it.
 
 If that is not the problem, then follow these steps:
 
@@ -363,6 +379,33 @@ If that is not the problem, then follow these steps:
     - `docker-compose logs -f`
 
 > AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So **everything explained in [Troubleshooting](openvidu-pro/deployment/on-premises/#troubleshooting){:target="_blank"} section of on premises deployments also applies to AWS deployments**. There you have detailed instructions on how to debug all of OpenVidu Pro services in case some unexpected problem appears.
+
+---
+
+### Kurento Media Server crash reports
+
+Sometimes Kurento Media Server (the service in charge of streaming media inside of Media Nodes) may crash. If this happens on a regular basis, or better, you have isolated a specific use case where KMS always crashes, then perform the following steps to collect a crash report that will help us fix the issue.
+
+In AWS deployments of OpenVidu Pro, KMS crash reports are enabled by default. You can directly get them with the following steps:
+
+#### 1) Download the KMS crash reports
+
+```bash
+ssh -i AWS_SSH_KEY ubuntu@MEDIA_NODE_IP "sudo tar zcvfP ~/core_dumps.tar.gz /opt/openvidu/kms-crashes/*"
+scp -i AWS_SSH_KEY ubuntu@MEDIA_NODE_IP:~/core_dumps.tar.gz .
+```
+
+Replace `AWS_SSH_KEY` with the path to the SSH key of your Media Node EC2 instance and `MEDIA_NODE_IP` with its IP address. This only applies to a single Media Node. If you have more Media Nodes experiencing KMS crashes, perform these same steps in all of them. Send us the resulting zipped report files.
+
+#### 2) Clean the KMS crash reports
+
+So as not to consume too much hard drive, delete the crash reports once you have downloaded them. **IMPORTANT**: obviously, do NOT do this before downloading the report.
+
+```bash
+ssh -i AWS_SSH_KEY ubuntu@MEDIA_NODE_IP "sudo rm /opt/openvidu/kms-crashes/* && sudo rm ~/core_dumps.tar.gz"
+```
+
+Replace `AWS_SSH_KEY` with the path to the SSH key of your Media Node EC2 instance and `MEDIA_NODE_IP` with its IP address. This only applies to a single Media Node and must be performed for each Media Node from which you downloaded a crash report.
 
 <br>
 
