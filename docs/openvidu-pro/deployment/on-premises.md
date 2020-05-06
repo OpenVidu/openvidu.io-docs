@@ -92,9 +92,9 @@ Once you have your instances ready, be sure to meet the following criteria in th
     - **Open these ports** ([here](#close-ports-in-media-nodes-to-avoid-external-attacks) you have an UFW sample to configure a firewall)
 
         - **22 TCP**: to connect using SSH to admin OpenVidu.
-        - **80 TCP**: to allow OpenVidu Server Pro Node downloading recording files.
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
-        - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> Port 8888 **must only be accessible for OpenVidu Server Pro instance**. Access trough this port must be restricted from the Internet, or anyone could spy your sessions.<br><br>
+        - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> Port 8888 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could spy your sessions.
+        - **80 TCP**: to allow OpenVidu Server Pro Node downloading recording files. <strong style="color: #990000">WARNING!!</strong> Port 80 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could download your recordings.<br><br>
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check troubleshooting section [Close ports in Media Nodes to avoid external attacks](#close-ports-in-media-nodes-to-avoid-external-attacks) to learn more about this.
 
