@@ -10,7 +10,7 @@ OpenVidu Call allows users to make videoconference calls with many of the capabi
   <img  class="img-responsive" src="img/demos/openvidu_call_diagram.png">
 </p> -->
 
-<hr>
+<!-- <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
 		<a data-fancybox="gallery" href="img/demos/openvidu_call_login.png">
@@ -58,7 +58,7 @@ OpenVidu Call allows users to make videoconference calls with many of the capabi
 			<img class="img-responsive" src="img/demos/openvidu_call3.png">
 		</a>
 	</div>
-</div>
+</div> -->
 
 ---
 
