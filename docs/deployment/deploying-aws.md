@@ -188,7 +188,7 @@ You can now add your own application to your instance. To learn how check out se
 
 ### 6. Administration
 
-AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/deploying-on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH. In the default installation path `/opt/openvidu` you will be able to:
+AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/deploying-on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH. Located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`) you will be able to:
 
 - Manage the services as explained in [on premises administration](deployment/deploying-on-premises/#5-administration){:target="_blank"}.
 - Update [OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"} just by modifying `.env` file and restarting the services with `./openvidu restart` command.

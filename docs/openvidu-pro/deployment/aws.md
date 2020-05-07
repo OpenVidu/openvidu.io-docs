@@ -249,8 +249,8 @@ To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use 
 
 AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
 
-- **OpenVidu Server Pro Node**: cd into default installation path `/opt/openvidu` and manage the services as explained in on premises [OpenVidu Server Pro Node administration](openvidu-pro/deployment/on-premises/#24-administration){:target="_blank"}.
-- **Media Nodes**: cd into default installation path `/opt/openvidu` and manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
+- **OpenVidu Server Pro Node**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [OpenVidu Server Pro Node administration](openvidu-pro/deployment/on-premises/#24-administration){:target="_blank"}.
+- **Media Nodes**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
 
 <br>
 
