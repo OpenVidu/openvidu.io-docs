@@ -112,7 +112,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### OpenVidu configuration
 
-Here you will only be able to configure OpenVidu secret, but there are many other configuration values that can be set once the deployment has completed. Visit [OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"} for further information.
+Here you will only be able to configure OpenVidu secret, but there are many other configuration values that can be set once the deployment has completed. Visit [Administration](#6-administration) section after your deployment is successful to update OpenVidu configuration.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">
@@ -188,9 +188,10 @@ You can now add your own application to your instance. To learn how check out se
 
 ### 6. Administration
 
-AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/deploying-on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
+AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/deploying-on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH. In the default installation path `/opt/openvidu` you will be able to:
 
-cd into default installation path `/opt/openvidu` and manage the services as explained in [on premises administration](deployment/deploying-on-premises/#5-administration){:target="_blank"}.
+- Manage the services as explained in [on premises administration](deployment/deploying-on-premises/#5-administration){:target="_blank"}.
+- Update [OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"} just by modifying `.env` file and restarting the services with `./openvidu restart` command.
 
 <br>
 
