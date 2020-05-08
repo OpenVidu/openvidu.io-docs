@@ -158,7 +158,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.13.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.14.0</strong>.sh | bash</code>
 
 ---
 
@@ -263,9 +263,9 @@ Then, `openvidu-server` service logs are shown. When OpenVidu Platform is ready 
    OpenVidu Platform is ready!
    ---------------------------
 
-   * OpenVidu Server: https://server/
+   * OpenVidu Server: https://DOMAIN_OR_PUBLIC_IP/
 
-   * OpenVidu Dashboard: https://server/dashboard/
+   * OpenVidu Dashboard: https://DOMAIN_OR_PUBLIC_IP/dashboard/
 
 ----------------------------------------------------
 ```
@@ -276,10 +276,10 @@ You can press `Ctrl+C` to come back to the shell and OpenVidu Pro will be execut
 
 ##### Available services
 
-- Consume [OpenVidu REST API Pro](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"} through `https://server/`
-- If the [application](#videoconference-application) is enabled, it will also be available at `https://server/`
-- You can access [OpenVidu Inspector](openvidu-pro/openvidu-inspector/){:target="_blank"} at `https://server/inspector/`
-- You can access [Kibana](openvidu-pro/detailed-session-monitoring/){:target="_blank"} at `https://server/kibana/`
+- Consume [OpenVidu REST API Pro](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
+- If the [application](#videoconference-application) is enabled, it will also be available at `https://DOMAIN_OR_PUBLIC_IP/`
+- You can access [OpenVidu Inspector](openvidu-pro/openvidu-inspector/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/inspector/`
+- You can access [Kibana](openvidu-pro/detailed-session-monitoring/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/kibana/`
 
 ---
 
@@ -350,7 +350,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.12.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.14.0</strong>.sh | bash</code>
 
 <br>
 

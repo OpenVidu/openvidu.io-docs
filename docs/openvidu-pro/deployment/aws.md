@@ -71,7 +71,7 @@
 </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.12.0</strong>.yaml</code>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.14.0</strong>.yaml</code>
 
 <br>
 

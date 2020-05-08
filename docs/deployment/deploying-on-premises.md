@@ -104,7 +104,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.13.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.14.0</strong>.sh | bash</code>
 
 <br>
 
@@ -206,9 +206,9 @@ Then, `openvidu-server` service logs are shown. When OpenVidu Platform is ready 
    OpenVidu Platform is ready!
    ---------------------------
 
-   * OpenVidu Server: https://server/
+   * OpenVidu Server: https://DOMAIN_OR_PUBLIC_IP/
 
-   * OpenVidu Dashboard: https://server/dashboard/
+   * OpenVidu Dashboard: https://DOMAIN_OR_PUBLIC_IP/dashboard/
 
 ----------------------------------------------------
 ```
@@ -217,9 +217,9 @@ You can press `Ctrl+C` to come back to the shell and OpenVidu will be executed i
 
 #### Available services
 
-- Consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"} through `https://server/`
-- If the [application](#videoconference-application) is enabled, it will also be available at `https://server/`
-- You can open OpenVidu Dashboard to verify everything is working as expected at `https://server/dashboard/` with credentials:
+- Consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
+- If the [application](#videoconference-application) is enabled, it will also be available at `https://DOMAIN_OR_PUBLIC_IP/`
+- You can open OpenVidu Dashboard to verify everything is working as expected at `https://DOMAIN_OR_PUBLIC_IP/dashboard/` with credentials:
     - user: OPENVIDUAPP
     - pass: the value of OPENVIDU_SECRET in `.env` file
 
