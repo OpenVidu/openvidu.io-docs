@@ -58,7 +58,7 @@ cd /opt/kms # Recommended and default installation path
     ">
       Be careful when upgrading your version of OpenVidu Pro:
       <ul>
-        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.12.0 to 2.14.0, you must first go through 2.13.0.</li>
+        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.13.0 to 2.15.0, you must first go through 2.14.0.</li>
         <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
       </ul>
 </div>
@@ -78,7 +78,7 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.14.0.sh | bash -s upgrade</code>
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.14.0.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -115,6 +115,7 @@ For further information, check readme.md
 
 - The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
 - Persistent data is preserved when upgrading. This means that all of your recordings and monitoring data (session history, ElasticSearch, Kibana) will be available in the new version.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
 - Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
 
 ### Upgrading Media Node
@@ -129,7 +130,7 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4">curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.14.0.sh | bash -s upgrade</code>
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.14.0.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -160,6 +161,7 @@ For more information, check readme.md
 ##### Some notes on upgrading Media Nodes
 
 - The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
 - You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
 
 <br>

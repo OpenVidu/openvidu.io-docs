@@ -6,9 +6,9 @@
     border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0 5px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -22,7 +22,11 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-      <strong>These instructions are only suitable for OpenVidu >= 2.13.0</strong>. Upgrading or downgrading OpenVidu by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu. Carefully read the <a href="releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk
+      Be careful when upgrading your version of OpenVidu:
+      <ul>
+        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.13.0 to 2.15.0, you must first go through 2.14.0.</li>
+        <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
+      </ul>
 </div>
 </div>
 
@@ -33,7 +37,7 @@
     width: 100%;
     margin-top: 30px;
     margin-bottom: 25px;
-    padding: 5px 0 5px 0;
+    padding: 10px 0 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -47,104 +51,64 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-      Unfortunately upgrading OpenVidu to <strong>2.13.0</strong> from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. If you are going to install 2.13.0 in the same machine, make sure to backup any data you want to keep and uninstall all of OpenVidu services before installing 2.13.0. Good news is that from this point in time, upgrading or downgrading versions will be extremely quick and easy!
+      <strong>Instructions below are only suitable for OpenVidu CE >= 2.13.0</strong>. Unfortunately upgrading OpenVidu CE to 2.13.0 from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. If you are going to install 2.13.0 in the same machine, make sure to backup any data you want to keep (basically the recordings folder) and uninstall all of OpenVidu services before installing 2.13.0.
 </div>
 </div>
 
-# For AWS deployments
+## Upgrade instructions
 
-We need to connect to the Openvidu EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
+Connect to the server hosting OpenVidu CE through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`. From this point, instructions will assume the installation path of OpenVidu CE is `/opt/openvidu`.
 
-<div class="row">
-    <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_update1.png"><img class="img-responsive img-pro" style="max-width: 800px" src="img/docs/upgrading/EC2_update1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_update2.png"><img class="img-responsive img-pro" style="max-width: 700px" src="img/docs/upgrading/EC2_update2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_update3.png"><img class="img-responsive img-pro" style="max-width: 600px" src="img/docs/upgrading/EC2_update3.png"/></a>
-    </div>
-    <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click on <strong>Connect</strong> button</p></div>
-      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, use default <strong>root</strong> user name and click on <strong>Connect</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Now you will be connected to a terminal of your EC2 instance as root user</p></div>
-    </div>
-</div>
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
 
+Then you can run the upgrade script with the following command. Change the desired version in the URL: instead of <code>install_openvidu_<strong>VERSION</strong>.sh</code> use for example <code>install_openvidu_<strong>2.14.0</strong>.sh</code>
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_VERSION.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version VERSION
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu VERSION services.
+
+2. The previous file '.env' remains intact, but a new file '.env-VERSION' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-VERSION'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-VERSION'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 
+'docker-compose.override.yml'. However, if you were using your own application, a file called
+'docker-compose.override.yml-VERSION' has been created with the latest version of Openvidu Call.
+If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.13.0'
+
+For further information, check readme.md
+```
 <br>
 
-After connected into web EC2 console of your OpenVidu instance as root user, all that remains to be done is following all the steps of [For on premises deployments](#for-on-premises-deployments).
+#### Some notes on upgrading OpenVidu CE
 
-<br>
-
----
-
-# For on premises deployments
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-These instructions suppose the installation of OpenVidu is done in the <strong>default and recommended folder <code>/opt/openvidu</code></strong>. Keep in mind this if your installation is located in a different path!
-</div>
-</div>
-
-#### 1) Stop all docker-compose services
-
-Navigate to the OpenVidu installation folder and stop the current execution.
-
-```bash
-cd /opt/openvidu # Modify this and the following commands if your installation isn't done in the default path
-./openvidu stop
-```
-
-#### 2) Upgrade docker-compose 
-
-Now we will make a backup of the current installation just in case. To do this we execute the following commands:
-
-```bash
-cd /opt
-mv openvidu openvidu.backup
-```
-
-Now install the new version using the following command:
-
-```bash
-# Change {VERSION} for the desired one. e.g. install_openvidu_2.13.0.sh
-
-curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_{VERSION}.sh | bash
-```
-
-Finally remember to change your configuration properties in file `/opt/openvidu/.env`. The new installation brings the default values that **must** be updated.
-
-#### 3) Restart docker-compose
-
-Run all services in the recently upgraded OpenVidu installation folder.
-
-```bash
-cd /opt/openvidu
-./openvidu start
-```
-
-> **NOTE 1**: Old Docker images will take up valuable disk space of your machines. If you don't plan to reuse them again, delete them to reclaim your GBs. **[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"}** command is very useful for doing so.
-
-> **NOTE 2**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
+- The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
+- Persistent data is preserved when upgrading. This means that all of your recordings will be available in the new version.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
+- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
 
 <br><br>
+
+<script src="js/copy-btn.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
