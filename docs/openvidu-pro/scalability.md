@@ -43,7 +43,7 @@ There are 3 important aspects to consider:
 
 1. You only pay for your OpenVidu Pro cluster for the time it is running. Usage will be registered the moment you start your cluster and will stop as soon as you shut your cluster down.
 2. You pay for every available core at any given time: if you cluster grows for one hour, that hour you will pay more. If your cluster decreases the next hour, next hour will be cheaper. Currently all Nodes have the same core per minute price.
-3. Your cluster (specifically your OpenVidu Server Pro Node) needs Internet access at all times. If your specific use case doesn't allow your cluster to have Internet access, please contact us through [Commercial page](https://openvidu.io/commercial){:target="_blank"}.
+3. Your cluster (specifically your OpenVidu Server Pro Node) needs Internet access at all times. If your specific use case doesn't allow your cluster to have Internet access, please contact us through [Commercial page](https://openvidu.io/support#commercial){:target="_blank"}.
 
 > In **[Pricing](https://openvidu.io/pricing){:target="_blank"}** section you will find a detailed with different use cases of OpenVidu Pro clusters and their associated cost depending on their size and running time
 
@@ -144,7 +144,7 @@ That being said, there is no single answer to this question. The load each Media
 - The type of media streams being published to the Session (only audio, only video, audio + video)
 - Whether your Sessions are using advanced features such as [recording](advanced-features/recording){:target="_blank"} or [audio/video filters](advanced-features/filters){:target="_blank"}
 
-You will need to perform some tests for your specific use case, and adapt the size of your cluster accordingly. OpenVidu team can perform these tests for you as part of their commercial services (contact us through [Commercial page](https://openvidu.io/commercial){:target="_blank"} to ask for an estimate).
+You will need to perform some tests for your specific use case, and adapt the size of your cluster accordingly. OpenVidu team can perform these tests for you as part of their commercial services (contact us through [Commercial page](https://openvidu.io/support#commercial){:target="_blank"} to ask for an estimate).
 
 For a quick reference, these are the results of some load tests performed in an OpenVidu Pro cluster deployed on Amazon Web Services with just 1 Media Node. These particular scenario is testing 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until the Media Node CPU reaches 100% use. Take into account from a pricing point that the number of cores in each column header does not sum up the total number of cores of the cluster (OpenVidu Server Pro Node cores should also be counted).
 

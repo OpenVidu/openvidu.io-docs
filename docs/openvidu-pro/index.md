@@ -41,7 +41,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/commercial" target="_blank">custom professional support</a>
+	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>
 </div>
 </div>
 

@@ -657,7 +657,7 @@ Using Electron means that the same codebase you are already using for your web a
 
 You’re not convinced by Ionic? Now you can choose React Native framework for developing your OpenVidu mobile app. React Native is rather similar to Ionic from the developers perspective, but at the same time its nature is very different. Essentially, it really uses native Android and iOS UI components under the hood while Ionic is based on WebView (in a nutshell, it runs on the browser).
 
-> React Native support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-react-native](tutorials/openvidu-react-native/){:target="_blank"} tutorial to quickly get started
+> React Native support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-react-native](tutorials/openvidu-react-native/){:target="_blank"} tutorial to quickly get started
 
 <br>
 
@@ -665,7 +665,7 @@ You’re not convinced by Ionic? Now you can choose React Native framework for d
 
 Yes, it’s 2019. But there’s still a lot of companies out there that provide/require IE support and need videoconferencing systems to work in this browser relic. So that’s why we have brought OpenVidu support to IE through Temasys plugin. Only IE 11 is supported (going further back was too much of a pain).
 
-> Internet Explorer support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-internet-explorer](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-internet-explorer/){:target="_blank"} tutorial to quickly get started
+> Internet Explorer support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-internet-explorer](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-internet-explorer/){:target="_blank"} tutorial to quickly get started
 
 <br>
 
