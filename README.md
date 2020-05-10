@@ -31,4 +31,4 @@ Then run the following command in the root of the project `openvidu.io-docs/.`
 mkdocs serve
 ```
 
-You will have the documentation available in [http://localhost:8080](http://localhost:8080).
+You will have the documentation available in [http://localhost:8000](http://localhost:8000).
