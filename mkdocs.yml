@@ -22,8 +22,8 @@ nav:
   - openvidu-js-node: tutorials/openvidu-js-node.md
   - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
 - Demos:
-  - openvidu-getaroom: demos/openvidu-getaroom.md
   - openvidu-call: demos/openvidu-call.md
+  - openvidu-getaroom: demos/openvidu-getaroom.md  
   - openvidu-call-react: demos/openvidu-call-react.md
   - openvidu-call-ionic: demos/openvidu-call-ionic.md
   - openvidu-classroom: demos/openvidu-classroom.md
