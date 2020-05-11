@@ -50,13 +50,13 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 npm install --prefix openvidu-call-back
 ```
 
-5) Start OpenVidu Call backend
+5) Start OpenVidu Call backend. To configure this command you can check the section below.
 
 ```
 npm run start --prefix openvidu-call-back
 ```
 
-6) Install NPM dependencies of Angular frontend:
+6) Install NPM dependencies of Angular frontend. **Open another terminal** to run the following command:
 
 ```
 npm install --prefix openvidu-call-front
