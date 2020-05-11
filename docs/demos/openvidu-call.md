@@ -84,14 +84,53 @@ $ OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD npm run star
 
 ### Docker image
 
-> TODO: Add instructions on how to build the docker image and how to change the default docker image in a deployment.
+Build a docker image of OpenVidu call is really easy. Under **openvidu-call** directory:
+
+1) Go to *docker* directory and generate the docker image:
+
+```
+docker build -f prod.dockerfile -t <your-tag-name> --build-arg BRANCH_NAME=<branch-name> --build-arg BASE_HREF=<your-base-href>.
+```
+
+2) After that, you can run the docker container:
+
+```
+docker run -p 5000:<your_port> -e SERVER_PORT=<your_port> -e OPENVIDU_URL=<your_openvidu_url> -e OPENVIDU_SECRET=<your_secret> <your-tag-name>
+```
+3) Go to **http://localhost:your_port**
+
+#### Configuration parameters for build OpenVidu Call with docker
+
+| Parameter                     | Description   					       | Default value   |
+| ----------------------------- | ---------------------------------------- | --------------- |
+| **`BRANCH_NAME`**             | Name of the branch from will be built it | master          |
+| **`BASE_HREF`**               | URL prefix of app path                   | /               |
+
 
 > TODO: Put a warning about the lack of https certificate. So, this image will need a proper NGINX in front of it to be executed in a machine outside OpenVidu Platform.
 
 ### Packaged Node.js application
 
-> TODO: Describe how to package the application with webpack.
+You also can build OpenVidu Call using webpack. Under **openvidu-call** directory:
 
+1) Build OpenVidu Call frontend:
+
+```bash
+npm run build-prod BASE_HREF --prefix openvidu-call-front
+```
+
+2) Build OpenVidu Call backend:
+
+```
+cd openvidu-call-back
+npm run build
+```
+
+3) You will found the app built in dist directory. You can use node to launch it:
+
+```
+node dist/openvidu-call-server.js
+```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
