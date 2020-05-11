@@ -36,7 +36,7 @@ OpenVidu-Call-Ionic is composed by the five Angular components displayed in the 
 
 <hr>
 
-## Running this demo
+## Get and execute the code
 
 
 #### Using the browser

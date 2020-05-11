@@ -51,7 +51,7 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 
 ---
 
-## Running this demo
+## Get and execute the code
 
 #### Cloning GitHub Repository
 
