@@ -3,18 +3,17 @@
 
 OpenVidu Call is a videoconference app allowing users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on. Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
-OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend is built with <strong>NodeJS</strong> using ExpressJS. 
+OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend is built with <strong>NodeJS</strong> using ExpressJS.
 
 ---
 
 ## Get and execute the code
 
-1)  Clone the repo and move to last stable brach:
+1)  Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-call.git
 cd openvidu-call
-git checkout -b v2.14.0b v2.14.0
 ```
 
 2) You will need node and NPM execute the app (frontend and backend). You can install them with in ubuntu with the following commands:
@@ -27,27 +26,7 @@ sudo apt-get install -y nodejs
 
 Plase visit <a href="https://nodejs.org/">https://nodejs.org/</a> to install it on other platforms.
 
-3)  Install NPM dependencies of Angular frontend:
-
-```
-cd openvidu-call-front
-npm install
-```
-
-4)  Build OpenVidu Call frontend and copy it to a public folder in the backend:
-
-```
-npm run build
-```
-
-5) Install NPM dependencies of NodeJS backend:
-
-```
-cd ../openvidu-call-back
-npm install
-```
-
-6) Execute OpenVidu platform
+3) Execute OpenVidu platform
 
 > If you are using **Docker Toolbox on Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly execute OpenVidu development container and how to adapt these instructions.
 
@@ -60,13 +39,30 @@ OpenVidu Platform must be up and running. The easiest way is running this OpenVi
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.13.0
 ```
 
-7) Start backend:
+4) Install NPM dependencies of NodeJS backend:
 
 ```
-npm run start
+npm install --prefix openvidu-call-back
 ```
 
-8) Go to [http://localhost:5000](http://localhost:5000)
+5) Start OpenVidu Call backend
+
+```
+npm run start --prefix openvidu-call-back
+```
+
+6) Install NPM dependencies of Angular frontend:
+
+```
+npm install --prefix openvidu-call-front
+```
+
+7) Finally, start OpenVidu Call frontend
+
+```
+cd openvidu-call-front
+ng serve --open
+```
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
@@ -74,7 +70,7 @@ npm run start
 
 | Parameter                     | Description   					       | Default value   |
 | ----------------------------- | ---------------------------------------- | --------------- |
-| **`SERVER_PORT`**             | Port where http server will be listen    | 5000            | 
+| **`SERVER_PORT`**             | Port where http server will be listen    | 5000            |
 | **`OPENVIDU_URL`**            | URL where connect to OpenVidu platform   | http://localhost:4443 |
 | **`OPENVIDU_SECRET`**         | Secret for the OpenVidu platform         | MY_SECRET       |
 
