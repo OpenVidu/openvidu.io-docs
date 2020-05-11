@@ -241,6 +241,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
 
 To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP/`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com/` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
 
+If you have deployed OpenVidu Call you can also access to it through that same URL. You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications){:target="_blank"}.
 <br>
 
 ---

@@ -154,26 +154,13 @@ LETSENCRYPT_EMAIL=user@example.com
 
 #### Videoconference application
 
-By default, the [OpenVidu Call](demos/openvidu-call/){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
+By default, the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
 
 ```console
-https://DOMAIN_OR_PUBLIC_IP/
+https://DOMAIN_OR_PUBLIC_IP:HTTPS_PORT/
 ```
 
-This application is defined in file `docker-compose.override.yml`. To disable OpenVidu Call application, you can delete the file `docker-compose.override.yml` (or just rename it in case you want to enable it again in the future).
-
-You can configure any other application updating the content of `docker-compose.override.yml` to use any other Docker container, with the following requirements:
-
-- Application server port must be binded to 5442 in the host, as this port is used by NGINX to publish your app in the default HTTPS port (443).
-- The app must be served in plain HTTP as NGINX is the responsible of managing SSL certificate, so disable HTTPS and SSL in your app.
-- Application has to know OpenVidu Server URL. You can use the environment variables ${DOMAIN_OR_PUBLIC_IP} and ${OPENVIDU_SECRET} in `docker-compose.override.yml` file.
-- The application and OpenVidu platform are deployed in the same domain. For that reason, the following URLs are reserved for OpenVidu and you cannot use them in the application:
-    - `/api/`
-    - `/openvidu/`
-    - `/dashboard/`
-    - `/recordings/`
-
-<br>
+For more information on how to disable it and deploy your own application (if needed) visit the section [Deploy OpenVidu based Applications](http://localhost:8000/deployment/#deploy-openvidu-based-applications).
 
 ---
 

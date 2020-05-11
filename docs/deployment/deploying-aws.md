@@ -180,7 +180,7 @@ That URL is the one to be used to consume OpenVidu REST API. Besides:
 - If you have deployed OpenVidu Call (see [Other configuration](#other-configuration)) you can also access to it through that same URL.
 - You can access OpenVidu Server dashboard to make a quick test of your deployment through `/dashboard`. Credentials to access to it are `OPENVIDUAPP` as username and your [OpenVidu secret](#openvidu-configuration) as password.
 
-You can now add your own application to your instance. To learn how check out section [Deploying your OpenVidu app](deployment/deploying-app/){:target="_blank"}.
+You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications){:target="_blank"}.
 
 <br>
 
