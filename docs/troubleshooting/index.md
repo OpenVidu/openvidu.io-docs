@@ -161,16 +161,6 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
     > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](api/openvidu-node-client/classes/openvidu.html#constructor){:target="_blank"}. This change is something related to these specific applications.
 
-  - [**OpenVidu Call Demo**](demos/openvidu-call/){:target="_blank"}: the command to execute the backend should specify OpenVidu platform location:
-
-    in Windows with CMD is:
-
-        set OPENVIDU_URL=https://192.168.99.100:4443/&&set OPENVIDU_SECRET=MY_SECRET&&set DEV_MODE=true&&nodemon src/app.ts
-
-    in Windows with PowerShell is:
-
-        $env:OPENVIDU_URL=https://192.168.99.100:4443/&&$env:OPENVIDU_SECRET=MY_SECRET&&$env:DEV_MODE=true&&nodemon src/app.ts
-
     > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](api/openvidu-node-client/classes/openvidu.html#constructor){:target="_blank"}. This change is something related to these specific applications.
 
 ---

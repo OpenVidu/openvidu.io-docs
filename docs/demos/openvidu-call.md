@@ -66,7 +66,7 @@ npm install --prefix openvidu-call-front
 
 ```
 cd openvidu-call-front
-ng serve --open
+npx ng serve --open
 ```
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
@@ -82,7 +82,7 @@ ng serve --open
 This configuration parameters can be configured as environment variables. For example, to execute the application against an OpenVidu Platform deployed for production you should use the command:
 
 ```
-$ OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD npm run start
+$ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD nodemon src/app.ts
 ```
 
 ## How to build OpenVidu Call
