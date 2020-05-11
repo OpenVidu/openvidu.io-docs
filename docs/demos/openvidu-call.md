@@ -5,6 +5,11 @@ OpenVidu Call is a videoconference app allowing users to make videoconference ca
 
 OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend is built with <strong>NodeJS</strong> using ExpressJS.
 
+<p align="center">
+  <img class="img-responsive" src="img/demos/openvidu-call-architecture.png">
+</p>
+
+
 ---
 
 ## Get and execute the code
@@ -45,13 +50,13 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 npm install --prefix openvidu-call-back
 ```
 
-5) Start OpenVidu Call backend
+5) Start OpenVidu Call backend. To configure this command you can check the section below.
 
 ```
 npm run start --prefix openvidu-call-back
 ```
 
-6) Install NPM dependencies of Angular frontend:
+6) Install NPM dependencies of Angular frontend. **Open another terminal** to run the following command:
 
 ```
 npm install --prefix openvidu-call-front
@@ -84,6 +89,33 @@ $ OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD npm run star
 
 ### Docker image
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+	OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
+	<ol>
+		<li>Handle the NGINX certificates with a proxy	</li>
+		<li>To edit OpenVidu Call image including the certificate</li>
+	</ol>
+</div>
+</div>
+
 Build a docker image of OpenVidu call is really easy. Under **openvidu-call** directory:
 
 1) Go to *docker* directory and generate the docker image:
@@ -95,9 +127,9 @@ docker build -f prod.dockerfile -t <your-tag-name> --build-arg BRANCH_NAME=<bran
 2) After that, you can run the docker container:
 
 ```
-docker run -p 5000:<your_port> -e SERVER_PORT=<your_port> -e OPENVIDU_URL=<your_openvidu_url> -e OPENVIDU_SECRET=<your_secret> <your-tag-name>
+docker run -p <your-port>:5000 -e OPENVIDU_URL=<your-openvidu-url> -e OPENVIDU_SECRET=<your-secret> <your-tag-name>
 ```
-3) Go to **http://localhost:your_port**
+3) Go to **http://localhost:your-port**
 
 #### Configuration parameters for build OpenVidu Call with docker
 
@@ -107,7 +139,7 @@ docker run -p 5000:<your_port> -e SERVER_PORT=<your_port> -e OPENVIDU_URL=<your_
 | **`BASE_HREF`**               | URL prefix of app path                   | /               |
 
 
-> TODO: Put a warning about the lack of https certificate. So, this image will need a proper NGINX in front of it to be executed in a machine outside OpenVidu Platform.
+
 
 ### Packaged Node.js application
 
