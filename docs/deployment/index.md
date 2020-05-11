@@ -94,9 +94,12 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 And the OpenVidu platform for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"}
 
-> If you are using **Docker Toolbox on Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly execute OpenVidu development container and how to adapt these instructions.
-
-<br>
+<div class="warn">
+  <div class="div-icon"><i class="icon ion-android-alert"></i></div>
+  <div class="text">
+	  If you are using <b>Docker Toolbox on Windows</b>, read this <b><a href="troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know" target="blank">FAQ</a></b> to properly execute OpenVidu development container and how to adapt these instructions.
+  </div>
+</div>
 
 ---
 

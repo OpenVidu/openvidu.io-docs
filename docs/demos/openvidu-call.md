@@ -89,31 +89,15 @@ $ OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD npm run star
 
 ### Docker image
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
-	OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
-	<ol>
-		<li>Handle the NGINX certificates with a proxy	</li>
-		<li>To edit OpenVidu Call image including the certificate</li>
-	</ol>
-</div>
+<div class="warn">
+  <div class="div-icon"><i class="icon ion-android-alert"></i></div>
+  <div class="text">
+	  OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
+	  <ol>
+		  <li>Handle the NGINX certificates with a proxy	</li>
+		  <li>To edit OpenVidu Call image including the certificate</li>
+	  </ol>
+  </div>
 </div>
 
 Build a docker image of OpenVidu call is really easy. Under **openvidu-call** directory:
