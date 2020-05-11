@@ -1,7 +1,7 @@
 # openvidu-call
 <a href="https://github.com/OpenVidu/openvidu-call.git" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call is a videoconference app allowing users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. Videconference app required a great number of essential features (**screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on). Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
+OpenVidu Call is a videoconference app allowing users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on. Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
 OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend is built with <strong>NodeJS</strong> using ExpressJS. 
 
@@ -40,7 +40,7 @@ npm install
 npm run build
 ```
 
-5) Intall NPM dependencies of NodeJS backend:
+5) Install NPM dependencies of NodeJS backend:
 
 ```
 cd ../openvidu-call-back
