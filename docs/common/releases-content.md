@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.14.0](#2140)
 - [2.13.0](#2130)
 - [2.12.0](#2120)
 - [2.11.0](#2110)
@@ -16,6 +17,198 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+---
+
+## 2.14.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu</td>
+    <td>On Premises</td>
+    <td>2.14.0</td>
+    <td><a class="" href="deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.14.0</td>
+    <td><a class="" href="deployment/deploying-aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+  
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.14.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.14.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.14.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.13.2</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.2/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### OpenVidu Call complete overhaul
+
+[OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"} is our flagship demo application. It is an example of a common use case of videoconferencing application, built with love and available for everyone with its open source license.
+
+People liked it so much that we decided to integrate it by default in OpenVidu 2.13.0 official deployments. Now, when deploying OpenVidu in production, OpenVidu Call is automatically added to the stack and you can start using it right away. But OpenVidu Call had some limitations that must be addressed.
+This is the complete changelog of OpenVidu Call in 2.14.0 release:
+
+- **Node backend added to make the app secure**: OpenVidu Call didn't have a backend, so OpenVidu secret needed to be included in the frontend code, making the app unsafe and not really prepared for a real production environment. Now OpenVidu Call has a simple Node backend, so any protected operation is now safely done in the server side.
+- **Renewed landing page**: the calling card of the application is its home page, and it has been redesigned with a better look-and-feel. Besides, now a random session name will be automatically generated for you to use it if you want.
+- **Join a session without media devices**: OpenVidu Call didn't allow users join a session if they didn't have a working camera and microphone. This proved to be too restrictive, so now users without media devices can still join a session to at least see and hear other participants.
+- **Zoom in and zoom out in specific videos**: users can now press a specific button available at the bottom right corner of each video to make it bigger or smaller in the layout. They can also full screen any video, or full screen the entire application if they want. All of this to ensure users focus their attention on what they prefer at all times.
+- **Active speaker layout**: a new option allows changing the main video to the active speaker automatically. This way the layout dynamically transforms to focus on the participant speaking, changing between participants as they take the floor. If any screen is being shared, this feature is disabled so as not to interfere with it.
+- **Muted videos now won't appear in the layout**: users can mute their video whenever they want. Before, users would see a black square where the video used to be, which was inconvenient because some of the limited and valuable space was lost. Now any muted video will disappear from the layout.
+- **New footer bar showing remote participants**: at the bottom of the page users can see at a glance what other participants are connected to the session. This is especially useful now that users without a camera may join a session, as well as muted videos not showing up in the layout.
+- **Chat messages notification**: we noticed that many times chat messages went unnoticed without a proper notification. Now a subtle notification will be shown when a new chat message is received.
+- **Reconnection alerts**: OpenVidu 2.12.0 introduced [automatic reconnection features](https://docs.openvidu.io/en/2.14.0/advanced-features/automatic-reconnection/){:target="_blank"} for users losing their network connection while connected to a session. Now OpenVidu Call takes advantage of reconnection events and will warn the user in case they experience a network drop.
+- **Smooth track replace when screen sharing**: OpenVidu Call now uses the [replaceTrack](https://docs.openvidu.io/en/2.14.0/advanced-features/switch-camera){:target="_blank"} feature to provide a quicker and smoother transition whenever a user changes the screen being shared.
+
+<br>
+
+##### Change the port where OpenVidu is deployed
+
+You can now easily change the port where your OpenVidu deployment listens with a simple configuration property change. Set `HTTPS_PORT` property to the desired value to seamlessly change all of the services exposed by OpenVidu from default 443 to any other port you want. This has been a heavily requested feature, as many developers prefer using 443 port for serving their own services in the same server hosting OpenVidu.
+
+Besides this, OpenVidu also allows configuring with property `HTTP_PORT` an HTTP port (non-secure) to automatically redirect to whatever port has been defined in `HTTPS_PORT`. To sum up, by default URLs `https://your.domain.com` and `http://your.domain.com` will provide access to your OpenVidu deployment, as `HTTPS_PORT` is 443 by default and `HTTP_PORT` is 80. But you can now easily change these two values to whatever you prefer.
+
+<br>
+
+##### Limit connections to OpenVidu admin services to specific IPs
+
+Another very demanded feature was having the ability to limit the IPs able to consume the administration services of OpenVidu. By administration services we mean: ***A)*** the frontend web page served by OpenVidu and ***B)*** OpenVidu REST API.
+
+You can do this with config properties:
+
+- ***A)*** `ALLOWED_ACCESS_TO_DASHBOARD`: limits the ability to connect to OpenVidu CE dashboard and to OpenVidu PRO Inspector.
+- ***B)*** `ALLOWED_ACCESS_TO_RESTAPI`: limits the ability to consume OpenVidu REST API (both CE and PRO).
+
+You can limit to a single IP, a single IP range, multiple IPs or multiple IP ranges. So total freedom in this regard:
+
+```bash
+ALLOWED_ACCESS_TO_DASHBOARD=198.51.100.1
+# or ALLOWED_ACCESS_TO_DASHBOARD=198.51.100.0/24
+# or ALLOWED_ACCESS_TO_DASHBOARD=198.51.100.1, 198.51.100.0/24
+```
+
+<br>
+
+##### New automated upgrade process
+
+Now upgrading your OpenVidu deployment will be a very easy guided process. We have included migration guides to upgrade to 2.14.0 for bot OpenVidu CE and OpenVidu PRO. Take a look at them!
+
+> [Upgrading OpenVidu CE](https://docs.openvidu.io/en/2.14.0/deployment/upgrading/){:target="_blank"} and [Upgrading OpenVidu PRO](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/upgrading/){:target="_blank"}
+
+<br>
+
+##### Samsung Internet Browser supported in Android
+
+A new platform has been added to OpenVidu family. Now Samsung browser for Android is officially supported by OpenVidu. Not one of the most widespread browsers, but still with a small market share.
+
+<br>
+
+##### New region for OpenVidu AWS deployments
+
+AWS Africa (Cape Town) af-south-1 region is available now for deploying OpenVidu on AWS, both OpenVidu CE and OpenVidu PRO tiers. By using our CloudFormation template, you will have your OpenVidu deployment up and running in just a few minutes.
+
+> Deploying [OpenVidu CE on AWS](https://docs.openvidu.io/en/2.14.0/deployment/deploying-aws/){:target="_blank"} and deploying [OpenVidu PRO on AWS](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){:target="_blank"}
+
+<br>
+
+##### New Kurento 6.13.2
+
+OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes many fixes (especially in libnice library) that will enhance the stability of OpenVidu.
+
+> Read [Kurento 6.13.2 release notes](https://doc-kurento.readthedocs.io/en/6.13.2/project/relnotes/v6_13_2.html){:target="_blank"}
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-server_: possible avoidable exception when adding IceCandidates to recently created Subscriber WebRTC endpoints, for which sometimes an IceCandidate could arrive before the WebRtcEndpoint object is available for the Java code. Now accumulated IceCandidates are always added after the WebRtcEndpoint object is defined and available (issue [455](https://github.com/OpenVidu/openvidu/issues/455){:target="_blank"}).
+- _openvidu-server_: recordings bigger than 2.1 GB were throwing an exception when generating their metadata during their stop process. Now they don't.
+- _openvidu-browser_: there was a memory leak in entities inheriting from interface [EventDispatcher](https://docs.openvidu.io/en/2.13.0/api/openvidu-browser/interfaces/eventdispatcher.html){:target="_blank"}. This is fixed now (PR [437](https://github.com/OpenVidu/openvidu/pull/437){:target="_blank"}).
+- _openvidu-browser_: [OpenVidu.enableProdMode](https://docs.openvidu.io/en/2.13.0/api/openvidu-browser/classes/openvidu.html#enableprodmode){:target="_blank"} was disabling all logging of browser. Now only disables openvidu-browser library log (issue [440](https://github.com/OpenVidu/openvidu/issues/440){:target="_blank"}).
+- _openvidu-browser_: fix when providing MediaStreamTracks as audioSource or videoSource when calling `OpenVidu.initPublisher`. Where being used when calling `OpenVidu.getUserMedia`, but not for `OpenVidu.initPublisher` (issue [456](https://github.com/OpenVidu/openvidu/issues/456){:target="_blank"}).
+- _OpenVidu Pro_: restarting OpenVidu Pro from Inspector or REST API may failed for AWS deployments due to a problem with system path. Now it doesn't.
+- _Installation process_: more checks have been added to the production deployment script and the logging of the process has been improved to facilitate the correct installation and handling of possible errors when deploying OpenVidu.
+
+<br>
+
 ---
 
 ## 2.13.0

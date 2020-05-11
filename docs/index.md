@@ -33,7 +33,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Multiplatform</h3>
-      <span class="feature-text">Chrome, Firefox, Safari, Opera, Android, iOS, desktop apps. All compatible with each other</span>
+      <span class="feature-text">Chrome, Firefox, Safari, Opera, Edge, Android, iOS, desktop apps. All compatible with each other</span>
     </div>
   </div>
   <hr>
