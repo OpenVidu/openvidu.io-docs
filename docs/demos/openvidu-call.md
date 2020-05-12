@@ -12,7 +12,7 @@ OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend 
 
 ---
 
-## Demo code structure
+## Understanding code structure
 
 <p align="center">
   <img class="img-responsive" src="img/demos/openvidu-call-front-code.png">
