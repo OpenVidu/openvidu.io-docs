@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Event | OpenVidu Browser - v2.14.0</title>
+	<title>EventDispatcher | OpenVidu Browser - v2.14.0</title>
 	<meta name="description" content="Documentation for OpenVidu Browser - v2.14.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,10 +52,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="event.html">Event</a>
+					<a href="eventdispatcher.html">EventDispatcher</a>
 				</li>
 			</ul>
-			<h1>Class Event</h1>
+			<h1>Class EventDispatcher</h1>
 		</div>
 	</div>
 </header>
@@ -66,37 +66,16 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Event</span>
+						<span class="target">EventDispatcher</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<a href="streammanagerevent.html" class="tsd-signature-type">StreamManagerEvent</a>
+								<a href="streammanager.html" class="tsd-signature-type">StreamManager</a>
 							</li>
 							<li>
-								<a href="videoelementevent.html" class="tsd-signature-type">VideoElementEvent</a>
+								<a href="session.html" class="tsd-signature-type">Session</a>
 							</li>
 							<li>
-								<a href="filterevent.html" class="tsd-signature-type">FilterEvent</a>
-							</li>
-							<li>
-								<a href="streampropertychangedevent.html" class="tsd-signature-type">StreamPropertyChangedEvent</a>
-							</li>
-							<li>
-								<a href="streamevent.html" class="tsd-signature-type">StreamEvent</a>
-							</li>
-							<li>
-								<a href="connectionevent.html" class="tsd-signature-type">ConnectionEvent</a>
-							</li>
-							<li>
-								<a href="recordingevent.html" class="tsd-signature-type">RecordingEvent</a>
-							</li>
-							<li>
-								<a href="sessiondisconnectedevent.html" class="tsd-signature-type">SessionDisconnectedEvent</a>
-							</li>
-							<li>
-								<a href="signalevent.html" class="tsd-signature-type">SignalEvent</a>
-							</li>
-							<li>
-								<a href="publisherspeakingevent.html" class="tsd-signature-type">PublisherSpeakingEvent</a>
+								<a href="stream.html" class="tsd-signature-type">Stream</a>
 							</li>
 						</ul>
 					</li>
@@ -107,129 +86,147 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="event.html#cancelable" class="tsd-kind-icon">cancelable</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="event.html#target" class="tsd-kind-icon">target</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="event.html#type" class="tsd-kind-icon">type</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="event.html#isdefaultprevented" class="tsd-kind-icon">is<wbr>Default<wbr>Prevented</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="event.html#preventdefault" class="tsd-kind-icon">prevent<wbr>Default</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventdispatcher.html#off" class="tsd-kind-icon">off</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventdispatcher.html#on" class="tsd-kind-icon">on</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventdispatcher.html#once" class="tsd-kind-icon">once</a></li>
 							</ul>
 						</section>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="cancelable" class="tsd-anchor"></a>
-					<h3>cancelable</h3>
-					<div class="tsd-signature tsd-kind-icon">cancelable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenViduInternal/Events/Event.ts#L27">OpenViduInternal/Events/Event.ts:27</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether the event has a default behavior that may be prevented by calling <a href="event.html#preventdefault">Event.preventDefault</a></p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="target" class="tsd-anchor"></a>
-					<h3>target</h3>
-					<div class="tsd-signature tsd-kind-icon">target<span class="tsd-signature-symbol">:</span> <a href="session.html" class="tsd-signature-type">Session</a><span class="tsd-signature-symbol"> | </span><a href="streammanager.html" class="tsd-signature-type">StreamManager</a><span class="tsd-signature-symbol"> | </span><a href="filter.html" class="tsd-signature-type">Filter</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenViduInternal/Events/Event.ts#L32">OpenViduInternal/Events/Event.ts:32</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The object that dispatched the event</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenViduInternal/Events/Event.ts#L37">OpenViduInternal/Events/Event.ts:37</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The type of event. This is the same string you pass as first parameter when calling method <code>on()</code> of any object implementing <a href="eventdispatcher.html">EventDispatcher</a> interface</p>
-						</div>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="isdefaultprevented" class="tsd-anchor"></a>
-					<h3>is<wbr>Default<wbr>Prevented</h3>
+					<a name="off" class="tsd-anchor"></a>
+					<h3>off</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Default<wbr>Prevented<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenViduInternal/Events/Event.ts#L56">OpenViduInternal/Events/Event.ts:56</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenVidu/EventDispatcher.ts#L57">OpenVidu/EventDispatcher.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Whether the default beahivour of the event has been prevented or not. Call <a href="event.html#preventdefault">Event.preventDefault</a> to prevent it</p>
+									<p>Removes a <code>handler</code> from event <code>type</code>. If no handler is provided, all handlers will be removed from the event</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handler: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
+							<p>The object that dispatched the event</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="preventdefault" class="tsd-anchor"></a>
-					<h3>prevent<wbr>Default</h3>
+					<a name="on" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> on</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">prevent<wbr>Default<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenViduInternal/Events/Event.ts#L74">OpenViduInternal/Events/Event.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenVidu/EventDispatcher.ts#L43">OpenVidu/EventDispatcher.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Prevents the default behavior of the event. The following events have a default behavior:</p>
+									<p>Adds function <code>handler</code> to handle event <code>type</code></p>
 								</div>
-								<ul>
-									<li><p><code>sessionDisconnected</code>: dispatched by <a href="session.html">Session</a> object, automatically unsubscribes the leaving participant from every Subscriber object of the session (this includes closing the WebRTCPeer connection and disposing all MediaStreamTracks)
-											and also deletes any HTML video element associated to each Subscriber (only those created by OpenVidu Browser, either by passing a valid parameter as <code>targetElement</code> in method <a href="session.html#subscribe">Session.subscribe</a> or
-										by calling <a href="subscriber.html#createvideoelement">Subscriber.createVideoElement</a>). For every video removed, each Subscriber object will also dispatch a <code>videoElementDestroyed</code> event.</p>
-									</li>
-									<li><p><code>streamDestroyed</code>:</p>
-										<ul>
-											<li>If dispatched by a <a href="publisher.html">Publisher</a> (<em>you</em> have unpublished): automatically stops all media tracks and deletes any HTML video element associated to it (only those created by OpenVidu Browser, either by passing a valid parameter as <code>targetElement</code>
-											in method <a href="openvidu.html#initpublisher">OpenVidu.initPublisher</a> or by calling <a href="publisher.html#createvideoelement">Publisher.createVideoElement</a>). For every video removed, the Publisher object will also dispatch a <code>videoElementDestroyed</code> event.</li>
-											<li>If dispatched by <a href="session.html">Session</a> (<em>other user</em> has unpublished): automatically unsubscribes the proper Subscriber object from the session (this includes closing the WebRTCPeer connection and disposing all MediaStreamTracks)
-												and also deletes any HTML video element associated to that Subscriber (only those created by OpenVidu Browser, either by passing a valid parameter as <code>targetElement</code> in method <a href="session.html#subscribe">Session.subscribe</a> or
-											by calling <a href="subscriber.html#createvideoelement">Subscriber.createVideoElement</a>). For every video removed, the Subscriber object will also dispatch a <code>videoElementDestroyed</code> event.</li>
-										</ul>
-									</li>
-								</ul>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>event: <a href="event.html" class="tsd-signature-type">Event</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
+							<p>The EventDispatcher object</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="once" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagAbstract">Abstract</span> once</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">once<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-browser/src/OpenVidu/EventDispatcher.ts#L50">OpenVidu/EventDispatcher.ts:50</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds function <code>handler</code> to handle event <code>type</code> just once. The handler will be automatically removed after first execution</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>type: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>event: <a href="event.html" class="tsd-signature-type">Event</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
+							<p>The object that dispatched the event</p>
 						</li>
 					</ul>
 				</section>
@@ -260,33 +257,27 @@
 					<li class=" tsd-kind-class">
 						<a href="connectionevent.html" class="tsd-kind-icon">Connection<wbr>Event</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="event.html" class="tsd-kind-icon">Event</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="event.html" class="tsd-kind-icon">Event</a>
+						<a href="eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="event.html#cancelable" class="tsd-kind-icon">cancelable</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="event.html#target" class="tsd-kind-icon">target</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="event.html#type" class="tsd-kind-icon">type</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="eventdispatcher.html#off" class="tsd-kind-icon">off</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="event.html#isdefaultprevented" class="tsd-kind-icon">is<wbr>Default<wbr>Prevented</a>
+								<a href="eventdispatcher.html#on" class="tsd-kind-icon">on</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="event.html#preventdefault" class="tsd-kind-icon">prevent<wbr>Default</a>
+								<a href="eventdispatcher.html#once" class="tsd-kind-icon">once</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="filter.html" class="tsd-kind-icon">Filter</a>
 					</li>

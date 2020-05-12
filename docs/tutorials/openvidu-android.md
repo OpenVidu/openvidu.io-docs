@@ -96,7 +96,7 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.13.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.14.0
 ```
 
 **5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, go to `app > res > values > strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your OpenVidu Server. Complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443/`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example that would be: `https://192.168.1.111:4443/`
