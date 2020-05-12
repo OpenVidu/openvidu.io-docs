@@ -31,7 +31,8 @@ section#main-buttons {
         max-width: 450px !important;
     }
     #wellcome-btn a {
-        font-size: 16px;
+        font-size: 13px;
+        padding: 10px 15px;
     }
 }
 
@@ -449,20 +450,6 @@ img.img-pro {
     border: 2px solid #eeeeee;
 }
 
-@font-face {
-    font-family: 'Arciform';
-    src: url('/fonts/Arciform.eot');
-    /* IE9 Compat Modes */
-    src: url('/fonts/Arciform.eot?#iefix') format('embedded-opentype'),
-        /* IE6-IE8 */
-        url('/fonts/Arciform.woff') format('woff'),
-        /* Modern Browsers */
-        url('/fonts/Arciform.ttf') format('truetype'),
-        /* Safari, Android, iOS */
-        url('/fonts/Arciform.svg#svgFontName') format('svg');
-    /* Legacy iOS */
-}
-
 .twitter-row {
     width: 60%;
     margin-left: auto;
@@ -516,7 +503,6 @@ img.img-pro {
     top: 50%;
     margin-top: -10px;
     padding: 0;
-    padding-top: 9px;
     cursor: pointer;
     color: transparent;
     outline: none;
@@ -883,7 +869,7 @@ img.img-more-info {
 /* Docs language tabs */
 
 div.lang-tabs-container {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 div.lang-tabs-container div.lang-tabs-header {
@@ -972,7 +958,7 @@ div.lang-tabs-container.elastic-events div.lang-tabs-content pre {
 }
 
 .version-buttons {
-    margin: 5PX 0 5px 0;
+    margin: 5px 0 5px 0;
     text-align: right;
 }
 
@@ -1183,57 +1169,4 @@ nav.navbar.navbar-small #sign-in-button:hover {
     .navbar-small .lds-ripple div {
         border-color: #fff;
     }
-}
-
-.dp-button {
-    border-color: black;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 10px;
-    padding-top: 20px;
-    margin: 10px;
-}
-
-.dp-button h4 {
-    text-align: center !important; 
-    border-top: 0px !important; 
-    margin-top: 0px !important; 
-    padding:0px !important;
-    /*border-top: 0px;*/
-}
-
-.dp-button h3 {
-    text-align: center !important; 
-    border-top: 0px !important; 
-    margin-top: 0px !important;
-    /*border-top: 0px;*/
-}
-
-.warn {
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-}
-
-.warn .div-icon {
-    display: table-cell; 
-    vertical-align: middle;
-}
-
-.warn .icon {
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-}
-
-.warn .text {
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;
 }
