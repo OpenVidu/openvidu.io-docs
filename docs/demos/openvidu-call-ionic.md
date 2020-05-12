@@ -5,27 +5,13 @@ OpenVidu Call Ionic demo, built with <strong>Ionic v4 and Angular 9</strong>,  a
 
 OpenVidu-Call-Ionic is composed by the five Angular components displayed in the image below.
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
-    Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is properly solved
-</div>
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+      Android 5 (Lollipop) and 6 (Marshmallow) will not work with Ionic v4 until <a href="https://github.com/ionic-team/ionic/issues/15438#issuecomment-426686443" target="_blank">this issue</a> is properly solved
+  </div>
 </div>
 
 
@@ -119,7 +105,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP
 
 **5)** You must indicate the OpenVidu Server URL to the app. Set it in `OPENVIDU_SERVER_URL` variable [right here](https://github.com/OpenVidu/openvidu-call-ionic/blob/180f4577a0be9ae9c83170ff9684ded2e40c0808/src/app/shared/services/openvidu.service.ts#L11){:target="_blank"}. The complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example, running OpenVidu platform as in step 4), that would be: `https://192.168.1.111:4443`
 
-**6)** Connect the device to the same network as the PC. 
+**6)** Connect the device to the same network as the PC.
 
 **7)** Connect the device to the PC via USB. You can check if your device is authorized with the `adb devices` command.
 
@@ -131,29 +117,13 @@ npm install
 ionic cordova run android
 ```
 
-<div style="
-    display: table;
-    border: 1px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
     To deploy apps to an Android device and debug them, developer mode must be enabled and allow for USB debugging turned on. Check out <a href="https://developer.android.com/studio/debug/dev-options#enable" target="blank">these instructions</a> to do this on a device.
-</div>
+  </div>
 </div>
 
 
@@ -161,27 +131,14 @@ ionic cordova run android
 
 To deploy the iOS app you will need first to follow [this guide](https://beta.ionicframework.com/docs/installation/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
     iOS devices will require OpenVidu Server to be deployed in a valid domain well-protected with a certificate.<br>No iPhone or iPad will allow connections to a non-secure OpenVidu Server from within a native application. To facilitate first steps with OpenVidu and Ionic on iOS devices, if no custom url is defined <a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19" target="_blank">here in the app</a> then our demos OpenVidu Server will be used. <strong>Note: this is a publicly accessible OpenVidu Server. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
-</div>
+  </div>
 </div>
 
 After we have completed all the steps of the Ionic guide and performed steps 1) and 2) stated above, we must continue with the following commands:

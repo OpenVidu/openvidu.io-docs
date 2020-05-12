@@ -89,10 +89,12 @@ $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWOR
 
 ### Docker image
 
-<div class="warn">
-  <div class="div-icon"><i class="icon ion-android-alert"></i></div>
-  <div class="text">
-	  OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
 	  <ol>
 		  <li>Handle the NGINX certificates with a proxy	</li>
 		  <li>To edit OpenVidu Call image including the certificate</li>

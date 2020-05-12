@@ -5,27 +5,13 @@ A client-side only application built with **React Native** framework using React
 
 If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being a native app and being a little more complex for OpenVidu starters.
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
     React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it
-</div>
+  </div>
 </div>
 
 
@@ -79,73 +65,32 @@ npm install openvidu-browser-Y.Y.Z.tgz
 ```bash
 npm start
 ```
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
     React Native will require OpenVidu Server to be deployed in a valid domain well-protected with a certificate. To facilitate first steps with OpenVidu our demos OpenVidu Server will be used. <strong>Note: this is a publicly accessible OpenVidu Server. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
-</div>
+  </div>
 </div>
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
     Some problems have been encountered while streaming with iOS devices in some networks with complex restrictions. With mobile networks (4G) these problems have not taken place. Make sure there is no problem with the network you are using in your development environment before posting issues about it
-</div>
+  </div>
 </div>
 
-<div style="
-    display: table;
-    border: 2px solid #ffb600;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    background-color: #FFFBF1;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #ffb600;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding: 10px 20px;">
-After deploying on your device and trying to join the session, you may get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions do NOT match". This error is not significant so just click on the dismiss button.
-</div>
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    After deploying on your device and trying to join the session, you may get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions do NOT match". This error is not significant so just click on the dismiss button.
+  </div>
 </div>
 
 Now depending on the platform you want to run your app...
