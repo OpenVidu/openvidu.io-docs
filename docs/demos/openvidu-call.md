@@ -12,6 +12,17 @@ OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend 
 
 ---
 
+## Demo code structure
+
+<p align="center">
+  <img class="img-responsive" src="img/demos/openvidu-call-front-code.png">
+</p>
+<p align="center">
+  <img class="img-responsive" src="img/demos/openvidu-call-back-code.png">
+</p>
+
+
+
 ## Get and execute the code
 
 1)  Clone the repo:
