@@ -66,6 +66,7 @@ ul#menu-list {
 #doc-container table {
     margin-top: 30px;
     margin-bottom: 30px;
+    font-size: 14px;
 }
 
 #doc-container table tr {
@@ -102,8 +103,14 @@ ul#menu-list {
 
 #doc-container .section h1,
 #doc-container .section h2,
-#doc-container .section h4 {
+#doc-container .section h4,
+#doc-container .section h5 {
     border-top: 60px solid transparent;
+    margin-top: -60px;
+}
+
+#doc-container .section h3 {
+    border-top: 100px solid transparent;
     margin-top: -60px;
 }
 
@@ -120,11 +127,6 @@ ul#menu-list {
 
 #doc-container .section h2 {
     padding-top: 40px;
-}
-
-#doc-container .section h3 {
-    border-top: 100px solid transparent;
-    margin-top: -60px;
 }
 
 #doc-container .section h4 {
