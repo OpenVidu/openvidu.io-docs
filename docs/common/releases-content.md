@@ -34,23 +34,36 @@
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu</td>
+    <td rowspan="3">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.14.0</td>
-    <td><a class="" href="deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.14.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
     <td>2.14.0</td>
-    <td><a class="" href="deployment/deploying-aws/" target="_blank">Deploy</a></td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.14.0/deployment/deploying-aws/" target="_blank">Deploy</a></td>
   </tr>
     <tr>
     <td>Dev container</td>
     <td>2.14.0</td>
     <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
   </tr>
-  
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.14.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
   <tr>
     <td rowspan="2">openvidu-browser</td>
     <td>NPM package</td>
@@ -91,7 +104,7 @@
   <tr>
     <td>openvidu-angular</td>
     <td>NPM package</td>
-    <td>2.14.0</td>
+    <td>2.14.1</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
   </tr>
@@ -226,21 +239,34 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu</td>
+    <td rowspan="3">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.13.0</td>
-    <td><a class="" href="deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.13.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
     <td>2.13.0</td>
-    <td><a class="" href="deployment/deploying-aws/" target="_blank">Deploy</a></td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.13.0/deployment/deploying-aws/" target="_blank">Deploy</a></td>
   </tr>
     <tr>
     <td>Dev container</td>
     <td>2.13.0</td>
     <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.13.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.13.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.13.0/openvidu-pro/deployment/aws/" target="_blank">Deploy</a></td>
   </tr>
   
   <tr>
