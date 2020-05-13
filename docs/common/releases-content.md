@@ -104,7 +104,7 @@
   <tr>
     <td>openvidu-angular</td>
     <td>NPM package</td>
-    <td>2.14.1</td>
+    <td>2.14.2</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
   </tr>
