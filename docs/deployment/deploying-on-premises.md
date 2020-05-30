@@ -160,7 +160,7 @@ By default, the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_bl
 https://DOMAIN_OR_PUBLIC_IP:HTTPS_PORT/
 ```
 
-For more information on how to disable it and deploy your own application (if needed) visit the section [Deploy OpenVidu based Applications](/deployment/#deploy-openvidu-based-applications).
+For more information on how to disable it and deploy your own application (if needed) visit the section [Deploy OpenVidu based Applications](deployment/deploying-openvidu-apps).
 
 ---
 
