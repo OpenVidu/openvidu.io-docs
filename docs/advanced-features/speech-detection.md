@@ -1,5 +1,15 @@
 # Speech detection
 
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    Speech detection works with a JavaScript library. <strong>This feature is not available in react-native</strong> for being a native implementation.
+  </div>
+</div>
+
 A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through [PublisherSpeakingEvents](api/openvidu-browser/classes/publisherspeakingevent.html){:target="_blank"} that can be configured for [Session](api/openvidu-browser/classes/session.html){:target="_blank"} objects:
 
 ```javascript
