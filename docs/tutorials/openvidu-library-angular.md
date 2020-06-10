@@ -104,8 +104,10 @@ import { OpenviduSessionModule } from 'openvidu-angular';
 Moreover, you need to include _OpenviduSessionModule_ inside of _imports_ section of **NgModule**:
 
 ```
-imports: [
+  imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
     FormsModule,
     OpenviduSessionModule
   ]
