@@ -168,11 +168,18 @@ react-native run-android
 
 After we have completed all the steps of the performed steps 1), 2) and 3) stated above, we must continue with the following commands:
 
-5) Plug in your device via USB
+5) Install pod dependencies
 
-6) Configure code signing
+```bash
+cd ios
+pod update
+```
 
-7) Build and Run your app
+6) Plug in your device via USB
+
+7) Configure code signing
+
+8) Build and Run your app
 
 To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device) to properly configure your development environment.
 
