@@ -200,7 +200,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>JavaScript + Java SPA</h4>
-                    <p>Vanilla JavasCript frontend and a SPA Java Backend: forget building HTML templates, just feed your
+                    <p>Vanilla JavaScript frontend and a SPA Java Backend: forget building HTML templates, just feed your
                         front with HTTP requests</p>
                 </div>
             </div>
@@ -219,7 +219,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>JavaScript + Java MVC</h4>
-                    <p>Vanilla JavasCript frontend and a traditional Java MVC Backend: serve HTML pages from your server</p>
+                    <p>Vanilla JavaScript frontend and a traditional Java MVC Backend: serve HTML pages from your server</p>
                 </div>
             </div>
 
@@ -242,7 +242,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>JavaScript + Node SPA</h4>
-                    <p>Vanilla JavasCript frontend and a SPA Node Backend: forget building HTML templates, just feed your
+                    <p>Vanilla JavaScript frontend and a SPA Node Backend: forget building HTML templates, just feed your
                         front with HTTP requests</p>
                 </div>
             </div>
@@ -261,7 +261,7 @@
                 </div>
                 <div class="member-info wow fadeInUp">
                     <h4>JavaScript + Node MVC</h4>
-                    <p>Vanilla JavasCript frontend and a traditional Node MVC backend: serve HTML pages from your server</p>
+                    <p>Vanilla JavaScript frontend and a traditional Node MVC backend: serve HTML pages from your server</p>
                 </div>
             </div>
 
