@@ -57,7 +57,7 @@ Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. T
 <br>
 
 #### Cluster management
-OpenVidu Pro provides clustering features for scalable video sessions. You can manage your cluster from OpenVidu Inspector, launching and dropping Media Nodes with the click of a button to adapt your cluster according to user load.
+OpenVidu Pro provides clustering features for scalable video sessions. You can manage your cluster from OpenVidu Inspector, launching and dropping Media Nodes with the click of a button to adapt your cluster according to CPU load.
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">

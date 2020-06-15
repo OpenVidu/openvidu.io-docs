@@ -287,9 +287,7 @@ In terms of **performance**, OpenVidu load testing process is described in detai
   <img class="img-responsive" src="img/docs/troubleshooting/load_test_results.png">
 </div>
 
-About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-pro/scalability/){:target="_blank"}. With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable.
-
-We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pro tier in the near future. Always seamlessly integrated with most popular cloud providers and platforms (AWS, Azure, Ansible, Kubernetes...) with the final goal of providing automated server scale-in and scale-out capabilities depending on the workload of your application.
+About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-pro/scalability/){:target="_blank"}. With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable and automatically scale-in and scale-out the number of Media Nodes depending on the workload of your application.
 
 ---
 
