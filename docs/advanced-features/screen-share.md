@@ -10,40 +10,28 @@
 
 ## How to screen share
 
-**Chrome**, **Opera**, **Firefox**  and **desktop Electron apps** support screen sharing.
+The following platforms support screen sharing:
 
-### Chrome >=72, Opera (based on Chrome >=72) and Firefox >=66
+- **Chrome**
+- **Opera**
+- **Firefox**
+- **Safari >= 13.0**
+- **Electron apps**
+
+All of them in their desktop version. Mobile platforms do not currently support screen sharing.
+
+### Chrome >=72, Opera (based on Chrome >=72), Safari >= 13.0 and Firefox >=66
 
 To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 var OV = new OpenVidu();
-var sessionScreen = OV.initSession();
-getToken((token) => {
-    sessionScreen.connect(token).then(() => {
-        var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
-
-        publisher.once('accessAllowed', (event) => {
-            publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => {
-                console.log('User pressed the "Stop sharing" button');
-            });
-            sessionScreen.publish(publisher);
-
-        });
-
-        publisher.once('accessDenied', (event) => {
-            console.warn('ScreenShare: Access Denied');
-        });
-
-    }).catch((error => {
-        console.warn('There was an error connecting to the session:', error.code, error.message);
-
-    }));
-}
-
+var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 ```
 
 ### Chrome <72 and Opera (based on Chrome <72)
+
+> **NOTE**: Chrome 72 is available since January 2019. This means that the need for the browser's extension is now virtually overcome.
 
 In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
 
@@ -73,6 +61,8 @@ var publisher = OV.initPublisher('html-element-id', { videoSource: "screen" }, f
 ```
 
 ### Firefox <66
+
+> **NOTE**: Firefox 66 is available since March 2019. This means that below instructions should not be necessary in most cases.
 
 For **Firefox <66** two different `videoSource` strings are allowed in order to screen share:
 
@@ -149,6 +139,8 @@ var publisher = OV.initPublisherAsync({
 ---
 
 ## Custom Screen Sharing extension for Chrome
+
+> **NOTE**: Chrome 72 is available since January 2019. This means that the need for the browser's extension is now virtually overcome.
 
 We provide a default extension that will work on any domain in case the client is using Chrome <72 or Opera based on it. But you can create your own Chrome extension always based on ours ([OpenVidu Screen Sharing extension](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension){:target="_blank"}). This way your extension may have your own icon, name, description and custom valid domains.
 
