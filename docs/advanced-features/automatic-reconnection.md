@@ -1,6 +1,6 @@
 # Automatic reconnection
 
-Clients are be able to automatically reconnect their media streams with OpenVidu after a network drop. To understand how this works, let's first differentiate between the two types of connections that any client has with OpenVidu:
+Clients are able to automatically reconnect their media streams with OpenVidu after a network drop. To understand how this works, let's first differentiate between the two types of connections that any client has with OpenVidu:
 
 - **Signaling plane**: this is the connection used by clients to send requests to OpenVidu (join a Session, publish a Stream...) and used by OpenVidu to send back to clients answers to those requests and one-way events.
 - **Media plane**: this is the connection used by clients and OpenVidu to actually send and receive audio/video data flows.
@@ -32,7 +32,11 @@ This intermediate case is the only one that requires an actual active process of
 
 In this case, the only solution is to renegotiate the whole media connections with OpenVidu. Clients will automatically do so: they analyze each one of the media connections that where established before the network dropped and for each one of them that is frozen, silently asks OpenVidu to fully recreate a new media connection, keeping the previous configuration. What clients perceive is that videos leave the frozen state and play again without having to do anything.
 
-> It should be stressed that this doesn't mean that the media plane will always be broken at this particular point: it is just one possibility that sometimes may happen depending on many factors: client's device, time elapsed, network topology...
+> **NOTE 1**: It should be stressed that this doesn't mean that the media plane will always be broken at this particular point: it is just one possibility that sometimes may happen depending on many factors: client's device, time elapsed, network topology..
+
+<div></div>
+
+> **NOTE 2**: In rare occasions the client-side may tell the media plane is OK, but it is actually frozen. OpenVidu gathers in the client side all of the available information to decide whether the connection is fully recovered or not (analyzing the ICE connection status), but under some unknown conditions this might not be enough. For this reason, openvidu-browser provides an advanced configuration option to always force the renegotiation of all the media streams established by a client after a network reconnection: [OpenViduAdvancedConfiguration.forceMediaReconnectionAfterNetworkDrop](api/openvidu-browser/interfaces/openviduadvancedconfiguration.html#forcemediareconnectionafternetworkdrop){:target="_blank"}. Developers can enable this option if in their particular use case are seeing this problem repeatedly.
 
 <br>
 
