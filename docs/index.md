@@ -143,7 +143,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Audio and video filters</h3>
-      <span class="feature-text">OpenVidu is the only WebRTC technology that allows you to apply <a href="advanced-features/filters/" target="_blank">real-time audio and video filters</a>. Detecting bar codes, settting a chroma key background or amplifying your clients voices are only just a few examples of what you can achieve with OpenVidu filters. And all of this perfectly integrated in OpenVidu simple high-level API</span>
+      <span class="feature-text">OpenVidu is the only WebRTC technology that allows you to apply <a href="advanced-features/filters/" target="_blank">real-time audio and video filters</a>. Detecting bar codes, setting a chroma key background or amplifying your clients voices are only just a few examples of what you can achieve with OpenVidu filters. And all of this perfectly integrated in OpenVidu simple high-level API</span>
     </div>
   </div>
   <hr>
