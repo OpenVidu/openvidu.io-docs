@@ -79,8 +79,8 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 - `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
-- `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Pro host
-- `webrtcStats`: event of WebRTC statistics for each media endpoint established in Kurento Media Server
+- `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Sever Pro Node
+- `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
 - `sessionSummary`: summary of a session, stored once it is closed
 - `recordingSummary`: summary of a recording, stored once its session is closed
 - `userSummary`: summary of a user, stored once its session is closed
