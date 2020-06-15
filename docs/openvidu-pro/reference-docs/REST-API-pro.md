@@ -35,13 +35,12 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Query params**
 >
-> - `load` _(optional boolean, default to false)_ : whether to return Media Node load or not. The value will depend on [configuration property `OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
 > - `sessions` _(optional boolean, default to false)_ : whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. Session information has same format as returned by method [GET /api/sessions/&lt;SESSION_ID&gt;](reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}
 > - `extra-info` _(optional boolean, default to false)_ : whether to return extra information about the Media Node or not. Only for advanced users
 >
 > ---
 >
-> _Encode query params in the url like this:_ <br> _https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes**?load=true&sessions=false&extra-info=false**_
+> _Encode query params in the url like this:_ <br> _https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes**?sessions=false&extra-info=false**_
 
 <div></div>
 
@@ -65,7 +64,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: the Media Node information has been successfully retrieved
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
-> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -81,13 +79,12 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Query params**
 >
-> - `load` _(optional boolean, default to false)_ : whether to return Media Nodes load or not. The value will depend on [configuration property `OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
 > - `sessions` _(optional boolean, default to false)_ : whether to return session information along Media Nodes information or not.  Media Node will be retrieved. Session information has same format as returned by method [GET /api/sessions/&lt;SESSION_ID&gt;](reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}
 > - `extra-info` _(optional boolean, default to false)_ : whether to return extra information about the Media Nodes or not. Only for advanced users
 >
 > ---
 >
-> _Encode query params in the url like this:_ <br> _https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes**?load=true&sessions=false&extra-info=false**_
+> _Encode query params in the url like this:_ <br> _https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes**?sessions=false&extra-info=false**_
 
 <div></div>
 
@@ -101,7 +98,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > **HTTP responses**
 >
 > - `200`: Media Nodes information has been successfully retrieved
-> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -130,7 +126,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **uri** _(mandatory string only if `OPENVIDU_PRO_CLUSTER_MODE` is `manual`)_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account if [OPENVIDU_PRO_CLUSTER_MODE](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to `manual`**. For mode `auto` a new Media Node will be automatically launched ignoring parameter `uri`
+> - **uri** _(mandatory string only for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched ignoring parameter `uri`
 
 <div></div>
 
@@ -146,8 +142,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `400`: problem with some body parameter
 > - `404`: the Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration...
 > - `409`: the Media Node was already registered in OpenVidu Server
-> - `501`: configuration property [OPENVIDU_PRO_CLUSTER](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false, or is true but property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to `manual` and no `uri` parameter was passed in the body request.
-> - `502`: the process of launching a new Media Node instance failed. Only possible if property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to `auto`
+> - `501`: the cluster is deployed [On Premises](/openvidu-pro/deployment/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request.
+> - `502`: the process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual launching
 
 ---
 
@@ -181,8 +177,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the Media Node was successfully removed
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
 > - `409`: if query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all.
-> - `501`: configuration property [OPENVIDU_PRO_CLUSTER](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
-> - `502`: error while terminating the Media Node instance. Only possible if property [`OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to `auto`
+> - `502`: error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual shut down
 
 ---
 
@@ -216,7 +211,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the Media Node has not been modified because its status was the same as the provided through body parameters
 > - `400`: problem with some body parameter. This will also be the status if you try to set property `status` to an invalid one (`launching`, `failed`, `terminated`)
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
-> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -240,7 +234,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: autodiscovery process has completed
 > - `405`: autodiscovery process is not possible. This may happen if OpenVidu Pro cluster environment is set to `on_premise` and no autodiscover script is available.
-> - `501`: [configuration property `OPENVIDU_PRO_CLUSTER`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} is set to false. You need to enable cluster mode to be able to manage Media Nodes
 
 ---
 
@@ -255,11 +248,10 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 > **Body parameters**
 >
-> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration properties](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} (bear in mind not all of them are available for change using this method). All of them are optional. The complete list of available properties is listed below. Visit the configuration docs for a detailed description of each one of them.
+> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration properties](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} (bear in mind not all of them are available for change using this method). All of them are optional. Not all properties can be modified this way. Others require a manual update. The complete list of available properties to be modified with this method is listed below. Visit the configuration docs for a detailed description of each one of them.
 >
 > ---
 >
-> - **OPENVIDU_SECRET** _(optional string)_
 > - **OPENVIDU_CDR** _(optional boolean)_
 > - **OPENVIDU_RECORDING** _(optional boolean)_
 > - **OPENVIDU_RECORDING_PATH** _(optional string)_
@@ -277,13 +269,14 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - **OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH** _(optional number)_
 > - **OPENVIDU_SESSIONS_GARBAGE_INTERVAL** _(optional number)_
 > - **OPENVIDU_SESSIONS_GARBAGE_THRESHOLD** _(optional number)_
-> - **OPENVIDU_PRO_CLUSTER** _(optional boolean)_
-> - **OPENVIDU_PRO_CLUSTER_ENVIRONMENT** _(optional string)_
-> - **OPENVIDU_PRO_CLUSTER_MODE** _(optional string)_
+> - **OPENVIDU_PRO_CLUSTER_ID** _(optional string)_
 > - **OPENVIDU_PRO_CLUSTER_MEDIA_NODES** _(optional number)_
-> - **OPENVIDU_PRO_CLUSTER_AUTODISCOVERY** _(optional boolean)_
-> - **OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY** _(optional string)_
 > - **OPENVIDU_PRO_CLUSTER_PATH** _(optional string)_
+> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING** _(optional boolean)_
+> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES** _(optional number)_
+> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES** _(optional number)_
+> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD** _(optional number)_
+> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD** _(optional number)_
 > - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL** _(optional number)_
 > - **OPENVIDU_PRO_STATS_WEBRTC_INTERVAL** _(optional number)_
 
@@ -309,7 +302,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | **Operation**     | GET                                                                  |
 | **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/config                    |
 | **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_ |
-| **Sample return** | ```{"VERSION": "2.13.0", "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.13.0", "DOMAIN_OR_PUBLIC_IP": "test.openvidu.io", "HTTPS_PORT": 443, "OPENVIDU_PUBLICURL": "https://test.openvidu.io/", "KMS_URIS": [], "OPENVIDU_CDR": true, "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_VERSION": "2.9.0", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/", "OPENVIDU_RECORDING_PUBLIC_ACCESS": false, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": false, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 0, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 5, "OPENVIDU_PRO_CLUSTER": true, "OPENVIDU_PRO_CLUSTER_ID": "TEST_CLUSTER_ID", "OPENVIDU_PRO_CLUSTER_MODE": "auto", "OPENVIDU_PRO_CLUSTER_ENVIRONMENT": "docker", "OPENVIDU_PRO_CLUSTER_AUTODISCOVERY": true, "OPENVIDU_PRO_CLUSTER_MEDIA_NODES": 1, "OPENVIDU_PRO_CLUSTER_LOAD_STRATEGY": "streams", "OPENVIDU_PRO_CLUSTER_PATH": "/opt/openvidu/cluster/", "OPENVIDU_PRO_ELASTICSEARCH": true, "OPENVIDU_PRO_ELASTICSEARCH_HOST": "http://localhost:9200", "OPENVIDU_PRO_ELASTICSEARCH_VERSION": "7.6.2", "OPENVIDU_PRO_KIBANA": true, "OPENVIDU_PRO_KIBANA_HOST": "http://localhost:5601", "OPENVIDU_PRO_KIBANA_VERSION": "7.6.2"}``` |
+| **Sample return** | ```{"VERSION": "2.13.0", "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.13.0", "DOMAIN_OR_PUBLIC_IP": "test.openvidu.io", "HTTPS_PORT": 443, "OPENVIDU_PUBLICURL": "https://test.openvidu.io/", "KMS_URIS": [], "OPENVIDU_CDR": true, "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_VERSION": "2.9.0", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/", "OPENVIDU_RECORDING_PUBLIC_ACCESS": false, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": false, "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 0, "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 5, "OPENVIDU_PRO_CLUSTER_ID": "TEST_CLUSTER_ID", "OPENVIDU_PRO_CLUSTER_ENVIRONMENT": "docker", "OPENVIDU_PRO_CLUSTER_MEDIA_NODES": 1, "OPENVIDU_PRO_CLUSTER_AUTOSCALING": false, "OPENVIDU_PRO_CLUSTER_PATH": "/opt/openvidu/cluster/", "OPENVIDU_PRO_ELASTICSEARCH": true, "OPENVIDU_PRO_ELASTICSEARCH_HOST": "http://localhost:9200", "OPENVIDU_PRO_ELASTICSEARCH_VERSION": "7.6.2", "OPENVIDU_PRO_KIBANA": true, "OPENVIDU_PRO_KIBANA_HOST": "http://localhost:5601", "OPENVIDU_PRO_KIBANA_VERSION": "7.6.2"}``` |
 
 > **Returned JSON**
 >
