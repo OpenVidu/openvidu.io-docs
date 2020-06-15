@@ -195,7 +195,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **status** _(mandatory string)_ : new desired status of the Media Node. Valid values are `waiting-idle-to-terminate` (from `running` status), `running` (from `waiting-idle-to-terminate`) and `terminating` (from both `running` and `waiting-idle-to-terminate`)
+> - **status** _(mandatory string)_ : new desired status of the Media Node. Valid values are `canceled` (from `launching` status), `launching` (from `canceled` status), `waiting-idle-to-terminate` (from `running` status), `running` (from `waiting-idle-to-terminate`) and `terminating` (from both `running` and `waiting-idle-to-terminate`). Visit **[Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"}** to understand the Media Node lifecycle
 
 <div></div>
 
@@ -209,7 +209,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > - `200`: the Media Node has been successfully modified
 > - `204`: the Media Node has not been modified because its status was the same as the provided through body parameters
-> - `400`: problem with some body parameter. This will also be the status if you try to set property `status` to an invalid one (`launching`, `failed`, `terminated`)
+> - `400`: problem with some body parameter. This means the Media Node cannot transition from its current status to the indicated one in the `status` request body parameter
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
 
 ---
