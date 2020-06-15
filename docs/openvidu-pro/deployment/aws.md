@@ -347,6 +347,31 @@ Keep an eye on the OpenVidu logs that will automatically display after restartin
 
 ## Troubleshooting
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+  AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So <strong>everything explained in <a href="openvidu-pro/deployment/on-premises/#troubleshooting" target="_blank">Troubleshooting</a> section of on premises deployments also applies to AWS deployments</strong>. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
+</div>
+</div>
+
 ### CREATE_FAILED CloudFormation stack
 
 First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} on how to fix it.
@@ -379,7 +404,7 @@ If that is not the problem, then follow these steps:
 
     - `docker-compose logs -f`
 
-> AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So **everything explained in [Troubleshooting](openvidu-pro/deployment/on-premises/#troubleshooting){:target="_blank"} section of on premises deployments also applies to AWS deployments**. There you have detailed instructions on how to debug all of OpenVidu Pro services in case some unexpected problem appears.
+<br>
 
 ---
 
