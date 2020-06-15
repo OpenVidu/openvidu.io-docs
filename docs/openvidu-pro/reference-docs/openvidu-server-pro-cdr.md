@@ -13,7 +13,13 @@ OpenVidu Pro provides all of [OpenVidu CE CDR events](reference-docs/openvidu-se
 
 #### mediaNodeStatusChanged
 
-Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed. This event is only triggered when OpenVidu Pro is running in cluster mode. See [Scalability](openvidu-pro/scalability/){:target="_blank"} section to learn more.
+Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed. Below you have the finite-state machine defining the lifecycle of a Media Node and all of the possible transitions between its statuses. Visit [Scalability](openvidu-pro/scalability/#openvidu-pro-cluster-events){:target="_blank"} section for a full description of them.
+
+<div class="row">
+    <div class="pro-gallery" style="margin-bottom: 25px">
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
+    </div>
+</div>
 
 
 | Property          | Description                                | Value                                          |
@@ -33,3 +39,21 @@ Example:
 ```
 
 <br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>

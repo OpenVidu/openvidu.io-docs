@@ -115,20 +115,21 @@ This event is **[mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-se
 
 #### Media Node statuses
 
-Here are all the possible statuses of a Media Node within an OpenVidu Pro cluster. 
+Here are all the possible statuses of a Media Node within an OpenVidu Pro cluster.
 
-- `launching`: the Media Node is launching
+<div class="row">
+    <div class="pro-gallery" style="margin-bottom: 25px">
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
+    </div>
+</div>
+
+- `launching`: the Media Node is launching. This is the entry status and can also be reached from _canceled_ status.
+- `canceled`: the Media Node will immediately enter terminating status after the launching process succeeds. This status can be reached from _launching_ status.
 - `failed`: the Media Node failed to launch. This status can be reached from _launching_ status.
 - `running`: the Media Node is up and running. New sessions can now be established in this Media Node. This status can be reached from _launching_ and _waiting-idle-to-terminate_ statuses.
 - `waiting-idle-to-terminate`: the Media Node is waiting until the last of its sessions is closed. Once this happens, it will automatically enter _terminating_ status. The Media Node won't accept new sessions during this status. This status can be reached from _running_ status.
 - `terminating`: the Media Node is shutting down. This status can be reached from _running_ and _waiting-idle-to-terminate_ statuses.
-- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For OpenVidu Pro clusters running in _manual_ mode ([property `OPENVIDU_PRO_CLUSTER_MODE`](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"} set to `manual`), this status means that the Media Node instance can be safely shut down.
-
-<div class="row">
-    <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
-    </div>
-</div>
+- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For [On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"} OpenVidu Pro clusters, this status means that you can safely shut down the Media Node instance.
 
 <br>
 
@@ -171,10 +172,6 @@ For the moment, we recommend limiting the number of simultaneous composed record
 #### Sessions cannot be moved between Media Nodes
 
 Current scalability features doesn't support dynamic migration of OpenVidu Sessions between Media Nodes. Once a Session is initialized inside a Media Node, it will remain there until it is closed. We will work to support Session migration between Media Nodes to A) improve fault tolerance upon the possibility of a Media Node crashing and B) make easier the scale-down process of your OpenVidu Pro cluster, so you don't have to wait until all Sessions inside a Media Node are closed to drop that Media Node from the cluster.
-
-#### There is no automatic elasticity yet
-
-The automated scale-in and scale-out of Media Nodes according to server load is an important feature that OpenVidu Pro will provide in the future. This way you will be able to configure your OpenVidu Pro cluster to automatically launch new Media Nodes when the CPU load of the existing ones reaches certain point, and drop Media Nodes when CPU load decreases.
 
 <br>
 
