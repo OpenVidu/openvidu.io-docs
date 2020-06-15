@@ -93,6 +93,8 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
         - **443 TCP**: OpenVidu Inspector is served by default in standard https port.
         - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
+        - **5044 TCP**: Necessary for Media Nodes instances to send metrics to OpenVidu. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the internet and only available for _Media Nodes_.
+        - **9200 TCP** Necessary for Media Nodes Instances to send metrics and logs to ElasticSearch. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the internet and only available for _Media Nodes_.
         - **40000 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check OpenVidu Server Pro Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks) to learn more about this.
@@ -106,7 +108,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **22 TCP**: to connect using SSH to admin OpenVidu.
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> Port 8888 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could spy your sessions.
-        - **80 TCP**: to allow OpenVidu Server Pro Node downloading recording files. <strong style="color: #990000">WARNING!!</strong> Port 80 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could download your recordings.<br><br>
+        - **3000 TCP**: All _Media Nodes_ has deployed a rest api server to provision instances. <strong style="color: #990000">WARNING!!</strong> Port 3000 **must only be accessible for OpenVidu Server Pro instance**. This port must be closed to the Internet, or anyone could spy your sessions.
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check Media Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1) to learn more about this.
 
@@ -166,7 +168,7 @@ For more information, check readme.md
 
 OpenVidu Pro configuration is specified in the **`.env`** file with environment variables.
 
-- You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`KIBANA_PASSWORD`**. Default empty values will fail. 
+- You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`KIBANA_PASSWORD`**. Default empty values will fail.
 - You _must_ also provide a value for  **`OPENVIDU_PRO_LICENSE`**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
 - All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} for further information.
@@ -521,7 +523,7 @@ Fix config errors
 
 #### Docker compose
 
-To solve any other issue apart from configuration ones, it is important to understand how is OpenVidu service executed. 
+To solve any other issue apart from configuration ones, it is important to understand how is OpenVidu service executed.
 
 OpenVidu is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
 
@@ -529,14 +531,14 @@ OpenVidu is executed as a docker-compose file. The commands executed by the scri
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f openvidu-server`
 - stop
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
 - restart
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f openvidu-server`
 - logs
     - `$ docker-compose logs -f openvidu-server`
- 
+
 <br>
 As you can see, logs of `openvidu-server` service are shown when platform is started or restarted. This log contains the most important information for the OpenVidu execution.
 
@@ -548,7 +550,7 @@ Take a look to service logs to see what happened. First, see openvidu-server log
 ./openvidu logs
 ```
 
-You can also see all service logs together: 
+You can also see all service logs together:
 
 ```
 docker-compose logs -f
@@ -569,7 +571,7 @@ Sometimes we may have a typo when writing a property name. For this reason, open
 
 ```console
 Configuration properties
----------------------  
+---------------------
 * CERTIFICATE_TYPE=selfsigned
 * OPENVIDU_CDR=false
 * OPENVIDU_CDR_PATH=/opt/openvidu/cdr
@@ -610,7 +612,7 @@ ufw enable
 
 #### Docker compose
 
-First of all it is important to understand how is Media Nodes service executed. 
+First of all it is important to understand how is Media Nodes service executed.
 
 Media Node is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
 
@@ -618,14 +620,14 @@ Media Node is executed as a docker-compose file. The commands executed by the sc
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f kms`
 - stop
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
 - restart
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f kms`
 - logs
     - `$ docker-compose logs -f kms`
- 
+
 <br>
 As you can see, logs of `kms` service are shown when platform is started or restarted.
 
@@ -637,7 +639,7 @@ Take a look to the Media Node service logs to see what happened:
 ./media_node logs
 ```
 
-You can also see all services logs running in the Media Node together: 
+You can also see all services logs running in the Media Node together:
 
 ```
 docker-compose logs -f
