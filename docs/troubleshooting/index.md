@@ -10,7 +10,7 @@
 7. [What does OpenVidu not integrate regarding WebRTC and Kurento yet?](#7-what-does-openvidu-not-integrate-regarding-webrtc-and-kurento-yet)
 8. [What platforms are supported by OpenVidu?](#8-what-platforms-are-supported-by-openvidu)
 9. [Which is the current status of OpenVidu regarding performance, scalability and fault tolerance?](#9-which-is-the-current-status-of-openvidu-regarding-performance-scalability-and-fault-tolerance)
-10. [I am getting an "Error accessing the camera" and I have already granted permissions on the browser](#10-i-am-getting-an-error-accessing-the-camera-and-i-have-already-granted-permissions-on-the-browser)
+10. [My local video is not showing up on the browser](#10-my-local-video-is-not-showing-up-on-the-browser)
 11. [My Safari users with role SUBSCRIBER are not able to receive any remote video](#11-my-safari-users-with-role-subscriber-are-not-able-to-receive-any-remote-video)
 12. [Videos are freezing on Safari for iOS](#12-videos-are-freezing-on-safari-for-ios)
 13. [Deploying OpenVidu in AWS is failing](#13-deploying-openvidu-in-aws-is-failing)
@@ -293,9 +293,13 @@ We intend to provide **automated elasticity and fault tolerance** in OpenVidu Pr
 
 ---
 
-### 10. I am getting an "Error accessing the camera" and I have already granted permissions on the browser
+### 10. My local video is not showing up on the browser
 
-  If you are using **Chrome**: you **cannot access the camera or microphone from a `http` URL if it is not `localhost` or `127.0.0.1`**. In a nutshell: in Chrome accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK. But, for example, on `http://172.17.0.1:8080` it will through an error saying "_Only secure origins are allowed_". If for any reason you want to serve your app locally on a custom URL, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
+  You **cannot access the camera or microphone from an `http` URL. It will only work without SSL if the domain is `localhost` or `127.0.0.1`**. Media devices and WebRTC APIs of any browser requires a secure site to be available. In a nutshell: accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK (at least in Chrome). But, for example, on `http://172.17.0.1:8080` you won't be able to access to them.
+  
+  This means that when deploying your app on production, you **MUST** use an SSL certificate and serve your app over `https`.
+  
+  This also means that when developing your app in local, if for any reason you want to locally serve your app on a custom URL different than localhost, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
 
   - Generate a selfsigned certificate with _openssl_
 
@@ -333,7 +337,7 @@ Again, Apple's browser has "special" needs when it comes to video playback. In i
 
 Possible solutions to this issue? Tweaking muted property on videos to have only one playing audio at a time. Maybe using user gestures to directly play videos can help too. Other users have reported that it usually works fine if dynamically adding audio tracks to the same MediaStream object. There is not a clear solution to this problem, and depending on the web application some workarounds can succeed and some may not. On our tests we have even seen different behaviors in video playback from one execution to another, breaking the supposed consistency of the browser. It is really a matter of testing different approaches until you find a good enough solution.
 
-Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](tutorials/openvidu-ionic/){:target="_blank"}) or [React Native](tutorials/openvidu-react-native/){:target="_blank"}).
+Due to these problems, any other WebRTC based service we have tested usually redirected to a native application when trying to connect through iOS Safari. You can implement your native OpenVidu app for both iOS and Android with [Ionic](tutorials/openvidu-ionic/){:target="_blank"} or [React Native](tutorials/openvidu-react-native/){:target="_blank"}.
 
 ---
 
