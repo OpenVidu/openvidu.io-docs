@@ -19,7 +19,7 @@ To share your screen instead of your webcam, the process is exactly the same as 
 ```javascript
 var OV = new OpenVidu();
 var sessionScreen = OV.initSession();
-getToken((token) => {
+getToken().then((token) => {
     sessionScreen.connect(token).then(() => {
         var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 
@@ -39,7 +39,7 @@ getToken((token) => {
         console.warn('There was an error connecting to the session:', error.code, error.message);
 
     }));
-}
+});
 
 ```
 
