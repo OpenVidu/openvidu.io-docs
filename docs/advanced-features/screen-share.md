@@ -26,7 +26,29 @@ To share your screen instead of your webcam, the process is exactly the same as 
 
 ```javascript
 var OV = new OpenVidu();
-var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
+var sessionScreen = OV.initSession();
+getToken().then((token) => {
+    sessionScreen.connect(token).then(() => {
+        var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
+
+        publisher.once('accessAllowed', (event) => {
+            publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => {
+                console.log('User pressed the "Stop sharing" button');
+            });
+            sessionScreen.publish(publisher);
+
+        });
+
+        publisher.once('accessDenied', (event) => {
+            console.warn('ScreenShare: Access Denied');
+        });
+
+    }).catch((error => {
+        console.warn('There was an error connecting to the session:', error.code, error.message);
+
+    }));
+});
+
 ```
 
 ### Chrome <72 and Opera (based on Chrome <72)
