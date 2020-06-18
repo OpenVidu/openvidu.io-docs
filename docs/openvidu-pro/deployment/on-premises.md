@@ -25,6 +25,7 @@
         - [Review the configuration](#review-the-configuration)
         - [Change log level of the services](#change-log-level-of-the-services)
         - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks)
+        - [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
     - [Troubleshooting Media Nodes](#troubleshooting-media-nodes)
         - [Docker compose](#docker-compose_1)
         - [Show service logs](#show-service-logs_1)
@@ -32,6 +33,7 @@
         - [Change Kurento Media Server docker image](#change-kurento-media-server-docker-image)
         - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1)
         - [Kurento Media Server crash](#kurento-media-server-crash)
+        - [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
 
 ---
 
@@ -93,13 +95,13 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
         - **443 TCP**: OpenVidu Inspector is served by default in standard https port.
         - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
-        - **5044 TCP**: Necessary for Media Nodes instances to send metrics to OpenVidu. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could spy your sessions.
-        - **9200 TCP** Necessary for Media Nodes Instances to send metrics and logs to ElasticSearch. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could spy your sessions.
+        - **5044 TCP**: Necessary for Media Nodes instances to send metrics to OpenVidu. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could send metrics information to OpenVidu.
+        - **9200 TCP** Necessary for Media Nodes Instances to send metrics and logs to ElasticSearch. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could do http requests to your ElasticSearch.
         - **40000 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check OpenVidu Server Pro Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks) to learn more about this.
 
-    - **Free ports inside the server**: OpenVidu Server Pro Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5442, 5443, 6379. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
+    - **Free ports inside the server**: OpenVidu Server Pro Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5442, 5443, 6379, 9200. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
 
 - **Port configuration in _Media Nodes_**
 
@@ -224,8 +226,6 @@ For more information on how to disable it and deploy your own application (if ne
 
 ---
 
----
-
 #### 2.3) Execution
 
 To start OpenVidu Platform (and the application if enabled) execute this command:
@@ -296,6 +296,14 @@ Run the following commands to manage OpenVidu Pro service:
 
         ./openvidu logs
 
+- Show actual installed version of OpenVidu Server Pro and basic information about the deployment.
+
+        ./openvidu version
+
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
+
+        ./openvidu report
+
 > To change current configuration, you just need to update `.env` configuration file with the new desired values and run `./openvidu restart` command.
 
 <br>
@@ -343,7 +351,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.14.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.15.0</strong>.sh | bash</code>
 
 <br>
 
@@ -399,6 +407,14 @@ Run the following commands to manage Media Node service:
 - Show logs of Media Node
 
         ./media_node logs
+
+- Show actual installed version of OpenVidu Server Pro and basic information about the deployment.
+
+        ./media_node version
+
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
+
+        ./media_node report
 
 > **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
 
@@ -601,11 +617,40 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ufw allow 3478/tcp
 ufw allow 3478/udp
+ufw allow 5044/tcp
+ufw allow 9200/tcp
 ufw allow 40000:65535/tcp
 ufw allow 40000:65535/udp
 ufw enable
 ```
 
+#### Generate a report with all deployment information
+
+If you're having problems deploying OpenVidu Server Pro Node, you can generate a report to take a look to a lot of
+useful information about it:
+
+```bash
+./openvidu report
+```
+
+This command will generate a file with this format: `openvidu-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/) if you find some bug or you need help to deploy your OpenVidu Server Pro Node.
+
+If you have ssh access to your OpenVidu Server Pro Node, you can download this report by executing:
+
+```bash
+scp USER@OPENVIDU_SERVER_PRO_IP:/opt/kms/openvidu-report-dd-mm-yyyy-hh-mm.txt report.txt
+```
+
+Replace `USER` with a user of your OpenVidu Server Pro Node with `root` and use the name of your report file. Replace `OPENVIDU_SERVER_PRO_IP` with your OpenVidu Server Pro Node ip.
+
+The report contains information about:
+
+- OpenVidu Installation type
+- OpenVidu version
+- System information (Docker and docker compose version, Linux distribution...)
+- Docker containers running
+- Docker containers logs
+- Configuration files
 ---
 
 ### Troubleshooting Media Nodes
@@ -741,6 +786,36 @@ ssh USER@MEDIA_NODE_IP "sudo rm /opt/openvidu/kms-crashes* && sudo rm ~/core_dum
 ```
 
 Replace `USER` with a user of your Media Node instance with `root` permissions and `MEDIA_NODE_IP` with the instance IP address. This only applies to a single Media Node and must be performed for each Media Node from which you downloaded a crash report.
+
+#### Generate a report with all deployment information
+
+If you're having problems with your Media Node deployment, you can generate a report to take a look to a lot of
+useful information about it:
+
+
+```bash
+./media_node report
+```
+
+This command will generate a file with this format: `media-node-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/) if you find some bug or you need help to deploy your Media Node.
+
+If you have ssh access to your Media Node, you can download this report by executing:
+
+
+```bash
+scp USER@MEDIA_NODE_IP:/opt/kms/media-node-report-dd-mm-yyyy-hh-mm.txt report.txt
+```
+
+Replace `USER` with a user of your Media Node with `root` and use the name of your report file. Replace `MEDIA_NODE_IP` with your Media Node ip.
+
+The report contains information about:
+
+- OpenVidu Installation type
+- OpenVidu version
+- System information (Docker and docker compose version, Linux distribution...)
+- Docker containers running
+- Docker containers logs
+- Configuration files
 
 <br>
 

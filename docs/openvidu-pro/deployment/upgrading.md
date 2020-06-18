@@ -2,6 +2,7 @@
 <hr>
 
 <!--- **[Migrating from 2.14.0 to a higher version](#**-->
+- **[Migrating from 2.14.0 to 2.15.0](#migrating-from-2140-to-2150)**
 - **[Migrating from 2.13.0 to 2.14.0](#migrating-from-2130-to-2140)**
 - **[Migrating from ≤2.12.0 to 2.13.0](#migrating-from-2120-to-2130)**
 
@@ -64,6 +65,116 @@ cd /opt/kms # Recommended and default installation path
 </div>
 </div>
 
+## Migrating from 2.14.0 to 2.15.0
+
+### Upgrading OpenVidu Server Pro Node
+
+Open ports **5044 TCP** and **9200 TCP** so **Media Nodes** can use them. These ports are necessary for OpenVidu Server Pro and ElasticSearch
+to receive metrics from Media Nodes and receive logs.
+
+> **WARNING**: It is very important to not open publicly ports **5044 TCP** and **9200 TCP**. Only open these ports to be used by Media Nodes.
+
+Connect to the OpenVidu Server Pro Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.15.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.15.0 services.
+
+2. The previous file '.env' remains intact, but a new file '.env-2.15.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.15.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.15.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file
+'docker-compose.override.yml'. However, if you were using your own application, a file called
+'docker-compose.override.yml-2.15.0' has been created with the latest version of Openvidu Call.
+If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.14.0'
+
+For further information, check readme.md
+```
+
+Next steps depends of your deployment:
+
+  - **On AWS**: Drop all your Media Nodes, and launch new ones from OpenVidu Server Pro. Check how to add and drop media
+  nodes [here](openvidu-pro/deployment/aws/#change-the-number-of-media-nodes-on-the-fly). **You can update all your Media Nodes in this way,
+  so you don't need to update all Media Nodes one by one, just drop old Media Nodes and add new ones**.
+  - **On Premises**: You will need to add all your Media Nodes again to OpenVidu Server Pro after update Media Nodes. Check how to add new Media
+  Nodes [here](openvidu-pro/deployment/on-premises/#change-the-number-of-media-nodes-on-the-fly)
+
+### Upgrading Media Node
+
+Open port **3000 TCP** so **OpenVidu Server Pro** can use it. This port is necessary to provision **Media Node** by **OpenVidu Server Pro**.
+
+> **WARNING**: It is very important to not open publicly ports **3000 TCP**. Only open this port to be used by OpenVidu Server Pro.
+
+Connect to the Media Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+
+```bash
+sudo -s
+cd /opt/kms # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.15.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.15.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.15.0 services.
+
+2. The previous file '.env' remains intact, but a new file '.env-2.15.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.15.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.15.0'.
+
+3. Start new version of Media Node
+$ ./media_node start
+
+If you want to roll-back all the files from the previous installation are in the folder '.old-2.14.0'
+
+For more information, check readme.md
+```
+
+<br>
+
+##### Some notes on upgrading Media Nodes
+
+- The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
+- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
+
+<br>
+
 ## Migrating from 2.13.0 to 2.14.0
 
 ### Upgrading OpenVidu Server Pro Node
@@ -96,7 +207,7 @@ Openvidu successfully upgraded to version 2.14.0
 Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.14.0'.
 When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.14.0'.
 
-3. If you were using Openvidu Call application, it has been automatically updated in file 
+3. If you were using Openvidu Call application, it has been automatically updated in file
 'docker-compose.override.yml'. However, if you were using your own application, a file called
 'docker-compose.override.yml-2.14.0' has been created with the latest version of Openvidu Call.
 If you don't plan to use it you can delete it.
@@ -195,7 +306,7 @@ We have zipped the old Elasticsearch data and downloaded to our computer. Now we
 
 ```bash
 scp -i SSH_KEY elasticsearch.tar.gz ubuntu@NEW_OPENVIDU_PRO_IP:/tmp/elasticsearch.tar.gz
-``` 
+```
 
 #### 2) Unzip Elasticsearch data in your new 2.13.0 OpenVidu Server Pro Node and restart services
 
@@ -380,7 +491,7 @@ cd /opt/openvidu # Modify this and the following commands if your installation i
 ./openvidu stop
 ```
 
-#### 2) Upgrade docker-compose 
+#### 2) Upgrade docker-compose
 
 Now we will make a backup of the current installation just in case. To do this we execute the following commands:
 
@@ -431,7 +542,7 @@ cd /opt/kms # Modify this and the following commands if your installation isn't 
 ./media_node stop
 ```
 
-#### 2) Upgrade docker-compose 
+#### 2) Upgrade docker-compose
 
 Now we will make a backup of the current installation just in case. To do this we execute the following commands:
 

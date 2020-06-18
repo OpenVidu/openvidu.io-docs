@@ -104,7 +104,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.14.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.15.0</strong>.sh | bash</code>
 
 <br>
 
@@ -268,7 +268,7 @@ Fix config errors
 
 ### Docker compose
 
-To solve any other issue, it is important to understand how is OpenVidu executed. 
+To solve any other issue, it is important to understand how is OpenVidu executed.
 
 OpenVidu is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
 
@@ -276,14 +276,14 @@ OpenVidu is executed as a docker-compose file. The commands executed by the scri
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f openvidu-server`
 - stop
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
 - restart
-    - `$ docker-compose down` 
+    - `$ docker-compose down`
     - `$ docker-compose up -d`
     - `$ docker-compose logs -f openvidu-server`
 - logs
     - `$ docker-compose logs -f openvidu-server`
- 
+
 <br>
 As you can see, logs of `openvidu-server` service are shown when platform is started or restarted. This log contains the most important information for the OpenVidu execution.
 
@@ -297,7 +297,7 @@ Take a look to service logs to see what happened. First, see openvidu-server log
 ./openvidu logs
 ```
 
-You can also see all service logs together: 
+You can also see all service logs together:
 
 ```
 docker-compose logs -f
@@ -321,7 +321,7 @@ Sometimes we may have a typo when writing a property name. For this reason, open
 
 ```console
 Configuration properties
----------------------  
+---------------------
 * CERTIFICATE_TYPE=selfsigned
 * OPENVIDU_CDR=false
 * OPENVIDU_CDR_PATH=/opt/openvidu/cdr
