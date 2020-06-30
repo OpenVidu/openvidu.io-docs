@@ -263,6 +263,8 @@ OpenVidu supports a wide range of platforms:
 - For iOS
     - Safari (Safari is the only browser in iOS with WebRTC support)
 
+> **IMPORTANT**: In iOS versions less than 13 have been found several bugs (videos and audio frozen) with WebRTC in Safari! These bugs look solved in iOS 13.
+
 <br>
 ##### Mobile native applications
 
