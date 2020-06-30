@@ -259,7 +259,7 @@ OpenVidu supports a wide range of platforms:
     - Firefox
     - Microsoft Edge
     - Opera
-    - Samsung Internet Browser
+    - Samsung Internet Browser (**WARNING:** there is a bug in release 2.14.0 that prevents this browser to work fine, ironically, in Samsung devices. Fixed in release 2.15.0)
 - For iOS
     - Safari (Safari is the only browser in iOS with WebRTC support)
 
