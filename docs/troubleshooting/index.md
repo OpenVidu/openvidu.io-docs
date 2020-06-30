@@ -248,7 +248,7 @@ OpenVidu supports a wide range of platforms:
 - Firefox
 - Opera
 - Safari
-- Microsoft Edge
+- Microsoft Edge >= 80
 - Internet Explorer 11
 
 <br>
