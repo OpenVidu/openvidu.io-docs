@@ -263,6 +263,8 @@ OpenVidu supports a wide range of platforms:
 - For iOS
     - Safari (Safari is the only browser in iOS with WebRTC support)
 
+> **IMPORTANT**: In iOS versions less than 13 have been found several bugs (videos and audio frozen) with WebRTC in Safari! These bugs look solved in iOS 13.
+
 <br>
 ##### Mobile native applications
 
@@ -294,9 +296,9 @@ About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-
 ### 10. My local video is not showing up on the browser
 
   You **cannot access the camera or microphone from an `http` URL. It will only work without SSL if the domain is `localhost` or `127.0.0.1`**. Media devices and WebRTC APIs of any browser requires a secure site to be available. In a nutshell: accessing the webcam on `http://localhost:8080` or `http://127.0.0.1:8080` is perfectly OK (at least in Chrome). But, for example, on `http://172.17.0.1:8080` you won't be able to access to them.
-  
+
   This means that when deploying your app on production, you **MUST** use an SSL certificate and serve your app over `https`.
-  
+
   This also means that when developing your app in local, if for any reason you want to locally serve your app on a custom URL different than localhost, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
 
   - Generate a selfsigned certificate with _openssl_
