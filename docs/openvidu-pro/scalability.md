@@ -278,8 +278,6 @@ Now let's take a 1-hour time window in which 6 identical small sessions will be 
 
 <br><br>
 
-#### Scenario 3: 
-
 ---
 
 ## Current limitations of OpenVidu Pro scalability

@@ -52,7 +52,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`)<br><br>
 > - **defaultOutputMode** _(optional string)_
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout
->     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file<br><br>
+>     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file
+>     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session (see [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="_blank"} for further information) <br><br>
 > - **defaultRecordingLayout** _(optional string. Only applies if `defaultOutputMode` is set to `COMPOSED`)_
 >     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
 >     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how

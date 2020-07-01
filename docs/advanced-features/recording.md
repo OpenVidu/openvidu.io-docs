@@ -2,6 +2,7 @@
 
 - **[How to record sessions](#how-to-record-sessions)**
 - **[Composed recording](#composed-recording)**
+    - [Composed quick start recording](#composed-quick-start-recording)
 - **[Individual stream recording](#individual-stream-recording)**
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
@@ -233,6 +234,65 @@ For example, for a session with two publishers the video file will look like thi
 > - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
 > - You can configure the resolution of the MP4 file for COMPOSED recordings by using `resolution` property when starting the recording<br><br>
 > - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
+
+<br>
+
+---
+
+## Composed quick start recording
+
+There is an extra recording output mode which is a variation of [Composed recording](#composed-recording). The resulting recorded file will be exactly the same, but in this case the lifespan of the recording module will be attached to the **lifecycle of the session**, not to the lifecycle of the recording. This means that:
+
+- If you configure a Session with this composed quick start recording mode, a new recording module especially dedicated to this session will be instantiated even before you start to record it. All of the session streams will be rendered by the recording module all the time, even when not being recorded.
+- When starting the recording, the process will be as fast as physically possible for composed recordings: no need to launch the recording module and to establish the inner media connections, as this has already been done in the background.
+- When stopping the recording, the recording module of this session won't be terminated. This way the next recording of the same session will also start as quickly as possible. Only when closing the session this particular recording module will be terminated and its resources freed up.
+
+When should you consider using this mode? When **response time** starting a composed recording is key in your use case. If you are going to start and stop multiple short composed recordings for the same session over time, then this mode can also be helpful. But take into account that each one of the sessions initialized with this recording mode **will require considerable CPU power in your server** (at least 1 dedicated CPU).
+
+To initialize a Session with this recording output mode, just use **`defaultOutputMode = COMPOSED_QUICK_START`** when [configuring your sessions to be recorded](#2-configure-your-sessions-to-be-recorded):
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+Initialize your sessions with this POST method [POST /api/sessions](reference-docs/REST-API#post-apisessions){:target="_blank"} passing `{"defaultOutputMode": "COMPOSED_QUICK_START"}`
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+    OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+    SessionProperties properties = new SessionProperties.Builder()
+        .defaultOutputMode(Recording.OutputMode.COMPOSED_QUICK_START)
+        .build();
+    Session session = openVidu.createSession(properties);
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+    var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+    var properties = {
+        defaultOutputMode: Recording.OutputMode.COMPOSED_QUICK_START
+    };
+    var mySession = openvidu.createSession(properties);
+
+</div>
+
+</div>
+
+<br>
+
+Then you can initialize your recording as usual:
+
+- If you have configured the session with recording mode `ALWAYS`, then the recording will be automatically started in `COMPOSED` output mode when the first user publishes.
+- If you have configured the session with recording mode `MANUAL`, then you can start recordings with `COMPOSED` or `COMPOSED_QUICK_START` output modes (both behave in the the exact same way), but also with `INDIVIDUAL` output mode if you need so.
 
 <br>
 
