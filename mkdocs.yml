@@ -13,6 +13,7 @@ nav:
   - openvidu-library-angular: tutorials/openvidu-library-angular.md
   - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
   - openvidu-library-react: tutorials/openvidu-library-react.md
+  - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
   - openvidu-android: tutorials/openvidu-android.md
   - openvidu-ionic: tutorials/openvidu-ionic.md
   - openvidu-react-native: tutorials/openvidu-react-native.md
@@ -26,7 +27,7 @@ nav:
   - openvidu-call-react: demos/openvidu-call-react.md
   - openvidu-call-ionic: demos/openvidu-call-ionic.md
   - openvidu-classroom: demos/openvidu-classroom.md
-  - openvidu-getaroom: demos/openvidu-getaroom.md  
+  - openvidu-getaroom: demos/openvidu-getaroom.md
 - Cheatsheet:
   - Join a session: cheatsheet/join-session.md
   - Leave a session: cheatsheet/leave-session.md

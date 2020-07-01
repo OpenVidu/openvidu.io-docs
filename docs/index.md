@@ -83,7 +83,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Compatible with lots of frontend technologies</h3>
-      <span class="feature-text">JavaScript, TypeScript, Angular, React, Ionic... Just choose your preferred language and framework</span>
+      <span class="feature-text">JavaScript, TypeScript, Angular, React, Vue.js, Ionic... Just choose your preferred language and framework</span>
     </div>
   </div>
   <hr>

@@ -37,7 +37,7 @@
 
         <div class="row">
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-3 col-sm-3 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-3 col-sm-3 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-4 team-member">
+            <div class="col-md-3 col-sm-3 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="img/assets/react.png" class="img-responsive img-tutorials" alt="" />
@@ -91,6 +91,25 @@
                 <div class="member-info wow fadeInUp">
                     <h4>React</h4>
                     <p>Have a look to this nice tutorial based on React </p>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-3 team-member">
+                <div class="effect effects wow fadeInUp">
+                    <div class="img">
+                        <img src="img/assets/vuejs.png" class="img-responsive img-tutorials" alt="" />
+                        <div class="overlay">
+                            <ul class="expand">
+                                <li class="social-icon"><a href="tutorials/openvidu-react-native/"><i
+                                            class="icon ion-edit"></i></a></li>
+                            </ul>
+                            <a class="close-overlay hidden">x</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="member-info wow fadeInUp">
+                    <h4>Vue.js</h4>
+                    <p>Get started with OpenVidu with this amazing Vue.js tutorial</p>
                 </div>
             </div>
 
@@ -276,10 +295,10 @@
                     </div>
                     <div class="col-lg-12 col-md-12 more-info-desc">
                         <p><strong>OpenVidu</strong> and the <strong>application</strong> are present on both client-side and server-side.</p>
-                        <p>Since these are full web applications, you will be dealing with <strong>frontend technologies</strong> (HTML, CSS, Javascript / Typescript ...) 
+                        <p>Since these are full web applications, you will be dealing with <strong>frontend technologies</strong> (HTML, CSS, Javascript / Typescript ...)
                             but also with <strong>backend technologies</strong> (Java / Node)</p>
-                        <p>The main difference compared to Client Side Only tutorials is that here you have total control over your users: your 
-                            <strong>video-calls are secure</strong> because you can identify them and allow or deny their access.</p>                             
+                        <p>The main difference compared to Client Side Only tutorials is that here you have total control over your users: your
+                            <strong>video-calls are secure</strong> because you can identify them and allow or deny their access.</p>
                     </div>
                 </div>
             </div>
