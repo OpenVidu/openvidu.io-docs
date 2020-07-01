@@ -29,9 +29,9 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | **Operation**       | GET                                                                                                                      |
 | **URL**             | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes/&lt;MEDIA_NODE_ID&gt;                                             |
-| **Query params**    | `load`, `sessions`, `extra-info`                                                                                         |
+| **Query params**    | `sessions`, `extra-info`                                                                                         |
 | **Headers**         | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**   | `{"id": "kms_RicdrF9x", "environmentId": "5372e1c954fd54c13706f476236", "ip": "172.17.0.4", "uri": "ws://172.17.0.4:8888/kurento", "connected": true, "connectionTime": 1583753233620, "sessions": [], "load": 0.0, "status": "running"}` |
+| **Sample return**   | `{"id": "kms_RicdrF9x", "environmentId": "5372e1c954fd54c13706f476236", "ip": "172.17.0.4", "uri": "ws://172.17.0.4:8888/kurento", "connected": true, "connectionTime": 1583753233620, "sessions": [], "load": 15.55, "status": "running"}` |
 
 > **Query params**
 >
@@ -54,7 +54,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `connectionTime`: when did OpenVidu Server establish the connection with the Media Node (in UTC milliseconds)
 > - `disconnectionTime`: when did OpenVidu Server lose its connection to the Media Node (in UTC milliseconds). Only defined if `connected` is false
 > - `sessions`: session information of this Media Node. This property is an array of objects with the exact same format as the response returned by method [GET /api/sessions/&lt;SESSION_ID&gt;](reference-docs/REST-API/#get-apisessionsltsession_idgt){:target="_blank"}. Only available if query param `sessions` is set to true
-> - `load`: load of the Media Node. Only available if query param `load` is set to true
+> - `load`: CPU load of the Media Node (decimal number between 0.00 and 100.00)
 > - `status`: status of the Media Node (see [Media Node statuses](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#media-node-statuses){:target="_blank"})
 > - `kurentoInfo`: object with extra advanced information about this instance of Kurento Media Server (version, modules, memory usage...). Only available if query param `extra-info` is set to true (for advanced users, subject to change)
 
@@ -73,9 +73,9 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | **Operation**       | GET                                                                                                                      |
 | **URL**             | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/pro/media-nodes                                                                   |
-| **Query params**    | `load`, `sessions`, `extra-info`                                                                                         |
+| **Query params**    | `sessions`, `extra-info`                                                                                         |
 | **Headers**         | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**   | ```{"numberOfElements": 1, "content": [ {"id": "KMS-XU5ZRM", "uri": "ws://localhost:8888/kurento", "ip": "localhost", "connected": true, "connectionTime": 1562744478463, "load": 0} ]}``` |
+| **Sample return**   | ```{"numberOfElements": 1, "content": [ {"id": "KMS-XU5ZRM", "uri": "ws://localhost:8888/kurento", "ip": "localhost", "connected": true, "connectionTime": 1562744478463, "load": 15.55} ]}``` |
 
 > **Query params**
 >
