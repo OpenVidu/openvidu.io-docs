@@ -115,14 +115,6 @@ If you want to rollback, all the files from the previous installation have been 
 For further information, check readme.md
 ```
 
-Next steps depends of your deployment:
-
-  - **On AWS**: Drop all your Media Nodes, and launch new ones from OpenVidu Server Pro. Check how to add and drop media
-  nodes [here](openvidu-pro/deployment/aws/#change-the-number-of-media-nodes-on-the-fly). **You can update all your Media Nodes in this way,
-  so you don't need to update all Media Nodes one by one, just drop old Media Nodes and add new ones**.
-  - **On Premises**: You will need to add all your Media Nodes again to OpenVidu Server Pro after update Media Nodes. Check how to add new Media
-  Nodes [here](openvidu-pro/deployment/on-premises/#change-the-number-of-media-nodes-on-the-fly)
-
 ### Upgrading Media Node
 
 Open port **3000 TCP** so **OpenVidu Server Pro** can use it. This port is necessary to provision **Media Node** by **OpenVidu Server Pro**.
