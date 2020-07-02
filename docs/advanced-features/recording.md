@@ -291,8 +291,10 @@ Initialize your sessions with this POST method [POST /api/sessions](reference-do
 
 Then you can initialize your recording as usual:
 
-- If you have configured the session with recording mode `ALWAYS`, then the recording will be automatically started in `COMPOSED` output mode when the first user publishes.
-- If you have configured the session with recording mode `MANUAL`, then you can start recordings with `COMPOSED` or `COMPOSED_QUICK_START` output modes (both behave in the the exact same way), but also with `INDIVIDUAL` output mode if you need so.
+- If you have configured the session with recording mode `ALWAYS`, then the recording will be automatically started in `COMPOSED_QUICK_START` output mode when the first user publishes.
+- If you have configured the session with recording mode `MANUAL`, then you can start recordings with `COMPOSED_QUICK_START` or `COMPOSED` output modes (both will end up being set to `COMPOSED_QUICK_START`), but also with `INDIVIDUAL` output mode if you need so.
+
+> The default recording output mode of the session will determine the output mode of its recordings. If the session is configured with `COMPOSED`, starting a recording with `COMPOSED` or `COMPOSED_QUICK_START` will always end up with the recording set to `COMPOSED`. If the session is configured with `COMPOSED_QUICK_START`, starting a recording with `COMPOSED` or `COMPOSED_QUICK_START` will always end up with the recording set to `COMPOSED_QUICK_START`.
 
 <br>
 
