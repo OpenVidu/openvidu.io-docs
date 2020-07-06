@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.15.0](#2150)
 - [2.14.0](#2140)
 - [2.13.0](#2130)
 - [2.12.0](#2120)
@@ -17,6 +18,199 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.15.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.15.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.15.0/deployment/deploying-aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.15.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.15.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.15.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.15.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.14.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.14.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Autoscaling
+
+OpenVidu Pro has always had scalability as one of its main features. But until now, the responsibility for the management of the cluster fell on the users themselves, who had to actively monitor the status of their OpenVidu Pro clusters to add or remove nodes manually. In fact, we've observed that many users simply launch a new OpenVidu CE monolithic deployment whenever they need more capacity for more sessions, as this can be currently more convenient than managing an OpenVidu Pro cluster with REST API.
+
+Of course this is not ideal. For that reason, with OpenVidu 2.15.0 we're pleased to introduced OpenVidu Pro Autoscaling. Now you can let OpenVidu Pro decide when should the cluster grow or shrink according to CPU load. This way you can forget about overloading your system and you can also have the price to pay at any moment adjusted in the most optimal way.
+
+We have added a new Autoscaling section to OpenVidu Pro documentation. We invite you to take a look to it: [Autoscaling](https://docs.openvidu.io/en/2.15.0/openvidu-pro/scalability/#autoscaling){:target="_blank"}
+
+<br>
+
+##### Screen sharing in Safari 13
+
+Now Safari users can share their screen as long as they are using Safari ≥ 13. This is great news for lots of people! Available for both OpenVidu CE and OpenVidu PRO.
+
+<br>
+
+##### Vue.js tutorial
+
+OpenVidu tutorials have a new member in their family. Thanks to [@Ninjak](https://github.com/Ninjak){:target="_blank"} now you have available a simple [Vue.js tutorial](https://docs.openvidu.io/en/2.15.0/tutorials/openvidu-insecure-vue/){:target="_blank"}.
+
+<br>
+
+##### Composed quick start recording
+
+OpenVidu recording service has always offered 2 different modes of recording:
+
+- **INDIVIDUAL**: media streams are recorded individually in their own files.
+- **COMPOSED**: media streams are recorded together in the same file in a grid layout. Users can build their own custom layouts with HTML and JS.
+
+INDIVIDUAL recording is very efficient, but lacks the potential of building the recorded files in real time using custom designs. Can be done later in a different process, but of course this is extra work. COMPOSED mode is very powerful, as you can immediately obtain the final desired result just after stopping the recording. But this requires more CPU power per active recording.
+
+Besides, COMPOSED recording requires OpenVidu to launch, manage and drop a recording module during the lifecycle of each recording. This process can make starting COMPOSED recordings a process with a somewhat slow response time. This is where the brand new **COMPOSED_QUICK_START** mode comes into play: some use cases may benefit of configuring OpenVidu Sessions with this recording mode if they need the recordings to start as quickly as possible, paying as a price a higher CPU usage during the whole lifecycle of the session.
+
+COMPOSED_QUICK_START recording mode is available for both OpenVidu CE and OpenVidu PRO. You have further information in OpenVidu Docs: [Composed quick start recording](https://docs.openvidu.io/en/2.15.0/advanced-features/recording/#composed-quick-start-recording){:target="_blank"}.
+
+<br>
+
+##### New OpenVidu deployment commands
+
+You can now run the following commands in your OpenVidu (CE or PRO) installation folder:
+
+- `./openvidu version` : will print out in the terminal all of the installation details of your deployment.
+- `./openvidu report` : will log in a file a complete report of the status of your deployment. This file can be very useful to quickly gather all of the information of your deployment in a single place.
+
+<br>
+
+##### Better Elastic stack integration
+
+There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic stack:
+
+- **Logging**: now you can directly review the logs of many of OpenVidu processes from the Kibana dashboard itself, using the "Logs" view. Including redis, coturn, openvidu-server and kms logs.
+- **New _OpenVidu Clustering_ dashboard**: the new autoscaling feature has brought the need to be able to review the behavior of the cluster and its load over time. For now you can quickly check the CPU load of any Media Node over time.
+
+<br>
+
+#### BUG FIXES
+
+- _OpenVidu deployment_: if the ports of the machine hosting OpenVidu Server weren't properly closed, the internal Redis database could be easily attacked, allowing external connections that hackers exploited for crypto mining. Some users reported that the CPU usage of the machine was higher than expected, and this was finally identified as the proble. Now the databse is by default password-protected with your OpenVidu secret, so even in the case of forgetting closing non-necessary ports, your Redis database will be secure.
+- _Recording_: possible concurrent exception for recordings configured with ALWAYS and INDIVIDUAL properties when users published very close in time, resulting in some streams not being recorded. Fixed now. Issue [479](https://github.com/OpenVidu/openvidu/issues/479){:target="_blank"}.
+- _Recording_: cancelation of automatic stop of recordings wasn't working for ALWAYS recordings. Recording would stop even if the conditions to keep the recording alive were met. Now recordings started by ALWAYS mode are only automatically stopped when expected.
+- _Webhook_: [OpenVidu Webhook](https://docs.openvidu.io/en/2.15.0/reference-docs/openvidu-server-webhook/){:target="_blank"} by default will work in background. Slow endpoints won't now affect OpenVidu Server responsiveness, which was being delayed when the configured endpoint didn't respond immediately.
+- _Kurento 100% CPU usage_: a critical bug was found in the past version of Kurento (the internal media server used by OpenVidu). This may cause a spike of CPU when closing many media endpoints at the same time (for example closing a session with lots of participants), which could leave the CPU hanging at 100% usage level and not being able to recover. This was fixed in Kurento release 6.14.0, the one being used by OpenVidu 2.15.0. You can check out [Kurento 6.14.0 release notes](https://doc-kurento.readthedocs.io/en/6.14.0/project/relnotes/v6_14_0.html){:target="_blank"}.
+- _Autorenewal of OpenVidu certificates_: when using the Let's Encrypt deployment option, the automatic renewal of auto-generated certificates could fail due to a misconfiguration. Now it doesn't.
+- _openvidu-browser_: Subscriber object wasn't changing the [Stream](https://docs.openvidu.io/en/2.15.0/api/openvidu-browser/classes/stream.html){:target="_blank"} object `audioActive` and `videoActive` status when calling `subscribeToAudio` or `subscribeToVideo` (PR [443](https://github.com/OpenVidu/openvidu/pull/443){:target="_blank"}).
+- _openvidu-browser_: Samsung Internet support fix. Some installations of the browser were treated as non-supported. Ironically the browser was being successfully supported in non-Samsung devices, but when the browser run on Samsung phones or tablets, openvidu-browser treated them as non-supported. This is now fixed.
+- _openvidu-browser_: iPad Pro support. Some users reported problems when using openvidu-browser library on iPad Pro devices ([490](https://github.com/OpenVidu/openvidu/issues/490){:target="_blank"}). This has been addressed.
+- _Ionic iOS_: ionic iOS: openvidu-browser has been updated to match the new iosrct release (6.0.12) which included the fix of the issue [442](https://github.com/cordova-rtc/cordova-plugin-iosrtc/issues/442){:target="_blank"}. Ionic iOS can now use the modern WebRTC API for [adding tracks](https://github.com/OpenVidu/openvidu/commit/9ad21624d3abbd65db1b9dd3499f0ec5e23e94d8){:target="_blank"}. Updating iosrtc to 6.0.12 is required with openvidu-browsers 2.15.0.
+- _openvidu-angular_: good practice with BrowserModule and BrowserAnimationModule. Now these import must be in the main app ([1086](https://openvidu.discourse.group/t/openvidu-angular/1086){:target="_blank"}).
+- _openvidu-node-client_: didn't allow configuring an OpenVidu Server hostname with plain HTTP protocol (was always forcing HTTPS). For a Node application deployed in the same host as OpenVidu, plain HTTP can be a valid option to connect openvidu-node-client to OpenVidu Server. Now with 2.15.0 this is possible.
+- _OpenVidu Pro_: property `OPENVIDU_RECORDING_PATH` now can be changed. Before 2.15.0 a limitation was forcing this property to remain with its default value.
+- _OpenVidu Pro_: emtpy recording folders in Media Nodes were being accumulated. Now they are properly cleaned up after the recorded files have been downloaded by OpenVidu Server Pro Node.
+- *OpenVidu Pro*: a critical bug when deleting session history entries in [OpenVidu Inspector](https://docs.openvidu.io/en/2.15.0/openvidu-pro/openvidu-inspector/){:target="_blank"} has been fixed. Before, if Sessions where being initialized with the same *customSessionId* repeatedly over time, deleting the history entry of one of them would delete also the rest of entries belonging to different Sessions with the same *customSessionId*. Now this doesn't happen.
+- *OpenVidu React Native support*: many dependencies have been updated, fixing important bugs. Including *react-native-webrtc* to latest version (1.75.3), *React* version in [openvidu-react-native](https://docs.openvidu.io/en/2.15.0/tutorials/openvidu-react-native/){:target="_blank"} tutorial (from 16.8.6 to 16.13.1) and *React Native* version also in openvidu-react-native tutorial (from 0.60.5 to 0.62.0).
+
+<br>
+
 ---
 
 ## 2.14.0

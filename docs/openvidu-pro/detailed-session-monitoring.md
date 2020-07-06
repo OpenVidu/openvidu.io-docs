@@ -5,7 +5,7 @@
 OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blank">Elastic Stack</a>. Events and monitoring stats are sent to <a href="https://www.elastic.co/elasticsearch/" target="_blank">Elasticsearch</a> and can be visualized through <a href="https://www.elastic.co/kibana/" target="_blank">Kibana</a>.
 </p>
 
-#### OpenVidu Sessions dahsboard
+#### OpenVidu Sessions dashboard
 
 This dashboard presents a summary of your video sessions and the server resources usage. That includes:
 
@@ -30,7 +30,7 @@ All in all, this information will help you understand better the behavior and pe
 
 ---
 
-#### OpenVidu Recordings dahsboard
+#### OpenVidu Recordings dashboard
 
 This dashboard presents at a glance the status of your recordings. It includes information such as:
 
@@ -46,6 +46,28 @@ This dashboard presents at a glance the status of your recordings. It includes i
         <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/elastic/recordings-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/recordings-dashboard.png"/></a>
     </div>
 </div>
+
+---
+
+#### OpenVidu Clustering dashboard
+
+This dashboard is aimed to show all of the information related to the cluster status and behavior over time. Right now it allows you to inspect the CPU load of each one of your Media Nodes over time.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/clustering-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/clustering-dashboard.png"/></a>
+    </div>
+</div>
+
+---
+
+#### Reviewing logs
+
+Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. To do so:
+
+> WORK IN PROGRESS...
+
+<br>
 
 ---
 
