@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OutputMode | OpenVidu Node Client - v2.14.0</title>
-	<meta name="description" content="">
+	<title>OutputMode | OpenVidu Node Client - v2.15.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.15.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.14.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.15.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -80,6 +80,7 @@
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="recording.outputmode.html#composed" class="tsd-kind-icon">COMPOSED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="recording.outputmode.html#composed_quick_start" class="tsd-kind-icon">COMPOSED_<wbr>QUICK_<wbr>START</a></li>
 								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="recording.outputmode.html#individual" class="tsd-kind-icon">INDIVIDUAL</a></li>
 							</ul>
 						</section>
@@ -94,7 +95,7 @@
 					<div class="tsd-signature tsd-kind-icon">COMPOSED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;COMPOSED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-node-client/src/Recording.ts#L142">Recording.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Recording.ts#L143">Recording.ts:143</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -104,12 +105,43 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="composed_quick_start" class="tsd-anchor"></a>
+					<h3>COMPOSED_<wbr>QUICK_<wbr>START</h3>
+					<div class="tsd-signature tsd-kind-icon">COMPOSED_<wbr>QUICK_<wbr>START<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;COMPOSED_QUICK_START&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Recording.ts#L162">Recording.ts:162</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Works the same way as COMPOSED mode, but the necessary recorder
+								service module will start some time in advance and won&#39;t be terminated
+								once a specific session recording has ended. This module will remain
+							up and running as long as the session remains active.</p>
+						</div>
+						<ul>
+							<li><p><strong>Pros vs COMPOSED</strong>: the process of starting the recording will be noticeably
+									faster. This can be very useful in use cases where a session needs to be
+									recorded multiple times over time, when a better response time is usually
+								desirable.</p>
+							</li>
+							<li><p><strong>Cons vs COMPOSED</strong>: for every session initialized with COMPOSED_QUICK_START
+									recording output mode, extra CPU power will be required in OpenVidu Server.
+									The recording module will be continuously rendering all of the streams being
+									published to the session even when the session is not being recorded. And that
+								is for every session configured with COMPOSED_QUICK_START.</p>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 					<a name="individual" class="tsd-anchor"></a>
 					<h3>INDIVIDUAL</h3>
 					<div class="tsd-signature tsd-kind-icon">INDIVIDUAL<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;INDIVIDUAL&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/422c813/openvidu-node-client/src/Recording.ts#L147">Recording.ts:147</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Recording.ts#L167">Recording.ts:167</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -161,6 +193,9 @@
 								<ul>
 									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 										<a href="recording.outputmode.html#composed" class="tsd-kind-icon">COMPOSED</a>
+									</li>
+									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+										<a href="recording.outputmode.html#composed_quick_start" class="tsd-kind-icon">COMPOSED_<wbr>QUICK_<wbr>START</a>
 									</li>
 									<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 										<a href="recording.outputmode.html#individual" class="tsd-kind-icon">INDIVIDUAL</a>
