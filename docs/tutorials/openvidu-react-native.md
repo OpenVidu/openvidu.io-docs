@@ -23,7 +23,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
 
-- **openvidu-browser**: NPM package for your Ionic app. It allows you to manage your video-calls straight away from your clients
+- **openvidu-browser**: NPM package for your React Native app. It allows you to manage your video-calls straight away from your clients
 - **openvidu-server**: Java application that controls Kurento Media Server
 - **Kurento Media Server**: server that handles low level operations of media flow transmissions
 
@@ -53,11 +53,11 @@ cd openvidu-tutorials/openvidu-react-native
 npm install
 ```
 
-4) Install openvidu-browser **with React Native support**:
+4) Install openvidu-react-native-adapter which include openvidu-browser **with React Native support**:
 Add the artifact in the root project
 
 ```bash
-npm install openvidu-browser-Y.Y.Z.tgz
+npm install openvidu-react-native-adapter-Y.Y.Z.tgz
 ```
 
 4) Start Metro Bundler :
@@ -189,16 +189,29 @@ This is a React Native project generated with React Native CLI tool, and therefo
 
 - `App.js`: defines *App* component, main component of the app. It contains the functionalities for joining a video-call and for handling the video-calls themselves.
 
-Let's see first how `App.js` uses NPM package `openvidu-browser`:
+Let's see first how `App.js` uses NPM package `openvidu-react-native-adapter`:
 
 ---
 
-#### We import the necessary objects from `openvidu-browser`:
+#### We import the necessary objects from `openvidu-react-native-adapter`:
 
 ```javascript
-import { OpenVidu } from 'openvidu-browser';
+import { OpenViduReactNativeAdapter, OpenVidu, RTCView } from 'openvidu-react-native-adapter';
 ```
+`openvidu-react-native-adapter` exports the entire **openvidu-browser** and **react-native-webrtc** modules.
 
+#### We must initialize `openvidu-react-native-adapter` in the App constructor:
+
+```
+constructor(props) {
+    super(props);
+
+    const ovReact = new OpenViduReactNativeAdapter();
+    ovReact.initialize();
+
+    ...
+}
+```
 ---
 
 ####`App.js` declares the following properties in the state:
@@ -248,17 +261,13 @@ Then we subscribe to the Session events that interest us.
 
 var mySession = this.state.session;
 
-    // On every new Stream received...
-mySession.on('streamCreated', (event) => {
+// On every new Stream received...
+ mySession.on('streamCreated', async (event) => {
     // Subscribe to the Stream to receive it. Second parameter is undefined
     // so OpenVidu doesn't create an HTML video by its own
-    var subscriber = mySession.subscribe(event.stream, undefined);
-
-    //We use an auxiliary array to push the new stream
-    var subscribers = this.state.subscribers;
-
+    const subscriber = await mySession.subscribeAsync(event.stream, undefined);
+    var subscribers = Array.from(this.state.subscribers);
     subscribers.push(subscriber);
-
     // Update the state with the new subscribers
     this.setState({
         subscribers: subscribers,
@@ -277,21 +286,24 @@ mySession.on('streamDestroyed', (event) => {
 ```
 Here we subscribe to the Session events that interest us. As we are using React Native framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be *RTCView* and is provided from ***react-native-webrtc*** library. To do this, we need to store each new Subscriber we received in array `subscribers`, and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
 
-- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM does not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We get the reference to RTCView and we will run openvidu-browser method *addVideoElement*, passing the reference of the RTCView when it is defined.
+- `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM does not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We assign the *MediaStream* URL to the *streamURL* RTCView property.
 
-        {this.state.subscribers.map((item, index) => {
-            if(!!item){
-                return (
-                    <View key={index}>
-                        <Text>{this.getNicknameTag(item.stream)}</Text>
-                        <RTCView zOrder={0}  objectFit="cover" style={styles.remoteView}  ref={(rtcVideo) => {
-                            if (!!rtcVideo){
-                                item.addVideoElement(rtcVideo);
-                            }
-                        }} />
-                    </View>
-                )
-        }
+```
+{this.state.subscribers.map((item, index) => {
+    return(
+        <View key={index}>
+            <Text>{this.getNicknameTag(item.stream)}</Text>
+            <RTCView
+                accessibilityLabel="remoteVideo"
+                zOrder={0}
+                objectFit="cover"
+                style={styles.remoteView}
+                streamURL={item.stream.getMediaStream().toURL()}
+            />
+        </View>
+    );
+})}
+```
 
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so React will automatically delete the required *RTCView* component.
 
@@ -354,7 +366,7 @@ this.getToken().then((token) => {
     // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
     // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
     mySession.connect(token, { clientData: this.state.myUserName })
-        .then(() => {
+        .then(async () => {
             if (Platform.OS == 'android') {
                 this.checkAndroidPermissions();
             }
@@ -363,7 +375,7 @@ this.getToken().then((token) => {
             if (this.state.role !== 'SUBSCRIBER') {
                 // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
                 // element: we will manage it on our own) and with the desired properties
-                let publisher = this.OV.initPublisher(undefined, {
+                let publisher = await this.OV.initPublisherAsync(undefined, {
                     audioSource: undefined, // The source of audio. If undefined default microphone
                     videoSource: undefined, // The source of video. If undefined default webcam
                     publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
@@ -399,7 +411,7 @@ We do further talk about Android permissions under section [Android specific req
 #### Finally publish your webcam calling `OV.initPublisher()` method:
 
 ```javascript
-let publisher = this.OV.initPublisher(undefined, {
+let publisher = await this.OV.initPublisherAsync(undefined, {
     audioSource: undefined, // The source of audio. If undefined default microphone
     videoSource: undefined, // The source of video. If undefined default webcam
     publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
@@ -426,12 +438,10 @@ Also we store the Publisher object under `this.state.mainStreamManager` variable
 <View style={styles.container}>
     <Text>Session: {this.state.mySessionId}</Text>
     <Text>{this.getNicknameTag(this.state.mainStreamManager.stream)}</Text>
-    <RTCView zOrder={0}  objectFit="cover"
-        ref={(rtcVideo) => {
-            if (!!rtcVideo) {
-                this.state.mainStreamManager.addVideoElement(rtcVideo);
-            }
-        }}
+    <RTCView
+        zOrder={0}
+        objectFit="cover"
+        streamURL={this.state.mainStreamManager.stream.getMediaStream().toURL()}
         style={styles.selfView}
     />
 </View>
@@ -492,7 +502,7 @@ These configurations are already included in this **openvidu-react-native** proj
 
 ```javascript
 include ':WebRTCModule', ':app'
-project(':WebRTCModule').projectDir = new File(rootProject.projectDir, '../node_modules/openvidu-browser/node_modules/react-native-webrtc/android')
+project(':WebRTCModule').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webrtc/android')
 ```
 
 3) In `android/app/build.gradle`, add WebRTCModule to dependencies
@@ -577,7 +587,7 @@ These configurations are already included in this **openvidu-react-native projec
 1) Add these files into your project
 
 * in Xcode: Right click on `Libraries` and  `Add Files to {project}`
-* Go to `node_modules/openvidu-browser/node_modules/react-native-webrtc/ios/RCTWebRTC.xcodeproj` and click on `Add`
+* Go to `node_modules/react-native-webrtc/ios/RCTWebRTC.xcodeproj` and click on `Add`
 * Also add `node_modules/react-native-webrtc/ios/WebRTC.framework` to `Frameworks` folder
 
 <div class="row no-margin row-gallery">
@@ -596,7 +606,7 @@ You can use the included podspec in your podfile to take care of all dependencie
 Include in the Podfile in your react-native iOS directory:
 
 ```js
-pod 'react-native-webrtc', :path => '../node_modules/openvidu-browser/node_modules/react-native-webrtc'
+pod 'react-native-webrtc', :path => '../node_modules/react-native-webrtc'
 ```
 
 You may have to change the ```platform``` field in your Podfile, as **react-native-webrtc** doesn't support iOS 9 - set it to '10.0' or above (otherwise you get an error when doing ```pod install```):
