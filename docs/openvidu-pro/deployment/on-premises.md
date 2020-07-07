@@ -422,7 +422,7 @@ Run the following commands to manage Media Node service:
 
 - List commands
 
-        ./openvidu help
+        ./media_node help
 
 > **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
 
