@@ -234,6 +234,18 @@ Run the following commands to manage OpenVidu Platform service:
 
         ./openvidu logs
 
+- Show actual installed version of OpenVidu and basic information about the deployment
+
+        ./openvidu version
+
+- Generate a report with useful information of the OpenVidu deployment. This report includes: system information, containers running, logs and configuration files
+
+        ./openvidu report
+
+- List commands
+
+        ./openvidu help
+
 > To change current configuration, you just need to update `.env` configuration file with the new desired values and run `./openvidu restart` command.
 
 <br>

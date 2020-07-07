@@ -167,6 +167,8 @@ For more information, check readme.md
 
 <br>
 
+---
+
 ## Migrating from 2.13.0 to 2.14.0
 
 ### Upgrading OpenVidu Server Pro Node

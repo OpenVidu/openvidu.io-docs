@@ -300,9 +300,13 @@ Run the following commands to manage OpenVidu Pro service:
 
         ./openvidu version
 
-- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: system information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
 
         ./openvidu report
+
+- List commands
+
+        ./openvidu help
 
 > To change current configuration, you just need to update `.env` configuration file with the new desired values and run `./openvidu restart` command.
 
@@ -412,9 +416,13 @@ Run the following commands to manage Media Node service:
 
         ./media_node version
 
-- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: system information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
 
         ./media_node report
+
+- List commands
+
+        ./openvidu help
 
 > **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
 
