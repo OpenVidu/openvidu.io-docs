@@ -138,6 +138,15 @@ Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-t
 
 ## Compiling OpenVidu WebComponent
 
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+        The following commands must be executed on Linux. Some changes will be necessary to make it works in Windows.
+  </div>
+</div>
+
 **1)** Clone OpenVidu Call repository (openvidu-webcomponent is compiled from it) and install dependencies
 
 ```bash
@@ -166,6 +175,16 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
 ---
 
 ## Compiling OpenVidu Angular Library
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+        The following commands must be executed on Linux. Some changes will be necessary to make it works in Windows.
+  </div>
+</div>
+
 
 These steps build **[openvidu-angular NPM library](https://www.npmjs.com/package/openvidu-angular){:target="_blank"}** from the source code.
 
