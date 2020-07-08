@@ -143,7 +143,7 @@ Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-t
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-        The following commands must be executed on Linux. Some changes will be necessary to make it works in Windows.
+        The following commands must be executed on Linux. Some changes will be necessary to make it work in Windows.
   </div>
 </div>
 
@@ -181,7 +181,7 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-        The following commands must be executed on Linux. Some changes will be necessary to make it works in Windows.
+        The following commands must be executed on Linux. Some changes will be necessary to make it work in Windows.
   </div>
 </div>
 
