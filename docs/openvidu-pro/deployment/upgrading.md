@@ -67,6 +67,33 @@ cd /opt/kms # Recommended and default installation path
 
 ## Migrating from 2.14.0 to 2.15.1
 
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <strong>WARNING:</strong> if you have installed or upgraded OpenVidu Pro to 2.15.0 before <i>Friday July 10th 2020</i>, a known bug may affect the persistance of the Elasticsearch data of your OpenVidu Pro installation, possibly resulting in the loss of data older than 7 days. To fix it:
+    <ol style="margin-top: 10px">
+        <li style="color: inherit">Update tag <code>openvidu/openvidu-server-pro:2.15.0</code> to <code>openvidu/openvidu-server-pro:2.15.1</code> in file <code>docker-compose.yml</code> in your OpenVidu Pro installation path (default <code>/opt/openvidu</code>) inside your OpenVidu Server Pro Node.</li>
+        <li style="color: inherit">Restart OpenVidu Pro running command <code>sudo ./openvidu restart</code> also in your OpenVidu Pro installation path (default <code>/opt/openvidu</code>) inside your OpenVidu Server Pro Node.</li>
+    </ol>
+</div>
+</div>
+
 ### Upgrading OpenVidu Server Pro Node
 
 Open ports **5044 TCP** and **9200 TCP** so **Media Nodes** can use them. These ports are necessary for OpenVidu Server Pro and ElasticSearch
@@ -166,6 +193,8 @@ For more information, check readme.md
 - You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
 
 <br>
+
+---
 
 ## Migrating from 2.13.0 to 2.14.0
 

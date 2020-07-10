@@ -39,6 +39,33 @@
 
 <div style="
     display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <strong>WARNING:</strong> if you have installed or upgraded OpenVidu Pro to 2.15.0 before <i>Friday July 10th 2020</i>, a known bug may affect the persistance of the Elasticsearch data of your OpenVidu Pro installation, possibly resulting in the loss of data older than 7 days. To fix it:
+    <ol style="margin-top: 10px">
+        <li style="color: inherit">Update tag <code>openvidu/openvidu-server-pro:2.15.0</code> to <code>openvidu/openvidu-server-pro:2.15.1</code> in file <code>docker-compose.yml</code> in your OpenVidu Pro installation path (default <code>/opt/openvidu</code>) inside your OpenVidu Server Pro Node.</li>
+        <li style="color: inherit">Restart OpenVidu Pro running command <code>sudo ./openvidu restart</code> also in your OpenVidu Pro installation path (default <code>/opt/openvidu</code>) inside your OpenVidu Server Pro Node.</li>
+    </ol>
+</div>
+</div>
+
+<div style="
+    display: table;
     border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
@@ -300,9 +327,13 @@ Run the following commands to manage OpenVidu Pro service:
 
         ./openvidu version
 
-- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: system information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
 
         ./openvidu report
+
+- List commands
+
+        ./openvidu help
 
 > To change current configuration, you just need to update `.env` configuration file with the new desired values and run `./openvidu restart` command.
 
@@ -411,9 +442,13 @@ Run the following commands to manage Media Node service:
 
         ./media_node version
 
-- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: System information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
+- Generate a report with useful information of the OpenVidu Server Pro deployment. This report includes: system information, containers running, logs and configuration files. More information about this command is available at troubleshooting section: [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information_1)
 
         ./media_node report
+
+- List commands
+
+        ./media_node help
 
 > **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
 
