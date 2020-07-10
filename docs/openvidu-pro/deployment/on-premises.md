@@ -375,11 +375,10 @@ To start the Media Node execute this command:
 
 All docker images for services will be downloaded (only the first time) and executed.
 
-The first part of the log shows how docker-compose command executes all services:
+The first part of the log shows how docker-compose command executes the Media Node controller service:
 
 ```
-Creating kms_kms_1   ... done
-Creating kms_nginx_1 ... done
+Creating kms_media-node-controller_1 ... done
 ```
 
 > **WARNING:** after the Media Node service is up and running, you must manually add the Media Node to the cluster. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
