@@ -2,7 +2,7 @@
 <hr>
 
 <!--- **[Migrating from 2.14.0 to a higher version](#**-->
-- **[Migrating from 2.14.0 to 2.15.0](#migrating-from-2140-to-2150)**
+- **[Migrating from 2.14.0 to 2.15.1](#migrating-from-2140-to-2151)**
 - **[Migrating from 2.13.0 to 2.14.0](#migrating-from-2130-to-2140)**
 - **[Migrating from ≤2.12.0 to 2.13.0](#migrating-from-2120-to-2130)**
 
@@ -59,13 +59,13 @@ cd /opt/kms # Recommended and default installation path
     ">
       Be careful when upgrading your version of OpenVidu Pro:
       <ul>
-        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.13.0 to 2.15.0, you must first go through 2.14.0.</li>
+        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.12.0 to 2.14.0, you must first go through 2.13.0.</li>
         <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
       </ul>
 </div>
 </div>
 
-## Migrating from 2.14.0 to 2.15.0
+## Migrating from 2.14.0 to 2.15.1
 
 ### Upgrading OpenVidu Server Pro Node
 
@@ -84,7 +84,7 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.0.sh | bash -s upgrade</strong></code>
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.1.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -131,7 +131,7 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.15.0.sh | bash -s upgrade</strong></code>
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.15.1.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
