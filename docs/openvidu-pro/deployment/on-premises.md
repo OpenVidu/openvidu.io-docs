@@ -162,7 +162,7 @@ For more information, check readme.md
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.15.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.15.1</strong>.sh | bash</code>
 
 ---
 
