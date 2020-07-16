@@ -19,7 +19,7 @@ For example, the configuration properties below will launch OpenVidu Server with
 ```console
 OPENVIDU_WEBHOOK=true
 OPENVIDU_WEBHOOK_ENDPOINT=http://12.34.56.78:5000/my_webhook
-OPENVIDU_WEBHOOK_HEADERS=[\"Authorization:\ Basic\ T1BFTlZJRFVBUFA6TVlfU0VDUkVU\"]
+OPENVIDU_WEBHOOK_HEADERS=["Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU"]
 OPENVIDU_WEBHOOK_EVENTS=["sessionCreated","sessionDestroyed","recordingStatusChanged"]
 ```
 
