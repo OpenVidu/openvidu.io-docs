@@ -94,13 +94,12 @@
                 </div>
             </div>
 
-            <div class="col-md-3 col-sm-3 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="img/assets/vuejs.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li class="social-icon"><a href="tutorials/openvidu-react-native/"><i
+                                <li class="social-icon"><a href="tutorials/openvidu-insecure-vue/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
