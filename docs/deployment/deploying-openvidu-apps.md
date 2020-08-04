@@ -67,20 +67,21 @@ You can deploy your own application dockerized or installed natively.
 If the application is dockerized, it can be defined in the file `/opt/openvidu/docker-compose.override.yml` and the lifecycle of the application will be linked to the lifecycle of OpenVidu platform (start, stop, etc..). 
 
 The following requirements must be followed:
+
 - Application has to use `network_mode: host`
 - Application must be server in plain http, without https.
 - Http port must be 5442. This port is used by the NGINX included in OpenVidu Platform.
 - OpenVidu platform URL has to be configured to `http://localhost:5443`
 - OpenVidu Secret is available in the env variable ${OPENVIDU_SECRET}
 
-Here you can see the `docker-compose.override.yml` used by OpenVidu Call application inspiration for your own app.
+Here it is the `docker-compose.override.yml` used by OpenVidu Call application. You can based on it the configuration of your own app.
 
 ```
 version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-call:2.14.0
+        image: openvidu/openvidu-call:2.15.0
         restart: on-failure
         network_mode: host
         environment:
