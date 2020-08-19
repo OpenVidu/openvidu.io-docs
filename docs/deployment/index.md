@@ -3,6 +3,7 @@
 
 - **[OpenVidu Editions](#openvidu-editions)**
 - **[OpenVidu for production on AWS](#openvidu-for-production-on-aws)**
+- **[OpenVidu on Digital Ocean](#openvidu)**
 - **[OpenVidu for production on premises](#openvidu-for-production-on-premises)**
 - **[OpenVidu for development](#openvidu-for-development)**
 - **[Deploy OpenVidu based applications](#deploy-openvidu-based-applications)**
