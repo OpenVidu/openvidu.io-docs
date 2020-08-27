@@ -83,7 +83,7 @@
 ### 2) Select _Create Stack_ 🠚 _With new resources_
 
 <p>
-    <img class="img-responsive deploy-img" style="max-height: 400px" src="img/docs/deployment/CF_newstack.png">
+    <img class="img-responsive deploy-img" style="margin: auto; max-height: 400px" src="img/docs/deployment/CF_newstack.png">
 </p>
 
 ---
@@ -159,7 +159,11 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
   </table>
 </div>
 
-> If you are using ***LET'S ENCRYPT CERTIFICATE***, of course you will need to register your ElasticIP in your DNS hosting service and associate it with the fully qualified domain name. Until your domain name is not accessible through the public IP you chose, this deployment won't work
+> If you have questions about how to configure your Domain and SSL certificates, you can check these examples:
+>
+- [Self-signed certificate example](/openvidu-pro/deployment/aws-ssl-examples/#1-self-signed-certificate)
+- [Let's Encrypt certificate example](/openvidu-pro/deployment/aws-ssl-examples/#2-lets-encrypt-certificate)
+- [Custom Certificate example (Commercial CA)](/openvidu-pro/deployment/aws-ssl-examples/#3-custom-certificate-commercial-ca)
 
 #### OpenVidu configuration
 
@@ -278,7 +282,7 @@ If you have deployed OpenVidu Call you can also access to it through that same U
 AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
 
 - **OpenVidu Server Pro Node**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [OpenVidu Server Pro Node administration](openvidu-pro/deployment/on-premises/#24-administration){:target="_blank"}.
-- **Media Nodes**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
+- **Media Nodes**: located at the default installation path `/opt/kms` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
 
 <br>
 

@@ -449,6 +449,11 @@ img.img-pro {
     border: 2px solid #eeeeee;
 }
 
+img.img-deploy-example {
+    margin: auto;
+    border: 3px solid #dddddd;
+}
+
 @font-face {
     font-family: 'Arciform';
     src: url('/fonts/Arciform.eot');

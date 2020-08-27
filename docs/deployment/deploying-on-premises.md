@@ -148,9 +148,15 @@ CERTIFICATE_TYPE=selfsigned
 
 # If CERTIFICATE_TYPE=letsencrypt, you need to configure a valid email for notifications
 LETSENCRYPT_EMAIL=user@example.com
-
 ...
 ```
+
+> If you have questions about how to configure your Domain and SSL certificates, you can check these examples:
+>
+- [Self-signed certificate example](/deployment/on-premises-ssl-examples/#1-self-signed-certificate)
+- [Let's Encrypt certificate example](/deployment/on-premises-ssl-examples/#2-lets-encrypt-certificate)
+- [Custom Certificate example (Commercial CA)](/deployment/on-premises-ssl-examples/#3-custom-certificate-commercial-ca)
+
 
 #### Videoconference application
 
@@ -233,6 +239,18 @@ Run the following commands to manage OpenVidu Platform service:
 - Show logs of OpenVidu
 
         ./openvidu logs
+
+- Show actual installed version of OpenVidu and basic information about the deployment
+
+        ./openvidu version
+
+- Generate a report with useful information of the OpenVidu deployment. This report includes: system information, containers running, logs and configuration files
+
+        ./openvidu report
+
+- List commands
+
+        ./openvidu help
 
 > To change current configuration, you just need to update `.env` configuration file with the new desired values and run `./openvidu restart` command.
 
