@@ -193,9 +193,9 @@ It is very important after the deployment to invalidate the URLs created at step
 
 ## Common problems
 
-- [Letsencrypt is not working. What can I do?.](/troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](/troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](/troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

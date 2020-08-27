@@ -47,7 +47,7 @@ CERTIFICATE_TYPE=selfsigned
 OPENVIDU_SECRET=<YOUR_SECRET>
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](/reference-docs/openvidu-config/). 
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/). 
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
@@ -86,7 +86,7 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 LETSENCRYPT_EMAIL=youremail@youremail.com
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](/reference-docs/openvidu-config/).
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/).
 
 You must define the `LETSENCRYPT_EMAIL` where you want to register the domain and receive Let's Encrypt notifications
 
@@ -178,16 +178,16 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 CERTIFICATE_TYPE=owncert
 ```
 
-Only these variables are needed to start OpenVidu. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](/reference-docs/openvidu-config/). 
+Only these variables are needed to start OpenVidu. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/). 
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
 
 ## Common problems
 
-- [Letsencrypt is not working. What can I do?.](/troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](/troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](/troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

@@ -153,9 +153,9 @@ LETSENCRYPT_EMAIL=user@example.com
 
 > If you have questions about how to configure your Domain and SSL certificates, you can check these examples:
 >
-- [Self-signed certificate example](/deployment/on-premises-ssl-examples/#1-self-signed-certificate)
-- [Let's Encrypt certificate example](/deployment/on-premises-ssl-examples/#2-lets-encrypt-certificate)
-- [Custom Certificate example (Commercial CA)](/deployment/on-premises-ssl-examples/#3-custom-certificate-commercial-ca)
+- [Self-signed certificate example](deployment/on-premises-ssl-examples/#1-self-signed-certificate)
+- [Let's Encrypt certificate example](deployment/on-premises-ssl-examples/#2-lets-encrypt-certificate)
+- [Custom Certificate example (Commercial CA)](deployment/on-premises-ssl-examples/#3-custom-certificate-commercial-ca)
 
 
 #### Videoconference application
