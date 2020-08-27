@@ -56,7 +56,7 @@
 ### 2) Select _Create Stack_ 🠚 _With new resources_
 
 <p>
-    <img class="img-responsive deploy-img" style="max-height: 400px" src="img/docs/deployment/CF_newstack.png">
+    <img class="img-responsive deploy-img" style="margin: auto; max-height: 400px" src="img/docs/deployment/CF_newstack.png">
 </p>
 
 ---
@@ -132,7 +132,11 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
   </table>
 </div>
 
-> If you are using ***LET'S ENCRYPT CERTIFICATE***, of course you will need to register your ElasticIP in your DNS hosting service and associate it with the fully qualified domain name. Until your domain name is not accessible through the public IP you chose, this deployment won't work
+> If you have questions about how to configure your Domain and SSL certificates, you can check these examples:
+>
+- [Self-signed certificate example](/openvidu-pro/deployment/aws-ssl-examples/#1-self-signed-certificate)
+- [Let's Encrypt certificate example](/openvidu-pro/deployment/aws-ssl-examples/#2-lets-encrypt-certificate)
+- [Custom Certificate example (Commercial CA)](/openvidu-pro/deployment/aws-ssl-examples/#3-custom-certificate-commercial-ca)
 
 #### OpenVidu configuration
 

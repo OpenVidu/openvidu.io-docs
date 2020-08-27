@@ -55,8 +55,12 @@ nav:
   - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
 - Deployment:
   - Intro: deployment/index.md
-  - AWS: deployment/deploying-aws.md
-  - On premises: deployment/deploying-on-premises.md
+  - AWS:
+    - Deploying OpenVidu on AWS: deployment/deploying-aws.md
+    - Domain and SSL Configuration Examples: deployment/aws-ssl-examples.md
+  - On premises:
+    - Deploying OpenVidu on premises: deployment/deploying-on-premises.md
+    - Domain and SSL Configuration Examples: deployment/on-premises-ssl-examples.md
   - Deploying OpenVidu applications: deployment/deploying-openvidu-apps.md
   - Upgrading OpenVidu: deployment/upgrading.md
 - Contribute:
@@ -70,8 +74,12 @@ nav:
   - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
   - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
   - Deployment:
-    - AWS: openvidu-pro/deployment/aws.md
-    - On premises: openvidu-pro/deployment/on-premises.md
+    - AWS:
+      - Deploying OpenVidu Pro on AWS: openvidu-pro/deployment/aws.md
+      - Domain and SSL Configuration Examples: openvidu-pro/deployment/aws-ssl-examples.md
+    - On premises:
+      - Deploying OpenVidu Pro on premises: openvidu-pro/deployment/on-premises.md
+      - Domain and SSL Configuration Examples: openvidu-pro/deployment/on-premises-ssl-examples.md
     - Kubernetes: openvidu-pro/deployment/kubernetes.md
     - Upgrading OpenVidu Pro: openvidu-pro/deployment/upgrading.md
   - Reference Documentation:

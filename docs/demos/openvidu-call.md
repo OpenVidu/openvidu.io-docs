@@ -113,12 +113,12 @@ $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWOR
   </div>
 </div>
 
-Build a docker image of OpenVidu call is really easy. Under **openvidu-call** directory:
+Build a docker image of OpenVidu call is really easy.
 
-1) Go to *docker* directory and generate the docker image:
+1) Under **openvidu-call** directory, execute:
 
 ```
-docker build -f prod.dockerfile -t <your-tag-name> --build-arg BRANCH_NAME=<branch-name> --build-arg BASE_HREF=<your-base-href>.
+docker build -f docker/custom.dockerfile -t <your-tag-name> --build-arg BASE_HREF=<your-base-href> .
 ```
 
 2) After that, you can run the docker container:
@@ -132,7 +132,6 @@ docker run -p <your-port>:5000 -e OPENVIDU_URL=<your-openvidu-url> -e OPENVIDU_S
 
 | Parameter                     | Description   					       | Default value   |
 | ----------------------------- | ---------------------------------------- | --------------- |
-| **`BRANCH_NAME`**             | Name of the branch from will be built it | master          |
 | **`BASE_HREF`**               | URL prefix of app path                   | /               |
 
 
