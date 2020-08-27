@@ -16,7 +16,7 @@ OpenVidu is a platform that you can install on your premises or in any cloud pro
 OpenVidu is provided in two editions:
 
 - **OpenVidu Community Edition (CE)**: It has an open source Apache 2 license and is free to use. It can be installed on a linux machine. 
-- **OpenVidu Pro Edition (Pro)**: Provides additional features compared with CE edition. Its pricing model is described in the [pricing page](https://openvidu.io/pricing){:target="_blank"}. You can get a license wirh 15-days free trial creating an account. Find more information about PRO edition in its [documentation section](/openvidu-pro/){:target="_blank"}.
+- **OpenVidu Pro Edition (Pro)**: Provides additional features compared with CE edition. Its pricing model is described in the [pricing page](https://openvidu.io/pricing){:target="_blank"}. You can get a license wirh 15-days free trial creating an account. Find more information about PRO edition in its [documentation section](openvidu-pro/){:target="_blank"}.
 
 <br>
 

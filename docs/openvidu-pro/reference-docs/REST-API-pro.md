@@ -126,7 +126,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 >
 > ---
 >
-> - **uri** _(mandatory string only for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched ignoring parameter `uri`
+> - **uri** _(mandatory string only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. For a Kurento Media Server, it should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched ignoring parameter `uri`
 
 <div></div>
 
@@ -142,8 +142,8 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `400`: problem with some body parameter
 > - `404`: the Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration...
 > - `409`: the Media Node was already registered in OpenVidu Server
-> - `501`: the cluster is deployed [On Premises](/openvidu-pro/deployment/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request.
-> - `502`: the process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual launching
+> - `501`: the cluster is deployed [On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request.
+> - `502`: the process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual launching
 
 ---
 
@@ -177,7 +177,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 > - `204`: the Media Node was successfully removed
 > - `404`: no Media Node exists for the passed MEDIA_NODE_ID
 > - `409`: if query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all.
-> - `502`: error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](/openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual shut down
+> - `502`: error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require manual shut down
 
 ---
 
