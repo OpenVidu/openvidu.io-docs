@@ -255,7 +255,7 @@ If you have deployed OpenVidu Call you can also access to it through that same U
 AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
 
 - **OpenVidu Server Pro Node**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [OpenVidu Server Pro Node administration](openvidu-pro/deployment/on-premises/#24-administration){:target="_blank"}.
-- **Media Nodes**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
+- **Media Nodes**: located at the default installation path `/opt/kms` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](openvidu-pro/deployment/on-premises/#34-administration){:target="_blank"}.
 
 <br>
 
