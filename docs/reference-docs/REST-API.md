@@ -273,8 +273,6 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 ### POST `/api/sessions/<SESSION_ID>/connection`
 
-_Available from **OpenVidu >= 2.12.0**_
-
 | _PUBLISH IP CAMERA_ | _PARAMETERS_                                                                                                             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | **Operation**       | POST                                                                                                                     |
