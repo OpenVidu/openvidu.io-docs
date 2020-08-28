@@ -119,9 +119,11 @@ When [publishing an IP camera](#how-to-publish-ip-cameras), you can configure 2 
 
 #### adaptativeBitrate
 
-Whether to decode the IP camera stream in OpenVidu to allow adapting the bitrate depending on network conditions or not. It is active by default, and it allows OpenVidu Server to provide a robust and reliable flow of the camera's stream. But of course this has a CPU cost.
+Whether to re-encode the IP camera stream in OpenVidu, or not. Enabling this allows OpenVidu to provide a dynamic video quality that is automatically adapted to the network conditions of the Subscribers of the IP camera, which helps avoid playback issues. It is active by default, and it allows OpenVidu Server to provide a robust and reliable flow to participants that will receive the IP camera stream. But re-encoding video has a moderately high CPU cost.
 
-Some use cases may not need this decoding process for the IP camera video. For example, if your IP camera and OpenVidu are both located in the same network (and therefore there will be no packet losses or buffer congestion) and you are sure that the clients subscribing to the stream will support the same codec used by the RTSP camera stream, then setting this property to false will save valuable CPU power.
+When this option is disabled, the video is served as-is from the IP camera. For this to work, the source video codec must be compatible with receiving browsers; normally this means outputting either H.264 or VP8 video from the camera. OpenVidu will not adapt the video quality dynamically, which greatly reduces CPU usage on the server; however you could still change by hand the IP camera's settings in order to vary the output size or bitrate.
+
+An example of situation where you might want to disable this setting is in environments where all Subscribers are guaranteed to have a very good network link with OpenVidu, thus network congestion is expected to be zero, and there is no need for dynamic quality adaptation.
 
 #### onlyPlayWithSubscribers
 
