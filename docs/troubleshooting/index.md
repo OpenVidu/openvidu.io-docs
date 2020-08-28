@@ -390,7 +390,7 @@ nginx_1            | ===Mode letsencrypt===
 ...
 ```
 
-If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. This ports are defined [here](deployment/deploying-on-premises/#1-prerequisites) (OpenVidu CE) and [here](openvidu-pro/deployment/on-premises/#1-prerequisites) (OpenVidu Pro).**
+If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/deploying-on-premises/#1-prerequisites) (OpenVidu CE) and [here](openvidu-pro/deployment/on-premises/#1-prerequisites) (OpenVidu Pro).**
 
 #### 14.2 Let's Encrypt challenges errors
 
