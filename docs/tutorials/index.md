@@ -94,6 +94,7 @@
                 </div>
             </div>
 
+            <div class="col-md-3 col-sm-3 team-member">
                 <div class="effect effects wow fadeInUp">
                     <div class="img">
                         <img src="img/assets/vuejs.png" class="img-responsive img-tutorials" alt="" />
