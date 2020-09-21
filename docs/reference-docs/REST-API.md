@@ -26,482 +26,883 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 - Delete a recording: [**DELETE /api/recordings/&lt;RECORDING_ID&gt;**](#delete-apirecordingsltrecording_idgt)
 - Get OpenVidu active configuration: [**GET /config**](#get-config)
 
+### Objects
+<br>
+
+- [**Session object**](#session-object)
+- [**Connection object**](#connection-object)
+- [**Recording object**](#recording-object)
+
+<br>
+
 ---
+
+<div class="rest-api-section"></div>
 
 ### POST `/api/sessions`
 
-| _NEW SESSIONID_   | _PARAMETERS_                                        |
-| ----------------- | --------------------------------------------------- |
-| **Operation**     | POST                                                |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**          | ```{"mediaMode": "MEDIA_MODE", "recordingMode": "RECORDING_MODE", "customSessionId": "CUSTOM_SESSION_ID", "defaultOutputMode": "OUTPUT_MODE", "defaultRecordingLayout": "RECORDING_LAYOUT", "defaultCustomLayout": "CUSTOM_LAYOUT"}``` |
-| **Sample return** | ```{"id": "zfgmthb8jl9uellk", "createdAt": 1538481996019}``` |
+##### Description
 
-> **Body parameters**
->
-> ---
->
-> - **mediaMode** _(optional string)_
->     - `ROUTED` _(default)_ : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording
+Initialize a session in OpenVidu Server. This is the very first operation to perform in order to establish an OpenVidu session. Then tokens for the session can be generated and passed to be consumed in the client side.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "mediaMode": "ROUTED",
+    "recordingMode": "ALWAYS",
+    "customSessionId": "CUSTOM_SESSION_ID",
+    "defaultOutputMode": "COMPOSED",
+    "defaultRecordingLayout": "BEST_FIT",
+    "defaultCustomLayout": "CUSTOM_LAYOUT"
+}
+```
+
+> - **mediaMode** _(optional String)_
+>     - `ROUTED` _(default)_ : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording.
 >     - Not available yet: `RELAYED`<br><br>
-> - **recordingMode** _(optional string)_
->     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session
->     - `MANUAL` _(default)_ : If you want to manage when start and stop the recording<br><br>
-> - **customSessionId** _(optional string)_
->     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`)<br><br>
-> - **defaultOutputMode** _(optional string)_
->     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout
->     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file
->     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session (see [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="_blank"} for further information) <br><br>
-> - **defaultRecordingLayout** _(optional string. Only applies if `defaultOutputMode` is set to `COMPOSED`)_
->     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
+> - **recordingMode** _(optional String)_
+>     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session.
+>     - `MANUAL` _(default)_ : If you want to manage when start and stop the recording.<br><br>
+> - **customSessionId** _(optional String)_
+>     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`).<br><br>
+> - **defaultOutputMode** _(optional String)_
+>     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
+>     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
+>     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session (see [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information). <br><br>
+> - **defaultRecordingLayout** _(optional String. Only applies if `defaultOutputMode` is set to `COMPOSED`)_
+>     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed.
+>     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **defaultCustomLayout** _(optional string. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
->     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="_blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`)
+> - **defaultCustomLayout** _(optional String. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
+>     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).
 
-<div></div>
+##### Sample return
 
-> **Returned JSON**
->
-> - `id`: session identifier. Store it for performing future operations onto this session
-> - `createdAt`: time when the session was created in UTC milliseconds
+```json
+{
+    "id": "ses_YnDaGYNcd7",
+    "createdAt": 1538481996019
+}
+```
 
-<div></div>
+||||
+| - |||
+| id | String | Session successfully created and sessionId ready to be used |
+| createdAt | Number | Problem with some body parameter |
 
-> **HTTP responses**
->
-> - `200`: session successfully created and sessionId ready to be used
-> - `400`: problem with some body parameter
-> - `409`: parameter `customSessionId` corresponds to an existing session. There has been no change at all in the state of OpenVidu Server. You can proceed to use the rejected custom sessionId as usual without a problem
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Session successfully created and sessionId ready to be used |
+| 400 | Problem with some body parameter |
+| 409 | Parameter `customSessionId` corresponds to an existing session. There has been no change at all in the state of OpenVidu Server. You can proceed to use the rejected custom sessionId as usual without a problem |
+
+<br>
 
 ---
 
 ### POST `/api/tokens`
 
-| _NEW TOKEN_       | _PARAMETERS_                                      |
-| ----------------- | ------------------------------------------------- |
-| **Operation**     | POST                                              |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/tokens |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**          | ```{"session": "SESSION_ID", "role": "ROLE", "data": "DATA", "kurentoOptions": KURENTO_OPTIONS}``` |
-| **Sample return** | ```{"id":"wss://localhost:4443?sessionId=zfgmthb8jl9uellk&token=lnlrtnkwm4v8l7uc&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3", "session": "zfgmthb8jl9uellk", "role": "PUBLISHER", "data": "User Data", "token":"wss://localhost:4443?sessionId=zfgmthb8jl9uellk&token=lnlrtnkwm4v8l7uc&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3", "kurentoOptions": {"videoMaxSendBandwidth": 700, "allowedFilters": ["GStreamerFilter", "ZBarFilter"]}}``` |
+##### Description
 
-> **Body parameters**
->
-> ---
->
-> - **session** _(mandatory string)_ : the sessionId for which the token should be associated<br><br>
-> - **role** _(optional string. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="_blank"} section of OpenVidu Node Client for a complete description)_
+Generate a token for a session. This token must be sent to the client side to be used in openvidu-browser library to connect to the session.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/tokens |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+  "session": "SESSION_ID",
+  "role": "PUBLISHER",
+  "data": "DATA",
+  "kurentoOptions": {
+      "videoMaxRecvBandwidth": 1000,
+      "videoMinRecvBandwidth": 300,
+      "videoMaxSendBandwidth": 1000,
+      "videoMinSendBandwidth": 300,
+      "allowedFilters": [ "GStreamerFilter", "ZBarFilter" ]
+  }
+}
+```
+
+> - **session** _(mandatory String)_ : the sessionId for which the token should be associated.<br><br>
+> - **role** _(optional string. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description)_
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
-> - **data** _(optional string)_ : metadata associated to this token (usually participant's information)<br><br>
-> - **kurentoOptions** _(optional JSON object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
->     - **videoMaxRecvBandwidth**: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._
->     - **videoMinRecvBandwidth**: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.
->     - **videoMaxSendBandwidth**: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._
->     - **videoMinSendBandwidth**: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.
->     - **allowedFilters**: array of strings containing the names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/){:target="_blank"})
+> - **data** _(optional String)_ : metadata associated to this token (usually participant's information).<br><br>
+> - **record** _(optional Boolean)_ : whether to record the streams published by the participant owning this token. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"}. Default to `true`.<br><br>
+> - **kurentoOptions** _(optional Object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
+>     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
+>     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.<br><br>
+>     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
+>     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.<br><br>
+>     - **allowedFilters** _(optional array of strings)_ : names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/){:target="blank"}).
 
-<div></div>
+##### Sample return
 
-> **Returned JSON**
->
-> - `token`: token value. Send it to one client to pass it as a parameter in openvidu-browser method _[`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"}_
-> - `session`: same as in the body request
-> - `role`: same as in the body request
-> - `data`: same as in the body request
-> - `id`: same value as `token`
-> - `kurentoOptions`: object with Kurento configuration if provided, same as in the body request
+```json
+{
+    "token": "wss://my.openvidu.ip?sessionId=ses_YnDaGYNcd7&token=lnlrtnkwm4v8l&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3",
+    "id": "wss://my.openvidu.ip?sessionId=ses_YnDaGYNcd7&token=lnlrtnkwm4v8l&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3",
+    "session": "ses_YnDaGYNcd7",
+    "role": "PUBLISHER",
+    "data": "My Server Data",
+    "record": true,
+    "kurentoOptions": {
+        "videoMaxRecvBandwidth": 1000,
+        "videoMinRecvBandwidth": 300,
+        "videoMaxSendBandwidth": 1000,
+        "videoMinSendBandwidth": 300,
+        "allowedFilters": [ "GStreamerFilter", "ZBarFilter" ]
+  }
+}
+```
 
-<div></div>
+||||
+| - |||
+| token | String | Token value. Send it to one client to pass it as a parameter in openvidu-browser method _[`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="blank"}_ |
+| id | String | Same value as `token` |
+| session | String | Same as in the body request |
+| role | String | Same as in the body request |
+| data | String | Same as in the body request |
+| record | Boolean | Same as in the body request |
+| kurentoOptions | Object | Object with Kurento configuration if provided, same as in the body request |
 
-> **HTTP responses**
->
-> - `200`: token successfully created and ready to be used by one client to connect to the associated session
-> - `400`: problem with some body parameter
-> - `404`: provided value for `session` parameter was not found in OpenVidu Server. You must first call `POST /api/sessions` to get a session id
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Token successfully created and ready to be used by one client to connect to the associated session |
+| 400 | Problem with some body parameter |
+| 404 | Provided value for `session` parameter was not found in OpenVidu Server. You must first call [**POST /api/sessions**](#post-apisessions) to get a session id |
+
+<br>
 
 ---
 
 ### GET `/api/sessions/<SESSION_ID>`
 
-| _GET SESSION INFO_ | _PARAMETERS_                                                           |
-| ------------------ | ---------------------------------------------------------------------- |
-| **Operation**      | GET                                                                    |
-| **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt; |
-| **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**  | ```{"sessionId":"TestSession","createdAt":1538482606338,"mediaMode":"ROUTED","recordingMode":"MANUAL","defaultOutputMode":"COMPOSED","defaultRecordingLayout":"BEST_FIT","customSessionId":"TestSession","connections":{"numberOfElements":2,"content":[{"connectionId":"vhdxz7abbfirh2lh","createdAt":1538482606412,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=2ezkertrimk6nttk&role=PUBLISHER&turnUsername=H0EQLL&turnCredential=kjh48u","role":"PUBLISHER","serverData":"","clientData":"TestClient1","publishers":[{"createdAt":1538482606976,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","mediaOptions":{"hasAudio":true,"audioActive":true,"hasVideo":true,"videoActive":true,"typeOfVideo":"CAMERA","frameRate":30,"videoDimensions":"{\"width\":640,\"height\":480}","filter":{}}}],"subscribers":[]},{"connectionId":"maxawd3ysuj1rxvq","createdAt":1538482607659,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=ovj1b4ysuqmcirti&role=PUBLISHER&turnUsername=INOAHN&turnCredential=oujrqd","role":"PUBLISHER","serverData":"","clientData":"TestClient2","publishers":[],"subscribers":[{"createdAt":1538482607799,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","publisher":"vhdxz7abbfirh2lh"}]}]},"recording":false}``` |
+##### Description
 
+Retrieve an initialized session from OpenVidu Server. A session is considered initialized after method [**POST /api/sessions**](#post-apisessions) has been called.
 
-> **Returned JSON**
->
-> - `sessionId`: identifier of the session (identical to _SESSION_ID_ url parameter)
-> - `createdAt`: time when the session was created in UTC milliseconds
-> - `mediaMode`: media mode configured for the session (`ROUTED` or `RELAYED`)
-> - `recording`: whether the session is being recorded or not at this moment
-> - `recordingMode`: recording mode configured for the session (`ALWAYS` or `MANUAL`)
-> - `defaultOutputMode`: the default output mode for the recordings of the session (`COMPOSED` or `INDIVIDUAL`)
-> - `defaultRecordingLayout`: the default recording layout configured for the recordings of the session. Only defined if field `defaultOutputMode` is set to `COMPOSED`
-> - `defaultCustomLayout`: the default custom layout configured for the recordings of the session. Its format is a relative path. Only defined if field `defaultRecordingLayout` is set to `CUSTOM`
-> - `customSessionId`: custom session identifier. Only defined if the session was initialized passing a `customSessionId` field (see [**POST /api/sessions**](#post-apisessions))
-> - `connections`: collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. Each object of this array has this structure:
->     - `connectionId`: identifier of the user's connection
->     - `createdAt`: time when the connection was established in UTC milliseconds
->     - `location`: geo location of the participant <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
->     - `platform`: complete description of the platform used by the participant to connect to the session
->     - `role`: role of the connection
->     - `clientData`: data defined in OpenVidu Browser when calling _[`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"}_ (_metadata_ parameter)
->     - `serverData`: data assigned to the user's token when generating the token in OpenVidu Server
->     - `token`: user's token
->     - `publishers`: array of Publisher objects (streams the user is publishing). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo","hasAudio","videoActive","audioActive","frameRate","videoDimensions","typeOfVideo", "filter")
->     - `subscribers`: array of Subscriber objects (streams the user is subscribed to). Each on is defined by their `streamId` (equal to the "streamId" property of its associated publisher, that must be present in some other connection of the session) and a `createdAt` property indicating the time it was created in UTC milliseconds
+##### Operation
 
-<div></div>
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions/`SESSION_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
 
-> **HTTP responses**
->
-> - `200`: the session information has been successfully retrieved
-> - `404`: no session exists for the passed SESSION_ID
+##### Sample return
+
+This operation returns a [**Session object**](#session-object).
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The session information has been successfully retrieved |
+| 404 | No session exists for the passed `SESSION_ID` |
+
+<br>
 
 ---
 
 ### GET `/api/sessions`
 
-| _GET ALL SESSION INFO_ | _PARAMETERS_                                                         |
-| ---------------------- | -------------------------------------------------------------------- |
-| **Operation**          | GET                                                                  |
-| **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions                  |
-| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_ |
-| **Sample return**      | ```{"numberOfElements":1,"content":[{"sessionId":"TestSession","createdAt":1538482606338,"mediaMode":"ROUTED","recordingMode":"MANUAL","defaultOutputMode":"COMPOSED","defaultRecordingLayout":"BEST_FIT","customSessionId":"TestSession","connections":{"numberOfElements":2,"content":[{"connectionId":"vhdxz7abbfirh2lh","createdAt":1538482606412,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=2ezkertrimk6nttk&role=PUBLISHER&turnUsername=H0EQLL&turnCredential=kjh48u","role":"PUBLISHER","serverData":"","clientData":"TestClient1","publishers":[{"createdAt":1538482606976,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","mediaOptions":{"hasAudio":true,"audioActive":true,"hasVideo":true,"videoActive":true,"typeOfVideo":"CAMERA","frameRate":30,"videoDimensions":"{\"width\":640,\"height\":480}","filter":{}}}],"subscribers":[]},{"connectionId":"maxawd3ysuj1rxvq","createdAt":1538482607659,"location":"","platform":"Chrome 69.0.3497.100 on Linux 64-bit","token":"wss://localhost:4443?sessionId=TestSession&token=ovj1b4ysuqmcirti&role=PUBLISHER&turnUsername=INOAHN&turnCredential=oujrqd","role":"PUBLISHER","serverData":"","clientData":"TestClient2","publishers":[],"subscribers":[{"createdAt":1538482607799,"streamId":"vhdxz7abbfirh2lh_CAMERA_CLVAU","publisher":"vhdxz7abbfirh2lh"}]}]},"recording":false}]}``` |
+##### Description
 
-> **Returned JSON**
->
-> - `numberOfElements`: total number of active sessions
-> - `content`: array of sessions. Each object has the same structure as defined in the returned JSON of [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
+Retrieve all the initialized sessions from OpenVidu Server.
 
-<div></div>
+##### Operation
 
-> **HTTP responses**
->
-> - `200`: all the session information has been successfully retrieved
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
+
+##### Sample return
+
+```json
+{
+    "numberOfElements": 0,
+    "content": []
+}
+```
+
+||||
+| - |||
+| numberOfElements | Number | Total number of active sessions |
+| content | Array of Objects | Array of [**Session objects**](#session-object) |
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | All the session information has been successfully retrieved |
+
+<br>
 
 ---
 
 ### POST `/api/signal`
 
-| _SEND A SIGNAL_   | _PARAMETERS_                                                         |
-| ----------------- | -------------------------------------------------------------------- |
-| **Operation**     | POST                                                                 |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/signal                    |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json |
-| **Body**          | ```{"session": "SESSION_ID", "to": ["connectionId1", "connectionId2"], "type": "MY_TYPE", "data": "This is my signal data"}```    |
-| **Sample return** | _Returns nothing_                                                    |
+##### Description
 
-> **Body parameters**
->
-> ---
->
-> - **session** _(mandatory string)_ : the sessionId of the session you want to send the signal to<br><br>
-> - **to** _(optional array of strings)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session<br><br>
-> - **type** _(optional string)_ : type of the signal. In the body example of the table above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type<br><br>
-> - **data** _(optional string)_ : actual data of the signal<br><br>
+Send a signal to a session, as a broadcast message or to specific participants. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/session.html#signal){:target="blank"}.
 
-<div></div>
+##### Operation
 
-> **HTTP responses**
->
-> - `200`: signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal
-> - `400`: there is a problem with some body parameter
-> - `404`: no session exists for the passed SESSION_ID
-> - `406`: no connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct)
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/signal |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "session":"ses_YnDaGYNcd7",
+    "to": ["con_Xnxg19tonh", "con_TNVdbuQCJF"],
+    "type":"MY_TYPE",
+    "data":"This is my signal data"
+}
+```
+
+> - **session** _(mandatory String)_ : the sessionId of the session you want to send the signal to.<br><br> 
+> - **to** _(optional Array of String)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session.<br><br>
+> - **type** _(optional String)_ : type of the signal. In the body example above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type.<br><br>
+> - **data** _(optional String)_ : actual data of the signal.
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal |
+| 400 | There is a problem with some body parameter |
+| 404 | No session exists for the passed `session` body parameter |
+| 406 | No connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct) |
+
+<br>
 
 ---
 
 ### DELETE `/api/sessions/<SESSION_ID>`
 
-| _CLOSE SESSION_   | _PARAMETERS_                                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**     | DELETE                                                                                                                   |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;                                                   |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return** | _Returns nothing_                                                                                                        |
+##### Description
 
-> **HTTP responses**
->
-> - `204`: the session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](api/openvidu-browser/classes/streamevent.html){:target="_blank"}, [`connectionDestroyed`](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} and [`sessionDisconnected`](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others (the first one will only receive the events related to himself, last one will receive every possible event)
-> - `404`: no session exists for the passed SESSION_ID
+Close a session. This will stop all of the processes taking place for this session: all of its connections, streams and recordings will be closed.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | DELETE |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions/`SESSION_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### HTTP responses
+
+|||
+| - ||
+| 204 | The session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"}, [**connectionDestroyed**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} and [**sessionDisconnected**](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others: the first user evicted will only receive the events related to himself, last one will receive every possible event |
+| 404 | No session exists for the passed `SESSION_ID` |
+
+<br>
 
 ---
 
 ### DELETE `/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>`
 
-| _FORCE DISCONNECTION_   | _PARAMETERS_                                                                                                             |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**     | DELETE                                                                                                                   |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;                  |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return** | _Returns nothing_                                                                                                        |
+##### Description
 
-> **HTTP responses**
->
-> - `204`: the user has been successfully evicted from the session. Every participant will have received the proper events in OpenVidu Browser: [`streamDestroyed`](api/openvidu-browser/classes/streamevent.html){:target="_blank"} if the user was publishing, [`connectionDestroyed`](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} for the remaining users and [`sessionDisconnected`](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer"
-> - `400`: no session exists for the passed SESSION_ID
-> - `404`: no connection exists for the passed CONNECTION_ID
+Force the disconnection of a user from a session. All of the streams associated to this connection (both publishers and subscribers) will be destroyed. If the user was publishing a stream, all other subscribers of other users receiving it will also be destroyed.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | DELETE |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions/`SESSION_ID`/connection/`CONNECTION_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### HTTP responses
+
+|||
+| - ||
+| 204 | The participant has been successfully evicted from the session. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"} if the user was publishing, [**connectionDestroyed**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} for the remaining users and [**sessionDisconnected**](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer" |
+| 400 | No session exists for the passed `SESSION_ID` |
+| 404 | No connection exists for the passed `CONNECTION_ID` |
+
+<br>
 
 ---
 
 ### DELETE `/api/sessions/<SESSION_ID>/stream/<STREAM_ID>`
 
-| _FORCE UNPUBLISHING_ | _PARAMETERS_                                                                                                             |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**        | DELETE                                                                                                                   |
-| **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;                          |
-| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**    | _Returns nothing_                                                                                                        |
+##### Description
 
-> **HTTP responses**
->
-> - `204`: the stream has been successfully unpublished. Every participant will have received the proper [`streamDestroyed`](api/openvidu-browser/classes/streamevent.html){:target="_blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer"
-> - `400`: no session exists for the passed SESSION_ID
-> - `404`: no stream exists for the passed STREAM_ID
-> - `405`: you cannot directly delete the stream of an IPCAM participant (any participant created with method [POST /api/sessions/&lt;SESSION_ID&gt;/connection](#post-apisessionsltsession_idgtconnection){:target="_blank"}). Instead you must delete the connection object with [DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](#delete-apisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}
+Force the unpublishing of a user's stream from a session. All of the subscribers receiving this stream will also be destroyed.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | DELETE |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions/`SESSION_ID`/stream/`STREAM_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### HTTP responses
+
+|||
+| - ||
+| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
+| 400 | No session exists for the passed `SESSION_ID` |
+| 404 | No stream exists for the passed `STREAM_ID` |
+| 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /api/sessions/&lt;SESSION_ID&gt;/connection**](#post-apisessionsltsession_idgtconnection)). Instead you must delete the connection object with [**DELETE /api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-apisessionsltsession_idgtconnectionltconnection_idgt) |
+
+<br>
 
 ---
 
 ### POST `/api/sessions/<SESSION_ID>/connection`
 
-| _PUBLISH IP CAMERA_ | _PARAMETERS_                                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**       | POST                                                                                                                     |
-| **URL**             | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/sessions/&lt;SESSION_ID&gt;/connection                                        |
-| **Headers**         | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json                  |
-| **Body**            | ```{"type": "IPCAM", "rtspUri": "rtsp://b1.dnsdojo.com:1935/live/sys3.stream", "adaptativeBitrate": true, "onlyPlayWithSubscribers": true, "data": "Office security camera"}``` |
-| **Sample return**   | ```{"connectionId": "ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "createdAt": 1582121476379, "location": "unknown", "platform": "IPCAM", "role": "PUBLISHER", "serverData": "MY_IP_CAMERA", "publishers": [{"createdAt": 1582121476439, "streamId": "str_IPC_XC1W_ipc_IPCAM_rtsp_A8MJ_91_191_213_49_554_live_mpeg4_sdp", "rtspUri": "rtsp://91.191.213.49:554/live_mpeg4.sdp", "mediaOptions": {"hasAudio": true, "audioActive": true, "hasVideo": true, "videoActive": true, "typeOfVideo": "IPCAM", "frameRate": null, "videoDimensions": null, "filter": {}, "adaptativeBitrate": true, "onlyPlayWithSubscribers": true}} ], "subscribers": []}``` |
+##### Description
 
-> **Body parameters**
->
-> ---
->
-> - **type** _(optional string)_ : which type of stream will be published. For now can only be `IPCAM`. Default to `IPCAM`<br><br>
-> - **rtspUri** _(mandatory string)_ : RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
-> - **adaptativeBitrate** _(optional boolean)_ : whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
-> - **onlyPlayWithSubscribers** _(optional boolean)_ : enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
-> - **data** _(optional string)_ : metadata you want to associate to the camera's participant. This will be included as [Connection.data](api/openvidu-browser/classes/connection.html#data){:target="_blank"} property received by your clients on [connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} event, and will also be available in backend events ([CDR](reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="_blank"})
+Publish an IP camera sending video over RTSP. The IP camera will behave in the session as any other participant publishing a stream. Learn more at [IP cameras](advanced-features/ip-cameras/){:target="blank"} section.
 
-<div></div>
+##### Operation
 
-> **Returned JSON**
->
-> Returns the new Connection object. This object is the same as each JSON object in the `connections.content` array returned by method [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
->
-> - `connectionId`: identifier of the camera's connection. Store it to perform other operations such as unpublish the IP camera from the session
-> - `createdAt`: time when the connection was established in UTC milliseconds
-> - `location`: geo location of the IP camera <a href="openvidu-pro/"><div id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div></a>
-> - `platform`: `"IPCAM"`
-> - `role`: `"PUBLISHER"`
-> - `clientData`: `""` (IP camera connections cannot be initialized from the client-side)
-> - `serverData`: data associated to the IP camera connection with query parameter `data`
-> - `token`: `undefined` (IP camera connections do not have a token associated)
-> - `publishers`: array of Publisher objects (streams the camera is publishing. There will only be one object). Each one is defined by the unique `streamId` property, has a `createdAt` property indicating the time it was created in UTC milliseconds and has a `mediaOptions` object with the current properties of the published stream ("hasVideo", "hasAudio", "videoActive", "audioActive", "frameRate", "videoDimensions", "typeOfVideo", "filter")
-> - `subscribers`: `[]` (camera is always a send-only connection, so it won't have any subscriber object)
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/sessions/`SESSION_ID`/connection |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 
-<div></div>
+##### Body
 
-> **HTTP responses**
->
-> - `200`: the IP camera has been successfully published to the session. Every participant will have received the proper events in OpenVidu Browser: [`connectionCreated`](api/openvidu-browser/classes/connectionevent.html){:target="_blank"} identifying the new camera participant and [`streamCreated`](api/openvidu-browser/classes/streamevent.html){:target="_blank"} so they can subscribe to the IP camera stream.
-> - `400`: problem with some body parameter
-> - `404`: no session exists for the passed SESSION_ID
-> - `500`: unexpected error when publishing the IP camera stream into the session. See the error message for further information
+```json
+{
+   "type": "IPCAM",
+   "rtspUri": "rtsp://your.camera.ip.sdp",
+   "adaptativeBitrate": true,
+   "onlyPlayWithSubscribers": true,
+   "networkCache": 2000,
+   "data": "Office security camera"
+}
+```
+
+> - **type** _(optional String)_ : which type of stream will be published. For now can only be `IPCAM`. Default to `IPCAM`<br><br>
+> - **rtspUri** _(mandatory String)_ : RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
+> - **adaptativeBitrate** _(optional Boolean)_ : whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
+> - **onlyPlayWithSubscribers** _(optional Boolean)_ : enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
+> - **networkCache** _(optional Number)_ : size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds. The smaller it is, the less delay the signal will have, but more problematic will be in unstable networks. Use short buffers only if there is a quality connection between the IP camera and OpenVidu Server. Default to `2000`<br><br>
+> - **data** _(optional String)_ : metadata you want to associate to the camera's participant. This will be included as [Connection.data](api/openvidu-browser/classes/connection.html#data){:target="blank"} property received by your clients on [connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="blank"} event, and will also be available in backend events ([CDR](reference-docs/openvidu-server-cdr){:target="blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="blank"}).
+
+##### Sample return
+
+Returns the new [**Connection object**](#connection-object) with the following particularities:
+
+- Property `platform` will be set to `IPCAM`.
+- It won't include the `token` property.
+- Property `publishers` will have a single object with an extra property `rtspUri` and `mediaOptions` will have extra fields  ("adaptativeBitrate", "onlyPlayWithSubscribers", "networkCache")
+- Property `subscribers` will always be empty, as IP cameras are send-only connection.
+
+This is an example of a Connection object for an IP camera in comparison with a regular [**Connection object**](#connection-object) :
+
+```json
+{
+    "connectionId": "ipc_IPCAM_rtsp_8K5Y_your_camera_ip_sdp",
+    "createdAt": 1600563332396,
+    "location": "Milan, Italy",
+    "platform": "IPCAM",
+    "role": "PUBLISHER",
+    "serverData": "Office security camera",
+    "clientData": "",
+    "publishers": [
+        {
+            "createdAt": 1600563332435,
+            "streamId": "str_IPC_P76J_ipc_IPCAM_rtsp_8K5Y_your_camera_ip_sdp",
+            "rtspUri": "rtsp://your.camera.ip.sdp",
+            "mediaOptions": {
+                "hasAudio": true,
+                "audioActive": true,
+                "hasVideo": true,
+                "videoActive": true,
+                "typeOfVideo": "IPCAM",
+                "frameRate": null,
+                "videoDimensions": null,
+                "filter": {},
+                "adaptativeBitrate": true,
+                "onlyPlayWithSubscribers": true,
+                "networkCache": 2000
+            }
+        }
+    ],
+    "subscribers": []
+}
+```
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The IP camera has been successfully published to the session. Every participant will have received the proper events in OpenVidu Browser: [**connectionCreated**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} identifying the new camera participant and [**streamCreated**](api/openvidu-browser/classes/streamevent.html){:target="blank"} so they can subscribe to the IP camera stream. |
+| 400 | Problem with some body parameter |
+| 404 | No session exists for the passed `SESSION_ID` |
+| 500 | Unexpected error when publishing the IP camera stream into the session. See the error message for further information |
+
+<br>
 
 ---
 
 ### POST `/api/recordings/start`
 
-| _START SESSION RECORDING_ | _PARAMETERS_                                                                                              |
-| ------------------------- | --------------------------------------------------------------------------------------------------------- |
-| **Operation**             | POST                                                                                                      |
-| **URL**                   | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/start                                               |
-| **Headers**               | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/json   |
-| **Body**                  | ```{"session": "SESSION_ID", "name": "NAME", "outputMode": "OUTPUT_MODE", "hasAudio": "HAS_AUDIO", "hasVideo": "HAS_VIDEO", "resolution": "RESOLUTION", "recordingLayout": "RECORDING_LAYOUT", "customLayout": "CUSTOM_LAYOUT"}```    |
-| **Sample return**         | ```{"id": "fds4e07mdug1ga3h", "sessionId": "fds4e07mdug1ga3h", "name": "MyRecording", "outputMode": "COMPOSED", "hasAudio":true, "hasVideo":false,"createdAt":1538483606521, "size":3205004, "duration":12.92, "url":null, "status": "started"}``` |
+##### Description
 
-> **Body parameters**
->
-> ---
->
-> - **session** _(mandatory string)_ : the sessionId belonging to the session you want to start recording<br><br>
-> - **name** _(optional string)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on recordingEvents. If no name is provided, the video file will be named after `id` property of the recording<br><br>
-> - **outputMode** _(optional string)_ : record all streams in a single file in a grid layout or record each stream in its own separate file. This property will override the `defaultOutputMode` property set on [POST /api/sessions](#post-apisessions) for this particular recording
->     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout
->     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file<br><br>
-> - **hasAudio** _(optional boolean)_ : whether to record audio or not. Default to true<br><br>
-> - **hasVideo** _(optional boolean)_ : whether to record video or not. Default to true <br><br>
-> - **recordingLayout** _(optional string. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the layout to be used in this recording. This property will override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording.
->     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="_blank"} section to learn how
+Start the recording of a session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/recordings/start |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "session":"ses_YnDaGYNcd7",
+    "name":"MyRecording",
+    "outputMode":"COMPOSED",
+    "hasAudio": true,
+    "hasVideo": true,
+    "recordingLayout":"CUSTOM",
+    "customLayout":"",
+    "resolution": "1280x720",
+}
+```
+
+> - **session** _(mandatory String)_ : the sessionId belonging to the session you want to start recording.<br><br>
+> - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/recordingevent.html){:target="blank"}. If no name is provided, the video file will be named after `id` property of the recording.<br><br>
+> - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file. This property will override the `defaultOutputMode` property set on [POST /api/sessions](#post-apisessions) for this particular recording.
+>     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
+>     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.<br><br>
+> - **hasAudio** _(optional Boolean)_ : whether to record audio or not. Default to `true`<br><br>
+> - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true` <br><br>
+> - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the layout to be used in this recording. This property will override the `defaultRecordingLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording.
+>     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed.
+>     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **customLayout** _(optional string. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server system property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`) . This property will override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording<br><br>
-> - **resolution** _(optional string. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999
+> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/){:target="blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`). This property will override the `defaultCustomLayout` property set on [POST /api/sessions](#post-apisessions) for this particular recording.<br><br>
+> - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999.
 
-<div></div>
+##### Sample return
 
-> **Returned JSON**
->
-> - `id`: recording identifier. Store it to perform other operations such as stop, get or delete the recording
-> - `sessionId`: session associated to the recording (same value as `session` in the body request)
-> - `name`: name of the recording. If no `name` parameter is passed in the POST operation, will be equal to `id` field
-> - `outputMode`: output mode of the recording
-> - `hasAudio`: true if the recording has an audio track, false otherwise
-> - `hasVideo`: true if the recording has a video track, false otherwise
-> - `recordingLayout`: the recording layout that is being used. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `customLayout`: the custom layout that is being used. Only defined if `recordingLayout` is set to `CUSTOM`
-> - `resolution`: resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `createdAt`: time when the recording started in UTC milliseconds
-> - `size`: size in bytes of the video file (0 until stop operation is called)
-> - `duration`: duration of the video file in seconds (0 until stop operation is called)
-> - `url`: set to `null`
-> - `status`: set to `"started"`
+This operation returns a [**Recording object**](#recoding-object).
 
-<div></div>
+##### HTTP responses
 
-> **HTTP responses**
->
-> - `200`: the session has started to be recorded. The moment this response is retrieved, it means that the video file is already created and contains proper data, and that the recording can be stopped with guarantees
-> - `400`: problem with some body parameter
-> - `422`: `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px) or trying to start a recording with both `hasAudio` and `hasVideo` to false
-> - `404`: no session exists for the passed `sessionId` parameter
-> - `406`: the session has no connected participants
-> - `409`: the session is not configured for using MediaMode `ROUTED` or it is already being recorded
-> - `501`: OpenVidu Server recording module is disabled (`OPENVIDU_RECORDING` property set to `false`)
+|||
+| - ||
+| 200 | The session has started to be recorded. The moment this response is retrieved, it means that the video file is already created and contains proper data, and that the recording can be stopped with guarantees |
+| 400 | Problem with some body parameter |
+| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px) or trying to start a recording with both `hasAudio` and `hasVideo` to false |
+| 404 | No session exists for the passed `session` body parameter |
+| 406 | The session has no connected participants |
+| 409 | The session is not configured for using MediaMode `ROUTED` or it is already being recorded |
+| 501 | OpenVidu Server recording module is disabled: [`OPENVIDU_RECORDING` configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+
+<br>
 
 ---
 
 ### POST `/api/recordings/stop/<RECORDING_ID>`
 
-| _STOP SESSION RECORDING_ | _PARAMETERS_                                                                    |
-| ------------------------ | ------------------------------------------------------------------------------- |
-| **Operation**            | POST                                                                            |
-| **URL**                  | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/stop/&lt;RECORDING_ID&gt; |
-| **Headers**              | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**        | ```{"id": "fds4e07mdug1ga3h", "sessionId": "fds4e07mdug1ga3h", "name": "MyRecording", "outputMode": "COMPOSED", "hasAudio": true, "hasVideo": false, "createdAt": 1538483606521, "size": 3205004, "duration": 12.92, "url": null, "status": "stopped"}``` |
+##### Description
 
-> **Returned JSON**
->
-> - `id`: recording identifier
-> - `sessionId`: session associated to the recording
-> - `name`: name of the recording. If no `name` parameter is passed when starting the recording, will be equal to `id` field
-> - `outputMode`: output mode of the recording
-> - `hasAudio`: true if the recording has an audio track, false otherwise
-> - `hasVideo`: true if the recording has a video track, false otherwise
-> - `recordingLayout`: the recording layout used in the recording. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `customLayout`: the custom layout used in the recording. Only defined if `recordingLayout` is set to `CUSTOM`
-> - `resolution`: resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `createdAt`: time when the recording started in UTC milliseconds
-> - `size`: size in bytes of the video file
-> - `duration`: duration of the video file in seconds
-> - `url`: set to `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`. This path will be protected with OpenVidu credentials depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/){:target="_blank"} is false or true
-> - `status`: set to `"stopped"` or `"available"` depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/){:target="_blank"} is false or true
+Stop the recording of a session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
 
-<div></div>
+##### Operation
 
-> **HTTP responses**
->
-> - `200`: the session has successfully stopped from being recorded. The video file is ready to be reproduced
-> - `404`: no recording exists for the passed RECORDING_ID
-> - `406`: recording has `starting` status. Wait until `started` status before stopping the recording
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/recordings/stop/`RECORDING_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### Sample return
+
+This operation returns a [**Recording object**](#recording-object).
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The session has successfully stopped from being recorded |
+| 404 | No recording exists for the passed `RECORDING_ID` |
+| 406 | Recording has `starting` status. Wait until `started` status before stopping the recording |
+| 501 | OpenVidu Server recording module is disabled: [`OPENVIDU_RECORDING` configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+
+<br>
 
 ---
 
 ### GET `/api/recordings/<RECORDING_ID>`
 
-| _GET RECORDING INFO_ | _PARAMETERS_                                                                |
-| -------------------- | --------------------------------------------------------------------------- |
-| **Operation**        | GET                                                                         |
-| **URL**              | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;  |
-| **Headers**          | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**    | ```{"id": "fds4e07mdug1ga3h", "sessionId": "fds4e07mdug1ga3h", "name": "MyRecording", "outputMode": "COMPOSED", "hasAudio": true, "hasVideo": false, "createdAt": 1538483606521, "size": 3205004, "duration": 12.92, "url": null, "status": "stopped"}``` |
+##### Description
 
-> **Returned JSON**
->
-> - `id`: recording identifier
-> - `sessionId`: session associated to the recording
-> - `name`: name of the recording. If no `name` parameter is passed when starting the recording, will be equal to `id` field
-> - `outputMode`: output mode of the recording
-> - `hasAudio`: true if the recording has an audio track, false otherwise
-> - `hasVideo`: true if the recording has a video track, false otherwise
-> - `recordingLayout`: the recording layout used in the recording. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `customLayout`: the custom layout used in the recording. Only defined if `recordingLayout` is set to `CUSTOM`
-> - `resolution`: resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true
-> - `createdAt`: time when the recording started in UTC milliseconds
-> - `size`: size in bytes of the video file (0 until stop operation is called)
-> - `duration`: duration of the video file in seconds (0 until stop operation is called)
-> - `url`: set to `null` until stop operation is called. Then it will be `"https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>"`, path that may be protected with OpenVidu credentials depending on whether [openvidu-server system property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/){:target="_blank"} is false or true.
-> - `status`: status of the recording (`"starting"`, `"started"`, `"stopped"`, `"ready"`, `"failed"`)
+Retrieve a recording from OpenVidu Server.
 
-<div></div>
+##### Operation
 
-> **HTTP responses**
->
-> - `200`: the recording information has been successfully retrieved
-> - `404`: no recording exists for the passed RECORDING_ID
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/recordings/`RECORDING_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### Sample return
+
+This operation returns a [**Recording object**](#recording-object).
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The recording information has been successfully retrieved |
+| 404 | No recording exists for the passed `RECORDING_ID` |
+| 501 | OpenVidu Server recording module is disabled: [`OPENVIDU_RECORDING` configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+
+<br>
 
 ---
 
 ### GET `/api/recordings`
 
-| _LIST RECORDINGS INFO_ | _PARAMETERS_                                                         |
-| ---------------------- | -------------------------------------------------------------------- |
-| **Operation**          | GET                                                                  |
-| **URL**                | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings                |
-| **Headers**            | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_ |
-| **Sample return**      | ```{"count": 2, "items": [{"id": "n0kcws1evvn3esmo", "sessionId": "n0kcws1evvn3esmo", "name": "n0kcws1evvn3esmo", "outputMode": "COMPOSED", "hasAudio": true, "hasVideo": true, "recordingLayout": "BEST_FIT", "resolution": "1920x1080", "createdAt": 1521202349460, "size": 22887561, "duration": 132.08, "url": "https://localhost:4443/recordings/n0kcws1evvn3esmo/n0kcws1evvn3esmo.mp4", "status": "available"}, {"id": "fds4e07mdug1ga3h", "sessionId": "fds4e07mdug1ga3h", "name": "MyRecording", "outputMode": "COMPOSED", "hasAudio": true, "hasVideo": false, "createdAt": 1538483606521, "size": 3205004, "duration": 12.92, "url": "https://localhost:4443/recordings/fds4e07mdug1ga3h/MyRecording.webm", "status": "available"}]}``` |
+##### Description
 
-> **Returned JSON**
->
-> - `count`: number of total recordings
-> - `items`: array of recording information in JSON format. Each item has the same properties as stated in the return value of method [GET /api/recordings/&lt;RECORDING_ID&gt;](#get-apirecordingsltrecording_idgt)
+Retrieve all the recordings from OpenVidu Server.
 
-<div></div>
+##### Operation
 
-> **HTTP responses**
->
-> - `200`: all of the available recording information has been successfully retrieved
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/recordings |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
+
+##### Sample return
+
+```json
+{
+    "count": 0,
+    "items": []
+}
+```
+
+||||
+| - |||
+| count | Number | Total number of recordings |
+| items | Array of Objects | Array of [**Recording objects**](#recording-object) |
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | All the recording information has been successfully retrieved |
+| 501 | OpenVidu Server recording module is disabled: [`OPENVIDU_RECORDING` configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+
+<br>
 
 ---
 
 ### DELETE `/api/recordings/<RECORDING_ID>`
 
-| _DELETE RECORDING_ | _PARAMETERS_                                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**      | DELETE                                                                                                                   |
-| **URL**            | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/api/recordings/&lt;RECORDING_ID&gt;                                               |
-| **Headers**        | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_<br/>Content-Type: application/x-www-form-urlencoded |
-| **Sample return**  | _Returns nothing_                                                                                                        |
+##### Description
 
-> **HTTP responses**
->
-> - `204`: the video file and all of its metadata has been successfully deleted from the host
-> - `404`: no recording exists for the passed RECORDING_ID
-> - `409`: the recording has `"started"` status. Stop it before deletion
+Delete a recording. This will delete all of the recording files from disk.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | DELETE |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/api/recordings/`RECORDING_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
+
+##### HTTP responses
+
+|||
+| - ||
+| 204 | All of the recording files have been successfully deleted from disk |
+| 404 | No recording exists for the passed `RECORDING_ID` |
+| 409 | The recording has `started` status. [Stop](#post-apirecordingsstopltrecording_idgt) it before deletion |
+| 501 | OpenVidu Server recording module is disabled: [`OPENVIDU_RECORDING` configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+
+<br>
 
 ---
 
 ### GET `/config`
 
-| _GET OPENVIDU CONFIGURATION_   | _PARAMETERS_                                                                                                |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| **Operation**     | GET                                                                                                                      |
-| **URL**           | https://&lt;YOUR_OPENVIDUSERVER_IP&gt;/config                                                                            |
-| **Headers**       | Authorization: Basic _EncodeBase64(OPENVIDUAPP:&lt;YOUR_SECRET&gt;)_                                                     |
-| **Sample return** | ```{"VERSION": "2.13.0", "DOMAIN_OR_PUBLIC_IP": "test.openvidu.io", "HTTPS_PORT": 443, "OPENVIDU_PUBLICURL": "https://test.openvidu.io/", "OPENVIDU_CDR": false, "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300, "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000, "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300, "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900, "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600, "OPENVIDU_RECORDING": true, "OPENVIDU_RECORDING_VERSION": "2.9.0", "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/", "OPENVIDU_RECORDING_PUBLIC_ACCESS": false, "OPENVIDU_RECORDING_NOTIFICATION": "publisher_moderator", "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/", "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 120, "OPENVIDU_WEBHOOK": true, "OPENVIDU_WEBHOOK_ENDPOINT": "https://webhook.openvidu.com/webhook", "OPENVIDU_WEBHOOK_HEADERS": [], "OPENVIDU_WEBHOOK_EVENTS": ["recordingStatusChanged", "mediaNodeStatusChanged"]}``` |
+##### Description
 
-> **Returned JSON**
->
-> - `VERSION`: version of OpenVidu Server
-> - **Rest of properties**: current active values for the **[configuration properties](reference-docs/openvidu-config/){:target="_blank"}** of OpenVidu Server
+Retrieve current [OpenVidu configuration](reference-docs/openvidu-config/){:target="blank"}.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/config |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
+
+##### Sample return
+
+Returns an object with the version of OpenVidu Server in `VERSION` property and all of the current [configuration](reference-docs/openvidu-config/){:target="blank"} in the rest of properties.
+
+```json
+{
+    "VERSION": "2.15.0",
+    "DOMAIN_OR_PUBLIC_IP": "my.openvidu.ip",
+    "HTTPS_PORT": 443,
+    "OPENVIDU_PUBLICURL": "https://my.openvidu.ip",
+    "OPENVIDU_CDR": false,
+    "OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH": 1000,
+    "OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH": 300,
+    "OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH": 1000,
+    "OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH": 300,
+    "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900,
+    "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600,
+    "OPENVIDU_RECORDING": true,
+    "OPENVIDU_RECORDING_VERSION": "2.15.0",
+    "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/",
+    "OPENVIDU_RECORDING_PUBLIC_ACCESS": false,
+    "OPENVIDU_RECORDING_NOTIFICATION": "moderator",
+    "OPENVIDU_RECORDING_CUSTOM_LAYOUT": "/opt/openvidu/custom-layout/",
+    "OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT": 60,
+    "OPENVIDU_WEBHOOK": true,
+    "OPENVIDU_WEBHOOK_ENDPOINT": "http://my.webhook.endpoint:7777/webhook",
+    "OPENVIDU_WEBHOOK_HEADERS": [],
+    "OPENVIDU_WEBHOOK_EVENTS": [
+        "sessionCreated",
+        "sessionDestroyed",
+        "recordingStatusChanged"
+    ]
+}
+```
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | OpenVidu configuration has been successfully retrieved |
+
+<br>
+
+---
+
+### Session object
+
+Related operations
+
+- [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
+- [**GET /api/sessions**](#get-apisessions)
+
+```json
+{
+    "sessionId": "ses_YnDaGYNcd7",
+    "createdAt": 1538481996019,
+    "mediaMode": "ROUTED",
+    "recording": false,
+    "recordingMode": "MANUAL",
+    "defaultOutputMode": "COMPOSED",
+    "defaultRecordingLayout": "CUSTOM",
+    "defaultCustomLayout": "",
+    "customSessionId": "TestSession",
+    "connections": {
+        "numberOfElements": 2,
+        "content": [
+            {
+                "connectionId": "con_Xnxg19tonh",
+                "createdAt": 1538481999022,
+                "location": "Madrid, Spain",
+                "platform": "Chrome 85.0.4183.102 on Linux 64-bit",
+                "token": "wss://my.openvidu.ip?sessionId=ses_YnDaGYNcd7&token=lnlrtnkwm4v8l&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3",
+                "role": "PUBLISHER",
+                "serverData": "My Server Data",
+                "clientData": "My Client Data",
+                "publishers": [
+                    {
+                        "createdAt": 1538481999710,
+                        "streamId": "str_CAM_NhxL_con_Xnxg19tonh",
+                        "mediaOptions": {
+                            "hasAudio": true,
+                            "audioActive": true,
+                            "hasVideo": true,
+                            "videoActive": true,
+                            "typeOfVideo": "CAMERA",
+                            "frameRate": 30,
+                            "videoDimensions": "{\"width\":640,\"height\":480}",
+                            "filter": {}
+                        }
+                    }
+                ],
+                "subscribers": []
+            },
+            {
+                "connectionId": "con_TNVdbuQCJF",
+                "createdAt": 1538482000334,
+                "location": "Berlin, Germany",
+                "platform": "Firefox 80.0 on Mac OS X 10.7.2",
+                "token": "wss://my.openvidu.ip?sessionId=ses_YnDaGYNcd7&token=pf83ndk92kfpt&role=PUBLISHER&turnUsername=LPO8IJ&turnCredential=hhbd3r",
+                "role": "SUBSCRIBER",
+                "serverData": "My Other Server Data",
+                "clientData": "My Other Client Data",
+                "publishers": [],
+                "subscribers": [
+                    {
+                        "createdAt": 1538482000784,
+                        "streamId": "str_CAM_NhxL_con_Xnxg19tonh"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+||||
+| - |||
+| sessionId | String | Identifier of the session. Same value as `SESSION_ID` url parameter) |
+| createdAt | Number | Time when the session was created in UTC milliseconds |
+| mediaMode | String | Media mode configured for the session (`ROUTED` or `RELAYED`) |
+| recording | Boolean | Whether the session is being recorded or not at this moment |
+| recordingMode | String | Recording mode configured for the session (`ALWAYS` or `MANUAL`) |
+| defaultOutputMode | String | The default output mode for the recordings of the session (`COMPOSED` or `INDIVIDUAL`) |
+| defaultRecordingLayout | String | The default recording layout configured for the recordings of the session. Only defined if field `defaultOutputMode` is set to `COMPOSED` |
+| defaultCustomLayout | String | The default custom layout configured for the recordings of the session. Its format is a relative path. Only defined if field `defaultRecordingLayout` is set to `CUSTOM` |
+| customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /api/sessions**](#post-apisessions) |
+| connections | Object | Collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual connections. See [**Connection object**](#connection-object) |
+
+### Connection object
+
+Related operations
+
+- [**GET /api/sessions/&lt;SESSION_ID&gt;**](#get-apisessionsltsession_idgt)
+- [**GET /api/sessions**](#get-apisessions)
+- [**POST /api/sessions/&lt;SESSION_ID&gt;/connection**](#post-apisessionsltsession_idgtconnection)
+
+```json
+{
+    "connectionId": "con_Xnxg19tonh",
+    "createdAt": 1538481999022,
+    "location": "Madrid, Spain",
+    "platform": "Chrome 85.0.4183.102 on Linux 64-bit",
+    "token": "wss://my.openvidu.ip?sessionId=ses_YnDaGYNcd7&token=lnlrtnkwm4v8l&role=PUBLISHER&turnUsername=FYYNRC&turnCredential=yfxxs3",
+    "role": "PUBLISHER",
+    "serverData": "My Server Data",
+    "clientData": "My Client Data",
+    "publishers": [
+        {
+            "createdAt": 1538481999710,
+            "streamId": "str_CAM_NhxL_con_Xnxg19tonh",
+            "mediaOptions": {
+                "hasAudio": true,
+                "audioActive": true,
+                "hasVideo": true,
+                "videoActive": true,
+                "typeOfVideo": "CAMERA",
+                "frameRate": 30,
+                "videoDimensions": "{\"width\":640,\"height\":480}",
+                "filter": {}
+            }
+        }
+    ],
+    "subscribers": []
+}
+```
+
+||||
+| - |||
+| connectionId | String | Identifier of the user's connection |
+| createdAt | Number | Time when the connection was established in UTC milliseconds |
+| location | String | Geographic location of the participant <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
+| platform | String | Complete description of the platform used by the participant to connect to the session |
+| token | String | Token of the connection |
+| role | String | Role of the connection |
+| serverData | String | Data assigned to the user's token when generating the token in OpenVidu Server (see [**POST /api/tokens**](#post-apitokens)) |
+| clientData | String | Data defined in OpenVidu Browser when calling [**Session.connect**](api/openvidu-browser/classes/session.html#connect){:target="blank"}  (`metadata` parameter) |
+| publishers | Array of Objects | Collection of Publisher objects: streams the user is currently publishing. Each one has the following properties: <ul><li style="color: inherit">streamId (String) : identifier of the stream</li><li style="color: inherit">createdAt (Number) : time when the stream was published in UTC milliseconds</li><li style="color: inherit">mediaOptions (Object) : current properties of the published stream. See [**Stream**](api/openvidu-browser/classes/stream.html){:target="blank"} object from openvidu-browser library for a description of them. Some may change dynamically. See [**StreamPropertyChanged**](api/openvidu-browser/classes/streampropertychangedevent.html){:target="blank"} event of openvidu-browser library. <ul><li style="color: inherit">hasVideo (Boolean)</li><li style="color: inherit">hasAudio (Boolean)</li><li style="color: inherit">videoActive (Boolean)</li><li style="color: inherit">audioActive (Boolean)</li><li style="color: inherit">frameRate (Number)</li><li style="color: inherit">videoDimensions (String)</li><li style="color: inherit">typeOfVideo (String)</li><li style="color: inherit">filter (Object)</li></ul></li></ul> |
+| subscribers | Array of Objects | Collection of Subscriber objects: streams the user is currently subscribed to. Each one has the following properties: <ul><li style="color: inherit">streamId (String) : equal to the `streamId` property of its associated publisher, that must be present in the `publishers` array of some other connection of the session</li><li style="color: inherit">createdAt (Number) : time when the subscription was established in UTC milliseconds</li></ul> |
+
+### Recording object
+
+Related operations
+
+- [**POST /api/recordings/start**](#post-apirecordingsstart)
+- [**POST/api/recordings/stop/&lt;RECORDING_ID&gt;**](#post-apirecordingsstopltrecording_idgt)
+- [**GET /api/recordings/&lt;RECORDING_ID&gt;**](#get-apirecordingsltrecording_idgt)
+- [**GET /api/recordings**](#get-apirecordings)
+
+```json
+{
+    "id": "ses_YnDaGYNcd7",
+    "name": "MyRecording",
+    "outputMode": "COMPOSED",
+    "hasAudio": true,
+    "hasVideo": true,
+    "resolution": "1280x720",
+    "recordingLayout": "CUSTOM",
+    "customLayout": "",
+    "sessionId": "ses_YnDaGYNcd7",
+    "createdAt": 1600564785109,
+    "size": 303072692,
+    "duration": 108000.234,
+    "url": "https://my.openvidu.ip/recordings/ses_YnDaGYNcd7/MyRecording.mp4",
+    "status": "ready"
+}
+```
+
+||||
+| - |||
+| id | String | Recording identifier. It will be based on the identifier of the session. Store it to perform other operations such as stop, get or delete the recording |
+| name | String | Name of the recording. If no `name` parameter is provided, will be equal to `id` field |
+| outputMode | String | Output mode of the recording |
+| hasAudio | Boolean | True if the recording includes an audio track, false otherwise |
+| hasVideo | Boolean | True if the recording includes a video track, false otherwise |
+| resolution | String | Resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true |
+| recordingLayout | String | The recording layout that is being used. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true |
+| customLayout | String | The custom layout that is being used. Only defined if `recordingLayout` is set to `CUSTOM` |
+| sessionId | String | Session associated to the recording |
+| createdAt | Number | Time when the recording started in UTC milliseconds |
+| size | Number | Size in bytes of the video file. Will be `0` until status is `ready` |
+| duration | Number | Duration of the video file in seconds. Will be `0` until status is `ready` |
+| url | String | URL where the recording file is available.  Will be `null` until status is `ready`.<div style="margin-top:10px"></div>The final URL value follows this format:<div style="margin-top:5px"></div>`https://YOUR_OPENVIDUSERVER_IP/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>`<br>This path will be protected with OpenVidu credentials depending on whether [openvidu-server configuration property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/){:target="blank"} is false or true |
+| status | String | Status of the recording: <ul style="margin-top:10px"><li style="color: inherit"><code>starting</code>: the recording is being started.</li><li style="color: inherit"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="color: inherit"><code>stopped</code>: the recording process has stopped and files are being processed. Properties <i>duration</i> and <i>size</i> will be set to 0 and <i>url</i> will be null.</li><li style="color: inherit"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> are properly defined now.</li><li style="color: inherit"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul> The recording status will be `started` after calling the start operation and while the recording is active. After calling stop operation, the status may be `stopped` or `ready` depending on the type of deployment of OpenVidu. OpenVidu CE will always return `ready` status. OpenVidu Pro will always return `stopped` status and properties `size`, `duration` and `url` will not have their final value defined yet. Listen to [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"} CDR/Webhook event to know when the recording has reached `ready` status in this case |
 
 <br>
