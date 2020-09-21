@@ -258,6 +258,46 @@ ul#menu-list {
     color: #c7254e !important;
 }
 
+#doc-container pre.rest-api-code {
+    margin-bottom: 0;
+}
+
+#doc-container .rest-api-section ~ h5 {
+    margin-top: -50px;
+    border-top: 75px solid transparent;
+}
+
+#doc-container .rest-api-section ~ h3 + h5 {
+    margin-top: -40px;
+    border-top: 65px solid transparent;
+}
+
+#doc-container .rest-api-section ~ h6 {
+    margin-top: -50px;
+    border-top: 60px solid transparent;
+    margin-left: 10px;
+    color: #444444;
+}
+
+#doc-container .rest-api-section ~ blockquote {
+    margin-top: 15px;
+}
+
+#doc-container .rest-api-section ~ table {
+    margin-top: 0;
+    margin-bottom: 20px;
+    display: inline-table;
+}
+
+#doc-container .rest-api-section ~ pre > code {
+    white-space: pre;
+}
+
+#doc-container .rest-api-section.rest-api-pro-section ~ blockquote {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 .img-acknowledgments {
     max-width: 50%;
     height: auto;
