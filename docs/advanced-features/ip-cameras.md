@@ -56,7 +56,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
 ```
 - ***webrtcConnectionCreated*** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the shake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `"IPCAM"`.
 ```json
-{"webrtcConnectionCreated":{"sessionId":"MySurveillanceSession","timestamp":1582108095351,"streamId":"str_IPC_SJmx_ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream","participantId":"ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream","connection":"OUTBOUND","rtspUri":"rtsp://b1.dnsdojo.com:1935/live/sys3.stream","adaptativeBitrate":true,"onlyPlayWithSubscribers":true,"videoSource":"IPCAM","videoFramerate":null,"videoDimensions":null,"audioEnabled":true,"videoEnabled":true}}
+{"webrtcConnectionCreated":{"sessionId":"MySurveillanceSession","timestamp":1582108095351,"streamId":"str_IPC_SJmx_ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream","participantId":"ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream","connection":"OUTBOUND","rtspUri":"rtsp://b1.dnsdojo.com:1935/live/sys3.stream","adaptativeBitrate":true,"onlyPlayWithSubscribers":true,"networkCache":2000,"videoSource":"IPCAM","videoFramerate":null,"videoDimensions":null,"audioEnabled":true,"videoEnabled":true}}
 ```
 
 After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **webrtcConnectionDestroyed** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's stream) and **participantLeft** event (only one for the camera's connection).
@@ -115,7 +115,7 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:ta
 
 ## Configuring IP cameras
 
-When [publishing an IP camera](#how-to-publish-ip-cameras), you can configure 2 properties that will affect the management of the camera's media stream. These are:
+When [publishing an IP camera](#how-to-publish-ip-cameras), you can configure different properties that will affect the management of the camera's media stream. These are:
 
 #### adaptativeBitrate
 
@@ -132,6 +132,10 @@ Whether to enable the IP camera stream only when some user is subscribed to it o
 The counterpart to this option, which in principle would always seem desirable, is that the first participant requesting to subscribe to the camera's stream will take a little longer to do so, as OpenVidu Server has to establish the RTSP connection with the camera in the first place. Just after the last participant subscribed to the camera's stream unsubscribes from it, the RTSP connection between OpenVidu Server and the IP camera will be closed again, and the cycle starts again (next first participant subscribing to the camera's stream will have to wait longer than usual to receive the video).
 
 Generally speaking you'll want this option set to true, but if for your particular use case the response time of the first subscriber to the camera's stream is vital, you can set this option to false to never stop receiving the camera's feed.
+
+#### networkCache
+
+Set the size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds. The smaller it is, the less delay the signal will have, but more problematic will be in unstable networks. Use short buffers only if there is a quality connection between the IP camera and OpenVidu Server. The default safe value is 2000 ms.
 
 <br>
 
