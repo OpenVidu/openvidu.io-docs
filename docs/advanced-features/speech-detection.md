@@ -4,8 +4,8 @@
   <div style="display: table-cell; vertical-align: middle;">
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
-  <div class="warningBoxText">
-    Speech detection works with a JavaScript library. <strong>This feature is not available in react-native</strong> for being a native implementation.
+   <div class="warningBoxText">
+    Speech detection works with a JavaScript library. <strong>This feature is not available in react-native</strong> for being a native implementation and in <strong>iOS</strong> because WebRTC is a native library (<a href="https://github.com/cordova-rtc/cordova-plugin-iosrtc">cordova-plugin-iosrtc</a>)
   </div>
 </div>
 
