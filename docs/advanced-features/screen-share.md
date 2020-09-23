@@ -2,6 +2,7 @@
 
 - **[How to screen share](#how-to-screen-share)**
 - **[How to know when the user stops sharing the screen](#how-to-know-when-the-user-stops-sharing-the-screen)**
+- **[How to change the resolution when screen sharing](#how-to-change-the-resolution-when-screen-sharing)**
 - **[Custom Screen Sharing extension for Chrome](#custom-screen-sharing-extension-for-chrome)**
 
 <br>
@@ -157,6 +158,31 @@ var publisher = OV.initPublisherAsync({
 ```
 
 <br>
+
+---
+
+
+## How to change the resolution when screen sharing
+
+> **NOTE**:  Width and height of the video in shouldn’t be changeable in case of screen sharing, as the screen has a specific widht and height.
+
+
+```javascript
+
+var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
+
+publisher.once('accessAllowed', () => {
+    try {
+        publisher.stream.getMediaStream().getVideoTracks()[0].applyConstraints({
+            width: 1280,
+            height: 720
+        })
+    } catch (error) {
+        console.error('Error applying constraints: ', error);
+    }
+});
+
+```
 
 ---
 
