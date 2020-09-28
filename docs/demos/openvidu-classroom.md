@@ -25,11 +25,11 @@ sudo npm install -g @angular/cli
 ```
 
 3) This demo needs a MySQL database to store the info. Install MySQL:
-   
+
 ```bash
 sudo apt-get install -y mysql-server
 sudo mysql_secure_installation
-```        
+```
  And create a new database:
 
 ```bash
@@ -94,6 +94,66 @@ Go to [https://localhost:5000](https://localhost:5000){:target="_blank"} to test
 <br>
 
 Without going into greater detail, the backend has [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/lesson/LessonController.java){:target="_blank"} for the REST operations of the lessons (create new ones or edit/remove existing ones) and [one controller](https://github.com/OpenVidu/classroom-demo/blob/master/src/main/java/io/openvidu/classroom/demo/session_manager/SessionController.java){:target="_blank"} for handling the videoconferences. This controller is pretty similar to the one described in any of the secure tutorials. Basically it listens to the operations of creating a new session (returning a *sessionId* from *openvidu-server*), generating a new user token (returning the *token* from *openvidu-server*) and removing the users when they leave the session.
+
+
+
+## Deploy openvidu-classroom
+
+#### Using the OpenVidu Dockerhub image
+
+**1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+As the [deployment docs says](https://docs.openvidu.io/en/2.15.0/deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
+
+This is how should looks like the `docker-compose-override.yml` after be redefined:
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-classroom:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - SERVER_PORT=5442
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
+```
+
+#### Creating my own docker image
+
+Under the root project folder, you can see the `docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-classroom** docker image.
+
+**1) Run `create_image.sh` script:**
+
+```bash
+./create_image.sh
+```
+
+This script will create an image named `openvidu/openvidu-classroom-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/classroom-demo/blob/2a931237dc232743fbdb847bc70b93dd0c014d18/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will can deploy it.
+
+**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+The steps are exactly the same as those described above but you have to take account change the image name by your custom name (`openvidu/openvidu-classroom-demo` on this sample).
+
+[Here](https://github.com/OpenVidu/classroom-demo/blob/2a931237dc232743fbdb847bc70b93dd0c014d18/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Classroom application.
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-classroom-demo:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - SERVER_PORT=5442
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
+```
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
