@@ -157,7 +157,7 @@ Openvidu PRO successfully installed
 1. Go to openvidu folder:
 $ cd openvidu
 
-2. Configure DOMAIN_OR_PUBLIC_IP, OPENVIDU_PRO_LICENSE, OPENVIDU_SECRET, and KIBANA_PASSWORD in .env file:
+2. Configure DOMAIN_OR_PUBLIC_IP, OPENVIDU_PRO_LICENSE, OPENVIDU_SECRET, and ELASTICSEARCH_PASSWORD in .env file:
 $ nano .env
 
 3. Start OpenVidu
@@ -175,7 +175,7 @@ For more information, check readme.md
 
 OpenVidu Pro configuration is specified in the **`.env`** file with environment variables.
 
-- You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`KIBANA_PASSWORD`**. Default empty values will fail.
+- You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`ELASTICSEARCH_PASSWORD`**. Default empty values will fail.
 - You _must_ also provide a value for  **`OPENVIDU_PRO_LICENSE`**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
 - All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} for further information.
@@ -896,7 +896,27 @@ docker-compose logs -f
 
 #### Change log level of the services
 
-To change the level of Kurento Media Server _kms_ logs change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
+**1)** In your Media Node: update /opt/kms/.env file with these 2 lines:
+
+```bash
+KMS_DEBUG_LEVEL=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+
+GST_DEBUG=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+```
+
+**2)** In your Media Node at `/opt/kms`: 
+
+```
+./media_node restart
+```
+
+**3)** In your OpenVidu Server Pro Node at `/opt/openvidu`: 
+
+```
+./openvidu restart
+```
+
+For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
 #### Change Kurento Media Server docker image
 
