@@ -138,15 +138,6 @@ Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-t
 
 ## Compiling OpenVidu WebComponent
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-        The following commands work fine in Unix systems. Some changes will be necessary to make them work in Windows.
-  </div>
-</div>
-
 **1)** Clone OpenVidu Call repository (openvidu-webcomponent is compiled from it) and install dependencies
 
 ```bash
@@ -155,10 +146,16 @@ cd openvidu-call/openvidu-call-front
 npm install
 ```
 
-**2)** Build openvidu-webcomponent
+**2)** Build openvidu-webcomponent **(Unix systems)**
 
 ```bash
 npm run build:openvidu-webcomponent
+```
+
+**2)** Build openvidu-webcomponent **(Windows)**
+
+```bash
+npm run build-win:openvidu-webcomponent
 ```
 
 If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/){:target="_blank"}. Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
@@ -176,15 +173,6 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
 
 ## Compiling OpenVidu Angular Library
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-        The following commands work fine in Unix systems. Some changes will be necessary to make them work in Windows.
-  </div>
-</div>
-
 
 These steps build **[openvidu-angular NPM library](https://www.npmjs.com/package/openvidu-angular){:target="_blank"}** from the source code.
 
@@ -196,12 +184,17 @@ cd openvidu-call/openvidu-call-front
 npm install
 ```
 
-**2)** Build openvidu-angular library
+**2)** Build openvidu-angular library **(Unix systems)**
 
 ```bash
 npm run build:openvidu-angular
 ```
 
+**2)** Build openvidu-angular library **(Windows)**
+
+```bash
+npm run build-win:openvidu-angular
+```
 This will build openvidu-angular library into folder `openvidu-call/openvidu-call-front/dist/openvidu-angular`, being `openvidu-call/` the folder where the repository was cloned. You can pack your compilation to install it as a local NPM dependency in any application. Just run the pack command in the output path:
 
 ```bash

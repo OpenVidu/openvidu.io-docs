@@ -234,6 +234,8 @@ To do that, is necessary to declare the following **ovSettings** variable:
 var ovSettings = {
   chat: true,
   autopublish: true,
+  toolbar: true,
+  footer: true,
   toolbarButtons: {
     audio: true,
     video: true,
@@ -332,7 +334,7 @@ But you can also set them statically, for example if you are building your templ
 Besides, openvidu-webcomponent allows you to add **ovSettings** parameter statically:
 
 ```html
-<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1",               "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true,
+<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1",               "ovSettings": {"chat": true, "autopublish": true, "toolbar": true, "footer": true, "toolbarButtons": {"audio": true,
  "video": true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
 </openvidu-webcomponent>
 ```
@@ -340,7 +342,7 @@ Besides, openvidu-webcomponent allows you to add **ovSettings** parameter static
 And if you want to let the webcomponent get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
 
 ```html
-<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
+<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbar": true, "footer": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
 </openvidu-webcomponent>
 ```
 
