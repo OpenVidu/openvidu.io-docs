@@ -923,7 +923,27 @@ docker-compose logs -f
 
 #### Change log level of the services
 
-To change the level of Kurento Media Server _kms_ logs change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
+**1)** In your Media Node: update /opt/kms/.env file with these 2 lines:
+
+```bash
+KMS_DEBUG_LEVEL=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+
+GST_DEBUG=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+```
+
+**2)** In your Media Node at `/opt/kms`: 
+
+```
+./media_node restart
+```
+
+**3)** In your OpenVidu Server Pro Node at `/opt/openvidu`: 
+
+```
+./openvidu restart
+```
+
+For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
 #### Change Kurento Media Server docker image
 
