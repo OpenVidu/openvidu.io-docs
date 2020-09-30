@@ -166,7 +166,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 #### Kibana configuration
 
-Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](openvidu-pro/detailed-session-monitoring){:target="_blank"} for further information.
+Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](openvidu-pro/monitoring-elastic-stack){:target="_blank"} for further information.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">

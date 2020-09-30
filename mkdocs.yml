@@ -68,7 +68,7 @@ nav:
   - Home: openvidu-pro/index.md
   - Scalability: openvidu-pro/scalability.md
   - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
-  - Detailed session monitoring: openvidu-pro/detailed-session-monitoring.md
+  - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
   - Deployment:
     - AWS: openvidu-pro/deployment/aws.md
     - On premises: openvidu-pro/deployment/on-premises.md

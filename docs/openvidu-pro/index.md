@@ -18,7 +18,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
 
 - **[Scalability](openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
 - **[OpenVidu Inspector](openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](openvidu-pro/detailed-session-monitoring/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
+- **[Detail session monitoring](openvidu-pro/monitoring-elastic-stack/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
 
 <div style="
     display: table;

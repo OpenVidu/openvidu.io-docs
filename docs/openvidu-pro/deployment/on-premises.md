@@ -283,7 +283,7 @@ You can press `Ctrl+C` to come back to the shell and OpenVidu Pro will be execut
 - Consume [OpenVidu REST API Pro](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
 - If the [application](#videoconference-application) is enabled, it will also be available at `https://DOMAIN_OR_PUBLIC_IP/`
 - You can access [OpenVidu Inspector](openvidu-pro/openvidu-inspector/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/inspector/`
-- You can access [Kibana](openvidu-pro/detailed-session-monitoring/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/kibana/`
+- You can access [Kibana](openvidu-pro/monitoring-elastic-stack/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/kibana/`
 
 ---
 

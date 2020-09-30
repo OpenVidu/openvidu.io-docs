@@ -454,6 +454,12 @@ img.img-deploy-example {
     border: 3px solid #dddddd;
 }
 
+video.video-pro {
+    margin: auto;
+    border: 2px solid #eeeeee;
+}
+
+
 @font-face {
     font-family: 'Arciform';
     src: url('/fonts/Arciform.eot');

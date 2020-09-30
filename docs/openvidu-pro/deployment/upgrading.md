@@ -285,7 +285,7 @@ Only if you have used the [recording](advanced-features/recording/){:target="_bl
 
 ### Backup Elasticsearch data
 
-If you want to keep your [Elasticsearch data](openvidu-pro/detailed-session-monitoring/){:target="_blank"}, then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
+If you want to keep your [Elasticsearch data](openvidu-pro/monitoring-elastic-stack/){:target="_blank"}, then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
 
 #### 1) Copy existing Elasticsearch data from your old ≤2.12.0 Openvidu Server Pro Node to your new 2.13.0 OpenVidu Server Pro Node
 
