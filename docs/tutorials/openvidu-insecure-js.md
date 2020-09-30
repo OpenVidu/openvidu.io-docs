@@ -93,10 +93,10 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 This application is very simple. It has only 4 files:
 
-- `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
+- `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file.
 - `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
 - `style.css`: some CSS classes to style _index.html_. You can manipulate this file to suit your needs.
-- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
+- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files:
 
 <pre class="html-scripts">
     <code>&lt;script src="openvidu-browser-VERSION.js"&gt;&lt;/script&gt;
@@ -291,7 +291,7 @@ function leaveSession() {
 
 	session.disconnect();
 
-	// Removing all HTML elements with user's nicknames. 
+	// Removing all HTML elements with user's nicknames.
 	// HTML videos are automatically removed when leaving a Session
 	removeAllUserData();
 
@@ -369,6 +369,48 @@ function initMainVideo(videoElement, userData) {
 	document.querySelector('#main-video p').innerHTML = userData;
 	document.querySelector('#main-video video')['muted'] = true;
 }
+```
+
+## Deploy openvidu-insecure-js
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    This application <strong>must not be deployed in a production environment</strong> becasue of it's insecure (it has not backend).
+  </div>
+</div>
+
+Under the root project folder, you can see the `docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-insecure-js** docker image.
+
+**1) Run `create_image.sh` script:**
+
+```bash
+./create_image.sh
+```
+
+This script will create an image named `openvidu/openvidu-insecure-js-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/b8c8ac37cf541c2681d35ef24cd15b0f44d8c0b8/openvidu-insecure-js/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will can deploy it.
+
+**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` of your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-insecure-js-demo` on this sample).
+
+[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/dcdb9f06fdcc3bec01fbf02868446edaa6bd3a77/openvidu-insecure-js/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Classroom application.
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-insecure-js-demo:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
