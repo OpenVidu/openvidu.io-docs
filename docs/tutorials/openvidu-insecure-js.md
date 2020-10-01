@@ -382,7 +382,7 @@ function initMainVideo(videoElement, userData) {
   </div>
 </div>
 
-Under the root project folder, you can see the `docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+Under the root project folder, you can see the `openvidu-insecure-js/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
 
 First of all, you will need to create the **openvidu-insecure-js** docker image.
 
