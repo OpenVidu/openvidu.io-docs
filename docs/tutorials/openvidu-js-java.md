@@ -139,7 +139,7 @@ function logIn() {
 
 ```java
 @RequestMapping(value = "/login", method = RequestMethod.POST)
-public ResponseEntity<Object> login(@RequestBody String userPass, HttpSession httpSession) 
+public ResponseEntity<Object> login(@RequestBody String userPass, HttpSession httpSession)
 	throws ParseException {
 
 	System.out.println("Logging in | {user, pass}=" + userPass);
@@ -149,7 +149,7 @@ public ResponseEntity<Object> login(@RequestBody String userPass, HttpSession ht
 	String pass = (String) userPassJson.get("pass");
 
 	if (login(user, pass)) { // Correct user-pass
-		// Validate session and return OK 
+		// Validate session and return OK
 		// Value stored in HttpSession allows us to identify the user in future requests
 		httpSession.setAttribute("loggedUser", user);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -227,10 +227,10 @@ Rest controller method begins retrieving the param send by the client, which in 
 
 	// The video-call to connect ("TUTORIAL")
 	String sessionName = (String) sessionJSON.get("sessionName");
-	
+
 	// Role associated to this user
 	OpenViduRole role = LoginController.users.get(httpSession.getAttribute("loggedUser")).role;
-	
+
 	// Optional data to be passed to other users when this user connects to the video-call
 	// In this case, a JSON with the value we stored in the HttpSession object on login
 	String serverData = "{\"serverData\": \"" + httpSession.getAttribute("loggedUser") + "\"}";
@@ -269,7 +269,7 @@ try {
 
 	// Return the response to the client
 	return new ResponseEntity<>(responseJson, HttpStatus.OK);
-	
+
 } catch (Exception e) {
 	// If error generate an error message and return it to client
 	return getErrorResponse(e);
@@ -450,7 +450,7 @@ public ResponseEntity<JSONObject> removeUser(@RequestBody String sessionNameToke
 
 	// If the session exists ("TUTORIAL" in this case)
 	if (this.mapSessions.get(sessionName) != null && this.mapSessionNamesTokens.get(sessionName) != null) {
-		
+
 		// If the token exists and is succesfully removed
 		if (this.mapSessionNamesTokens.get(sessionName).remove(token) != null) {
 			// User left the session
@@ -479,6 +479,65 @@ When the last user leaves the session `this.mapSessions.remove(sessionName);` wi
 > At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
 >
 > The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"} or the [REST API](reference-docs/REST-API/){:target="_blank"}) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
+
+
+## Deploy openvidu-js-java
+
+#### Using the OpenVidu Dockerhub image
+
+**1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+As the [deployment docs says](https://docs.openvidu.io/en/2.15.0/deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu js-java `docker-compose-override.yml`.
+
+This is how should looks like the `docker-compose-override.yml` after be redefined:
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-basic-webinar:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - SERVER_PORT=5442
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
+```
+
+#### Creating my own docker image
+
+Under the root project folder, you can see the `openvidu-js-java/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-js-java** docker image.
+
+**1) Run `create_image.sh` script:**
+
+```bash
+./create_image.sh
+```
+
+This script will create an image named `openvidu/openvidu-basic-webinar-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-js-java/docker/create_image.sh#L5-L6). Once the openvidu-js-java image has been created, you will can deploy it.
+
+**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+The steps are exactly the same as those described above but you have to take account change the image name by your custom name (`openvidu/openvidu-basic-webinar-demo` on this sample).
+
+[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-js-java/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu js.java application.
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-basic-webinar-demo:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - SERVER_PORT=5442
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
+```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
