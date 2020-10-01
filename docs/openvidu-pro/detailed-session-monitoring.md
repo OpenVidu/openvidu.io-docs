@@ -63,9 +63,59 @@ This dashboard is aimed to show all of the information related to the cluster st
 
 #### Reviewing logs
 
-Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. To do so:
+## Reviewing logs
 
-> WORK IN PROGRESS...
+Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. All the indices which have logs from services are:
+
+- **filebeat-kurento***: Kurento Media Server logs.
+- **filebeat-coturn***: Coturn(TURN/STUN server) logs.
+- **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
+- **openvidu-logs***: OpenVidu Server logs.
+
+To search for logs you need to:
+
+<div class="row">
+    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Then go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting 'Log indices' to: 'filebeat-kurento'." href="img/docs/openvidu-pro/elastic/review-logs-2.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-2.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Add to 'Log Columns' the attributes of the index you want to see in your logs stream. In this example we're adding the attribute 'log_level' to see the type of log ('INFO', 'WARN', 'ERROR', etc...). 
+      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute 'severity' for 'openvidu-logs*' indices." href="img/docs/openvidu-pro/elastic/review-logs-3.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-3.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
+    </div>
+    <div class="slick-captions">
+      <div class="caption"><p>First of all, go to the <strong>Logs</strong> section of Kibana.</p></div>
+      <div class="caption"><p>Go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting <strong>Log indices</strong> to: <code>filebeat-kurento*</code>.</p></div>
+      <div class="caption"><p>Add to <strong>Log Columns</strong> the attributes of the index you want to see in your logs stream. In this example we're adding the attribute <code>log_level</code> to see the type of log (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, etc...). 
+      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute <code>severity</code> for <code>openvidu-logs*</code> indices.</p></div>
+      <div class="caption"><p>Enter what you want to search. You can search for literals, attribute values, etc...</div>
+    </div>
+</div>
+
+### Searching Examples
+
+- Search for a literal in Kurento Media Server logs and see the context:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
+    </div>
+</div>
+
+- Search by log level in OpenVidu Server Pro logs:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
+    </div>
+</div>
+
+- Search for logs of one specific Media Node IP:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
+    </div>
+</div>
 
 <br>
 
