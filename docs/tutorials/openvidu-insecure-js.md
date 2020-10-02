@@ -382,7 +382,7 @@ function initMainVideo(videoElement, userData) {
   </div>
 </div>
 
-Under the root project folder, you can see the `docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+Under the root project folder, you can see the `openvidu-insecure-js/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
 
 First of all, you will need to create the **openvidu-insecure-js** docker image.
 
@@ -396,9 +396,9 @@ This script will create an image named `openvidu/openvidu-insecure-js-demo:X.Y.Z
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` of your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-insecure-js-demo` on this sample).
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-insecure-js-demo` on this sample).
 
-[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/dcdb9f06fdcc3bec01fbf02868446edaa6bd3a77/openvidu-insecure-js/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Classroom application.
+[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/dcdb9f06fdcc3bec01fbf02868446edaa6bd3a77/openvidu-insecure-js/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu insecure-js application.
 
 ```
 version: '3.1'

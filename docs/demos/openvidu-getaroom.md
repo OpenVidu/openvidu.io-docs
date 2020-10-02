@@ -78,9 +78,9 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 This application is very simple. It has only 4 files:
 
-  - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
+  - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file.
   - `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
-  - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
+  - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files:
 
         <script src="openvidu-browser-VERSION.js.js"></script>
         <script src="app.js"></script>
@@ -236,12 +236,56 @@ function joinRoom() {
 function leaveRoom() {
 
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
-	
+
 	session.disconnect();
 
 	// Back to welcome page
 	window.location.href = window.location.origin + window.location.pathname;
 }
+```
+
+## Deploy openvidu-getaroom
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    This application <strong>must not be deployed in a production environment</strong> becasue of it's insecure (it has not backend).
+  </div>
+</div>
+
+Under the root project folder, you can see the `openvidu-getaroom/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-getaroom** docker image.
+
+**1) Run `create_image.sh` script:**
+
+```bash
+./create_image.sh
+```
+
+This script will create an image named `openvidu/openvidu-getaroom-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/83ad2c0832362f94e94d88ca77df7ff0c572a2eb/openvidu-getaroom/docker/create_image.sh#L4-L5).
+
+Once the openvidu-classrom image has been created, you will can deploy it.
+
+**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-getaroom-demo` on this sample).
+
+[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/83ad2c0832362f94e94d88ca77df7ff0c572a2eb/openvidu-getaroom/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Getaroom application.
+
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-getaroom-demo:2.15.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
