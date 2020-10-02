@@ -897,6 +897,10 @@ div.lang-tabs-container {
     margin-top: 25px;
 }
 
+div.lang-tabs-container.kibana-user-post {
+    margin-top: 0px;
+}
+
 div.lang-tabs-container div.lang-tabs-header {
     width: 100%;
     display: flex;

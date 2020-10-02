@@ -13,7 +13,9 @@
     - [Examples of managed Elastic Stack services](#examples-of-managed-elastic-stack-services)
         - [Elastic Stack in AWS with OpenVidu Pro configuration](#elastic-stack-in-aws-with-openvidu-pro-configuration)
         - [Elastic Stack in Elastic Cloud with OpenVidu Pro configuration](#elastic-stack-in-elastic-cloud-with-openvidu-pro-configuration)
-    - [Create fine-grained user](#create-fine-grained-user)
+    - [Create a fine-grained user](#create-a-fine-grained-user)
+        - [Create a fine-grained user using Kibana UI](#create-a-fine-grained-user-using-kibana-ui)
+        - [Create a fine-grained user using Elastic Stack REST API](#create-a-fine-grained-user-using-elastic-stack-rest-api)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 
 ---
@@ -174,7 +176,7 @@ OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com:443
 OPENVIDU_PRO_KIBANA_HOST=https://elk.example.com:443/kibana
 ```
 
-If you have configured a user in your Elastic Stack, you need to specify it also in your `/opt/openvidu/.env`. Only basic auth is supported, which is used by Elastic Stack in their Basic License and is free to use. You need to modify these properties:
+If you have configured an user in your Elastic Stack, you need to specify it also in your `/opt/openvidu/.env`. Only basic auth is supported, which is used by Elastic Stack in their Basic License and is free to use. You need to modify these properties:
 
 ```
 ELASTICSEARCH_USERNAME=<YOUR_ELK_USER>
@@ -184,7 +186,7 @@ ELASTICSEARCH_PASSWORD=<YOUR_ELK_USER_PASSWORD>
 Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
 
 > - Managed Users by [OpenDistro Elastic Stack](https://opendistro.github.io/for-elasticsearch/) are compatible too. This is the distribution of Elastic Stack used by AWS.
-> - You can see how to create a **fine-grained** user for OpenVidu in this **[section](#create-fine-grained-user)**
+> - You can see how to create a **fine-grained** user for OpenVidu in this **[section](#create-a-fine-grained-user)**
 
 ### Examples of managed Elastic Stack services
 
@@ -236,7 +238,7 @@ Where:
 Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
 
 > - Note that you need to specify port 443 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`.
-> - you can [create a fine-grained user](#create-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
+> - You can [create a fine-grained user](#create-a-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
 
 #### Elastic Stack in Elastic Cloud with OpenVidu Pro configuration
 
@@ -279,11 +281,13 @@ Remember that any change you do in `/opt/openvidu/.env` will require you to rest
 
 > - Note that you need to specify port 9243 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`. But you can also use port 443, Elastic Cloud has configured both ports for both URLs.
 > - `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST` use the same https port, but both urls has a different subdomain associated.
-> - You can [create a fine-grained user](#create-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
+> - You can [create a fine-grained user](#create-a-fine-grained-user) to let OpenVidu access to specific resources of Elasticsearch and Kibana
 
-### Create fine-grained user
+### Create a fine-grained user
 
-Configuring an user with all the privileges is not secure. To accomplish better security in your Elastic Stack cluster we will create an role and a user prepared to be used by OpenVidu Server Pro.
+Configuring an user with all the privileges is not secure. To accomplish better security in your Elastic Stack cluster we will create a role and an user prepared to be used by OpenVidu Server Pro.
+
+#### Create a fine-grained user using Kibana UI
 
 <div class="row">
     <div class="pro-gallery-steps-fine-grained" style="margin: 25px 35px 25px 35px">
@@ -314,6 +318,114 @@ Configuring an user with all the privileges is not secure. To accomplish better 
     </div>
 </div>
 
+After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
+```
+ELASTICSEARCH_USERNAME=<USER_NAME>
+ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
+```
+
+#### Create a fine-grained user using Elastic Stack REST API
+
+If you want to create a role and an user without using the UI you can create both by using REST API requests.
+
+1. First you need to create a role using the name you want by calling Kibana REST API.
+2. Secondly, create an user which will use the role created before by calling Elasticsearch REST API.
+
+You can see an example of both HTTP requests here:
+<div>
+
+<div class="monitoring-div">
+
+<div class="lang-tabs-container kibana-user-post elastic-events version-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">Create Role</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Create User</button>
+</div>
+
+<div id="create-role" class="lang-tabs-content" markdown="1">
+<ul>
+  <li><p><code>ROLE_NAME</code>: Name that you want for the role you are creating</p></li>
+</ul>
+```html
+$ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
+{
+   "elasticsearch":{
+      "cluster":[
+         "monitor",
+         "manage_ilm",
+         "manage_pipeline",
+         "manage_ingest_pipelines",
+         "manage_index_templates"
+      ],
+      "indices":[
+         {
+            "names":[
+               "metricbeat*",
+               "openvidu",
+               "openvidu-logs*",
+               "filebeat*"
+            ],
+            "privileges":[
+               "create_doc",
+               "create_index",
+               "manage",
+               "read",
+               "write",
+               "manage_ilm"
+            ]
+         }
+      ],
+      "run_as":[
+
+      ]
+   },
+   "kibana":[
+      {
+         "spaces":[
+            "default"
+         ],
+         "base":[
+
+         ],
+         "feature":{
+            "savedObjectsManagement":[
+               "all"
+            ]
+         }
+      }
+   ]
+}
+'
+```
+</div>
+
+<div id="create-user" class="lang-tabs-content" style="display:none" markdown="1">
+<ul>
+  <li><p><code>USER_NAME</code>: Name for the user you are creating</p></li>
+  <li><p><code>USER_PASSWORD</code>: Password for the user you are creating</p></li>
+  <li><p><code>ROLE_NAME</code>: Name of the role created before</p></li>
+</ul>
+```html
+$ curl -X POST "localhost:9200/_security/user/<USER_NAME>?pretty" -H 'Content-Type: application/json' -d'
+{
+  "password" : "<USER_PASSWORD>",
+  "roles" : [ "<ROLE_NAME>" ]        
+}                                
+'
+```
+</div>
+</div>
+</div>
+</div>
+<br>
+
+After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
+```
+ELASTICSEARCH_USERNAME=<USER_NAME>
+ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
+```
+
 ## Creating your own visualizations and dashboards
 
 The dashboards presented above, by default included in OpenVidu Pro, are just an example of what can be done thanks to Kibana. You can create your own visualizations, and set up your very own dashboards with them. To do so, you have available multiple events that OpenVidu Pro periodically stores in Elasticsearch, and you can then use them in Kibana to compose different types of graphs and other useful visual representations.
@@ -338,7 +450,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
 - `sessionSummary`: summary of a session, stored once it is closed
 - `recordingSummary`: summary of a recording, stored once its session is closed
-- `userSummary`: summary of a user, stored once its session is closed
+- `userSummary`: summary of an user, stored once its session is closed
 - `connectionSummary`: summary of a connection, stored once its session is closed
 - `publisherSummary`: summary of a publisher, stored once its session is closed
 - `subscriberSummary`: summary of a subscriber, stored once its session is closed
