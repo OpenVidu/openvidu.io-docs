@@ -567,18 +567,18 @@ video.video-pro {
     background-color: transparent;
 }
 
-.slick-captions {
+.slick-captions-text {
     margin-top: 43px;
 }
 
-.slick-captions .caption {
+.slick-captions-text .caption {
     display: flex !important;
     justify-content: center;
     align-items: center;
     outline: none;
 }
 
-.slick-captions .caption p {
+.slick-captions-text .caption p {
     color: #4c4c4c;
 }
 
