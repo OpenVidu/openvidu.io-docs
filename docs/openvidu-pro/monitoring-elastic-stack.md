@@ -1,11 +1,17 @@
 <h2 id="section-title">Monitoring - Elastic Stack</h2>
-<hr>
 
+<p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
+OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blank">Elastic Stack</a>. Events and monitoring stats are sent to <a href="https://www.elastic.co/elasticsearch/" target="_blank">Elasticsearch</a> and can be visualized through <a href="https://www.elastic.co/kibana/" target="_blank">Kibana</a>.
+</p>
+
+---
+
+- **[Accessing Kibana](#accessing-kibana)**
 - **[Kibana Dashboards](#kibana-dashboards)**
     - [OpenVidu Session Dashboard](#openvidu-sessions-dashboard)
     - [OpenVidu Recordings dashboard](#openvidu-recordings-dashboard)
     - [OpenVidu Clustering dashboard](#openvidu-clustering-dashboard)
-- **[Accessing Kibana](#accessing-integrated-kibana)**
+- **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
     - [Log Search Examples](#searching-examples)
 - **[Configuring an external Elastic Stack](#configuring-an-external-elastic-stack)**
@@ -16,14 +22,21 @@
     - [Create a fine-grained user](#create-a-fine-grained-user)
         - [Create a fine-grained user using Kibana UI](#create-a-fine-grained-user-using-kibana-ui)
         - [Create a fine-grained user using Elastic Stack REST API](#create-a-fine-grained-user-using-elastic-stack-rest-api)
-- **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 
 ---
 
-<p style="font-size: 18px; color: #7a7a7a; margin-top: 30px; padding: 4px;">
-OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blank">Elastic Stack</a>. Events and monitoring stats are sent to <a href="https://www.elastic.co/elasticsearch/" target="_blank">Elasticsearch</a> and can be visualized through <a href="https://www.elastic.co/kibana/" target="_blank">Kibana</a>.
-</p>
+## Accessing Kibana
 
+OpenVidu Pro offers two different web dashboards:
+
+- Access OpenVidu Inspector through **`https://DOMAIN_OR_PUBLIC_IP/inspector`**
+- Access Kibana through **`https://DOMAIN_OR_PUBLIC_IP/kibana`**
+
+The Elastic Stack deployed with OpenVidu is secured with Basic Auth by default. When connecting to it for the first time you will have to enter the user and password specified when deploying OpenVidu Pro.
+
+<br>
+
+---
 
 ## Kibana Dashboards
 
@@ -58,8 +71,6 @@ All in all, this information will help you understand better the behavior and pe
     </div>
 </div>
 
----
-
 ### OpenVidu Recordings dashboard
 
 This dashboard presents at a glance the status of your recordings. It includes information such as:
@@ -77,8 +88,6 @@ This dashboard presents at a glance the status of your recordings. It includes i
     </div>
 </div>
 
----
-
 ### OpenVidu Clustering dashboard
 
 This dashboard is aimed to show all of the information related to the cluster status and behavior over time. Right now it allows you to inspect the CPU load of each one of your Media Nodes over time.
@@ -89,342 +98,9 @@ This dashboard is aimed to show all of the information related to the cluster st
     </div>
 </div>
 
-## Accessing integrated Kibana
-
-OpenVidu Pro serves Kibana through path **/kibana**. So, if you have deployed OpenVidu Pro with domain **my.domain.com**, you will be able to access OpenVidu Inspector through **https://my.domain.com/inspector** and Kibana through **https://my.domain.com/kibana**
-
-The Elastic Stack deployed with OpenVidu is secured with Basic Auth by default. When connecting to it for the first time you will have to enter the user and password specified when deploying OpenVidu Pro.
-
 <br>
 
 ---
-
-## Reviewing logs
-
-Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. All the indices which have logs from services are:
-
-- **filebeat-kurento***: Kurento Media Server logs.
-- **filebeat-coturn***: Coturn(TURN/STUN server) logs.
-- **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
-- **openvidu-logs***: OpenVidu Server logs.
-
-To search for logs you need to:
-
-<div class="row">
-    <div class="pro-gallery-steps-logs" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Then go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting 'Log indices' to: 'filebeat-kurento'." href="img/docs/openvidu-pro/elastic/review-logs-2.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-2.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Add to 'Log Columns' the attributes of the index you want to see in your logs stream. In this example we're adding the attribute 'log_level' to see the type of log ('INFO', 'WARN', 'ERROR', etc...). 
-      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute 'severity' for 'openvidu-logs*' indices." href="img/docs/openvidu-pro/elastic/review-logs-3.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-3.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
-    </div>
-    <div class="slick-captions-text slick-captions-logs">
-      <div class="caption"><p>First of all, go to the <strong>Logs</strong> section of Kibana.</p></div>
-      <div class="caption"><p>Go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting <strong>Log indices</strong> to: <code>filebeat-kurento*</code>.</p></div>
-      <div class="caption"><p>Add to <strong>Log Columns</strong> the attributes of the index you want to see in your logs stream. In this example we're adding the attribute <code>log_level</code> to see the type of log (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, etc...). 
-      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute <code>severity</code> for <code>openvidu-logs*</code> indices.</p></div>
-      <div class="caption"><p>Enter what you want to search. You can search for literals, attribute values, etc...</div>
-    </div>
-</div>
-
-### Searching Examples
-
-- Search for a literal in Kurento Media Server logs and see the context:
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
-    </div>
-</div>
-
-- Search by log level in OpenVidu Server Pro logs:
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
-    </div>
-</div>
-
-- Search for logs of one specific Media Node IP:
-
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
-    </div>
-</div>
-
-<br>
-
----
-
-## Configuring an external Elastic Stack
-
-An external ELK can be configured with and without security.
-
-| OpenVidu Version  | AWS Elasticsearch Service |  Elastic Cloud         | Elastic Stack On premises |
-|-------------------|---------------------------|------------------------|---------------------------|
-| <= 2.15.0         | -                         | -                      | -                         |
-| 2.16.0            | >= 7.3.0                  | >= 7.3.0               | >= 7.3.0                  |
-
-### OpenVidu Pro Configuration for external Elastic Stack
-
-If you have an external Elastic Stack configured without security, you only need to specify these properties in the `/opt/openvidu/.env` file
-of your OpenVidu Pro Node. These properties are urls that need to have specified a port, even if it is port 80 or 443. For example:
-
-```html
-OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com:443
-OPENVIDU_PRO_KIBANA_HOST=https://elk.example.com:443/kibana
-```
-
-If you have configured an user in your Elastic Stack, you need to specify it also in your `/opt/openvidu/.env`. Only basic auth is supported, which is used by Elastic Stack in their Basic License and is free to use. You need to modify these properties:
-
-```
-ELASTICSEARCH_USERNAME=<YOUR_ELK_USER>
-ELASTICSEARCH_PASSWORD=<YOUR_ELK_USER_PASSWORD>
-```
-
-Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
-
-> - Managed Users by [OpenDistro Elastic Stack](https://opendistro.github.io/for-elasticsearch/) are compatible too. This is the distribution of Elastic Stack used by AWS.
-> - You can see how to create a **fine-grained** user for OpenVidu in this **[section](#create-a-fine-grained-user)**
-
-### Examples of managed Elastic Stack services
-
-Any deployed Elastic Stack can be used, but to give a clear guide on how to configure an external Elastic Stack, we will explain [how to configure a Managed one in AWS](#elastic-stack-in-aws-with-openvidu-pro-configuration) and in [Elastic Cloud](#elastic-stack-in-elastic-cloud-with-openvidu-pro-configuration).
-
-#### Elastic Stack in AWS with OpenVidu Pro configuration
-
-In the next section you will see how to configure a Managed Elastic Stack in AWS and how to configure it for OpenVidu:
-
-<div class="row">
-    <div class="pro-gallery-steps-elkaws" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro10" data-caption="First you need to go to the 'Elasticsearch Service' in your AWS Account" href="img/docs/openvidu-pro/elastic/aws_elk_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_1.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select: 'Create new Domain'" href="img/docs/openvidu-pro/elastic/aws_elk_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_2.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Choose the 'Deployment Type' you want" href="img/docs/openvidu-pro/elastic/aws_elk_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_3.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="After that you can configure your ELK as you want until security configuration, which is explained in the next steps" href="img/docs/openvidu-pro/elastic/aws_elk_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_4.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Check 'Enable fine-grained access control' and select 'Create master user'. This user will have super user privileges but you can create after that an user with only necessary privileges." href="img/docs/openvidu-pro/elastic/aws_elk_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_5.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_6.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_7.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Get the 'Endpoint' and 'Kibana' URLs, which will be used in our OpenVidu Pro configuration" href="img/docs/openvidu-pro/elastic/aws_elk_8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_8.png"/></a>
-    </div>
-    <div class="slick-captions-text slick-captions-elkaws">
-      <div class="caption"><p>First you need to go to the <strong>Elasticsearch Service</strong> in your AWS Account.</p></div>
-      <div class="caption"><p>Select: <strong>Create new Domain</strong>.</p></div>
-      <div class="caption"><p>Choose the <strong>Deployment Type</strong> you want.</p></div>
-      <div class="caption"><p>After that you can configure your ELK as you want until security configuration, which is explained in the next steps.</p></div>
-      <div class="caption"><p>Check <strong>Enable fine-grained access control</strong> and select <strong>Create master user</strong>. This user will have super user privileges but you can create after that an user with only necessary privileges.</p></div>
-      <div class="caption"><p>Select <strong>Allow open access to the domain</strong>.</p></div>
-      <div class="caption"><p>Click <strong>Next</strong> and <strong>Confirm</strong> and you're cluster will be created in a matter of seconds.</p></div>
-      <div class="caption"><p>Get the <strong>Endpoint</strong> and <strong>Kibana</strong> URLs, which will be used in our OpenVidu Pro configuration</p></div>
-    </div>
-</div>
-
-When the **Domain Status** of your Elasticsearch cluster is ready, let's configure OpenVidu Pro to use it. You will need to modify `/opt/openvidu/.env` and add into this file the **username**, **password**, **Domain Endpoint** and **Kibana** URL from previous steps. The `.env` file must have this parameters:
-
-```html
-OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.es.amazonaws.com:443
-OPENVIDU_PRO_KIBANA_HOST=https://xxxxxxxx.es.amazonaws.com:443/_plugin/kibana/
-ELASTICSEARCH_USERNAME=<YOUR_USERNAME>
-ELASTICSEARCH_PASSWORD=<YOUR_PASSWORD>
-```
-
-Where:
-
-- `OPENVIDU_PRO_ELASTICSEARCH_HOST`: The **Domain Endpoint** URL visible in the Elasticsearch panel of AWS.
-- `OPENVIDU_PRO_KIBANA_HOST`: The **Kibana** URL also visible in the Elasticsearch panel of AWS.
-- `ELASTICSEARCH_USERNAME`: The master user you have created in previous steps.
-- `ELASTICSEARCH_PASSWORD`: The master password you have created in previous steps.
-
-Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
-
-> - Note that you need to specify port 443 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`.
-> - You can [create a fine-grained user](#create-a-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
-
-#### Elastic Stack in Elastic Cloud with OpenVidu Pro configuration
-
-In this section you will see how to configure a Managed Elastic Stack in Elastic Cloud (The official Elastic Stack as a Service) and how to configure it for OpenVidu:
-
-<div class="row">
-    <div class="pro-gallery-steps-elastic-cloud" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro11" data-caption="First of all, click on 'Create deployment'" href="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Select: 'Elastic Stack'." href="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Configure your Elastic Stack as you want and click 'Create deployment'." href="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Get the 'Username' and 'Password' generated by Elastic Cloud. This user will have super user privileges but you can create after that an user with only necessary privileges." href="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="When the deployment is ready, get the 'Elasticsearch endpoint' and 'Kibana endpoint' to use it for OpenVidu Pro." href="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"/></a>
-    </div>
-    <div class="slick-captions-text slick-captions-elastic-cloud">
-      <div class="caption"><p>First of all, click on <strong>Create deployment</strong>.</p></div>
-      <div class="caption"><p>Select: <strong>Elastic Stack</strong>.</p></div>
-      <div class="caption"><p>Configure your Elastic Stack as you want and click <strong>Create deployment</strong>.</p></div>
-      <div class="caption"><p>Get the <strong>Username</strong> and <strong>password</strong> generated by Elastic Cloud. This user will have super user privileges but you can create after that an user with only necessary privileges.</p></div>
-      <div class="caption"><p>When the deployment is ready, get the <strong>Elasticsearch endpoint</strong> and <strong>Kibana endpoint</strong> to use it for OpenVidu Pro.</p></div>
-    </div>
-</div>
-
-When the cluster is ready, let's configure OpenVidu Pro to use it. You will need to modify `/opt/openvidu/.env` and add into this file the **Username** and **Password** generated by Elastic Cloud and your **ElasticSearch** and **Kibana** endpoint URLs. The `.env` file must have this parameters:
-
-```html
-OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.elastic-cloud.com:9243/
-OPENVIDU_PRO_KIBANA_HOST=https://yyyyyyyy.elastic-cloud.com:9243
-ELASTICSEARCH_USERNAME=<YOUR_USERNAME>
-ELASTICSEARCH_PASSWORD=<YOUR_PASSWORD>
-```
-
-Where:
-
-- `OPENVIDU_PRO_ELASTICSEARCH_HOST`: The **Domain Endpoint** URL visible in the Elastic Cloud panel.
-- `OPENVIDU_PRO_KIBANA_HOST`: The **Kibana** URL visible in the Elastic Cloud panel.
-- `ELASTICSEARCH_USERNAME`: The master user generated by Elastic Cloud.
-- `ELASTICSEARCH_PASSWORD`: The master password generated by Elastic Cloud.
-
-Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
-
-> - Note that you need to specify port 9243 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`. But you can also use port 443, Elastic Cloud has configured both ports for both URLs.
-> - `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST` use the same https port, but both urls has a different subdomain associated.
-> - You can [create a fine-grained user](#create-a-fine-grained-user) to let OpenVidu access to specific resources of Elasticsearch and Kibana
-
-### Create a fine-grained user
-
-Configuring an user with all the privileges is not secure. To accomplish better security in your Elastic Stack cluster we will create a role and an user prepared to be used by OpenVidu Server Pro.
-
-#### Create a fine-grained user using Kibana UI
-
-<div class="row">
-    <div class="pro-gallery-steps-fine-grained" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro12" data-caption="First of all, go to the 'Stack Management' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="In the 'Stack Management' section, go to 'Roles'." href="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Add into the role the 'Cluster privileges' and 'Indices privileges' specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu." href="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Add Space privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Select 'Default' space and 'Custom Privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Select 'All' in 'Saved Objects Management'. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations." href="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="" href="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="After the role is created, go to 'Users' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Configure an 'Username' and a 'Password' and the 'Role' created before. Then just click on  'Create User' button" href="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"/></a>
-    </div>
-    <div class="slick-captions-text slick-captions-fine-grained">
-      <div class="caption"><p>First of all, go to the <strong>Stack Management</strong> section.</p></div>
-      <div class="caption"><p>In the <strong>Stack Management</strong> section, go to <strong>Roles</strong>.</p></div>
-      <div class="caption"><p>Click on <strong>Create role</strong> button.</p></div>
-      <div class="caption"><p>Add into the role the <strong>Cluster privileges</strong> and <strong>Indices privileges</strong> specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu.</p></div>
-      <div class="caption"><p>Click on <strong>Add Space privilege.</strong></p></div>
-      <div class="caption"><p>Select <strong>Default</strong> space and <strong>Custom Privilege</strong>.</p></div>
-      <div class="caption"><p>Select <strong>All</strong> in <strong>Saved Objects Management</strong>. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations.</p></div>
-      <div class="caption"><p>Click on <strong>Create role</strong> button.</p></div>
-      <div class="caption"><p>After the role is created, go to <strong>Users</strong> section.</p></div>
-      <div class="caption"><p>Click on <strong>Create User</strong> button.</p></div>
-      <div class="caption"><p>Configure an <strong>Username</strong> and a <strong>Password</strong> and the <strong>Role</strong> created before. Then just click on  <strong>Create User</strong> button.</p></div>
-    </div>
-</div>
-
-After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
-```
-ELASTICSEARCH_USERNAME=<USER_NAME>
-ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
-```
-
-#### Create a fine-grained user using Elastic Stack REST API
-
-If you want to create a role and an user without using the UI you can create both by using REST API requests.
-
-1. First you need to create a role using the name you want by calling Kibana REST API.
-2. Secondly, create an user which will use the role created before by calling Elasticsearch REST API.
-
-You can see an example of both HTTP requests here:
-<div>
-
-<div class="monitoring-div">
-
-<div class="lang-tabs-container kibana-user-post elastic-events version-container" markdown="1">
-
-<div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">Create Role</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Create User</button>
-</div>
-
-<div id="create-role" class="lang-tabs-content" markdown="1">
-<ul>
-  <li><p><code>ROLE_NAME</code>: Name that you want for the role you are creating</p></li>
-</ul>
-```html
-$ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
-{
-   "elasticsearch":{
-      "cluster":[
-         "monitor",
-         "manage_ilm",
-         "manage_pipeline",
-         "manage_ingest_pipelines",
-         "manage_index_templates"
-      ],
-      "indices":[
-         {
-            "names":[
-               "metricbeat*",
-               "openvidu",
-               "openvidu-logs*",
-               "filebeat*"
-            ],
-            "privileges":[
-               "create_doc",
-               "create_index",
-               "manage",
-               "read",
-               "write",
-               "manage_ilm"
-            ]
-         }
-      ],
-      "run_as":[
-
-      ]
-   },
-   "kibana":[
-      {
-         "spaces":[
-            "default"
-         ],
-         "base":[
-
-         ],
-         "feature":{
-            "savedObjectsManagement":[
-               "all"
-            ]
-         }
-      }
-   ]
-}
-'
-```
-</div>
-
-<div id="create-user" class="lang-tabs-content" style="display:none" markdown="1">
-<ul>
-  <li><p><code>USER_NAME</code>: Name for the user you are creating</p></li>
-  <li><p><code>USER_PASSWORD</code>: Password for the user you are creating</p></li>
-  <li><p><code>ROLE_NAME</code>: Name of the role created before</p></li>
-</ul>
-```html
-$ curl -X POST "localhost:9200/_security/user/<USER_NAME>?pretty" -H 'Content-Type: application/json' -d'
-{
-  "password" : "<USER_PASSWORD>",
-  "roles" : [ "<ROLE_NAME>" ]        
-}                                
-'
-```
-</div>
-</div>
-</div>
-</div>
-<br>
-
-After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
-```
-ELASTICSEARCH_USERNAME=<USER_NAME>
-ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
-```
 
 ## Creating your own visualizations and dashboards
 
@@ -450,7 +126,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
 - `sessionSummary`: summary of a session, stored once it is closed
 - `recordingSummary`: summary of a recording, stored once its session is closed
-- `userSummary`: summary of an user, stored once its session is closed
+- `userSummary`: summary of a user, stored once its session is closed
 - `connectionSummary`: summary of a connection, stored once its session is closed
 - `publisherSummary`: summary of a publisher, stored once its session is closed
 - `subscriberSummary`: summary of a subscriber, stored once its session is closed
@@ -902,6 +578,337 @@ You can create powerful visualizations and dashboards by using these documents. 
 </div>
 
 > The example above is a very simple visualization, but you can apply any metric to any property (or set of properties) of any event (or set of events). You can explore pre-existing visualizations included by default in OpenVidu Pro, and for further info visit **[Kibana docs](https://www.elastic.co/guide/en/kibana/current/visualize.html){:target="_blank"}**
+
+<br>
+
+---
+
+## Reviewing logs
+
+Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. All the indexes which have logs from services are:
+
+- **filebeat-kurento***: Kurento Media Server logs.
+- **filebeat-coturn***: Coturn(TURN/STUN server) logs.
+- **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
+- **openvidu-logs***: OpenVidu Server logs.
+
+To search for logs you need to:
+
+<div class="row">
+    <div class="pro-gallery-steps-logs" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Then go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting 'Log indexes' to: 'filebeat-kurento'." href="img/docs/openvidu-pro/elastic/review-logs-2.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-2.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Add to 'Log Columns' the attributes of the index you want to see in your logs stream. In this example we're adding the attribute 'log_level' to see the type of log ('INFO', 'WARN', 'ERROR', etc...). 
+      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute 'severity' for 'openvidu-logs*' indexes." href="img/docs/openvidu-pro/elastic/review-logs-3.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-3.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions-logs">
+      <div class="caption"><p>First of all, go to the <strong>Logs</strong> section of Kibana.</p></div>
+      <div class="caption"><p>Go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting <strong>Log indexes</strong> to: <code>filebeat-kurento*</code>.</p></div>
+      <div class="caption"><p>Add to <strong>Log Columns</strong> the attributes of the index you want to see in your logs stream. In this example we're adding the attribute <code>log_level</code> to see the type of log (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, etc...). 
+      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute <code>severity</code> for <code>openvidu-logs*</code> indexes.</p></div>
+      <div class="caption"><p>Enter what you want to search. You can search for literals, attribute values, etc...</div>
+    </div>
+</div>
+
+### Searching Examples
+
+- Search for a literal in Kurento Media Server logs and see the context:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
+    </div>
+</div>
+
+- Search by log level in OpenVidu Server Pro logs:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
+    </div>
+</div>
+
+- Search for logs of one specific Media Node IP:
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
+    </div>
+</div>
+
+<br>
+
+---
+
+## Configuring an external Elastic Stack
+
+An external Elastic Stack can be configured with and without security. The table below shows a compatibility table between versions of OpenVidu Pro and external Elastic providers.
+
+| OpenVidu Pro version | [AWS Elasticsearch Service](https://aws.amazon.com/elasticsearch-service/){:target="_blank"} | [Elastic Cloud](https://www.elastic.co/cloud/){:target="_blank"} | Your own Elastic Stack on premises |
+|------------------|---------------------------|----------------|---------------------------|
+| ≤ 2.15.0         | -                         | -              | -                         |
+| 2.16.0           | ≥ 7.3.0                   | ≥ 7.3.0        | ≥ 7.3.0                   |
+
+### OpenVidu Pro Configuration for external Elastic Stack
+
+If you have an external Elastic Stack configured without security, you only need to specify these properties in the `/opt/openvidu/.env` file
+of your OpenVidu Server Pro Node. These properties are URLs that need to have specified a port, even if it is port 80 or 443. For example:
+
+```html
+OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com:443
+OPENVIDU_PRO_KIBANA_HOST=https://elk.example.com:443/kibana
+```
+
+If you have configured a user in your Elastic Stack, you need to also specify it in your `/opt/openvidu/.env`. Only Basic Auth is supported, which is used by Elastic Stack in their Basic License and is free to use. You need to modify these properties:
+
+```
+ELASTICSEARCH_USERNAME=<YOUR_ELK_USER>
+ELASTICSEARCH_PASSWORD=<YOUR_ELK_USER_PASSWORD>
+```
+
+Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server Pro. Just execute `./openvidu restart` in `/opt/openvidu`.
+
+> - Managed Users by [OpenDistro Elastic Stack](https://opendistro.github.io/for-elasticsearch/) are compatible too. This is the distribution of Elastic Stack used by AWS.
+> - You can see how to create a **fine-grained** user for OpenVidu in this **[section](#create-a-fine-grained-user)**
+
+### Examples of managed Elastic Stack services
+
+Any deployed Elastic Stack can be used, but to give a clear guide on how to configure an external Elastic Stack, we will explain how to configure a managed one [in AWS](#elastic-stack-in-aws-with-openvidu-pro-configuration) and [in Elastic Cloud](#elastic-stack-in-elastic-cloud-with-openvidu-pro-configuration).
+
+#### Elastic Stack in AWS with OpenVidu Pro configuration
+
+In the next section you will see how to configure a Managed Elastic Stack in AWS and how to configure it for OpenVidu:
+
+<div class="row">
+    <div class="pro-gallery-steps-elkaws" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro10" data-caption="First you need to go to the 'Elasticsearch Service' in your AWS Account" href="img/docs/openvidu-pro/elastic/aws_elk_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_1.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select: 'Create new Domain'" href="img/docs/openvidu-pro/elastic/aws_elk_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_2.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Choose the 'Deployment Type' you want" href="img/docs/openvidu-pro/elastic/aws_elk_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_3.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="After that you can configure your ELK as you want until security configuration, which is explained in the next steps" href="img/docs/openvidu-pro/elastic/aws_elk_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_4.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Check 'Enable fine-grained access control' and select 'Create master user'. This user will have super user privileges but you can create after that a user with only necessary privileges." href="img/docs/openvidu-pro/elastic/aws_elk_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_5.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_6.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_7.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Get the 'Endpoint' and 'Kibana' URLs, which will be used in our OpenVidu Pro configuration" href="img/docs/openvidu-pro/elastic/aws_elk_8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_8.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions-elkaws">
+      <div class="caption"><p>First you need to go to the <strong>Elasticsearch Service</strong> in your AWS Account.</p></div>
+      <div class="caption"><p>Select: <strong>Create new Domain</strong>.</p></div>
+      <div class="caption"><p>Choose the <strong>Deployment Type</strong> you want.</p></div>
+      <div class="caption"><p>After that you can configure your ELK as you want until security configuration, which is explained in the next steps.</p></div>
+      <div class="caption"><p>Check <strong>Enable fine-grained access control</strong> and select <strong>Create master user</strong>. This user will have super user privileges but you can create after that a user with only necessary privileges.</p></div>
+      <div class="caption"><p>Select <strong>Allow open access to the domain</strong>.</p></div>
+      <div class="caption"><p>Click <strong>Next</strong> and <strong>Confirm</strong> and you're cluster will be created in a matter of seconds.</p></div>
+      <div class="caption"><p>Get the <strong>Endpoint</strong> and <strong>Kibana</strong> URLs, which will be used in our OpenVidu Pro configuration</p></div>
+    </div>
+</div>
+
+When the **Domain Status** of your Elasticsearch cluster is ready, let's configure OpenVidu Pro to use it. You will need to modify `/opt/openvidu/.env` and add into this file the **username**, **password**, **Domain Endpoint** and **Kibana** URL from previous steps. The `.env` file must have this parameters:
+
+```html
+OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.es.amazonaws.com:443
+OPENVIDU_PRO_KIBANA_HOST=https://xxxxxxxx.es.amazonaws.com:443/_plugin/kibana/
+ELASTICSEARCH_USERNAME=<YOUR_USERNAME>
+ELASTICSEARCH_PASSWORD=<YOUR_PASSWORD>
+```
+
+Where:
+
+- `OPENVIDU_PRO_ELASTICSEARCH_HOST`: The **Domain Endpoint** URL visible in the Elasticsearch panel of AWS.
+- `OPENVIDU_PRO_KIBANA_HOST`: The **Kibana** URL also visible in the Elasticsearch panel of AWS.
+- `ELASTICSEARCH_USERNAME`: The master user you have created in previous steps.
+- `ELASTICSEARCH_PASSWORD`: The master password you have created in previous steps.
+
+Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
+
+> - Note that you need to specify port 443 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`.
+> - You can [create a fine-grained user](#create-a-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
+
+#### Elastic Stack in Elastic Cloud with OpenVidu Pro configuration
+
+In this section you will see how to configure a Managed Elastic Stack in Elastic Cloud (The official Elastic Stack as a Service) and how to configure it for OpenVidu:
+
+<div class="row">
+    <div class="pro-gallery-steps-elastic-cloud" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro11" data-caption="First of all, click on 'Create deployment'" href="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Select: 'Elastic Stack'." href="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Configure your Elastic Stack as you want and click 'Create deployment'." href="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Get the 'Username' and 'Password' generated by Elastic Cloud. This user will have super user privileges but you can create after that a user with only necessary privileges." href="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="When the deployment is ready, get the 'Elasticsearch endpoint' and 'Kibana endpoint' to use it for OpenVidu Pro." href="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions-elastic-cloud">
+      <div class="caption"><p>First of all, click on <strong>Create deployment</strong>.</p></div>
+      <div class="caption"><p>Select: <strong>Elastic Stack</strong>.</p></div>
+      <div class="caption"><p>Configure your Elastic Stack as you want and click <strong>Create deployment</strong>.</p></div>
+      <div class="caption"><p>Get the <strong>Username</strong> and <strong>password</strong> generated by Elastic Cloud. This user will have super user privileges but you can create after that a user with only necessary privileges.</p></div>
+      <div class="caption"><p>When the deployment is ready, get the <strong>Elasticsearch endpoint</strong> and <strong>Kibana endpoint</strong> to use it for OpenVidu Pro.</p></div>
+    </div>
+</div>
+
+When the cluster is ready, let's configure OpenVidu Pro to use it. You will need to modify `/opt/openvidu/.env` and add into this file the **Username** and **Password** generated by Elastic Cloud and your **ElasticSearch** and **Kibana** endpoint URLs. The `.env` file must have this parameters:
+
+```html
+OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.elastic-cloud.com:9243/
+OPENVIDU_PRO_KIBANA_HOST=https://yyyyyyyy.elastic-cloud.com:9243
+ELASTICSEARCH_USERNAME=<YOUR_USERNAME>
+ELASTICSEARCH_PASSWORD=<YOUR_PASSWORD>
+```
+
+Where:
+
+- `OPENVIDU_PRO_ELASTICSEARCH_HOST`: The **Domain Endpoint** URL visible in the Elastic Cloud panel.
+- `OPENVIDU_PRO_KIBANA_HOST`: The **Kibana** URL visible in the Elastic Cloud panel.
+- `ELASTICSEARCH_USERNAME`: The master user generated by Elastic Cloud.
+- `ELASTICSEARCH_PASSWORD`: The master password generated by Elastic Cloud.
+
+Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
+
+> - Note that you need to specify port 9243 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`. But you can also use port 443, Elastic Cloud has configured both ports for both URLs.
+> - `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST` use the same https port, but both URLs has a different subdomain associated.
+> - You can [create a fine-grained user](#create-a-fine-grained-user) to let OpenVidu access to specific resources of Elasticsearch and Kibana
+
+### Create a fine-grained user
+
+Configuring a user with all the privileges is not secure. To accomplish better security in your Elastic Stack cluster we will create a role and a user prepared to be used by OpenVidu Server Pro.
+
+#### Create a fine-grained user using Kibana UI
+
+<div class="row">
+    <div class="pro-gallery-steps-fine-grained" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro12" data-caption="First of all, go to the 'Stack Management' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="In the 'Stack Management' section, go to 'Roles'." href="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Add into the role the 'Cluster privileges' and 'Indexes privileges' specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu." href="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Add Space privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Select 'Default' space and 'Custom Privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Select 'All' in 'Saved Objects Management'. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations." href="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="" href="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="After the role is created, go to 'Users' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Configure an 'Username' and a 'Password' and the 'Role' created before. Then just click on  'Create User' button" href="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions-fine-grained">
+      <div class="caption"><p>First of all, go to the <strong>Stack Management</strong> section.</p></div>
+      <div class="caption"><p>In the <strong>Stack Management</strong> section, go to <strong>Roles</strong>.</p></div>
+      <div class="caption"><p>Click on <strong>Create role</strong> button.</p></div>
+      <div class="caption"><p>Add into the role the <strong>Cluster privileges</strong> and <strong>Indexes privileges</strong> specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu.</p></div>
+      <div class="caption"><p>Click on <strong>Add Space privilege.</strong></p></div>
+      <div class="caption"><p>Select <strong>Default</strong> space and <strong>Custom Privilege</strong>.</p></div>
+      <div class="caption"><p>Select <strong>All</strong> in <strong>Saved Objects Management</strong>. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations.</p></div>
+      <div class="caption"><p>Click on <strong>Create role</strong> button.</p></div>
+      <div class="caption"><p>After the role is created, go to <strong>Users</strong> section.</p></div>
+      <div class="caption"><p>Click on <strong>Create User</strong> button.</p></div>
+      <div class="caption"><p>Configure an <strong>Username</strong> and a <strong>Password</strong> and the <strong>Role</strong> created before. Then just click on  <strong>Create User</strong> button.</p></div>
+    </div>
+</div>
+
+After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
+```
+ELASTICSEARCH_USERNAME=<USER_NAME>
+ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
+```
+
+#### Create a fine-grained user using Elastic Stack REST API
+
+If you want to create a role and a user without using the UI you can create both by using REST API requests.
+
+1. First you need to create a role using the name you want by calling Kibana REST API.
+2. Secondly, create a user which will use the role created before by calling Elasticsearch REST API.
+
+You can see an example of both HTTP requests here:
+<div>
+
+<div class="monitoring-div">
+
+<div class="lang-tabs-container kibana-user-post elastic-events version-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">Create Role</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Create User</button>
+</div>
+
+<div id="create-role" class="lang-tabs-content" markdown="1">
+<ul>
+  <li><p><code>ROLE_NAME</code>: Name that you want for the role you are creating</p></li>
+</ul>
+```html
+$ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true' -H 'Content-Type: application/json' -d'
+{
+   "elasticsearch":{
+      "cluster":[
+         "monitor",
+         "manage_ilm",
+         "manage_pipeline",
+         "manage_ingest_pipelines",
+         "manage_index_templates"
+      ],
+      "indexes":[
+         {
+            "names":[
+               "metricbeat*",
+               "openvidu",
+               "openvidu-logs*",
+               "filebeat*"
+            ],
+            "privileges":[
+               "create_doc",
+               "create_index",
+               "manage",
+               "read",
+               "write",
+               "manage_ilm"
+            ]
+         }
+      ],
+      "run_as":[
+
+      ]
+   },
+   "kibana":[
+      {
+         "spaces":[
+            "default"
+         ],
+         "base":[
+
+         ],
+         "feature":{
+            "savedObjectsManagement":[
+               "all"
+            ]
+         }
+      }
+   ]
+}
+'
+```
+</div>
+
+<div id="create-user" class="lang-tabs-content" style="display:none" markdown="1">
+<ul>
+  <li><p><code>USER_NAME</code>: Name for the user you are creating</p></li>
+  <li><p><code>USER_PASSWORD</code>: Password for the user you are creating</p></li>
+  <li><p><code>ROLE_NAME</code>: Name of the role created before</p></li>
+</ul>
+```html
+$ curl -X POST "localhost:9200/_security/user/<USER_NAME>?pretty" -H 'Content-Type: application/json' -d'
+{
+  "password" : "<USER_PASSWORD>",
+  "roles" : [ "<ROLE_NAME>" ]        
+}                                
+'
+```
+</div>
+</div>
+</div>
+</div>
+<br>
+
+After creating the user you just need to configure it in your `/opt/openvidu/.env` file:
+```
+ELASTICSEARCH_USERNAME=<USER_NAME>
+ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
+```
 
 <br>
 

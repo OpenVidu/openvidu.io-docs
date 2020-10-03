@@ -55,10 +55,9 @@ Using the same port and certificate than OpenVidu is very useful because you don
 
 But as OpenVidu platform and the application are sharing the same domain, the following paths can not be used by application (they are used by OpenVidu platform):
 
-- `/api/`
 - `/openvidu/`
-- `/dashboard/`
-- `/recordings/`
+- `/dashboard/` (only in OpenVidu CE)
+- `/inspector/` (only in OpenVidu Pro)
 
 You can deploy your own application dockerized or installed natively.
 

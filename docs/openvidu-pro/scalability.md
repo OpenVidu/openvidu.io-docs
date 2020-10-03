@@ -99,8 +99,8 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-promedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /pro/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-promedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-openviduapimedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: depending on the environment where your OpenVidu Pro cluster is deployed, you must take into account some important aspects regarding the launch and drop of Media Nodes. Visit the specific documentation page for your environment:
 >

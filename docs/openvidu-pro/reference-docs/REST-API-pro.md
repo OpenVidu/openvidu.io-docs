@@ -3,23 +3,25 @@
 
 OpenVidu Pro provides all of [OpenVidu CE REST operations](reference-docs/REST-API/){:target="_blank"}, but also includes some extra REST operations of its own.
 
-All REST operations have in common the header referred to authorization. It is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "OPENVIDUAPP") and the password (your **secret** shared with openvidu-server). If authorization header is wrong, every call to any REST API operation will return HTTP status `401`.
+All of the REST API operations exposed by OpenVidu Server Pro...
 
-For example, for secret "MY_SECRET", the final valid HTTP header would be
+- Share the same base path as OpenVidu CE REST API operations: `/openvidu/api/`
+- Share the same Authorization header. It is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "OPENVIDUAPP") and the password ([configuration property](reference-docs/openvidu-config/){:target="blank"}`OPENVIDU_SECRET`). All REST API operations return HTTP status `401` if the Authorization header is wrong or not provided. For example, for secret "MY_SECRET" the final HTTP header would be:
 
 > `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
 
 ### List of available operations
 <br>
 
-- Get Media Node info: [**GET /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#get-promedia-nodesltmedia_node_idgt)
-- Get all Media Nodes info: [**GET /pro/media-nodes**](#get-promedia-nodes)
-- Add new Media Node: [**POST /pro/media-nodes**](#post-promedia-nodes)
-- Remove Media Node: [**DELETE /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#delete-promedia-nodesltmedia_node_idgt)
-- Modify Media Node: [**PATCH /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#patch-promedia-nodesltmedia_node_idgt)
-- Force Media Nodes autodiscovery: [**PUT /pro/media-nodes**](#put-promedia-nodes)
-- Restart OpenVidu Pro: [**POST /pro/restart**](#post-prorestart)
-- Get OpenVidu Pro active configuration: [**GET /pro/config**](#get-proconfig)
+- Get Media Node info: [**GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#get-openviduapimedia-nodesltmedia_node_idgt)
+- Get all Media Nodes info: [**GET /openvidu/api/media-nodes**](#get-openviduapimedia-nodes)
+- Add new Media Node: [**POST /openvidu/api/media-nodes**](#post-openviduapimedia-nodes)
+- Remove Media Node: [**DELETE /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#delete-openviduapimedia-nodesltmedia_node_idgt)
+- Modify Media Node: [**PATCH /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#patch-openviduapimedia-nodesltmedia_node_idgt)
+- Force Media Nodes autodiscovery: [**PUT /openvidu/api/media-nodes**](#put-openviduapimedia-nodes)
+- Restart OpenVidu Pro: [**POST /openvidu/api/restart**](#post-openviduapirestart)
+- Get OpenVidu Pro active configuration: [**GET /openvidu/api/config**](#get-openviduapiconfig)
+- Check OpenVidu Pro health: [**GET /openvidu/api/health**](#get-openviduapihealth)
 
 ### Objects
 <br>
@@ -32,7 +34,7 @@ For example, for secret "MY_SECRET", the final valid HTTP header would be
 
 <div class="rest-api-section rest-api-pro-section"></div>
 
-### GET `/pro/media-nodes/<MEDIA_NODE_ID>`
+### GET `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
 
 ##### Description
 
@@ -43,7 +45,7 @@ Retrieve the information of a Media Node.
 |   ||
 | - ||
 | **METHOD**  | GET |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes/`MEDIA_NODE_ID` |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID` |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
 | **QUERY PARAMS** | `sessions`,`extra-info` |
 
@@ -54,7 +56,7 @@ Retrieve the information of a Media Node.
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes/`MEDIA_NODE_ID`?sessions=false&extra-info=false
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID`?sessions=false&extra-info=false
 
 ##### Sample return
 
@@ -71,7 +73,7 @@ This operation returns a [**Media Node object**](#media-node-object).
 
 ---
 
-### GET `/pro/media-nodes`
+### GET `/openvidu/api/media-nodes`
 
 ##### Description
 
@@ -82,7 +84,7 @@ Retrieve the information of all Media Nodes.
 |   ||
 | - ||
 | **METHOD**  | GET |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
 | **QUERY PARAMS** | `sessions`,`extra-info` |
 
@@ -93,7 +95,7 @@ Retrieve the information of all Media Nodes.
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes?sessions=false&extra-info=false
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?sessions=false&extra-info=false
 
 ##### Sample return
 
@@ -119,7 +121,7 @@ Retrieve the information of all Media Nodes.
 
 ---
 
-### POST `/pro/media-nodes`
+### POST `/openvidu/api/media-nodes`
 
 ##### Description
 
@@ -130,7 +132,7 @@ Add a new Media Node to the cluster.
 |   ||
 | - ||
 | **METHOD**  | POST |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 | **QUERY PARAMS** | `wait` |
 
@@ -140,7 +142,7 @@ Add a new Media Node to the cluster.
 | - ||||
 | wait | Boolean | false | Whether to wait until the new Media Node reaches `running` status or not. Setting this property to true basically makes this method synchronized. You will not receive a response until the Media Node is properly running or an error is thrown |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes?wait=false
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?wait=false
 
 ##### Body
 
@@ -171,7 +173,7 @@ This operation returns the created [**Media Node object**](#media-node-object). 
 
 ---
 
-### DELETE `/pro/media-nodes/<MEDIA_NODE_ID>`
+### DELETE `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
 
 ##### Description
 
@@ -182,7 +184,7 @@ Remove a Media Node from the cluster. If there are ongoing sessions currently ho
 |   ||
 | - ||
 | **METHOD**  | DELETE |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes/`MEDIA_NODE_ID` |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID` |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
 | **QUERY PARAMS** | `wait`,`deletion-strategy` |
 
@@ -193,7 +195,7 @@ Remove a Media Node from the cluster. If there are ongoing sessions currently ho
 | wait | Boolean | false | Whether to wait until the new Media Node reaches `terminated` status or not. Setting this property to true basically makes this method synchronized. You will not receive a response until the Media Node is fully terminated or an error is thrown |
 | deletion&#8209;strategy | String | "if&#8209;no&#8209;sessions" | How should OpenVidu Pro proceed with the Media Node deletion. Can be: <ul style="margin-top:10px"><li style="color: inherit"><code><strong>now</strong></code> : OpenVidu Pro will remove the Media Node immediately. All OpenVidu sessions hosted by this Media Node will be closed with reason <code>mediaServerDisconnect</code> (all streams, participants and recordings of all these sessions will be stopped with this same reason)</li><li style="color: inherit"><code><strong>if-no-sessions</strong></code> : if there's any OpenVidu session initialized inside of this Media Node, then this operation will fail with HTTP status <strong>409</strong>. If the Media Node has no ongoing sessions, then OpenVidu Pro will remove it immediately, returning status <strong>204</strong>.</li> <li style="color: inherit"><code><strong>when-no-sessions</strong></code> : if there's any OpenVidu session initialized inside this Media Node, then it will not be immediately deleted, but instead will be set to `waiting-idle-to-terminate` status. This status means the Media Node is under quarantine and no more sessions will be initialized inside of it. Whenever the last session of this Media Node is destroyed (no matter the reason), then it will be automatically deleted. The response status will be <strong>202</strong> if this operation changed the Media Node to <code>waiting-idle-to-terminate</code> status and <strong>204</strong> if there were no ongoing sessions inside the Media Node and therefore OpenVidu Pro has deleted it.</li></ul> |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes/`MEDIA_NODE_ID`?wait=false&deletion-strategy=if-no-sessions
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID`?wait=false&deletion-strategy=if-no-sessions
 
 ##### HTTP responses
 
@@ -209,7 +211,7 @@ Remove a Media Node from the cluster. If there are ongoing sessions currently ho
 
 ---
 
-### PATCH `/pro/media-nodes/<MEDIA_NODE_ID>`
+### PATCH `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
 
 ##### Description
 
@@ -220,7 +222,7 @@ Modify the status of a Media Node. This method allows you to manually transition
 |   ||
 | - ||
 | **METHOD**  | PATCH |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes/`MEDIA_NODE_ID` |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID` |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 
 ##### Body
@@ -250,7 +252,7 @@ This operation returns the modified [**Media Node object**](#media-node-object).
 
 ---
 
-### PUT `/pro/media-nodes`
+### PUT `/openvidu/api/media-nodes`
 
 ##### Description
 
@@ -261,7 +263,7 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 |   ||
 | - ||
 | **METHOD**  | PUT |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/media-nodes |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
 
 ##### Sample return
@@ -290,7 +292,7 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 
 ---
 
-### POST `/pro/restart`
+### POST `/openvidu/api/restart`
 
 ##### Description
 
@@ -301,7 +303,7 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 |   ||
 | - ||
 | **METHOD**  | POST |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/restart |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/restart |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 
 ##### Body
@@ -384,23 +386,23 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 
 ---
 
-### GET `/pro/config`
+### GET `/openvidu/api/config`
 
 ##### Description
 
-Retrieve current [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="blank"}.
+Retrieve current [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="blank"}. This path is the same as in [OpenVidu CE](reference-docs/REST-API/#get-openviduapiconfig){:target="_blank"}, and overrides it with extra information.
 
 ##### Operation
 
 |   ||
 | - ||
 | **METHOD**  | GET |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/pro/config |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/config |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
 
 ##### Sample return
 
-Returns an object with the current [OpenVidu Pro configuration properties](reference-docs/openvidu-config/){:target="blank"}. These properties are mostly common to method [GET /config](reference-docs/REST-API/#get-config){:target="_blank"} of OpenVidu Server CE. Some of them are unique for OpenVidu Server Pro.
+Returns an object with the current [OpenVidu Pro configuration properties](reference-docs/openvidu-config/){:target="blank"}. It includes all properties from OpenVidu CE method [GET /openvidu/api/config](reference-docs/REST-API/#get-openviduapiconfig){:target="_blank"}. The rest are unique for OpenVidu Pro.
 
 ```json
 {
@@ -452,6 +454,7 @@ Returns an object with the current [OpenVidu Pro configuration properties](refer
     "OPENVIDU_PRO_KIBANA": true,
     "OPENVIDU_PRO_KIBANA_HOST": "http://127.0.0.1/kibana",
     "OPENVIDU_PRO_KIBANA_VERSION": "7.8.0",
+    "OPENVIDU_PRO_RECORDING_STORAGE": "local",
     "OPENVIDU_PRO_NETWORK_STAT": false
 }
 ```
@@ -466,15 +469,52 @@ Returns an object with the current [OpenVidu Pro configuration properties](refer
 
 ---
 
+### GET `/openvidu/api/health`
+
+##### Description
+
+Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is healthy if OpenVidu Server Pro is up and there is at least one Media Node running and connected to the cluster (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}).
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | GET |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/health |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
+
+##### Sample return
+
+```json
+{
+    "status": "UP"
+}
+```
+
+||||
+| - |||
+| status | String | Health status of the OpenVidu Pro cluster. Can be `UP` or `DOWN` |
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Health status is `UP` |
+| 503 | Health status is `DOWN` |
+
+<br>
+
+---
+
 ### Media Node object
 
 Related operations
 
-- [**GET /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#get-promedia-nodesltmedia_node_idgt)
-- [**GET /pro/media-nodes**](#get-promedia-nodes)
-- [**POST /pro/media-nodes**](#post-promedia-nodes)
-- [**PATCH /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#patch-promedia-nodesltmedia_node_idgt)
-- [**PUT /pro/media-nodes**](#put-promedia-nodes)
+- [**GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#get-openviduapimedia-nodesltmedia_node_idgt)
+- [**GET /openvidu/api/media-nodes**](#get-openviduapimedia-nodes)
+- [**POST /openvidu/api/media-nodes**](#post-openviduapimedia-nodes)
+- [**PATCH /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;**](#patch-openviduapimedia-nodesltmedia_node_idgt)
+- [**PUT /openvidu/api/media-nodes**](#put-openviduapimedia-nodes)
 
 ```json
 {
@@ -504,7 +544,7 @@ Related operations
 | disconnectionTime | Number | When OpenVidu Server lost its connection to the Media Node, in UTC milliseconds. Only available if `connected` is false |
 | load | Number | CPU load of the Media Node. Decimal number between 0.00 and 100.00 |
 | status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses){:target="blank"} |
-| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#session-object){:target="blank"}<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-promedia-nodesltmedia_node_idgt"><strong>GET /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-promedia-nodes"><strong>GET /pro/media-nodes</strong></a></li></ul> |
-| kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-promedia-nodesltmedia_node_idgt"><strong>GET /pro/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-promedia-nodes"><strong>GET /pro/media-nodes</strong></a></li></ul> |
+| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#session-object){:target="blank"}<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 
 <br>

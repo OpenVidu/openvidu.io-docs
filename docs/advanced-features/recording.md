@@ -11,6 +11,7 @@
     - [Using an external custom layout](#using-an-external-custom-layout)
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
+- **[Uploading recordings to AWS S3](#uploading-recordings-to-aws-s3)**<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
 
 ---
@@ -100,13 +101,13 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-1. Initialize your sessions with this POST method: [POST /api/sessions](reference-docs/REST-API#post-apisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+1. Initialize your sessions with this POST method: [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
 
 2. If you have configured your session with `"recordingMode": "MANUAL"`
 
-    - Start the recording with this POST method: [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"}<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
+    - Start the recording with this POST method: [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"}<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
 
-    - Stop the recording with this POST method: [POST /api/recordings/stop](reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
+    - Stop the recording with this POST method: [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-openviduapirecordingsstopltrecording_idgt){:target="_blank"}
 
 </div>
 
@@ -186,7 +187,7 @@ You can use the default layout, that will evenly distribute each stream in the a
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
 
 </div>
 
@@ -261,7 +262,7 @@ To initialize a Session with this recording output mode, just use **`defaultOutp
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Initialize your sessions with this POST method [POST /api/sessions](reference-docs/REST-API#post-apisessions){:target="_blank"} passing `{"defaultOutputMode": "COMPOSED_QUICK_START"}`
+Initialize your sessions with this POST method [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"} passing `{"defaultOutputMode": "COMPOSED_QUICK_START"}`
 
 </div>
 
@@ -314,7 +315,7 @@ Every publisher stream is recorded in its own file. The final result is a ZIP fi
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameter `{"outputMode:"INDIVIDUAL"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameter `{"outputMode:"INDIVIDUAL"}`
 
 </div>
 
@@ -431,7 +432,7 @@ By default recordings will be generated with both audio and video, but you can c
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
 
 </div>
 
@@ -499,7 +500,7 @@ You can always manually stop any recording at any time, even during the automati
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-[POST /api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-apirecordingsstopltrecording_idgt){:target="_blank"}
+[POST /openvidu/api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-openviduapirecordingsstopltrecording_idgt){:target="_blank"}
 
 </div>
 
@@ -631,7 +632,7 @@ openvidu/openvidu-server-kms:2.15.0
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
 
 </div>
 
@@ -682,7 +683,7 @@ You can implement as many custom recording layouts as you want. Simply store eac
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
 
 </div>
 
@@ -754,7 +755,7 @@ OpenVidu allows you to configure a recording to use a custom layout deployed out
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /api/recordings/start](reference-docs/REST-API#post-apirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"}`
 
 </div>
 
@@ -803,14 +804,14 @@ To debug your custom layout, you just need to store it in the path declared with
 
 Then, by using your OpenVidu application, start a session and as many publishers as you expect to be recorded in your custom layout. Finally you just have to connect to your layout through **Chrome** by entering url:
 
-**https://OPENVIDUAPP:`SECRET`@`OPENVIDU_IP`:`OPENVIDU_PORT`/layouts/custom/index.html?sessionId=`SESSION_ID`&secret=`SECRET`**
+**https://OPENVIDUAPP:`SECRET`@`OPENVIDU_IP`:`OPENVIDU_PORT`/openvidu/layouts/index.html?sessionId=`SESSION_ID`&secret=`SECRET`**
 
 Being:
 
 - `SECRET`: parameter `OPENVIDU_SECRET` configured when launching openvidu-server
 - `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
 - `OPENVIDU_PORT`: port where openvidu-server is listening. In OpenVidu production deployments this is by default `443` and if using the development container it is by default `4443`.
-- `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-apisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
+- `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-openviduapisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 
 > By connecting with Chrome to the above URL you will see the exact result obtained when recording a session with your custom layout. You can open the browsers console to debug any error, and you can also change the HTML/CSS/JS files of your layout until you are happy with the outcome. Refresh the browser's tab after any change in the HTML/JS/CSS files to see the changes.
 
@@ -852,6 +853,63 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```
 
 <br><br>
+
+---
+
+# Uploading recordings to AWS S3
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
+
+OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/deploying-aws/){:target="_blank"}.
+
+AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
+
+- You can terminate clusters without worrying losing your recordings, as long as they are properly uploaded to the bucket.
+- Launching an OpenVidu Pro cluster configured to use an already populated S3 bucket will make the existing recordings accessible and manageable from the new cluster.
+- You can upload to the same S3 bucket from different OpenVidu Pro clusters.
+
+Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"}** event to know when a recording has been successfully uploaded to S3.
+
+To enable S3 recording storage configure the following properties in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu`)
+
+```yaml
+OPENVIDU_PRO_RECORDING_STORAGE=s3
+OPENVIDU_PRO_AWS_S3_BUCKET=your-bucket-name
+OPENVIDU_PRO_AWS_ACCESS_KEY=your-aws-access-key
+OPENVIDU_PRO_AWS_SECRET_KEY=your-aws-secret-key
+OPENVIDU_PRO_AWS_REGION=eu-west-1
+```
+
+There is a complete description of these properties at [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"}. Take into account the following points:
+
+- Property `OPENVIDU_PRO_AWS_S3_BUCKET` can have a folder structure if you want OpenVidu Pro to upload recordings to a specific folder of your bucket.
+- AWS credential properties `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` can be omitted if you have default AWS credentials configured in your OpenVidu Server Pro Node machine. The internal AWS S3 client managed by OpenVidu Server Pro will try to use them if no keys are provided. One way or the other, the credentials finally used must provide read and write access to the bucket.
+- Property `OPENVIDU_PRO_AWS_REGION` may not be necessary. AWS S3 buckets are not tied to a specific world region, and theoretically the internal S3 client should be able to autodiscover the AWS region from the bucket's name only. But this has been proven to may not be possible in some occasions, and the property must be specified explicitly in these cases.
+
+<br>
 
 ---
 

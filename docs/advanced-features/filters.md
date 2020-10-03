@@ -27,7 +27,7 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When generating a token with operation [POST /api/tokens](reference-docs/REST-API#post-apitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When generating a token with operation [POST /openvidu/api/tokens](reference-docs/REST-API#post-openviduapitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```json  
 {

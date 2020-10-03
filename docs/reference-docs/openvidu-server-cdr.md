@@ -1,15 +1,19 @@
 <h2 id="section-title">OpenVidu CDR</h2>
 <hr>
 
-OpenVidu Server offers a CDR logging system, so you can easily keep record of every session and its internal behavior. To start OpenVidu Server with CDR enabled, set [configuration property **`OPENVIDU_CDR=true`**](reference-docs/openvidu-config/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH` (default to `/opt/openvidu/cdr`).
+OpenVidu Server offers a CDR logging system, so you can easily keep record of every session and its internal behavior. To start OpenVidu Server with CDR enabled, set [configuration property **`OPENVIDU_CDR=true`**](reference-docs/openvidu-config/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH`, default to `/opt/openvidu/cdr`.
 
-The CDR file is a plain UTF-8 text file complying with [JSON Lines](http://jsonlines.org/){:target="_blank"} format: one standard JSON entry for each line. All JSON entries have the following structure:
+The CDR file is a plain UTF-8 text file complying with [JSON Lines](http://jsonlines.org/){:target="_blank"} format: one standard JSON entry for each line. All JSON entries share the following structure:
 
 ```json
-{"EVENT_NAME": {"sessionId": "SESSION_ID", "timestamp": TIMESTAMP, "PROP_1": "VAL_1","PROP_2": "VAL_2", ... }}
+{"EVENT_NAME": {"sessionId": "SESSION_ID", "timestamp": 1234567890, "PROP_1":"VAL_1", "PROP_2":"VAL_2", ... }}
 ```
 
-So every entry is a JSON object with a single key (the event name) and a JSON object as value (the event content). For all available events, the event content always has as properties the `sessionId` identifying the video-session (that would be `SESSION_ID` in the example above) for which the event was registered and the `timestamp` (with fake value `TIMESTAMP` in the example above). Besides this two common properties shared by all events, there are custom properties for every specific event with useful information (those would be `PROP_1`, `PROP_2` ...). The complete list of possible JSON entries is available below.
+So every entry is a JSON object with a single key (the event name) and a JSON object as value (the event content). This JSON value follows this format:
+
+- `sessionId`: a string with the unique identifier of the session for which the event was registered.
+- `timestamp`: a number with the time when the event was registered in UTC milliseconds.
+- `PROP_1`, `PROP_2` ... `PROP_N` : custom properties for each specific event. Their name and type differ from each other.
 
 ### Events in OpenVidu CDR
 
@@ -35,9 +39,13 @@ Recorded when a new session has been created.
 | `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
 | `timestamp` | Time when the event was triggered         | UTC milliseconds                            |
 
-Example:
 ```json
-{"sessionCreated":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481330577}}
+{
+  "sessionCreated": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601394690713
+  }
+}
 ```
 
 <hr>
@@ -54,9 +62,16 @@ Recorded when a session has finished.
 | `duration`  | Total duration of the session             | Seconds                                                                               |
 | `reason`    | Why the session was destroyed             | [`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
 
-Example:
 ```json
-{"sessionDestroyed":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481699154,"startTime":1538481330577,"duration":368,"reason":"lastParticipantLeft"}}
+{
+  "sessionDestroyed": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601395365656,
+    "startTime": 1601394690713,
+    "duration": 674,
+    "reason": "lastParticipantLeft"
+  }
+}
 ```
 
 <hr>
@@ -73,11 +88,20 @@ Recorded when a user has connected to a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /openvidu/api/tokens`](reference-docs/REST-API/#post-openviduapitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 
-Example:
 ```json
-{"participantJoined":{"sessionId":"ses_SuXO99zeb1","timestamp":1584008771500,"participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit","clientData":"Mike","serverData":"{'user': 'client1'}"}}
+{
+  "participantJoined": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601394715606,
+    "participantId": "con_EIeO06zgMz",
+    "location": "Berlin, Germany",
+    "platform": "Chrome 85.0.4183.121 on Linux 64-bit",
+    "clientData": "Mike",
+    "serverData": "{'user': 'client1'}"
+  }
+}
 ```
 
 <hr>
@@ -94,14 +118,26 @@ Recorded when a user has left a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /api/tokens`](reference-docs/REST-API/#post-apitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [`POST /openvidu/api/tokens`](reference-docs/REST-API/#post-openviduapitokens){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata (generated with the token) |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
 | `reason`        | How the participant left the session                                                   | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
 
-Example:
 ```json
-{"participantLeft":{"sessionId":"ses_SuXO99zeb1","timestamp":1584009224993,"startTime":1584008771500,"duration":453,"reason":"disconnect","participantId":"con_ZTMYOmVuZB","location":"Berlin, Germany","platform":"Chrome 80.0.3987.132 on Linux 64-bit","clientData":"Mike","serverData":"{'user': 'client1'}"}}
+{
+  "participantLeft": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601395365655,
+    "startTime": 1601394715606,
+    "duration": 650,
+    "reason": "disconnect",
+    "participantId": "con_EIeO06zgMz",
+    "location": "Berlin, Germany",
+    "platform": "Chrome 85.0.4183.121 on Linux 64-bit",
+    "clientData": "Mike",
+    "serverData": "{'user': 'client1'}"
+  }
+}
 ```
 
 <hr>
@@ -123,9 +159,22 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
 | `videoFramerate`  | If `videoEnabled` is `true`, the framerate of the transmitted video                                                                                                               | Number of fps                                            |
 | `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | String with the dimensions (e.g. `"1920x1080"`)          |
 
-Example:
 ```json
-{"webrtcConnectionCreated":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481419726,"participantId":"ges2furjsjjmyi0b","connection":"INBOUND","receivingFrom":"wsalcr1r72goj8sk","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}}
+{
+  "webrtcConnectionCreated": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601394849759,
+    "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
+    "participantId": "con_ThN5Rgi8Y8",
+    "connection": "INBOUND",
+    "receivingFrom": "con_EIeO06zgMz",
+    "videoSource": "CAMERA",
+    "videoFramerate": 30,
+    "videoDimensions": "{\"width\":1280,\"height\":720}",
+    "audioEnabled": true,
+    "videoEnabled": true
+  }
+}
 ```
 
 <hr>
@@ -150,9 +199,25 @@ Recorded when any media stream connection is closed.
 | `duration`        | Total duration of the media connection                                                                                                                                            | Seconds                                                                                                                                                                                                                                                                |
 | `reason`          | How the WebRTC connection was destroyed                                                                                                                                           | [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"forceUnpublishByUser"`,<br>`"forceUnpublishByServer"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`,<br>`"mediaServerDisconnect"`] |
 
-Example:
 ```json
-{"webrtcConnectionDestroyed":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481449060,"startTime":1538481419726,"duration":29,"reason":"disconnect","participantId":"ges2furjsjjmyi0b","connection":"INBOUND","receivingFrom":"wsalcr1r72goj8sk","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}}
+{
+  "webrtcConnectionDestroyed": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601394894238,
+    "startTime": 1601394849759,
+    "duration": 44,
+    "reason": "unsubscribe",
+    "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
+    "participantId": "con_ThN5Rgi8Y8",
+    "connection": "INBOUND",
+    "receivingFrom": "con_EIeO06zgMz",
+    "videoSource": "CAMERA",
+    "videoFramerate": 30,
+    "videoDimensions": "{\"width\":1280,\"height\":720}",
+    "audioEnabled": true,
+    "videoEnabled": true
+  }
+}
 ```
 
 <hr>
@@ -161,10 +226,7 @@ Example:
 
 Recorded when the status of a recording has changed. The status may be:
 
-- `started`: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. _NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being recorded in the video file. It only ensures the video file exists and its size is greater than 0_
-- `stopped`: the recording process has stopped and files are being processed. The recording entity's _duration_ and _size_ properties will still be set to 0.
-- `ready`: the recorded file has been successfully processed and is available for download. The recording entity's _duration_ and _size_ properties are properly defined now
-- `failed`: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable
+<ul><li style="margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to <a href="advanced-features/recording/#uploading-recordings-to-aws-s3" target="_blank">upload recordings to S3</a> this status means that the recording has been successfully stored in the S3 bucket.</li><li style="margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul>
 
 | Property          | Description                                | Value                                         |
 | ----------------- | ------------------------------------------ | --------------------------------------------- |
@@ -174,18 +236,34 @@ Recorded when the status of a recording has changed. The status may be:
 | `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
 | `name`            | Name given to the recording file           | A string with the recording name              |
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
-| `hasAudio`        | Wheter the recording file has audio or not | [`true`,`false`]                              |
-| `hasVideo`        | Wheter the recording file has video or not | [`true`,`false`]                              |
+| `hasAudio`        | Whether the recording file has audio or not | [`true`,`false`]                              |
+| `hasVideo`        | Whether the recording file has video or not | [`true`,`false`]                              |
 | `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
-| `size`            | The size of the video file. 0 until status is _stopped_ | Bytes                            |
-| `duration`        | Duration of the video file. 0 until status is _stopped_ | Seconds                          |
+| `size`            | The size of the video file. Only guaranteed to be greater than `0` if status is `ready` | Bytes                            |
+| `duration`        | Duration of the video file. Only guaranteed to be greater than `0` if status is `ready` | Seconds                          |
 | `status`          | Status of the recording                    | [`"started"`,`"stopped"`,`"ready"`,`"failed"`] |
 | `reason`          | Why the recording stopped. Only defined when status is _stopped_ or _ready_ | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"automaticStop"`,<br>`"openviduServerStopped"`, <br>`"mediaServerDisconnect"`] |
 
-Example:
 ```json
-{"recordingStatusChanged":{"sessionId":"TestSession","timestamp":1549015640859,"startTime":1549015630563,"duration":5.967,"id":"TestSession","name":"MyRecording","outputMode":"COMPOSED","hasAudio":true,"hasVideo":true,"recordingLayout":"BEST_FIT","resolution":"1920x1080","size":617509,"status":"stopped","reason":"sessionClosedByServer"}}
+{
+  "recordingStatusChanged": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601395005555,
+    "startTime": 1601394992838,
+    "duration": 8.6,
+    "reason": "recordingStoppedByServer",
+    "id": "ses_Jd8tUyvhXO",
+    "name": "MyRecording",
+    "outputMode": "COMPOSED",
+    "resolution": "1920x1080",
+    "recordingLayout": "BEST_FIT",
+    "hasAudio": true,
+    "hasVideo": true,
+    "size": 1973428,
+    "status": "ready"
+  }
+}
 ```
 
 <hr>
@@ -204,9 +282,18 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 | `eventType`       | Event of the filter that was triggered     | A string with the type of event               |
 | `data`            | Data of the filter event                   | A string with the data returned by the filter event. Its value will depend on the type of filter and event |
 
-Example:
 ```json
-{"filterEventDispatched":{"sessionId":"TestSession","timestamp":1568645808285,"participantId":"oklnb2wgsisr0sd3","streamId":"oklnb2wgsisr0sd3_CAMERA_GXTRU","filterType":"ZBarFilter","eventType":"CodeFound","data":"{timestampMillis=1568645808285, codeType=EAN-13, source=23353-1d3c_kurento.MediaPipeline/1f56f4a5-807c-71a30d40_kurento.ZBarFilter, type=CodeFound, value=0012345678905, tags=[], timestamp=1568645808}"}}
+{
+  "filterEventDispatched": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1601394994829,
+    "participantId": "con_EIeO06zgMz",
+    "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
+    "filterType": "ZBarFilter",
+    "eventType": "CodeFound",
+    "data": "{timestampMillis=1568645808285, codeType=EAN-13, source=23353-1d3c_kurento.MediaPipeline/1f56f4a5-807c-71a30d40_kurento.ZBarFilter, type=CodeFound, value=0012345678905, tags=[], timestamp=1568645808}"
+  }
+}
 ```
 
 <br>

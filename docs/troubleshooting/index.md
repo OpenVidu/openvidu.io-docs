@@ -115,11 +115,11 @@ Then, to let your applications know how to connect to OpenVidu Server:
 
 When consuming openvidu-server REST API, change `location.hostname` to the IP of the Docker container running openvidu-server (usually `192.168.99.100`). For every one of the insecure tutorials listed above, the url where to send the REST operations ...
 
-    "https://" + location.hostname + ":4443/api/<OPERATION>"
+    "https://" + location.hostname + ":4443/openvidu/api/<OPERATION>"
 
 ... in Windows is ...
 
-    "https://192.168.99.100:4443/api/<OPERATION>"
+    "https://192.168.99.100:4443/openvidu/api/<OPERATION>"
 
 Change this url in every insecure tutorial right here:
 

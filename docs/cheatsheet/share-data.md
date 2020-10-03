@@ -12,7 +12,7 @@ session.connect(token, "USER_DATA")
 
 - **Server-Side**: when generating a token
 
-    - [API REST](reference-docs/REST-API#post-apitokens){:target="_blank"}: add body parameter `"data"` to the POST operation
+    - [API REST](reference-docs/REST-API#post-openviduapitokens){:target="_blank"}: add body parameter `"data"` to the POST operation
     - [openvidu-java-client](reference-docs/openvidu-java-client#generate-a-token){:target="_blank"}: construct TokenOptions with `TokenOptions.Builder().data("USER_DATA").build()`
     - [openvidu-node-client](reference-docs/openvidu-node-client#generate-a-token){:target="_blank"}: construct TokenOptions with `{data: "USER_DATA"}` <br><br>
 
