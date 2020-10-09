@@ -45,6 +45,7 @@ nav:
   - Voice and video filters: advanced-features/filters.md
   - Switch camera: advanced-features/switch-camera.md
   - Automatic reconnection: advanced-features/automatic-reconnection.md
+  - Network quality: advanced-features/network-quality.md
 - Reference Documentation:
   - openvidu-browser API: reference-docs/openvidu-browser.md
   - openvidu-java-client API: reference-docs/openvidu-java-client.md
