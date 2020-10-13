@@ -61,7 +61,7 @@ Making use of the WebRTC stats, the OpenVidu team has been capable to extract th
     padding-left: 20px;
     padding-right: 20px;
     ">
-OpenVidu network quality is only available for <strong>PUBLISHERS</strong>. What that means is that you only can receive the network quality level for participants that publish media.
+OpenVidu network quality is only available for <strong>PUBLISHERS</strong> of type <strong>CAMERA</strong>. What that means is that you only can receive the network quality level for participants that publish their camera or microphone. The participants who are screensharing is not supported yet.
 </div>
 </div>
 
@@ -89,7 +89,7 @@ The following table shows which platform provide us the enough statistics to cal
         </tr>
         <tr>
             <th scope="row">Firefox</th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Edge</th>
@@ -139,7 +139,14 @@ After that, you only have to listen the **networkQualityChanged** events in your
 
 ```javascript
 session.on('networkQualityLevelChanged', (event) => {
-    console.log("Network quality has changed", event.qualityLevel);
+
+    if(event.connection.connectionId === session.connection.connectionId) {
+        console.log("This is my network quality level", event.qualityLevel);
+        // Do stuff
+    }else {
+        console.log("Network quality level of connection " + event.connection.connectionId + " is: " + event.qualityLevel);
+        // Do stuff
+    }
 });
 ```
 
