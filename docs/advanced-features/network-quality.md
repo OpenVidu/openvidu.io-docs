@@ -61,70 +61,9 @@ Making use of the WebRTC stats, the OpenVidu team has been capable to extract th
     padding-left: 20px;
     padding-right: 20px;
     ">
-OpenVidu network quality is only available for <strong>PUBLISHERS</strong> of type <strong>CAMERA</strong>. What that means is that you only can receive the network quality level for participants that publish their camera or microphone. The participants who are screensharing is not supported yet.
+OpenVidu network quality is only available for <strong>PUBLISHERS</strong>. What that means is that you only can receive the network quality level for participants that publish a media stream.
 </div>
 </div>
-
-#### Supported platforms
-
-Network quality is not supported for all platform supported by OpenVidu. This is because in some platforms, the webRTC stats received are very limited and we can't calculate the network quality level from them.
-
-The following table shows which platform provide us the enough statistics to calculate the network quality level:
-
-<table class="table table-striped table-pricing" style="background: #e7e7e7">
-    <thead>
-        <tr>
-            <th scope="col" style="background: #fff; border-bottom: 0px;">Platform</th>
-            <th scope="col" style="border-bottom: 2px solid #005f76;">Network Quality API</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">Chrome</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Safari</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Firefox</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Edge</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Opera</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Electron</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Samsung Mobile</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Ionic (Android)</th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Ionic (iOS)</th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">React Native</th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-        </tr>
-    </tbody>
-</table>
-
-#### Get the network quality level
-
-After see the compatibility table above, you can use the network quality API of a very simple way.
 
 To be able of get the network quality level in your client app, you need enable the `OPENVIDU_PRO_NETWORK_QUALITY` property in your [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} and set the frequency of time that you want OpenVidu to check your network.
 
@@ -135,7 +74,7 @@ OPENVIDU_PRO_NETWORK_QUALITY=false
 OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL=5
 ```
 
-After that, you only have to listen the **networkQualityChanged** events in your client app as bellow:
+After that, you only have to listen the **networkQualityLevelChanged** events in your client app as bellow:
 
 ```javascript
 session.on('networkQualityLevelChanged', (event) => {
@@ -165,27 +104,27 @@ The network quality event will return a quality level number (`qualityLevel` *fr
     <tbody>
         <tr>
             <th scope="row">0</th>
-            <td>The network is broken</td>
+            <td>The network is <strong>broken</strong></td>
         </tr>
         <tr>
             <th scope="row">1</th>
-            <td>The network is bad</td>
+            <td>The network is <strong>bad</strong></td>
         </tr>
         <tr>
             <th scope="row">2</th>
-            <td>The network is poor</td>
+            <td>The network is <strong>poor</strong></td>
         </tr>
         <tr>
             <th scope="row">3</th>
-            <td>Network is non optimal</td>
+            <td>The network is <strong>non optimal</strong></td>
         </tr>
         <tr>
             <th scope="row">4</th>
-            <td>The network is good</td>
+            <td>The network is <strong>good</strong></td>
         </tr>
         <tr>
             <th scope="row">5</th>
-            <td>The network is excellent</td>
+            <td>The network is <strong>excellent</strong></td>
         </tr>
     </tbody>
 </table>
