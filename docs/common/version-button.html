@@ -9,7 +9,7 @@
         cursor: pointer;
     }
 </style>
-<select id="version-selector" onchange="location = this.value">
+<select id="version-selector" onchange="navigateToNewVersion(this)">
     <option value="/en/2.15.0/"><a href="/en/2.15.0/">2.15.0</a></option>
     <option value="/en/2.14.0/"><a href="/en/2.14.0/">2.14.0</a></option>
     <option value="/en/2.13.0/"><a href="/en/2.13.0/">2.13.0</a></option>
@@ -24,4 +24,12 @@
         })[1];
         document.getElementById('version-selector').value = '/en/' + urlVersion + "/";
     });
+
+    function navigateToNewVersion(selectValue) {
+        const pathSplitted = window.location.pathname.split("/").filter(function (el) {
+            return el.length != 0
+        });
+        const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
+        window.location = selectValue.value + restOfPath + window.location.hash;
+    }
 </script>
