@@ -22,16 +22,42 @@ You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.o
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Use method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}**
+Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}**
 
 </div>
 
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
-<i>Not available yet</i>
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .type(ConnectionType.IPCAM)
+    .rtspUri("rtsp://your.camera.ip:7777/path")
+    .adaptativeBitrate(true)
+    .onlyPlayWithSubscribers(false)
+    .networkCache(1000)
+    .build();
+// "session" being a Session object
+Connection connection = session.createConnection(connectionProperties);
+```
+
 </div>
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
-<i>Not available yet</i>
+
+```javascript
+var connectionProperties = {
+    type: "IPCAM",
+    rtspUri: "rtsp://your.camera.ip:7777/path",
+    adaptativeBitrate: true,
+    onlyPlayWithSubscribers: false,
+    networkCache: 1000
+};
+// "session" being a Session object
+session.createConnection(connectionProperties)
+    .then(connection => { ... })
+    .catch(error => console.error(error));
+```
+
 </div>
 
 </div>
@@ -40,11 +66,11 @@ Use method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](referen
 
 #### Events dispatched in the clients
 
-Whenever you call this method, a new participant will join the chosen session, and a new stream will be published to it. All the expected events are triggered in every client connected to the Session, just as when a regular client joins and publishes to a session. The workflow is:
+Whenever you call this method, a new Connection to the session will be created and a new stream will be published. All the expected events are triggered in every client connected to the Session, just as when a regular client joins and publishes to a session. The workflow is:
 
-1. Your backend publishes an IP Camera to the session as shown in the code snippets above
-2. Every client connected to that session will receive a **[connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session
-3. Every client connected to that session will receive a **[streamCreated](api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property `typeOfVideo` set to `IPCAM`. Users can subscribe to this stream as any other regular stream to start receiving the IP camera's feed (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"}).
+1. Your backend publishes an IP Camera to the session by creating a new Connection of type `IPCAM`, as shown in the code snippets above.
+2. Every client connected to that session will receive a **[connectionCreated](api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session.
+3. Every client connected to that session will receive a **[streamCreated](api/openvidu-browser/classes/streamevent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property [typeOfVideo](api/openvidu-browser/classes/stream.html#typeofvideo){:target="_blank"} set to `IPCAM`. Users can subscribe to this stream as any other regular stream to start receiving the IP camera's feed (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"}).
 
 After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](api/openvidu-browser/classes/streamevent.html){:target="_blank"}** and **[connectionDestroyed](api/openvidu-browser/classes/connectionevent.html){:target="_blank"}** events.
 
@@ -54,7 +80,7 @@ After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participant
 
 Your backend side will also receive the expected events in the [CDR](reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="_blank"}. Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user.
 
-- **[participantJoined](reference-docs/openvidu-server-cdr/#participantjoined){:target="_blank"}** event fot the new IP camera participant. `platform` property is set to `"IPCAM"`.
+- **[participantJoined](reference-docs/openvidu-server-cdr/#participantjoined){:target="_blank"}** event fot the new IP camera Connection. `platform` property is set to `"IPCAM"`.
 ```json
 {
   "participantJoined": {
@@ -68,7 +94,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
   }
 }
 ```
-- **[webrtcConnectionCreated](reference-docs/openvidu-server-cdr/#webrtcconnectioncreated){:target="_blank"}** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the shake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM`.
+- **[webrtcConnectionCreated](reference-docs/openvidu-server-cdr/#webrtcconnectioncreated){:target="_blank"}** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the sake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM` and there are new properties specific to IP cameras.
 ```json
 {
   "webrtcConnectionCreated": {
@@ -90,7 +116,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
 }
 ```
 
-After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-cdr/#webrtcconnectiondestroyed){:target="_blank"}** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-cdr/#participantleft){:target="_blank"}** event (only one for the camera's connection).
+After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-cdr/#webrtcconnectiondestroyed){:target="_blank"}** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-cdr/#participantleft){:target="_blank"}** event (only one for the camera's Connection).
 
 <br>
 
@@ -98,7 +124,7 @@ After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend wi
 
 ## How to unpublish IP cameras
 
-To unpublish an IP camera stream you must remove the connection owning the stream. You can do it from your server:
+To unpublish an IP camera you must remove its Connection. You can do it from your server:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -117,7 +143,7 @@ Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CO
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
 ```java
-// Find the desired Connection object in the list returned by Session.getActiveConnections()
+// Find the desired Connection object in the list returned by Session.getConnections()
 session.forceDisconnect(connection);
 ```
 
@@ -127,8 +153,8 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html){:ta
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-```node
-// Find the desired Connection object in the array Session.activeConnections
+```javascript
+// Find the desired Connection object in the array Session.connections
 session.forceDisconnect(connection);
 ```
 

@@ -496,13 +496,13 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-openviduapimedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-openviduapimedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployments, especially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
-> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} is triggered with value `terminated`.
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"} is triggered with value `terminated`.
 
 <br>
 
@@ -513,7 +513,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
 - [OpenVidu CE configuration](reference-docs/openvidu-config){:target="_blank"}
-- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
+- [OpenVidu Pro configuration](reference-docs/openvidu-config){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
@@ -526,7 +526,7 @@ OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **
 
 ### 2) With OpenVidu Pro REST API
 
-You can consume REST API method **[POST /openvidu/api/restart](openvidu-pro/reference-docs/REST-API-pro/#post-openviduapirestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
+You can consume REST API method **[POST /openvidu/api/restart](reference-docs/REST-API/#post-openviduapirestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future

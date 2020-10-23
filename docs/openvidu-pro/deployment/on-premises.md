@@ -178,7 +178,7 @@ OpenVidu Pro configuration is specified in the **`.env`** file with environment 
 - You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`**, **`OPENVIDU_SECRET`** and **`ELASTICSEARCH_PASSWORD`**. Default empty values will fail.
 - You _must_ also provide a value for  **`OPENVIDU_PRO_LICENSE`**. You need an **[OpenVidu account](https://openvidu.io/account){:target="_blank"}** to purchase it. There's a **15 day free trial** waiting for you!
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
-- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} for further information.
+- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu CE configuration](reference-docs/openvidu-config/){:target="_blank"} and [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"} for further information.
 
 The **`.env`** file is pretty self-explanatory. It looks like this:
 
@@ -280,7 +280,7 @@ You can press `Ctrl+C` to come back to the shell and OpenVidu Pro will be execut
 
 ##### Available services
 
-- Consume [OpenVidu REST API Pro](openvidu-pro/reference-docs/REST-API-pro/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
+- Consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
 - If the [application](#videoconference-application) is enabled, it will also be available at `https://DOMAIN_OR_PUBLIC_IP/`
 - You can access [OpenVidu Inspector](openvidu-pro/openvidu-inspector/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/inspector/`
 - You can access [Kibana](openvidu-pro/monitoring-elastic-stack/){:target="_blank"} at `https://DOMAIN_OR_PUBLIC_IP/kibana/`
@@ -484,7 +484,7 @@ CERTIFICATE_TYPE=selfsigned
 OPENVIDU_SECRET=<YOUR_SECRET>
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](openvidu-pro/reference-docs/openvidu-pro-config/).
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](reference-docs/openvidu-config/).
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
@@ -523,7 +523,7 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 LETSENCRYPT_EMAIL=youremail@youremail.com
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](openvidu-pro/reference-docs/openvidu-pro-config/).
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](reference-docs/openvidu-config/).
 
 You must define the `LETSENCRYPT_EMAIL` where you want to register the domain and receive Let's Encrypt notifications.
 
@@ -615,7 +615,7 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 CERTIFICATE_TYPE=owncert
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](openvidu-pro/reference-docs/openvidu-pro-config/).
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu CE Configuration](reference-docs/openvidu-config/) and [OpenVidu Pro Configuration](reference-docs/openvidu-config/).
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
@@ -636,13 +636,13 @@ To deploy your OpenVidu Pro cluster with a specific initial number of Media Node
 
 Check out the [Prerequisites](#1-prerequisites) section and make sure that all of your machines intended to run a Media Node service fulfill the requirements for doing so. Then [install and run the Media Node service](#3-media-nodes) in all of them.
 
-> If you know for sure that your Media Node IPs are not going to change over time, then you can fix them in a configuration property of OpenVidu Server Pro. Use property **`KMS_URIS`** to set the IPs of your Media Nodes if you want your OpenVidu Server Pro Node to automatically connect to them on start up. Check out [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} to learn more.
+> If you know for sure that your Media Node IPs are not going to change over time, then you can fix them in a configuration property of OpenVidu Server Pro. Use property **`KMS_URIS`** to set the IPs of your Media Nodes if you want your OpenVidu Server Pro Node to automatically connect to them on start up. Check out [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"} to learn more.
 
 ### Change the number of Media Nodes on the fly
 
 You can change the number of Media Nodes on the fly in two different ways.
 
-> Be careful: these Media Nodes won't be saved as permanent Media Nodes in OpenVidu Server Pro Node. If you reboot OpenVidu Server Pro, it won't automatically re-connect to them. If you know for sure that the IPs of your Media Nodes are fixed and won't change, you can use [configuration property](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} **`KMS_URIS`** to make OpenVidu connect to them automatically on startup.
+> Be careful: these Media Nodes won't be saved as permanent Media Nodes in OpenVidu Server Pro Node. If you reboot OpenVidu Server Pro, it won't automatically re-connect to them. If you know for sure that the IPs of your Media Nodes are fixed and won't change, you can use [configuration property](reference-docs/openvidu-config/){:target="_blank"} **`KMS_URIS`** to make OpenVidu connect to them automatically on startup.
 
 #### From OpenVidu Inspector
 
@@ -657,21 +657,21 @@ In Cluster page you can add and remove Media Nodes from your cluster just by pre
 > **WARNING**: adding/removing Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically launch/terminate your physical machines:
 >
 > - To add a new Media Node you need to have the new Media Node already up and running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one) and define its URI like stated in the image above.<br><br>
-> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then, you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
 #### With OpenVidu Pro REST API
 
 You can programmatically add and remove Media Nodes from your cluster by consuming OpenVidu Pro REST API.
 
-- **Add a Media Node**: **[POST /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-openviduapimedia-nodes){:target="_blank"}**
-- **Remove a Media Node**: **[DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Add a Media Node**: **[POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-openviduapimedia-nodes){:target="_blank"}**
+- **Remove a Media Node**: **[DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes through REST API in on premises OpenVidu Pro clusters:
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"} through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your physical machines:
->     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-openviduapimedia-nodes){:target="_blank"} using **`uri`** query parameter.
->     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. You can achieve this by setting the [Media Node status](openvidu-pro/scalability/#openvidu-pro-cluster-events){:target="_blank"} to `waiting-idle-to-terminate`. Then, you can listen to [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance. The moment will come when `terminated` status is achieved: at that point it is safe to shut down the machine hosting the Media Node.
+>     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-openviduapimedia-nodes){:target="_blank"} using **`uri`** query parameter.
+>     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}, if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. You can achieve this by setting the [Media Node status](openvidu-pro/scalability/#openvidu-pro-cluster-events){:target="_blank"} to `waiting-idle-to-terminate`. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"} event through OpenVidu Webhook to know when you can safely terminate your instance. The moment will come when `terminated` status is achieved: at that point it is safe to shut down the machine hosting the Media Node.
 
 <br>
 
@@ -682,7 +682,7 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
 - [OpenVidu CE configuration](reference-docs/openvidu-config){:target="_blank"}
-- [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config){:target="_blank"}
+- [OpenVidu Pro configuration](reference-docs/openvidu-config){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
@@ -695,7 +695,7 @@ OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **
 
 ### 2) With OpenVidu Pro REST API
 
-You can consume REST API method **[POST /openvidu/api/restart](openvidu-pro/reference-docs/REST-API-pro/#post-openviduapirestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
+You can consume REST API method **[POST /openvidu/api/restart](reference-docs/REST-API/#post-openviduapirestart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future

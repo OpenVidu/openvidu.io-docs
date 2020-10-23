@@ -47,9 +47,9 @@ In this case, the only solution is to renegotiate the whole media connections wi
 To help managing the 3 scenarios of the previous section, the [Session](api/openvidu-browser/classes/session.html){:target="_blank"} object owned by the affected user will dispatch the following events during the reconnection process:
 
 1. Event `reconnecting` is triggered once the client realizes its connection to OpenVidu is broken
-2. Once the connection ir recovered:
-    - If OpenVidu has not evicted the user yet, `reconnected` event is dispatched. Media streams may be renegotiated under the hood if necessary
-    - If OpenVidu has evicted the user, [`sessionDisconnected`](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} event is fired with reason set to `networkDisconnect`
+2. Once the connection is recovered:
+    - If OpenVidu has not evicted the user yet, `reconnected` event is dispatched. Media streams may be renegotiated under the hood if necessary.
+    - If OpenVidu has evicted the user, [`sessionDisconnected`](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} event is fired with reason set to `networkDisconnect`.
 
 ```javascript
 session.on('reconnecting', () => console.warn('Oops! Trying to reconnect to the session'));

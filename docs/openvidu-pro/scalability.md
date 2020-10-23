@@ -99,8 +99,8 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro#post-openviduapimedia-nodes){:target="_blank"}**
-- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](openvidu-pro/reference-docs/REST-API-pro/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
+- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-openviduapimedia-nodes){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-openviduapimedia-nodesltmedia_node_idgt){:target="_blank"}**
 
 > **WARNING**: depending on the environment where your OpenVidu Pro cluster is deployed, you must take into account some important aspects regarding the launch and drop of Media Nodes. Visit the specific documentation page for your environment:
 >
@@ -115,7 +115,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 OpenVidu Pro provides an specific server-side event that will inform you every time there is a change in the status of the cluster. You can listen to this event by using [OpenVidu Webhook](reference-docs/openvidu-server-webhook){:target="_blank"} (it will also be registered in [OpenVidu CDR](reference-docs/openvidu-server-cdr){:target="_blank"}).
 
-This event is **[mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"}**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro REST API](openvidu-pro/reference-docs/REST-API-pro){:target="_blank"} to retrieve or modify the status of a Media Node at any time.
+This event is **[mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"}**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro Media Node REST API](reference-docs/REST-API/#the-media-node-object){:target="_blank"} to retrieve or modify the status of a Media Node at any time.
 
 #### Media Node statuses
 
@@ -204,7 +204,7 @@ Configure the following property in the **`.env`** file at OpenVidu Server Pro N
 OPENVIDU_PRO_CLUSTER_AUTOSCALING=true
 ```
 
-The following properties allows you to configure the autoscaling behavior: the upper and lower limits on the number of Media Nodes and the average load threshold. You have a complete description of them at [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"} section.
+The following properties allows you to configure the autoscaling behavior: the upper and lower limits on the number of Media Nodes and the average load threshold. You have a complete description of them at [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"} section.
 
 ```console
 OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES=8
@@ -219,12 +219,12 @@ OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD=30
  
  - For **any deployment environment different to On Premises**, OpenVidu Pro will automatically manage the complete lifecycle of all Media Nodes, being able to launch and drop instances on its own. In this case the user doesn't need to do anything regarding instance management.<br><br>
  - For **[On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"}** deployments, OpenVidu Pro won't be able to launch and drop instances from the cluster on its own. It will only be able to transition Media Node statuses from one status to another. That includes disconnecting Media Nodes from the cluster when required (so that you are no longer charged for them), but you will still be responsible of launching and adding to the cluster new Media Nodes when indicated and terminating the instances of disconnected Media Nodes (if that's what you want). In order to accomplish this you must listen to:
-    - Event [autoscaling](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#autoscaling){:target="_blank"}: to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](openvidu-pro/deployment/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}.
-    - Event [mediaNodeStatusChanged](openvidu-pro/reference-docs/openvidu-server-pro-cdr/#medianodestatuschanged){:target="_blank"}: to know when to terminate the instance of a Media Node, if that's what you want. Wait for `terminated` status to know when you can safely terminate the Media Node instance without losing any data.
+    - Event [autoscaling](reference-docs/openvidu-server-cdr/#autoscaling){:target="_blank"}: to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](openvidu-pro/deployment/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}.
+    - Event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"}: to know when to terminate the instance of a Media Node, if that's what you want. Wait for `terminated` status to know when you can safely terminate the Media Node instance without losing any data.
 
 ### How does the autoscaling algorithm behave?
 
-Let's take a look at how OpenVidu Pro autoscaling works. First of all, everything starts with the value given to the autoscaling [configuration properties](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"}. You can set the maximum and minimum number of Media Nodes that the cluster should always respect, regardless of what the cluster load is. And you can also set the threshold indicating the "low load" and "high load" values, so when exceeded the autoscaling algorithm will make changes to the cluster size.
+Let's take a look at how OpenVidu Pro autoscaling works. First of all, everything starts with the value given to the autoscaling [configuration properties](reference-docs/openvidu-config/){:target="_blank"}. You can set the maximum and minimum number of Media Nodes that the cluster should always respect, regardless of what the cluster load is. And you can also set the threshold indicating the "low load" and "high load" values, so when exceeded the autoscaling algorithm will make changes to the cluster size.
 
 OpenVidu Pro will be constantly monitoring the load of each Media Node of the cluster. When their average load is higher or lower than the indicated limits, the autoscaling algorithm will launch new Media Nodes or drop existing Media Nodes respectively. The power of the autoscaling feature lies in the ability of the algorithm to determine the most optimal Media Node(s) to modify at any given time in order to reach the new desired number of Media Nodes in the least possible amount of time. All of this is determined by the [Media Node statuses](#media-node-statuses).
 

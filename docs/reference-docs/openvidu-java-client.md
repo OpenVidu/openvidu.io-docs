@@ -9,7 +9,7 @@ _This is a Java library wrapping [OpenVidu Server REST API](reference-docs/REST-
 
 ## Code samples
 
-### Create a session
+### Create a Session
 
 ```java
 OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
@@ -17,17 +17,54 @@ SessionProperties properties = new SessionProperties.Builder().build();
 Session session = openVidu.createSession(properties);
 ```
 
-### Generate a token
+### Create a Connection
 
 ```java
-TokenOptions tokenOptions = new TokenOptions.Builder()
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
     .role(OpenViduRole.PUBLISHER)
     .data("user_data")
     .build();
-String token = session.generateToken(tokenOptions);
+Connection connection = session.createConnection(connectionProperties);
+String token = connection.getToken(); // Send this string to the client side
 ```
 
-### Fetch session status
+### Update a Connection
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .role(OpenViduRole.MODERATOR)
+    .record(false)
+    .build();
+String connectionId = connection.getConnectionId();
+session.updateConnection(connectionId, connectionProperties);
+```
+
+### Fetch Session status
 
 ```java
 // Fetch all session info from OpenVidu Server
@@ -39,20 +76,20 @@ session.fetch();
 List<Connection> activeConnections = session.getActiveConnections();
 ```
 
-### Close a session
+### Close a Session
 
 ```java
 session.close();
 ```
 
-### Disconnect a user
+### Destroy a Connection
 
 ```java
 // Find the desired Connection object in the list returned by Session.getActiveConnections()
 session.forceDisconnect(connection);
 ```
 
-### Unpublish a user's stream
+### Unpublish a stream
 
 ```java
 // Find the desired Publisher object in the list returned by Connection.getPublishers()

@@ -73,12 +73,7 @@ nav:
   - Deployment:
     - AWS: openvidu-pro/deployment/aws.md
     - On premises: openvidu-pro/deployment/on-premises.md
-    - Kubernetes: openvidu-pro/deployment/kubernetes.md
     - Upgrading OpenVidu Pro: openvidu-pro/deployment/upgrading.md
-  - Reference Documentation:
-    - REST API Pro: openvidu-pro/reference-docs/REST-API-pro.md
-    - OpenVidu Pro configuration: openvidu-pro/reference-docs/openvidu-pro-config.md
-    - OpenVidu Pro CDR: openvidu-pro/reference-docs/openvidu-server-pro-cdr.md
 docs_dir: docs
 theme:
     name: mkdocs

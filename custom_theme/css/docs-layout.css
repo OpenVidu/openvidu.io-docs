@@ -104,12 +104,17 @@ ul#menu-list {
 #doc-container .section h1,
 #doc-container .section h2,
 #doc-container .section h4,
-#doc-container .section h5 {
+#doc-container .section h5,
+#doc-container .after-section-helper ~ h1,
+#doc-container .after-section-helper ~ h2,
+#doc-container .after-section-helper ~ h4,
+#doc-container .after-section-helper ~ h5 {
     border-top: 60px solid transparent;
     margin-top: -60px;
 }
 
-#doc-container .section h3 {
+#doc-container .section h3,
+#doc-container .after-section-helper ~  h3 {
     border-top: 100px solid transparent;
     margin-top: -60px;
 }
@@ -121,15 +126,15 @@ ul#menu-list {
     margin-top: 0 !important;
 }
 
-#doc-container .section h1 {
+#doc-container .section h1,
+#doc-container .section h2,
+#doc-container .after-section-helper ~ h1,
+#doc-container .after-section-helper ~ h2 {
     padding-top: 40px;
 }
 
-#doc-container .section h2 {
-    padding-top: 40px;
-}
-
-#doc-container .section h4 {
+#doc-container .section h4,
+#doc-container .after-section-helper ~ h4 {
     padding-top: 25px;
 }
 
@@ -296,6 +301,10 @@ ul#menu-list {
 #doc-container .rest-api-section.rest-api-pro-section ~ blockquote {
     margin-top: 0;
     margin-bottom: 10px;
+}
+
+#doc-container .index-list > ul > li {
+    margin-top: 7px;
 }
 
 .img-acknowledgments {

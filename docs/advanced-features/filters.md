@@ -6,14 +6,14 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
 - You can **remove an applied filter**.
 - You can **call any remote method** offered by an applied filter
 - You can **add and remove event listeners** to any event dispatched by an applied filter.
-- You must configure in the participant token the allowed filters the user can apply.
+- You must configure the allowed filters the user will be able to apply when **creating the Connection**.
 
 ---
 
 ## Step by step
 
 <br>
-##### 1) Generate a token with the filters the user will be able to apply
+##### 1) Generate a Connection with the filters the user will be able to apply
 
 This is a simple way of securing the ability of applying filters from OpenVidu Browser, so that not every user is able to apply any filter at any time.
 
@@ -27,11 +27,11 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When generating a token with operation [POST /openvidu/api/tokens](reference-docs/REST-API#post-openviduapitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```json  
 {
-    "session": "6fpivlanw91qjy6n",
+    "type": "WEBRTC",
     "data": "user_data",
     "role": "PUBLISHER",
     "kurentoOptions": {
@@ -44,35 +44,39 @@ When generating a token with operation [POST /openvidu/api/tokens](reference-doc
 
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, call `TokenOptions.Builder#kurentoOptions(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
+When creating a Connection, call `ConnectionProperties.Builder#connectionProperties(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
 
 ```java
-TokenOptions tokenOptions = new TokenOptions.Builder()
-    .role(OpenViduRole.PUBLISHER)
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .type(ConnectionType.WEBRTC)
     .data("user_data")
+    .role(OpenViduRole.PUBLISHER)
     .kurentoOptions(
         new KurentoOptions.Builder()
             .allowedFilters(new String[]{"GStreamerFilter", "FaceOverlayFilter"})
             .build())
     .build();
-String token = session.generateToken(tokenOptions);
+Connection connection = session.createConnection(connectionProperties);
+String token = connection.getToken(); // Send this string to the client side
 ```
 
 </div>
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, include in [TokenOptions](api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When creating a Connection, include in [ConnectionProperties](api/openvidu-node-client/interfaces/connectionproperties.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
-var tokenOptions = {
+var connectionProperties = {
     role: "PUBLISHER",
     data: "user_data",
     kurentoOptions: {
         allowedFilters: ["GStreamerFilter", "FaceOverlayFilter"]
     }
 };
-session.generateToken(tokenOptions).then(token => { ... });
+session.createConnection(connectionProperties).then(connection => { 
+    var token = connection.token; // Send this string to the client side
+});
 ```
 
 </div>
@@ -96,7 +100,7 @@ var publisher = OV.initPublisher(
     }
 );
 
-// ... user already connected to "session" with the appropriate token
+// ... user already connected to "session" with the appropriate token of the created Connection
 session.publish(publisher);
 ```
 
@@ -104,7 +108,7 @@ session.publish(publisher);
 ##### 2.B) ... or apply the filter dynamically after publishing the stream, whenever you want
 
 ```javascript
-// ... user already connected to the session with the appropriate token
+// ... user already connected to the session with the appropriate token of the created Connection
 // and successfully publishing the Publisher object
 
 publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=vertical-flip" })
@@ -120,7 +124,7 @@ publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=ver
 ##### 3) You can execute any method offered by the filter
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.filter.execMethod("setElementProperty", {"propertyName":"method","propertyValue":"horizontal-flip"})
@@ -136,7 +140,7 @@ publisher.stream.filter.execMethod("setElementProperty", {"propertyName":"method
 ##### 4) You can also subscribe to any filter event (if it dispatches any), and later unsubscribe from it
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.filter.addEventListener("FooFilterEvent", filterEvent => {
@@ -152,7 +156,7 @@ publisher.stream.filter.removeEventListener("FooFilterEvent");
 ##### 4) To remove the filter
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.removeFilter()
@@ -164,7 +168,7 @@ publisher.stream.removeFilter()
     });
 ```
 
-> Moderators are not only able to call all of these methods over their `Publisher.stream` object, but also over any `Subscriber.stream` object. Also, they don't need any special token permission to apply filters and can bypass any token restriction set to other user tokens
+> Moderators are not only able to call all of these methods over their `Publisher.stream` object, but also over any `Subscriber.stream` object. Also, they don't need any special Connection permissions to apply filters (no need of `kurentoOptions` configuration in their Connection) and can bypass any restriction set to other Connections in this regard.
 
 <br>
 

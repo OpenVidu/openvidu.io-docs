@@ -28,7 +28,18 @@
 {% else %}
 
 <li class="toctree-l1 {% if nav_item.active%}current{%endif%}">
+        {% if nav_item.title == 'Network quality' %}
+        <div style="display: flex; justify-content: space-between">
+                <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+                <a style="all: unset; display: inline">
+                        <div id="openvidu-pro-tag"
+                                style=" pointer-events: none; float: left; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
+                                PRO</div>
+                </a>
+        </div>
+        {% else %}
         <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+        {% endif %}
 </li>
 
 {% endif %}

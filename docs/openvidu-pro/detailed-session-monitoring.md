@@ -4,7 +4,7 @@ window.onload = function() {
         return el.length != 0
     });
     const urlVersion = pathSplitted[1];
-    const redirectPathname = '/en/' + urlVersion + '/reference-docs/openvidu-server-cdr';
+    const redirectPathname = '/en/' + urlVersion + '/openvidu-pro/monitoring-elastic-stack';
     const hash = !!window.location.hash ? window.location.hash : '';
     window.location = window.location.protocol + '//' + window.location.host + redirectPathname + hash;
 }

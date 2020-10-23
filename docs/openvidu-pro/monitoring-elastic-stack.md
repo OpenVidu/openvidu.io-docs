@@ -547,6 +547,8 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 </div>
 </div>
 
+<div class="after-section-helper"></div>
+
 <br>
 
 > **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
@@ -823,8 +825,8 @@ You can see an example of both HTTP requests here:
 <div class="lang-tabs-container kibana-user-post elastic-events version-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">Create Role</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Create User</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">CREATE ROLE</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">CREATE USER</button>
 </div>
 
 <div id="create-role" class="lang-tabs-content" markdown="1">

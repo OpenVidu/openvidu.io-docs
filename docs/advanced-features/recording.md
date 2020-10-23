@@ -4,6 +4,7 @@
 - **[Composed recording](#composed-recording)**
     - [Composed quick start recording](#composed-quick-start-recording)
 - **[Individual stream recording](#individual-stream-recording)**
+    - [Selecting streams to be recorded](#selecting-streams-to-be-recorded)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
 - **[Custom recording layouts](#custom-recording-layouts)**
@@ -11,7 +12,7 @@
     - [Using an external custom layout](#using-an-external-custom-layout)
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
-- **[Uploading recordings to AWS S3](#uploading-recordings-to-aws-s3)**<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Uploading recordings to AWS S3](#uploading-recordings-to-aws-s3)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
 
 ---
@@ -353,22 +354,22 @@ For example, for a session with 2 publishers the final content of the ZIP file c
 ```console
 MyRecording.zip
 +-- MyRecording.json
-+-- tzk08sgffcqqwpor_CAMERA_DFDAE.webm
-+-- ugkmpnz4bn6yewbi_CAMERA_PAHHB.webm
++-- str_CAM_WyJt_con_HZPIDsWXBx.webm
++-- str_CAM_CPQ7_con_PHBKMPOlLb.webm
 ```
 
-And the content of the JSON synchronization file might be:
+And the content of the JSON synchronization file (`MyRecording.json` in the example above) might be:
 
 ```json
 {
   "createdAt": 1548947712287,
-  "id": "zfgmthb8jl9uellk",
+  "id": "ses_MEx72i7vFd",
   "name": "MyRecording",
-  "sessionId": "zfgmthb8jl9uellk",
+  "sessionId": "ses_MEx72i7vFd",
   "files": [
     {
-      "connectionId": "ugkmpnz4bn6yewbi",
-      "streamId": "ugkmpnz4bn6yewbi_CAMERA_PAHHB",
+      "connectionId": "con_HZPIDsWXBx",
+      "streamId": "str_CAM_WyJt_con_HZPIDsWXBx",
       "size": 4006190,
       "clientData": "",
       "serverData": "UserA",
@@ -379,8 +380,8 @@ And the content of the JSON synchronization file might be:
       "endTimeOffset": 56445
     },
     {
-      "connectionId": "tzk08sgffcqqwpor",
-      "streamId": "tzk08sgffcqqwpor_CAMERA_DFDAE",
+      "connectionId": "con_PHBKMPOlLb",
+      "streamId": "str_CAM_CPQ7_con_PHBKMPOlLb",
       "size": 2404760,
       "clientData": "",
       "serverData": "UserB",
@@ -399,7 +400,7 @@ And the content of the JSON synchronization file might be:
 These are the properties in the JSON file
 
 > - **createdAt**: time when the recording was started in UTC milliseconds
-> - **id**: unique identifier of the recording
+> - **id**: unique identifier of the recording. It is built from the session identifier
 > - **name**: custom name of the recording. You can set this parameter when starting the recording, and the final ZIP file will be named after it
 > - **sessionId**: unique identifier of the session that was recorded
 > - **files**: array containing one JSON object for each one of the WEBM videos inside the ZIP file
@@ -413,6 +414,145 @@ These are the properties in the JSON file
 >     - **typeOfVideo**: type of video ("CAMERA" or "SCREEN"). Only defined if `hasVideo` is true
 >     - **startTimeOffset**: the offset in milliseconds for when this particular stream started being recorded, from the `createdAt` property of the root element
 >     - **endTimeOffset**: the offset in milliseconds for when this particular stream stopped being recorded, from the `createdAt` property of the root element
+
+<br>
+
+---
+
+## Selecting streams to be recorded
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
+
+In OpenVidu CE all of the streams published to a session being recorded with INDIVIDUAL mode will always be stored to disk. In OpenVidu Pro you have greater control: you can configure in detail which streams are to be recorded, and even activate and deactivate the recording of a specific stream during the very same recording process.
+
+This applies to [INDIVIDUAL](#individual-stream-recording) recording. You can specify the streams that should or shouldn't be recorded in a session when creating the Connection for a participant. The default option when creating a Connection is to record all of the streams published by it. Below there are examples of Connections being created that will make the their published streams NOT to be recorded when recording the session in INDIVIDUAL mode.
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}** pass parameter `record` to false.
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .record(false)
+    .build();
+Connection connection = session.createConnection(connectionProperties);
+String token = connection.getToken(); // Send this string to the client side
+```
+
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection-io.openvidu.java.client.ConnectionProperties-){:target="_blank"}
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var connectionProperties = {
+    record: false
+};
+session.createConnection(connectionProperties).then(connection => { 
+    var token = connection.token; // Send this string to the client side
+});
+```
+
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+
+</div>
+
+</div><br>
+
+You can also change on the fly whether the streams of a Connection must be recorded or not. By using the capability of dynamically updating the options of a Connection you can start or stop the individual recording of the Connection's stream at any moment, even while the recording is active:
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+Use method **[PATCH /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API/#patch-openviduapisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}** to modify the connection property `record` to true or false. This will start or stop the recording of the stream published by the Connection identified by `CONNECTION_ID`.
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .record(false) // false to stop the recording, true to start it
+    .build();
+// connectionId being Connection.getConnectionId()
+session.updateConnection(connectionId, connectionProperties);
+```
+
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#updateConnection-java.lang.String-io.openvidu.java.client.ConnectionProperties-){:target="_blank"}
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var connectionProperties = {
+    record: false // false to stop the recording, true to start it
+};
+// connectionId being Connection.connectionId
+session.updateConnection(connectionId, connectionProperties).then(connection => { ... });
+```
+
+See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:target="_blank"}
+
+</div>
+
+</div><br>
+
+If the same stream of some user is recorded multiple times during one INDIVIDUAL session recording, then the resulting ZIP file described in [Individual stream recording](#individual-stream-recording) may have this content:
+
+```console
+MyRecording.zip
++-- MyRecording.json
++-- str_CAM_WyJt_con_HZPIDsWXBx.webm
++-- str_CAM_CPQ7_con_PHBKMPOlLb.webm
++-- str_CAM_CPQ7_con_PHBKMPOlLb-1.webm
++-- str_CAM_CPQ7_con_PHBKMPOlLb-2.webm
+```
+
+In this case the recording process for stream `str_CAM_CPQ7_con_PHBKMPOlLb` has been started and stopped 3 times, generating 3 separate files for the same recording named `MyRecording`.
 
 <br>
 
@@ -879,7 +1019,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -903,7 +1043,7 @@ OPENVIDU_PRO_AWS_SECRET_KEY=your-aws-secret-key
 OPENVIDU_PRO_AWS_REGION=eu-west-1
 ```
 
-There is a complete description of these properties at [OpenVidu Pro configuration](openvidu-pro/reference-docs/openvidu-pro-config/){:target="_blank"}. Take into account the following points:
+There is a complete description of these properties at [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"}. Take into account the following points:
 
 - Property `OPENVIDU_PRO_AWS_S3_BUCKET` can have a folder structure if you want OpenVidu Pro to upload recordings to a specific folder of your bucket.
 - AWS credential properties `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` can be omitted if you have default AWS credentials configured in your OpenVidu Server Pro Node machine. The internal AWS S3 client managed by OpenVidu Server Pro will try to use them if no keys are provided. One way or the other, the credentials finally used must provide read and write access to the bucket.
