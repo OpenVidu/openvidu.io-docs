@@ -5,6 +5,7 @@
 <hr>
 
 - **[OpenVidu Pro architecture](#openvidu-pro-architecture)**
+    - [How OpenVidu Pro sessions are distributed](#how-openvidu-pro-sessions-are-distributed)
 - **[Pricing of an OpenVidu Pro cluster](#pricing-of-an-openvidu-pro-cluster)**
 - **[How to deploy your OpenVidu Pro cluster](#how-to-deploy-your-openvidu-pro-cluster)**
 - **[Set the number of Media Nodes on startup](#set-the-number-of-media-nodes-on-startup)**
@@ -27,9 +28,93 @@ OpenVidu Pro consists of different nodes that work together to offer OpenVidu se
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/openvidu-cluster.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-pro/openvidu-cluster.png"/></a>
     </div>
 </div>
+
+### How OpenVidu Pro sessions are distributed
+
+There are two different ways to distribute OpenVidu sessions among the different Media Nodes of your cluster.
+
+#### Automatic distribution
+
+This is the default method to allocate sessions in your OpenVidu Pro cluster. OpenVidu periodically gathers the CPU load of all Media Nodes, and each new session will be initialized in the less loaded Media Node. The session is allocated in the less loaded Media Node at the exact moment when its first user connects to it.
+
+When is this method recommended?
+
+- **When your sessions are relatively small in number of participants**. That is: when each session does not take a significant amount of the CPU capacity of the Media Node.
+- **When your sessions are not expected to grow in size over time**. If your sessions start small but keep adding participants, at some point they can overload their automatically assigned Media Node.
+- **When you expect a fairly even spread of sessions over time**. That is: if your system does not proactively initialize many sessions at once. This may cause the initialization of all of them in the same Media Node (the less loaded at that time), not taking into account the future load it will have to deal with when all the sessions begin to stream media.
+
+If these conditions are sufficiently met, then the automatic distribution process will ensure that sessions are distributed evenly across all available Media Nodes, without having to worry about manual session allocation.
+
+#### Manual distribution
+
+You can force the Media Node where a session must be allocated.
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When initializing a Session by calling method **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-openviduapisessions){:target="_blank"}**, provide a Media Node selector through body parameter `mediaNode`.
+
+```json
+{
+    "mediaNode": {
+        "id": "kms_FVrQslIr"
+    }
+}
+```
+
+The `id` value must be the `id` property of a [Media Node object](reference-docs/REST-API/#the-media-node-object){:target="_blank"}.
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+SessionProperties sessionProperties = new SessionProperties.Builder()
+    .mediaNode("kms_FVrQslIr") // This string being the identifier of an available Media Node
+    .build();
+Session session = openvidu.createSession(sessionProperties);
+```
+
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#createSession-io.openvidu.java.client.SessionProperties-){:target="_blank"}
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+var sessionProperties = {
+    mediaNode: "kms_FVrQslIr" // This string being the identifier of an available Media Node
+};
+openVidu.createSession(sessionProperties)
+    .then(session => { ... })
+    .catch(error => console.error(error));
+```
+
+See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession){:target="_blank"}
+
+</div>
+
+</div>
+
+<br>
+
+When is this method recommended?
+
+- **When your sessions are very big in number of participants** and may require a significant share of its Media Node capacity. In other words: if you expect a particular session to need 50% of the Media Node CPU power, then manually controlling which other sessions will also be initialized in that Media Node becomes essential to avoid overloading it.
+- **When your sessions keep growing over time**. If more and more participants keep being added to your sessions, then having full control over where new sessions are started is important.
+- **When you expect lots of sessions to be initialized in a very short amount of time**. OpenVidu doesn't know how much CPU capacity will consume each session, and by default will initialize them in the less loaded Media Node. This can cause lots of sessions to be allocated in the same Media Node (the less loaded one at that time), and when they begin streaming media and adding participants the load in that specific node can increase to a dangerous point, even with idle Media Nodes available in the cluster. Manual session allocation is the only solution in this case.
 
 <br>
 
@@ -341,4 +426,33 @@ In the current status of OpenVidu Pro it is still not possible to distribute a s
     clickOutside : 'close',
     clickSlide   : 'close',
   });
+</script>
+
+<script>
+function changeLangTab(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\s/g, "-").toLowerCase();
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of language buttons
+    if (child.classList.contains("lang-tabs-header")) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains("lang-tabs-btn")) {
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }
+    // Change visibility of language content
+    if (child.classList.contains("lang-tabs-content")) {
+        if (child.id === txt) {
+            child.style.display = "block";
+        } else {
+            child.style.display = "none";
+        }
+    }
+  }
+}
 </script>

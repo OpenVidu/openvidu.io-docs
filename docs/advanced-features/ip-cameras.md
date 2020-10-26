@@ -40,6 +40,8 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 Connection connection = session.createConnection(connectionProperties);
 ```
 
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection-io.openvidu.java.client.ConnectionProperties-){:target="_blank"}
+
 </div>
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
@@ -57,6 +59,8 @@ session.createConnection(connectionProperties)
     .then(connection => { ... })
     .catch(error => console.error(error));
 ```
+
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
 
 </div>
 
@@ -147,7 +151,7 @@ Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CO
 session.forceDisconnect(connection);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#forceDisconnect-io.openvidu.java.client.Connection-){:target="_blank"}
 
 </div>
 

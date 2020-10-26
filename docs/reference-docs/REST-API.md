@@ -115,7 +115,10 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
     "customSessionId": "CUSTOM_SESSION_ID",
     "defaultOutputMode": "COMPOSED",
     "defaultRecordingLayout": "BEST_FIT",
-    "defaultCustomLayout": "CUSTOM_LAYOUT"
+    "defaultCustomLayout": "CUSTOM_LAYOUT",
+    "mediaNode": {
+        "id": "kms_FVrQslIr"
+    }
 }
 ```
 
@@ -136,7 +139,9 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
 >     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
 > - **defaultCustomLayout** _(optional String. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
->     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).
+>     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`)<br><br>
+> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+>     - An object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
 
 ##### Returns
 

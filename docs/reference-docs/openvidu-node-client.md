@@ -58,11 +58,28 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 
 ```javascript
 var connectionProperties = {
+    type: "WEBRTC",
     role: "MODERATOR",
     record: false
 };
 var connectionId = connection.connectionId;
 session.updateConnection(connectionId, connectionProperties).then(connection => { ... });
+```
+
+### Publish an IP camera
+
+```javascript
+var connectionProperties = {
+    type: "IPCAM",
+    rtspUri: "rtsp://your.camera.ip:7777/path",
+    adaptativeBitrate: true,
+    onlyPlayWithSubscribers: true,
+    networkCache: 2000
+};
+// "session" being a Session object
+session.createConnection(connectionProperties)
+    .then(ipcamConnection => { ... })
+    .catch(error => console.error(error));
 ```
 
 ### Fetch Session status

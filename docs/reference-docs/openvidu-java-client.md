@@ -21,6 +21,7 @@ Session session = openVidu.createSession(properties);
 
 ```java
 ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .type(ConnectionType.WEBRTC)
     .role(OpenViduRole.PUBLISHER)
     .data("user_data")
     .build();
@@ -62,6 +63,20 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
     .build();
 String connectionId = connection.getConnectionId();
 session.updateConnection(connectionId, connectionProperties);
+```
+
+### Publish an IP camera
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .type(ConnectionType.IPCAM)
+    .rtspUri("rtsp://your.camera.ip:7777/path")
+    .adaptativeBitrate(true)
+    .onlyPlayWithSubscribers(true)
+    .networkCache(2000)
+    .build();
+// "session" being a Session object
+Connection ipcamConnection = session.createConnection(connectionProperties);
 ```
 
 ### Fetch Session status
