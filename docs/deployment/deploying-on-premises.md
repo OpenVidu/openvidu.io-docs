@@ -326,11 +326,11 @@ For this specific scenario you will need to:
 
 #### 2.1) Register a FQDN pointing to your public IP
 
-This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. Let's suppose that our domain is: **example.openvidu.io**.
+This depends on the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. Let's suppose that our domain is: **example.openvidu.io**.
 
 #### 2.2) Edit `/opt/openvidu/.env` 
 
-To make our deployment works with a **Let's encrypt** certificate, you just need to edit the file in `/opt/openvidu/.env` and fill the next variables:
+To make our deployment work with a **Let's encrypt** certificate, you just need to edit the file in `/opt/openvidu/.env` and fill the next variables:
 
 
 ```
@@ -343,7 +343,7 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 LETSENCRYPT_EMAIL=youremail@youremail.com
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/).
+Only these variables are needed to make it work. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/).
 
 You must define the `LETSENCRYPT_EMAIL` where you want to register the domain and receive Let's Encrypt notifications.
 
