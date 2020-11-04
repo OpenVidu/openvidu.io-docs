@@ -281,7 +281,7 @@ public void startCamera() {
     this.audioTrack = peerConnectionFactory.createAudioTrack("101", audioSource);
 
     surfaceTextureHelper = SurfaceTextureHelper.create("CaptureThread", eglBaseContext);
-    
+
     // Create VideoCapturer
     VideoCapturer videoCapturer = createCameraCapturer();
     VideoSource videoSource = peerConnectionFactory.createVideoSource(videoCapturer.isScreencast());
@@ -290,7 +290,7 @@ public void startCamera() {
 
     // Create VideoTrack
     this.videoTrack = peerConnectionFactory.createVideoTrack("100", videoSource);
-    
+
     // Display in localView
     this.videoTrack.addSink(localVideoView);
 }
@@ -358,7 +358,7 @@ protected Void doInBackground(SessionActivity... sessionActivities) {
         // Set the flag which indicates whether the hostname in the server's certificate should be verified or not.
         factory.setVerifyHostname(false);
 
-        // Connecting the websocket to OpenVidu URL 
+        // Connecting the websocket to OpenVidu URL
         websocket = factory.createSocket(getWebSocketAddress(openviduUrl));
         websocket.addListener(this);
         websocket.connect();
@@ -443,7 +443,7 @@ As response we will receive an object with all the existing participants in the 
 
 ##### Publishing the camera with `publishVideo` method
 
-We need to send a JSO-RPC message through the websocket with the required params as shown below:
+We need to send a JSON-RPC message through the websocket with the required params as shown below:
 
 <p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px; word-break: break-word"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/websocket/CustomWebSocket.java" target="_blank">src/main/java/io/openvidu/openvidu_android/openvidu/CustomWebSocket.java</a></p>
 
