@@ -79,13 +79,13 @@ After that, you can start receiving network quality events in the application's 
 session.on('networkQualityLevelChanged', event => {
 
     if (event.connection.connectionId === session.connection.connectionId) {
-        console.log("This is my network quality level: " + event.qualityLevel);
+        console.log("Now my network quality level is " + event.newValue + ". Before was " + event.oldValue);
         
         // Do stuff
 
     } else {
         console.log("Network quality level of connection " + event.connection.connectionId
-            + " is " + event.qualityLevel);
+            + " is " + event.newValue + ". Previous one was " + event.oldValue);
         
         // Do stuff
 
@@ -99,8 +99,7 @@ session.on('networkQualityLevelChanged', event => {
 
 ## Understanding the network quality result
 
-The [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/networkqualitylevelchangedevent.html){:target="_blank"} provides in property `qualityLevel` a number between 0 and 5. The following table summarizes the meaning of those numbers:
-
+The [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/networkqualitylevelchangedevent.html){:target="_blank"} provides in properties `newValue` and `oldValue` a number between 0 and 5, with the current and previous value of the network quality level respectively. The following table summarizes the meaning of those numbers:
 
 <table class="table table-striped table-pricing" style="background: #e7e7e7">
     <thead>

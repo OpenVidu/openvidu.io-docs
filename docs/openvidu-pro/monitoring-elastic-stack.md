@@ -124,6 +124,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
 - `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Sever Pro Node
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
+- `networkQualityStats`: event of network quality for a specific client. See [Network quality](advanced-features/network-quality/){:target="_blank"}
 - `sessionSummary`: summary of a session, stored once it is closed
 - `recordingSummary`: summary of a recording, stored once its session is closed
 - `userSummary`: summary of a user, stored once its session is closed
@@ -140,6 +141,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">kms</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">monitoringStats</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcStats</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">networkQualityStats</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">sessionSummary</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">recordingSummary</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">userSummary</button>
@@ -229,6 +231,19 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "nackCount": 0,
   "sliCount": 0,
   "elastic_type": "webrtcStats"
+}
+```
+</div>
+
+<div id="networkqualitystats" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+{
+  "sessionId": "TestSession",
+  "connectionId": "con_XZvrQOF5Du",
+  "newValue": 4,
+  "oldValue": 3,
+  "timestamp": 1582277310832,
+  "elastic_type": "networkQualityStats"
 }
 ```
 </div>
