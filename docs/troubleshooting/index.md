@@ -13,10 +13,10 @@
 10. [My local video is not showing up on the browser](#10-my-local-video-is-not-showing-up-on-the-browser)
 11. [My Safari users with role SUBSCRIBER are not able to receive any remote video](#11-my-safari-users-with-role-subscriber-are-not-able-to-receive-any-remote-video)
 12. [Videos are freezing on Safari for iOS](#12-videos-are-freezing-on-safari-for-ios)
-13. [Deploying OpenVidu in AWS is failing](#13-deploying-openvidu-in-aws-is-failing)
-14. [Deployment with Let's encrypt is not working](#14-deployment-with-lets-encrypt-is-not-working)
-15. [Do I need to update Let's Encrypt certificates?](#15-do-i-need-to-update-lets-encrypt-certificates)
-15. [My commercial certificate is not working, What can I do?](#16-my-commercial-certificate-is-not-working-what-can-i-do)
+13. [Nginx is not working](#13-nginx-is-not-working)
+14. [Do I need to update Let's Encrypt certificates?](#14-do-i-need-to-update-lets-encrypt-certificates)
+15. [My commercial certificate is not working, What can I do?](#15-my-commercial-certificate-is-not-working-what-can-i-do)
+16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
 
 ---
 
@@ -343,16 +343,7 @@ Due to these problems, any other WebRTC based service we have tested usually red
 
 ---
 
-### 13. Deploying OpenVidu in AWS is failing
-
-If you are deploying [OpenVidu CE](deployment/deploying-aws/){:target="_blank"} or [OpenVidu Pro](openvidu-pro/deployment/aws/){:target="_blank"} in AWS and the CloudFormation reaches `CREATE_FAILED` status, then possibly you are missing a default VPC in that specific region.
-
-You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
-And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"}
-
-If you are still experiencing problems while deploying OpenVidu on AWS, please check out this guide: [AWS Deployment Troubleshooting](https://github.com/OpenVidu/openvidu-cloud-devops/blob/master/docs/AWS_Deploy_Troubleshooting.md){:target="_blank"}
-
-### 14. Deployment with Let's encrypt is not working
+### 13. Nginx is not working
 
 Sometimes OpenVidu Deployments are not working on premises because nginx container is not able to run. 
 Most of this problems are related with ports not opened or other services running.
@@ -364,7 +355,7 @@ the next command:
 sudo docker-compose logs nginx
 ```
 
-#### 14.1 Ngnix error while binding ports
+#### 13.1 Ngnix error while binding ports
 
 ```html
 sudo docker-compose logs nginx
@@ -392,7 +383,7 @@ nginx_1            | ===Mode letsencrypt===
 
 If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/deploying-on-premises/#1-prerequisites) (OpenVidu CE) and [here](openvidu-pro/deployment/on-premises/#1-prerequisites) (OpenVidu Pro).**
 
-#### 14.2 Let's Encrypt challenges errors
+#### 13.2 Let's Encrypt challenges errors
 
 ```html
 ...
@@ -425,7 +416,7 @@ These errors can happen because a lot of reasons. Most common scenarios are:
 - **DNS A/AAAA record configured is not pointing to the right IP**: This error depends a lot of your kind of network. The most common scenario is OpenVidu deployed behind a NAT which router is not mapping correctly to the local IP and ports used by the machine where the deployment was made.
 - **Other services running at port 80 or 443**: If you have another service running at this port, the path `http://<your-domain>/acme-challenge>/...` will not be accessible or it will return an invalid response to Let's Encrypt.
 
-#### 14.3 Other Nginx errors
+#### 13.3 Other Nginx errors
 
 If none of this errors is your problem, ensure that your deployment accomplish the next points:
 
@@ -439,11 +430,11 @@ If none of this works, you can try to remove `/opt/openvidu/certificates` folder
 sudo ./openvidu restart
 ```
 
-### 15. Do I need to update Let's Encrypt certificates?
+### 14. Do I need to update Let's Encrypt certificates?
 
 No, it is not necessary. The Nginx container is configured to renew automatically your certificates.
 
-### 16. My commercial certificate is not working, What can I do?
+### 15. My commercial certificate is not working, What can I do?
 
 Sometimes problems related with Commercial Certificates are due because of a wrong creation of the `certificate.key` and the `certificate.cert` in `/opt/openvidu/owncert`.
 
@@ -469,5 +460,8 @@ Be sure that your certificates follow this format:
 
 Normally official certificates have a chain of public keys in the .cert file
 
+### 16. How can I customize deployed Nginx?
+
+> TODO
 
 <br>

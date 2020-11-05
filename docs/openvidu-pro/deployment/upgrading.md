@@ -65,6 +65,10 @@ cd /opt/kms # Recommended and default installation path
 </div>
 </div>
 
+## Migrating from 2.15.1 to 2.16.0
+
+> TODO
+
 ## Migrating from 2.14.0 to 2.15.1
 
 ### Upgrading OpenVidu Server Pro Node

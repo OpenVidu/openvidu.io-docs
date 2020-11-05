@@ -76,7 +76,7 @@
 </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.15.1</strong>.yaml</code>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-<strong>2.16.0</strong>.yaml</code>
 
 <br>
 
@@ -156,7 +156,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
       <td><em>Your choice</em></td>
     </tr>
     <tr>
-      <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu deployment. No whitespaces or quotations allowed<span></td>
+      <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu Platform. Cannot be empty and must contain only alphanumeric characters [a-zA-Z0-9], hypens "-" and underscores "_"<span></td>
       <td><em>Your choice</em></td>
     </tr>
   </table>
@@ -164,18 +164,42 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 
 > There are many other configuration values that can be set once the deployment has completed. Check out section [Updating OpenVidu Pro configuration](#updating-openvidu-pro-configuration) once the deployment is done.
 
-#### Kibana configuration
+#### OpenVidu Recording Configuration
 
-Username and password for the Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment. Visit section [Detailed session monitoring](openvidu-pro/monitoring-elastic-stack){:target="_blank"} for further information.
+Configure if you want or not to enable OpenVidu Recordings and what type of persistence do you want.
+ 
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">OpenVidu Recording</td>
+      <td>
+        Possible values:
+        <ul>
+          <li><strong>disabled</strong> Recordings will not be active.</li>
+          <li><strong>local</strong> Recordings will be active and saved locally.</li>
+          <li><strong>s3</strong> Recordings will be active and saved in s3.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="first-col">S3 Bucket where recordings will be stored</td>
+      <td>Name for the bucket you want to use. If empty, a new bucket will be created with the stack name</td>
+    </tr>
+  </table>
+</div>
+
+#### Elasticsearch Configuration
+
+Username and password for the Elasticsearch and Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment and also to make requests to Elasticsearch. Visit section [Detailed session monitoring](openvidu-pro/monitoring-elastic-stack){:target="_blank"} for further information.
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
     <tr>
-      <td class="first-col">Kibana username</td>
+      <td class="first-col">Elasticsearch and Kibana username</td>
       <td><em>You choice</em></td>
     </tr>
     <tr>
-      <td class="first-col">Kibana password</td>
+      <td class="first-col">Elasticsearch and Kibana password</td>
       <td><em>Your choice</em></td>
     </tr>
   </table>
@@ -238,7 +262,7 @@ These properties configure some other options of your stack.
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create stack_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes (about 10) until it shows **_CREATE_COMPLETE_**.
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait for a few minutes (about 10) until it shows **_CREATE_COMPLETE_**. If status reaches CREATE_FAILED, check out [this section](#create_failed-cloudformation-stack).
 
 To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access `Outputs` tab after **_CREATE_COMPLETE_** status is reached. There you will have both URLs to access both services.
 
@@ -450,11 +474,12 @@ These are the important fields of the cloudformation parameters:
 
 It is very important after the deployment to invalidate the URLs created at step [3.2](#32-upload-your-certificate-files-into-an-http-server) after the stack is successfully deployed. These files available via HTTP are only necessary for CloudFormation EC2 instances to be able to download the certificate files and configure it into the system and are no longer necessary after the deployment process.
 
-## Common problems
+### Common problems
 
-- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
+- [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
 ---
 
@@ -575,7 +600,10 @@ Keep an eye on the OpenVidu logs that will automatically display after restartin
 
 ### CREATE_FAILED CloudFormation stack
 
-First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} on how to fix it.
+First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC.
+
+You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
+And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"}
 
 If that is not the problem, then follow these steps:
 
@@ -601,9 +629,7 @@ If that is not the problem, then follow these steps:
     - `/var/log/cloud-init-output.log`
 <br><br>
 
-- **4)** Get also the log output of all the services with this command and share with us the output file:
-
-    - `docker-compose logs -f`
+- **4)** Get also the log output of all the services. Check [this section](openvidu-pro/deployment/on-premises/#show-service-logs) to see services logs:
 
 <br>
 

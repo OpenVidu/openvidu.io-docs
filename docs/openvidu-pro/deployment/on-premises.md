@@ -32,7 +32,6 @@
         - [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks)
         - [Generate a report with all deployment information](#generate-a-report-with-all-deployment-information)
     - [Troubleshooting Media Nodes](#troubleshooting-media-nodes)
-        - [Docker compose](#docker-compose_1)
         - [Show service logs](#show-service-logs_1)
         - [Change log level of the services](#change-log-level-of-the-services_1)
         - [Change Kurento Media Server docker image](#change-kurento-media-server-docker-image)
@@ -106,7 +105,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check OpenVidu Server Pro Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks) to learn more about this.
 
-    - **Free ports inside the server**: OpenVidu Server Pro Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5442, 5443, 6379, 9200. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
+    - **Free ports inside the server**: OpenVidu Server Pro Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5044, 5442, 5443, 6379, 9200. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
 
 - **Port configuration in _Media Nodes_**
 
@@ -119,7 +118,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check Media Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1) to learn more about this.
 
-    - **Free ports inside the server**: Media Node services will need the port 8888 to be available inside the machine.
+    - **Free ports inside the server**: Media Node services will need the port 8888 and 3000 to be available inside the machine.
 
 <br>
 
@@ -152,22 +151,28 @@ Now execute the following command to download and run the installation script.
 This will download all required files into `openvidu` folder and will show this message with basic instructions:
 
 ```html
-Openvidu PRO successfully installed
+=======================================
+Openvidu PRO successfully installed.
+=======================================
 
 1. Go to openvidu folder:
 $ cd openvidu
 
-2. Configure DOMAIN_OR_PUBLIC_IP, OPENVIDU_PRO_LICENSE, OPENVIDU_SECRET, and ELASTICSEARCH_PASSWORD in .env file:
+2. Configure OPENVIDU_DOMAIN_OR_PUBLIC_IP, OPENVIDU_PRO_LICENSE, 
+OPENVIDU_SECRET, and ELASTICSEARCH_PASSWORD in .env file:
 $ nano .env
 
 3. Start OpenVidu
 $ ./openvidu start
 
-For more information, check readme.md
+CAUTION: The folder 'openvidu/elasticsearch' use user and group 1000 permissions.
+This folder is necessary for store elasticsearch data.
+For more information, check:
+https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/on-premises/#deployment-instructions
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.15.1</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.16.0</strong>.sh | bash</code>
 
 ---
 
@@ -354,19 +359,30 @@ Now execute the following command to download and run the installation script.
 This will download all required files into `kms` folder and will show this message with basic instructions:
 
 ```html
+=======================================
 Media Node successfully installed.
+=======================================
 
 1. Go to kms folder:
 $ cd kms
 
-2. Start KMS
+2. Start Media Node Controller
 $ ./media_node start
 
-For more information, check readme.md
+3. This will run a service at port 3000 wich OpenVidu will use to deploy necessary containers.
+Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
+in file located at "/opt/openvidu/.env" with this format:
+        ...
+        KMS_URIS=["ws://<MEDIA_NODE_PRIVATE_IP>:8888/kurento"]
+        ...
+You can also add this node from inspector
+
+4. Start or restart OpenVidu Pro and all containers will be provisioned
+automatically to all the media nodes configured in "KMS_URIS"
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.15.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.16.0</strong>.sh | bash</code>
 
 <br>
 
@@ -374,7 +390,40 @@ For more information, check readme.md
 
 #### 3.2) Configuration
 
-No changes in the default configuration are necessary in Media Nodes.
+There is actually no configuration file in Media Nodes. Everything is configured using the configuration located in `/opt/openvidu/.env` of OpenVidu Server Pro Node. Media nodes run a service called **Media Node Controller** which has an http endpoint at port 3000. This http endpoint is used by OpenVidu Pro Server to deploy all the necessary docker containers in a way that all monitoring containers and Kurento Media Server are configured correctly.
+
+By default Kurento Media Server is launched with some default sane configuration:
+
+- Min Port: 40000
+- Max Port: 65535
+
+However, Kurento Media Server is fully configurable through the configuration file located at `/opt/openvidu/.env` of OpenVidu Server Pro Node. You can customize how Kurento Media Server is launched in your Media Nodes by adding the environment variables defined in their [official documentation](https://hub.docker.com/r/kurento/kurento-media-server){:target="_blank"} in the file located at `/opt/openvidu/.env` of the OpenVidu Server Pro Node. For example:
+
+```html
+KMS_DOCKER_ENV_GST_DEBUG=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+```
+If you add this environment variable you will configure Kurento Media Server in all your media nodes to use `GST_DEBUG` with this value. Notice that all environment variables located in OpenVidu Server Pro Node related with Kurento Media Server needs to be prefixed with `KMS_DOCKER_ENV_`.
+
+##### Example of Kurento Media Server parameters configuration
+
+Let's supose that we want to run Kurento Media Server with a different range than the default, for example, 50000-60000. To do it you just need to:
+
+**1)** Ssh into your OpenVidu Server Pro Node.
+
+**2)** Edit the file located in `/opt/openvidu/.env` and add these environment variables:
+```
+KMS_DOCKER_ENV_KMS_MIN_PORT=50000
+KMS_DOCKER_ENV_KMS_MAX_PORT=60000
+```
+**3)** Restart OpenVidu with:
+```
+./openvidu restart
+```
+
+OpenVidu will do one of these things in all your Media Nodes configured in `KMS_URIS`:
+
+- Deploy (If containers are not running).
+- Restart (If configuration of Kurento Media Server has changed).
 
 <br>
 
@@ -396,7 +445,7 @@ The first part of the log shows how docker-compose command executes the Media No
 Creating kms_media-node-controller_1 ... done
 ```
 
-> **WARNING:** after the Media Node service is up and running, you must manually add the Media Node to the cluster. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
+> **WARNING 1:** after the Media Node service is up and running, you must manually add the Media Node to the cluster before you can start using it. Follow instructions in section **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)** to do so.
 
 <br>
 
@@ -404,23 +453,27 @@ Creating kms_media-node-controller_1 ... done
 
 #### 3.4) Administration
 
-Run the following commands to manage Media Node service:
+Run the following commands to manage Media Node Controller service:
 
-- Start Media Node
+- Start Media Node Controller
 
         ./media_node start
 
-- Stop Media Node
+- Stop Media Node Controller and all containers running
 
         ./media_node stop
 
-- Restart Media Node
+- Restart Media Node Controller and stop all running containers
 
         ./media_node restart
 
-- Show logs of Media Node
+- Show logs of Media Node Controller
 
         ./media_node logs
+
+- Show logs of Kurento Media Server
+
+        ./media_node kms-logs
 
 - Show actual installed version of OpenVidu Server Pro and basic information about the deployment.
 
@@ -622,9 +675,10 @@ The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
 ### Common problems
 
-- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
+- [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
 ---
 
@@ -764,7 +818,7 @@ As you can see, logs of `openvidu-server` service are shown when platform is sta
 
 #### Show service logs
 
-Take a look to service logs to see what happened. First, see openvidu-server logs:
+Take a look to service logs to see what happened.
 
 ```
 ./openvidu logs
@@ -837,7 +891,7 @@ useful information about it:
 ./openvidu report
 ```
 
-This command will generate a file with this format: `openvidu-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/) if you find some bug or you need help to deploy your OpenVidu Server Pro Node.
+This command will generate a file with this format: `openvidu-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/){:target="_blank"} if you find some bug or you need help to deploy your OpenVidu Server Pro Node.
 
 If you have ssh access to your OpenVidu Server Pro Node, you can download this report by executing:
 
@@ -859,68 +913,87 @@ The report contains information about:
 
 ### Troubleshooting Media Nodes
 
-#### Docker compose
-
-First of all it is important to understand how is Media Nodes service executed.
-
-Media Node is executed as a docker-compose file. The commands executed by the script are the standard docker-compose commands, so internally they just do:
-
-- start
-    - `$ docker-compose up -d`
-    - `$ docker-compose logs -f kms`
-- stop
-    - `$ docker-compose down`
-- restart
-    - `$ docker-compose down`
-    - `$ docker-compose up -d`
-    - `$ docker-compose logs -f kms`
-- logs
-    - `$ docker-compose logs -f kms`
-
-<br>
-As you can see, logs of `kms` service are shown when platform is started or restarted.
-
 #### Show service logs
 
-Take a look to the Media Node service logs to see what happened:
+Take a look to the Media Node service logs to see what happened.
 
+##### Media Node Controller logs
+
+To show all Media Node Controller logs, execute:
 ```
 ./media_node logs
 ```
 
-You can also see all services logs running in the Media Node together:
+Also you can execute this to follow Media Node Controller logs:
 
 ```
-docker-compose logs -f
+./media_node logs -f
 ```
+
+##### Kurento Media Server logs
+If you want to check Kurento Media Server, you can't do `docker-compose logs kms`. Kurento Media Server logs are not managed by Docker. They're stored in `/opt/openvidu/kurento-logs`. If you want to check Kurento logs you can check this directory or execute:
+
+```
+./media_node kms-logs
+```
+
+To follow Kurento Media Server logs in real time you can execute:
+```
+./media_node kms-logs -f
+```
+
+##### Other services logs
+
+One filebeat container and two metricbeat containers are running in Media Nodes after OpenVidu Pro started all services on it. To access these logs you can just execute:
+
+```
+docker logs <BEAT_CONTAINER_NAME>
+```
+
+Where `BEAT_CONTAINER_NAME` can be:
+
+- `filebeat-elasticsearch`: Service sending kurento logs to Elasticsearch.
+- `metricbeat-elasticsearch`: Service sending metrics to ElasticSearch.
+- `metricbeat-autoscaling`: Service sending metrics to OpenVidu for Auto-scaling.
 
 #### Change log level of the services
 
-**1)** In your Media Node: update /opt/kms/.env file with these 2 lines:
+**1)** In OpenVidu Server Pro Node, update `/opt/openvidu/.env` file with this environment variable:
 
 ```bash
-KMS_DEBUG_LEVEL=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
-
-GST_DEBUG=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
+KMS_DOCKER_ENV_GST_DEBUG=3,Kurento*:5,kms*:4,sdp*:4,webrtc*:4,*rtpendpoint:4,rtp*handler:4,rtpsynchronizer:4,agnosticbin*:5,kmssdpsession:5
 ```
 
-**2)** In your Media Node at `/opt/kms`: 
-
-```
-./media_node restart
-```
-
-**3)** In your OpenVidu Server Pro Node at `/opt/openvidu`: 
+**2)** Restart OpenVidu: 
 
 ```
 ./openvidu restart
 ```
 
+OpenVidu will detect configuration changes and restart Kurento Media Server with this configuration in all your Media Nodes.
+
 For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
 #### Change Kurento Media Server docker image
 
-OpenVidu and Kurento Media Server evolve at a different pace. Sometimes, it is possible that a new KMS is released but OpenVidu is not still updated. In that case, if you hit a bug that might be solved in the last KMS version, you can test if just updating KMS fixes your issue. `KMS_IMAGE` property allows you to specify the new KMS image in configuration file `.env`.
+OpenVidu and Kurento Media Server evolve at a different pace. Sometimes, it is possible that a new KMS is released but OpenVidu is not still updated. In that case, if you hit a bug that might be solved in the latest KMS version, you can test if just updating KMS fixes your issue.
+
+**1)** In OpenVidu Server Pro Node, update `/opt/openvidu/.env` file with this environment variable:
+
+```html
+KMS_IMAGE=<DOCKER_IMAGE_NAME>
+```
+
+Where `DOCKER_IMAGE_NAME` is the docker image you want to use. Location of Kurento Media Server images:
+
+- [Stable](https://hub.docker.com/r/kurento/kurento-media-server){:target="_blank"}
+- [Development](https://hub.docker.com/r/kurento/kurento-media-server-dev){:target="_blank"}
+
+```
+./openvidu restart
+```
+
+OpenVidu will detect configuration changes and restart Kurento Media Server with this configuration in all your Media Nodes.
 
 #### Close ports to avoid external attacks
 
@@ -1021,7 +1094,7 @@ useful information about it:
 ./media_node report
 ```
 
-This command will generate a file with this format: `media-node-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/) if you find some bug or you need help to deploy your Media Node.
+This command will generate a file with this format: `media-node-report-dd-mm-yyyy-hh-mm.txt`. You can send this report to our [Discourse forum](https://openvidu.discourse.group/){:target="_blank"} if you find some bug or you need help to deploy your Media Node.
 
 If you have ssh access to your Media Node, you can download this report by executing:
 

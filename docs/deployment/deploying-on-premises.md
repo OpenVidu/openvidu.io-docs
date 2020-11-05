@@ -93,7 +93,9 @@ Now execute the following command to download and run the installation script.
 This will download all required files into `openvidu` folder and will show this message with basic instructions:
 
 ```html
+=======================================
 Openvidu Platform successfully installed.
+=======================================
 
 1. Go to openvidu folder:
 $ cd openvidu
@@ -104,11 +106,12 @@ $ nano .env
 3. Start OpenVidu
 $ ./openvidu start
 
-For more information, check readme.md
+For more information, check:
+https://docs.openvidu.io/en/2.16.0/deployment/deploying-on-premises/
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.15.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.16.0</strong>.sh | bash</code>
 
 <br>
 
@@ -244,6 +247,10 @@ Run the following commands to manage OpenVidu Platform service:
 
         ./openvidu logs
 
+- Show logs of Kurento Media Server
+
+        ./openvidu kms-logs
+
 - Show actual installed version of OpenVidu and basic information about the deployment
 
         ./openvidu version
@@ -326,7 +333,7 @@ For this specific scenario you will need to:
 
 #### 2.1) Register a FQDN pointing to your public IP
 
-This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. Let's suppose that our domain is: **example.openvidu.io**.
+This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to your server public IP**. Let's suppose that our domain is: **example.openvidu.io**.
 
 #### 2.2) Edit `/opt/openvidu/.env` 
 
@@ -359,7 +366,7 @@ To use this kind of certificate, you need to generate two files, `certificate.ce
 
 #### 3.1) Register a FQDN pointing to your public IP
 
-This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. Let's suppose that our domain is: **example.openvidu.io**.
+This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to your server public IP**. Let's suppose that our domain is: **example.openvidu.io**.
 
 #### 3.2) Generate certificates files
 
@@ -442,9 +449,10 @@ The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
 ### Common problems
 
-- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
+- [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
 ---
 
@@ -499,11 +507,32 @@ As you can see, logs of `openvidu-server` service are shown when platform is sta
 
 ### Show service logs
 
-Take a look to service logs to see what happened. First, see openvidu-server logs:
+Take a look to service logs to see what happened.
 
+#### OpenVidu logs
+
+To show all logs, execute:
 ```
 ./openvidu logs
 ```
+Also you can execute this if you want to follow logs in real time:
+```
+./openvidu logs -f
+```
+
+#### Kurento Media Server logs
+
+If you want to check Kurento Media Server, you can't do `docker-compose logs kms`. Kurento media server logs are not managed by Docker. They're stored in `/opt/openvidu/kurento-logs`. If you want to check Kurento logs you can check this directory or execute:
+```
+./openvidu kms-logs
+```
+
+To follow Kurento Media Server logs in real time you can execute:
+```
+./openvidu kms-logs -f
+```
+
+#### Other services logs
 
 You can also see all service logs together:
 
@@ -514,7 +543,6 @@ docker-compose logs -f
 Or you can inspect one by one the other services:
 
 ```
-docker-compose logs -f kms
 docker-compose logs -f nginx
 docker-compose logs -f coturn
 docker-compose logs -f redis
@@ -547,7 +575,7 @@ Configuration properties
 
 To change the level of OpenVidu logs (***openvidu-server*** docker service) change the property `OV_CE_DEBUG_LEVEL` in configuration file `.env`.
 
-To change the level of Kurento Media Server logs (***kms*** docker service) change the property `KMS_DEBUG_LEVEL` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
+To change the level of Kurento Media Server logs (***kms*** docker service) change the property `KMS_DOCKER_ENV_GST_DEBUG` in configuration file `.env`. For more information about possible values visit [Kurento Debug Logging](https://doc-kurento.readthedocs.io/en/stable/features/logging.html){:target="_blank"}.
 
 ---
 

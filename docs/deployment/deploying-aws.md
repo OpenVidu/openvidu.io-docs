@@ -9,9 +9,9 @@
     - [5) Create your stack](#5-create-your-stack)
     - [6) Administration](#6-administration)
 - **[Domain and SSL Configuration Examples](#domain-and-ssl-configuration-examples)**
-    - [1) Self-signed certificate](#1-self-signed-certificate)
-    - [2) Let's Encrypt certificate](#2-lets-encrypt-certificate)
-    - [3) Custom Certificate (Commercial CA)](#3-custom-certificate-commercial-ca)
+    - [Self-signed certificate](#1-self-signed-certificate)
+    - [Let's Encrypt certificate](#2-lets-encrypt-certificate)
+    - [Custom Certificate (Commercial CA)](#3-custom-certificate-commercial-ca)
     - [Common Problems](#common-problems)
 - **[Troubleshooting](#troubleshooting)**
     - [CREATE_FAILED CloudFormation stack](#create_failed-cloudformation-stack)
@@ -51,7 +51,7 @@ The deployment of OpenVidu can be a piece of cake if you have an AWS account. Ju
   </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-<strong>2.15.0</strong>.yaml</code>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-<strong>2.16.0</strong>.yaml</code>
 
 <br>
 
@@ -125,7 +125,7 @@ Here you will only be able to configure OpenVidu secret, but there are many othe
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px">
     <tr>
-      <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu deployment. No whitespaces or quotations allowed<span></td>
+      <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu Platform. Cannot be empty and must contain only alphanumeric characters [a-zA-Z0-9], hypens "-" and underscores "_"<span></td>
       <td><em>Your choice</em></td>
     </tr>
   </table>
@@ -173,7 +173,7 @@ These properties configure some other options of your stack.
 
 No extra options are necessary. Click on  **_Next_** ➞ **_Next_** ➞ **_Create stack_**
 
-**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait about 2 minutes until it shows **_CREATE_COMPLETE_**. If status reaches **CREATE_FAILED**, check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"}.
+**_CREATE_IN_PROGRESS_** status will show up. You will now have to wait about 2 minutes until it shows **_CREATE_COMPLETE_**. If status reaches **CREATE_FAILED**, check out [this section](#create_failed-cloudformation-stack).
 
 After status changes to **_CREATE_COMPLETE_**, go to **_Outputs_** tab to get your brand new IP and click on it (or if you have deployed under your own custom domain, then you should access through it instead).
 
@@ -390,9 +390,10 @@ It is very important after the deployment to invalidate the URLs created at step
 
 ### Common problems
 
-- [Letsencrypt is not working. What can I do?.](troubleshooting/#14-deployment-with-lets-encrypt-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#15-do-i-need-to-update-lets-encrypt-certificates) 
-- [My commercial certificate is not working, What can I do?](troubleshooting/#16-my-commercial-certificate-is-not-working-what-can-i-do)
+- [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
+- [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
+- [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
 ---
 
@@ -425,7 +426,10 @@ It is very important after the deployment to invalidate the URLs created at step
 
 ### CREATE_FAILED CloudFormation stack
 
-First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC. Check out [this FAQ](troubleshooting/#13-deploying-openvidu-in-aws-is-failing){:target="_blank"} on how to fix it.
+First of all, an AWS CloudFormation stack may reach `CREATE_FAILED` status for missing a default VPC.
+
+You can inspect your default VPCs like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#view-default-vpc){:target="_blank"}<br>
+And you can create a default VPC like this: [https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc){:target="_blank"}
 
 If that is not the problem, then follow these steps:
 
@@ -451,9 +455,7 @@ If that is not the problem, then follow these steps:
     - `/var/log/cloud-init-output.log`
 <br><br>
 
-- **4)** Get also the log output of all the services with this command and share with us the output file:
-
-    - `docker-compose logs -f`
+- **4)** Get also the log output of all the services. Check [this section](deployment/deploying-on-premises/#show-service-logs) to see services logs:
 
 <br>
 
