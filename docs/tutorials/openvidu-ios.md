@@ -56,6 +56,30 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+	 This tutorial has been tested using Xcode 12, iPhone 7 and 7 Plus devices (iOS 14).
+</div>
+</div>
 
 
 To deploy the iOS app you need to have **Xcode** and **iOS device**
@@ -63,7 +87,7 @@ You can download Xcode [here](https://developer.apple.com/xcode/){:target="_blan
 
 After we have set up Xcode we must continue with the following commands:
 
-**1)** Install dependencies under ./openvidu-ios
+**1)** Install dependencies under ./openvidu-ios/openvidu-ios
 
 ```bash
 pod update
