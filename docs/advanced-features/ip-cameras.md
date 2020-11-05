@@ -4,6 +4,31 @@
 - **[How to unpublish IP cameras](#how-to-unpublish-ip-cameras)**
 - **[Configuring IP cameras](#configuring-ip-cameras)**
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+Not all IP cameras can be played in all browsers and client devices. The most common video codec built in IP cameras is <strong>H264</strong>, but there are different profiles for this codec. Be sure to test the compatibility of your IP camera with your client platform(s) beforehand.
+</div>
+</div>
+
 <br>
 
 ---
