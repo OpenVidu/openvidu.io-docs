@@ -41,6 +41,50 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 </div>
 
 
+## openvidu-ios features
+
+
+<table class="table table-striped table-pricing" style="background: #e7e7e7">
+    <thead>
+        <tr>
+            <th scope="col" style="background: #fff; border-bottom: 0px;">Feature</th>
+            <th scope="col" style="border-bottom: 2px solid #005f76;">Enable</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">OpenVidu compatibility</th>
+            <td> from <strong>2.15.0</strong></td>
+        </tr>
+        <tr>
+            <th scope="row">Latest iOS versions</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">OpenVidu RPC protocol</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Mute / Unmute video</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Mute / Unmute audio</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Toggle speaker / headset </th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Subscribe / unsubscribe stream</th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
 ## Understanding this tutorial
 
 
