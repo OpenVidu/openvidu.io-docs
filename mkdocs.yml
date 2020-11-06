@@ -14,11 +14,11 @@ nav:
   - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
   - openvidu-library-react: tutorials/openvidu-library-react.md
   - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
-  - openvidu-electron: tutorials/openvidu-electron.md
   - openvidu-ionic: tutorials/openvidu-ionic.md
-  - openvidu-ios: tutorials/openvidu-ios.md
-  - openvidu-android: tutorials/openvidu-android.md
   - openvidu-react-native: tutorials/openvidu-react-native.md
+  - openvidu-android: tutorials/openvidu-android.md
+  - openvidu-ios: tutorials/openvidu-ios.md
+  - openvidu-electron: tutorials/openvidu-electron.md
   - openvidu-js-java: tutorials/openvidu-js-java.md
   - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
   - openvidu-js-node: tutorials/openvidu-js-node.md
