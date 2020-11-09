@@ -556,6 +556,6 @@ cd /opt/openvidu
 ```
 
 > **WARNING**: After applying this kind of configuration, if you change any of the .env variable used by NGINX, the configuration will not be changed and nginx could fail.
-> If you need to change the `DOMAIN_OR_PUBLIC_IP` or `CERTIFICATE_TYPE` you will need to run nginx again as it was a clean OpenVidu installation, and do this process again, to have
+> If you need to change the `DOMAIN_OR_PUBLIC_IP` and `CERTIFICATE_TYPE` you will need to run nginx again as it was a clean OpenVidu installation, and do this process again, to have.
 > a valid configuration. 
 <br>
