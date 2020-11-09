@@ -19,6 +19,7 @@ nav:
   - openvidu-android: tutorials/openvidu-android.md
   - openvidu-ios: tutorials/openvidu-ios.md
   - openvidu-electron: tutorials/openvidu-electron.md
+  - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
   - openvidu-js-java: tutorials/openvidu-js-java.md
   - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
   - openvidu-js-node: tutorials/openvidu-js-node.md
