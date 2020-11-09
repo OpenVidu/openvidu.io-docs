@@ -509,32 +509,37 @@ You can directly modify all the configuration of OpenVidu:
 ```console
 sudo su
 cd /opt/openvidu
-docker-compose exec nginx cat /etc/nginx/conf.d/default.conf > custom-nginx-vhosts/default.conf
+docker-compose exec nginx cat /etc/nginx/conf.d/default.conf > custom-nginx.conf
 docker-compose exec nginx cat /etc/nginx/nginx.conf > nginx.conf
 ```
 This will generate two files:
 
-- `/opt/openvidu/custom-nginx-vhosts/default.conf`: This has all the nginx configuration of OpenVidu
+- `/opt/openvidu/custom-nginx.conf`: This has all the nginx configuration of OpenVidu
 - `/opt/openvidu/nginx.conf`: This has the main config file of nginx.
 
-**3)** Modify the file in `/opt/openvidu/nginx.conf` to not include the configuration from `/etc/nginx/conf.d/*.conf`. So you just need to delete the line with:
-```console
+**4)** Modify the previous generated default config in `/opt/openvidu/custom-nginx.conf` to your necessities.
+
+**5** You can also modify `nginx.conf`, but don't delete these lines if you want to load `custom-nginx.conf` or your own
+server blocks:
+
+```
 include /etc/nginx/conf.d/*.conf;
-``` 
+include /etc/nginx/vhost.d/*.conf;
+```
 
-**4)** Modify the previous generated default config in `/opt/openvidu/custom-nginx-vhosts/default.conf`.
-What the nginx will do is to only load the configuration you've set up in `/opt/openvidu/custom-nginx-vhosts`. 
-
-**5** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
+**5)** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
 ```console
     nginx:
         ...
         volumes:
             ...
+            - ./custom-nginx.conf:/etc/nginx/conf.d/custom-nginx.conf
             - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
 This will override default nginx configuration.
+
+> **WARNING**: It is very important that the file is named `custom-nginx.conf`, the nginx container will load this file.
 
 For any changes to be applied you need to start or restart OpenVidu:
 ```
