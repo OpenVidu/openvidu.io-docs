@@ -486,7 +486,7 @@ server {
 }
 ```
 
-If everything is correctly configured, nginx will try to load your new server block in addition with server block of OpenVidu.
+If everything is correctly configured, nginx will try to load your new server block in addition with all server blocks of OpenVidu.
 You only need to start or restart OpenVidu after add your file in `/opt/openvidu/custom-nginx-vhosts`:
 
 ```console
@@ -528,7 +528,7 @@ include /etc/nginx/conf.d/*.conf;
 include /etc/nginx/vhost.d/*.conf;
 ```
 
-**6)** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
+**6)** Add these volumes in nginx service in `/opt/openvidu/docker-compose.yml`:
 ```console
     nginx:
         ...
