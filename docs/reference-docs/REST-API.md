@@ -1,6 +1,32 @@
 <h2 id="section-title">REST API</h2>
 <hr>
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 12px 0 12px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+OpenVidu 2.16.0 comes with a renovated REST API. All operations now share the same base path starting with <strong><code>/openvidu/api/</code></strong>.
+Old paths are considered now deprecated, but <strong>still supported</strong> by default. OpenVidu Server will log a WARN message every time a deprecated path is called, indicating the new path that should be used instead.<div style="margin-top: 6px"></div>You can set property <strong><code>SUPPORT_DEPRECATED_API=false</code></strong> in <code>.env</code> configuration file at OpenVidu Server installation path (by default <code>/opt/openvidu</code>) to stop allowing the use of old paths. This way you can test your migration whenever you are ready. Old path support will be removed in a future release of OpenVidu, so we recommend developers to migrate to the new REST API paths ASAP. If you are using <a href="reference-docs/openvidu-java-client/" target="_blank">OpenVidu Java Client</a> or <a href="reference-docs/openvidu-node-client/" target="_blank">OpenVidu Node Client</a> instead, updating to version 2.16.0 is enough.
+</div>
+</div>
+
 You have full control over OpenVidu Server through its REST API. All of the REST API operations exposed by OpenVidu Server...
 
 - Share the same base path `/openvidu/api/`
@@ -256,7 +282,7 @@ Close a Session. This will stop all of the processes of this Session: all of its
 A Connection represents each one of the users connected to a Session. You must create a Connection for each final user connecting to the Session.
 
 - After creating the Connection, its `status` property will be set to `pending`. This means that the Connection is currently available to be taken by a final user.
-- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}**.
+- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}** of OpenVidu Browser library.
 - After this, the Connection object will be associated to this final user and its `status` property will be set to `active`. Other properties will also be now populated with the data of the final user.
 
 ```json
@@ -523,7 +549,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 
 Modify the properties of a Connection. The following properties are modifiable:
 
-- `role`: you can dynamically change the role of the Connection in the session.
+- `role`: you can dynamically change the role of the Connection in the Session.
 - `record`: you can enable or disable INDIVIDUAL recording of the streams published by this Connection. See [Selecting streams to be recorded](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} for further information.
 
 The affected client will trigger one [ConnectionPropertyChangedEvent](/api/openvidu-browser/classes/connectionpropertychangedevent.html){:target="blank"} for each modified property.
@@ -570,7 +596,7 @@ This operation returns the modified [**Connection object**](reference-docs/REST-
 
 Force the disconnection of a user from a Session. All of the streams associated to this Connection (both publishers and subscribers) will be destroyed. If the user was publishing a stream, all other subscribers of other users receiving it will also be destroyed.
 
-If the `CONNECTION_ID` belongs to a Connection in `pending` status, this method will simply invalidate it (its token will be no longer available for any user to connect to the session).
+If the `CONNECTION_ID` belongs to a Connection in `pending` status, this method will simply invalidate it (its token will be no longer available for any user to connect to the Session).
 
 ##### Operation
 
@@ -640,7 +666,7 @@ A Recording represents the recording process of a Session.
 
 ##### Description
 
-Start the recording of a session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
+Start the recording of a Session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
 
 ##### Operation
 
@@ -703,7 +729,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 
 ##### Description
 
-Stop the recording of a session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
+Stop the recording of a Session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
 
 ##### Operation
 
@@ -1133,7 +1159,7 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 
 ##### Description
 
-Remove a Media Node from the cluster. If there are ongoing sessions currently hosted by the Media Node and the deletion process is forced, all of the sessions will be closed.
+Remove a Media Node from the cluster. If there are ongoing Sessions currently hosted by the Media Node and the deletion process is forced, all of the Sessions will be closed.
 
 ##### Operation
 
@@ -1313,7 +1339,7 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 
 ##### Description
 
-Generate a token for a session. This token must be sent to the client side to be used in openvidu-browser library to connect to the session.
+Generate a token for a Session. This token must be sent to the client side to be used in openvidu-browser library to connect to the Session.
 
 ##### Operation
 
@@ -1408,7 +1434,7 @@ This operation returns a Token object:
 
 ##### Description
 
-Force the unpublishing of a user's stream from a session. All of the subscribers receiving this stream will also be destroyed.
+Force the unpublishing of a media stream from a Session. The stream belongs to a specific [Connection obejct](#the-connection-object). All of the subscribers receiving this stream will also be destroyed.
 
 ##### Operation
 
@@ -1435,7 +1461,7 @@ Force the unpublishing of a user's stream from a session. All of the subscribers
 
 ##### Description
 
-Send a signal to a session, as a broadcast message or to specific participants. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/session.html#signal){:target="blank"}.
+Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/session.html#signal){:target="blank"}.
 
 ##### Operation
 

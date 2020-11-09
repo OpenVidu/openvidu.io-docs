@@ -6,34 +6,8 @@
 - **[Migrating from 2.14.0 to 2.15.1](#migrating-from-2140-to-2151)**
 - **[Migrating from 2.13.0 to 2.14.0](#migrating-from-2130-to-2140)**
 - **[Migrating from ≤2.12.0 to 2.13.0](#migrating-from-2120-to-2130)**
-
-<!--
----
-
-## Migrating from 2.14.0 to a higher version
-
-### Upgrading OpenVidu Server Pro Node
-
-```bash
-sudo -s
-cd /opt/openvidu # Recommended and default installation path
-```
-```bash
-./openvidu upgrade VERSION # Replace VERSION with the version you want: "./openvidu upgrade 2.15.0"
-```
-
-### Upgrading Media Node
-
-```bash
-sudo -s
-cd /opt/kms # Recommended and default installation path
-```
-```bash
-./media_node upgrade VERSION # Replace VERSION with the version you want: "./openvidu upgrade 2.15.0"
-```
-
-<br>
--->
+- **[Notes when upgrading OpenVidu Server Pro Node](#notes-when-upgrading-openvidu-server-pro-node)**
+- **[Notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
 
 ---
 
@@ -107,9 +81,11 @@ $ ./openvidu start
 If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.15.1'
 ```
 
-If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.14.0'
-
 >  **WARNING**: Take into account that the variables `KIBANA_USER` and `KIBANA_PASSWORD` are now `ELASTICSEARCH_USERNAME` and `ELASTICSEARCH_PASSWORD`. Both services (Elasticsearch and Kibana) are now secured with Basic Authentication using the official implementation of the ELK stack.
+
+<div></div>
+
+> **Check out the [notes when upgrading OpenVidu Server Pro Node](#notes-when-upgrading-openvidu-server-pro-node)**
 
 ### Upgrading Media Node
 
@@ -156,13 +132,13 @@ automatically to all the media nodes configured in "KMS_URIS"
 
 >  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration fine in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](/openvidu-pro/deployment/on-premises/#32-configuration)
 
+<div></div>
+
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
+
 <br>
 
-##### Some notes on upgrading Media Nodes
-
-- The upgrade process will stop all OpenVidu containers in this media node. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
-- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
+---
 
 ## Migrating from 2.14.0 to 2.15.1
 
@@ -214,6 +190,8 @@ If you want to rollback, all the files from the previous installation have been 
 For further information, check readme.md
 ```
 
+> **Check out the [notes when upgrading OpenVidu Server Pro Node](#notes-when-upgrading-openvidu-server-pro-node)**
+
 ### Upgrading Media Node
 
 Open port **3000 TCP** so **OpenVidu Server Pro** can use it. This port is necessary to provision **Media Node** by **OpenVidu Server Pro**.
@@ -256,13 +234,7 @@ If you want to roll-back all the files from the previous installation are in the
 For more information, check readme.md
 ```
 
-<br>
-
-##### Some notes on upgrading Media Nodes
-
-- The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
-- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
 
 <br>
 
@@ -313,14 +285,7 @@ If you want to rollback, all the files from the previous installation have been 
 For further information, check readme.md
 ```
 
-<br>
-
-##### Some notes on upgrading OpenVidu Server Pro Node
-
-- The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
-- Persistent data is preserved when upgrading. This means that all of your recordings and monitoring data (session history, ElasticSearch, Kibana) will be available in the new version.
-- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
+> **Check out the [notes when upgrading OpenVidu Server Pro Node](#notes-when-upgrading-openvidu-server-pro-node)**
 
 ### Upgrading Media Node
 
@@ -360,13 +325,7 @@ If you want to roll-back all the files from the previous installation are in the
 For more information, check readme.md
 ```
 
-<br>
-
-##### Some notes on upgrading Media Nodes
-
-- The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
-- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
 
 <br>
 
@@ -439,233 +398,31 @@ Restart all services and you will have your Elasticsearch data available in your
 
 > **NOTE**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
 
+<br>
+
+---
+
+## Notes when upgrading OpenVidu Server Pro Node
+
+- The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
+- Persistent data is preserved when upgrading. This means that all of your recordings will be available in the new version.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
+- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
+- In case you have **mobile applications**: the previous minor version of openvidu-browser is always compatible with the next minor version of openvidu-server. This way you can upgrade your openvidu-server while giving your clients time to update their applications. Applications using the previous and the new version of openvidu-browser can coexist in the new openvidu-server version. For example, if you upgrade openvidu-server to 2.16.0, it will work fine with applications using both openvidu-browser 2.15.0 and 2.16.0. Of course, you must notify your users to update their applications until all of them are using openvidu-browser 2.16.0.
+
+<br>
+
+---
+
+## Notes when upgrading Media Nodes
+
+- The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
+- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
+
 <br><br>
 
 <script src="js/copy-btn.js"></script>
-
-<!--
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-      <strong>These instructions are only suitable for OpenVidu Pro >= 2.13.0</strong>. Upgrading or downgrading OpenVidu Pro by following these steps may cause your application to fail if there are any <strong>API breaking changes</strong> between the old and new versions of OpenVidu Pro. Carefully read the <a href="releases/" target="_blank">release notes</a> of the related versions before upgrading OpenVidu Pro, be sure to try your application with the new OpenVidu version in your development environment before upgrading and always do so at your own risk
-</div>
-</div>
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-      Unfortunately upgrading OpenVidu Pro to <strong>2.13.0</strong> from any past version will require you to completely wipe out your past version, as the installation procedure has completely changed to a Docker deployment. If you are going to install 2.13.0 in the same machine, make sure to [backup the data]() you want to keep and uninstall all of OpenVidu services before installing 2.13.0. Good news is that from this point in time, upgrading or downgrading versions will be extremely quick and easy!
-</div>
-</div>
-
-# For AWS deployments
-
-### OpenVidu Server Pro Node
-
-We need to connect to the Openvidu Server EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
-
-<div class="row">
-    <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_OV_PRO_1.png"><img class="img-responsive img-pro" style="max-width: 800px" src="img/docs/upgrading/EC2_OV_PRO_1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_OV_PRO_2.png"><img class="img-responsive img-pro" style="max-width: 700px" src="img/docs/upgrading/EC2_OV_PRO_2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_OV_PRO_3.png"><img class="img-responsive img-pro" style="max-width: 600px" src="img/docs/upgrading/EC2_OV_PRO_3.png"/></a>
-    </div>
-    <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click on <strong>Connect</strong> button</p></div>
-      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, use default <strong>root</strong> user name and click on <strong>Connect</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Now you will be connected to a terminal of your EC2 instance as root user</p></div>
-    </div>
-</div>
-
-<br>
-
-After connected into web EC2 console of your OpenVidu Server instance as root user, all that remains to be done is following all the steps for upgrading [OpenVidu Server Pro Node](#openvidu-server-pro-node_1) in on premises deployments.
-
-<br>
-
-### Media Nodes
-
-We need to connect to the Media Node EC2 instance. Just navigate to **[AWS EC2 dashboard](https://console.aws.amazon.com/ec2#Instances){:target="_blank"}** and follow below steps:
-
-<div class="row">
-    <div class="upgrade-cf-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Click on 'Update' button" href="img/docs/upgrading/EC2_MEDIA_NODE_1.png"><img class="img-responsive img-pro" style="max-width: 800px" src="img/docs/upgrading/EC2_MEDIA_NODE_1.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Select 'Use current template' and click on 'Next'" href="img/docs/upgrading/EC2_MEDIA_NODE_2.png"><img class="img-responsive img-pro" style="max-width: 700px" src="img/docs/upgrading/EC2_MEDIA_NODE_2.png"/></a>
-        <a data-fancybox="gallery-upgrade-cf" data-caption="Change field 'OpenVidu Version'" href="img/docs/upgrading/EC2_MEDIA_NODE_3.png"><img class="img-responsive img-pro" style="max-width: 600px" src="img/docs/upgrading/EC2_MEDIA_NODE_3.png"/></a>
-    </div>
-    <div class="slick-captions">
-      <div class="caption"><p><strong>1)</strong> Select your EC2 instance and click on <strong>Connect</strong> button</p></div>
-      <div class="caption"><p><strong>2)</strong> Select <strong>EC2 Instance Connect</strong>, use default <strong>root</strong> user name and click on <strong>Connect</strong></p></div>
-      <div class="caption"><p><strong>3)</strong> Now you will be connected to a terminal of your EC2 instance as root user</p></div>
-    </div>
-</div>
-
-<br>
-
-After connected into web EC2 console of your Media Node instance as root user, all that remains to be done is following all the steps for upgrading [Media Nodes](#media-nodes_1) in on premises deployments.
-
-<br>
-
----
-
-# For on premises deployments
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-These instructions suppose the installation of OpenVidu is done in the <strong>default and recommended folder <code>/opt/openvidu</code></strong>. Keep in mind this if your installation is located in a different path!
-</div>
-</div>
-
-### OpenVidu Server Pro Node
-
-Connect through SSH to Openvidu Server Pro instance. The recommended installation folder of OpenVidu Pro is `/opt/openvidu`. Every other instruction in the documentation regarding on premises upgrades assumes this specific installation path.
-
-#### 1) Stop all docker-compose services
-
-Navigate to the OpenVidu installation folder and stop the current execution.
-
-```bash
-cd /opt/openvidu # Modify this and the following commands if your installation isn't done in the default path
-./openvidu stop
-```
-
-#### 2) Upgrade docker-compose
-
-Now we will make a backup of the current installation just in case. To do this we execute the following commands:
-
-```bash
-cd /opt
-mv openvidu openvidu.backup
-```
-
-Now install the new version using the following command:
-
-```bash
-# Change {VERSION} for the desired one. e.g. install_openvidu_2.13.0.sh
-
-curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_{VERSION}.sh | bash
-```
-
-Finally remember to change your configuration properties in file `/opt/openvidu/.env`. The new installation brings the default values that **must** be updated.
-
-#### 3) Restart docker-compose
-
-Run all services in the recently upgraded OpenVidu installation folder.
-
-```bash
-cd /opt/openvidu
-./openvidu start
-```
-
-> **NOTE 1**: Old Docker images will take up valuable disk space of your machines. If you don't plan to reuse them again, delete them to reclaim your GBs. **[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"}** command is very useful for doing so.
-
-> **NOTE 2**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
-
-<br>
-
----
-
-### Media Nodes
-
-Follow these steps to upgrade a specific Media Node.
-
-Connect through SSH to the Media Node instance. The recommended installation folder of the Media Node service is `/opt/openvidu`. Every other instruction in the documentation regarding on premises upgrades assumes this installation path.
-
-#### 1) Stop all docker-compose services
-
-Navigate to the Media Node installation folder and stop the current execution.
-
-```bash
-cd /opt/kms # Modify this and the following commands if your installation isn't done in the default path
-./media_node stop
-```
-
-#### 2) Upgrade docker-compose
-
-Now we will make a backup of the current installation just in case. To do this we execute the following commands:
-
-```bash
-cd /opt
-mv kms kms.backup
-```
-
-Now install the new version using the following command:
-
-```bash
-# Change {VERSION} for the desired one. e.g. install_media_node_2.13.0.sh
-
-curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_{VERSION}.sh | bash
-```
-
-#### 3) Restart docker-compose
-
-Run all services in the recently upgraded Media Node installation folder.
-
-```bash
-cd /opt/kms
-./media_node start
-```
-
-> **NOTE 1**: Old Docker images will take up valuable disk space of your machines. If you don't plan to reuse them again, delete them to reclaim your GBs. **[docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"}** command is very useful for doing so.
-
-> **NOTE 2**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
-
-<br><br>-->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

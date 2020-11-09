@@ -161,14 +161,22 @@ var publisher = OV.initPublisherAsync({
 
 ---
 
-
 ## How to change the resolution when screen sharing
 
-> **NOTE**:  Width and height of the video in shouldn’t be changeable in case of screen sharing, as the screen has a specific widht and height.
+> **NOTE**: as a general rule, you shouldn't change the resolution of shared screens. Screen sharing videos have special behaviors in terms of bitrate and resolution, and messing around with them can negatively affect the transmission.
 
+If you try setting a custom resolution when initializing a Publisher with screen sharing like this...
 
 ```javascript
+var publisher = OV.initPublisher("html-element-id", {
+    videoSource: "screen",
+    resolution: "1280x720"
+});
+```
 
+... you will see that the resolution parameter doesn't have any effect at all. This is because screen sharing videos have specific widths and heights dependent on the size of the shared screen. Changing it could cut off parts of the screen or modify its aspect ratio. But if you still want to forcibly adjust the width and height in pixels of the screen video, you can do it by using the method [MediaStreamTrack.applyConstraints](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/applyConstraints){:target="_blank"} of native Web API:
+
+```javascript
 var publisher = OV.initPublisher("html-element-id", { videoSource: "screen" });
 
 publisher.once('accessAllowed', () => {
@@ -176,13 +184,15 @@ publisher.once('accessAllowed', () => {
         publisher.stream.getMediaStream().getVideoTracks()[0].applyConstraints({
             width: 1280,
             height: 720
-        })
+        });
     } catch (error) {
         console.error('Error applying constraints: ', error);
     }
 });
 
 ```
+
+<br>
 
 ---
 
