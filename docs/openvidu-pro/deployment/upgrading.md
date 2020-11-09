@@ -142,7 +142,7 @@ Openvidu successfully upgraded to version 2.16.0
 3. Start new version of Media Node
 $ ./media_node start
 
-4. This will run a service at port 3000 wich OpenVidu will use to deploy necessary containers.
+4. This will run a service at port 3000 which OpenVidu will use to deploy necessary containers.
 Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
 in file located at "/opt/openvidu/.env" with this format:
     ...

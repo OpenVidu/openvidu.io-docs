@@ -462,6 +462,94 @@ Normally official certificates have a chain of public keys in the .cert file
 
 ### 16. How can I customize deployed Nginx?
 
-> TODO
+There are two ways to configure the nginx containers provided in the official deployments of OpenVidu CE and OpenVidu Pro. Before following the next ways of configure deployed nginx of openvidu you had to deploy following the following instructions:
 
+- [Deployment CE in AWS](/deployment/deploying-aws) 
+- [Deployment CE On premises](/deployment/deploying-on-premises)
+- [Deployment PRO in AWS](openvidu-pro/deployment/aws)
+- [Deployment PRO On premises](openvidu-pro/deployment/on-premises)
+
+#### 16.1 Create your own virtual hosts (Server blocks)
+
+If you want to create your own virtual host, you just need to copy your own server blocks in `/opt/openvidu/custom-nginx-vhosts`.
+It is very important that your file ends with `*.conf`. For example if you want to add a server block which serves content in `https://<DOMAIN_OR_PUBLIC_IP>/web-test`, you will need to add a file in `/opt/openvidu/custom-nginx-vhosts/web-test.conf` with for example this content:
+
+```console
+server {
+        listen ...
+        server_name ...
+        ssl ...                
+
+        location /web-test {
+                try_files $uri $uri/ =404;
+        }
+}
+```console
+If everything is correctly configured, nginx will try to load your new server block in addition with server block of OpenVidu.
+You only need to start or restart OpenVidu after add your file in `/opt/openvidu/custom-nginx-vhosts`:
+
+```console
+sudo su
+cd /opt/openvidu
+./openvidu start
+```
+or
+```console
+sudo su
+cd /opt/openvidu
+./openvidu start
+```
+#### 16.2 Modify OpenVidu Nginx configuration
+
+You can directly modify all the configuration of OpenVidu:
+
+**1)** First you need to start at least once OpenVidu Sever with all the properly configuration in `/opt/openvidu/.env` to run nginx properly (`DOMAIN_OR_PUBLIC_IP`, `CERTIFICATE_TYPE`, `LETSENCRYPT_EMAIL` and `OPENVIDU_SECRET`). 
+
+**2)** When Nginx is running, let's get the generated configuration by the nginx container by executing:
+```console
+sudo su
+cd /opt/openvidu
+docker-compose exec nginx cat /etc/nginx/conf.d/default.conf > custom-nginx-vhosts/default.conf
+docker-compose exec nginx cat /etc/nginx/nginx.conf > nginx.conf
+```
+This will generate two files:
+
+- `/opt/openvidu/custom-nginx-vhosts/default.conf`: This has all the nginx configuration of OpenVidu
+- `/opt/openvidu/nginx.conf`: This has the main config file of nginx.
+
+**3)** Modify the file in `/opt/openvidu/nginx.conf` to not include the configuration from `/etc/nginx/conf.d/*.conf`. So you just need to delete the line with:
+```console
+include /etc/nginx/conf.d/*.conf;
+``` 
+
+**4)** Modify the previous generated default config in `/opt/openvidu/custom-nginx-vhosts/default.conf`.
+What the nginx will do is to only load the configuration you've set up in `/opt/openvidu/custom-nginx-vhosts`. 
+
+**5** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
+```console
+    nginx:
+        ...
+        volumes:
+            ...
+            - ./nginx.conf:/etc/nginx/nginx.conf
+```
+
+This will override default nginx configuration.
+
+For any changes to be applied you need to start or restart OpenVidu:
+```
+sudo su
+cd /opt/openvidu
+./openvidu start
+```
+or
+```console
+sudo su
+cd /opt/openvidu
+./openvidu start
+```
+
+> **WARNING**: After applying this kind of configuration, if you change any of the .env variable used by NGINX, the configuration will not be changed and nginx could fail.
+> If you need to change the `DOMAIN_OR_PUBLIC_IP` or `CERTIFICATE_TYPE` you will need to run nginx again as it was a clean OpenVidu installation, and do this process again, to have
+> a valid configuration. 
 <br>
