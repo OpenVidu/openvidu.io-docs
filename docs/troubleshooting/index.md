@@ -519,7 +519,7 @@ This will generate two files:
 
 **4)** Modify the previous generated default config in `/opt/openvidu/custom-nginx.conf` to your necessities.
 
-**5** You can also modify `nginx.conf`, but don't delete these lines if you want to load `custom-nginx.conf` or your own
+**5)** You can also modify `nginx.conf`, but don't delete these lines if you want to load `custom-nginx.conf` or your own
 server blocks:
 
 ```
@@ -527,7 +527,7 @@ include /etc/nginx/conf.d/*.conf;
 include /etc/nginx/vhost.d/*.conf;
 ```
 
-**5)** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
+**6)** Add a volume in nginx service in `/opt/openvidu/docker-compose.yml`:
 ```console
     nginx:
         ...
