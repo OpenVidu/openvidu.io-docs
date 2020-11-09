@@ -2,6 +2,7 @@
 <hr>
 
 <!--- **[Migrating from 2.14.0 to a higher version](#**-->
+- **[Migrating from 2.15.1 to 2.16.0](#migrating-from-2151-to-2160)**
 - **[Migrating from 2.14.0 to 2.15.1](#migrating-from-2140-to-2151)**
 - **[Migrating from 2.13.0 to 2.14.0](#migrating-from-2130-to-2140)**
 - **[Migrating from ≤2.12.0 to 2.13.0](#migrating-from-2120-to-2130)**
@@ -67,7 +68,100 @@ cd /opt/kms # Recommended and default installation path
 
 ## Migrating from 2.15.1 to 2.16.0
 
-> TODO
+### Upgrading OpenVidu Server Pro Node
+
+Connect to the OpenVidu Server Pro Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.16.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.16.0
+================================================
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.16.0 services
+2. The previous file '.env' remains intact, but a new file '.env-2.16.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.16.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.16.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
+However, if you were using your own application, a file called 'docker-compose.override.yml-2.16.0'
+has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.15.1'
+```
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.14.0'
+
+>  **WARNING**: Take into account that the variables `KIBANA_USER` and `KIBANA_PASSWORD` are now `ELASTICSEARCH_USERNAME` and `ELASTICSEARCH_PASSWORD`. Both services (Elasticsearch and Kibana) are now secured with Basic Authentication using the official implementation of the ELK stack.
+
+### Upgrading Media Node
+
+Connect to the Media Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+
+```bash
+sudo -s
+cd /opt/kms # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.16.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.16.0 
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.16.0 services
+
+2. This new version 2.16.0 does not need any .env file. Everything is configured from OpenVidu Pro
+
+3. Start new version of Media Node
+$ ./media_node start
+
+4. This will run a service at port 3000 wich OpenVidu will use to deploy necessary containers.
+Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
+in file located at "/opt/openvidu/.env" with this format:
+    ...
+    KMS_URIS=["ws://<MEDIA_NODE_PRIVATE_IP>:8888/kurento"]
+    ...
+You can also add Media Nodes from inspector
+
+5. Start or restart OpenVidu Pro and all containers will be provisioned
+automatically to all the media nodes configured in "KMS_URIS"
+```
+
+>  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration fine in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](/openvidu-pro/deployment/on-premises/#32-configuration)
+
+<br>
+
+##### Some notes on upgrading Media Nodes
+
+- The upgrade process will stop all OpenVidu containers in this media node. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
+- Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
+- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the OpenVidu Server Pro Node and all of the Media Nodes to the same version number.
 
 ## Migrating from 2.14.0 to 2.15.1
 
