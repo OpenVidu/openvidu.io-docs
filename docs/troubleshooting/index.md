@@ -484,7 +484,8 @@ server {
                 try_files $uri $uri/ =404;
         }
 }
-```console
+```
+
 If everything is correctly configured, nginx will try to load your new server block in addition with server block of OpenVidu.
 You only need to start or restart OpenVidu after add your file in `/opt/openvidu/custom-nginx-vhosts`:
 
@@ -533,7 +534,7 @@ include /etc/nginx/vhost.d/*.conf;
         ...
         volumes:
             ...
-            - ./custom-nginx.conf:/etc/nginx/conf.d/custom-nginx.conf
+            - ./custom-nginx.conf:/custom-nginx/custom-nginx.conf
             - ./nginx.conf:/etc/nginx/nginx.conf
 ```
 
