@@ -92,6 +92,7 @@ The installation steps will output their progress as they run. If everything goe
 Openvidu successfully upgraded to version 2.16.0
 ================================================
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.16.0 services
+
 2. The previous file '.env' remains intact, but a new file '.env-2.16.0' has been created.
 Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.16.0'.
 When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.16.0'.
