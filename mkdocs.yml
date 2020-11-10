@@ -8,6 +8,7 @@ nav:
   - Intro: tutorials/index.md
   - openvidu-webcomponent: tutorials/openvidu-webcomponent.md
   - openvidu-hello-world: tutorials/openvidu-hello-world.md
+  - openvidu-iframe: tutorials/openvidu-iframe.md
   - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
   - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
   - openvidu-library-angular: tutorials/openvidu-library-angular.md
