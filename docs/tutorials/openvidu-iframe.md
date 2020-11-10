@@ -1,7 +1,7 @@
 # openvidu-iframe
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-iframe" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a simple demo where you can embed an OpenVidu application inside of an iframe. We'll work with the _openvidu-hello-world_ tutorial, for that reason, it is highly recommended start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial first.
+This is a simple demo where you can embed an OpenVidu application inside of an iframe. The embedded application will be _openvidu-hello-world_ tutorial, so it is highly recommended to complete [openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"} tutorial first.
 
 ## Running this tutorial
 
@@ -17,7 +17,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 npm install -g http-server
 ```
 
-3) Run an OpenVidu tutorial (we'll use [openvidu-hello-world](tutorials/openvidu-hello-world/)):
+3) Run an OpenVidu tutorial (we will use [openvidu-hello-world](tutorials/openvidu-hello-world/)):
 
 ```bash
 http-server openvidu-tutorials/openvidu-hello-world/web
@@ -37,7 +37,6 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
-
 
 6) Open **another terminal** and run the _openvidu-iframe_ tutorial:
 
@@ -64,17 +63,16 @@ http-server openvidu-tutorials/openvidu-iframe/web
 
 ## Understanding the code
 
-First of all, the main meaning of `iframe` is the representation of a nested browsing context, embedding another HTML page into the current one. Knowing that, the _openvidu-iframe_ application project will be very simple. It has only 2 files:
+First of all,  let's clarify what an `iframe` is. It is the representation of a nested browsing context, embedding another HTML page into the current one. Knowing that, the _openvidu-iframe_ application is extremely simple. It has only 2 files:
 
 - `style.css`: some CSS classes to style _index.html_.
-- `index.html`: HTML code for where the openvidu-hello-world is embed with an iframe:
-
+- `index.html`: HTML code with the iframe. This iframe can potentially hold any OpenVidu web application (_openvidu-hello-world_ in this tutorial).
 
 Let's see how `index.html` uses the iframe:
 
 #### Adding the iframe to index.html
 
-This iframe will embed the application served on `http://127.0.0.1:8080` (_openvidu-hello-world_ in our case).
+This iframe will embed the application served on `http://127.0.0.1:8080` (_openvidu-hello-world_ in this tutorial).
 
 ```html
 <!-- Iframe where the application served on http://127.0.0.1:8080 will be embedded -->
@@ -85,14 +83,12 @@ This iframe will embed the application served on `http://127.0.0.1:8080` (_openv
   allow="camera; microphone"
 ></iframe>
 ```
+
 #### Allow media permission
 
-Last but not least, we need to allow requests for media permissions to our iframe because of our embedded application will need them. Adding `allow="camera; microphone"` attribute we allow them.
+We need to allow requests for media permissions within the iframe. Adding attribute `allow="camera; microphone"` to the element is enough.
 
-
-
----
-
+<br>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
