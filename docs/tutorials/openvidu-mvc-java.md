@@ -137,23 +137,23 @@ public String login(@RequestParam(name = "user", required = false) String user,
 
 	// Check if the user is already logged in
 	String userName = (String) httpSession.getAttribute("loggedUser");
-	if (userName != null) { 
+	if (userName != null) {
 		// User is already logged. Immediately return dashboard
 		model.addAttribute("username", userName);
 		return "dashboard";
 	}
-	
+
 	// User wasn't logged and wants to
 	if (login(user, pass)) { // Correct user-pass
-		
-		// Validate session and return OK 
+
+		// Validate session and return OK
 		// Value stored in HttpSession allows us to identify the user in future requests
 		httpSession.setAttribute("loggedUser", user);
 		model.addAttribute("username", user);
-		
+
 		// Return dashboard.html template
 		return "dashboard";
-		
+
 	} else { // Wrong user-pass
 		// Invalidate session and redirect to index.html
 		httpSession.invalidate();
@@ -208,25 +208,25 @@ private String OPENVIDU_URL;
 private String SECRET;
 ```
 
-Rest controller method receives both params sent by the client (whatever nickname the user has chosen and "TUTORIAL" as the sessionName). First it prepares a param we will need a little further on: `tokenOptions`.
+Rest controller method receives both params sent by the client (whatever nickname the user has chosen and "TUTORIAL" as the sessionName). First it prepares a param we will need a little further on: `connectionProperties`.
 
 ```java
 @RequestMapping(value = "/session", method = RequestMethod.POST)
 public String joinSession(@RequestParam(name = "data") String clientData,
 			@RequestParam(name = "session-name") String sessionName,
 			Model model, HttpSession httpSession) {
-	
+
 	// ... check the user is logged with HttpSession and continue ...
-	
+
 	// Role associated to this user
 	OpenViduRole role = LoginController.users.get(httpSession.getAttribute("loggedUser")).role;
-	
+
 	// Optional data to be passed to other users when this user connects to the video-call
 	// In this case, a JSON with the value we stored in the HttpSession object on login
 	String serverData = "{\"serverData\": \"" + httpSession.getAttribute("loggedUser") + "\"}";
 
-	// Build tokenOptions object with the serverData and the role
-	TokenOptions tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build();
+	// Build connectionProperties object with the serverData and the role
+	ConnectionProperties connectionProperties = new ConnectionProperties.Builder().type(ConnectionType.WEBRTC).data(serverData).role(role).build();
 ```
 
 Just after that an _if-else_ statement comes into play: does the session "TUTORIAL" already exist?
@@ -242,11 +242,11 @@ else {
 	// New session
 	System.out.println("New session " + sessionName);
 	try {
-	
+
 		// Create a new OpenVidu Session
 		Session session = this.openVidu.createSession();
-		// Generate a new token with the recently created tokenOptions
-		String token = session.generateToken(tokenOptions);
+		// Generate a new Connection with the recently created connectionProperties
+		String token = this.mapSessions.get(sessionName).createConnection(connectionProperties).getToken();
 
 		// Store the session and the token in our collections
 		this.mapSessions.put(sessionName, session);
@@ -261,7 +261,7 @@ else {
 
 		// Return session.html template
 		return "session";
-		
+
 	} catch (Exception e) {
 		// If error just return dashboard.html template
 		model.addAttribute("username", httpSession.getAttribute("loggedUser"));
@@ -384,10 +384,10 @@ if (this.mapSessions.get(sessionName) != null) {
 	// Session already exists
 	System.out.println("Existing session " + sessionName);
 	try {
-	
-		// Generate a new token with the recently created tokenOptions
-		String token = this.mapSessions.get(sessionName).generateToken(tokenOptions);
-		
+
+		// Generate a new Connection with the recently created connectionProperties
+		String token = this.mapSessions.get(sessionName).createConnection(connectionProperties).getToken();
+
 		// Update our collection storing the new token
 		this.mapSessionNamesTokens.get(sessionName).put(token, role);
 
@@ -399,7 +399,7 @@ if (this.mapSessions.get(sessionName) != null) {
 
 		// Return session.html template
 		return "session";
-		
+
 	} catch (Exception e) {
 		// If error just return dashboard.html template
 		model.addAttribute("username", httpSession.getAttribute("loggedUser"));
@@ -434,12 +434,12 @@ In `SessionController.java` we update the collections:
 public String removeUser(@RequestParam(name = "session-name") String sessionName,
 			@RequestParam(name = "token") String token,
 			Model model, HttpSession httpSession) throws Exception {
-	
+
 	// ... check the user is logged with HttpSession and continue ...
-	
+
 	// If the session exists ("TUTORIAL" in this case)
 	if (this.mapSessions.get(sessionName) != null && this.mapSessionNamesTokens.get(sessionName) != null) {
-		
+
 		// If the token exists
 		if (this.mapSessionNamesTokens.get(sessionName).remove(token) != null) {
 			// User left the session
@@ -448,13 +448,13 @@ public String removeUser(@RequestParam(name = "session-name") String sessionName
 				this.mapSessions.remove(sessionName);
 			}
 			return "redirect:/dashboard";
-			
+
 		} else {
 			// The TOKEN wasn't valid
 			System.out.println("Problems in the app server: the TOKEN wasn't valid");
 			return "redirect:/dashboard";
 		}
-		
+
 	} else {
 		// The SESSION does not exist
 		System.out.println("Problems in the app server: the SESSION does not exist");

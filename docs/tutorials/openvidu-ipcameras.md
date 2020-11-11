@@ -133,8 +133,13 @@ public String subscribe(@RequestParam(name = "credentials", required = false) St
 
 	// Generate a token for the user
 	String token = null;
+	ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+			.type(ConnectionType.WEBRTC)
+			.role(OpenViduRole.PUBLISHER)
+			.data("user_data")
+			.build();
 	try {
-		token = this.session.generateToken();
+		token = this.session.createConnection(connectionProperties).getToken();
 	} catch (OpenViduHttpException e) {
 		if (e.getStatus() == 404) {
 			// Session was closed in openvidu-server. Create it again

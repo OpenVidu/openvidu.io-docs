@@ -193,7 +193,7 @@ Here we subscribe to the Session events that interest us. As we are using React 
                 <UserVideoComponent streamManager={sub} mainVideoStream={this.handleMainVideoStream} />
             </div>
         ))}
-	
+
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so React will automatically delete the required UserVideoComponent from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
 
 ---
@@ -238,7 +238,7 @@ this.getToken().then(token => {
 Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `axios` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
   - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second request performs a POST to `/openvidu/api/tokens` (we send a `session` field to assign the token to this same session)
+  - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (we send a `sessionId` field to assign the token to this same session)
 
 You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-react/src/App.js#L274){:target="_blank"}.
 

@@ -148,7 +148,7 @@ function dashboardController(req, res) {
         var pass = req.body.pass;
 
         if (login(user, pass)) { // Correct user-pass
-            // Validate session and return OK 
+            // Validate session and return OK
             // Value stored in req.session allows us to identify the user in future requests
             req.session.loggedUser = user;
             res.render('dashboard.ejs', {
@@ -209,7 +209,7 @@ var mapSessions = {};
 var mapSessionNamesTokens = {};
 ```
 
-Rest controller method receives both params sent by the client (whatever nickname the user has chosen and "TUTORIAL" as the sessionName). First it prepares a param we will need a little further on: `tokenOptions`.
+Rest controller method receives both params sent by the client (whatever nickname the user has chosen and "TUTORIAL" as the sessionName). First it prepares a param we will need a little further on: `connectionProperties`.
 
 ```javascript
 app.post('/session', (req, res) => {
@@ -227,8 +227,8 @@ app.post('/session', (req, res) => {
     // In this case, a JSON with the value we stored in the req.session object on login
     var serverData = JSON.stringify({ serverData: req.session.loggedUser });
 
-    // Build tokenOptions object with the serverData and the role
-    var tokenOptions = {
+    // Build connectionProperties object with the serverData and the role
+    var connectionProperties = {
         data: serverData,
         role: role
     };
@@ -252,17 +252,17 @@ OV.createSession()
         // Store a new empty array in the collection of tokens
         mapSessionNamesTokens[sessionName] = [];
 
-        // Generate a new token asynchronously with the recently created tokenOptions
-        session.generateToken(tokenOptions)
-            .then(token => {
+        // Generate a new token asynchronously with the recently created connectionProperties
+        session.createConnection(connectionProperties)
+            .then(connection => {
 
                 // Store the new token in the collection of tokens
-                mapSessionNamesTokens[sessionName].push(token);
+                mapSessionNamesTokens[sessionName].push(connection.token);
 
                 // Return session template with all the needed attributes
                 res.render('session.ejs', {
                     sessionName: sessionName,
-                    token: token,
+                    token: connection.token,
                     nickName: clientData,
                     userName: req.session.loggedUser,
                 });
@@ -397,17 +397,17 @@ if (mapSessions[sessionName]) {
     // Get the existing Session from the collection
     var mySession = mapSessions[sessionName];
 
-    // Generate a new token asynchronously with the recently created tokenOptions
-    mySession.generateToken(tokenOptions)
-        .then(token => {
+    // Generate a new token asynchronously with the recently created connectionProperties
+    session.createConnection(connectionProperties)
+        .then(connection => {
 
             // Store the new token in the collection of tokens
-            mapSessionNamesTokens[sessionName].push(token);
+            mapSessionNamesTokens[sessionName].push(connection.token);
 
             // Return session template with all the needed attributes
             res.render('session.ejs', {
                 sessionId: mySession.getSessionId(),
-                token: token,
+                token: connection.token,
                 nickName: clientData,
                 userName: req.session.loggedUser,
                 sessionName: sessionName
@@ -475,8 +475,8 @@ When the last user leaves the session `delete mapSessions[sessionName]` will be 
 
 ---
 
-> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**. 
-> 
+> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
+>
 > The only actual requirements are getting ***sessionId*** and ***token*** params from  ***openvidu-server*** (by using one of the available clients or with the REST API) and using them along with ***openvidu-browser*** to connect your clients to the sessions.
 
 

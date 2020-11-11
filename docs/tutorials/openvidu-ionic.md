@@ -328,7 +328,7 @@ As we are using Ionic and Angular framework, a good approach for managing the re
             <user-video [streamManager]="sub"></user-video>
           </div>
         </ion-col>
-	
+
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so Angular will automatically delete the required UserVideoComponent from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
 
 ---
@@ -373,7 +373,7 @@ this.getToken().then((token) => {
 Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `@angular/http` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
   - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second request performs a POST to `/openvidu/api/tokens` (we send a `session` field to assign the token to this same session)
+  - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (we send a `sessionId` field to assign the token to this same session)
 
 You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L302){:target="_blank"}.
 
@@ -420,7 +420,7 @@ If the method succeeds and is running under a Cordova and Android platform, we w
 
 We do further talk about Android permissions under section [Android specific requirements](#android-specific-requirements).
 
-#### Finally publish your webcam calling `initPublisher()` method: 
+#### Finally publish your webcam calling `initPublisher()` method:
 
 ```typescript
 initPublisher() {
@@ -568,7 +568,7 @@ export class AppComponent  {
 }
 ```
 
-We are finally ready to request permissions to our device. To do so, we need to use `requestPermissions()` and `checkPermission()` methods offered by the plugin. 
+We are finally ready to request permissions to our device. To do so, we need to use `requestPermissions()` and `checkPermission()` methods offered by the plugin.
 
 It is important to call these methods under `platform.ready()`, just because it will tell us whenever the platform is ready and the native functionality can be actually called.
 You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L50){:target="_blank"}.
@@ -622,7 +622,7 @@ npm install xcode --save
 
 - `hooks/iosrtc-swift-support.js` ([download file](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/hooks/iosrtc-swift-support.js){:target="_blank"})
 - `src/assets/libs/adapter-4.0.1.js` ([download file](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/assets/libs/adapter-4.0.1.js){:target="_blank"})
-   
+
 3) Add the following lines to `config.xml` file under ios platform:
 
 ```xml
@@ -693,7 +693,7 @@ declare var cordova;
 **3)** Every `<video>` element should be managed carefully on cordova iOS. The plugin inserts iOS native video elements whenever it finds an HTMLVideoElement, respecting certain CSS rules. In general, we recommend that at the moment you have video metadata, you apply programmatically the following styles: `object-fit`, `z-index`, `width` and `height`.
 In openvidu-ionic app this is done as follows in file [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}
 
-We check if the platform is iOS with the following method: 
+We check if the platform is iOS with the following method:
 
 ```typescript
 private isIos(): boolean {

@@ -209,7 +209,7 @@ var mapSessions = {};
 var mapSessionNamesTokens = {};
 ```
 
-Rest controller method begins retrieving the param send by the client, which in this case is the video-call name ("TUTORIAL"), as well as preparing a param we will need a little further on: `tokenOptions`.
+Rest controller method begins retrieving the param send by the client, which in this case is the video-call name ("TUTORIAL"), as well as preparing a param we will need a little further on: `connectionProperties`.
 
 ```javascript
 app.post('/api-sessions/get-token', function (req, res) {
@@ -226,8 +226,8 @@ app.post('/api-sessions/get-token', function (req, res) {
 	// In this case, a JSON with the value we stored in the req.session object on login
 	var serverData = JSON.stringify({serverData: req.session.loggedUser});
 
-	// Build tokenOptions object with the serverData and the role
-	var tokenOptions = {
+	// Build connectionProperties object with the serverData and the role
+	var connectionProperties = {
 		data: serverData,
 		role: role
 	};
@@ -254,16 +254,16 @@ else {
 			// Store a new empty array in the collection of tokens
 			mapSessionNamesTokens[sessionName] = [];
 
-			// Generate a new token asynchronously with the recently created tokenOptions
-			session.generateToken(tokenOptions)
-				.then(token => {
+			// Generate a new token asynchronously with the recently created connectionProperties
+        	session.createConnection(connectionProperties)
+				.then(connection.token => {
 
 					// Store the new token in the collection of tokens
-					mapSessionNamesTokens[sessionName].push(token);
+					mapSessionNamesTokens[sessionName].push(connection.token);
 
 					// Return the Token to the client
 					res.status(200).send({
-						0: token
+						0: connection.token
 					});
 				})
 				.catch(error => {
@@ -389,16 +389,16 @@ if (mapSessions[sessionName]) {
 	// Get the existing Session from the collection
 	var mySession = mapSessions[sessionName];
 
-	// Generate a new token asynchronously with the recently created tokenOptions
-	mySession.generateToken(tokenOptions)
-		.then(token => {
+	 // Generate a new token asynchronously with the recently created connectionProperties
+	session.createConnection(connectionProperties)
+		.then(connection => {
 
 			// Store the new token in the collection of tokens
-			mapSessionNamesTokens[sessionName].push(token);
+			mapSessionNamesTokens[sessionName].push(connection.token);
 
 			// Return the token to the client
 			res.status(200).send({
-				0: token
+				0: connection.token
 			});
 		})
 		.catch(error => {
@@ -421,13 +421,13 @@ function removeUser() {
 	httpPostRequest(
 		'api-sessions/remove-user',
 		{sessionName: sessionName, token: token},
-		'User couldn\'t be removed from session', 
+		'User couldn\'t be removed from session',
 		(response) => {
 			console.warn("You have been removed from session " + sessionName);
 		}
 	);
 }
-``` 
+```
 
 And in `server.js` we update the collections in `/api-sessions/remove-user`:
 

@@ -214,7 +214,7 @@ private String OPENVIDU_URL;
 private String SECRET;
 ```
 
-Rest controller method begins retrieving the param send by the client, which in this case is the video-call name ("TUTORIAL"), as well as preparing a param we will need a little further on: `tokenOptions`.
+Rest controller method begins retrieving the param send by the client, which in this case is the video-call name ("TUTORIAL"), as well as preparing a param we will need a little further on: `connectionProperties`.
 
 ```java
 @RequestMapping(value = "/get-token", method = RequestMethod.POST)
@@ -235,8 +235,8 @@ Rest controller method begins retrieving the param send by the client, which in 
 	// In this case, a JSON with the value we stored in the HttpSession object on login
 	String serverData = "{\"serverData\": \"" + httpSession.getAttribute("loggedUser") + "\"}";
 
-	// Build tokenOptions object with the serverData and the role
-	TokenOptions tokenOptions = new TokenOptions.Builder().data(serverData).role(role).build();
+	// Build connectionProperties object with the serverData and the role
+	ConnectionProperties connectionProperties = new ConnectionProperties.Builder().type(ConnectionType.WEBRTC).data(serverData).role(role).build();
 
 	JSONObject responseJson = new JSONObject();
 ```
@@ -256,8 +256,8 @@ try {
 
 	// Create a new OpenVidu Session
 	Session session = this.openVidu.createSession();
-	// Generate a new token with the recently created tokenOptions
-	String token = session.generateToken(tokenOptions);
+	// Generate a new Connection with the recently created connectionProperties
+	String token = this.mapSessions.get(sessionName).createConnection(connectionProperties).getToken();
 
 	// Store the session and the token in our collections
 	this.mapSessions.put(sessionName, session);
@@ -387,8 +387,8 @@ if (this.mapSessions.get(sessionName) != null) {
 	System.out.println("Existing session " + sessionName);
 	try {
 
-		// Generate a new token with the recently created tokenOptions
-		String token = this.mapSessions.get(sessionName).generateToken(tokenOptions);
+		// Generate a new Connection with the recently created connectionProperties
+		String token = this.mapSessions.get(sessionName).createConnection(connectionProperties).getToken();
 
 		// Update our collection storing the new token
 		this.mapSessionNamesTokens.get(sessionName).put(token, role);
