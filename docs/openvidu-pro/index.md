@@ -101,14 +101,6 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Kurento Media Server <i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Support for Kurento as core media server"></th>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
             <th scope="row">OpenVidu Inspector <i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
@@ -182,15 +174,6 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
-            <th scope="row">Other media servers<i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Support for other open-source media servers"></th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
             <th scope="row">VP9<i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
@@ -204,12 +187,6 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="To provide improved quality"></th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Kubernetes deployment</th>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
