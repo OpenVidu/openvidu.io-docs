@@ -256,7 +256,7 @@ else {
 
 			// Generate a new token asynchronously with the recently created connectionProperties
         	session.createConnection(connectionProperties)
-				.then(connection.token => {
+				.then(connection => {
 
 					// Store the new token in the collection of tokens
 					mapSessionNamesTokens[sessionName].push(connection.token);
