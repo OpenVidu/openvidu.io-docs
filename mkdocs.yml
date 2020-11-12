@@ -25,6 +25,8 @@ nav:
   - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
   - openvidu-js-node: tutorials/openvidu-js-node.md
   - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
+  - openvidu-recording-java: tutorials/openvidu-recording-java.md
+  - openvidu-recording-node: tutorials/openvidu-recording-node.md
 - Demos:
   - openvidu-call: demos/openvidu-call.md
   - openvidu-call-react: demos/openvidu-call-react.md
