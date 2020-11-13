@@ -400,6 +400,11 @@ OpenVidu  allows you to choose between two themes. By default, the theme selecte
 	</div>
 </div>
 
+#### Change the OpenVidu logo
+
+OpenVidu webcomponent allows you to replace the default static resources (icons and images). You onlu have to go to `web/assets/images/` and add your custom images files with the same name.
+
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
