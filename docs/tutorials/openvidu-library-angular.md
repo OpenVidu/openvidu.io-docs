@@ -343,6 +343,11 @@ In the example above, **opv-session** receives the `sessionName`, the `user` and
 <opv-session [sessionName]="mySessionId" [user]="myUserName" [openviduServerUrl]="'https://localhost:4443'" [openviduSecret]="'MY_SECRET'"></opv-session>
 ```
 
+#### Change the OpenVidu logo
+
+OpenVidu Angular allows you to replace the default static resources (icons and images). You onlu have to go to `src/assets/images/` and add your custom images files with the same name.
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script>
