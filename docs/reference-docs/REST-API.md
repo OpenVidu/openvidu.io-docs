@@ -296,7 +296,7 @@ A Connection represents each one of the users connected to a Session. You must c
     "activeAt": 1538481999843,
     "location": "Madrid, Spain",
     "platform": "Chrome 85.0.4183.102 on Linux 64-bit",
-    "token": "wss://localhost:4443?sessionId=TestSession&token=tok_AVe8o7iltWqtijyl&role=PUBLISHER&version=2.15.0&coturnIp=localhost&turnUsername=M2ALIY&turnCredential=7kfjy2",
+    "token": "wss://localhost:4443?sessionId=TestSession&token=tok_AVe8o7iltWqtijyl&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=M2ALIY&turnCredential=7kfjy2",
     "serverData": "My Server Data",
     "clientData": "My Client Data",
     "record": true,
@@ -1385,8 +1385,8 @@ This operation returns a Token object:
 
 ```json
 {
-    "id": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.15.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
-    "token": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.15.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
+    "id": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
+    "token": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
     "connectionId": "con_Xnxg19tonh",
     "createdAt": 1538481996024,
     "session": "ses_YnDaGYNcd7",
@@ -1520,7 +1520,7 @@ Returns an object with the current [OpenVidu configuration](reference-docs/openv
 
 ```json
 {
-    "VERSION": "2.15.0",
+    "VERSION": "2.16.0",
     "DOMAIN_OR_PUBLIC_IP": "my.openvidu.ip",
     "HTTPS_PORT": 443,
     "OPENVIDU_PUBLICURL": "https://my.openvidu.ip",
@@ -1532,7 +1532,7 @@ Returns an object with the current [OpenVidu configuration](reference-docs/openv
     "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900,
     "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600,
     "OPENVIDU_RECORDING": true,
-    "OPENVIDU_RECORDING_VERSION": "2.15.0",
+    "OPENVIDU_RECORDING_VERSION": "2.16.0",
     "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/",
     "OPENVIDU_RECORDING_PUBLIC_ACCESS": false,
     "OPENVIDU_RECORDING_NOTIFICATION": "moderator",
@@ -1554,7 +1554,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
 ```json
 {
     "VERSION": "2.15.1",
-    "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.15.0",
+    "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.16.0",
     "DOMAIN_OR_PUBLIC_IP": "my.openvidu.ip",
     "HTTPS_PORT": 443,
     "OPENVIDU_PUBLICURL": "https://my.openvidu.ip",
@@ -1566,7 +1566,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
     "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900,
     "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600,
     "OPENVIDU_RECORDING": true,
-    "OPENVIDU_RECORDING_VERSION": "2.15.0",
+    "OPENVIDU_RECORDING_VERSION": "2.16.0",
     "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/",
     "OPENVIDU_RECORDING_PUBLIC_ACCESS": false,
     "OPENVIDU_RECORDING_NOTIFICATION": "moderator",
