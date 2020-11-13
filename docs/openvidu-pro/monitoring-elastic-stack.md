@@ -116,13 +116,13 @@ This dashboard provides monitoring information about the Media Nodes (see [OpenV
 
 ### NGINX
 
-This dashboard gives you information about the NGINX proxy of the OpenVidu Pro cluster, including workers, active connections, response time...
+This dashboard gives you information about the NGINX proxy of the OpenVidu Pro cluster, including workers, active connections, response time... This is actually the official NGINX dashboard of Kibana.
 
-<!--<div class="row">
+<div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/nginx.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx.png"/></a>
+        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/nginx.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx.png"/></a>
     </div>
-</div>-->
+</div>
 
 <br>
 
