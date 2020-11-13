@@ -76,7 +76,7 @@ This application provides the
 	- `style.css` : some CSS classes to style the templates
 
 
-Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object) provided by [openvidu-node-cliente](reference-docs/openvidu-node-client/#manage-recordings)
+Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object) provided by [openvidu-node-client](reference-docs/openvidu-node-client/#manage-recordings)
 
 #### 1) Start the recording:
 

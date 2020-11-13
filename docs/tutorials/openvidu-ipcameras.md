@@ -1,8 +1,7 @@
 # openvidu-ipcameras
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-ipcameras" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-
-A secure OpenVidu sample app with a Java backend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. It serves a single HTML page (generated with [Thymeleaf](http://www.thymeleaf.org/)) where users can subscribe and see a collection of IP cameras.
+A secure OpenVidu application with a Java backend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. It serves a single HTML page (generated with [Thymeleaf](http://www.thymeleaf.org/)) where users can subscribe and see a collection of IP cameras.
 
 ## Understanding this tutorial
 
@@ -64,21 +63,20 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 This is a very basic web application with a pretty simple JS/HTML/CSS frontend and a straightforward Java backend that serves HTML files, building the templates with the help of [Thymeleaf](http://www.thymeleaf.org/){:target="_blank"}.
 
-This application provides the
+This application provides the...
 
 - **Backend**: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.ipcameras` package)
 	- `App.java` : entrypoint for the app
-	- `MyRestController.java` : controller for managing the token to enter the OpenVidu Session
-	- `SimpleHttpClient.java` : Simple HTTP client able to send REST API requests to insecure servers (self-signed certificates are accepted)<br><br>
+	- `MyRestController.java` : controller for managing the OpenVidu session and publishing IP cameras<br><br>
 
 - **Frontend templates**: Plain JS/HTML/CSS files served by the backend (`src/main/resources/templates`)
-	- `index.html` : template with the subscribe / unsubscribe form
+	- `index.html` : template with the subscribe / unsubscribe form<br><br>
 
 - **Frontend static files** (`src/main/resources/static`)
  	- `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file
 	- `style.css` : some CSS classes to style the templates
 
-As the application allows subscribe to the IP cameras collection, let's describe the code that goes into action.
+The application allows subscribing to the IP cameras collection from the web page. Let's describe the code that goes into action.
 
 ---
 
@@ -92,7 +90,7 @@ At path `/` a login form will be displayed:
 
 ### 2 Subscribe to the IP cameras:
 
-Clicking on the subscribe button you will subscribe to the IP cameras collection. These cameras are initialized on the [App.java](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/App.java#L33-L35) file.
+Clicking on the subscribe button you will subscribe to the IP cameras collection. These cameras are initialized on the [App.java](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/App.java#L33-L35){:target="_blank"} file.
 
 ```java
 static Map<String, String> IP_CAMERAS = new HashMap<String, String>() {
@@ -104,7 +102,7 @@ static Map<String, String> IP_CAMERAS = new HashMap<String, String>() {
 };
 ```
 
-After the subscribe button is clicked, the subscribe method (hosted in [MyRestController.java](https://github.com/OpenVidu/openvidu-tutorials/blob/3f67046327360242e20c072e8cb0d5378b41fbd4/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/MyRestController.java#L47)) is called. This method will join to the OpenVidu session, creating a session token, and it will publish the IP cameras defined in the `IP_CAMERAS` variable.
+After the subscribe button is clicked, the subscribe method (hosted in [MyRestController.java](https://github.com/OpenVidu/openvidu-tutorials/blob/3f67046327360242e20c072e8cb0d5378b41fbd4/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/MyRestController.java#L47){:target="_blank"}) is called. This method will join to the OpenVidu session, creating a session token, and it will publish the IP cameras defined in the `IP_CAMERAS` variable.
 
 ```java
 @RequestMapping(value = "/")
@@ -145,7 +143,7 @@ public String subscribe(@RequestParam(name = "credentials", required = false) St
 			// Session was closed in openvidu-server. Create it again
 			createOpenViduSession();
 			publishCameras();
-			token = this.session.generateToken();
+			token = this.session.createConnection(connectionProperties).getToken();
 		} else {
 			return generateError(model,
 					"Error creating OpenVidu token for session " + SESSION_ID + ": " + e.getMessage());

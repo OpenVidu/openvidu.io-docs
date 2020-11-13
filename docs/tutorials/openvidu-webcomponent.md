@@ -308,7 +308,7 @@ getToken(sessionName).then((token) => {
 In a production environment we would perform this operations in our application backend, by making use of the _[API REST](reference-docs/REST-API/){:target="_blank"}_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/){:target="_blank"}_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/){:target="_blank"}_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
 
 -   First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `sessionName` value retrieved from HTML input)
--   Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (we send a `sessionId` field to assign the token to this same session)
+-   Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
 
 You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-webcomponent/web/app.js#L44){:target="_blank"}.
 
