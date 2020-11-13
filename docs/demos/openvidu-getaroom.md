@@ -280,7 +280,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-getaroom-demo:2.15.0
+        image: openvidu/openvidu-getaroom-demo:2.16.0
         restart: on-failure
         network_mode: host
         environment:

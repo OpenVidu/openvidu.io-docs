@@ -103,7 +103,7 @@ Without going into greater detail, the backend has [one controller](https://gith
 
 **1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-As the [deployment docs says](https://docs.openvidu.io/en/2.15.0/deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
+As the [deployment docs says](https://docs.openvidu.io/en/2.16.0/deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
 
 This is how should looks like the `docker-compose-override.yml` after be redefined:
 
@@ -112,7 +112,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom:2.15.0
+        image: openvidu/openvidu-classroom:2.16.0
         restart: on-failure
         network_mode: host
         environment:
@@ -146,7 +146,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom-demo:2.15.0
+        image: openvidu/openvidu-classroom-demo:2.16.0
         restart: on-failure
         network_mode: host
         environment:
