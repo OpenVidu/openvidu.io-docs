@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.16.0](#2160)
 - [2.15.0](#2150)
 - [2.14.0](#2140)
 - [2.13.0](#2130)
@@ -18,6 +19,287 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.16.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.16.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.16.0/deployment/deploying-aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.16.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.16.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.16.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.16.1</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.16.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.15.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.15.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Network quality API (OpenVidu Pro)
+
+One of the most important elements in real-time WebRTC connections is the network. It can have a huge impact in the quality of the media streams being transmitted. Usually we have control over the quality of the server-side network, but we don’t have any guarantee about the network of the clients. For that reason, it is especially important to monitor and to be able to warn about network problems to our end users.
+
+This is why OpenVidu Pro now offers the [Network Quality API](https://docs.openvidu.io/en/2.16.0/advanced-features/network-quality/){:target="_blank"}. Now you can listen for network quality change events in your application’s client. Use it to display a network indicator to inform your users about the quality of their connections, as well as those of other users. This can help reduce customer frustration to a great extent when having a bad experience, as they have a reasonable explanation about their own and others’ network conditions.
+
+<br>
+
+##### S3 recording storage (OpenVidu Pro)
+
+OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. This brings multiple advantages:
+
+- You can terminate clusters without worrying losing your recordings, as long as they are properly uploaded to the bucket.
+- Launching an OpenVidu Pro cluster configured to use an already populated S3 bucket will make the existing recordings accessible and manageable from the new cluster.
+- You can upload to the same S3 bucket from different OpenVidu Pro clusters.
+
+Take a look to the official documentation: [Uploading recordings to S3](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#uploading-recordings-to-aws-s3){:target="_blank"}.
+
+<br>
+
+##### Improved REST API for managing participant roles
+
+Token API has been replaced with Connection API. This helps harmonizing and unifying the server entities of OpenVidu, as you can see in the renovated [REST API documentation](https://docs.openvidu.io/en/2.16.0/reference-docs/REST-API/){:target="_blank"}. This change also brings many new functionalities:
+
+- Now you can invalidate non-used tokens. With the new REST API, you can delete a Connection object before it has been taken by a final user.
+- In OpenVidu Pro you can also modify the properties of an existing Connection object. This means that you can change on the fly the role of a participant (from SUBSCRIBER to PUBLISHER, for example) and you can also manage fine-grained INDIVIDUAL recording (see next point).
+- Now *OpenVidu Java Client* and *OpenVidu Node Client* can also be used to publish IP cameras.
+
+<br>
+
+##### Manual allocation of sessions in your Media Nodes (OpenVidu Pro)
+
+For some particular use cases, the automatic session distribution algorithm based on CPU load of Media Nodes may not be enough. Now you can force the specific Media Node where a session must be allocated. This gives you much more control. Check it out [here](http://docs.openvidu.io/en/2.16.0/openvidu-pro/scalability/#manual-distribution){:target="_blank"}.
+
+<br>
+
+##### Selecting streams to be recorded (OpenVidu Pro)
+
+Let’s assume the following scenario: your application offers webinar-type video meetings, where a main speaker addresses an audience that can intervene from time to time. And you are recording these sessions. So far, any video stream published into the session would be recorded, so you couldn’t specify to record only the main speaker. Now in OpenVidu Pro you can choose which specific participants must be recorded. See how [here](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#selecting-streams-to-be-recorded){:target="_blank"}. Not only that, with this new feature you can also start and stop the recording of one stream as many times as you want, for the very same session recording process! In our example, the main speaker could be the only participant recorded, and also only at certain specific times.
+
+This applies only to [INDIVIDUAL](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#individual-stream-recording){:target="_blank"} recording, as in [COMPOSED](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#composed-recording){:target="_blank"} recording with [custom layouts](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#custom-recording-layouts){:target="_blank"} there is total freedom to record as you wish.
+
+<br>
+
+##### Health check (OpenVidu Pro)
+
+OpenVidu Pro offers a new health check REST API endpoint. Check it out in the documentation: [GET openvidu/api/health](https://docs.openvidu.io/en/2.16.0/reference-docs/REST-API/#get-openviduapihealth){:target="_blank"}.
+
+<br>
+
+##### New monitoring dashboards (OpenVidu Pro)
+
+We have substantially improved the collection of information from OpenVidu Pro clusters, and there are available new Kibana dashboards to help you monitor and analyse your deployments:
+
+- [Monitoring OpenVidu Server Pro Node](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#monitoring-openvidu-server-pro-node){:target="_blank"}
+- [Monitoring Media Nodes](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#monitoring-media-nodes){:target="_blank"}
+- [NGINX](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#nginx){:target="_blank"}
+
+<br>
+
+##### Support for external Elastic stacks (OpenVidu Pro)
+
+Now you can tell OpenVidu Pro to send all of the monitoring information to your own Elasticsearch service. This is in fact the recommended option for a production OpenVidu Pro deployment. If you combine it with S3 recording (in case your product uses the recording feature), you can turn your cluster on and off at will, without worrying about data persistence. See how here: [Configuring an external stack](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}.
+
+<br>
+
+##### Kibana security integration (OpenVidu Pro)
+
+We have improved the Kibana access, which is now secured with the Elastic user management system. This is the most natural and logical way of dealing with Kibana users, of course. Learn how to add new users to your Elastic stack here: [Create a fine-grained user](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user){:target="_blank"}.
+
+<br>
+
+##### Automatic deletion of Elastic documents (OpenVidu Pro)
+
+Some users have reported unexpected failures and strange behaviors in OpenVidu Pro clusters that eventually turned out to be caused by nearly full hard drives. OpenVidu Pro clusters are constantly generating data, and after some weeks disks can be filled up to dangerous points. Now by default any data older than 15 days will be automatically cleaned up, so these problems never arise. You can of course change this property in your **`.env`** configuration file to any number of days to accommodate it to your specific use case (`OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE=15`). And this is also compatible with the new external Elastic stack option!
+
+<br>
+
+##### New configuration parameter for IP cameras
+
+IP cameras can now be further configured with parameter `networkCache`. This allows changing the default buffer size that will be used when receiving from remote RTSP streams. The default 2000 ms can be to restrictive for certain use cases, and latency can be greatly improved if the conditions allow it. Check this new parameter [here](https://docs.openvidu.io/en/2.16.0/advanced-features/ip-cameras/#configuring-ip-cameras){:target="_blank"}.
+
+<br>
+
+##### Change environment variables of Media Nodes (OpenVidu Pro)
+
+Now you can update any environment variable of your Media Nodes directly from the **.env** configuration file of your OpenVidu Server Pro Node. This configuration will be broadcasted to all Media Nodes on startup. For example, changing the log level of Kurento in your Media Nodes is now as easy [as this](https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/on-premises/#change-log-level-of-the-services_1){:target="_blank"}.
+
+<br>
+
+##### OpenVidu iOS native application
+
+OpenVidu has offered support for mobile platforms for a long time. First we focused on the most popular cross-platform frameworks, first with [Ionic](https://docs.openvidu.io/en/stable/tutorials/openvidu-ionic/){:target="_blank"} and then with [React Native](https://docs.openvidu.io/en/stable/tutorials/openvidu-react-native/){:target="_blank"}. Finally in Android we implemented a [sample tutorial](https://docs.openvidu.io/en/stable/tutorials/openvidu-android/){:target="_blank"} to be used as a template for your own custom Android app. Now we are happy to introduce the same concept for iOS: [openvidu-ios](https://docs.openvidu.io/en/stable/tutorials/openvidu-ios/){:target="_blank"}. These are the features of this application:
+
+- Latest iOS versions (tested with iOS 14.0)
+- Implementing OpenVidu RPC protocol
+- Mute / Unmute video
+- Mute / Unmute audio
+- Toggle speaker / headset
+- Subscribe / unsubscribe stream
+
+<br>
+
+##### OpenVidu Call improvements
+
+Our flagship OpenVidu application keeps getting better. Here is the list of all improvements in 2.16.0:
+
+- OpenVidu call app has been updated to **Angular 10.**
+- **Joining sessions with no input devices** is now possible. Besides, if the video device is already in use, it will be disabled and the user will be able to connect to the session only by using the microphone.
+- **Muted participants are now present**. Users with video muted disappeared from the layout making it difficult to know who is in the room. Now they will show with small black video.
+- **Automatic chat scroll** when new messages are received.
+- **Video icons have been replaced by a unique icon** which it will show an action menu.
+- The **chat notification** did not appear in fullscreen mode. This is fixed now.
+- **Removed jQuery** with the aim of decreasing the bundle size (200KBs). The awesome animation layout is now a simple plain CSS effect.
+- **Some capture avatar** bugs have been fixed.
+- **If you are using the [WebComponent](https://docs.openvidu.io/en/2.16.0/tutorials/openvidu-webcomponent/){:target="_blank"} you can hide the footer** with a new field of **ovSettings** object (see [footer property](https://docs.openvidu.io/en/2.16.0/tutorials/openvidu-webcomponent/#interface-configuration){:target="_blank"}).
+
+<br>
+
+##### New documented tutorials
+
+Take a look to the documentation of our new tutorials:
+
+- [openvidu-iframe](https://docs.openvidu.io/en/2.16.0/tutorials/openvidu-iframe/){:target="_blank"}: learn how to embed an OpenVidu web app inside another application using iframe technology.
+- [openvidu-ipcameras](https://docs.openvidu.io/en/2.16.0/tutorials/openvidu-ipcameras/){:target="_blank"}: do you want to publish an IP camera into an OpenVidu session? Then check out this tutorial.
+
+<br>
+
+##### Kurento 6.15.0 release
+
+OpenVidu 2.16.0 uses under the hood the brand new Kurento 6.15.0. This version of the media server brings lots of new features, improvements and bug and security fixes. You can read all of them in [Kurento Release Notes](https://doc-kurento.readthedocs.io/en/stable/project/relnotes/v6_15_0.html#){:target="_blank"}.
+
+
+#### BUG FIXES
+
+- _openvidu-browser_ : bundled size cut almost in half! From 626 KB to 361 KB ([488](https://github.com/OpenVidu/openvidu/issues/488){:target="_blank"}).
+- _openvidu-browser_ : fixed iPad Pro and Ionic devices support bug.
+- _openvidu-java-client_: fixed possible NullPointer exception when fetching Session information when IP cameras are present.
+- _openvidu-react-native_: updated internal react-native-webrtc to [version 1.84.0](https://github.com/react-native-webrtc/react-native-webrtc/releases/tag/1.84.0){:target="_blank"}
+- _openvidu-react-native_: crash initializing an only audio publisher, fixed now.
+- _Recording_: setting recording names with slashes and other special characters could result in unexpected errors. Now recording names must be alphanumeric strings or an error is returned.
+- _Recording_: fixed rare exception when starting and stopping multiple recordings for the same session in a row.
+- _Recording_: fixed exception when stopping COMPOSED_QUICK_START recordings in heavy loaded systems.
+- _Recording_: fixed `recordingStatusChanged` event to started, that sometimes could be fired too soon, breaking the following rule of [documentation](https://docs.openvidu.io/en/2.16.0/reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}: *This means the associated video(s) already exists and its size is greater than 0.* This is now fixed.
+- _IP cameras_: IP Cameras with user info IPs (those IPs with Basic Auth formatted in the URL as _rtsp://**user:pass@**domain.com_) where being assigned an ID including the credentials. This is now fixed.
+- _OpenVidu Server CE_: OpenVidu Secret property (`OPENVIDU_SECRET`) could introduce critical failures in COMPOSED recording and in the internal RedisDB for TURN server if special characters were being used (such as `#`, `?`, `/`, …). Now `OPENVIDU_SECRET` must comply with an alphanumeric format that easily prevents these failures.
+- _OpenVidu Server CE_: some TURN connections were not being successfully established under some restrictive network conditions in CE deployments. Now they do.
+- _OpenVidu Server Pro_: some threads were not being properly closed on programmatic restart, causing duplicated calls in certain processes such as session garbage collector. This is now fixed.
+
+
+#### Breaking changes
+
+Consider the following points when upgrading to OpenVidu 2.16.0:
+
+1. **If your OPENVIDU_SECRET had any kind of special character**: you must change it to a simple alphanumeric string (plus characters `-` and `_`). This helps preventing some important bugs caused by secrets with special chars not working fine in some internal services.<br><br>
+2. **If you were publishing IP cameras**: now in REST API method `POST /api/sessions/<SESSION_ID>/connection`, the default value of body request property type has changed from IPCAM to WEBRTC. If you were publishing an IP camera and not providing “type” property, now you must explicitly do so, with value “IPCAM”.<br><br>
+3. **For OpenVidu Pro, the Elastic stack credential parameters have been renamed**: from `KIBANA_USER` and `KIBANA_PASSWORD` to `ELASTICSEARCH_USERNAME` and `ELASTICSEARCH_PASSWORD`. You must transfer the values from the old **`.env`** configuration file to the new one, from the old parameters to the new ones. This is also noted in the [official upgrading instructions](https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/upgrading/#upgrading-openvidu-server-pro-node){:target="_blank"}.<br><br>
+4. **If you are using REST API to control openvidu-server (no Java or Node clients)**: REST API paths have been updated to unify all of them under the same parent path. Now every OpenVidu REST API operation will be located under path `/openvidu/`. For example, what before was: `POST /api/sessions/<SESSION_ID>/connection` now is `POST /openvidu/api/sessions<SESSION_ID>/connection`. This is very good news: now OpenVidu has a single entrypoint from a single base path, greatly simplifying the configuration of API Gateways. New REST API is well documented in [here](https://docs.openvidu.io/en/2.16.0/reference-docs/REST-API/){:target="_blank"}.
+
+Old API is considered now deprecated, but of course is still supported. When you are ready, you can make sure your migration has been done right by adding this property to your OpenVidu Server: **`SUPPORT_DEPRECATED_API=false`**
+
+If that property is set to false (by default it is true), old API will no longer by accepted by OpenVidu Server, so you can test everything still works smoothly after updating your app to use the new REST API.
+
+<br>
 
 ---
 
