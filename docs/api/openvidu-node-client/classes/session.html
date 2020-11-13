@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Session | OpenVidu Node Client - v2.15.0</title>
-	<meta name="description" content="Documentation for OpenVidu Node Client - v2.15.0">
+	<title>Session | OpenVidu Node Client - v2.16.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.16.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.15.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.16.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -78,6 +78,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="session.html#activeconnections" class="tsd-kind-icon">active<wbr>Connections</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="session.html#connections" class="tsd-kind-icon">connections</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="session.html#createdat" class="tsd-kind-icon">created<wbr>At</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="session.html#properties" class="tsd-kind-icon">properties</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="session.html#recording" class="tsd-kind-icon">recording</a></li>
@@ -88,11 +89,12 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#close" class="tsd-kind-icon">close</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#createconnection" class="tsd-kind-icon">create<wbr>Connection</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#fetch" class="tsd-kind-icon">fetch</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#forcedisconnect" class="tsd-kind-icon">force<wbr>Disconnect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#forceunpublish" class="tsd-kind-icon">force<wbr>Unpublish</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#generatetoken" class="tsd-kind-icon">generate<wbr>Token</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#getsessionid" class="tsd-kind-icon">get<wbr>Session<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="session.html#updateconnection" class="tsd-kind-icon">update<wbr>Connection</a></li>
 							</ul>
 						</section>
 					</div>
@@ -106,20 +108,41 @@
 					<div class="tsd-signature tsd-kind-icon">active<wbr>Connections<span class="tsd-signature-symbol">:</span> <a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L58">Session.ts:58</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L69">Session.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Array of active connections to the session. This property always initialize as an empty array and
-							<strong>will remain unchanged since the last time method <a href="session.html#fetch">Session.fetch</a> was called</strong>. Exceptions to this rule are:</p>
+							<p>Array containing the active Connections of the Session. It is a subset of <a href="session.html#connections">Session.connections</a> array containing only
+							those Connections with property <a href="connection.html#status">Connection.status</a> to <code>active</code>.</p>
+						</div>
+						<p>To get the array of active Connections with their current actual value, you must call <a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a>
+						before consulting property <a href="session.html#activeconnections">activeConnections</a></p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="connections" class="tsd-anchor"></a>
+					<h3>connections</h3>
+					<div class="tsd-signature tsd-kind-icon">connections<span class="tsd-signature-symbol">:</span> <a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L60">Session.ts:60</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Array of Connections to the Session. This property always initialize as an empty array and
+								<strong>will remain unchanged since the last time method <a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a> was called</strong>.
+							Exceptions to this rule are:</p>
 						</div>
 						<ul>
-							<li>Calling <a href="session.html#forceunpublish">Session.forceUnpublish</a> also automatically updates each affected Connection status</li>
-							<li>Calling <a href="session.html#forcedisconnect">Session.forceDisconnect</a> automatically updates each affected Connection status</li>
+							<li>Calling <a href="session.html#createconnection">Session.createConnection</a> automatically adds the new Connection object to the local collection.</li>
+							<li>Calling <a href="session.html#forceunpublish">Session.forceUnpublish</a> automatically updates each affected local Connection object.</li>
+							<li>Calling <a href="session.html#forcedisconnect">Session.forceDisconnect</a> automatically updates each affected local Connection object.</li>
+							<li>Calling <a href="session.html#updateconnection">Session.updateConnection</a> automatically updates the attributes of the affected local Connection object.</li>
 						</ul>
-						<p>To get the array of active connections with their current actual value, you must call <a href="session.html#fetch">Session.fetch</a> before consulting
-						property <a href="session.html#activeconnections">activeConnections</a></p>
+						<p>To get the array of Connections with their current actual value, you must call <a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a>
+						before consulting property <a href="session.html#connections">connections</a></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
@@ -128,7 +151,7 @@
 					<div class="tsd-signature tsd-kind-icon">created<wbr>At<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L41">Session.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L40">Session.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -143,7 +166,7 @@
 					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <a href="../interfaces/sessionproperties.html" class="tsd-signature-type">SessionProperties</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L46">Session.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L45">Session.ts:45</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -158,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">recording<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L63">Session.ts:63</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L74">Session.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -173,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L36">Session.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L35">Session.ts:35</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -195,7 +218,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L152">Session.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L185">Session.ts:185</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -209,6 +232,37 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="createconnection" class="tsd-anchor"></a>
+					<h3>create<wbr>Connection</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Connection<span class="tsd-signature-symbol">(</span>connectionProperties<span class="tsd-signature-symbol">?: </span><a href="../interfaces/connectionproperties.html" class="tsd-signature-type">ConnectionProperties</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L143">Session.ts:143</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates a new Connection object associated to Session object and configured with
+										<code>connectionProperties</code>. Each user connecting to the Session requires a Connection.
+									The token string value to send to the client side is available at <a href="connection.html#token">Connection.token</a>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> connectionProperties: <a href="../interfaces/connectionproperties.html" class="tsd-signature-type">ConnectionProperties</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A Promise that is resolved to the generated <a href="connection.html">Connection</a> object if success and rejected with an Error object if not</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="fetch" class="tsd-anchor"></a>
 					<h3>fetch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -218,15 +272,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L201">Session.ts:201</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L222">Session.ts:222</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Updates every property of the Session with the current status it has in OpenVidu Server. This is especially useful for accessing the list of active
-									connections of the Session (<a href="session.html#activeconnections">Session.activeConnections</a>) and use those values to call <a href="session.html#forcedisconnect">Session.forceDisconnect</a> or <a href="session.html#forceunpublish">Session.forceUnpublish</a>.</p>
+									<p>Updates every property of the Session with the current status it has in OpenVidu Server. This is especially useful for accessing the list of
+										Connections of the Session (<a href="session.html#connections">Session.connections</a>, <a href="session.html#activeconnections">Session.activeConnections</a>) and use those values to call <a href="session.html#forcedisconnect">Session.forceDisconnect</a>,
+									<a href="session.html#forceunpublish">Session.forceUnpublish</a> or <a href="session.html#updateconnection">Session.updateConnection</a>.</p>
 								</div>
-								<p>To update every Session object owned by OpenVidu object, call <a href="openvidu.html#fetch">OpenVidu.fetch</a></p>
+								<p>To update all Session objects owned by OpenVidu object at once, call <a href="openvidu.html#fetch">OpenVidu.fetch</a></p>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise resolved to true if the Session status has changed with respect to the server, or to false if not.
@@ -244,25 +299,31 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L253">Session.ts:253</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L268">Session.ts:268</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Forces the user with Connection <code>connectionId</code> to leave the session. OpenVidu Browser will trigger the proper events on the client-side
-									(<code>streamDestroyed</code>, <code>connectionDestroyed</code>, <code>sessionDisconnected</code>) with reason set to <code>&quot;forceDisconnectByServer&quot;</code></p>
+									<p>Removes the Connection from the Session. This can translate into a forced eviction of a user from the Session if the
+									Connection had status <code>active</code> or into a token invalidation if no user had taken the Connection yet (status <code>pending</code>).</p>
 								</div>
-								<p>You can get <code>connection</code> parameter from <a href="session.html#activeconnections">Session.activeConnections</a> array (<a href="connection.html#connectionid">Connection.connectionId</a> for getting each <code>connectionId</code> property).
-								Remember to call <a href="session.html#fetch">Session.fetch</a> before to fetch the current actual properties of the Session from OpenVidu Server</p>
+								<p>In the first case, OpenVidu Browser will trigger the proper events in the client-side (<code>streamDestroyed</code>, <code>connectionDestroyed</code>,
+								<code>sessionDisconnected</code>) with reason set to <code>&quot;forceDisconnectByServer&quot;</code>.</p>
+								<p>In the second case, the token of the Connection will be invalidated and no user will be able to connect to the session with it.</p>
+								<p>This method automatically updates the properties of the local affected objects. This means that there is no need to call
+								<a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a>] to see the changes consequence of the execution of this method applied in the local objects.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>connection: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="connection.html" class="tsd-signature-type">Connection</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Connection object to remove from the session, or its <code>connectionId</code> property</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A Promise that is resolved if the user was successfully disconnected and rejected with an Error object if not</p>
+							<p>A Promise that is resolved if the Connection was successfully removed from the Session and rejected with an Error object if not</p>
 						</li>
 					</ul>
 				</section>
@@ -276,21 +337,26 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L332">Session.ts:332</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L340">Session.ts:340</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Forces some user to unpublish a Stream (identified by its <code>streamId</code> or the corresponding <a href="publisher.html">Publisher</a> object owning it).
+									<p>Forces some Connection to unpublish a Stream (identified by its <code>streamId</code> or the corresponding <a href="publisher.html">Publisher</a> object owning it).
 									OpenVidu Browser will trigger the proper events on the client-side (<code>streamDestroyed</code>) with reason set to <code>&quot;forceUnpublishByServer&quot;</code>.</p>
 								</div>
 								<p>You can get <code>publisher</code> parameter from <a href="connection.html#publishers">Connection.publishers</a> array (<a href="publisher.html#streamid">Publisher.streamId</a> for getting each <code>streamId</code> property).
-								Remember to call <a href="session.html#fetch">Session.fetch</a> before to fetch the current actual properties of the Session from OpenVidu Server</p>
+								Remember to call <a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a> before to fetch the current actual properties of the Session from OpenVidu Server</p>
+								<p>This method automatically updates the properties of the local affected objects. This means that there is no need to call
+								<a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a> to see the changes consequence of the execution of this method applied in the local objects.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>publisher: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="publisher.html" class="tsd-signature-type">Publisher</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The Publisher object to unpublish, or its <code>streamId</code> property</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -308,13 +374,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L100">Session.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L104">Session.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets a new token associated to Session object</p>
-								</div>
+								<dl class="tsd-comment-tags">
+									<dt>deprecated</dt>
+									<dd><p>Use <a href="session.html#createconnection">Session.createConnection</a> instead to get a <a href="connection.html">Connection</a> object.</p>
+									</dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -323,29 +391,56 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>A Promise that is resolved to the <em>token</em> if success and rejected with an Error object if not</p>
+							<p>A Promise that is resolved to the generated <em>token</em> string if success and rejected with an Error object if not</p>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getsessionid" class="tsd-anchor"></a>
-					<h3>get<wbr>Session<wbr>Id</h3>
+					<a name="updateconnection" class="tsd-anchor"></a>
+					<h3>update<wbr>Connection</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Session<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Connection<span class="tsd-signature-symbol">(</span>connectionId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, connectionProperties<span class="tsd-signature-symbol">: </span><a href="../interfaces/connectionproperties.html" class="tsd-signature-type">ConnectionProperties</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd1ecce8/openvidu-node-client/src/Session.ts#L91">Session.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/Session.ts#L405">Session.ts:405</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the unique identifier of the Session</p>
+									<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.16.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
 								</div>
+								<p>Updates the properties of a Connection  with a <a href="../interfaces/connectionproperties.html">ConnectionProperties</a> object.
+								Only these properties can be updated:</p>
+								<ul>
+									<li><a href="../interfaces/connectionproperties.html#role">ConnectionProperties.role</a></li>
+									<li><a href="../interfaces/connectionproperties.html#record">ConnectionProperties.record</a></li>
+								</ul>
+								<p>This method automatically updates the properties of the local affected objects. This means that there is no need to call
+								<a href="session.html#fetch">Session.fetch</a> or <a href="openvidu.html#fetch">OpenVidu.fetch</a> to see the changes consequence of the execution of this method applied in the local objects.</p>
+								<p>The affected client will trigger one <a href="/en/2.16.0/api/openvidu-browser/classes/connectionpropertychangedevent.html">ConnectionPropertyChangedEvent</a>
+								for each modified property.</p>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>connectionId: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The <a href="connection.html#connectionid">Connection.connectionId</a> of the Connection object to modify</p>
+									</div>
+								</li>
+								<li>
+									<h5>connectionProperties: <a href="../interfaces/connectionproperties.html" class="tsd-signature-type">ConnectionProperties</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A new <a href="../interfaces/connectionproperties.html">ConnectionProperties</a> object with the updated values to apply</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="connection.html" class="tsd-signature-type">Connection</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A Promise that is resolved to the updated <a href="connection.html">Connection</a> object if the operation was
+							successful and rejected with an Error object if not</p>
 						</li>
 					</ul>
 				</section>
@@ -361,6 +456,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/connectiontype.html" class="tsd-kind-icon">Connection<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/mediamode.html" class="tsd-kind-icon">Media<wbr>Mode</a>
 					</li>
@@ -394,6 +492,9 @@
 								<a href="session.html#activeconnections" class="tsd-kind-icon">active<wbr>Connections</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="session.html#connections" class="tsd-kind-icon">connections</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="session.html#createdat" class="tsd-kind-icon">created<wbr>At</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -409,6 +510,9 @@
 								<a href="session.html#close" class="tsd-kind-icon">close</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="session.html#createconnection" class="tsd-kind-icon">create<wbr>Connection</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="session.html#fetch" class="tsd-kind-icon">fetch</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -421,12 +525,15 @@
 								<a href="session.html#generatetoken" class="tsd-kind-icon">generate<wbr>Token</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="session.html#getsessionid" class="tsd-kind-icon">get<wbr>Session<wbr>Id</a>
+								<a href="session.html#updateconnection" class="tsd-kind-icon">update<wbr>Connection</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/connectionproperties.html" class="tsd-kind-icon">Connection<wbr>Properties</a>
+					</li>
 					<li class=" tsd-kind-interface">
 						<a href="../interfaces/recordingproperties.html" class="tsd-kind-icon">Recording<wbr>Properties</a>
 					</li>
@@ -461,6 +568,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
