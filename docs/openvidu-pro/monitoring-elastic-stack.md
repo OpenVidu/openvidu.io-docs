@@ -10,7 +10,9 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
 - **[Kibana Dashboards](#kibana-dashboards)**
     - [OpenVidu Session Dashboard](#openvidu-sessions-dashboard)
     - [OpenVidu Recordings dashboard](#openvidu-recordings-dashboard)
-    - [OpenVidu Clustering dashboard](#openvidu-clustering-dashboard)
+    - [Monitoring OpenVidu Server Pro Node](#monitoring-openvidu-server-pro-node)
+    - [Monitoring Media Nodes](#monitoring-media-nodes)
+    - [NGINX](#nginx)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
     - [Log Search Examples](#searching-examples)
@@ -88,15 +90,39 @@ This dashboard presents at a glance the status of your recordings. It includes i
     </div>
 </div>
 
-### OpenVidu Clustering dashboard
+### Monitoring OpenVidu Server Pro Node
 
-This dashboard is aimed to show all of the information related to the cluster status and behavior over time. Right now it allows you to inspect the CPU load of each one of your Media Nodes over time.
+This dashboard provides monitoring information about the OpenVidu Server Pro Node (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). It includes CPU, memory, disk, network, I/O and running threads.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/clustering-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/clustering-dashboard.png"/></a>
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/elastic/monitoring-openvidu-server-pro-node-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/monitoring-openvidu-server-pro-node-dashboard.png"/></a>
     </div>
 </div>
+
+### Monitoring Media Nodes
+
+This dashboard provides monitoring information about the Media Nodes (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). It includes CPU usage.
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"/></a>
+    </div>
+</div>
+
+<br>
+
+---
+
+### NGINX
+
+This dashboard gives you information about the NGINX proxy of the OpenVidu Pro cluster, including workers, active connections, response time...
+
+<!--<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/nginx.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx.png"/></a>
+    </div>
+</div>-->
 
 <br>
 
@@ -577,12 +603,12 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 <div class="row">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro3" data-caption="First thing is navigating to 'Visualize' section in Kibana and clicking on the button to add a new visualization" href="img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
-        <a data-fancybox="gallery-pro3" data-caption="Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice" href="img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
-        <a data-fancybox="gallery-pro3" data-caption="We select 'openvidu' index, because that's the index of every OpenVidu Pro event stored in Elasticsearch" href="img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
-        <a data-fancybox="gallery-pro3" data-caption="The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the 'userSummary' event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field 'elastic_type.keyword' is 'userSummary'" href="img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
-        <a data-fancybox="gallery-pro3" data-caption="Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply 'Count', because there is one 'userSummary' event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using 'timestamp' field of the event" href="img/docs/openvidu-pro/elastic/tutorial5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial5.png"/></a>
-        <a data-fancybox="gallery-pro3" data-caption="To store the new visualization just click on 'Save' button in the upper menu and give it a meaningful name" href="img/docs/openvidu-pro/elastic/tutorial6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial6.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="First thing is navigating to 'Visualize' section in Kibana and clicking on the button to add a new visualization" href="img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice" href="img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="We select 'openvidu' index, because that's the index of every OpenVidu Pro event stored in Elasticsearch" href="img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the 'userSummary' event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field 'elastic_type.keyword' is 'userSummary'" href="img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply 'Count', because there is one 'userSummary' event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using 'timestamp' field of the event" href="img/docs/openvidu-pro/elastic/tutorial5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial5.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="To store the new visualization just click on 'Save' button in the upper menu and give it a meaningful name" href="img/docs/openvidu-pro/elastic/tutorial6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial6.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions">
       <div class="caption"><p>First thing is navigating to <strong>Visualize</strong> section in Kibana and clicking on the button to add a new visualization</p></div>
