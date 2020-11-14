@@ -2,8 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-recording-java" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-
-A secure OpenVidu sample app with a Java backend. It makes use of [openvidu-java-client](reference-docs/openvidu-java-client/) to connect to **OpenVidu Server**. It serves a single HTML page (generated with [Thymeleaf](http://www.thymeleaf.org/)) providing how to use the videoconference recording to the users.
+A simple Java application that uses [openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording]{:target="_blank"} documentation before diving into the tutorial.
 
 ## Understanding this tutorial
 
@@ -40,16 +39,22 @@ cd openvidu-tutorials/openvidu-recording-java
 mvn package exec:java
 ```
 
-4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}). Bare in mind the additional configuration properties and volumes you must set for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.16.0
+docker run -p 4443:4443 --rm \
+    -e OPENVIDU_SECRET=MY_SECRET \
+    -e OPENVIDU_RECORDING=true \
+    -e OPENVIDU_RECORDING_PATH=/opt/openvidu/recordings \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /opt/openvidu/recordings:/opt/openvidu/recordings \
+openvidu/openvidu-server-kms:2.16.0
 ```
 
-5) Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
@@ -65,17 +70,17 @@ This application provides the
 
 - **Backend**: SpringBoot app with the following classes (`src/main/java` path, `io.openvidu.recording.java` package)
 	- `App.java` : entrypoint for the app
-	- `MyRestController.java` : controller for managing the token to enter the OpenVidu Session
+	- `MyRestController.java` : controller for managing the token to enter the OpenVidu Session<br><br>
 
 - **Frontend templates**: Plain JS/HTML/CSS files served by the backend (`src/main/resources/templates`)
-	- `index.html` : template with the recording features
+	- `index.html` : template with the recording features<br><br>
 
 - **Frontend static files** (`src/main/resources/static`)
  	- `openvidu-browser-VERSION.js` : openvidu-browser library. You don't have to manipulate this file
 	- `style.css` : some CSS classes to style the templates
 
 
-Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object) provided by [openvidu-java-client](reference-docs/openvidu-java-client/#manage-recordings)
+Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object){:target="_blank"} provided by [openvidu-java-client](reference-docs/openvidu-java-client/#manage-recordings){:target="_blank"}.
 
 #### 1) Start the recording:
 
