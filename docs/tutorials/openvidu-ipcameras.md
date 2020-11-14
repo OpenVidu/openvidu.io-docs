@@ -24,26 +24,20 @@ OpenVidu is composed by the modules displayed on the image above.
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
 ```
 
-2) You will need _Java 8 SDK_. You can install it with:
+2) You will need _maven_ to build the project. You can install it with:
 
 ```bash
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install maven
 ```
 
-3) You will need _maven_ to build the project. You can install it with:
-
-```bash
-sudo apt-get install -y maven
-```
-
-4) Run the tutorial:
+3) Run the tutorial:
 
 ```bash
 cd openvidu-tutorials/openvidu-ipcameras
 mvn package exec:java
 ```
 
-5) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
@@ -52,7 +46,7 @@ mvn package exec:java
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.16.0
 ```
 
-6) Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+5) Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
