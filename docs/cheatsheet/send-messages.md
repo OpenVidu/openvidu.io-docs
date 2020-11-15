@@ -61,3 +61,9 @@ this.session.on('connectionCreated', (event) => {
     console.log(event.connection);
 });
 ```
+
+### From your application's server
+
+You can also send messages to all or some participants of a Session from your application's server, by using REST API method **[POST /openvidu/api/signal](reference-docs/REST-API/#post-openviduapisignal){:target="_blank"}**.
+
+<br>
