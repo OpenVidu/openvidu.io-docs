@@ -42,11 +42,13 @@ The Elastic Stack deployed with OpenVidu is secured with Basic Auth by default. 
 
 ## Kibana Dashboards
 
-By default, OpenVidu Pro imports to Kibana 3 different dashboards to monitor some useful information about:
+By default, OpenVidu Pro imports to Kibana 5 different dashboards to monitor useful information about:
 
-- OpenVidu Sessions 
+- OpenVidu Sessions
 - OpenVidu Recordings
-- CPU usage of Media Nodes (Clustering information)
+- Monitoring OpenVidu Server Pro Node
+- Monitoring Media Nodes
+- NGINX
 
 Let's see all the different dashboards:
 
