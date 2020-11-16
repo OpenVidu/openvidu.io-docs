@@ -405,7 +405,7 @@ Restart all services and you will have your Elasticsearch data available in your
 ## Notes when upgrading OpenVidu Server Pro Node
 
 - The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
-- Persistent data is preserved when upgrading. This means that all of your recordings will be available in the new version.
+- Persistent data is preserved when upgrading. This means that all of your recordings and all of your Elasticsearch data will be available in the new version.
 - Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
 - Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
 - In case you have **mobile applications**: the previous minor version of openvidu-browser is always compatible with the next minor version of openvidu-server. This way you can upgrade your openvidu-server while giving your clients time to update their applications. Applications using the previous and the new version of openvidu-browser can coexist in the new openvidu-server version. For example, if you upgrade openvidu-server to 2.16.0, it will work fine with applications using both openvidu-browser 2.15.0 and 2.16.0. Of course, you must notify your users to update their applications until all of them are using openvidu-browser 2.16.0.

@@ -54,9 +54,8 @@ Let's see all the different dashboards:
 
 ### OpenVidu Sessions dashboard
 
-This dashboard presents a summary of your video sessions and the server resources usage. That includes:
+This dashboard presents a summary of your video sessions and their behavior. That includes:
 
-- CPU and memory usage of the server
 - The number of session per day
 - The location of your users
 - The number of publishers and subscribers you have at any time
@@ -65,7 +64,7 @@ This dashboard presents a summary of your video sessions and the server resource
 
 The last point includes things like the average time to select a pair candidate during the negotiation process, the average milliseconds your clients take to complete the ICE gathering process with OpenVidu Server, the ratio of successful and failed connections, and some WebRTC stats for your published and subscribed streams (Jitter, packet loss, Round-Trip-Time, target bitrate...)
 
-All in all, this information will help you understand better the behavior and performance of your sessions.
+All in all, this information will help you understand better the behavior and performance of your sessions, and adapt your cluster accordingly.
 
 <br>
 
@@ -111,10 +110,6 @@ This dashboard provides monitoring information about the Media Nodes (see [OpenV
         <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"/></a>
     </div>
 </div>
-
-<br>
-
----
 
 ### NGINX
 
