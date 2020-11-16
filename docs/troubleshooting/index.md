@@ -498,7 +498,7 @@ or
 ```console
 sudo su
 cd /opt/openvidu
-./openvidu start
+./openvidu restart
 ```
 #### 16.2 Modify OpenVidu Nginx configuration
 
@@ -552,7 +552,7 @@ or
 ```console
 sudo su
 cd /opt/openvidu
-./openvidu start
+./openvidu restart
 ```
 
 > **WARNING**: After applying this kind of configuration, if you change any of the .env variable used by NGINX, the configuration will not be changed and nginx could fail.
