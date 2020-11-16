@@ -19,9 +19,9 @@
 
 | Dependency    | Check version   | Install                                 |
 | ------------- | --------------- |---------------------------------------- |
-| Java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
+| Java 11 JDK    | `java -version` | `sudo apt-get install -y openjdk-11-jdk` |
 | Maven         | `mvn -v`        | `sudo apt-get install -y maven`         |
-| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 
 ## Compiling OpenVidu Server
 

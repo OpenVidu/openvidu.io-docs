@@ -22,7 +22,7 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 Plase visit [https://nodejs.org/](https://nodejs.org/){:target="_blank"} to install it on other platforms.
