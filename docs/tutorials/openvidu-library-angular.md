@@ -345,7 +345,11 @@ In the example above, **opv-session** receives the `sessionName`, the `user` and
 
 #### Change the OpenVidu logo
 
-OpenVidu Angular allows you to replace the default static resources (icons and images). You onlu have to go to `src/assets/images/` and add your custom images files with the same name.
+OpenVidu Angular allows you to replace the default static resources (icons and images). You only have to go to `src/assets/images/` and add your custom images files with the following names:
+
+* `openvidu_globe.png`: The application icon.
+* `openvidu_logo.png`: The application logo.
+* `poster.png`: The application image which will appear when a participant has the video muted.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
