@@ -24,6 +24,7 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 - [**webrtcConnectionDestroyed**](#webrtcconnectiondestroyed)
 - [**recordingStatusChanged**](#recordingstatuschanged)
 - [**filterEventDispatched**](#filtereventdispatched)
+- [**signalSent**](#signalsent)
 - [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [**autoscaling**](#autoscaling)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
@@ -307,6 +308,41 @@ Recorded when a filter event has been dispatched. This event can only be trigger
     "filterType": "ZBarFilter",
     "eventType": "CodeFound",
     "data": "{timestampMillis=1568645808285, codeType=EAN-13, source=23353-1d3c_kurento.MediaPipeline/1f56f4a5-807c-71a30d40_kurento.ZBarFilter, type=CodeFound, value=0012345678905, tags=[], timestamp=1568645808}"
+  }
+}
+```
+
+<br>
+
+---
+
+#### signalSent
+
+Recorded when a signal has been sent to a Session. Signals can be sent:
+
+- By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/session.html#signal){:target="_blank"}
+- By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-openviduapisignal){:target="_blank"}
+
+All kind of signals trigger `signalSent` event.
+
+| Property          | Description                                | Value                                         |
+| ----------------- | ------------------------------------------ | --------------------------------------------- |
+| `sessionId` | Session for which the event was triggered  | A string with the session unique identifier         |
+| `timestamp` | Time when the event was triggered          | UTC milliseconds                                    |
+| `from`      | Identifier of the participant that sent the signal, or `null` if sent by the application's server | A string with the participant unique identifier, or `null` |
+| `to`        | Array of participant identifiers to whom the message was addressed | An array of strings |
+| `type`      | Type of the signal | A string |
+| `data`      | Actual data of the signal | A string |
+
+```json
+{
+  "signalSent": {
+    "sessionId": "ses_Jd8tUyvhXO",
+    "timestamp": 1605181948719,
+    "from": "con_ZbNTYgi0ae",
+    "to": ["con_Yz3To5z53q"],
+    "type": "my-chat",
+    "data": "{'message':'Hello!','name':'Alice'}"
   }
 }
 ```
