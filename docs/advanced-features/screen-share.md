@@ -3,7 +3,6 @@
 - **[How to screen share](#how-to-screen-share)**
 - **[How to know when the user stops sharing the screen](#how-to-know-when-the-user-stops-sharing-the-screen)**
 - **[How to change the resolution when screen sharing](#how-to-change-the-resolution-when-screen-sharing)**
-- **[Custom Screen Sharing extension for Chrome](#custom-screen-sharing-extension-for-chrome)**
 
 <br>
 
@@ -11,17 +10,16 @@
 
 ## How to screen share
 
-The following platforms support screen sharing:
+The following desktop platforms support screen sharing (mobile platforms do not currently support it):
 
 - **Chrome**
 - **Opera**
 - **Firefox**
 - **Safari >= 13.0**
+- **Edge >= 80.0**
 - **Electron apps**
 
-All of them in their desktop version. Mobile platforms do not currently support screen sharing.
-
-### Chrome >=72, Opera (based on Chrome >=72), Safari >= 13.0 and Firefox >=66
+### Chrome, Opera, Firefox, Safari, Edge
 
 To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
@@ -52,47 +50,7 @@ getToken().then((token) => {
 
 ```
 
-### Chrome <72 and Opera (based on Chrome <72)
-
-> **NOTE**: Chrome 72 is available since January 2019. This means that the need for the browser's extension is now virtually overcome.
-
-In these cases there's need of a browser extension. An OpenViduError object may be returned with the following [OpenViduError.name](api/openvidu-browser/enums/openviduerrorname.html){:target="_blank"} property in the callback function:
-
-- `SCREEN_SHARING_NOT_SUPPORTED`: if the client does not support screen sharing.
-- `SCREEN_EXTENSION_NOT_INSTALLED`: Chrome <72 needs an extension to allow screen sharing. `error.message` has the URL of Chrome Web Store where to install the extension.
-- `SCREEN_EXTENSION_DISABLED`: if Chrome's screen extension is installed but disabled
-- `SCREEN_CAPTURE_DENIED`: if the user doesn't grant permissions to capture the screen when the browser asks to.
-
-```javascript
-var OV = new OpenVidu();
-var publisher = OV.initPublisher('html-element-id', { videoSource: "screen" }, function(error) {
-    if (error.name == 'SCREEN_EXTENSION_NOT_INSTALLED') {
-        showWarning(error.message);
-
-        // showWarning could show a button with href 'error.message',
-        // so the user can navigate to install the extension.
-        // A browser refresh is also needed after installation
-
-    } else if (error.name == 'SCREEN_SHARING_NOT_SUPPORTED') {
-        alert('Your browser does not support screen sharing');
-    } else if (error.name == 'SCREEN_EXTENSION_DISABLED') {
-        alert('You need to enable screen sharing extension');
-    } else if (error.name == 'SCREEN_CAPTURE_DENIED') {
-        alert('You need to choose a window or application to share');
-    }
-});
-```
-
-### Firefox <66
-
-> **NOTE**: Firefox 66 is available since March 2019. This means that below instructions should not be necessary in most cases.
-
-For **Firefox <66** two different `videoSource` strings are allowed in order to screen share:
-
-- `"screen"`: entire screen
-- `"window"`: specific application window
-
-In Chrome, Opera and Firefox >=66 both values will always give access to both entire screen and specific application windows.
+> This code requires relatively modern versions of browsers (from the beginning of 2019). After so much time we can assume that an overwhelming majority of users will not have a version of these browsers from years ago. But if for any reason you want to support Chrome and Firefox from before 2019, please visit and [old version](https://docs.openvidu.io/en/2.16.0/advanced-features/screen-share/){:target="_blank"} of this same documentation to see how.
 
 ### Desktop Electron apps
 
@@ -191,26 +149,5 @@ publisher.once('accessAllowed', () => {
 });
 
 ```
-
-<br>
-
----
-
-## Custom Screen Sharing extension for Chrome
-
-> **NOTE**: Chrome 72 is available since January 2019. This means that the need for the browser's extension is now virtually overcome.
-
-We provide a default extension that will work on any domain in case the client is using Chrome <72 or Opera based on it. But you can create your own Chrome extension always based on ours ([OpenVidu Screen Sharing extension](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension){:target="_blank"}). This way your extension may have your own icon, name, description and custom valid domains.
-
-To use your extension, just configure OpenVidu object like this after initializing it:
-
-```javascript
-var OV = new OpenVidu();
-OV.setAdvancedConfiguration(
-    { screenShareChromeExtension: "https://chrome.google.com/webstore/detail/EXTENSION_NAME/EXTENSION_ID" }
-);
-```
-
-Check the [GitHub README](https://github.com/OpenVidu/openvidu-screen-sharing-chrome-extension){:target="_blank"} for further information.
 
 <br>
