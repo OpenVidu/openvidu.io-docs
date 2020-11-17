@@ -16,6 +16,7 @@ nav:
   - openvidu-library-react: tutorials/openvidu-library-react.md
   - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
   - openvidu-ionic: tutorials/openvidu-ionic.md
+  - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
   - openvidu-react-native: tutorials/openvidu-react-native.md
   - openvidu-android: tutorials/openvidu-android.md
   - openvidu-ios: tutorials/openvidu-ios.md
