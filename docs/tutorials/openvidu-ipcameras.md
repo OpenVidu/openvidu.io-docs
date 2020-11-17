@@ -74,15 +74,15 @@ The application allows subscribing to the IP cameras collection from the web pag
 
 ---
 
-### 1 Login:
+### 1) Login:
 
-At path `/` a login form will be displayed:
+At path `/` a login form will be displayed, providing a very simple password authentication:
 
 <p align="center">
   <img class="img-responsive" style="padding: 25px 0;" src="img/docs/tutorials/ipcameras_index.png">
 </p>
 
-### 2 Subscribe to the IP cameras:
+### 2) Subscribe to the IP cameras:
 
 Clicking on the subscribe button you will subscribe to the IP cameras collection. These cameras are initialized on the [App.java](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/App.java#L33-L35){:target="_blank"} file.
 
@@ -96,7 +96,11 @@ static Map<String, String> IP_CAMERAS = new HashMap<String, String>() {
 };
 ```
 
-After the subscribe button is clicked, the subscribe method (hosted in [MyRestController.java](https://github.com/OpenVidu/openvidu-tutorials/blob/3f67046327360242e20c072e8cb0d5378b41fbd4/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/MyRestController.java#L47){:target="_blank"}) is called. This method will join to the OpenVidu session, creating a session token, and it will publish the IP cameras defined in the `IP_CAMERAS` variable.
+After the subscribe button is clicked, the subscribe method (hosted in [MyRestController.java](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/MyRestController.java){:target="_blank"}) is called. This method will:
+
+1. Create an OpenVidu Session.
+2. Publish the IP cameras defined in the `IP_CAMERAS` map.
+3. Create a Connection and return its token for the browser user.
 
 ```java
 @RequestMapping(value = "/")
@@ -123,33 +127,58 @@ public String subscribe(@RequestParam(name = "credentials", required = false) St
 		}
 	}
 
-	// Generate a token for the user
-	String token = null;
+	// Create a Connection for the client
 	ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 			.type(ConnectionType.WEBRTC)
-			.role(OpenViduRole.PUBLISHER)
-			.data("user_data")
+			.role(OpenViduRole.SUBSCRIBER)
 			.build();
+	String token = null;
 	try {
 		token = this.session.createConnection(connectionProperties).getToken();
 	} catch (OpenViduHttpException e) {
 		if (e.getStatus() == 404) {
-			// Session was closed in openvidu-server. Create it again
+			// Session was closed in openvidu-server. Re-create it
 			createOpenViduSession();
 			publishCameras();
-			token = this.session.createConnection(connectionProperties).getToken();
+			token = this.session.createConnection().getToken();
 		} else {
 			return generateError(model,
-					"Error creating OpenVidu token for session " + SESSION_ID + ": " + e.getMessage());
+					"Error creating Connection for session " + SESSION_ID + ": " + e.getMessage());
 		}
 	} catch (OpenViduJavaClientException e) {
 		return generateError(model,
-				"Error creating OpenVidu token for session " + SESSION_ID + ": " + e.getMessage());
+				"Error creating Connection for session " + SESSION_ID + ": " + e.getMessage());
 	}
 
 	model.addAttribute("token", token);
 	return "index";
 }
+```
+
+The highlights of the code are the creation of the two Connection objects in the Session. To publish each IP camera in method `publishCameras()`:
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+	.type(ConnectionType.IPCAM)
+	.data(cameraName)
+	.rtspUri(cameraUri)
+	.adaptativeBitrate(true)
+	.onlyPlayWithSubscribers(true)
+	.build();
+session.createConnection(connectionProperties);
+```
+
+To create a Connection for the browser user and return a token to the client side:
+
+```java
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+	.type(ConnectionType.WEBRTC)
+	.role(OpenViduRole.SUBSCRIBER)
+	.build();
+String token = null;
+try {
+	token = this.session.createConnection(connectionProperties).getToken();
+} catch ( ... )
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
