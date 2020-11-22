@@ -176,8 +176,8 @@ As we are using Vue framework, a good approach for managing the remote media str
 - `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM on its own (we will use the video element contained in one of our child components). HTML template of *App* loops through `subscribers` array with an `v-for` directive, declaring a *UserVideo* for each subscriber. We feed them not really as `Subscriber` objects, but rather as their parent class `StreamManager`. This way we can reuse *UserVideo* to also display our `Publisher` object (that also inhertis from class StreamManager). `user-video` also declares the `click` event so we can update the main video player view when the user clicks on its Publisher or any Subscriber videos.
 
         <div id="video-container" class="col-md-6">
-            <user-video :stream-manager="publisher" @click="setMainVideoStream(publisher)"/>
-            <user-video v-for="(sub, index) in subscribers" :key="index" :stream-manager="sub" @click="setMainVideoStream(sub)"/>
+            <user-video :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)"/>
+            <user-video v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub" @click.native="updateMainVideoStreamManager(sub)"/>
         </div>
 
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so Vue will automatically delete the required UserVideo from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
@@ -387,4 +387,4 @@ Whenever we want a user to leave the session, we just need to call `session.disc
     clickOutside : 'close',
     clickSlide   : 'close',
   });
-</script>
+</script> 
