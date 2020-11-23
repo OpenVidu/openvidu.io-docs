@@ -228,6 +228,8 @@ LETSENCRYPT_EMAIL=user@example.com
 - [Let's Encrypt certificate example](#2-lets-encrypt-certificate)
 - [Custom Certificate example (Commercial CA)](#3-custom-certificate-commercial-ca)
 
+> If you want to configure an External Elasticsearch, take a look into how to configure it [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
+
 <br>
 
 ##### Videoconference application

@@ -205,6 +205,10 @@ Username and password for the Elasticsearch and Kibana service deployed with Ope
   </table>
 </div>
 
+> After deploying OpenVidu we recommend you to configure an external Elastic Stack. Take a look into how to configure
+> an external Elastic Stack [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
+<br>
+
 #### EC2 Instance configuration
 
 These properties configure specific details of the EC2 machines that will be launched by CloudFormation.
