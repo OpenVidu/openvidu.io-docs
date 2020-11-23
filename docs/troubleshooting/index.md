@@ -17,6 +17,7 @@
 14. [Do I need to update Let's Encrypt certificates?](#14-do-i-need-to-update-lets-encrypt-certificates)
 15. [My commercial certificate is not working, What can I do?](#15-my-commercial-certificate-is-not-working-what-can-i-do)
 16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
+17. [Elastic Search and OpenVidu Pro Common Problems](#17-elastic-search-and-openvidu-pro-common-problems)
 
 ---
 
@@ -555,7 +556,121 @@ cd /opt/openvidu
 ./openvidu restart
 ```
 
-> **WARNING**: After applying this kind of configuration, if you change any of the .env variable used by NGINX, the configuration will not be changed and nginx could fail.
+> - **WARNING**: After applying this kind of configuration, if you change any of the .env variable used by NGINX, the configuration will not be changed and nginx could fail.
 > If you need to change the `DOMAIN_OR_PUBLIC_IP` and `CERTIFICATE_TYPE` you will need to run nginx again as it was a clean OpenVidu installation, and do this process again, to have.
 > a valid configuration. 
+> - **WARNING**: If you use a custom nginx, upgrades to newer OpenVidu Pro versions may not work because of NGINX rule changes. 
+> If you want to upgrade to a newer version and still using a custom nginx, you need to follow this guide again and adapt your
+> custom nginx configuration to the new one.
 <br>
+
+#### 17. Elastic Search and OpenVidu Pro Common Problems
+
+Exceptions may happen in OpenVidu Pro if the machine is running out of disk space or if Elasticsearch have not enough JVM heap memory configured.
+
+We made a lot of improvements since version 2.16.0 to avoid this, so problems should not appear if you have configured in `/opt/openvidu/.env` file
+a reasonable value in `OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE`. By default the value of this property is **15** days, but if you see that the space 
+of your disk is growing too fast, you may need to change this value to a smaller one. 
+You can take a look into the disk space in [Monitoring OpenVidu Server Pro Node](openvidu-pro/monitoring-elastic-stack/#monitoring-openvidu-server-pro-node) dashboard
+in Kibana.
+
+> **WARNING**: To avoid disk or JVM heap problems in your OpenVidu Server Pro Node, we encourage you to configure an external Elastic Stack. Take a look into how to configure
+> an external Elastic Stack [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
+<br>
+
+
+Some of the exceptions that may occur are:
+
+**Example 1**
+```console
+openvidu-server_1 | [ERROR] 2020-11-05 14:26:05,526 [main] org.springframework.boot.SpringApplication - Application run failed
+openvidu-server_1 | org.springframework.beans.factory.BeanCreationException: Error creating bean with name ‘elasticSearchConfig’: Invocation of init method failed; nested exception is ElasticsearchStatusException[Elasticsearch exception [type=validation_exception, reason=Validation Failed: 1: this action would add [2] total shards, but this cluster currently has [999]/[1000] maximum shards open;]]
+```
+
+**Example 2**
+```console
+[ERROR] 2020-11-04 12:01:43,276 [main] org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'elasticSearchConfig': Invocation of init method failed; nested exception is ElasticsearchStatusException[Elasticsearch exception [type=cluster_block_exception, reason=index [openvidu] blocked by: [TOO_MANY_REQUESTS/12/index read-only / allow delete (api)];]]
+```
+
+Depending on how important is your Elasticsearch data, there are two options to recover from these exceptions:
+
+---
+##### Option 1: Recover OpenVidu Pro deployment by deleting Elasticsearch data
+
+**1)** SSH into your OpenVidu Server Pro machine.
+
+**2)** Enter as super user:
+
+```console
+sudo su
+```
+**3)** Stop OpenVidu: 
+```console
+cd /opt/openvidu/
+./openvidu stop
+```
+
+**4)** Delete this directory in `/opt/openvidu/`:
+```console
+rm -rf elasticsearch
+```
+
+**5)** Create again the folder `elasticsearch` in `/opt/openvidu`
+```console
+mkdir elasticsearch
+```
+
+**6)** Change permissions to elasticsearch folder
+```console
+chown -R 1000:1000 elasticsearch
+```
+
+**7)** If you have 4GB or more, add this parameter in `/opt/openvidu/.env`:
+
+```console
+ES_JAVA_OPTS="-Xms2g -Xmx2g"
+```
+
+You can change it to a reasonable value if you need it depending of your machine resources.
+Take a look into [Elasticsearch heap config documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#heap-size-settings){:target="_blank"}
+
+**8)** Restart openvidu with:
+```console
+./openvidu start
+```
+------
+##### Option 2: Recover OpenVidu Pro deployment while preserving Elasticsearch data
+
+This option is only possible if you have free space in your disk.
+
+**1)** SSH into your OpenVidu Server Pro machine.
+
+**2)** Enter as super user:
+
+```console
+sudo su
+```
+
+**3)**  Stop OpenVidu:
+Stop OpenVidu: 
+```console
+cd /opt/openvidu/
+./openvidu stop
+```
+
+**4)** Add this parameter in `/opt/openvidu/.env`:
+
+```console 
+ES_JAVA_OPTS="-Xms2g -Xmx2g"
+```
+
+You can change it to a reasonable value if you need it depending of your machine resources.
+Take a look into [Elasticsearch heap config documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#heap-size-settings){:target="_blank"}
+
+**5)** Restart openvidu with:
+```console
+./openvidu start
+```
+
+Elasticsearch may take some minutes to start due to a lot of data saved or low memory resources.
