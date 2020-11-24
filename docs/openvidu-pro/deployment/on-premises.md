@@ -228,7 +228,15 @@ LETSENCRYPT_EMAIL=user@example.com
 - [Let's Encrypt certificate example](#2-lets-encrypt-certificate)
 - [Custom Certificate example (Commercial CA)](#3-custom-certificate-commercial-ca)
 
-> If you want to configure an External Elasticsearch, take a look into how to configure it [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
+##### Elasticsearch Configuration
+
+By default, the deployment is configured to use an Elasticsearch and a Kibana service running next to OpenVidu Server Pro. 
+This can be convenient sometimes but it have it downsides because Elasticsearch, Kibana and OpenVidu Server Pro will be running in the same machine. These downsides are:
+
+- **You will need to monitor disk space**: OpenVidu generates events and all logs and metrics are sent to Elasticsearch. You will need to take special care of the `OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE` parameter in the `/opt/openvidu/.env` file of your deployment so you don't run out of disk space.
+- **Resources used By OpenVidu Server Pro are shared with Elasticsearch and Kibana**: It is well known that Elasticsearch and Kibana can consume a lot of resources. If you want to keep OpenVidu Server Pro free of this resource consumption, deploy Elasticsearch and Kibana externally.
+
+We recommend to configure an External Elasticsearch and Kibana. Take a look into how to configure it [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
 
 <br>
 

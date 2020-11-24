@@ -183,30 +183,74 @@ Configure if you want or not to enable OpenVidu Recordings and what type of pers
     </tr>
     <tr>
       <td class="first-col">S3 Bucket where recordings will be stored</td>
-      <td>Name for the bucket you want to use. If empty, a new bucket will be created with the stack name</td>
+      <td>Name for the bucket you want to use. If empty, a new bucket will be created with the cloudformation stack id</td>
     </tr>
   </table>
 </div>
 
-#### Elasticsearch Configuration
+#### Elasticsearch configuration
 
-Username and password for the Elasticsearch and Kibana service deployed with OpenVidu Pro. You will need these credentials for later access to the Kibana dashboard of your OpenVidu Pro deployment and also to make requests to Elasticsearch. Visit section [Detailed session monitoring](openvidu-pro/monitoring-elastic-stack){:target="_blank"} for further information.
+You can configure the deployment to use an external Elastic Stack, or deploy one next to OpenVidu Server Pro.
+##### External Elasticsearch and Kibana (Recommended)
+
+Requirements to use an external Elasticsearch and Kibana are:
+
+- A running Elasticsearch and Kibana deployment. If you don't have any Elastic Stack deployed, check this [guide](/openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- An user configured in your Elastic Stack to be used in the OpenVidu configuration. You can use a normal user with all privileges or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
+
+After that, just fill this section of the form with these parameters:
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
     <tr>
+      <td class="first-col">Elasticsearch URL</td>
+      <td><em>URL of the Elasticsearch service.</em> It must have the port number specified. For example: <code>https://elk.example.com:443</code></td>
+    </tr>
+    <tr>
+      <td class="first-col">Kibana URL</td>
+      <td><em>URL of the Kibana service. </em>It must have the port number specified. For example: <code>https://elk.example.com:443/kibana</code></td>
+    </tr>
+    <tr>
       <td class="first-col">Elasticsearch and Kibana username</td>
-      <td><em>You choice</em></td>
+      <td><em>Username of the user configured in your Elastic Stack.</em></td>
     </tr>
     <tr>
       <td class="first-col">Elasticsearch and Kibana password</td>
-      <td><em>Your choice</em></td>
+      <td><em>Password of the user configured in your Elastic Stack.</em></td>
+    </tr>
+  </table>
+</div>
+<br>
+
+##### Elasticsearch and Kibana deployed next to OpenVidu
+
+Configuring Elasticsearch and Kibana next to OpenVidu is convenient sometimes because the cloudformation template is prepared to deploy automatically such services.
+But this option can have it downsides because Elasticsearch, Kibana and OpenVidu Server Pro will be running in the same machine. These downsides are:
+
+- **You will need to monitor disk space**: OpenVidu generates events and all logs and metrics are sent to Elasticsearch. You will need to take special care of the `OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE` parameter in the `/opt/openvidu/.env` file of your deployment so you don't run out of disk space.
+- **Resources used By OpenVidu Server Pro are shared with Elasticsearch and Kibana**: It is well known that Elasticsearch and Kibana can consume a lot of resources. If you want to keep OpenVidu Server Pro free of this resource consumption, it is recommended to deploy Elasticsearch and Kibana externally.
+
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">Elasticsearch URL</td>
+      <td><em>Empty.</em> You don't want to use any external Elasticsearch service</td>
+    </tr>
+    <tr>
+      <td class="first-col">Kibana URL</td>
+      <td><em>Empty.</em> You don't want to use any external Kibana Service.</td>
+    </tr>
+    <tr>
+      <td class="first-col">Elasticsearch and Kibana username</td>
+      <td><em>Your choice.</em> It will be configured while deploying.</td>
+    </tr>
+    <tr>
+      <td class="first-col">Elasticsearch and Kibana password</td>
+      <td><em>Your choice.</em> It will be configured while deploying.</em></td>
     </tr>
   </table>
 </div>
 
-> After deploying OpenVidu we recommend you to configure an external Elastic Stack. Take a look into how to configure
-> an external Elastic Stack [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
 <br>
 
 #### EC2 Instance configuration
