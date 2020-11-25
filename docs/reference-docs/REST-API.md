@@ -117,7 +117,7 @@ A Session is a conference room where users can send/receive media streams to/fro
 | customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /openvidu/api/sessions**](#post-openviduapisessions) |
 | connections | Object | Collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual active connections. Active connections are those with `status` property set to `active`. See [**Connection object**](#the-connection-object) |
 | recording | Boolean | Whether the session is being recorded or not at this moment |
-| forcedVideoCodec | String | This parameter will ensure that all the browsers use the same codec, avoiding transcoding process.
+| forcedVideoCodec | String | This parameter will ensure that all the browsers use the same codec, avoiding transcoding process in the media server, which result in a reduce of CPU usage. (`VP8`, `H264` or `NONE`)
 | allowTranscoding | Boolean | Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser.
 
 
@@ -175,10 +175,11 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
 >     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`)<br><br>
 > - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 >     - An object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
-> - **forcedVideoCodec** _(optional String)_ : This parameter will ensure that all the browsers use the same codec, avoiding transcoding process, which result in a reduce of CPU usage. Recommended and default value is `VP8` because it is compatible with all browsers.
->     - `VP8` _(default)_. You can change this default value by setting a different value to `OPENVIDU_FORCED_CODEC` in [OpenVidu Configuration](reference-docs/openvidu-config)
->     - `H264`
-> - **allowTranscoding** _(optional Boolean)_ : Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser. If this parameter is `false`, not compatible browsers with codec specified in `forcedVideoCodec` will fail. Default value is `false`. You can change this default value by setting a different value to `OPENVIDU_ALLOW_TRANSCODING` in [OpenVidu Configuration](reference-docs/openvidu-config)
+> - **forcedVideoCodec** _(optional String)_ : This parameter will ensure that all the browsers use the same codec, avoiding transcoding process in the media server, which result in a reduce of CPU usage.
+>     - `VP8` _(default)_:  Recommended and default value because its compatibility with browsers. You can change this default value by setting a different value to `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC` in [OpenVidu Configuration](reference-docs/openvidu-config)
+>     - `H264`:
+>     - `NONE`: No codec will be forced
+> - **allowTranscoding** _(optional Boolean)_ : Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser. If this parameter is `false`, not compatible browsers with codec specified in `forcedVideoCodec` will fail. Default value is `false`. You can change this default value by setting a different value to `OPENVIDU_STREAMS_ALLOW_TRANSCODING` in [OpenVidu Configuration](reference-docs/openvidu-config)
 ##### Returns
 
 This operation returns a [**Session object**](#the-session-object).
