@@ -12,7 +12,7 @@ _This is a Node library wrapping [OpenVidu Server REST API](reference-docs/REST-
 ### Create a Session
 
 ```javascript
-var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var properties = {};
 openVidu.createSession(properties).then(session => { ... });
 ```
