@@ -698,7 +698,10 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
     "hasVideo": true,
     "recordingLayout":"CUSTOM",
     "customLayout":"",
-    "resolution": "1280x720"
+    "resolution": "1280x720",
+    "mediaNode": {
+        "id": "kms_Q9UiTDxK"
+    }
 }
 ```
 
@@ -708,13 +711,15 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
 >     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.<br><br>
 > - **hasAudio** _(optional Boolean)_ : whether to record audio or not. Default to `true`<br><br>
-> - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true` <br><br>
+> - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true`<br><br>
 > - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the layout to be used in this recording. This property will override the `defaultRecordingLayout` property set on [POST /openvidu/api/sessions](#post-openviduapisessions) for this particular recording.
 >     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed.
 >     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
 > - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/){:target="blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`). This property will override the `defaultCustomLayout` property set on [POST /openvidu/api/sessions](#post-openviduapisessions) for this particular recording.<br><br>
-> - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999.
+> - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999.<br><br>
+> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+>     - An object with the Media Node selector to force the Media Node allocation of this recording. Only for composed recordings with video (see [Scalable composed recording](advanced-features/recording/#scalable-composed-recording){:target="blank"}). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
 
 ##### Returns
 
@@ -905,6 +910,7 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
     "load": 12.45,
     "status": "running",
     "sessions": [],
+    "recordingIds": [],
     "kurentoInfo": {}
 }
 ```
@@ -922,7 +928,8 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 | disconnectionTime | Number | When OpenVidu Server lost its connection to the Media Node, in UTC milliseconds. Only available if `connected` is false |
 | load | Number | CPU load of the Media Node. Decimal number between 0.00 and 100.00 |
 | status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses){:target="blank"} |
-| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"}<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object)<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording){:target="blank"} <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 | kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 
 ---
@@ -965,7 +972,7 @@ Retrieve the information of a Media Node.
 | **METHOD**  | GET |
 | **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID` |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
-| **QUERY PARAMS** | `sessions`,`extra-info` |
+| **QUERY PARAMS** | `sessions`,`recordings`,`extra-info` |
 
 ##### Query params
 
@@ -974,7 +981,7 @@ Retrieve the information of a Media Node.
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID`?sessions=false&extra-info=false
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID`?sessions=false&recordings=true&extra-info=false
 
 ##### Sample return
 
@@ -1029,7 +1036,7 @@ Retrieve the information of all Media Nodes.
 | **METHOD**  | GET |
 | **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/x-www-form-urlencoded |
-| **QUERY PARAMS** | `sessions`,`extra-info` |
+| **QUERY PARAMS** | `sessions`,`recordings`,`extra-info` |
 
 ##### Query params
 
@@ -1038,7 +1045,7 @@ Retrieve the information of all Media Nodes.
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
-> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?sessions=false&extra-info=false
+> https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?sessions=false&recordings=true&extra-info=false
 
 ##### Sample return
 

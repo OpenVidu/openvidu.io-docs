@@ -12,6 +12,7 @@
 - **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)**
 - **[OpenVidu Pro cluster events](#openvidu-pro-cluster-events)**
 - **[How many users can an OpenVidu Pro cluster handle](#how-many-users-can-an-openvidu-pro-cluster-handle)**
+- **[Scalable recording](#scalable-recording)**
 - **[Autoscaling](#autoscaling)**
 - **[Current limitations of OpenVidu Pro scalability](#current-limitations-of-openvidu-pro-scalability)**
 
@@ -23,8 +24,8 @@ OpenVidu Pro consists of different nodes that work together to offer OpenVidu se
 
 - **OpenVidu Server Pro Node**: this is the master node. It takes care of the **signaling plane**. Manages OpenVidu sessions, forwarding events and messages to clients and distributing the load across the available Media Nodes.<br><br>
 - **Media Nodes**: these are the slave nodes, in charge of managing the **media plane**. For that reason, Media Nodes are the actual bottleneck of the OpenVidu cluster and the ones that determine its capacity: more Media Nodes means more concurrent OpenVidu sessions. Two important aspects of Media Nodes:<div style="margin-bottom: 8px"></div>
-    - Each OpenVidu session is currently hosted in one Media Node.
-    - Each Media Node can manage multiple OpenVidu sessions.
+    - Each OpenVidu Session is currently hosted in one Media Node.
+    - Each Media Node can host multiple OpenVidu Sessions.
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
@@ -248,6 +249,16 @@ For a quick reference, these are the results of some load tests performed in an 
 
 ---
 
+## Scalable recording
+
+In OpenVidu there are two types of recordings: [individual recordings](advanced-features/recording/#individual-stream-recording){:target="_blank"} and [composed recordings](advanced-features/recording/#composed-recording){:target="_blank"}. Besides, each one of them can be performed recording only the audio tracks, only the video tracks or both of them. **Composed recordings that have video** are performed using a special module. An instance of this module must be launched for each Session that is being recorded.
+
+In the monolithic setup of OpenVidu CE, this module must be launched in the single available node, which can overload the server to a dangerous point. But in OpenVidu Pro clusters, in order to avoid this, the recording module is not launched in OpenVidu Server Pro Node, but in a Media Node. The default behavior is to launch it in the same Media Node hosting the Session to be recorded, as in this way the media streams don't need to travel from the Media Node hosting the Session to the Media Node hosting the recording, reducing network traffic in the cluster. But you can also force the Media Node where to initialize the composed video recording of any Session. See [Scalable composed recording](advanced-features/recording/#scalable-composed-recording){:target="_blank"} section to learn how.
+
+<br>
+
+---
+
 ## Autoscaling
 
 <div style="
@@ -393,12 +404,6 @@ Now let's take a 1-hour time window in which 6 identical small sessions will be 
 ## Current limitations of OpenVidu Pro scalability
 
 Below are stated the current limitations regarding the scalability of an OpenVidu Pro cluster. All of them are currently in our roadmap, and will be for sure addressed in future releases.
-
-#### Composed video recording is not scalable
-
-Right now [composed recordings with video](advanced-features/recording/#composed-recording){:target="_blank"} are hosted in OpenVidu Server Pro node, which means that launching multiple simultaneous composed recordings may increase the load on this node to a dangerous point. So a necessary change to improve scalability for this particular use case is to get this module out of OpenVidu Server Pro Node.
-
-For the moment, we recommend limiting the number of simultaneous composed recordings with video and using a more powerful machine in OpenVidu Server Pro Node if required. This doesn't affect either individual recordings or composed recordings with audio-only.
 
 #### Sessions cannot be moved between Media Nodes
 

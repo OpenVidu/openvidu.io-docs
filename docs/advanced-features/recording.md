@@ -3,6 +3,7 @@
 - **[How to record sessions](#how-to-record-sessions)**
 - **[Composed recording](#composed-recording)**
     - [Composed quick start recording](#composed-quick-start-recording)
+    - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Individual stream recording](#individual-stream-recording)**
     - [Selecting streams to be recorded](#selecting-streams-to-be-recorded)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
@@ -233,7 +234,7 @@ For example, for a session with two publishers the video file will look like thi
 
 > **Notes on COMPOSED recordings**<br>
 >
-> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
+> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, when using OpenVidu CE it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In OpenVidu Pro, the same applies to the Media Node hosting the recording process. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
 > - You can configure the resolution of the MP4 file for COMPOSED recordings by using `resolution` property when starting the recording<br><br>
 > - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
 
@@ -297,6 +298,90 @@ Then you can initialize your recording as usual:
 - If you have configured the session with recording mode `MANUAL`, then you can start recordings with `COMPOSED_QUICK_START` or `COMPOSED` output modes (both will end up being set to `COMPOSED_QUICK_START`), but also with `INDIVIDUAL` output mode if you need so.
 
 > The default recording output mode of the session will determine the output mode of its recordings. If the session is configured with `COMPOSED`, starting a recording with `COMPOSED` or `COMPOSED_QUICK_START` will always end up with the recording set to `COMPOSED`. If the session is configured with `COMPOSED_QUICK_START`, starting a recording with `COMPOSED` or `COMPOSED_QUICK_START` will always end up with the recording set to `COMPOSED_QUICK_START`.
+
+<br>
+
+---
+
+## Scalable composed recording
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
+
+For an OpenVidu Pro cluster, by default **composed recordings with video** take place in the same Media Node hosting the recorded Session (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). By transferring the recording process to Media Nodes, the OpenVidu Server Pro Node avoids being overloaded even with multiple composed video recordings in progress. Hosting the recording in the same Media Node as its session is the optimal and default choice, as the media doesn't need to be sent across different Media Nodes, saving network traffic. But you can decide to start the composed video recording of a session in a different Media Node, if your specific use case can take advantage of it:
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`. For example:<br>`{"mediaNode:{"id":"kms_ABCDEF"}}`
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+```java
+RecordingProperties properties = new RecordingProperties.Builder()
+    .outputMode(Recording.OutputMode.COMPOSED)
+    .hasVideo(true)
+    .mediaNode("kms_ABCDEF") // The string being the unique ID of an existing Media Node
+    .build();
+Recording recording = openVidu.startRecording(session.getSessionId(), properties);
+```
+
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
+var recording;
+
+openvidu.startRecording(sessionId, {
+    outputMode: Recording.OutputMode.COMPOSED,
+    hasVideo: true,
+    mediaNode: {id: "kms_ABCDEF"} // The string being the unique ID of an existing Media Node
+})
+    .then(response => recording = response)
+    .catch(error => console.error(error));
+```
+
+</div>
+
+</div>
+
+<br>
+
+If the provided Media Node does not exist or its status is not valid for starting a recording, then a `400 BAD_REQUEST` response is returned. The active recordings that are hosted by a Media Node at any given time are available in the [Media Node object](reference-docs/REST-API/#the-media-node-object){:target="_blank"} of the REST API, in attribute `recordingIds`.
+
+For another perspective on this matter, visit [Scalable recording](openvidu-pro/scalability/#scalable-recording){:target="_blank"}.
 
 <br>
 
