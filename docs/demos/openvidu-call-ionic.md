@@ -84,7 +84,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 #### Using the Android apk in an Android device
 
 
-To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android){:target="_blank"} to allows us to configure step by step all the requirements.
+To deploy the apk Android not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Follow Ionic's [Android Development guide](https://ionicframework.com/docs/developing/android){:target="_blank"} to configure all the requirements.
 
 After we have completed all the steps of the Ionic guide and performed steps 1) and 2) stated above, we must continue with the following commands:
 
@@ -129,7 +129,7 @@ ionic cordova run android
 
 #### In an iOS device with native app
 
-To deploy the iOS app you will need first to follow [this guide](https://beta.ionicframework.com/docs/installation/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
+To deploy the iOS app you will need first to follow Ionic's [iOS Development guide](https://ionicframework.com/docs/developing/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
 
 
 <div class="warningBoxContent">

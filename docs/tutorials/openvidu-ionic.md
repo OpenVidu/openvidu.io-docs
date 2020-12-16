@@ -110,7 +110,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 </div>
 </div>
 
-To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, Ionic provide us a [great guide](https://beta.ionicframework.com/docs/installation/android){:target="_blank"} to allows us to configure step by step all the requirements.
+To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Follow Ionic's [Android Development guide](https://ionicframework.com/docs/developing/android){:target="_blank"} to configure all the requirements.
 
 After we have completed all the steps of the Ionic guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
 
@@ -135,7 +135,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP
 
 **7)** You must indicate the OpenVidu Server URL to the app. Set it in `OPENVIDU_SERVER_URL` variable [**right here**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"}. The complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example, running OpenVidu platform as in step 6), that would be: `https://192.168.1.111:4443`
 
-**8)** Connect the device to the PC. You must enable USB debugging and give permissions (check out [last section here in Ionic docs](https://beta.ionicframework.com/docs/installation/android/#set-up-an-android-device){:target="_blank"})
+**8)** Connect the device to the PC. You must enable USB debugging and give permissions (check out [Set up an Android Device](https://ionicframework.com/docs/developing/android#set-up-an-android-device){:target="_blank"} in Ionic docs)
 
 **9)** Run the tutorial. The app will be automatically launched in your Android device
 
@@ -172,7 +172,7 @@ ionic cordova run android
 </div>
 </div>
 
-To deploy the iOS app you will need first to follow [this guide](https://beta.ionicframework.com/docs/installation/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
+To deploy the iOS app you will need first to follow Ionic's [iOS Development guide](https://ionicframework.com/docs/developing/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
 
 <div style="
     display: table;
