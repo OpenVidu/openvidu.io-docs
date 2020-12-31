@@ -1495,7 +1495,7 @@ Send a signal to a Session, to specific [Connections](#the-connection-object) or
 {
     "session":"ses_YnDaGYNcd7",
     "to": ["con_Xnxg19tonh", "con_TNVdbuQCJF"],
-    "type":"MY_TYPE",
+    "type":"signal:MY_TYPE",
     "data":"This is my signal data"
 }
 ```
