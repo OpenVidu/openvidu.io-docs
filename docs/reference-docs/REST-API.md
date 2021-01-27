@@ -563,7 +563,7 @@ Modify the properties of a Connection. The following properties are modifiable:
 - `role`: you can dynamically change the role of the Connection in the Session.
 - `record`: you can enable or disable INDIVIDUAL recording of the streams published by this Connection. See [Selecting streams to be recorded](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} for further information.
 
-The affected client will trigger one [ConnectionPropertyChangedEvent](/api/openvidu-browser/classes/connectionpropertychangedevent.html){:target="blank"} for each modified property.
+The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvidu-browser/classes/connectionpropertychangedevent.html){:target="blank"} for each modified property.
 
 ##### Operation
 
