@@ -1121,6 +1121,8 @@ Add a new Media Node to the cluster.
 
 ##### Body
 
+Example for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}:
+
 ```json
 {
     "uri": "ws://172.17.0.5:8888/kurento"
@@ -1128,6 +1130,18 @@ Add a new Media Node to the cluster.
 ```
 
 > - **uri** _(mandatory String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`
+
+Example for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}:
+
+```json
+{
+    "instanceType": "c5.2xlarge",
+    "volumeSize": 200
+}
+```
+
+> - **instanceType** _(optional String only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
+> - **volumeSize** _(optional Number only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
 
 ##### Sample return
 
