@@ -51,31 +51,31 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     </thead>
     <tbody>
         <tr>
-            <th scope="row">OpenVidu compatibility</th>
+            <td scope="row"><strong>OpenVidu compatibility</strong></td>
             <td> from <strong>2.15.0</strong></td>
         </tr>
         <tr>
-            <th scope="row">Latest iOS versions</th>
+            <td scope="row"><strong>Latest iOS versions</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">OpenVidu RPC protocol</th>
+            <td scope="row"><strong>OpenVidu RPC protocol</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Mute / Unmute video</th>
+            <td scope="row"><strong>Mute / Unmute video</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Mute / Unmute audio</th>
+            <td scope="row"><strong>Mute / Unmute audio</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Toggle speaker / headset </th>
+            <td scope="row"><strong>Toggle speaker / headset</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Subscribe / unsubscribe stream</th>
+            <td scope="row"><strong>Subscribe / unsubscribe stream</strong></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
     </tbody>
@@ -182,4 +182,3 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP
     clickSlide   : 'close',
   });
 </script>
-

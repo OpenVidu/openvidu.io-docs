@@ -46,175 +46,196 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
 </div>
 
 <table class="table table-striped table-pricing" style="background: #e7e7e7">
+    <colgroup>
+        <col span="1">
+        <col span="1" style="width: 30px;">
+        <col span="1">
+        <col span="1">
+    </colgroup>
     <thead>
         <tr>
             <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
-            <th scope="col" style=" border-bottom: 2px solid #049145;">OpenVidu CE</th>
+            <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
+            <th scope="col" style="border-bottom: 2px solid #049145;">OpenVidu CE</th>
             <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu Pro</th>
         </tr>
     </thead>
     <tbody>
         <tr>
             <th scope="row">WebRTC media streams</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Recording</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Screen sharing</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Audio and video filters</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">IP cameras</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Clients: JS, Angular, React, Ionic, Electron</th>
+            <td scope="row"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Deployment on Premises <i
+            <th scope="row">Deployment on Premises</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Deploy OpenVidu in your own Linux server"></th>
+                    title="Deploy OpenVidu in your own Linux server"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Deployment on Cloud <i
+            <th scope="row">Deployment on Cloud</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Deploy OpenVidu in Amazon Web Services"></th>
+                    title="Deploy OpenVidu in Amazon Web Services" style="text-align: right;"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">OpenVidu Inspector <i
+            <th scope="row">OpenVidu Inspector</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="A powerful, easy-to-use and visually attractive dashboard to help with session monitoring, management and historical data">
-            </th>
+                    title="A powerful, easy-to-use and visually attractive dashboard to help with session monitoring, management and historical data"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Advanced session monitoring <i
+            <th scope="row">Advanced session monitoring</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Elastic stack integration. Elasticsearch and Kibana provide advanced analysis capabilities">
-            </th>
+                    title="Elastic stack integration. Elasticsearch and Kibana provide advanced analysis capabilities"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Manual scalability <i
+            <th scope="row">Manual scalability</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of Media Nodes manually">
-            </th>
+                    title="Increment or decrement the number of Media Nodes manually"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Elasticity<i
+            <th scope="row">Elasticity</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of Media Nodes automatically according to CPU load">
-            </th>
+                    title="Increment or decrement the number of Media Nodes automatically according to CPU load"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">S3 recording storage<i
+            <th scope="row">S3 recording storage</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Store your recordings in AWS S3">
-            </th>
+                    title="Store your recordings in AWS S3"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Network quality API<i
+            <th scope="row">Network quality API</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Monitor the network quality of your clients">
-            </th>
+                    title="Monitor the network quality of your clients"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Fault Tolerance <i
+            <th scope="row">Fault Tolerance</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="If a Media Node crashes, redirect automatically all streams to a new instance">
-            </th>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">P2P sessions <i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Support for direct P2P sessions without a Media Node"></th>
+                    title="If a Media Node crashes, redirect automatically all streams to a new instance"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
-            <th scope="row">VP9<i
+            <th scope="row">P2P sessions</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Advanced codec when supported by devices"></th>
+                    title="Support for direct P2P sessions without a Media Node"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
-            <th scope="row">Simulcast and SVC<i
+            <th scope="row">VP9</th>
+            <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="To provide improved quality"></th>
+                    title="Advanced codec when supported by devices"></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Simulcast and SVC</th>
+            <td scope="row"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="To provide improved quality"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
                     data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
             <th scope="row">License</th>
+            <td scope="row"></td>
             <td>Apache 2.0</td>
             <td>Copyrighted</td>
         </tr>
         <tr>
             <th scope="row">Support</th>
+            <td scope="row"></td>
             <td>Community support on forums</td>
             <td>Email support in business hours</td>
         </tr>
         <tr>
             <th scope="row">Price</th>
+            <td scope="row"></td>
             <td><span style="font-size: 2em">Free</span></td>
             <td><span style="font-size: 2em">0.0006$ core/minute</span><br>
                 <span style="font-size: 1em"><a href="https://openvidu.io/pricing" target="_blank"><strong>Visit Pricing</strong></a></span>
             </td>
-    </div>
-    </tr>
-    <tr>
-    <th scope="row"></th>
-    <td><a href="/" class="btn-primary btn-scroll try-now-btn" target="_blank">
-        OpenVidu CE Docs</a></td>
-        <td><a href="openvidu-pro/" class="btn-primary btn-scroll pro-btn" target="_blank">
-        OpenVidu Pro Docs</a></td>
+        </tr>
+        <tr>
+            <th scope="row"></th>
+            <td scope="row"></td>
+            <td><a href="/" class="btn-primary btn-scroll try-now-btn" target="_blank">
+                OpenVidu CE Docs</a></td>
+            <td><a href="openvidu-pro/" class="btn-primary btn-scroll pro-btn" target="_blank">
+                OpenVidu Pro Docs</a></td>
         </tr>
     </tbody>
 </table>
