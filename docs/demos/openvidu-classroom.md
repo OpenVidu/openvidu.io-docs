@@ -71,7 +71,7 @@ cd ../../../
 mvn clean package exec:java
 ```
 
-Go to [https://localhost:5000](https://localhost:5000){:target="_blank"} to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of <i>openvidu-server</i> when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
 <div class="row no-margin row-gallery">
   <div class="col-md-4">
