@@ -1045,6 +1045,10 @@ table.table-pricing {
     vertical-align: middle !important;
 }
 
+.table-info th {
+    vertical-align: middle !important;
+}
+
 .table-pricing td {
     vertical-align: middle !important;
     padding: 6px !important;
@@ -1052,6 +1056,10 @@ table.table-pricing {
 
 .table-pricing thead th {
     font-family: Montserrat;
+}
+
+.table-pricing tbody th {
+    text-align: initial;
 }
 
 .pricing-table-icon {
