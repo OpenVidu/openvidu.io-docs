@@ -105,9 +105,12 @@ The [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/networkqualit
 
 **The network quality level measures the strength of the network link, not the actual perception users will have of the video or audio**. This distinction is important to keep in mind: even in the face of a very bad network link, WebRTC contains very advanced mechanisms to try and adapt transmissions, but there is no guarantee that these mechanisms will be enough to provide a seamless experience. In the best case, nobody will notice and the video or audio streams will proceed with good quality as if nothing happened; otherwise, video and audio might suffer from choppiness, and overall quality degradation.
 
-Because it is not possible to know ahead of time if the WebRTC adaptation mechanisms are going to overcome all the issues introduced by network hiccups or congestion, the best that can be done by application providers is to show an alert message whenever the network quality drops below some margin.
+Because it is not possible to know ahead of time if the WebRTC adaptation mechanisms are going to overcome all the issues introduced by network hiccups or congestion, applications usually resort to showing an indicator that informs users about quality of their own network. Here are a couple ideas of how to deal with this:
 
-Here we provide an description of each network quality level, and *suggestions* about how an application might want to present this information to the user:
+* Displaying a "WiFi signal" style icon, that fills or empties according to the network quality level.
+* Displaying a color-coded badge to match the network quality: green for a good network, yellow for a poor network, and red for a very bad network.
+
+Here we provide a description of each network quality level, and *suggestions* about how an application might want to present this information to the user:
 
 <table class="table table-striped table-pricing" style="background: #e7e7e7">
     <thead>
