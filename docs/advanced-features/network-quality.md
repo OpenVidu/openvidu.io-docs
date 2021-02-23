@@ -112,7 +112,7 @@ Because it is not possible to know ahead of time if the WebRTC adaptation mechan
 
 Here we provide a description of each network quality level, and *suggestions* about how an application might want to present this information to the user:
 
-<table class="table table-striped table-pricing" style="background: #e7e7e7">
+<table class="table table-striped table-pricing" style="background: #e7e7e7; text-align: initial;">
     <thead>
         <tr>
             <th scope="col" style="background: #fff; border-bottom: 0px;">Network quality level</th>
