@@ -200,7 +200,7 @@ Here we provide a description of each network quality level, and *suggestions* a
                     The user has been outright disconnected from OpenVidu. Note however that OpenVidu will try to reconnect, so it might still be possible that the user is able to join the session, if the network conditions improve.
                 </p>
                 <p>
-                    <i>User Interface</i>: Red status badge, informing the user that his connection got temporarily interrupted.
+                    <i>User Interface</i>: Red status badge, informing the user that their connection got temporarily interrupted.
                 </p>
             </td>
         </tr>
