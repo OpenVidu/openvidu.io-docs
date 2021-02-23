@@ -1030,7 +1030,7 @@ div.lang-tabs-container.elastic-events div.lang-tabs-content pre {
 
 table.table-pricing {
     display: table !important;
-    text-align: center !important;
+    text-align: center;
 }
 
 #doc-container table.table-pricing {
