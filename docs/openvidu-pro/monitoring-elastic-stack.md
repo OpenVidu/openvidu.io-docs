@@ -8,11 +8,14 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
 
 - **[Accessing Kibana](#accessing-kibana)**
 - **[Kibana Dashboards](#kibana-dashboards)**
-    - [OpenVidu Session Dashboard](#openvidu-sessions-dashboard)
-    - [OpenVidu Recordings dashboard](#openvidu-recordings-dashboard)
-    - [Monitoring OpenVidu Server Pro Node](#monitoring-openvidu-server-pro-node)
-    - [Monitoring Media Nodes](#monitoring-media-nodes)
-    - [NGINX](#nginx)
+    - [CPU vs Sessions/Connections/Streams/Recordings](#cpu-vs-sessionsconnectionsstreamsrecordings)
+    - [OpenVidu Sessions](#openvidu-sessions)
+    - [OpenVidu Recordings](#openvidu-recordings)
+    - [Server Application Stats](#server-application-stats)
+    - [Server Monitoring Stats](#server-monitoring-stats)
+    - [[Metricbeat System] Host overview ECS](#metricbeat-system-host-overview-ecs)
+    - [[Metricbeat System] Overview ECS](#metricbeat-system-overview-ecs)
+    - [[Metricbeat Nginx] Overview ECS](#metricbeat-nginx-overview-ecs)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
     - [Log Search Examples](#searching-examples)
@@ -42,17 +45,21 @@ The Elastic Stack deployed with OpenVidu is secured with Basic Auth by default. 
 
 ## Kibana Dashboards
 
-By default, OpenVidu Pro imports to Kibana 5 different dashboards to monitor useful information about:
+By default, OpenVidu Pro imports to Kibana multiple dashboards to monitor useful information about your cluster, including metrics about performance, behavior and usage. Let's see all the different dashboards:
 
-- OpenVidu Sessions
-- OpenVidu Recordings
-- Monitoring OpenVidu Server Pro Node
-- Monitoring Media Nodes
-- NGINX
+### CPU vs Sessions/Connections/Streams/Recordings
 
-Let's see all the different dashboards:
+This dashboard allows you to monitor the CPU usage of the system over time, presenting it against the total number of OpenVidu Sessions, Connections, Streams and Recordings.
 
-### OpenVidu Sessions dashboard
+<br>
+
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/elastic/cpuvs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cpuvs.png"/></a>
+    </div>
+</div>
+
+### OpenVidu Sessions
 
 This dashboard presents a summary of your video sessions and their behavior. That includes:
 
@@ -70,11 +77,11 @@ All in all, this information will help you understand better the behavior and pe
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/elastic/sessions-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/sessions-dashboard.png"/></a>
+        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/elastic/sessions-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/sessions-dashboard.png"/></a>
     </div>
 </div>
 
-### OpenVidu Recordings dashboard
+### OpenVidu Recordings
 
 This dashboard presents at a glance the status of your recordings. It includes information such as:
 
@@ -87,39 +94,54 @@ This dashboard presents at a glance the status of your recordings. It includes i
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/elastic/recordings-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/recordings-dashboard.png"/></a>
+        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/elastic/recordings-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/recordings-dashboard.png"/></a>
     </div>
 </div>
 
-### Monitoring OpenVidu Server Pro Node
+### Server Application Stats
 
-This dashboard provides monitoring information about the OpenVidu Server Pro Node (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). It includes CPU, memory, disk, network, I/O and running threads.
+Statistics about OpenVidu Server Pro as a web server application. Among others:
+
+- Number of requests performed to OpenVidu Server Pro
+- Error rate of requests
+- Number of requests to each endpoint, and its response time
+- Http status codes returned
+
+<br>
 
 <div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/elastic/monitoring-openvidu-server-pro-node-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/monitoring-openvidu-server-pro-node-dashboard.png"/></a>
+    <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/server-application-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats1.png"/></a>
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/server-application-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats2.png"/></a>
     </div>
 </div>
 
-### Monitoring Media Nodes
+### Server Monitoring Stats
 
-This dashboard provides monitoring information about the Media Nodes (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). It includes CPU usage.
+Statistics about OpenVidu Server Pro as a Spring application. It includes:
+
+- Start time and CPU usage
+- Stats about the Java Virtual Machine: heap, classes loaded, buffers, threads
+- Information about Tomcat server: active sessions, send and receive bytes
+- Number of logs by level: INFO, WARN, ERROR
 
 <div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/monitoring-media-nodes-dashboard.png"/></a>
+    <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"/></a>
+        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"/></a>
     </div>
 </div>
 
-### NGINX
 
-This dashboard gives you information about the NGINX proxy of the OpenVidu Pro cluster, including workers, active connections, response time... This is actually the official NGINX dashboard of Kibana.
 
-<div class="row">
-    <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/nginx.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx.png"/></a>
-    </div>
-</div>
+
+### [Metricbeat System] Host overview ECS
+
+### [Metricbeat System] Overview ECS
+
+### [Metricbeat Nginx] Overview ECS
+
 
 <br>
 
@@ -179,7 +201,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "sessionId": "TestSession",
   "timestamp": 1582277160836,
   "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-  "participantId": "con_XZvrQOF5Du",
+  "connectionId": "con_XZvrQOF5Du",
   "connection": "OUTBOUND",
   "videoSource": "CAMERA",
   "videoFramerate": 30,
@@ -202,7 +224,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "timestamp": 1582277162316,
   "sessionId": "TestSession",
   "user": "70558CA23053A8E9",
-  "connection": "con_XZvrQOF5Du",
+  "connectionId": "con_XZvrQOF5Du",
   "endpoint": "str_CAM_AOIa_con_XZvrQOF5Du",
   "msSinceEndpointCreation": 1480,
   "elastic_type": "kms"
@@ -239,7 +261,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 {
   "sessionId": "TestSession",
   "user": "70558CA23053A8E9",
-  "connection": "con_XZvrQOF5Du",
+  "connectionId": "con_XZvrQOF5Du",
   "endpoint": "str_CAM_AOIa_con_XZvrQOF5Du",
   "mediaType": "video",
   "jitter": 0.004166666883975267,
@@ -321,7 +343,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
                     "audioEnabled": true,
                     "videoEnabled": true,
                     "user": "7636DE7CA51A6EEC",
-                    "connection": "con_DdZXrn4e2i",
+                    "connectionId": "con_DdZXrn4e2i",
                     "elastic_type": "subscriberSummary"
                   }
                 ]
@@ -368,7 +390,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
                     "audioEnabled": true,
                     "videoEnabled": true,
                     "user": "70558CA23053A8E9",
-                    "connection": "con_XZvrQOF5Du",
+                    "connectionId": "con_XZvrQOF5Du",
                     "elastic_type": "publisherSummary"
                   }
                 ]
@@ -474,7 +496,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
               "audioEnabled": true,
               "videoEnabled": true,
               "user": "7636DE7CA51A6EEC",
-              "connection": "con_DdZXrn4e2i",
+              "connectionId": "con_DdZXrn4e2i",
               "elastic_type": "subscriberSummary"
             }
           ]
@@ -524,7 +546,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
         "audioEnabled": true,
         "videoEnabled": true,
         "user": "7636DE7CA51A6EEC",
-        "connection": "con_DdZXrn4e2i",
+        "connectionId": "con_DdZXrn4e2i",
         "elastic_type": "subscriberSummary"
       }
     ]
@@ -552,7 +574,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "audioEnabled": true,
   "videoEnabled": true,
   "user": "70558CA23053A8E9",
-  "connection": "con_XZvrQOF5Du",
+  "connectionId": "con_XZvrQOF5Du",
   "elastic_type": "publisherSummary"
 }
 ```
@@ -574,7 +596,7 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
   "audioEnabled": true,
   "videoEnabled": true,
   "user": "7636DE7CA51A6EEC",
-  "connection": "con_DdZXrn4e2i",
+  "connectionId": "con_DdZXrn4e2i",
   "elastic_type": "subscriberSummary"
 }
 ```
@@ -1007,6 +1029,25 @@ function changeLangTab(event) {
 <script type="text/javascript" src="js/downloads/slick-1.6.0.min.js"></script>
 
 <script>
+    $('.pro-gallery').slick({
+      autoplay: true,
+      arrows: false,
+      autoplaySpeed: 3000,
+      dots: true,
+      infinite: true,
+      pauseOnHover: false,
+      pauseOnFocus: false,
+      responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: false,
+          slidesToShow: 1
+        }
+      },
+    ]
+    });
+
     $('.slick-captions-logs').slick({
       asNavFor: '.pro-gallery-steps',
       arrows: false,

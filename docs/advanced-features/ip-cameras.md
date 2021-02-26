@@ -90,7 +90,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
   "participantJoined": {
     "sessionId": "MySurveillanceSession",
     "timestamp": 1582108095130,
-    "participantId": "ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream",
+    "connectionId": "ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream",
     "location": "Amsterdam, Netherlands",
     "platform": "IPCAM",
     "clientData": "",
@@ -105,7 +105,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
     "sessionId": "MySurveillanceSession",
     "timestamp": 1582108095351,
     "streamId": "str_IPC_SJmx_ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream",
-    "participantId": "ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream",
+    "connectionId": "ipc_IPCAM_rtsp_C4CU_b1_dnsdojo_com_1935_live_sys3_stream",
     "connection": "OUTBOUND",
     "rtspUri": "rtsp://b1.dnsdojo.com:1935/live/sys3.stream",
     "adaptativeBitrate": true,

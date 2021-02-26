@@ -90,7 +90,7 @@ Recorded when a user has connected to a session.
 | --------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier             |
 | `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                        |
-| `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
+| `connectionId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
 | `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
@@ -101,7 +101,7 @@ Recorded when a user has connected to a session.
   "participantJoined": {
     "sessionId": "ses_Jd8tUyvhXO",
     "timestamp": 1601394715606,
-    "participantId": "con_EIeO06zgMz",
+    "connectionId": "con_EIeO06zgMz",
     "location": "Berlin, Germany",
     "platform": "Chrome 85.0.4183.121 on Linux 64-bit",
     "clientData": "Mike",
@@ -122,7 +122,7 @@ Recorded when a user has left a session.
 | --------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier                                                                                                                          |
 | `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                                                                                                                                     |
-| `participantId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
+| `connectionId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
 | `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
@@ -139,7 +139,7 @@ Recorded when a user has left a session.
     "startTime": 1601394715606,
     "duration": 650,
     "reason": "disconnect",
-    "participantId": "con_EIeO06zgMz",
+    "connectionId": "con_EIeO06zgMz",
     "location": "Berlin, Germany",
     "platform": "Chrome 85.0.4183.121 on Linux 64-bit",
     "clientData": "Mike",
@@ -160,7 +160,7 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | `sessionId`       | Session for which the event was triggered                                                                                                                                         | A string with the session unique identifier              |
 | `timestamp`       | Time when the event was triggered                                                                                                                                                 | UTC milliseconds                                         |
-| `participantId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier          |
+| `connectionId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier          |
 | `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | [`"INBOUND"`,`"OUTBOUND"`]                               |
 | `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A string with the participant (sender) unique identifier |
 | `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | [`true`,`false`]                                         |
@@ -175,7 +175,7 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
     "sessionId": "ses_Jd8tUyvhXO",
     "timestamp": 1601394849759,
     "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
-    "participantId": "con_ThN5Rgi8Y8",
+    "connectionId": "con_ThN5Rgi8Y8",
     "connection": "INBOUND",
     "receivingFrom": "con_EIeO06zgMz",
     "videoSource": "CAMERA",
@@ -199,7 +199,7 @@ Recorded when any media stream connection is closed.
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sessionId`       | Session for which the event was triggered                                                                                                                                         | A string with the session unique identifier                                                                                                                                                                                                                            |
 | `timestamp`       | Time when the event was triggered                                                                                                                                                 | UTC milliseconds                                                                                                                                                                                                                                                       |
-| `participantId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier                                                                                                                                                                                                                        |
+| `connectionId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier                                                                                                                                                                                                                        |
 | `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | [`"INBOUND"`,`"OUTBOUND"`]                                                                                                                                                                                                                                             |
 | `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A string with the participant (sender) unique identifier                                                                                                                                                                                                               |
 | `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | [`true`,`false`]                                                                                                                                                                                                                                                       |
@@ -220,7 +220,7 @@ Recorded when any media stream connection is closed.
     "duration": 44,
     "reason": "unsubscribe",
     "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
-    "participantId": "con_ThN5Rgi8Y8",
+    "connectionId": "con_ThN5Rgi8Y8",
     "connection": "INBOUND",
     "receivingFrom": "con_EIeO06zgMz",
     "videoSource": "CAMERA",
@@ -292,7 +292,7 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 | ----------------- | ------------------------------------------ | --------------------------------------------- |
 | `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
 | `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
-| `participantId`   | Identifier of the participant              | A string with the participant unique identifier |
+| `connectionId`   | Identifier of the participant              | A string with the participant unique identifier |
 | `streamId`        | Identifier of the stream for which the filter is applied | A string with the stream unique identifier |
 | `filterType`      | Type of the filter applied to the stream   | A string with the type of filter              |
 | `eventType`       | Event of the filter that was triggered     | A string with the type of event               |
@@ -303,7 +303,7 @@ Recorded when a filter event has been dispatched. This event can only be trigger
   "filterEventDispatched": {
     "sessionId": "ses_Jd8tUyvhXO",
     "timestamp": 1601394994829,
-    "participantId": "con_EIeO06zgMz",
+    "connectionId": "con_EIeO06zgMz",
     "streamId": "str_CAM_GPdf_con_EIeO06zgMz",
     "filterType": "ZBarFilter",
     "eventType": "CodeFound",

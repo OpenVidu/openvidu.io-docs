@@ -1616,7 +1616,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
         "ws://10.1.1.26:8888/kurento",
         "ws://10.1.1.16:8888/kurento"
     ],
-    "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 60,
+    "OPENVIDU_PRO_STATS_MONITORING_INTERVAL": 10,
     "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL": 30,
     "OPENVIDU_PRO_CLUSTER_ID": "MY_CLUSTER",
     "OPENVIDU_PRO_CLUSTER_ENVIRONMENT": "docker",
@@ -1778,7 +1778,6 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
     "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD":3600,
     "OPENVIDU_PRO_NETWORK_QUALITY": true,
     "OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL": 5,
-    "OPENVIDU_PRO_STATS_MONITORING_INTERVAL":30,
     "OPENVIDU_PRO_STATS_WEBRTC_INTERVAL":20
 }
 ```

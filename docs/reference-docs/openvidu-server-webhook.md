@@ -38,19 +38,19 @@ OpenVidu Webhook service is able to send the same events as defined for [OpenVid
 
 - For `sessionCreated` event, what in OpenVidu CDR is ...
 
-        {"sessionCreated":{"sessionId":"fds4e07mdug1ga3h","timestamp":1538481330577}}
+        {"sessionCreated":{"sessionId":"ses_Jd8tUyvhXO","timestamp":1538481330577}}
 
     ... in OpenVidu Webhook is ...
 
-        {"event":"sessionCreated", "sessionId":"fds4e07mdug1ga3h","timestamp":1538481330577}
+        {"event":"sessionCreated", "sessionId":"ses_Jd8tUyvhXO","timestamp":1538481330577}
 
 - For `webrtcConnectionCreated` event, what in OpenVidu CDR is ...
 
-        {"webrtcConnectionCreated":{"sessionId":"MySession","timestamp":1561968541502,"streamId":"d2oomgno0isd9_CAMERA_ILTAU","participantId":"d2oomgno0isd9","connection":"OUTBOUND","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}}
+        {"webrtcConnectionCreated":{"sessionId":"ses_Jd8tUyvhXO","timestamp":1561968541502,"streamId":"str_CAM_GPdf_con_EIeO06zgMz","connectionId":"con_EIeO06zgMz","connection":"OUTBOUND","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}}
 
     ... in OpenVidu Webhook is ...
 
-        {"event":"webrtcConnectionCreated","sessionId":"MySession","timestamp":1561968541502,"streamId":"d2oomgno0isd9_CAMERA_ILTAU","participantId":"d2oomgno0isd9","connection":"OUTBOUND","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}
+        {"event":"webrtcConnectionCreated","sessionId":"ses_Jd8tUyvhXO","timestamp":1561968541502,"streamId":"str_CAM_GPdf_con_EIeO06zgMz","connectionId":"con_EIeO06zgMz","connection":"OUTBOUND","videoSource":"CAMERA","videoFramerate":30,"videoDimensions":"{\"width\":640,\"height\":480}","audioEnabled":true,"videoEnabled":true}
 
 <br>
 You can choose only those events that interest you from the whole set of available events with property `OPENVIDU_WEBHOOK_EVENTS`. For example, if you are only interested in recording related events, you should set the property to:

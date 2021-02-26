@@ -43,7 +43,7 @@ OV.getDevices().then(devices => {
 Now we can create a new **publisher** with the specific `videoSource`, unpublish the old stream and publish the new one:
 
 ```javascript
-var isFrontCamera = false; // This allows as to toggle the camera between the front and back one
+var isFrontCamera = false; // This allows us to toggle the camera between the front and back one
 
 function toggleCamera() {
     getDevices().then(devices => {
