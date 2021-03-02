@@ -11,11 +11,15 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
     - [CPU vs Sessions/Connections/Streams/Recordings](#cpu-vs-sessionsconnectionsstreamsrecordings)
     - [OpenVidu Sessions](#openvidu-sessions)
     - [OpenVidu Recordings](#openvidu-recordings)
-    - [Server Application Stats](#server-application-stats)
-    - [Server Monitoring Stats](#server-monitoring-stats)
-    - [[Metricbeat System] Host overview ECS](#metricbeat-system-host-overview-ecs)
-    - [[Metricbeat System] Overview ECS](#metricbeat-system-overview-ecs)
-    - [[Metricbeat Nginx] Overview ECS](#metricbeat-nginx-overview-ecs)
+    - [Server Application Metrics](#server-application-metrics)
+    - [Server Monitoring Metrics](#server-monitoring-metrics)
+    - [[Metricbeat] Cluster Monitoring Metrics](#metricbeat-cluster-monitoring-metrics)
+    - [[Metricbeat] Node Monitoring Metrics](#metricbeat-node-monitoring-metrics)
+    - [[Metricbeat] Nginx Metrics](#metricbeat-nginx-metrics)
+- **[Elasticsearch indexes](#elasticsearch-indexes)**
+    - [Logs and metrics](#logs-and-metrics)
+    - [Metrics](#metrics)
+    - [OpenVidu Events](#openvidu-events)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
     - [Log Search Examples](#searching-examples)
@@ -98,7 +102,7 @@ This dashboard presents at a glance the status of your recordings. It includes i
     </div>
 </div>
 
-### Server Application Stats
+### Server Application Metrics
 
 Statistics about OpenVidu Server Pro as a web server application. Among others:
 
@@ -116,7 +120,7 @@ Statistics about OpenVidu Server Pro as a web server application. Among others:
     </div>
 </div>
 
-### Server Monitoring Stats
+### Server Monitoring Metrics
 
 Statistics about OpenVidu Server Pro as a Spring application. It includes:
 
@@ -134,28 +138,114 @@ Statistics about OpenVidu Server Pro as a Spring application. It includes:
 </div>
 
 
+### [Metricbeat] Cluster Monitoring Metrics
 
+Metrics overview of the entire cluster. This dashboard let you see the state of your cluster globally, which includes:
 
-### [Metricbeat System] Host overview ECS
+- Number of hosts / nodes.
+- Average CPU usage
+- Average Memory usage
+- Average Disk Usage
+- Inbound / Outbound Metrics
 
-### [Metricbeat System] Overview ECS
+Additionally you can check specific metrics of your nodes by clicking into one of the displayed hosts which will redirect you into the specific [[Metricbeat] Node Monitoring Metrics](#metricbeat-node-monitoring-metrics) of the selected host.
 
-### [Metricbeat Nginx] Overview ECS
+<div class="row">
+    <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"/></a>
+        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"/></a>
+    </div>
+</div>
 
+### [Metricbeat] Node Monitoring Metrics
+
+More detailed metrics about OpenVidu Pro Cluster Nodes. This dashboard includes information showed in [[Metricbeat] Cluster Monitoring Metrics](#metricbeat-cluster-monitoring-metrics) with additional information like:
+
+- Memory Usage vs Total
+- Current Inbound / Outbound Traffic
+- Network packet losses
+- Advanced charts about CPU / Disk / Network Usage
+- Advanced information about Disk usage.
+
+If you accessed this dashboard by selecting a node in [[Metricbeat] Cluster Monitoring Metrics](#metricbeat-cluster-monitoring-metrics), you will see information about the selected node in this panel. Otherwise
+if you access this dashboard without any filter or by accessing the dashboard panel, this dashboard will show average information about the entire cluster.
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"/></a>
+        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"/></a>
+    </div>
+</div>
+
+### [Metricbeat] Nginx Metrics
+
+This dashboard contains metrics about the deployed NGINX proxy which handles OpenVidu Requests. It includes:
+
+- Active connections: Number of active client connections including waiting connections.
+- Request Rate: Rate of client requests.
+- Drops Rate: Dropped client connections.
+- Accepts and Handled Rate: Number of accepted and handled client connections
+- Reading / Writing / Waiting Rates: Number of connections where Nginx is reading / writing / waiting.
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
+        <a data-fancybox="gallery-pro8" href="img/docs/openvidu-pro/elastic/nginx-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx-metrics1.png"/></a>
+    </div>
+</div>
 
 <br>
 
 ---
 
-## Creating your own visualizations and dashboards
+## Elasticsearch indexes
 
-The dashboards presented above, by default included in OpenVidu Pro, are just an example of what can be done thanks to Kibana. You can create your own visualizations, and set up your very own dashboards with them. To do so, you have available multiple events that OpenVidu Pro periodically stores in Elasticsearch, and you can then use them in Kibana to compose different types of graphs and other useful visual representations.
+All events, logs and metrics of OpenVidu are stored within indexes in ElasticSearch. You can explore this data by going to: <br>
+**Kibana Menu -> Discover -> Select a filebeat index.**
 
-<p align="center">
-  <img class="img-responsive openvidu-pro-img" style="padding: 20px 0 8px 0" src="img/docs/openvidu-pro/elastic/elastic-stack.png">
-</p>
+OpenVidu logs and OpenVidu events are sent both by OpenVidu Pro Server in `openvidu-logs-*` and `openvidu` indexes respectively.
+On the other hand all the information about other logs services and metrics are sent by:
 
-Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic_type` field to identify the specific type of event. This field may be:
+All data sent to Elasticsearch can be classified in this categories:
+
+- OpenVidu logs: This data, which contains all OpenVidu Pro Server logs, is sent to `openvidu-logs-*` indexes.
+- OpenVidu events: All events that occurs in OpenVidu Pro are sent to `openvidu` index. You can read more information in the [OpenVidu Events](#openvidu-events) section.
+- OpenVidu Application and Server metrics: All this data goes to `server-metrics-*` and `session-metrics-*`.
+- [Filebeat](https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-overview.html){:target="_blank"} data: This service is responsible for sending logs to `filebeat-*` indexes.
+- [Metricbeat](https://www.elastic.co/guide/en/beats/metricbeat/master/metricbeat-overview.html){:target="_blank"} data: This service is responsible for sending metrics to `metricbeat-*` indexes.
+
+All data sent by **Filebeat** and **Metricbeat** follows a common format named **ECS (Elastic Common Schema)**. Here is a version table of the ECS format followed by each OpenVidu Pro Version.
+
+| OpenVidu Pro version | Metricbeat / Filebeat Version | ECS version - (More information about ECS [here](https://www.elastic.co/guide/en/beats/metricbeat/current/exported-fields-ecs.html){:target="_blank"}) |
+|------------------|-------------------------|-------------------------|
+| ≤ 2.15.0         | -                       | -                       |
+| 2.16.0           | 7.8.0                   | 1.5.0                   |
+| 2.17.0           | 7.8.0                   | 1.5.0                   |
+
+### Logs and metrics
+
+All index patterns which start with `filebeat-*` refers to OpenVidu Pro services logs. On the other hand metrics are sent to indexes which start with `metricbeat-*`.
+
+Logs and metrics indexes are:
+
+  - **filebeat-kurento***: Kurento Media Server logs.
+  - **filebeat-coturn***: Coturn(TURN/STUN server) logs.
+  - **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
+  - **filebeat-media-node-controller***: Logs of the media-node-controller which manage orchestration in media nodes.
+  - **filebeat-openvidu-recording***: Logs of [COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} recordings.
+  - **filebeat-nginx***: Logs of Nginx container.
+  - **openvidu-logs***: Logs of OpenVidu Server Pro.
+  - **metricbeat-***: Metrics sent by all the nodes of the OpenVidu Pro Cluster.
+
+Logs and metrics sent by **Filebeat** and **Metricbeat** include some properties to distinguish the origin of the data, in addition to the ECS attributes. These properties are present in all
+`filebeat-*`, `metricbeat-*` and `openvidu-logs-*` indexes:
+
+- `node_role`: Which can be `masternode` or `medianode`.
+- `node_id`: Which can be `master_<id>` or `media_<id>`. Depending on the deployed environment the `<id>` may change.
+- `cluster_id`: Defined Cluster Id in `OPENVIDU_PRO_CLUSTER_ID`. If no cluster id is defined, the `DOMAIN_OR_PUBLIC_IP` will be used instead.
+
+### OpenVidu Events
+
+All events of OpenVidu are stored in the index `openvidu`, which have an `elastic_type` field to identify the specific type of event. This field may be:
 
 <div>
 
@@ -618,6 +708,14 @@ Each one of these events stored by OpenVidu Pro in Elasticsearch has an `elastic
 
 <br>
 
+## Creating your own visualizations and dashboards
+
+The dashboards presented above, by default included in OpenVidu Pro, are just an example of what can be done thanks to Kibana. You can create your own visualizations, and set up your very own dashboards with them. To do so, you have available multiple events that OpenVidu Pro periodically stores in Elasticsearch, and you can then use them in Kibana to compose different types of graphs and other useful visual representations.
+
+<p align="center">
+  <img class="img-responsive openvidu-pro-img" style="padding: 20px 0 8px 0" src="img/docs/openvidu-pro/elastic/elastic-stack.png">
+</p>
+
 You can create powerful visualizations and dashboards by using these documents. Let's see a quick example. Imagine that you are interested in knowing **how many users are connected to your OpenVidu sessions over time**.
 
 <div class="row">
@@ -647,35 +745,22 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 ## Reviewing logs
 
-Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. All the indexes which have logs from services are:
-
-- **filebeat-kurento***: Kurento Media Server logs.
-- **filebeat-coturn***: Coturn(TURN/STUN server) logs.
-- **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
-- **openvidu-logs***: OpenVidu Server logs.
-
-To search for logs you need to:
+Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. To search for logs you need to:
 
 <div class="row">
     <div class="pro-gallery-steps-logs" style="margin: 25px 35px 25px 35px">
         <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Then go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting 'Log indexes' to: 'filebeat-kurento'." href="img/docs/openvidu-pro/elastic/review-logs-2.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-2.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Add to 'Log Columns' the attributes of the index you want to see in your logs stream. In this example we're adding the attribute 'log_level' to see the type of log ('INFO', 'WARN', 'ERROR', etc...). 
-      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute 'severity' for 'openvidu-logs*' indexes." href="img/docs/openvidu-pro/elastic/review-logs-3.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-3.png"/></a>
         <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-logs">
       <div class="caption"><p>First of all, go to the <strong>Logs</strong> section of Kibana.</p></div>
-      <div class="caption"><p>Go to settings, and configure from which index you want to search logs. In this particular example, we're searching Kurento Media Server logs by setting <strong>Log indexes</strong> to: <code>filebeat-kurento*</code>.</p></div>
-      <div class="caption"><p>Add to <strong>Log Columns</strong> the attributes of the index you want to see in your logs stream. In this example we're adding the attribute <code>log_level</code> to see the type of log (<code>INFO</code>, <code>WARN</code>, <code>ERROR</code>, etc...). 
-      The attributes may change depending of the index you're reading. For example, in OpenVidu Server Pro, the log level is in the attribute <code>severity</code> for <code>openvidu-logs*</code> indexes.</p></div>
       <div class="caption"><p>Enter what you want to search. You can search for literals, attribute values, etc...</div>
     </div>
 </div>
 
 ### Searching Examples
 
-- Search for a literal in Kurento Media Server logs and see the context:
+- Search for Kurento Media Server logs:
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -683,7 +768,7 @@ To search for logs you need to:
     </div>
 </div>
 
-- Search by log level in OpenVidu Server Pro logs:
+- Search for Kurento Media Server logs of one specific node id:
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
@@ -691,11 +776,18 @@ To search for logs you need to:
     </div>
 </div>
 
-- Search for logs of one specific Media Node IP:
+- Search for Kurento Media Server logs of one specific Media Node IP:
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
         <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
+    </div>
+</div>
+
+- Search for OpenVidu Server logs:
+<div class="row">
+    <div style="margin: 5px 15px 35px 15px">
+        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-4.mp4"/>
     </div>
 </div>
 
@@ -711,6 +803,7 @@ An external Elastic Stack can be configured with and without security. The table
 |------------------|---------------------------|----------------|---------------------------|
 | ≤ 2.15.0         | -                         | -              | -                         |
 | 2.16.0           | ≥ 7.3.0                   | ≥ 7.3.0        | ≥ 7.3.0                   |
+| 2.17.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
 
 ### OpenVidu Pro Configuration for external Elastic Stack
 
@@ -784,7 +877,30 @@ Where:
 Remember that any change you do in `/opt/openvidu/.env` will require you to restart your OpenVidu Server. Just execute `./openvidu restart` in `/opt/openvidu`.
 
 > - Note that you need to specify port 443 in `OPENVIDU_PRO_ELASTICSEARCH_HOST` and `OPENVIDU_PRO_KIBANA_HOST`.
-> - You can [create a fine-grained user](#create-a-fine-grained-user) to just give access to OpenVidu to specific resources of Elasticsearch and Kibana
+
+<div style="
+    display: table;
+    border: 2px solid #ffb600;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    background-color: #FFFBF1;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;"><div style="display: table-cell; vertical-align: middle;">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #ffb600;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding: 10px 20px;">
+    <strong>WARNING</strong>: Elasticsearch index deletion policy (which is responsible for delete indexes after the specified days in <code>OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE</code>) does not work with AWS Elasticsearch. 
+    You must create your own deletion policy strategy in your AWS Elasticsearch service.
+</div>
+</div>
 
 #### Elastic Stack in Elastic Cloud with OpenVidu Pro configuration
 
@@ -874,7 +990,7 @@ ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
 
 If you want to create a role and a user without using the UI you can create both by using REST API requests.
 
-1. First you need to create a role using the name you want by calling Kibana REST API.
+1. First you need to create a role using the name you want by calling Kibana REST API. 
 2. Secondly, create a user which will use the role created before by calling Elasticsearch REST API.
 
 You can see an example of both HTTP requests here:
@@ -904,13 +1020,16 @@ $ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true'
          "manage_ingest_pipelines",
          "manage_index_templates"
       ],
-      "indexes":[
+      "indices":[
          {
             "names":[
                "metricbeat*",
                "openvidu",
                "openvidu-logs*",
-               "filebeat*"
+               "filebeat*",
+               "server-metrics*",
+               "session-metrics*",
+               "loadtest*"
             ],
             "privileges":[
                "create_doc",
