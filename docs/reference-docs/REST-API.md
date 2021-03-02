@@ -1140,8 +1140,8 @@ Example for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}:
 }
 ```
 
-> - **instanceType** _(optional String only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
-> - **volumeSize** _(optional Number only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
+> - **instanceType** _(optional String only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. If not especified, value `AWS_INSTANCE_TYPE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
+> - **volumeSize** _(optional Number only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. If not especified, value `AWS_VOLUME_SIZE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
 
 ##### Sample return
 
