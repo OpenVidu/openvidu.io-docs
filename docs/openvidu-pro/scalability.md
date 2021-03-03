@@ -68,7 +68,7 @@ When initializing a Session by calling method **[POST /openvidu/api/sessions](re
 ```json
 {
     "mediaNode": {
-        "id": "kms_FVrQslIr"
+        "id": "media_i-1234567890abcdef0"
     }
 }
 ```
@@ -82,7 +82,7 @@ The `id` value must be the `id` property of a [Media Node object](reference-docs
 ```java
 OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 SessionProperties sessionProperties = new SessionProperties.Builder()
-    .mediaNode("kms_FVrQslIr") // This string being the identifier of an available Media Node
+    .mediaNode("media_i-1234567890abcdef0") // This string being the identifier of an available Media Node
     .build();
 Session session = openvidu.createSession(sessionProperties);
 ```
@@ -96,7 +96,7 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#cre
 ```javascript
 var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var sessionProperties = {
-    mediaNode: "kms_FVrQslIr" // This string being the identifier of an available Media Node
+    mediaNode: "media_i-1234567890abcdef0" // This string being the identifier of an available Media Node
 };
 openVidu.createSession(sessionProperties)
     .then(session => { ... })

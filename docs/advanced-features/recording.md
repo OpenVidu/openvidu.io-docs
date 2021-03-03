@@ -342,7 +342,7 @@ For an OpenVidu Pro cluster, by default **composed recordings with video** take 
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`. For example:<br>`{"mediaNode:{"id":"kms_ABCDEF"}}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`. For example:<br>`{"mediaNode:{"id":"media_i-1234567890abcdef0"}}`
 
 </div>
 
@@ -352,7 +352,7 @@ When starting the recording of a session with method [POST /openvidu/api/recordi
 RecordingProperties properties = new RecordingProperties.Builder()
     .outputMode(Recording.OutputMode.COMPOSED)
     .hasVideo(true)
-    .mediaNode("kms_ABCDEF") // The string being the unique ID of an existing Media Node
+    .mediaNode("media_i-1234567890abcdef0") // The string being the unique ID of an existing Media Node
     .build();
 Recording recording = openVidu.startRecording(session.getSessionId(), properties);
 ```
@@ -367,7 +367,7 @@ var recording;
 openvidu.startRecording(sessionId, {
     outputMode: Recording.OutputMode.COMPOSED,
     hasVideo: true,
-    mediaNode: {id: "kms_ABCDEF"} // The string being the unique ID of an existing Media Node
+    mediaNode: {id: "media_i-1234567890abcdef0"} // The string being the unique ID of an existing Media Node
 })
     .then(response => recording = response)
     .catch(error => console.error(error));

@@ -21,7 +21,7 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
     - [OpenVidu Events](#openvidu-events)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
-    - [Log Search Examples](#searching-examples)
+    - [Searching examples](#searching-examples)
 - **[Configuring an external Elastic Stack](#configuring-an-external-elastic-stack)**
     - [OpenVidu Pro Configuration for external Elastic Stack](#openvidu-pro-configuration-for-external-elastic-stack)
     - [Examples of managed Elastic Stack services](#examples-of-managed-elastic-stack-services)
@@ -256,11 +256,11 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 
 - `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
-- `monitoringStats`: event of CPU, memory and network statistics usage of OpenVidu Sever Pro Node
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
+- `webrtcDebug`: event with further information about the WebRTC negotiation process, such as SDPs, for each media endpoint established in Media Nodes
 - `networkQualityStats`: event of network quality for a specific client. See [Network quality](advanced-features/network-quality/){:target="_blank"}
 - `sessionSummary`: summary of a session, stored once it is closed
-- `recordingSummary`: summary of a recording, stored once its session is closed
+- `recordingSummary`: summary of a recording, stored once its session is closed. This object does not hold the final values of the recording entity and some properties may not be properly defined. Use _cdr_ event *[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}* with property _status_ set to _ready_ to get the full recording object
 - `userSummary`: summary of a user, stored once its session is closed
 - `connectionSummary`: summary of a connection, stored once its session is closed
 - `publisherSummary`: summary of a publisher, stored once its session is closed
@@ -273,8 +273,8 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">kms</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">monitoringStats</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcStats</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">webrtcDebug</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">networkQualityStats</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">sessionSummary</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">recordingSummary</button>
@@ -287,18 +287,16 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="cdr" class="lang-tabs-content" markdown="1">
 ```json
 {
+  "elastic_type": "cdr",
   "sessionId": "TestSession",
-  "timestamp": 1582277160836,
-  "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-  "connectionId": "con_XZvrQOF5Du",
-  "connection": "OUTBOUND",
-  "videoSource": "CAMERA",
-  "videoFramerate": 30,
-  "videoDimensions": "{\"width\":640,\"height\":480}",
-  "audioEnabled": true,
-  "videoEnabled": true,
-  "event": "webrtcConnectionCreated",
-  "elastic_type": "cdr"
+  "uniqueSessionId": "TestSession_1614770057250",
+  "event": "sessionDestroyed",
+  "reason": "sessionClosedByServer",
+  "startTime": 1614770057250,
+  "duration": 32,
+  "timestamp": 1614770090067,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost"
 }
 ```
 </div>
@@ -306,41 +304,20 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="kms" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
+  "elastic_type": "kms",
+  "sessionId": "TestSession",
+  "uniqueSessionId": "TestSession_1614770057250",
+  "user": "09847CC560698063",
+  "connectionId": "con_Sazh73ER9L",
+  "endpoint": "str_CAM_GdhM_con_Sazh73ER9L",
+  "type": "MediaFlowOutStateChange",
   "state": "FLOWING",
   "padName": "default",
   "mediaType": "VIDEO",
-  "type": "MediaFlowOutStateChange",
-  "timestamp": 1582277162316,
-  "sessionId": "TestSession",
-  "user": "70558CA23053A8E9",
-  "connectionId": "con_XZvrQOF5Du",
-  "endpoint": "str_CAM_AOIa_con_XZvrQOF5Du",
-  "msSinceEndpointCreation": 1480,
-  "elastic_type": "kms"
-}
-```
-</div>
-
-<div id="monitoringstats" class="lang-tabs-content" style="display:none" markdown="1">
-```json
-{
-  "timestamp": 1582276785036,
-  "cpu": 15.919558359621451,
-  "mem": {
-    "used": 7667204,
-    "percentage": 47.48673231102802
-  },
-  "net": {
-    "veth0c3780f": {
-      "rxBytes": 0,
-      "txBytes": 1210
-    },
-    "wlp58s0": {
-      "rxBytes": 1487510,
-      "txBytes": 442145
-    }
-  },
-  "elastic_type": "monitoringStats"
+  "msSinceEndpointCreation": 1264,
+  "timestamp": 1614770060288,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost"
 }
 ```
 </div>
@@ -348,36 +325,62 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="webrtcstats" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
-  "sessionId": "TestSession",
-  "user": "70558CA23053A8E9",
-  "connectionId": "con_XZvrQOF5Du",
-  "endpoint": "str_CAM_AOIa_con_XZvrQOF5Du",
-  "mediaType": "video",
-  "jitter": 0.004166666883975267,
-  "bytesReceived": 17703914,
-  "packetsReceived": 17169,
-  "packetsLost": 0,
-  "timestamp": 1582277310832,
-  "fractionLost": 0,
-  "remb": 1000000,
-  "firCount": 2,
-  "pliCount": 0,
-  "nackCount": 0,
-  "sliCount": 0,
-  "elastic_type": "webrtcStats"
-}
+    "elastic_type": "webrtcStats",
+    "sessionId": "TestSession",
+    "uniqueSessionId": "TestSession_1614770057250",
+    "user": "09847CC560698063",
+    "connectionId": "con_Sazh73ER9L",
+    "endpoint": "str_CAM_GdhM_con_Sazh73ER9L",
+    "mediaType": "video",
+    "jitter": 0.0016666667070239782,
+    "bytesReceived": 2730078,
+    "packetsReceived": 2770,
+    "packetsLost": 1,
+    "fractionLost": 0,
+    "remb": 1000000,
+    "firCount": 4,
+    "pliCount": 0,
+    "nackCount": 0,
+    "sliCount": 0,
+    "timestamp": 1614770089024,
+    "cluster_id": "my_cluster",
+    "master_node_id": "master_localhost"
+  }
+```
+</div>
+
+<div id="webrtcdebug" class="lang-tabs-content" style="display:none" markdown="1">
+```json
+{
+    "elastic_type": "webrtcDebug",
+    "sessionId": "TestSession",
+    "uniqueSessionId": "TestSession_1614770057250",
+    "user": "09847CC560698063",
+    "connectionId": "con_Sazh73ER9L",
+    "endpoint": "str_CAM_GdhM_con_Sazh73ER9L",
+    "issuer": "client",
+    "operation": "publish",
+    "type": "sdpOffer",
+    "content": "v=0\r\no=- 4910633521260399716 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group [...]",
+    "timestamp": 1614770058822,
+    "cluster_id": "my_cluster",
+    "master_node_id": "master_localhost"
+  }
 ```
 </div>
 
 <div id="networkqualitystats" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
+  "elastic_type": "networkQualityStats",
   "sessionId": "TestSession",
-  "connectionId": "con_XZvrQOF5Du",
+  "uniqueSessionId": "TestSession_1614770057250",
+  "connectionId": "con_Sazh73ER9L",
   "newValue": 4,
-  "oldValue": 3,
-  "timestamp": 1582277310832,
-  "elastic_type": "networkQualityStats"
+  "oldValue": 5,
+  "timestamp": 1614770077777,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost"
 }
 ```
 </div>
@@ -385,32 +388,41 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="sessionsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
-  "createdAt": 1582277158591,
-  "destroyedAt": 1582277414413,
+  "elastic_type": "sessionSummary",
   "sessionId": "TestSession",
+  "uniqueSessionId": "TestSession_1614772177070",
   "customSessionId": "TestSession",
+  "createdAt": 1614772177070,
+  "destroyedAt": 1614772405616,
   "mediaMode": "ROUTED",
   "recordingMode": "MANUAL",
-  "duration": 255,
-  "reason": "lastParticipantLeft",
+  "duration": 228,
+  "reason": "sessionClosedByServer",
   "users": {
     "numberOfElements": 2,
     "content": [
       {
-        "id": "7636DE7CA51A6EEC",
+        "elastic_type": "userSummary",
+        "sessionId": "TestSession",
+        "uniqueSessionId": "TestSession_1614772177070",
+        "id": "75F38955B0E01784",
         "location": "Rome, Italy",
-        "platform": "Chrome 80.0.3987.116 on Linux 64-bit",
+        "platform": "Chrome 88.0.4324.182 on Linux 64-bit",
         "connections": {
           "numberOfElements": 1,
           "content": [
             {
-              "createdAt": 1582277341959,
-              "destroyedAt": 1582277414401,
-              "connectionId": "con_DdZXrn4e2i",
-              "clientData": "TestClient",
+              "elastic_type": "connectionSummary",
+              "sessionId": "TestSession",
+              "uniqueSessionId": "TestSession_1614772177070",
+              "user": "75F38955B0E01784",
+              "connectionId": "con_Yvwjb4DiNC",
+              "createdAt": 1614772179451,
+              "destroyedAt": 1614772405598,
+              "duration": 226,
+              "clientData": "subscriberClient",
               "serverData": "",
-              "duration": 72,
-              "reason": "disconnect",
+              "reason": "sessionClosedByServer",
               "publishers": {
                 "numberOfElements": 0,
                 "content": []
@@ -419,68 +431,84 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
                 "numberOfElements": 1,
                 "content": [
                   {
+                    "elastic_type": "subscriberSummary",
                     "sessionId": "TestSession",
-                    "timestamp": 1582277412497,
-                    "startTime": 1582277342542,
-                    "duration": 69,
-                    "reason": "unsubscribe",
-                    "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-                    "receivingFrom": "con_XZvrQOF5Du",
+                    "uniqueSessionId": "TestSession_1614772177070",
+                    "user": "75F38955B0E01784",
+                    "connectionId": "con_Yvwjb4DiNC",
+                    "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+                    "startTime": 1614772179593,
+                    "duration": 225,
+                    "reason": "sessionClosedByServer",
+                    "receivingFrom": "con_X5VIu6DNPF",
                     "videoSource": "CAMERA",
                     "videoFramerate": 30,
                     "videoDimensions": "{\"width\":640,\"height\":480}",
                     "audioEnabled": true,
                     "videoEnabled": true,
-                    "user": "7636DE7CA51A6EEC",
-                    "connectionId": "con_DdZXrn4e2i",
-                    "elastic_type": "subscriberSummary"
+                    "timestamp": 1614772405493,
+                    "cluster_id": "my_cluster",
+                    "master_node_id": "master_localhost",
+                    "media_node_id": "media_i-1234567890abcdef0"
                   }
                 ]
               },
-              "sessionId": "TestSession",
-              "user": "7636DE7CA51A6EEC",
-              "timestamp": 1582277414413,
-              "elastic_type": "connectionSummary"
+              "timestamp": 1614772405616,
+              "cluster_id": "my_cluster",
+              "master_node_id": "master_localhost",
+              "media_node_id": "media_i-1234567890abcdef0"
             }
           ]
         },
-        "sessionId": "TestSession",
-        "timestamp": 1582277414413,
-        "elastic_type": "userSummary"
+        "timestamp": 1614772405616,
+        "cluster_id": "my_cluster",
+        "master_node_id": "master_localhost",
+        "media_node_id": "media_i-1234567890abcdef0"
       },
       {
-        "id": "70558CA23053A8E9",
+        "elastic_type": "userSummary",
+        "sessionId": "TestSession",
+        "uniqueSessionId": "TestSession_1614772177070",
+        "id": "A1DA910C165C2B16",
         "location": "Buenos Aires, Argentina",
-        "platform": "Chrome 80.0.3987.116 on Linux 64-bit",
+        "platform": "Chrome 88.0.4324.182 on Linux 64-bit",
         "connections": {
           "numberOfElements": 1,
           "content": [
             {
-              "createdAt": 1582277159216,
-              "destroyedAt": 1582277414295,
-              "connectionId": "con_XZvrQOF5Du",
-              "clientData": "TestClient",
+              "elastic_type": "connectionSummary",
+              "sessionId": "TestSession",
+              "uniqueSessionId": "TestSession_1614772177070",
+              "user": "A1DA910C165C2B16",
+              "connectionId": "con_X5VIu6DNPF",
+              "createdAt": 1614772177417,
+              "destroyedAt": 1614772405572,
+              "duration": 228,
+              "clientData": "publisherClient",
               "serverData": "",
-              "duration": 255,
-              "reason": "disconnect",
+              "reason": "sessionClosedByServer",
               "publishers": {
                 "numberOfElements": 1,
                 "content": [
                   {
+                    "elastic_type": "publisherSummary",
                     "sessionId": "TestSession",
-                    "timestamp": 1582277414254,
-                    "startTime": 1582277160836,
-                    "duration": 253,
-                    "reason": "disconnect",
-                    "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
+                    "uniqueSessionId": "TestSession_1614772177070",
+                    "user": "A1DA910C165C2B16",
+                    "connectionId": "con_X5VIu6DNPF",
+                    "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+                    "startTime": 1614772178719,
+                    "duration": 226,
+                    "reason": "sessionClosedByServer",
                     "videoSource": "CAMERA",
                     "videoFramerate": 30,
                     "videoDimensions": "{\"width\":640,\"height\":480}",
                     "audioEnabled": true,
                     "videoEnabled": true,
-                    "user": "70558CA23053A8E9",
-                    "connectionId": "con_XZvrQOF5Du",
-                    "elastic_type": "publisherSummary"
+                    "timestamp": 1614772405549,
+                    "cluster_id": "my_cluster",
+                    "master_node_id": "master_localhost",
+                    "media_node_id": "media_i-1234567890abcdef0"
                   }
                 ]
               },
@@ -488,16 +516,17 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
                 "numberOfElements": 0,
                 "content": []
               },
-              "sessionId": "TestSession",
-              "user": "70558CA23053A8E9",
-              "timestamp": 1582277414413,
-              "elastic_type": "connectionSummary"
+              "timestamp": 1614772405616,
+              "cluster_id": "my_cluster",
+              "master_node_id": "master_localhost",
+              "media_node_id": "media_i-1234567890abcdef0"
             }
           ]
         },
-        "sessionId": "TestSession",
-        "timestamp": 1582277414413,
-        "elastic_type": "userSummary"
+        "timestamp": 1614772405616,
+        "cluster_id": "my_cluster",
+        "master_node_id": "master_localhost",
+        "media_node_id": "media_i-1234567890abcdef0"
       }
     ]
   },
@@ -505,23 +534,29 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
     "numberOfElements": 1,
     "content": [
       {
+        "elastic_type": "recordingSummary",
         "sessionId": "TestSession",
-        "timestamp": 1582277407182,
-        "startTime": 1582277358067,
+        "uniqueSessionId": "TestSession_1614772177070",
+        "startTime": 1614772194381,
         "duration": 0,
-        "reason": "recordingStoppedByServer",
+        "reason": "sessionClosedByServer",
         "id": "TestSession",
-        "name": "TestSession",
+        "name": "MyRecording",
         "outputMode": "INDIVIDUAL",
         "hasAudio": true,
         "hasVideo": false,
         "size": 0,
-        "elastic_type": "recordingSummary"
+        "timestamp": 1614772405602,
+        "cluster_id": "my_cluster",
+        "master_node_id": "master_localhost",
+        "media_node_id": "media_i-1234567890abcdef0"
       }
     ]
   },
-  "timestamp": 1582277414413,
-  "elastic_type": "sessionSummary"
+  "timestamp": 1614772405616,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 </div>
@@ -529,20 +564,22 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="recordingsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
+  "elastic_type": "recordingSummary",
   "sessionId": "TestSession",
-  "timestamp": 1582242127579,
-  "startTime": 1582242114891,
-  "duration": 568.8,
-  "reason": "recordingStoppedByServer",
+  "uniqueSessionId": "TestSession_1614772177070",
   "id": "TestSession",
-  "name": "RecordingTest",
-  "outputMode": "COMPOSED",
-  "resolution": "1280x720",
-  "recordingLayout": "BEST_FIT",
+  "startTime": 1614772194381,
+  "duration": 0,
+  "reason": "sessionClosedByServer",
+  "name": "MyRecordings",
+  "outputMode": "INDIVIDUAL",
   "hasAudio": true,
-  "hasVideo": true,
-  "size": 38999950,
-  "elastic_type": "recordingSummary"
+  "hasVideo": false,
+  "size": 0,
+  "timestamp": 1614772405602,
+  "cluster_id": "localhost",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 </div>
@@ -550,56 +587,67 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="usersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
-  "id": "7636DE7CA51A6EEC",
-  "location": "Rome, Italy",
-  "platform": "Chrome 80.0.3987.116 on Linux 64-bit",
+  "elastic_type": "userSummary",
+  "sessionId": "TestSession",
+  "uniqueSessionId": "TestSession_1614772177070",
+  "id": "A1DA910C165C2B16",
+  "location": "Buenos Aires, Argentina",
+  "platform": "Chrome 88.0.4324.182 on Linux 64-bit",
   "connections": {
     "numberOfElements": 1,
     "content": [
       {
-        "createdAt": 1582277341959,
-        "destroyedAt": 1582277414401,
-        "connectionId": "con_DdZXrn4e2i",
-        "clientData": "TestClient",
+        "elastic_type": "connectionSummary",
+        "sessionId": "TestSession",
+        "uniqueSessionId": "TestSession_1614772177070",
+        "user": "A1DA910C165C2B16",
+        "connectionId": "con_X5VIu6DNPF",
+        "createdAt": 1614772177417,
+        "destroyedAt": 1614772405572,
+        "duration": 228,
+        "clientData": "publisherClient",
         "serverData": "",
-        "duration": 72,
-        "reason": "disconnect",
+        "reason": "sessionClosedByServer",
         "publishers": {
-          "numberOfElements": 0,
-          "content": []
-        },
-        "subscribers": {
           "numberOfElements": 1,
           "content": [
             {
+              "elastic_type": "publisherSummary",
               "sessionId": "TestSession",
-              "timestamp": 1582277412497,
-              "startTime": 1582277342542,
-              "duration": 69,
-              "reason": "unsubscribe",
-              "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-              "receivingFrom": "con_XZvrQOF5Du",
+              "uniqueSessionId": "TestSession_1614772177070",
+              "user": "A1DA910C165C2B16",
+              "connectionId": "con_X5VIu6DNPF",
+              "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+              "startTime": 1614772178719,
+              "duration": 226,
+              "reason": "sessionClosedByServer",
               "videoSource": "CAMERA",
               "videoFramerate": 30,
               "videoDimensions": "{\"width\":640,\"height\":480}",
               "audioEnabled": true,
               "videoEnabled": true,
-              "user": "7636DE7CA51A6EEC",
-              "connectionId": "con_DdZXrn4e2i",
-              "elastic_type": "subscriberSummary"
+              "timestamp": 1614772405549,
+              "cluster_id": "my_cluster",
+              "master_node_id": "master_localhost",
+              "media_node_id": "media_i-1234567890abcdef0"
             }
           ]
         },
-        "sessionId": "TestSession",
-        "user": "7636DE7CA51A6EEC",
-        "timestamp": 1582277414413,
-        "elastic_type": "connectionSummary"
+        "subscribers": {
+          "numberOfElements": 0,
+          "content": []
+        },
+        "timestamp": 1614772405616,
+        "cluster_id": "my_cluster",
+        "master_node_id": "master_localhost",
+        "media_node_id": "media_i-1234567890abcdef0"
       }
     ]
   },
-  "sessionId": "TestSession",
-  "timestamp": 1582277414413,
-  "elastic_type": "userSummary"
+  "timestamp": 1614772405616,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 </div>
@@ -607,43 +655,50 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="connectionsummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
-  "createdAt": 1582277341959,
-  "destroyedAt": 1582277414401,
-  "connectionId": "con_DdZXrn4e2i",
-  "clientData": "TestClient",
+  "elastic_type": "connectionSummary",
+  "sessionId": "TestSession",
+  "uniqueSessionId": "TestSession_1614772177070",
+  "user": "A1DA910C165C2B16",
+  "connectionId": "con_X5VIu6DNPF",
+  "createdAt": 1614772177417,
+  "destroyedAt": 1614772405572,
+  "duration": 228,
+  "clientData": "publisherClient",
   "serverData": "",
-  "duration": 72,
-  "reason": "disconnect",
+  "reason": "sessionClosedByServer",
   "publishers": {
-    "numberOfElements": 0,
-    "content": []
-  },
-  "subscribers": {
     "numberOfElements": 1,
     "content": [
       {
+        "elastic_type": "publisherSummary",
         "sessionId": "TestSession",
-        "timestamp": 1582277412497,
-        "startTime": 1582277342542,
-        "duration": 69,
-        "reason": "unsubscribe",
-        "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-        "receivingFrom": "con_XZvrQOF5Du",
+        "uniqueSessionId": "TestSession_1614772177070",
+        "user": "A1DA910C165C2B16",
+        "connectionId": "con_X5VIu6DNPF",
+        "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+        "startTime": 1614772178719,
+        "duration": 226,
+        "reason": "sessionClosedByServer",
         "videoSource": "CAMERA",
         "videoFramerate": 30,
         "videoDimensions": "{\"width\":640,\"height\":480}",
         "audioEnabled": true,
         "videoEnabled": true,
-        "user": "7636DE7CA51A6EEC",
-        "connectionId": "con_DdZXrn4e2i",
-        "elastic_type": "subscriberSummary"
+        "timestamp": 1614772405549,
+        "cluster_id": "my_cluster",
+        "master_node_id": "master_localhost",
+        "media_node_id": "media_i-1234567890abcdef0"
       }
     ]
   },
-  "sessionId": "TestSession",
-  "user": "7636DE7CA51A6EEC",
-  "timestamp": 1582277414413,
-  "elastic_type": "connectionSummary"
+  "subscribers": {
+    "numberOfElements": 0,
+    "content": []
+  },
+  "timestamp": 1614772405616,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 </div>
@@ -651,20 +706,24 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="publishersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
+  "elastic_type": "publisherSummary",
   "sessionId": "TestSession",
-  "timestamp": 1582277414254,
-  "startTime": 1582277160836,
-  "duration": 253,
-  "reason": "disconnect",
-  "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
+  "uniqueSessionId": "TestSession_1614772177070",
+  "user": "A1DA910C165C2B16",
+  "connectionId": "con_X5VIu6DNPF",
+  "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+  "startTime": 1614772178719,
+  "duration": 226,
+  "reason": "sessionClosedByServer",
   "videoSource": "CAMERA",
   "videoFramerate": 30,
   "videoDimensions": "{\"width\":640,\"height\":480}",
   "audioEnabled": true,
   "videoEnabled": true,
-  "user": "70558CA23053A8E9",
-  "connectionId": "con_XZvrQOF5Du",
-  "elastic_type": "publisherSummary"
+  "timestamp": 1614772405549,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 </div>
@@ -672,21 +731,25 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 <div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
 ```json
 {
+  "elastic_type": "subscriberSummary",
   "sessionId": "TestSession",
-  "timestamp": 1582277412497,
-  "startTime": 1582277342542,
-  "duration": 69,
-  "reason": "unsubscribe",
-  "streamId": "str_CAM_AOIa_con_XZvrQOF5Du",
-  "receivingFrom": "con_XZvrQOF5Du",
+  "uniqueSessionId": "TestSession_1614772177070",
+  "user": "75F38955B0E01784",
+  "connectionId": "con_Yvwjb4DiNC",
+  "streamId": "str_CAM_LURy_con_X5VIu6DNPF",
+  "startTime": 1614772179593,
+  "duration": 225,
+  "reason": "sessionClosedByServer",
+  "receivingFrom": "con_X5VIu6DNPF",
   "videoSource": "CAMERA",
   "videoFramerate": 30,
   "videoDimensions": "{\"width\":640,\"height\":480}",
   "audioEnabled": true,
   "videoEnabled": true,
-  "user": "7636DE7CA51A6EEC",
-  "connectionId": "con_DdZXrn4e2i",
-  "elastic_type": "subscriberSummary"
+  "timestamp": 1614772405493,
+  "cluster_id": "my_cluster",
+  "master_node_id": "master_localhost",
+  "media_node_id": "media_i-1234567890abcdef0"
 }
 ```
 
@@ -706,6 +769,8 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 > **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}). There you will have all properties of the recording well defined
 
 <br>
+
+---
 
 ## Creating your own visualizations and dashboards
 
@@ -757,7 +822,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
     </div>
 </div>
 
-### Searching Examples
+### Searching examples
 
 - Search for Kurento Media Server logs:
 

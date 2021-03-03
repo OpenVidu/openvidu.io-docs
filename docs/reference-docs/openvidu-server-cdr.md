@@ -403,8 +403,8 @@ Example:
 {
   "mediaNodeStatusChanged": {
     "timestamp": 1583750581667,
-    "id": "kms_V3B5OxT7",
-    "environmentId": "c76535087c5767b83a211036197115d071daf897bfd951bc18f834fc535d9fa9",
+    "id": "media_i-1234567890abcdef0",
+    "environmentId": "i-1234567890abcdef0",
     "ip": "172.17.0.3",
     "uri": "ws://172.17.0.3:8888/kurento",
     "newStatus": "running",
@@ -515,14 +515,14 @@ Example:
         "runningNodes": [],
         "launchingNodes": [
           {
-            "id": "kms_MdNUPBwS",
+            "id": "media_i-1234567890abcdef0",
             "environmentId": null,
             "ip": null,
             "load": 0,
             "status": "launching"
           },
           {
-            "id": "kms_Imvwxeny",
+            "id": "media_i-jfwojap393k2p332p",
             "environmentId": null,
             "ip": null,
             "load": 0,
@@ -544,8 +544,8 @@ Example:
         "avgLoad": 7.946666666666666,
         "runningNodes": [
           {
-            "id": "kms_M5VJ2N69",
-            "environmentId": "19e279f27f150764d26963f63d428b5e4841ff58aeffad352e4cc35fde4b2209",
+            "id": "media_i-1234567890abcdef0",
+            "environmentId": "i-1234567890abcdef0",
             "ip": "172.17.0.2",
             "load": 23.84,
             "status": "running"
@@ -553,15 +553,15 @@ Example:
         ],
         "launchingNodes": [
           {
-            "id": "kms_Imvwxeny",
-            "environmentId": null,
+            "id": "media_i-jfwojap393k2p332p",
+            "environmentId": "i-jfwojap393k2p332p",
             "ip": null,
             "load": 0,
             "status": "launching"
           },
           {
-            "id": "kms_MdNUPBwS",
-            "environmentId": null,
+            "id": "media_i-po39jr3e10rkjsdfj",
+            "environmentId": "i-po39jr3e10rkjsdfj",
             "ip": null,
             "load": 0,
             "status": "launching"

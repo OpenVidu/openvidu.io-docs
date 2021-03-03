@@ -148,7 +148,7 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
     "defaultRecordingLayout": "BEST_FIT",
     "defaultCustomLayout": "CUSTOM_LAYOUT",
     "mediaNode": {
-        "id": "kms_FVrQslIr"
+        "id": "media_i-po39jr3e10rkjsdfj"
     },
     "forcedVideoCodec": "VP8",
     "allowTranscoding": "false"
@@ -700,7 +700,7 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
     "customLayout":"",
     "resolution": "1280x720",
     "mediaNode": {
-        "id": "kms_Q9UiTDxK"
+        "id": "media_i-po39jr3e10rkjsdfj"
     }
 }
 ```
@@ -899,7 +899,7 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 
 ```json
 {
-    "id": "kms_FVrQslIr",
+    "id": "media_i-0c58bcdd26l11d0sd",
     "object": "mediaNode",
     "environmentId": "i-0c58bcdd26l11d0sd",
     "ip": "172.17.0.2",
