@@ -18,7 +18,6 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
     - [[Metricbeat] Nginx Metrics](#metricbeat-nginx-metrics)
 - **[Elasticsearch indexes](#elasticsearch-indexes)**
     - [Logs and metrics](#logs-and-metrics)
-    - [Metrics](#metrics)
     - [OpenVidu Events](#openvidu-events)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
