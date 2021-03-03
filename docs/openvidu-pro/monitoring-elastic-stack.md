@@ -140,13 +140,13 @@ Statistics about OpenVidu Server Pro as a Spring application. It includes:
 
 ### [Metricbeat] Cluster Monitoring Metrics
 
-Metrics overview of the entire cluster. This dashboard let you see the state of your cluster globally, which includes:
+Metrics overview of the entire cluster. This dashboard lets you see the state of your cluster globally, which includes:
 
-- Number of hosts / nodes.
+- Number of nodes
 - Average CPU usage
-- Average Memory usage
-- Average Disk Usage
-- Inbound / Outbound Metrics
+- Average memory usage
+- Average disk usage
+- Inbound/Outbound networking metrics
 
 Additionally you can check specific metrics of your nodes by clicking into one of the displayed hosts which will redirect you into the specific [[Metricbeat] Node Monitoring Metrics](#metricbeat-node-monitoring-metrics) of the selected host.
 
@@ -161,11 +161,11 @@ Additionally you can check specific metrics of your nodes by clicking into one o
 
 More detailed metrics about OpenVidu Pro Cluster Nodes. This dashboard includes information showed in [[Metricbeat] Cluster Monitoring Metrics](#metricbeat-cluster-monitoring-metrics) with additional information like:
 
-- Memory Usage vs Total
-- Current Inbound / Outbound Traffic
+- Memory usage
+- Inbound/Outbound networking metrics
 - Network packet losses
-- Advanced charts about CPU / Disk / Network Usage
-- Advanced information about Disk usage.
+- Advanced charts about CPU/disk/network usage
+- Advanced information about disk usage
 
 If you accessed this dashboard by selecting a node in [[Metricbeat] Cluster Monitoring Metrics](#metricbeat-cluster-monitoring-metrics), you will see information about the selected node in this panel. Otherwise
 if you access this dashboard without any filter or by accessing the dashboard panel, this dashboard will show average information about the entire cluster.
@@ -179,13 +179,13 @@ if you access this dashboard without any filter or by accessing the dashboard pa
 
 ### [Metricbeat] Nginx Metrics
 
-This dashboard contains metrics about the deployed NGINX proxy which handles OpenVidu Requests. It includes:
+This dashboard contains metrics about the deployed NGINX proxy which handles all requests to the cluster. It includes:
 
-- Active connections: Number of active client connections including waiting connections.
-- Request Rate: Rate of client requests.
-- Drops Rate: Dropped client connections.
-- Accepts and Handled Rate: Number of accepted and handled client connections
-- Reading / Writing / Waiting Rates: Number of connections where Nginx is reading / writing / waiting.
+- Active connections: number of active client connections including waiting connections.
+- Request Rate: rate of client requests.
+- Drops Rate: dropped client connections.
+- Accepts and Handled Rate: number of accepted and handled client connections.
+- Reading/Writing/Waiting Rates: number of connections where Nginx is reading/writing/waiting.
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
