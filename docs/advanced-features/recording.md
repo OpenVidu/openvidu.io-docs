@@ -1123,6 +1123,7 @@ To enable S3 recording storage configure the following properties in the **`.env
 ```yaml
 OPENVIDU_PRO_RECORDING_STORAGE=s3
 OPENVIDU_PRO_AWS_S3_BUCKET=your-bucket-name
+OPENVIDU_PRO_AWS_S3_HEADERS=
 OPENVIDU_PRO_AWS_ACCESS_KEY=your-aws-access-key
 OPENVIDU_PRO_AWS_SECRET_KEY=your-aws-secret-key
 OPENVIDU_PRO_AWS_REGION=eu-west-1
@@ -1131,7 +1132,8 @@ OPENVIDU_PRO_AWS_REGION=eu-west-1
 There is a complete description of these properties at [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"}. Take into account the following points:
 
 - Property `OPENVIDU_PRO_AWS_S3_BUCKET` can have a folder structure if you want OpenVidu Pro to upload recordings to a specific folder of your bucket.
-- AWS credential properties `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` can be omitted if you have default AWS credentials configured in your OpenVidu Server Pro Node machine. The internal AWS S3 client managed by OpenVidu Server Pro will try to use them if no keys are provided. One way or the other, the credentials finally used must provide read and write access to the bucket.
+- Property `OPENVIDU_PRO_AWS_S3_HEADERS` allows further configuring the internal S3 client of OpenVidu Pro with the HTTP headers used when uploading the recordings. The property is a key-value map of strings, following the format of a JSON object. For example, according to AWS documentation, for applying server-side encryption with AES-256, this header is mandatory: `{"x-amz-server-side-encryption":"AES256"}`. The list of available headers can be found [here](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/Headers.html){:target="_blank"}.
+- Properties `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` refer only to long-lived AWS credentials with read and write access to the specified bucket. They can be omitted. If so, the internal S3 client will try to use the default AWS credentials of the machine, if available (see the credentials search order in the [Java Doc](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html){:target="_blank"}). For short-lived credentials, the internal S3 client will do its best to automatically refresh them when expired.
 - Property `OPENVIDU_PRO_AWS_REGION` may not be necessary. AWS S3 buckets are not tied to a specific world region, and theoretically the internal S3 client should be able to autodiscover the AWS region from the bucket's name only. But this has been proven to may not be possible in some occasions, and the property must be specified explicitly in these cases.
 
 <br>
