@@ -1,32 +1,6 @@
 <h2 id="section-title">REST API</h2>
 <hr>
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 12px 0 12px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-OpenVidu 2.16.0 comes with a renovated REST API. All operations now share the same base path starting with <strong><code>/openvidu/api/</code></strong>.
-Old paths are considered now deprecated, but <strong>still supported</strong> by default. OpenVidu Server will log a WARN message every time a deprecated path is called, indicating the new path that should be used instead.<div style="margin-top: 6px"></div>You can set property <strong><code>SUPPORT_DEPRECATED_API=false</code></strong> in <code>.env</code> configuration file at OpenVidu Server installation path (by default <code>/opt/openvidu</code>) to stop allowing the use of old paths. This way you can test your migration whenever you are ready. Old path support will be removed in a future release of OpenVidu, so we recommend developers to migrate to the new REST API paths ASAP. If you are using <a href="reference-docs/openvidu-java-client/" target="_blank">OpenVidu Java Client</a> or <a href="reference-docs/openvidu-node-client/" target="_blank">OpenVidu Node Client</a> instead, updating to version 2.16.0 is enough.
-</div>
-</div>
-
 You have full control over OpenVidu Server through its REST API. All of the REST API operations exposed by OpenVidu Server...
 
 - Share the same base path `/openvidu/api/`
