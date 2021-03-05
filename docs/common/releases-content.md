@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.17.0](#2170)
 - [2.16.0](#2160)
 - [2.15.0](#2150)
 - [2.14.0](#2140)
@@ -19,6 +20,205 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.17.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.17.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.17.0/deployment/deploying-aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.17.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.17.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.17.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.17.1</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.17.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.16.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Scalable COMPOSED recordings (OpenVidu Pro)
+
+OpenVidu Pro has always been focused on offering scalability features upon OpenVidu CE, and there was still one very important limitation: [COMPOSED recordings](https://docs.openvidu.io/en/2.17.0/advanced-features/recording/#composed-recording){:target="_blank"} were not scalable, as they were being performed in the **OpenVidu Server Pro Node**. Until today: from 2.17.0, recording modules will be launched in **Media Nodes**. Since Media Nodes are infinitely scalable, the limit of simultaneous COMPOSED recordings has been effectively eliminated, and the load on your OpenVidu Server Pro node should remain much lower and stable. This is great news!
+
+<br>
+
+##### Force the video codec in OpenVidu Sessions
+
+Until now OpenVidu always honored the preferred video codec requested by each client. This had a very important consequence: whenever 2 clients negotiated 2 different codecs, OpenVidu had to perform transcoding between them, which resulted in much more intensive CPU usage and poorer media quality. With 2.17.0 codecs are managed in a much better way:
+
+- First of all, OpenVidu automatically sets **VP8** video codec to be used by all clients by default, as this is the most widespread video codec among all types of clients. This definitely improves the overall performance of the platform, avoiding useless transcodings when clients has different orders of preference in their list of supported codecs (for example, this was the case between Chrome and Firefox).
+- But you can also set H264 as the default video codec, or leave the previous behavior if your use case may benefit of it. And you can configure this as the default setup for all of your OpenVidu Pro cluster, or even **session by session**.
+
+Improving the performance and compatibility of your OpenVidu app has never been easier!
+
+<br>
+
+##### New `signalSent` event
+
+This has been a very requested feature. You can now receive in your backend side all the [signals](https://docs.openvidu.io/en/2.17.0/cheatsheet/send-messages/){:target="_blank"} sent to your OpenVidu Sessions. They will be received by your WebHook and registered in your CDR. Take a look at this new useful event [here](https://docs.openvidu.io/en/2.17.0/reference-docs/openvidu-server-cdr/#signalsent){:target="_blank"}.
+
+<br>
+
+##### Microsoft Edge now supports screen sharing
+
+Just as it sounds. Now Microsoft's browser is also able to screen share in OpenVidu!
+
+<br>
+
+##### Choose the instance type when launching new Media Nodes on AWS (OpenVidu Pro)
+
+When [deploying OpenVidu Pro on AWS](https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/aws/){:target="_blank"} now you are not forced to set a default size for all your Media Node. Simply indicate the EC2 instance type that you want as a parameter in the operation to [add a new Media Node](https://docs.openvidu.io/en/2.17.0/reference-docs/REST-API/#post-openviduapimedia-nodes){:target="_blank"}:
+
+```
+curl -u OPENVIDUAPP:YOUR_SECRET \
+  --request POST  \
+  --header "Content-Type: application/json" \
+  --data '{"instanceType":"c5.2xlarge","volume":200}' \
+https://your-openvidu-ip/openvidu/api/media-nodes
+```
+
+<br>
+
+##### More powerful S3 recording upload (OpenVidu Pro)
+
+There is a new configuration property `OPENVIDU_PRO_AWS_S3_HEADERS` that allows defining any HTTP header value that the internal S3 client may require to upload recordings to the bucket. The internal S3 client also better manages expired credentials and tries to automatically renew them if necessary. Check out S3 recording upload [here](https://docs.openvidu.io/en/2.17.0/advanced-features/recording/#uploading-recordings-to-aws-s3){:target="_blank"}.
+
+<br>
+
+##### Programmatic restart of OpenVidu Pro greatly speeded up (OpenVidu Pro)
+
+The REST operation to [restart OpenVidu Pro](https://docs.openvidu.io/en/2.17.0/reference-docs/REST-API/#post-openviduapirestart){:target="_blank"} and apply new configurations is now much quicker. Internal improvements have accelerated the process by several seconds.
+
+<br>
+
+##### OpenVidu Pro monitoring completely revamped (OpenVidu Pro)
+
+There is now more information and better displayed in Kibana. This includes things like:
+
+- New low-level metrics registered at application level such as number of petitions, number of threads, number of HTTP errors…
+- Better WebRTC debugging events for Kibana with SDP and munging information.
+- New high-level events relating OpenVidu entities to performance over time, such as number of sessions, participants, streams and recordings.
+
+Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvidu-pro/monitoring-elastic-stack/){:target="_blank"} of the documentation.
+
+
+#### BUG FIXES
+
+- _OpenVidu Pro_ : fixed [NetworkQuality API](https://docs.openvidu.io/en/2.17.0/advanced-features/network-quality/){:target="_blank"} exception when applied to mirrored publishers-
+- _openvidu-java-client / openvidu-node-client_ : [RecordingProperty](){:target="_blank"} `shmSize` wasn't being properly sent. Now it is.
+- _openvidu-node-client_ : server side data could sometimes remain undefined. This is now fixed.
+- _openvidu-node-client_ : new [ConnectionProperties](https://docs.openvidu.io/en/2.17.0/api/openvidu-node-client/interfaces/connectionproperties.html){:target="_blank"} attributes from release 2.16.0 were not being sent to openvidu-server when calling `Session.createConnection`. This affected the creation of IPCAM connections when using the Node SDK. This is now fixed.
+- _openvidu-browser_: the newest version of Microsoft Edge wasn't supported in desktop platforms and Android. Now it is.
+- _openvidu-browser_: better error description when trying to publish more than one Publisher for the same Connection at the same time.
+- _COMPOSED recordings_: possible concurrent exception fixed. This could affect sessions with multiple recordings starting at once.
+
+#### BREAKING CHANGES
+
+- OpenVidu Pro Elasticsearch event [`monitoringStats`](https://docs.openvidu.io/en/2.16.0/openvidu-pro/monitoring-elastic-stack/#creating-your-own-visualizations-and-dashboards){:target="_blank"} no longer exists. New Metricbeat event instead. This unifies the monitoring metrics collected from all nodes in the cluster.
+- Old Elasticsearch data won't be compatible with 2.17.0.
+
+<br>
 
 ---
 

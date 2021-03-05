@@ -48,7 +48,7 @@ exit
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.16.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.17.0
 ```
 
 5) Install NPM dependencies of frontend:
@@ -103,7 +103,7 @@ Without going into greater detail, the backend has [one controller](https://gith
 
 **1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-As the [deployment docs says](https://docs.openvidu.io/en/2.16.0/deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
+As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker){:target="_blank"}, to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
 
 This is how should looks like the `docker-compose-override.yml` after be redefined:
 
@@ -112,7 +112,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom:2.16.0
+        image: openvidu/openvidu-classroom:2.17.0
         restart: on-failure
         network_mode: host
         environment:
@@ -146,7 +146,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom-demo:2.16.0
+        image: openvidu/openvidu-classroom-demo:2.17.0
         restart: on-failure
         network_mode: host
         environment:

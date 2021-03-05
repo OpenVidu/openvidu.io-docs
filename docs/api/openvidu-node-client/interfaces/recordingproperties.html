@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>RecordingProperties | OpenVidu Node Client - v2.16.0</title>
-	<meta name="description" content="Documentation for OpenVidu Node Client - v2.16.0">
+	<title>RecordingProperties | OpenVidu Node Client - v2.17.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.17.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.16.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.17.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -87,10 +87,12 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#customlayout" class="tsd-kind-icon">custom<wbr>Layout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#hasaudio" class="tsd-kind-icon">has<wbr>Audio</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#hasvideo" class="tsd-kind-icon">has<wbr>Video</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#medianode" class="tsd-kind-icon">media<wbr>Node</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#outputmode" class="tsd-kind-icon">output<wbr>Mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#recordinglayout" class="tsd-kind-icon">recording<wbr>Layout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#resolution" class="tsd-kind-icon">resolution</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="recordingproperties.html#shmsize" class="tsd-kind-icon">shm<wbr>Size</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,14 +106,14 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L49">RecordingProperties.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L49">RecordingProperties.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The relative path to the specific custom layout you want to use.<br>
 								Will only have effect if <a href="recordingproperties.html#outputmode">RecordingProperties.outputMode</a> is <code>COMPOSED</code> (or <code>COMPOSED_QUICK_START</code>) and <a href="recordingproperties.html#recordinglayout">RecordingProperties.recordingLayout</a> is <code>CUSTOM</code><br>
-							See <a href="/en/2.16.0/advanced-features/recording#custom-recording-layouts">Custom recording layouts</a> to learn more</p>
+							See <a href="/en/2.17.0/advanced-features/recording#custom-recording-layouts">Custom recording layouts</a> to learn more</p>
 						</div>
 					</div>
 				</section>
@@ -121,7 +123,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Audio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L64">RecordingProperties.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L64">RecordingProperties.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -136,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Video<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L69">RecordingProperties.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L69">RecordingProperties.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -146,12 +148,40 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="medianode" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> media<wbr>Node</h3>
+					<div class="tsd-signature tsd-kind-icon">media<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L84">RecordingProperties.ts:84</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
+						</div>
+						<p>The Media Node where to host the recording. The default option if this property is not defined is the same
+						Media Node hosting the Session to record. This object defines the following properties as Media Node selector:</p>
+						<ul>
+							<li><code>id</code>: Media Node unique identifier</li>
+						</ul>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="name" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L31">RecordingProperties.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L31">RecordingProperties.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -168,7 +198,7 @@
 					<div class="tsd-signature tsd-kind-icon">output<wbr>Mode<span class="tsd-signature-symbol">:</span> <a href="../enums/recording.outputmode.html" class="tsd-signature-type">OutputMode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L36">RecordingProperties.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L36">RecordingProperties.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -183,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">recording<wbr>Layout<span class="tsd-signature-symbol">:</span> <a href="../enums/recordinglayout.html" class="tsd-signature-type">RecordingLayout</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L42">RecordingProperties.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L42">RecordingProperties.ts:42</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -199,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">resolution<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/f695a13c/openvidu-node-client/src/RecordingProperties.ts#L59">RecordingProperties.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L59">RecordingProperties.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -210,6 +240,22 @@
 								is set to <a href="../enums/recording.outputmode.html#composed">Recording.OutputMode.COMPOSED</a> or <a href="../enums/recording.outputmode.html#composed_quick_start">Recording.OutputMode.COMPOSED_QUICK_START</a>.
 								For <a href="../enums/recording.outputmode.html#individual">Recording.OutputMode.INDIVIDUAL</a> all
 							individual video files will have the native resolution of the published stream</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="shmsize" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> shm<wbr>Size</h3>
+					<div class="tsd-signature tsd-kind-icon">shm<wbr>Size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/RecordingProperties.ts#L75">RecordingProperties.ts:75</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>If COMPOSED recording, the amount of shared memory reserved for the recording process in bytes.
+							Minimum 134217728 (128MB). Property ignored if INDIVIDUAL recording. Default to 536870912 (512 MB)</p>
 						</div>
 					</div>
 				</section>
@@ -239,6 +285,9 @@
 					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/recordingmode.html" class="tsd-kind-icon">Recording<wbr>Mode</a>
+					</li>
+					<li class=" tsd-kind-enum">
+						<a href="../enums/videocodec.html" class="tsd-kind-icon">Video<wbr>Codec</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/connection.html" class="tsd-kind-icon">Connection</a>
@@ -273,6 +322,9 @@
 								<a href="recordingproperties.html#hasvideo" class="tsd-kind-icon">has<wbr>Video</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="recordingproperties.html#medianode" class="tsd-kind-icon">media<wbr>Node</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="recordingproperties.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
@@ -283,6 +335,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="recordingproperties.html#resolution" class="tsd-kind-icon">resolution</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="recordingproperties.html#shmsize" class="tsd-kind-icon">shm<wbr>Size</a>
 							</li>
 						</ul>
 					</li>
