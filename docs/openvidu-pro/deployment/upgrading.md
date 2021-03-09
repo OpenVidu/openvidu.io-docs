@@ -129,7 +129,7 @@ You can also add Media Nodes from inspector
 automatically to all the media nodes configured in "KMS_URIS"
 ```
 
->  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration file in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](/openvidu-pro/deployment/on-premises/#32-configuration)
+>  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration file in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](openvidu-pro/deployment/on-premises/#32-configuration)
 
 <div></div>
 
@@ -229,7 +229,7 @@ You can also add Media Nodes from inspector
 automatically to all the media nodes configured in "KMS_URIS"
 ```
 
->  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration file in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](/openvidu-pro/deployment/on-premises/#32-configuration)
+>  **WARNING**: This media node will not have any configuration in `/opt/kms/.env`. All configuration parameters of Kurento Media Server are defined in OpenVidu Server Pro Node using the configuration file in `/opt/openvidu/.env`. You can check more info about how to configure Media Nodes [here](openvidu-pro/deployment/on-premises/#32-configuration)
 
 <div></div>
 
