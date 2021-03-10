@@ -15,6 +15,7 @@
     - [Sample custom layout](#sample-custom-layout)
 - **[Uploading recordings to AWS S3](#uploading-recordings-to-aws-s3)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
+- **[Troubleshooting](#troubleshooting)**
 
 ---
 <br>
@@ -1143,6 +1144,37 @@ There is a complete description of these properties at [OpenVidu Pro configurati
 # Local recording in the browser
 
 OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
+
+<br>
+
+---
+
+# Troubleshooting
+
+#### The video files of COMPOSED or COMPOSED_QUICK_START recordings are showing an error message
+
+If the resulting video file of a COMPOSED or COMPOSED_QUICK_START recording with video (not audio-only) is a blank page showing an error message, then it is very likely that your host does not support hairpinning. Hairpinning is the ability of a host to access one of its own internal services using its own public domain/IP.
+
+COMPOSED and COMPOSED_QUICK_START  recordings with video uses a special module that connects to the recorded session using the public domain of your OpenVidu deployment. This is only true if you are **not** using an [external custom layout](#using-an-external-custom-layout). This means:
+
+- For OpenVidu CE and its single-node environment, this means that the recording module is not able to connect to OpenVidu Server from inside the same machine.
+- For OpenVidu PRO and its multi-node environment, this means that Media Nodes are not able to reach OpenVidu Server Pro Node using its public IP (the recording module is hosted in the Media Nodes).
+
+There are 2 possible solutions to this problem:
+
+1. **RECOMMENDED ONE**: change your firewall/proxy/security to allow hairpinning from the affected host.
+2. **HACKY ONE**: allow the recording module to connect to the session using the internal private IP of the OpenVidu host. To do so set [configuration property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_COMPOSED_URL` to a specific value.
+
+     - For OpenVidu CE: `https://HOST:PORT/dashboard` being `HOST` the internal IP of the host and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
+    - For OpenVidu PRO: `https://HOST:PORT/inspector` being `HOST` the internal IP of the OpenVidu Server Pro Node and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
+
+#### Enable debug mode of COMPOSED or COMPOSED_QUICK_START recordings
+
+COMPOSED and COMPOSED_QUICK_START recordings with video (not audio-only) use a special module that can be initialized in a debug mode that will log much more information. Set [configuration property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_DEBUG` to true to enable the recording debug mode.
+
+#### First time launching a COMPOSED or COMPOSED_QUICK_START recording is taking too long or throwing an error
+
+There is a known bug affecting the first time a COMPOSED or COMPOSED_QUICK_START recording is launched that may prevent the recording process to properly start. After the error is received, second attempt should work just fine. Take into account that for OpenVidu Pro, this may happen for every new Media Node hosting a COMPOSED or COMPOSED_QUICK_START recording for the first time.
 
 <br>
 
