@@ -16,7 +16,7 @@ The following desktop platforms support screen sharing (mobile platforms do not 
 - **Opera**
 - **Firefox**
 - **Safari >= 13.0**
-- **Edge >= 80.0**
+- **Microsoft Edge >= 80.0**
 - **Electron apps**
 
 ### Chrome, Opera, Firefox, Safari, Edge

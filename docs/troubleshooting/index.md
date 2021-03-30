@@ -271,11 +271,13 @@ OpenVidu supports a wide range of platforms:
 <br>
 ##### Mobile native applications
 
-Both Android and iOS are supported:
+Both Android and iOS are supported with hybrid frameworks:
 
-- Since release **2.7.0** through **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
+- **[Ionic](https://ionicframework.com/){:target="_blank"}**. You can try [openvidu-ionic](tutorials/openvidu-ionic/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application compatible working in minutes.
 
-- Since release **2.10.0** through **[React Native](https://facebook.github.io/react-native/){:target="_blank"}**. You can try [openvidu-react-native](tutorials/openvidu-react-native/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application working in minutes.
+- **[React Native](https://facebook.github.io/react-native/){:target="_blank"}**. You can try [openvidu-react-native](tutorials/openvidu-react-native/){:target="_blank"} tutorial and you will have an OpenVidu native mobile application working in minutes.
+
+- There are also available sample native applications for both Android and iOS, but as there are no official OpenVidu SDKs for Android or iOS yet, these applications implement OpenVidu protocol on their own. The openvidu-browser API is not compatible with these applications. You can learn more about them here: [Android](tutorials/openvidu-android/){:target="_blank"}, [iOS](tutorials/openvidu-ios/){:target="_blank"}
 
 <br>
 ##### Desktop native applications
