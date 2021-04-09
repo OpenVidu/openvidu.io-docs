@@ -233,6 +233,7 @@ Logs and metrics indexes are:
   - **filebeat-openvidu-recording***: Logs of [COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} recordings.
   - **filebeat-nginx***: Logs of Nginx container.
   - **openvidu-logs***: Logs of OpenVidu Server Pro.
+  - **openvidu-browser-logs***: Logs of clients/browsers using openvidu-browser related with OpenVidu itself. These are only sent if `OPENVIDU_BROWSER_LOGS=debug` in `/opt/openvidu/.env`file ([More info](reference-docs/openvidu-config/)). 
   - **metricbeat-***: Metrics sent by all the nodes of the OpenVidu Pro Cluster.
 
 Logs and metrics sent by **Filebeat** and **Metricbeat** include some properties to distinguish the origin of the data, in addition to the ECS attributes. These properties are present in all
@@ -807,7 +808,7 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 ---
 
-## Reviewing logs
+## Reviewing logs with Kibana
 
 Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. To search for logs you need to:
 
@@ -822,7 +823,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
     </div>
 </div>
 
-### Searching examples
+### Examples
 
 - Search for Kurento Media Server logs:
 
@@ -856,6 +857,26 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 </div>
 
 <br>
+
+---
+
+## Reviewing logs and metrics using OpenVidu Inspector
+
+Searching logs in Kibana can be a little bit complicated when you want to debug specific logs for specific sessions. We offer you an easy way to search for these logs using the [OpenVidu Inspector](openvidu-pro/openvidu-inspector/).
+You just need to:
+
+<div class="row">
+    <div class="pro-gallery-steps-elkaws" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro13" data-caption="Go to the history section." href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-1.png"/></a>
+        <a data-fancybox="gallery-pro13" data-caption="Select the session you want to debug." href="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"/></a>
+        <a data-fancybox="gallery-pro13" data-caption="Choose what logs you want to review." href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions-elkaws">
+      <div class="caption"><p>Go to the section <strong>History</strong> section of <strong>OpenVidu Inspector</strong>.</p></div>
+      <div class="caption"><p>Select the session you want to debug.</p></div>
+      <div class="caption"><p>Choose what logs you want to review.</p></div>
+    </div>
+</div>
 
 ---
 
