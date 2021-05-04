@@ -75,10 +75,11 @@ You can download Android Studio [here](https://developer.android.com/studio/inde
 
 After we have set up Android Studio we must continue with the following commands:
 
-**1)** Clone the repo
+**1)** Clone the repo and checkout current tag version
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git checkout v2.17.0
 ```
 
 **2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_
