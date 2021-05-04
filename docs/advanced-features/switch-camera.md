@@ -11,10 +11,17 @@ You can use method [Publisher.replaceTrack](api/openvidu-browser/classes/publish
 ```javascript
 // 'myPublisher' a Publisher object obtained through 'OpenVidu.initPublisher()' method
 // 'myTrack' a MediaStreamTrack object
+// 'properties' a PublisherProperties object https://docs.openvidu.io/en/stable/api/openvidu-browser/interfaces/publisherproperties.html
 
+var mediaStream = await this.OV.getUserMedia(properties);
+
+// Getting the video track from mediaStream
+var myTrack = mediaStream.getVideoTracks()[0];
+
+// Replacing video track
 myPublisher.replaceTrack(myTrack)
-    .then(() => console.log('New track is being published'))
-    .catch(error => console.error('Error replacing track'));
+    .then(() => console.log('New track has been published'))
+    .catch(error => console.error('Error replacing track', error));
 ```
 
 You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} method.
