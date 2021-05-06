@@ -49,7 +49,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.16.0
 ```
 
 2) You will need [NPM](https://www.npmjs.com/get-npm){:target="_blank"} to serve the React frontend. Once you have npm installed, you can run the tutorial.

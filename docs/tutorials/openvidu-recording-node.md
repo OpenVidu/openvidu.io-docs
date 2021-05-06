@@ -30,7 +30,7 @@ Plase visit [https://nodejs.org/](https://nodejs.org/){:target="_blank"} to inst
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.16.0
 ```
 
 3) Run the tutorial:
