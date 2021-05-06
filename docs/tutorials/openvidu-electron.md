@@ -19,20 +19,20 @@ OpenVidu is composed by the three modules displayed on the image above.
 
 ## Running this tutorial
 
-1) You will need **Node** and **NPM**. Install them with the following commands
+1) You will need **Node** and **NPM**. Install them with the following commands:
 
 ```bash
 sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
-2) Clone the repo
+2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
 ```
 
-3) Install dependencies and run the tutorial
+3) Install dependencies and run the tutorial:
 
 ```bash
 cd openvidu-tutorials/openvidu-electron
