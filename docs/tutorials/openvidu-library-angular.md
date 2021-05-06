@@ -9,7 +9,7 @@ OpenVidu Library Angular is one of the simplest and quickest tutorials, develope
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
 ```
 
 2) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can install it with the following command:

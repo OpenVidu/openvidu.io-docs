@@ -29,7 +29,7 @@ sudo apt-get install -y maven
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
 ```
 
 3) Run the tutorial:

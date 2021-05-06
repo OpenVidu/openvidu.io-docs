@@ -9,7 +9,7 @@ OpenVidu Library React is one of the simplest and quickest tutorials to add vide
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
 ```
 
 2) Run the tutorial:

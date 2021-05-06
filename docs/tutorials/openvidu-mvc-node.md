@@ -21,7 +21,7 @@ OpenVidu is composed by the modules displayed on the image above.
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
 ```
 
 1) You will need _node_ to execute the app. You can install them with:
