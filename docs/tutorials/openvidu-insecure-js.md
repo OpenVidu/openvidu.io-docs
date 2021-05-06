@@ -46,7 +46,7 @@ background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; ver
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.15.0
 ```
 
 2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:

@@ -31,7 +31,7 @@ sudo npm install -g cordova@latest
 **2)** Clone the repo
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.15.0
 ```
 
 **3)** Install dependencies

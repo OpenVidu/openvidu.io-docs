@@ -78,7 +78,7 @@ After we have set up Android Studio we must continue with the following commands
 **1)** Clone the repo
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.15.0
 ```
 
 **2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_

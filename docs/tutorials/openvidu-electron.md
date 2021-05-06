@@ -29,7 +29,7 @@ sudo apt-get install -y nodejs
 2) Clone the repo
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.15.0
 ```
 
 3) Install dependencies and run the tutorial

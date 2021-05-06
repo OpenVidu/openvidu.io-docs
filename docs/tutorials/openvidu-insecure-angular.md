@@ -49,7 +49,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.15.0
 ```
 
 2) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can install it with the following command:
