@@ -160,6 +160,11 @@ session.on('streamDestroyed', event => {
 	// Delete the HTML element with the user's nickname. HTML videos are automatically removed from DOM
 	removeUserData(event.stream.connection);
 });
+
+// On every asynchronous exception...
+session.on('exception', (exception) => {
+	console.warn(exception);
+});
 ```
 
 Here we subscribe to the events that interest us. In this case, we want to receive all videos published to the session, as well as displaying every user's nickname next to its video. To achieve this:
@@ -169,6 +174,8 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 - `videoElementCreated`: event triggered by Subscriber object (returned by the previous `Session.subscribe` method). This allows us to add the participant nickname to the new video previously added in `streamCreated` event. Auxiliary method `appendUserData` is responsible for appending a new paragraph element just below the `event.element` video, containing `subscriber.stream.connection.data` field. In this case, this field contains the user's nickName. You can see how to feed this property from the client in a later step.
 
 - `streamDestroyed`: for each Stream that has been destroyed (which means a user has left the video-call), we remove the element with the user's nickname that we added in the previous event with the auxiliary method `removeUserData` (`appendUserData` method created the element with an _id_ containing `event.stream.connection.connectionId` unique value, so we can now identify the right element to be removed). OpenVidu automatically deletes the proper video element by default, so we don't need to do anything else.
+
+- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
 
 > Check [Application specific methods](#application-specific-methods) section to see all the auxiliary methods used in this app
 

@@ -317,6 +317,11 @@ this.session.on('streamDestroyed', (event: StreamEvent) => {
     // Remove the stream from 'subscribers' array
     this.deleteSubscriber(event.stream.streamManager);
 });
+
+// On every asynchronous exception...
+this.session.on('exception', (exception) => {
+    console.warn(exception);
+});
 ```
 
 As we are using Ionic and Angular framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be our *UserVideoComponent*. To do this, we need to store each new Subscriber we received in array `subscribers` (of its parent class `StreamManager`), and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
@@ -330,6 +335,8 @@ As we are using Ionic and Angular framework, a good approach for managing the re
         </ion-col>
 
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so Angular will automatically delete the required UserVideoComponent from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
+
+- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
 
 ---
 

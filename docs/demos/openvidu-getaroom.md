@@ -173,6 +173,11 @@ function joinRoom() {
 		updateLayout();
 	});
 
+	// On every asynchronous exception...
+	session.on('exception', (exception) => {
+		console.warn(exception);
+	});
+
 
 	// --- 4) Connect to the session with a valid user token ---
 

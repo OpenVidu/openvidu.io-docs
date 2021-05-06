@@ -160,6 +160,10 @@ $(document).ready(() => {
         session.on('streamCreated', (e) => {
             console.log("streamCreated", e);
         });
+
+        session.on('exception', (exception) => {
+            console.warn(exception);
+        });
         ...
     });
 

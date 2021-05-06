@@ -181,6 +181,11 @@ mySession.on('streamDestroyed', (event) => {
     this.deleteSubscriber(event.stream.streamManager);
 });
 
+// On every asynchronous exception...
+mySession.on('exception', (exception) => {
+    console.warn(exception);
+});
+
 // See next step
 ```
 
@@ -195,6 +200,8 @@ Here we subscribe to the Session events that interest us. As we are using React 
         ))}
 
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so React will automatically delete the required UserVideoComponent from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
+
+- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
 
 ---
 
