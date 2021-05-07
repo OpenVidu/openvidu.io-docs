@@ -293,7 +293,7 @@ Here we subscribe to the Session events that interest us. As we are using React 
 
 - `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM does not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We assign the *MediaStream* URL to the *streamURL* RTCView property.
 
-- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
+- `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
 ```
 {this.state.subscribers.map((item, index) => {

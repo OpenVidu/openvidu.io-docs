@@ -187,7 +187,7 @@ As we are using Vue framework, a good approach for managing the remote media str
 
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so Vue will automatically delete the required UserVideo from HTML. Each Stream object has a property `streamManager` that indicates which Subscriber or Publisher owns it (in the same way, each StreamManager object also has a reference to its Stream).
 
-- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
+- `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
 ---
 

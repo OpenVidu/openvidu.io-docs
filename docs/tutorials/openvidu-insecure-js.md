@@ -175,7 +175,7 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 - `streamDestroyed`: for each Stream that has been destroyed (which means a user has left the video-call), we remove the element with the user's nickname that we added in the previous event with the auxiliary method `removeUserData` (`appendUserData` method created the element with an _id_ containing `event.stream.connection.connectionId` unique value, so we can now identify the right element to be removed). OpenVidu automatically deletes the proper video element by default, so we don't need to do anything else.
 
-- `exception`: event triggered by Session object when an unexpected error on the server-side occurs processing an ICE candidate generated and sent by the client-side.
+- `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
 > Check [Application specific methods](#application-specific-methods) section to see all the auxiliary methods used in this app
 
