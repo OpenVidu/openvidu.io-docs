@@ -4,6 +4,9 @@
 This is the simplest demo you can try to get started with OpenVidu API. It has the minimum set of features to make a group video-call. You will only need a few minutes to get your first application working!
 
 ## Running this tutorial
+<br>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/5Eu8bLusNGI" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<br>
 
 1) Clone the repo:
 

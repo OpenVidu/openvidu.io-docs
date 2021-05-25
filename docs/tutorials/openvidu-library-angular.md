@@ -5,17 +5,20 @@
 OpenVidu Library Angular is one of the simplest and quickest tutorials, developed in **Angular 9**, to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-angular_ library.
 
 ## Running this tutorial
+<br>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/YsX1yfc3a-w" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<br>
 
-1) Clone the repo:
+1) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can check it with the following command:
+
+```bash
+npm -v
+ng v
+```
+2) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
-```
-
-2) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can install it with the following command:
-
-```bash
-npm install -g @angular/cli@latest
 ```
 
 3) Run the tutorial:

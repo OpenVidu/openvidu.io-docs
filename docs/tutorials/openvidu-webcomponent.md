@@ -5,6 +5,9 @@ OpenVidu Web Component is the simplest and quickest way to add videoconference c
 With just a few lines of code you will have your first video call working!
 
 ## Running this tutorial
+<br>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/t8RhZUOraCQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ?rel=0 ></iframe></center>
+<br>
 
 1) Clone the repo:
 

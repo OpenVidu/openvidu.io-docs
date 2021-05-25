@@ -17,17 +17,19 @@ OpenVidu is composed by the modules displayed on the image above.
 - **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
+<br>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/_AF0wv81yYU" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<br>
 
-1) Clone the repo:
+1) You will need _maven_ to build the project. You can check it with:
+
+```bash
+mvn -v
+```
+2) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
-```
-
-2) You will need _maven_ to build the project. You can install it with:
-
-```bash
-sudo apt-get install maven
 ```
 
 3) Run the tutorial:

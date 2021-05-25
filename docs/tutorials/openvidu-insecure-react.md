@@ -45,6 +45,9 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 </div>
 
 ## Running this tutorial
+<br>
+<center><iframe width="560" height="315" src="https://www.youtube.com/embed/ERvruMNtEcc" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<br>
 
 1) Clone the repo:
 
@@ -69,7 +72,7 @@ npm start
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.17.0
 ```
 
-5) Go to _[`http://localhost:3000`](http://localhost:3000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+4) Go to _[`http://localhost:3000`](http://localhost:3000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
