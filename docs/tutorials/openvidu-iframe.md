@@ -5,7 +5,7 @@ This is a simple demo where you can embed an OpenVidu application inside of an i
 
 ## Running this tutorial
 <br>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/_GieJZtrQHI" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/_GieJZtrQHI?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) Clone the repo:

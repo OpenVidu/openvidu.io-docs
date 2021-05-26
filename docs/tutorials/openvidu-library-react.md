@@ -6,7 +6,7 @@ OpenVidu Library React is one of the simplest and quickest tutorials to add vide
 
 ## Running this tutorial
 <br>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/ni3FjkVE_0I" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/ni3FjkVE_0I?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) Clone the repo:

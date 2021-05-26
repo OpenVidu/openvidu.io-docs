@@ -18,7 +18,7 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ## Running this tutorial
 <br>
-<center>><iframe width="560" height="315" src="https://www.youtube.com/embed/-DZCqObTiCA" title="YouTube video player" ?rel=0 frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/-DZCqObTiCA?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) You will need _maven_ to build the project. You can check it with:

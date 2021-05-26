@@ -18,7 +18,7 @@ OpenVidu is composed by the modules displayed on the image above.
 
 ## Running this tutorial
 <br>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/0Fth4f98xTM" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/0Fth4f98xTM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) You will need _node_ to execute the app. You can check them with:

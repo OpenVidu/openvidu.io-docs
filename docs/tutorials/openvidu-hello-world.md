@@ -5,7 +5,7 @@ This is the simplest demo you can try to get started with OpenVidu API. It has t
 
 ## Running this tutorial
 <br>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/5Eu8bLusNGI" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/5Eu8bLusNGI?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) Clone the repo:

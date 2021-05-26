@@ -46,7 +46,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 
 ## Running this tutorial
 <br>
-<center><iframe width="560" height="315" src="https://www.youtube.com/embed/ERvruMNtEcc" title="YouTube video player" frameborder="0" ?rel=0 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></center>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/ERvruMNtEcc?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <br>
 
 1) Clone the repo:
