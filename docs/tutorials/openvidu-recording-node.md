@@ -17,13 +17,15 @@ OpenVidu is composed by the modules displayed on the image above.
 - **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
+<br>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/MzfysRkkq0Q?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
 
-1) You will need node and NPM execute the app. You can install them with in ubuntu with the following commands:
+1) You will need node and NPM execute the app. You can check them with in ubuntu with the following commands:
 
 ```bash
-sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt-get install -y nodejs
+node -v
+npm -v
 ```
 Plase visit [https://nodejs.org/](https://nodejs.org/){:target="_blank"} to install it on other platforms.
 

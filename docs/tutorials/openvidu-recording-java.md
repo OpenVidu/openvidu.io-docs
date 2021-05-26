@@ -18,12 +18,14 @@ OpenVidu is composed by the modules displayed on the image above.
 - **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
+<br>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/swJ2T8z3bd8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
 
-1) You will need **_Java 8 SKD_**  and **_maven_** to build this project. You can install them with:
+1) You will need **_Java 8 SKD_**  and **_maven_** to build this project. You can check them with:
 
 ```bash
-sudo apt-get install -y openjdk-8-jdk
-sudo apt-get install -y maven
+mvn -v
 ```
 
 2) Clone the repo:

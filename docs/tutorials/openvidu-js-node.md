@@ -17,18 +17,20 @@ OpenVidu is composed by the modules displayed on the image above.
 - **Kurento Media Server**: handles low level operations of media flow transmissions
 
 ## Running this tutorial
+<br>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/0Fth4f98xTM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
 
-1) Clone the repo:
+1) You will need _node_ to execute the app. You can check them with:
+
+```bash
+node -v
+```
+
+2) Clone the repo:
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
-```
-
-2) You will need _node_ to execute the app. You can install them with:
-
-```bash
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt-get install -y nodejs
 ```
 
 3) Run the tutorial with the following commands. They will install the NPM dependencies and will execute `server.js` server passing two arguments: "localhost:4443" as the URL where _openvidu-server_ will be listening and "MY_SECRET" as the secret share with it:

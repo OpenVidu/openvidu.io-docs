@@ -18,12 +18,15 @@ OpenVidu is composed by the three modules displayed on the image above.
 - **Kurento Media Server**: server that handles low level operations of media flow transmissions
 
 ## Running this tutorial
+<br>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/Hq_5wmCpDjY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
 
-1) You will need **Node** and **NPM**. Install them with the following commands:
+1) You will need **Node** and **NPM**. Check them with the following commands:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-sudo apt-get install -y nodejs
+npm -v
+node -v
 ```
 
 2) Clone the repo:
