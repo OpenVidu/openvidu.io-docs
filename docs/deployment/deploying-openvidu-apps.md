@@ -2,7 +2,7 @@
 <hr>
 
 - **[OpenVidu Call application installed by default](#openvidu-call-application-installed-by-default)**
-- **[Deploy other OpenVidu based application](#openvidu-for-production-on-aws)**
+- **[Deploy other OpenVidu based application](#deploy-other-openvidu-based-application)**
 
 ---
 

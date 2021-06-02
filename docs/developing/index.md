@@ -303,7 +303,7 @@ Run exactly the same commands as in the previous section, but:
 
 1. On step **5)** extend `ng serve` command with:
 
-        ng serve --host 0.0.0.0 --ssl true
+        ng serve --host 0.0.0.0 --ssl
 
 2. On step **6)** extend `mvn exec:java` command with:
 

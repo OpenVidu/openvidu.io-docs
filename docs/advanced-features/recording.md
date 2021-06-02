@@ -104,11 +104,11 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-1. Initialize your sessions with this POST method: [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending params such as `defaultOutputMode` or `defaultRecordingLayout`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+1. Initialize your sessions with this POST method: [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}<br>You may configure default values for recordings started for this session by sending parameter `defaultRecordingProperties`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
 
 2. If you have configured your session with `"recordingMode": "MANUAL"`
 
-    - Start the recording with this POST method: [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"}<br>You can pass parameters to override default recording configuration values set in step 1 and to further configure it with other available options
+    - Start the recording with this POST method: [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"}<br>You can pass parameters to override the default recording properties set in step 1 or to further configure it with other available options.
 
     - Stop the recording with this POST method: [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-openviduapirecordingsstopltrecording_idgt){:target="_blank"}
 
@@ -119,16 +119,20 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 1. Call `OpenVidu.createSession()` passing as an optional parameter a `SessionProperties` object. You may configure default values for recordings started for this session with that object. This way you can pre-configure recordings that will be automatically started (for sessions with `RecordingMode.ALWAYS`)
 
         OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-        SessionProperties properties = new SessionProperties.Builder()
-            .recordingMode(RecordingMode.MANUAL) // RecordingMode.ALWAYS for automatic recording
-            .defaultOutputMode(Recording.OutputMode.INDIVIDUAL)
+        RecordingProperties recordingProperties = new RecordingProperties.Builder()
+            .outputMode(Recording.OutputMode.COMPOSED)
+            .resolution("640x480")
+            .frameRate(24)
             .build();
-        Session session = openVidu.createSession(properties);
+        SessionProperties sessionProperties = new SessionProperties.Builder()
+            .recordingMode(RecordingMode.MANUAL) // RecordingMode.ALWAYS for automatic recording
+            .defaultRecordingProperties(recordingProperties)
+            .build();
+        Session session = openVidu.createSession(sessionProperties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
 
         RecordingProperties properties = new RecordingProperties.Builder()
-            .outputMode(Recording.OutputMode.COMPOSED)
             .name("MY_RECORDING_NAME")
             .build();
         Recording recording = openVidu.startRecording(session.getSessionId(), properties); // Starts recording
@@ -141,19 +145,22 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 1. Call `OpenVidu.createSession()` passing as an optional parameter a `SessionProperties` object. You may configure default values for recordings started for this session with that object. This way you can pre-configure recordings that will be automatically started (for sessions with `RecordingMode.ALWAYS`)
 
         var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-        var properties = {
+        var sessionProperties = {
             recordingMode: RecordingMode.MANUAL, // RecordingMode.ALWAYS for automatic recording
-            defaultOutputMode: Recording.OutputMode.INDIVIDUAL
+            defaultRecordingProperties: {
+                outputMode: Recording.OutputMode.COMPOSED,
+                resolution: "640x480",
+                frameRate: 24
+            }
         };
-        var mySession = openvidu.createSession(properties);
+        var mySession = openvidu.createSession(sessionProperties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 and to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
 
         var recording;
 
         // Starts recording
         openvidu.startRecording(sessionId, {
-            outputMode: Recording.OutputMode.COMPOSED,
             name: "MY_RECORDING_NAME"
         })
           .then(response => recording = response)
@@ -190,7 +197,7 @@ You can use the default layout, that will evenly distribute each stream in the a
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT"}`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-openviduapirecordingsstart){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT", "resolution": "640x480", "frameRate": 24}`
 
 </div>
 
@@ -200,6 +207,8 @@ When starting the recording of a session with method [POST /openvidu/api/recordi
 RecordingProperties properties = new RecordingProperties.Builder()
     .outputMode(Recording.OutputMode.COMPOSED)
     .recordingLayout(RecordingLayout.BEST_FIT)
+    .resolution("640x480")
+    .frameRate(24)
     .build();
 Recording recording = openVidu.startRecording(session.getSessionId(), properties);
 ```
@@ -213,7 +222,9 @@ var recording;
 
 openvidu.startRecording(sessionId, {
     outputMode: Recording.OutputMode.COMPOSED,
-    recordingLayout: RecordingLayout.BEST_FIT
+    recordingLayout: RecordingLayout.BEST_FIT,
+    resolution: "640x480",
+    frameRate: 24
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
@@ -236,7 +247,7 @@ For example, for a session with two publishers the video file will look like thi
 > **Notes on COMPOSED recordings**<br>
 >
 > - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, when using OpenVidu CE it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In OpenVidu Pro, the same applies to the Media Node hosting the recording process. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
-> - You can configure the resolution of the MP4 file for COMPOSED recordings by using `resolution` property when starting the recording<br><br>
+> - You can configure the resolution and frame rate of the MP4 file for COMPOSED recordings by using `resolution` and `frameRate` properties when starting the recording<br><br>
 > - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
 
 <br>
@@ -253,7 +264,7 @@ There is an extra recording output mode which is a variation of [Composed record
 
 When should you consider using this mode? When **response time** starting a composed recording is key in your use case. If you are going to start and stop multiple short composed recordings for the same session over time, then this mode can also be helpful. But take into account that each one of the sessions initialized with this recording mode **will require considerable CPU power in your server** (at least 1 dedicated CPU).
 
-To initialize a Session with this recording output mode, just use **`defaultOutputMode = COMPOSED_QUICK_START`** when [configuring your sessions to be recorded](#2-configure-your-sessions-to-be-recorded):
+To initialize a Session with this recording output mode, just use **`outputMode = COMPOSED_QUICK_START`** when [configuring your sessions to be recorded](#2-configure-your-sessions-to-be-recorded):
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -265,27 +276,32 @@ To initialize a Session with this recording output mode, just use **`defaultOutp
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Initialize your sessions with this POST method [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"} passing `{"defaultOutputMode": "COMPOSED_QUICK_START"}`
+Initialize your sessions with this POST method [POST /openvidu/api/sessions](reference-docs/REST-API#post-openviduapisessions){:target="_blank"} passing `{"defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START"}}`
 
 </div>
 
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
     OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-    SessionProperties properties = new SessionProperties.Builder()
-        .defaultOutputMode(Recording.OutputMode.COMPOSED_QUICK_START)
+    RecordingProperties recordingProperties = new RecordingProperties.Builder()
+        .outputMode(Recording.OutputMode.COMPOSED_QUICK_START)
         .build();
-    Session session = openVidu.createSession(properties);
+    SessionProperties sessionProperties = new SessionProperties.Builder()
+        .defaultRecordingProperties(recordingProperties)
+        .build();
+    Session session = openVidu.createSession(sessionProperties);
 
 </div>
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
     var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
-    var properties = {
-        defaultOutputMode: Recording.OutputMode.COMPOSED_QUICK_START
+    var sessionProperties = {
+        defaultRecordingProperties: {
+            outputMode: Recording.OutputMode.COMPOSED_QUICK_START
+        }
     };
-    var mySession = openvidu.createSession(properties);
+    var mySession = openvidu.createSession(sessionProperties);
 
 </div>
 
@@ -534,7 +550,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 
 In OpenVidu CE all of the streams published to a session being recorded with INDIVIDUAL mode will always be stored to disk. In OpenVidu Pro you have greater control: you can configure in detail which streams are to be recorded, and even activate and deactivate the recording of a specific stream during the very same recording process.
 
-This applies to [INDIVIDUAL](#individual-stream-recording) recording. You can specify the streams that should or shouldn't be recorded in a session when creating the Connection for a participant. The default option when creating a Connection is to record all of the streams published by it. Below there are examples of Connections being created that will make the their published streams NOT to be recorded when recording the session in INDIVIDUAL mode.
+This applies to [INDIVIDUAL](#individual-stream-recording) recording. You can specify the streams that should or shouldn't be recorded in a session when creating the Connection for a participant. The default option when creating a Connection is to record all of the streams published by it. Below there are examples of Connections being created that will make their published streams NOT to be recorded when recording the session in INDIVIDUAL mode.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -696,7 +712,6 @@ openvidu.startRecording(sessionId, {
 > - Recordings configured to not record neither audio nor video will fail to start, returning a status error of 422<br><br>
 > - COMPOSED video-only recordings will generate an MP4 file. COMPOSED audio-only recordings will generate a WEBM file. INDIVIDUAL recordings will always generate a ZIP file containing one WEBM file for each recorded stream<br><br>
 > - Streams published during a video-only recording that are audio-only won't be recorded: they won't be included in the grid layout for COMPOSED recordings and won't generate a WEBM file in INDIVIDUAL recordings. Same for audio-only recordings with video-only streams<br><br>
-> - Recordings started automatically (with recording mode `ALWAYS`) will record both audio and video
 
 <br>
 

@@ -1,7 +1,7 @@
 <h2 id="section-title">Upgrading OpenVidu Pro</h2>
 <hr>
 
-<!--- **[Migrating from 2.14.0 to a higher version](#**-->
+- **[Migrating from 2.17.0 to 2.18.0](#migrating-from-2170-to-2180)**
 - **[Migrating from 2.16.0 to 2.17.0](#migrating-from-2160-to-2170)**
 - **[Migrating from 2.15.1 to 2.16.0](#migrating-from-2151-to-2160)**
 - **[Migrating from 2.14.0 to 2.15.1](#migrating-from-2140-to-2151)**
@@ -35,11 +35,107 @@
     ">
       Be careful when upgrading your version of OpenVidu Pro:
       <ul>
-        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.12.0 to 2.14.0, you must first go through 2.13.0.</li>
+        <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.16.0 to 2.18.0, you must first go through 2.17.0.</li>
         <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
       </ul>
 </div>
 </div>
+
+## Migrating from 2.17.0 to 2.18.0
+
+### Upgrading OpenVidu Server Pro Node
+
+Connect to the OpenVidu Server Pro Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.18.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.18.0
+================================================
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.18.0 services
+
+2. The previous file '.env' remains intact, but a new file '.env-2.18.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.18.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.18.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
+However, if you were using your own application, a file called 'docker-compose.override.yml-2.18.0'
+has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.16.0'
+```
+
+<div></div>
+
+> **Check out the [notes when upgrading OpenVidu Server Pro Node](#notes-when-upgrading-openvidu-server-pro-node)**
+
+### Upgrading Media Node
+
+Connect to the Media Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+
+```bash
+sudo -s
+cd /opt/kms # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.18.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.18.0 
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.18.0 services
+
+2. This new version 2.18.0 does not need any .env file. Everything is configured from OpenVidu Pro
+
+3. Start new version of Media Node
+$ ./media_node start
+
+4. This will run a service at port 3000 which OpenVidu will use to deploy necessary containers.
+Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
+in file located at "/opt/openvidu/.env" with this format:
+    ...
+    KMS_URIS=["ws://<MEDIA_NODE_PRIVATE_IP>:8888/kurento"]
+    ...
+You can also add Media Nodes from inspector
+
+5. Start or restart OpenVidu Pro and all containers will be provisioned
+automatically to all the media nodes configured in "KMS_URIS"
+```
+
+<div></div>
+
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
+
+<br>
+
+---
 
 ## Migrating from 2.16.0 to 2.17.0
 

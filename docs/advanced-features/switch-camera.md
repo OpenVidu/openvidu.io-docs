@@ -72,13 +72,17 @@ function toggleCamera() {
             isFrontCamera = !isFrontCamera;
 
             // Unpublishing the old publisher
-            session.unpublish(publisher);
+            session.unpublish(publisher).then(() => {
+                console.log('Old publisher unpublished!');
 
-            // Assigning the new publisher to our global variable 'publisher'
-            publisher = newPublisher;
+                // Assigning the new publisher to our global variable 'publisher'
+                publisher = newPublisher;
 
-            // Publishing the new publisher
-            this.session.publish(publisher);
+                // Publishing the new publisher
+                this.session.publish(publisher).then(() => {
+                    console.log('New publisher published!');
+                });
+            });
         }
     });
 }

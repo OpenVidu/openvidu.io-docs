@@ -21,7 +21,8 @@ OpenVidu Pro brings the power of <a href="https://www.elastic.co/" target="_blan
     - [OpenVidu Events](#openvidu-events)
 - **[Creating your own visualizations and dashboards](#creating-your-own-visualizations-and-dashboards)**
 - **[Reviewing logs](#reviewing-logs)**
-    - [Searching examples](#searching-examples)
+    - [Reviewing logs with Kibana](#reviewing-logs-with-kibana)
+    - [Reviewing logs and metrics using OpenVidu Inspector](#reviewing-logs-and-metrics-using-openvidu-inspector)
 - **[Configuring an external Elastic Stack](#configuring-an-external-elastic-stack)**
     - [OpenVidu Pro Configuration for external Elastic Stack](#openvidu-pro-configuration-for-external-elastic-stack)
     - [Examples of managed Elastic Stack services](#examples-of-managed-elastic-stack-services)
@@ -808,7 +809,9 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 ---
 
-## Reviewing logs with Kibana
+## Reviewing logs
+
+### Reviewing logs with Kibana
 
 Many of OpenVidu processes send their logs to Elasticsearch, so you can review their logs directly from Kibana. To search for logs you need to:
 
@@ -823,7 +826,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
     </div>
 </div>
 
-### Examples
+#### Examples
 
 - Search for Kurento Media Server logs:
 
@@ -856,11 +859,9 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
     </div>
 </div>
 
-<br>
-
 ---
 
-## Reviewing logs and metrics using OpenVidu Inspector
+### Reviewing logs and metrics using OpenVidu Inspector
 
 Searching logs in Kibana can be a little bit complicated when you want to debug specific logs for specific sessions. We offer you an easy way to search for these logs using the [OpenVidu Inspector](openvidu-pro/openvidu-inspector/).
 You just need to:
@@ -877,6 +878,8 @@ You just need to:
       <div class="caption"><p>Choose what logs you want to review.</p></div>
     </div>
 </div>
+
+<br>
 
 ---
 

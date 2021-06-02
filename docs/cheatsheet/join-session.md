@@ -19,12 +19,12 @@ session.connect(token)
 You must ask OpenVidu Server for a user token. To do so:
 
 1. **Initialize a Session in OpenVidu Server**
-    - [API REST](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}
+    - [REST API](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}
     - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}
     - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}<br><br>
 
 2. **Create a Connection in this session in OpenVidu Server**
-    - [API REST](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}
+    - [REST API](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}
     - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection){:target="_blank"}
     - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection){:target="_blank"}<br><br>
 

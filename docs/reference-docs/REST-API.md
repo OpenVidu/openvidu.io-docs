@@ -64,9 +64,17 @@ A Session is a conference room where users can send/receive media streams to/fro
     "createdAt": 1538481996019,
     "mediaMode": "ROUTED",
     "recordingMode": "MANUAL",
-    "defaultOutputMode": "COMPOSED",
-    "defaultRecordingLayout": "CUSTOM",
-    "defaultCustomLayout": "",
+    "defaultRecordingProperties": {
+        "name": "MyRecording",
+        "hasAudio": true,
+        "hasVideo": true,
+        "outputMode": "COMPOSED",
+        "recordingLayout": "BEST_FIT",
+        "resolution": "1280x720",
+        "frameRate": 25,
+        "shmSize": 536870912,
+        "mediaNode": "media_i-po39jr3e10rkjsdfj"
+    },
     "customSessionId": "TestSession",
     "connections": {
         "numberOfElements": 0,
@@ -74,7 +82,8 @@ A Session is a conference room where users can send/receive media streams to/fro
     },
     "recording": false,
     "forcedVideoCodec": "VP8",
-    "allowTranscoding": false
+    "allowTranscoding": false,
+    "mediaNodeId": "media_i-po39jr3e10rkjsdfj"
 }
 ```
 
@@ -85,15 +94,13 @@ A Session is a conference room where users can send/receive media streams to/fro
 | createdAt | Number | Time when the session was created in UTC milliseconds |
 | mediaMode | String | Media mode configured for the session (`ROUTED` or `RELAYED`) |
 | recordingMode | String | Recording mode configured for the session (`ALWAYS` or `MANUAL`) |
-| defaultOutputMode | String | The default output mode for the recordings of the session (`COMPOSED` or `INDIVIDUAL`) |
-| defaultRecordingLayout | String | The default recording layout configured for the recordings of the session. Only defined if field `defaultOutputMode` is set to `COMPOSED` |
-| defaultCustomLayout | String | The default custom layout configured for the recordings of the session. Its format is a relative path. Only defined if field `defaultRecordingLayout` is set to `CUSTOM` |
+| defaultRecordingProperties | Object | The recording properties to apply by default to any recording started for this Session |
 | customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /openvidu/api/sessions**](#post-openviduapisessions) |
 | connections | Object | Collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual active connections. Active connections are those with `status` property set to `active`. See [**Connection object**](#the-connection-object) |
 | recording | Boolean | Whether the session is being recorded or not at this moment |
 | forcedVideoCodec | String | This parameter will ensure that all the browsers use the same codec, avoiding transcoding process in the media server, which result in a reduce of CPU usage. (`VP8`, `H264` or `NONE`)
-| allowTranscoding | Boolean | Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser.
-
+| allowTranscoding | Boolean | Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser
+| mediaNodeId <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Identifier of the Media Node hosting this session. It is the `id` property of a [Media Node object](#the-media-node-object). Only defined after the session has actually been allocated inside the Media Node, which only happens after the first user connects to the session. See [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions |
 
 ---
 
@@ -116,44 +123,46 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
 ```json
 {
     "mediaMode": "ROUTED",
-    "recordingMode": "ALWAYS",
+    "recordingMode": "MANUAL",
     "customSessionId": "CUSTOM_SESSION_ID",
-    "defaultOutputMode": "COMPOSED",
-    "defaultRecordingLayout": "BEST_FIT",
-    "defaultCustomLayout": "CUSTOM_LAYOUT",
-    "mediaNode": {
-        "id": "media_i-po39jr3e10rkjsdfj"
-    },
     "forcedVideoCodec": "VP8",
-    "allowTranscoding": "false"
+    "allowTranscoding": "false",
+    "defaultRecordingProperties": {
+        "name": "MyRecording",
+        "hasAudio": true,
+        "hasVideo": true,
+        "outputMode": "COMPOSED",
+        "recordingLayout": "BEST_FIT",
+        "resolution": "1280x720",
+        "frameRate": 25,
+        "shmSize": 536870912,
+        "mediaNode": {
+            "id": "media_i-0c58bcdd26l11d0sd"
+        }
+    },
+    "mediaNode": {
+        "id": "media_i-0c58bcdd26l11d0sd"
+    }
 }
 ```
 
 > - **mediaMode** _(optional String)_
->     - `ROUTED` _(default)_ : Media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording.
->     - Not available yet: `RELAYED`<br><br>
+>     - `ROUTED` _(default)_ : media streams will be routed through OpenVidu Server. This Media Mode is mandatory for session recording.
+>     - `RELAYED`: not available yet<br><br>
 > - **recordingMode** _(optional String)_
->     - `ALWAYS`: Automatic recording from the first user publishing until the last participant leaves the session.
->     - `MANUAL` _(default)_ : If you want to manage when start and stop the recording.<br><br>
-> - **customSessionId** _(optional String)_
->     - You can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`).<br><br>
-> - **defaultOutputMode** _(optional String)_
->     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
->     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
->     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session (see [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information). <br><br>
-> - **defaultRecordingLayout** _(optional String. Only applies if `defaultOutputMode` is set to `COMPOSED`)_
->     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed.
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
->     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **defaultCustomLayout** _(optional String. Only applies if `defaultRecordingLayout` is set to `CUSTOM`)_
->     - A relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration](reference-docs/openvidu-config/){:target="blank"} property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`)<br><br>
-> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
->     - An object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
-> - **forcedVideoCodec** _(optional String)_ : This parameter will ensure that all the browsers use the same codec, avoiding transcoding process in the media server, which result in a reduce of CPU usage.
->     - `VP8` _(default)_:  Recommended and default value because its compatibility with browsers. You can change this default value by setting a different value to `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC` in [OpenVidu Configuration](reference-docs/openvidu-config)
->     - `H264`:
->     - `NONE`: No codec will be forced
-> - **allowTranscoding** _(optional Boolean)_ : Defines if transcoding is allowed or not when `forcedVideoCodec` is not a compatible codec with the browser. If this parameter is `false`, not compatible browsers with codec specified in `forcedVideoCodec` will fail. Default value is `false`. You can change this default value by setting a different value to `OPENVIDU_STREAMS_ALLOW_TRANSCODING` in [OpenVidu Configuration](reference-docs/openvidu-config)
+>     - `MANUAL` _(default)_ : if you want to manage when start and stop the recording.
+>     - `ALWAYS`: automatic recording from the first user publishing until the last participant leaves the session.<br><br>
+> - **customSessionId** _(optional String)_ : you can fix the `sessionId` that will be assigned to the session with this parameter. If you make another request with the exact same `customSessionId` while previous session already exists, no session will be created and a `409` http response will be returned. If this parameter is an empty string or not sent at all, OpenVidu Server will generate a random sessionId for you. If set, it must be an alphanumeric string: allowed numbers [`0-9`], letters [`a-zA-Z`], dashes (`-`) and underscores (`_`).<br><br>
+> - **forcedVideoCodec** _(optional String)_ : this parameter will ensure that all the clients use the same codec, avoiding transcoding process in the media server and greatly reducing unnecessary CPU load. You can change the default value changing the global configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC` in [OpenVidu Configuration](reference-docs/openvidu-config).
+>     - `VP8` _(default)_: recommended and default value due to its compatibility with client devices and its royalty-free public license.
+>     - `H264`: useful when any expected client won't support VP8. H264 is also widely supported, and is generally more compatible with hardware acceleration tech of mobile devices, but H264 has some patent considerations to take into account.
+>     - `NONE`: no codec will be forced. Each device will try to use its preferred video codec. If those doesn't match, then transcoding will be forcibly applied.<br><br>
+> - **allowTranscoding** _(optional Boolean)_ : defines whether transcoding is allowed or not. Only applies when `forcedVideoCodec` is defined (different from `NONE`) and only for those client devices that don't support the codec set in `forcedVideoCodec`. If `forcedVideoCodec` is set to `NONE`, then this parameter has no effect and transcoding will always take place if necessary.
+>     - `false` _(default)_: no video transcoding will be performed. The video streams of a client device won't work if it doesn't support the codecs being used in a session.
+>     - `true`: video transcoding will be performed when necessary, only for the client streams which require it.<br><br>
+> - **defaultRecordingProperties** _(optional Object)_ : the recording properties to apply by default to any recording started for this Session. You can of course override these default values and change the recording properties of any Recording [when starting them](#post-openviduapirecordingsstart). The object structure is the same as the one defined in [Start the recording of a session](#post-openviduapirecordingsstart).<br><br>
+> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : an object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the less loaded Media Node.<br><br>
+
 ##### Returns
 
 This operation returns a [**Session object**](#the-session-object).
@@ -334,12 +343,12 @@ A Connection represents each one of the users connected to a Session. You must c
 | sessionId | String | Identifier of the Session to which the user is connected |
 | createdAt | Number | Time when the Connection was created in UTC milliseconds |
 | activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
-| location | String | Geographic location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
+| location <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Geographic location of the participant |
 | platform | String | Complete description of the platform used by the participant to connect to the Session. Set to `IPCAM` if `type=IPCAM` |
 | token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
 | serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-openviduapisessionsltsession_idgtconnection) (`data` parameter) |
 | clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
-| record | Boolean | Whether the streams published by this Connections will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
+| record <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connections will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} |
 | role | String | **Only for `type=WEBRTC`**. Role of the Connection |
 | kurentoOptions | Object | **Only for `type=WEBRTC`**. Configuration properties applied to the streams of this Connection, regarding Kurento |
 | rtspUri | String | **Only for `type=IPCAM`**. RTSP URI of the IP camera |
@@ -401,7 +410,7 @@ For an IP camera Connection (type `IPCAM`)
 
 > - **type** _(optional String)_ : which type of Connection will be crated. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera. Default to `WEBRTC`<br><br>
 > - **data** _(optional String)_ : metadata associated to this Connection (usually participant's information). This populates property `serverData` of the [Connection object](#the-connection-object)<br><br>
-> - **record** _(optional Boolean)_ : whether to record the streams published by the Connection or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"}. Default to `true`.<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a><br><br>
+> - **record** _(optional Boolean)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : whether to record the streams published by the Connection or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"}. Default to `true`<br><br>
 > - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description)_: only for type `WEBRTC`. Defines the role of the Connection:
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
@@ -561,7 +570,7 @@ The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvi
 
 ##### Sample return
 
-This operation returns the modified [**Connection object**](reference-docs/REST-API/#the-connection-object){:target="blank"}.
+This operation returns the modified [**Connection object**](#the-connection-object).
 
 ##### HTTP responses
 
@@ -616,6 +625,7 @@ A Recording represents the recording process of a Session.
     "hasAudio": true,
     "hasVideo": true,
     "resolution": "1280x720",
+    "frameRate": 25,
     "recordingLayout": "CUSTOM",
     "customLayout": "",
     "sessionId": "ses_YnDaGYNcd7",
@@ -635,8 +645,9 @@ A Recording represents the recording process of a Session.
 | outputMode | String | Output mode of the Recording |
 | hasAudio | Boolean | True if the Recording includes an audio track, false otherwise |
 | hasVideo | Boolean | True if the Recording includes a video track, false otherwise |
-| resolution | String | Resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true |
-| recordingLayout | String | The recording layout that is being used. Only defined if `outputMode` is set to `COMPOSED` and `hasVideo` to true |
+| resolution | String | Resolution of the video file. Only defined if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true |
+| frameRate | Number | Frame rate of the video file. Only defined if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true |
+| recordingLayout | String | The recording layout that is being used. Only defined if `outputMode` is set to `COMPOSED`  or `COMPOSED_QUICK_START` and `hasVideo` to true |
 | customLayout | String | The custom layout that is being used. Only defined if `recordingLayout` is set to `CUSTOM` |
 | sessionId | String | Session associated to the Recording |
 | createdAt | Number | Time when the Recording started in UTC milliseconds |
@@ -666,34 +677,39 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
 ```json
 {
     "session":"ses_YnDaGYNcd7",
-    "name":"MyRecording",
-    "outputMode":"COMPOSED",
+    "name": "MyRecording",
     "hasAudio": true,
     "hasVideo": true,
-    "recordingLayout":"CUSTOM",
-    "customLayout":"",
+    "outputMode": "COMPOSED",
+    "recordingLayout": "CUSTOM",
+    "customLayout": "mySimpleLayout",
     "resolution": "1280x720",
+    "frameRate": 25,
+    "shmSize": 536870912,
     "mediaNode": {
-        "id": "media_i-po39jr3e10rkjsdfj"
+        "id": "media_i-0c58bcdd26l11d0sd"
     }
 }
 ```
 
 > - **session** _(mandatory String)_ : the sessionId belonging to the session you want to start recording.<br><br>
 > - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/recordingevent.html){:target="blank"}. If no name is provided, the video file will be named after `id` property of the recording.<br><br>
-> - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file. This property will override the `defaultOutputMode` property set on [POST /openvidu/api/sessions](#post-openviduapisessions) for this particular recording.
+> - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file.
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
->     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.<br><br>
+>     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
+>     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session. See [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information. This output mode only applies when defined in the `defaultRecordingProperties` object when [initializing a Session](#post-openviduapisessions).<br><br>
 > - **hasAudio** _(optional Boolean)_ : whether to record audio or not. Default to `true`<br><br>
 > - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true`<br><br>
-> - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the layout to be used in this recording. This property will override the `defaultRecordingLayout` property set on [POST /openvidu/api/sessions](#post-openviduapisessions) for this particular recording.
->     - `BEST_FIT`_(default)_ : A grid layout where all the videos are evenly distributed.
->     - `CUSTOM`: Use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
+> - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the layout to be used in this recording.
+>     - `BEST_FIT`_(default)_ : a grid layout where all the videos are evenly distributed.
+>     - `CUSTOM`: use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/){:target="blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`). This property will override the `defaultCustomLayout` property set on [POST /openvidu/api/sessions](#post-openviduapisessions) for this particular recording.<br><br>
-> - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1920x1080"`. Values for both width and height must be between 100 and 1999.<br><br>
+> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/){:target="blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).<br><br>
+> - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1280x720"`. Values for both width and height must be between 100 and 1999. Default to `"1280x720"`.<br><br>
+> - **frameRate** _(optional Number. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the frame rate of the recorded video file. Minimum 1 and maximum 120. Default to 25.<br><br>
+> - **shmSize** _(optional Number. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the amount of memory dedicated to the recording module in charge of this specific recording, in bytes. The default value is usually fine, but you can adjust it to your needs. Default to 536870912 (512 MB).<br><br>
 > - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
->     - An object with the Media Node selector to force the Media Node allocation of this recording. Only for composed recordings with video (see [Scalable composed recording](advanced-features/recording/#scalable-composed-recording){:target="blank"}). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
+>     - An object with the Media Node selector to force the Media Node allocation of this recording. Only for composed recordings with video (see [Scalable composed recording](advanced-features/recording/#scalable-composed-recording){:target="blank"}). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the same Media Node as the one hosting the recorded session, which is the best option in terms of network traffic.<br><br>
 
 ##### Returns
 
@@ -705,7 +721,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 | - ||
 | 200 | The session has started to be recorded. The moment this response is retrieved, it means that the video file is already created and contains proper data, and that the recording can be stopped with guarantees |
 | 400 | Problem with some body parameter |
-| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px) or trying to start a recording with both `hasAudio` and `hasVideo` to false |
+| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceed acceptable values (min 0 and max 120), or trying to start a recording with both `hasAudio` and `hasVideo` to false |
 | 404 | No session exists for the passed `session` body parameter |
 | 406 | The session has no connected participants |
 | 409 | The session is not configured for using MediaMode `ROUTED` or it is already being recorded |
@@ -1099,11 +1115,13 @@ Example for [On Premises deployments](openvidu-pro/deployment/on-premises/){:tar
 
 ```json
 {
-    "uri": "ws://172.17.0.5:8888/kurento"
+    "uri": "ws://172.17.0.5:8888/kurento",
+    "environmentId": "myCustomInstance"
 }
 ```
 
-> - **uri** _(mandatory String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`
+> - **uri** _(mandatory String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`.
+> - **environmentId** _(optional String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : a custom environment id. This can help further identify your on premises Media Node.
 
 Example for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}:
 

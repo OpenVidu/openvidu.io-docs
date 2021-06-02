@@ -29,7 +29,7 @@ publisher.on('publisherStartSpeaking', (event) => {
 });
 
 subscriber.on('publisherStopSpeaking', (event) => {
-    console.log('User ' + event.connection.connectionId + ' start speaking');
+    console.log('User ' + event.connection.connectionId + ' stop speaking');
 });
 ```
 
