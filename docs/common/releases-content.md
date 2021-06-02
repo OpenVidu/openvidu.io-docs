@@ -148,18 +148,16 @@ Recording API has been extended in this release. The two main new features are:
 
 This second point is the result of a small but significant refactoring of the Session object. Before, Session objects had custom attributes for defining default values for its recordings:
 
-```json
-{
+<pre><code class="json hljs">{
   "defaultOutputMode": "COMPOSED",
   "defaultRecordingLayout": "CUSTOM",
   "defaultCustomLayout": "mySimpleLayout"
 }
-```
+</code></pre>
 
 Now it has a single attribute `defaultRecordingProperties` that is an actual `RecordingProperties` object, containing all of the available attributes to customize recordings:
 
-```json
-{
+<pre><code class="json hljs">{
   "defaultRecordingProperties": {
     "name": "MyRecording",
     "hasAudio": true,
@@ -173,7 +171,7 @@ Now it has a single attribute `defaultRecordingProperties` that is an actual `Re
     "mediaNode": "media_i-po39jr3e10rkjsdfj"
     }
 }
-```
+</code></pre>
 
 In this way, for example, it is now possible to record Sessions set to recording mode [ALWAYS](https://docs.openvidu.io/en/2.18.0/advanced-features/recording/#2-configure-your-sessions-to-be-recorded){:target="_blank"} with only audio or only video. Before the lack of custom default recording properties for in the Session object made this impossible.
 
@@ -240,41 +238,38 @@ There is a breaking change for the Recording API. We have consolidated the Recor
 
 Before when [initializing a Session](https://docs.openvidu.io/en/2.17.0/reference-docs/REST-API/#post-openviduapisessions){:target="_blank"}:
 
-```bash
-curl --header "Content-Type: application/json" \
+<pre><code class="bash hljs">curl --header "Content-Type: application/json" \
      --request POST \
      --data '{"defaultOutputMode":"COMPOSED","defaultRecordingLayout":"BEST_FIT","defaultCustomLayout":"CUSTOM_LAYOUT"}' \
      https://your.openvidu.ip/openvidu/api/sessions
-```
+</code></pre>
 
 Now:
 
-```bash
-curl --header "Content-Type: application/json" \
+<pre><code class="bash hljs">curl --header "Content-Type: application/json" \
      --request POST \
      --data '{"defaultRecordingProperties":{"outputMode":"COMPOSED","recordingLayout":"BEST_FIT","customLayout":"CUSTOM_LAYOUT"}' \
      https://your.openvidu.ip/openvidu/api/sessions
-```
+</code></pre>
+
 <br>
 
 ##### For openvidu-java-client
 
 Before when [creating a Session](https://docs.openvidu.io/en/2.17.0/reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}:
 
-```java
-OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+<pre><code class="java hljs">OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 SessionProperties properties = new SessionProperties.Builder()
   .defaultOutputMode(Recording.OutputMode.COMPOSED)
   .defaultRecordingLayout(RecordingLayout.CUSTOM)
   .defaultCustomLayout("mySpecialLayout")
   .build();
 Session session = openVidu.createSession(properties);
-```
+</code></pre>
 
 Now:
 
-```java
-OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+<pre><code class="java hljs">OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 RecordingProperties recordingProperties = new RecordingProperties.Builder()
   .outputMode(Recording.OutputMode.COMPOSED)
   .recordingLayout(RecordingLayout.CUSTOM)
@@ -284,27 +279,26 @@ SessionProperties sessionProperties = new SessionProperties.Builder()
   .defaultRecordingProperties(recordingProperties)
   .build();
 Session session = openVidu.createSession(sessionProperties);
-```
+</code></pre>
+
 <br>
 
 ##### For openvidu-node-client
 
 Before when [creating a Session](https://docs.openvidu.io/en/2.17.0/reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}:
 
-```javascript
-var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+<pre><code class="javascript hljs">var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var properties = {
   defaultOutputMode: "COMPOSED",
   defaultRecordingLayout: "CUSTOM",
   defaultCustomLayout: "mySpecialLayout"
 };
 openVidu.createSession(properties).then(session => { ... });
-```
+</code></pre>
 
 Now:
 
-```javascript
-var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
+<pre><code class="javascript hljs">var openVidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 var properties = {
   defaultRecordingProperties: {
     outputMode: "COMPOSED",
@@ -313,7 +307,7 @@ var properties = {
   }
 };
 openVidu.createSession(properties).then(session => { ... });
-```
+</code></pre>
 
 <br>
 
