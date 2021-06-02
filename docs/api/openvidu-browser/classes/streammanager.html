@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>StreamManager | OpenVidu Browser - v2.17.0</title>
-	<meta name="description" content="Documentation for OpenVidu Browser - v2.17.0">
+	<title>StreamManager | OpenVidu Browser - v2.18.0</title>
+	<meta name="description" content="Documentation for OpenVidu Browser - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Browser - v2.17.0</a>
+					<a href="../index.html" class="title">OpenVidu Browser - v2.18.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -79,6 +79,9 @@
 						<li>videoElementCreated (<a href="videoelementevent.html">VideoElementEvent</a>)</li>
 						<li>videoElementDestroyed (<a href="videoelementevent.html">VideoElementEvent</a>)</li>
 						<li>streamPlaying (<a href="streammanagerevent.html">StreamManagerEvent</a>)</li>
+						<li>streamPropertyChanged (<a href="streampropertychangedevent.html">StreamPropertyChangedEvent</a>)</li>
+						<li>publisherStartSpeaking (<a href="publisherspeakingevent.html">PublisherSpeakingEvent</a>)</li>
+						<li>publisherStopSpeaking (<a href="publisherspeakingevent.html">PublisherSpeakingEvent</a>)</li>
 						<li>streamAudioVolumeChange (<a href="streammanagerevent.html">StreamManagerEvent</a>)</li>
 					</ul>
 				</div>
@@ -93,10 +96,10 @@
 								<span class="target">StreamManager</span>
 								<ul class="tsd-hierarchy">
 									<li>
-										<a href="publisher.html" class="tsd-signature-type">Publisher</a>
+										<a href="subscriber.html" class="tsd-signature-type">Subscriber</a>
 									</li>
 									<li>
-										<a href="subscriber.html" class="tsd-signature-type">Subscriber</a>
+										<a href="publisher.html" class="tsd-signature-type">Publisher</a>
 									</li>
 								</ul>
 							</li>
@@ -140,7 +143,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L85">OpenVidu/StreamManager.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L90">OpenVidu/StreamManager.ts:90</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,7 +162,7 @@
 					<div class="tsd-signature tsd-kind-icon">remote<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L71">OpenVidu/StreamManager.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L76">OpenVidu/StreamManager.ts:76</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -178,7 +181,7 @@
 					<div class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">:</span> <a href="stream.html" class="tsd-signature-type">Stream</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L59">OpenVidu/StreamManager.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L64">OpenVidu/StreamManager.ts:64</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -193,7 +196,7 @@
 					<div class="tsd-signature tsd-kind-icon">target<wbr>Element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L78">OpenVidu/StreamManager.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L83">OpenVidu/StreamManager.ts:83</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">videos<span class="tsd-signature-symbol">:</span> <a href="../interfaces/streammanagervideo.html" class="tsd-signature-type">StreamManagerVideo</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = []</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L64">OpenVidu/StreamManager.ts:64</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L69">OpenVidu/StreamManager.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -234,13 +237,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L239">OpenVidu/StreamManager.ts:239</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L280">OpenVidu/StreamManager.ts:280</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Makes <code>video</code> element parameter display this <a href="streammanager.html#stream">stream</a>. This is useful when you are
-									<a href="/en/2.17.0/cheatsheet/manage-videos/#you-take-care-of-the-video-players">managing the video elements on your own</a></p>
+									<a href="/en/2.18.0/cheatsheet/manage-videos/#you-take-care-of-the-video-players">managing the video elements on your own</a></p>
 								</div>
 								<p>Calling this method with a video already added to other Publisher/Subscriber will cause the video element to be
 								disassociated from that previous Publisher/Subscriber and to be associated to this one.</p>
@@ -268,7 +271,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L292">OpenVidu/StreamManager.ts:292</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L333">OpenVidu/StreamManager.ts:333</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -311,7 +314,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#off">off</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L214">OpenVidu/StreamManager.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L240">OpenVidu/StreamManager.ts:240</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +346,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#on">on</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L157">OpenVidu/StreamManager.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L167">OpenVidu/StreamManager.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,7 +396,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#once">once</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L186">OpenVidu/StreamManager.ts:186</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L204">OpenVidu/StreamManager.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -436,18 +439,18 @@
 					<a name="updatepublisherspeakingeventsoptions" class="tsd-anchor"></a>
 					<h3>update<wbr>Publisher<wbr>Speaking<wbr>Events<wbr>Options</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">update<wbr>Publisher<wbr>Speaking<wbr>Events<wbr>Options<span class="tsd-signature-symbol">(</span>publisherSpeakingEventsOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Publisher<wbr>Speaking<wbr>Events<wbr>Options<span class="tsd-signature-symbol">(</span>publisherSpeakingEventsOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/StreamManager.ts#L355">OpenVidu/StreamManager.ts:355</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/StreamManager.ts#L396">OpenVidu/StreamManager.ts:396</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Updates the current configuration for the <a href="publisherspeakingevent.html">PublisherSpeakingEvent</a> feature and the <a href="/en/2.17.0/api/openvidu-browser/classes/streammanagerevent.html">StreamManagerEvent.streamAudioVolumeChange</a> feature for this specific
+									<p>Updates the current configuration for the <a href="publisherspeakingevent.html">PublisherSpeakingEvent</a> feature and the <a href="/en/2.18.0/api/openvidu-browser/classes/streammanagerevent.html">StreamManagerEvent.streamAudioVolumeChange</a> feature for this specific
 										StreamManager audio stream, overriding the global options set with <a href="openvidu.html#setadvancedconfiguration">OpenVidu.setAdvancedConfiguration</a>. This way you can customize the audio events options
 									for each specific StreamManager and change them dynamically.</p>
 								</div>
@@ -455,7 +458,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>publisherSpeakingEventsOptions: <span class="tsd-signature-type">any</span></h5>
+									<h5>publisherSpeakingEventsOptions: <span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>New options to be applied to this StreamManager&#39;s audio stream. It is an object which includes the following optional properties:</p>
 										<ul>
@@ -463,6 +466,14 @@
 											<li><code>threshold</code>: (number) the volume at which <em>publisherStartSpeaking</em>, <em>publisherStopSpeaking</em> events will be fired. Default <strong>-50</strong> (dB)</li>
 										</ul>
 									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -481,6 +492,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/exceptioneventname.html" class="tsd-kind-icon">Exception<wbr>Event<wbr>Name</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/localrecorderstate.html" class="tsd-kind-icon">Local<wbr>Recorder<wbr>State</a>
 					</li>
@@ -506,6 +520,9 @@
 						<a href="eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="exceptionevent.html" class="tsd-kind-icon">Exception<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="filter.html" class="tsd-kind-icon">Filter</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -522,9 +539,6 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="openviduerror.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="openvidulogger.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Logger</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="platformutils.html" class="tsd-kind-icon">Platform<wbr>Utils</a>

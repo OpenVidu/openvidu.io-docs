@@ -43,7 +43,7 @@ sudo npm install -g ionic@latest
 **2)** Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.18.0
 ```
 
 **3)** Install dependencies

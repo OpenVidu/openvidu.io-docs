@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ConnectionProperties | OpenVidu Node Client - v2.17.0</title>
-	<meta name="description" content="Documentation for OpenVidu Node Client - v2.17.0">
+	<title>ConnectionProperties | OpenVidu Node Client - v2.18.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.17.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.18.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -99,7 +99,7 @@
 					<div class="tsd-signature tsd-kind-icon">adaptative<wbr>Bitrate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L106">ConnectionProperties.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L106">ConnectionProperties.ts:106</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L39">ConnectionProperties.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L39">ConnectionProperties.ts:39</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -142,7 +142,7 @@
 					<div class="tsd-signature tsd-kind-icon">kurento<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allowedFilters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>videoMaxRecvBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMaxSendBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMinRecvBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMinSendBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L82">ConnectionProperties.ts:82</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L82">ConnectionProperties.ts:82</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -153,20 +153,20 @@
 						You can adjust:</p>
 						<ul>
 							<li><code>videoMaxRecvBandwidth</code>: maximum number of Kbps that the Connection will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.17.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.18.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 								(parameter <code>OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH</code>) for every incoming stream of the Connection.
 							<em><strong>WARNING</strong>: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the stream</em></li>
 							<li><code>videoMinRecvBandwidth</code>: minimum number of Kbps that the cConnection will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.17.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.18.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 							(parameter <code>OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH</code>) for every incoming stream of the Connection.</li>
 							<li><code>videoMaxSendBandwidth</code>: maximum number of Kbps that the Connection will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.17.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.18.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 								(parameter <code>OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH</code>) for every outgoing stream of the Connection.
 							<em><strong>WARNING</strong>: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream</em></li>
 							<li><code>videoMinSendBandwidth</code>: minimum number of Kbps that the Connection will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.17.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.18.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 							(parameter <code>OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH</code>) for every outgoing stream of the Connection.</li>
-							<li><code>allowedFilters</code>: names of the filters the Connection will be able to apply. See <a href="/en/2.17.0/advanced-features/filters/">Voice and video filters</a></li>
+							<li><code>allowedFilters</code>: names of the filters the Connection will be able to apply. See <a href="/en/2.18.0/advanced-features/filters/">Voice and video filters</a></li>
 						</ul>
 						<p><strong>Only for <a href="../enums/connectiontype.html#webrtc">ConnectionType.WEBRTC</a></strong></p>
 					</div>
@@ -197,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">network<wbr>Cache<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L128">ConnectionProperties.ts:128</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L128">ConnectionProperties.ts:128</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">only<wbr>Play<wbr>With<wbr>Subscribers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L117">ConnectionProperties.ts:117</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L117">ConnectionProperties.ts:117</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -243,14 +243,14 @@
 					<div class="tsd-signature tsd-kind-icon">record<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L48">ConnectionProperties.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L48">ConnectionProperties.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
+							<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.18.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
 						</div>
-						<p>Whether to record the streams published by this Connection or not. This only affects <a href="/en/2.17.0/advanced-features/recording#selecting-streams-to-be-recorded">INDIVIDUAL recording</a></p>
+						<p>Whether to record the streams published by this Connection or not. This only affects <a href="/en/2.18.0/advanced-features/recording#selecting-streams-to-be-recorded">INDIVIDUAL recording</a></p>
 						<dl class="tsd-comment-tags">
 							<dt>default</dt>
 							<dd><p>true</p>
@@ -264,7 +264,7 @@
 					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <a href="../enums/openvidurole.html" class="tsd-signature-type">OpenViduRole</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L57">ConnectionProperties.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L57">ConnectionProperties.ts:57</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -285,7 +285,7 @@
 					<div class="tsd-signature tsd-kind-icon">rtsp<wbr>Uri<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L95">ConnectionProperties.ts:95</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L95">ConnectionProperties.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -301,7 +301,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/connectiontype.html" class="tsd-signature-type">ConnectionType</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/ConnectionProperties.ts#L31">ConnectionProperties.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/ConnectionProperties.ts#L31">ConnectionProperties.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

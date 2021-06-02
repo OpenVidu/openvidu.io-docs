@@ -31,7 +31,7 @@ mvn -v
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.17.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.18.0
 ```
 
 3) Run the tutorial:
@@ -53,7 +53,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING_PATH=/opt/openvidu/recordings \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /opt/openvidu/recordings:/opt/openvidu/recordings \
-openvidu/openvidu-server-kms:2.17.0
+openvidu/openvidu-server-kms:2.18.0
 ```
 
 5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.

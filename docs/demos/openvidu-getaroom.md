@@ -39,7 +39,7 @@ http-server openvidu-tutorials/openvidu-getaroom/web
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.17.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.18.0
 ```
 
 5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -285,7 +285,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-getaroom-demo:2.17.0
+        image: openvidu/openvidu-getaroom-demo:2.18.0
         restart: on-failure
         network_mode: host
         environment:

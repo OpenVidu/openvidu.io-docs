@@ -152,7 +152,7 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.17.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.18.0
 ```
 
 **6)** In Xcode Studio, you must also indicate the OpenVidu Server URL to the app. Check the point 3.

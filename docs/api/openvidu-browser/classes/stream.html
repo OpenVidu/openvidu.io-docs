@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Stream | OpenVidu Browser - v2.17.0</title>
-	<meta name="description" content="Documentation for OpenVidu Browser - v2.17.0">
+	<title>Stream | OpenVidu Browser - v2.18.0</title>
+	<meta name="description" content="Documentation for OpenVidu Browser - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Browser - v2.17.0</a>
+					<a href="../index.html" class="title">OpenVidu Browser - v2.18.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -75,12 +75,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">Stream</span>
-							</li>
-						</ul>
+						<span class="target">Stream</span>
 					</li>
 				</ul>
 			</section>
@@ -111,9 +106,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stream.html#applyfilter" class="tsd-kind-icon">apply<wbr>Filter</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stream.html#getmediastream" class="tsd-kind-icon">get<wbr>Media<wbr>Stream</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stream.html#getrtcpeerconnection" class="tsd-kind-icon">getRTCPeer<wbr>Connection</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="stream.html#off" class="tsd-kind-icon">off</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="stream.html#on" class="tsd-kind-icon">on</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="stream.html#once" class="tsd-kind-icon">once</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stream.html#reconnect" class="tsd-kind-icon">reconnect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="stream.html#removefilter" class="tsd-kind-icon">remove<wbr>Filter</a></li>
 							</ul>
 						</section>
@@ -128,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">audio<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L92">OpenVidu/Stream.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L95">OpenVidu/Stream.ts:95</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -145,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <a href="connection.html" class="tsd-signature-type">Connection</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L60">OpenVidu/Stream.ts:60</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L63">OpenVidu/Stream.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +153,7 @@
 					<div class="tsd-signature tsd-kind-icon">creation<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L106">OpenVidu/Stream.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L109">OpenVidu/Stream.ts:109</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -179,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">filter<span class="tsd-signature-symbol">:</span> <a href="filter.html" class="tsd-signature-type">Filter</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L142">OpenVidu/Stream.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L145">OpenVidu/Stream.ts:145</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -197,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">frame<wbr>Rate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L66">OpenVidu/Stream.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L69">OpenVidu/Stream.ts:69</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -213,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Audio<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L76">OpenVidu/Stream.ts:76</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L79">OpenVidu/Stream.ts:79</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -228,7 +221,7 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Video<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L71">OpenVidu/Stream.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L74">OpenVidu/Stream.ts:74</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -243,7 +236,7 @@
 					<div class="tsd-signature tsd-kind-icon">stream<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L99">OpenVidu/Stream.ts:99</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L102">OpenVidu/Stream.ts:102</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -262,7 +255,7 @@
 					<div class="tsd-signature tsd-kind-icon">stream<wbr>Manager<span class="tsd-signature-symbol">:</span> <a href="streammanager.html" class="tsd-signature-type">StreamManager</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L122">OpenVidu/Stream.ts:122</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L125">OpenVidu/Stream.ts:125</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -277,7 +270,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<wbr>OfVideo<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L117">OpenVidu/Stream.ts:117</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L120">OpenVidu/Stream.ts:120</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -287,7 +280,7 @@
 								<li><code>&quot;CAMERA&quot;</code>: when the video source comes from a webcam.</li>
 								<li><code>&quot;SCREEN&quot;</code>: when the video source comes from screen-sharing.</li>
 								<li><code>&quot;CUSTOM&quot;</code>: when <a href="../interfaces/publisherproperties.html#videosource">PublisherProperties.videoSource</a> has been initialized in the Publisher side with a custom MediaStreamTrack when calling <a href="openvidu.html#initpublisher">OpenVidu.initPublisher</a>).</li>
-								<li><code>&quot;IPCAM&quot;</code>: when the video source comes from an IP camera participant instead of a regular participant (see <a href="/en/2.17.0/advanced-features/ip-cameras/">IP cameras</a>).</li>
+								<li><code>&quot;IPCAM&quot;</code>: when the video source comes from an IP camera participant instead of a regular participant (see <a href="/en/2.18.0/advanced-features/ip-cameras/">IP cameras</a>).</li>
 							</ul>
 						</div>
 						<p>If <a href="stream.html#hasvideo">hasVideo</a> is false, this property is undefined</p>
@@ -299,7 +292,7 @@
 					<div class="tsd-signature tsd-kind-icon">video<wbr>Active<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L84">OpenVidu/Stream.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L87">OpenVidu/Stream.ts:87</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -316,7 +309,7 @@
 					<div class="tsd-signature tsd-kind-icon">video<wbr>Dimensions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>height<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>width<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L133">OpenVidu/Stream.ts:133</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L136">OpenVidu/Stream.ts:136</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -355,7 +348,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L309">OpenVidu/Stream.ts:309</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L305">OpenVidu/Stream.ts:305</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,7 +386,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L387">OpenVidu/Stream.ts:387</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L394">OpenVidu/Stream.ts:394</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +409,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L378">OpenVidu/Stream.ts:378</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L385">OpenVidu/Stream.ts:385</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,135 +422,29 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="off" class="tsd-anchor"></a>
-					<h3>off</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reconnect" class="tsd-anchor"></a>
+					<h3>reconnect</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reconnect<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#off">off</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L295">OpenVidu/Stream.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L293">OpenVidu/Stream.ts:293</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>See <a href="eventdispatcher.html#off">EventDispatcher.off</a></p>
+									<p>Recreates the media connection with the server. This entails the disposal of the previous RTCPeerConnection and the re-negotiation
+									of a new one, that will apply the same properties.</p>
 								</div>
+								<p>This method can be useful in those situations were there the media connection breaks and OpenVidu is not able to recover on its own
+								for any kind of unanticipated reason (see <a href="/en/latest/advanced-features/automatic-reconnection/">Automatic reconnection</a>).</p>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handler: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="on" class="tsd-anchor"></a>
-					<h3>on</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#on">on</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L277">OpenVidu/Stream.ts:277</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>See <a href="eventdispatcher.html#on">EventDispatcher.on</a></p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-signature">
-											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>event: <a href="event.html" class="tsd-signature-type">Event</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-					<a name="once" class="tsd-anchor"></a>
-					<h3>once</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">once<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<p>Overrides <a href="eventdispatcher.html">EventDispatcher</a>.<a href="eventdispatcher.html#once">once</a></p>
-								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L286">OpenVidu/Stream.ts:286</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>See <a href="eventdispatcher.html#once">EventDispatcher.once</a></p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>type: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>handler: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-signature">
-											<ul class="tsd-signatures tsd-kind-type-literal">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>event: <a href="event.html" class="tsd-signature-type">Event</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="eventdispatcher.html" class="tsd-signature-type">EventDispatcher</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A Promise (to which you can optionally subscribe to) that is resolved if the reconnection operation was successful and rejected with an Error object if not</p>
 						</li>
 					</ul>
 				</section>
@@ -565,13 +452,13 @@
 					<a name="removefilter" class="tsd-anchor"></a>
 					<h3>remove<wbr>Filter</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<wbr>Filter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Filter<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenVidu/Stream.ts#L346">OpenVidu/Stream.ts:346</a></li>
+									<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenVidu/Stream.ts#L348">OpenVidu/Stream.ts:348</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -579,7 +466,7 @@
 									<p>Removes an audio/video filter previously applied.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A Promise (to which you can optionally subscribe to) that is resolved if the previously applied filter has been successfully removed and rejected with an Error object in other case</p>
 						</li>
 					</ul>
@@ -596,6 +483,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/exceptioneventname.html" class="tsd-kind-icon">Exception<wbr>Event<wbr>Name</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/localrecorderstate.html" class="tsd-kind-icon">Local<wbr>Recorder<wbr>State</a>
 					</li>
@@ -621,6 +511,9 @@
 						<a href="eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="exceptionevent.html" class="tsd-kind-icon">Exception<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="filter.html" class="tsd-kind-icon">Filter</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -637,9 +530,6 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="openviduerror.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="openvidulogger.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Logger</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="platformutils.html" class="tsd-kind-icon">Platform<wbr>Utils</a>
@@ -712,14 +602,8 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="stream.html#getrtcpeerconnection" class="tsd-kind-icon">getRTCPeer<wbr>Connection</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="stream.html#off" class="tsd-kind-icon">off</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="stream.html#on" class="tsd-kind-icon">on</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="stream.html#once" class="tsd-kind-icon">once</a>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="stream.html#reconnect" class="tsd-kind-icon">reconnect</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="stream.html#removefilter" class="tsd-kind-icon">remove<wbr>Filter</a>

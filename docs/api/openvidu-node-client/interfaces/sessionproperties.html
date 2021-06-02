@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SessionProperties | OpenVidu Node Client - v2.17.0</title>
-	<meta name="description" content="Documentation for OpenVidu Node Client - v2.17.0">
+	<title>SessionProperties | OpenVidu Node Client - v2.18.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.17.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.18.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -86,9 +86,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#allowtranscoding" class="tsd-kind-icon">allow<wbr>Transcoding</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#customsessionid" class="tsd-kind-icon">custom<wbr>Session<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#defaultcustomlayout" class="tsd-kind-icon">default<wbr>Custom<wbr>Layout</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#defaultoutputmode" class="tsd-kind-icon">default<wbr>Output<wbr>Mode</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#defaultrecordinglayout" class="tsd-kind-icon">default<wbr>Recording<wbr>Layout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#defaultrecordingproperties" class="tsd-kind-icon">default<wbr>Recording<wbr>Properties</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#forcedvideocodec" class="tsd-kind-icon">forced<wbr>Video<wbr>Codec</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#mediamode" class="tsd-kind-icon">media<wbr>Mode</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="sessionproperties.html#medianode" class="tsd-kind-icon">media<wbr>Node</a></li>
@@ -106,7 +104,7 @@
 					<div class="tsd-signature tsd-kind-icon">allow<wbr>Transcoding<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L93">SessionProperties.ts:93</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L85">SessionProperties.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -114,6 +112,7 @@
 							<p>It defines if you want to allow transcoding in the media server or not
 							when <a href="sessionproperties.html#forcedvideocodec">forcedVideoCodec</a> is not compatible with the browser/client.</p>
 						</div>
+						<p>Default to false</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -122,7 +121,7 @@
 					<div class="tsd-signature tsd-kind-icon">custom<wbr>Session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L66">SessionProperties.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L56">SessionProperties.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -134,71 +133,39 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="defaultcustomlayout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Custom<wbr>Layout</h3>
-					<div class="tsd-signature tsd-kind-icon">default<wbr>Custom<wbr>Layout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="defaultrecordingproperties" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Recording<wbr>Properties</h3>
+					<div class="tsd-signature tsd-kind-icon">default<wbr>Recording<wbr>Properties<span class="tsd-signature-symbol">:</span> <a href="recordingproperties.html" class="tsd-signature-type">RecordingProperties</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L59">SessionProperties.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L49">SessionProperties.ts:49</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Default value used to initialize property <a href="recordingproperties.html#customlayout">RecordingProperties.customLayout</a> of every recording of this session.
-							This property can only be defined if <a href="sessionproperties.html#defaultrecordinglayout">SessionProperties.defaultRecordingLayout</a> is set to <a href="../enums/recordinglayout.html#custom">RecordingLayout.CUSTOM</a>.</p>
+							<p>Default recording properties of this session. You can easily override this value later when starting a
+							<a href="../classes/recording.html">Recording</a> by providing new <a href="recordingproperties.html">RecordingProperties</a></p>
 						</div>
-						<p>You can easily override this value later by setting <a href="recordingproperties.html#customlayout">RecordingProperties.customLayout</a> to any other value</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="defaultoutputmode" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Output<wbr>Mode</h3>
-					<div class="tsd-signature tsd-kind-icon">default<wbr>Output<wbr>Mode<span class="tsd-signature-symbol">:</span> <a href="../enums/recording.outputmode.html" class="tsd-signature-type">OutputMode</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L44">SessionProperties.ts:44</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Default value used to initialize property <a href="recordingproperties.html#outputmode">RecordingProperties.outputMode</a> of every recording of this session.</p>
-						</div>
-						<p>You can easily override this value later by setting <a href="recordingproperties.html#outputmode">RecordingProperties.outputMode</a> to any other value</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="defaultrecordinglayout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> default<wbr>Recording<wbr>Layout</h3>
-					<div class="tsd-signature tsd-kind-icon">default<wbr>Recording<wbr>Layout<span class="tsd-signature-symbol">:</span> <a href="../enums/recordinglayout.html" class="tsd-signature-type">RecordingLayout</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L51">SessionProperties.ts:51</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Default value used to initialize property <a href="recordingproperties.html#recordinglayout">RecordingProperties.recordingLayout</a> of every recording of this session.</p>
-						</div>
-						<p>You can easily override this value later by setting <a href="recordingproperties.html#recordinglayout">RecordingProperties.recordingLayout</a> to any other value</p>
+						<p>Default values defined in <a href="recordingproperties.html">RecordingProperties</a> class</p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="forcedvideocodec" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> forced<wbr>Video<wbr>Codec</h3>
-					<div class="tsd-signature tsd-kind-icon">forced<wbr>Video<wbr>Codec<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<div class="tsd-signature tsd-kind-icon">forced<wbr>Video<wbr>Codec<span class="tsd-signature-symbol">:</span> <a href="../enums/videocodec.html" class="tsd-signature-type">VideoCodec</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L87">SessionProperties.ts:87</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L77">SessionProperties.ts:77</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>It defines which video codec do you want to be forcibly used for this session.
 								This allows browsers/clients to use the same codec avoiding transcoding in the media server.
-								If the browser/client is not compatible with the specified codec and <a href="sessionproperties.html#allowtranscoding">allowTranscoding</a>
-							is <code>false</code> and exception will occur.</p>
+								If the browser/client is not compatible with the specified codec and <a href="sessionproperties.html#allowtranscoding">allowTranscoding</a> is <code>false</code>
+							and exception will occur. If forcedVideoCodec is set to <a href="../enums/videocodec.html#none">VideoCodec.NONE</a>, no codec will be forced.</p>
 						</div>
-						<p>If forcedVideoCodec is set to NONE, no codec will be forced.</p>
+						<p>Default to <a href="../enums/videocodec.html#vp8">VideoCodec.VP8</a></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -207,7 +174,7 @@
 					<div class="tsd-signature tsd-kind-icon">media<wbr>Mode<span class="tsd-signature-symbol">:</span> <a href="../enums/mediamode.html" class="tsd-signature-type">MediaMode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L32">SessionProperties.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L34">SessionProperties.ts:34</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,6 +182,7 @@
 							<p>How the media streams will be sent and received by your clients: routed through OpenVidu Media Node
 							(<code>MediaMode.ROUTED</code>) or attempting direct p2p connections (<code>MediaMode.RELAYED</code>, <em>not available yet</em>)</p>
 						</div>
+						<p>Default to <a href="../enums/mediamode.html#routed">MediaMode.ROUTED</a></p>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -223,12 +191,12 @@
 					<div class="tsd-signature tsd-kind-icon">media<wbr>Node<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L75">SessionProperties.ts:75</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L65">SessionProperties.ts:65</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
+							<p><strong>This feature is part of OpenVidu Pro tier</strong> <a href="https://docs.openvidu.io/en/2.18.0/openvidu-pro/" target="_blank" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-right: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif">PRO</a></p>
 						</div>
 						<p>The Media Node where to host the session. The default option if this property is not defined is the less loaded
 						Media Node at the moment the first user joins the session. This object defines the following properties as Media Node selector:</p>
@@ -251,13 +219,14 @@
 					<div class="tsd-signature tsd-kind-icon">recording<wbr>Mode<span class="tsd-signature-symbol">:</span> <a href="../enums/recordingmode.html" class="tsd-signature-type">RecordingMode</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-node-client/src/SessionProperties.ts#L37">SessionProperties.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-node-client/src/SessionProperties.ts#L41">SessionProperties.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Whether the Session will be automatically recorded (<code>RecordingMode.ALWAYS</code>) or not (<code>RecordingMode.MANUAL</code>)</p>
 						</div>
+						<p>Default to <a href="../enums/recordingmode.html#manual">RecordingMode.MANUAL</a></p>
 					</div>
 				</section>
 			</section>
@@ -323,13 +292,7 @@
 								<a href="sessionproperties.html#customsessionid" class="tsd-kind-icon">custom<wbr>Session<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="sessionproperties.html#defaultcustomlayout" class="tsd-kind-icon">default<wbr>Custom<wbr>Layout</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="sessionproperties.html#defaultoutputmode" class="tsd-kind-icon">default<wbr>Output<wbr>Mode</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="sessionproperties.html#defaultrecordinglayout" class="tsd-kind-icon">default<wbr>Recording<wbr>Layout</a>
+								<a href="sessionproperties.html#defaultrecordingproperties" class="tsd-kind-icon">default<wbr>Recording<wbr>Properties</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="sessionproperties.html#forcedvideocodec" class="tsd-kind-icon">forced<wbr>Video<wbr>Codec</a>

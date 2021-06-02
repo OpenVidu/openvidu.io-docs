@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OpenViduAdvancedConfiguration | OpenVidu Browser - v2.17.0</title>
-	<meta name="description" content="Documentation for OpenVidu Browser - v2.17.0">
+	<title>OpenViduAdvancedConfiguration | OpenVidu Browser - v2.18.0</title>
+	<meta name="description" content="Documentation for OpenVidu Browser - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Browser - v2.17.0</a>
+					<a href="../index.html" class="title">OpenVidu Browser - v2.18.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -85,7 +85,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#forcemediareconnectionafternetworkdrop" class="tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#iceconnectiondisconnectedexceptiontimeout" class="tsd-kind-icon">ice<wbr>Connection<wbr>Disconnected<wbr>Exception<wbr>Timeout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#iceservers" class="tsd-kind-icon">ice<wbr>Servers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#nostreamplayingeventexceptiontimeout" class="tsd-kind-icon">no<wbr>Stream<wbr>Playing<wbr>Event<wbr>Exception<wbr>Timeout</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#publisherspeakingeventsoptions" class="tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="openviduadvancedconfiguration.html#screensharechromeextension" class="tsd-kind-icon">screen<wbr>Share<wbr>Chrome<wbr>Extension</a></li>
 							</ul>
@@ -101,7 +103,7 @@
 					<div class="tsd-signature tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L53">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L56">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:56</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -115,12 +117,30 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="iceconnectiondisconnectedexceptiontimeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ice<wbr>Connection<wbr>Disconnected<wbr>Exception<wbr>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">ice<wbr>Connection<wbr>Disconnected<wbr>Exception<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L65">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:65</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The milliseconds that must elapse after triggering <a href="../classes/exceptionevent.html">ExceptionEvent</a> of type <code>ICE_CONNECTION_DISCONNECTED</code> to perform an automatic reconnection process of the affected media stream.
+								This automatic reconnection process can only take place if the client still has network connection to OpenVidu Server. If the ICE connection has broken because of a total network drop,
+							then no reconnection process will be possible at all.</p>
+						</div>
+						<p>Default to <code>4000</code>.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="iceservers" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> ice<wbr>Servers</h3>
 					<div class="tsd-signature tsd-kind-icon">ice<wbr>Servers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RTCIceServer</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L27">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L27">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:27</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -131,17 +151,33 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="publisherspeakingeventsoptions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> publisher<wbr>Speaking<wbr>Events<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="nostreamplayingeventexceptiontimeout" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> no<wbr>Stream<wbr>Playing<wbr>Event<wbr>Exception<wbr>Timeout</h3>
+					<div class="tsd-signature tsd-kind-icon">no<wbr>Stream<wbr>Playing<wbr>Event<wbr>Exception<wbr>Timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L42">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L72">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:72</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Custom configuration for the <a href="../classes/publisherspeakingevent.html">PublisherSpeakingEvent</a> feature and the <a href="/en/2.17.0/api/openvidu-browser/classes/streammanagerevent.html">StreamManagerEvent.streamAudioVolumeChange</a> feature. It is an object which includes the following optional properties:</p>
+							<p>The milliseconds that must elapse for the <a href="../classes/exceptionevent.html">ExceptionEvent</a> of name <a href="(/en/latest/api/openvidu-browser/enums/exceptioneventname.html#no_stream_playing_event)"><code>NO_STREAM_PLAYING_EVENT</code></a> to be fired.</p>
+						</div>
+						<p>Default to <code>4000</code>.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="publisherspeakingeventsoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> publisher<wbr>Speaking<wbr>Events<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>threshold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L42">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:42</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Custom configuration for the <a href="../classes/publisherspeakingevent.html">PublisherSpeakingEvent</a> feature and the <a href="/en/2.18.0/api/openvidu-browser/classes/streammanagerevent.html">StreamManagerEvent.streamAudioVolumeChange</a> feature. It is an object which includes the following optional properties:</p>
 							<ul>
 								<li><code>interval</code>: (number) how frequently the analyser polls the audio stream to check if speaking has started/stopped or audio volume has changed. Default <strong>100</strong> (ms)</li>
 								<li><code>threshold</code>: (number) the volume at which <em>publisherStartSpeaking</em> and <em>publisherStopSpeaking</em> events will be fired. Default <strong>-50</strong> (dB)</li>
@@ -156,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">screen<wbr>Share<wbr>Chrome<wbr>Extension<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/23b101ad/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L33">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts#L33">OpenViduInternal/Interfaces/Public/OpenViduAdvancedConfiguration.ts:33</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -178,6 +214,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-enum">
+						<a href="../enums/exceptioneventname.html" class="tsd-kind-icon">Exception<wbr>Event<wbr>Name</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="../enums/localrecorderstate.html" class="tsd-kind-icon">Local<wbr>Recorder<wbr>State</a>
 					</li>
@@ -203,6 +242,9 @@
 						<a href="../classes/eventdispatcher.html" class="tsd-kind-icon">Event<wbr>Dispatcher</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="../classes/exceptionevent.html" class="tsd-kind-icon">Exception<wbr>Event</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="../classes/filter.html" class="tsd-kind-icon">Filter</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -219,9 +261,6 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/openviduerror.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Error</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="../classes/openvidulogger.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Logger</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="../classes/platformutils.html" class="tsd-kind-icon">Platform<wbr>Utils</a>
@@ -280,7 +319,13 @@
 								<a href="openviduadvancedconfiguration.html#forcemediareconnectionafternetworkdrop" class="tsd-kind-icon">force<wbr>Media<wbr>Reconnection<wbr>After<wbr>Network<wbr>Drop</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openviduadvancedconfiguration.html#iceconnectiondisconnectedexceptiontimeout" class="tsd-kind-icon">ice<wbr>Connection<wbr>Disconnected<wbr>Exception<wbr>Timeout</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="openviduadvancedconfiguration.html#iceservers" class="tsd-kind-icon">ice<wbr>Servers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="openviduadvancedconfiguration.html#nostreamplayingeventexceptiontimeout" class="tsd-kind-icon">no<wbr>Stream<wbr>Playing<wbr>Event<wbr>Exception<wbr>Timeout</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="openviduadvancedconfiguration.html#publisherspeakingeventsoptions" class="tsd-kind-icon">publisher<wbr>Speaking<wbr>Events<wbr>Options</a>

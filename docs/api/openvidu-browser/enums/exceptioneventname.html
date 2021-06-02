@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>LocalRecorderState | OpenVidu Browser - v2.18.0</title>
+	<title>ExceptionEventName | OpenVidu Browser - v2.18.0</title>
 	<meta name="description" content="Documentation for OpenVidu Browser - v2.18.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -52,16 +52,23 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="localrecorderstate.html">LocalRecorderState</a>
+					<a href="exceptioneventname.html">ExceptionEventName</a>
 				</li>
 			</ul>
-			<h1>Enumeration LocalRecorderState</h1>
+			<h1>Enumeration ExceptionEventName</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Defines property <a href="../classes/exceptionevent.html#name">ExceptionEvent.name</a></p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -69,10 +76,10 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="localrecorderstate.html#finished" class="tsd-kind-icon">FINISHED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="localrecorderstate.html#paused" class="tsd-kind-icon">PAUSED</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="localrecorderstate.html#ready" class="tsd-kind-icon">READY</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="localrecorderstate.html#recording" class="tsd-kind-icon">RECORDING</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="exceptioneventname.html#ice_candidate_error" class="tsd-kind-icon">ICE_<wbr>CANDIDATE_<wbr>ERROR</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="exceptioneventname.html#ice_connection_disconnected" class="tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>DISCONNECTED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="exceptioneventname.html#ice_connection_failed" class="tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>FAILED</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="exceptioneventname.html#no_stream_playing_event" class="tsd-kind-icon">NO_<wbr>STREAM_<wbr>PLAYING_<wbr>EVENT</a></li>
 							</ul>
 						</section>
 					</div>
@@ -81,44 +88,90 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="finished" class="tsd-anchor"></a>
-					<h3>FINISHED</h3>
-					<div class="tsd-signature tsd-kind-icon">FINISHED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;FINISHED&quot;</span></div>
+					<a name="ice_candidate_error" class="tsd-anchor"></a>
+					<h3>ICE_<wbr>CANDIDATE_<wbr>ERROR</h3>
+					<div class="tsd-signature tsd-kind-icon">ICE_<wbr>CANDIDATE_<wbr>ERROR<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ICE_CANDIDATE_ERROR&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Enums/LocalRecorderState.ts#L22">OpenViduInternal/Enums/LocalRecorderState.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Events/ExceptionEvent.ts#L34">OpenViduInternal/Events/ExceptionEvent.ts:34</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>There was an unexpected error on the server-side processing an ICE candidate generated and sent by the client-side.</p>
+						</div>
+						<p><a href="../classes/exceptionevent.html">ExceptionEvent</a> objects with this <a href="../classes/exceptionevent.html#name">ExceptionEvent.name</a> will have as <a href="../classes/exceptionevent.html#origin">ExceptionEvent.origin</a> property a <a href="../classes/session.html">Session</a> object.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="paused" class="tsd-anchor"></a>
-					<h3>PAUSED</h3>
-					<div class="tsd-signature tsd-kind-icon">PAUSED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;PAUSED&quot;</span></div>
+					<a name="ice_connection_disconnected" class="tsd-anchor"></a>
+					<h3>ICE_<wbr>CONNECTION_<wbr>DISCONNECTED</h3>
+					<div class="tsd-signature tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>DISCONNECTED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ICE_CONNECTION_DISCONNECTED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Enums/LocalRecorderState.ts#L21">OpenViduInternal/Enums/LocalRecorderState.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Events/ExceptionEvent.ts#L62">OpenViduInternal/Events/ExceptionEvent.ts:62</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceConnectionState">ICE connection state</a>
+							of an <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection">RTCPeerConnection</a> reached <code>disconnected</code> status.</p>
+						</div>
+						<p>This is not a terminal error, and it is possible for the ICE connection to be reconnected. If the client is still connected to
+							OpenVidu Server and after certain timeout the ICE connection has not reached a success or terminal status, then an automatic
+							reconnection process of the media stream is performed. If the ICE connection has broken due to a total network drop, then no
+						automatic reconnection process will be possible.</p>
+						<p>You can customize the timeout for the reconnection attempt with property <a href="../interfaces/openviduadvancedconfiguration.html#iceconnectiondisconnectedexceptiontimeout">OpenViduAdvancedConfiguration.iceConnectionDisconnectedExceptionTimeout</a>,
+						which by default is 4000 milliseconds.</p>
+						<p><a href="../classes/exceptionevent.html">ExceptionEvent</a> objects with this <a href="../classes/exceptionevent.html#name">ExceptionEvent.name</a> will have as <a href="../classes/exceptionevent.html#origin">ExceptionEvent.origin</a> property a <a href="../classes/stream.html">Stream</a> object.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="ready" class="tsd-anchor"></a>
-					<h3>READY</h3>
-					<div class="tsd-signature tsd-kind-icon">READY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;READY&quot;</span></div>
+					<a name="ice_connection_failed" class="tsd-anchor"></a>
+					<h3>ICE_<wbr>CONNECTION_<wbr>FAILED</h3>
+					<div class="tsd-signature tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>FAILED<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;ICE_CONNECTION_FAILED&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Enums/LocalRecorderState.ts#L19">OpenViduInternal/Enums/LocalRecorderState.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Events/ExceptionEvent.ts#L46">OpenViduInternal/Events/ExceptionEvent.ts:46</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/iceConnectionState">ICE connection state</a>
+							of an <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection">RTCPeerConnection</a> reached <code>failed</code> status.</p>
+						</div>
+						<p>This is a terminal error that won&#39;t have any kind of possible recovery. If the client is still connected to OpenVidu Server,
+							then an automatic reconnection process of the media stream is immediately performed. If the ICE connection has broken due to
+						a total network drop, then no automatic reconnection process will be possible.</p>
+						<p><a href="../classes/exceptionevent.html">ExceptionEvent</a> objects with this <a href="../classes/exceptionevent.html#name">ExceptionEvent.name</a> will have as <a href="../classes/exceptionevent.html#origin">ExceptionEvent.origin</a> property a <a href="../classes/stream.html">Stream</a> object.</p>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="recording" class="tsd-anchor"></a>
-					<h3>RECORDING</h3>
-					<div class="tsd-signature tsd-kind-icon">RECORDING<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;RECORDING&quot;</span></div>
+					<a name="no_stream_playing_event" class="tsd-anchor"></a>
+					<h3>NO_<wbr>STREAM_<wbr>PLAYING_<wbr>EVENT</h3>
+					<div class="tsd-signature tsd-kind-icon">NO_<wbr>STREAM_<wbr>PLAYING_<wbr>EVENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = &quot;NO_STREAM_PLAYING_EVENT&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Enums/LocalRecorderState.ts#L20">OpenViduInternal/Enums/LocalRecorderState.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/fd646bc2/openvidu-browser/src/OpenViduInternal/Events/ExceptionEvent.ts#L83">OpenViduInternal/Events/ExceptionEvent.ts:83</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A <a href="../classes/subscriber.html">Subscriber</a> object has not fired event <code>streamPlaying</code> after certain timeout. <code>streamPlaying</code> event belongs to <a href="../classes/streammanagerevent.html">StreamManagerEvent</a>
+							category. It wraps Web API native event <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canplay_event">canplay</a>.</p>
+						</div>
+						<p>OpenVidu Browser can take care of the video players (see <a href="/en/latest/cheatsheet/manage-videos/#let-openvidu-take-care-of-the-video-players">here</a>),
+							or you can take care of video players on your own (see <a href="/en/latest/cheatsheet/manage-videos/#you-take-care-of-the-video-players">here</a>).
+							Either way, whenever a <a href="../classes/subscriber.html">Subscriber</a> object is commanded to attach its <a href="../classes/stream.html">Stream</a> to a video element, it is supposed to fire <code>streamPlaying</code>
+							event shortly after. If it does not, then we can safely assume that something wrong has happened while playing the remote video and the
+						application may be notified through this specific ExceptionEvent.</p>
+						<p>The timeout can be configured with property <a href="../interfaces/openviduadvancedconfiguration.html#nostreamplayingeventexceptiontimeout">OpenViduAdvancedConfiguration.noStreamPlayingEventExceptionTimeout</a>. By default it is 4000 milliseconds.</p>
+						<p>This is just an informative exception. It only means that a remote Stream that is supposed to be playing by a video player has not done so
+							in a reasonable time. But the lack of the event can be caused by multiple reasons. If a Subscriber is not playing its Stream, the origin
+							of the problem could be located at the Publisher side. Or may be caused by a transient network problem. But it also could be a problem with
+						autoplay permissions. Bottom line, the cause can be very varied, and depending on the application the lack of the event could even be expected.</p>
+						<p><a href="../classes/exceptionevent.html">ExceptionEvent</a> objects with this <a href="../classes/exceptionevent.html#name">ExceptionEvent.name</a> will have as <a href="../classes/exceptionevent.html#origin">ExceptionEvent.origin</a> property a <a href="../classes/subscriber.html">Subscriber</a> object.</p>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -132,30 +185,30 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="exceptioneventname.html" class="tsd-kind-icon">Exception<wbr>Event<wbr>Name</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="localrecorderstate.html" class="tsd-kind-icon">Local<wbr>Recorder<wbr>State</a>
+						<a href="exceptioneventname.html" class="tsd-kind-icon">Exception<wbr>Event<wbr>Name</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="localrecorderstate.html#finished" class="tsd-kind-icon">FINISHED</a>
+								<a href="exceptioneventname.html#ice_candidate_error" class="tsd-kind-icon">ICE_<wbr>CANDIDATE_<wbr>ERROR</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="localrecorderstate.html#paused" class="tsd-kind-icon">PAUSED</a>
+								<a href="exceptioneventname.html#ice_connection_disconnected" class="tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>DISCONNECTED</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="localrecorderstate.html#ready" class="tsd-kind-icon">READY</a>
+								<a href="exceptioneventname.html#ice_connection_failed" class="tsd-kind-icon">ICE_<wbr>CONNECTION_<wbr>FAILED</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="localrecorderstate.html#recording" class="tsd-kind-icon">RECORDING</a>
+								<a href="exceptioneventname.html#no_stream_playing_event" class="tsd-kind-icon">NO_<wbr>STREAM_<wbr>PLAYING_<wbr>EVENT</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum">
+						<a href="localrecorderstate.html" class="tsd-kind-icon">Local<wbr>Recorder<wbr>State</a>
+					</li>
 					<li class=" tsd-kind-enum">
 						<a href="openviduerrorname.html" class="tsd-kind-icon">Open<wbr>Vidu<wbr>Error<wbr>Name</a>
 					</li>

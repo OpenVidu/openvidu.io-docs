@@ -55,7 +55,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-openvidu/openvidu-server-kms:2.17.0
+openvidu/openvidu-server-kms:2.18.0
 ```
 
 The two configuration properties that must be set are:
@@ -852,7 +852,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -e OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.17.0
+openvidu/openvidu-server-kms:2.18.0
 ```
 
 > **WARNING**: remember to add the `-v` option mounting the path defined with `OPENVIDU_RECORDING_CUSTOM_LAYOUT`
