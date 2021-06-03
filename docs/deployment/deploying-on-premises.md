@@ -107,11 +107,11 @@ $ nano .env
 $ ./openvidu start
 
 For more information, check:
-https://docs.openvidu.io/en/2.17.0/deployment/deploying-on-premises/
+https://docs.openvidu.io/en/2.18.0/deployment/deploying-on-premises/
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.17.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_<strong>2.18.0</strong>.sh | bash</code>
 
 <br>
 
