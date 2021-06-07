@@ -35,9 +35,7 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 
 #### sessionCreated
 
-Recorded when a new session has been created. This event **WILL NOT be triggered** just after calling the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}).
-
-This event **WILL ONLY be triggered** when the session is allocated and starts consuming real resources. This only happens when the first user connects to the session.
+Recorded when a new session has been created. This event will be triggered at the end of a successful call to the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}).
 
 ```json
 {
