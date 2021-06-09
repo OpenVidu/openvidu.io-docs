@@ -44,13 +44,16 @@ OpenVidu Inspector allows you to review all your recordings in a simple way. Pre
 <br>
 
 #### Session history
-Every OpenVidu session event-flow is stored with great detail in OpenVidu Pro. This way you can review any past session in OpenVidu Inspector: its duration, the total streaming time, the users connected to it, who published and subscribed, the recordings started for the session... Lots of data to analyse your sessions once they are closed.
+
+OpenVidu inspector provides a very intuitive way to see all our sessions info in OpenVidu Pro. From **session status dashboard** showing the percentage of successful and problematic sessions, through session history, session anomalies detected in _troubleshooting_ section, **detailed** users **visualization**, **browser logs**, events **timeline** and tons of relevant information about our sessions.
+
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro14.png"/></a>
         <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro15.png"/></a>
         <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro16.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16.png"/></a>
+        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro16_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16_1.png"/></a>
     </div>
 </div>
 
