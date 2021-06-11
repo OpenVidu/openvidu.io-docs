@@ -18,6 +18,7 @@
 15. [My commercial certificate is not working, What can I do?](#15-my-commercial-certificate-is-not-working-what-can-i-do)
 16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
 17. [Elastic Search and OpenVidu Pro Common Problems](#17-elastic-search-and-openvidu-pro-common-problems)
+18. [OpenVidu does not work on restrictive firewall, What can I do?](#18-openvidu-does-not-work-on-restrictive-firewall-what-can-i-do)
 
 ---
 
@@ -676,3 +677,7 @@ Take a look into [Elasticsearch heap config documentation](https://www.elastic.c
 ```
 
 Elasticsearch may take some minutes to start due to a lot of data saved or low memory resources.
+
+#### 18. OpenVidu does not work on restrictive firewall, What can I do?
+
+OpenVidu CE and OpenVidu Pro deploys by default a STUN/TURN server (Coturn) at port 3478. Some strict firewall has restrictions on requests which don't go out from ports 80 and 443, consequently denying requests to port 3478 from the browser. Follow the instructions of this [repository](https://github.com/OpenVidu/openvidu-external-coturn) to install and configure and external Coturn in port 443 with SSL configured to work with OpenVidu (You need one additional Linux machine to deploy it).
