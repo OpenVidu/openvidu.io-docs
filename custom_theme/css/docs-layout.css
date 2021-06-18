@@ -15,8 +15,6 @@
 
 ul#menu-list {
     position: sticky;
-    top: 0;
-    bottom: 0;
     height: 80vh;
     padding-right: 10px;
     margin-right: -10px;
