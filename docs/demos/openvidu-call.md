@@ -157,7 +157,8 @@ npm run build
 3) You will found the app built in dist directory. You can use node to launch it:
 
 ```
-node dist/openvidu-call-server.js
+cd dist/
+node openvidu-call-server.js
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
