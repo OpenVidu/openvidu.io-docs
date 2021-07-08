@@ -63,6 +63,7 @@ nav:
 - Deployment:
   - Intro: deployment/index.md
   - AWS: deployment/deploying-aws.md
+  - Digital Ocean: deployment/deploying-digital-ocean.md
   - On premises: deployment/deploying-on-premises.md
   - Deploying OpenVidu applications: deployment/deploying-openvidu-apps.md
   - Upgrading OpenVidu: deployment/upgrading.md
