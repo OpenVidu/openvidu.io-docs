@@ -408,7 +408,7 @@ For an IP camera Connection (type `IPCAM`)
 }
 ```
 
-> - **type** _(optional String)_ : which type of Connection will be crated. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera. Default to `WEBRTC`<br><br>
+> - **type** _(optional String)_ : which type of Connection will be created. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera. Default to `WEBRTC`<br><br>
 > - **data** _(optional String)_ : metadata associated to this Connection (usually participant's information). This populates property `serverData` of the [Connection object](#the-connection-object)<br><br>
 > - **record** _(optional Boolean)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : whether to record the streams published by the Connection or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"}. Default to `true`<br><br>
 > - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description)_: only for type `WEBRTC`. Defines the role of the Connection:
