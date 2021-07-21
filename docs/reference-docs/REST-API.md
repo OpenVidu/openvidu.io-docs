@@ -126,7 +126,7 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
     "recordingMode": "MANUAL",
     "customSessionId": "CUSTOM_SESSION_ID",
     "forcedVideoCodec": "VP8",
-    "allowTranscoding": "false",
+    "allowTranscoding": false,
     "defaultRecordingProperties": {
         "name": "MyRecording",
         "hasAudio": true,
