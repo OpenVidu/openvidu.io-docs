@@ -119,6 +119,7 @@ Join a client to an already initialized session. The equivalent method in OpenVi
   "id": 1,
   "result": {
     "id": "y4gsjcy37m1rcjkx",
+    "finalUserId": "3DCE23B74F65A18C",
     "createdAt": 1568198320797,
     "metadata": "{clientData: TestClient}",
     "value": [
@@ -142,6 +143,14 @@ Join a client to an already initialized session. The equivalent method in OpenVi
         ]
       }
     ],
+    "session": "TestSession",
+    "version": "2.18.0",
+    "mediaServer": "kurento",
+    "record": false,
+    "role": "PUBLISHER",
+    "coturnIp": "127.0.0.1",
+    "turnUsername": "WMYB64",
+    "turnCredential": "3vl4bc",
     "sessionId": "nqo83ml4kc2kgaoe65311n7in0"
   },
   "jsonrpc": "2.0"
