@@ -107,7 +107,7 @@ $ nano .env
 $ ./openvidu start
 
 For more information, check:
-https://docs.openvidu.io/en/2.18.0/deployment/ce/on-premises/
+https://docs.openvidu.io/en/2.19.0/deployment/ce/on-premises/
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>

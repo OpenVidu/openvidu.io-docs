@@ -43,7 +43,7 @@ sudo npm install -g react-native-cli
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.18.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.19.0
 ```
 
 3) Install dependencies
