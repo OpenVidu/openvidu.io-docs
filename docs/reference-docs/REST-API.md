@@ -521,7 +521,7 @@ List all Connections from a Session.
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -871,7 +871,7 @@ Media Nodes represent each one of the worker instances of your OpenVidu Pro clus
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -935,7 +935,7 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -999,7 +999,7 @@ This operation returns a [**Media Node object**](#the-media-node-object).
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1072,7 +1072,7 @@ Retrieve the information of all Media Nodes.
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1113,7 +1113,7 @@ Add a new Media Node to the cluster.
 
 ##### Body
 
-Example for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}:
+Example for [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"}:
 
 ```json
 {
@@ -1122,10 +1122,10 @@ Example for [On Premises deployments](openvidu-pro/deployment/on-premises/){:tar
 }
 ```
 
-> - **uri** _(mandatory String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`.
-> - **environmentId** _(optional String only for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"})_ : a custom environment id. This can help further identify your on premises Media Node.
+> - **uri** _(mandatory String only for [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`.
+> - **environmentId** _(optional String only for [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"})_ : a custom environment id. This can help further identify your on premises Media Node.
 
-Example for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}:
+Example for [AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}:
 
 ```json
 {
@@ -1134,8 +1134,8 @@ Example for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}:
 }
 ```
 
-> - **instanceType** _(optional String only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. If not especified, value `AWS_INSTANCE_TYPE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
-> - **volumeSize** _(optional Number only for [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. If not especified, value `AWS_VOLUME_SIZE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}**.
+> - **instanceType** _(optional String only for [AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. If not especified, value `AWS_INSTANCE_TYPE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}**.
+> - **volumeSize** _(optional Number only for [AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. If not especified, value `AWS_VOLUME_SIZE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}**.
 
 ##### Sample return
 
@@ -1149,8 +1149,8 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
 | 400 | Problem with some body parameter |
 | 404 | The Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration... |
 | 409 | The Media Node was already registered in OpenVidu Server as part of the cluster |
-| 501 | The cluster is deployed [On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request |
-| 502 | The process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}, where instances require to be previously launched |
+| 501 | The cluster is deployed [On Premises](deployment/pro-enterprise/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request |
+| 502 | The process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"}, where instances require to be previously launched |
 
 <br>
 
@@ -1165,7 +1165,7 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1213,7 +1213,7 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 | 204 | The Media Node was successfully removed |
 | 404 | No Media Node exists for the passed `MEDIA_NODE_ID` |
 | 409 | If query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all |
-| 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](openvidu-pro/deployment/on-premises/){:target="blank"}, where instances require manual shut down |
+| 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](deployment/pro-enterprise/on-premises/){:target="blank"}, where instances require manual shut down |
 
 <br>
 
@@ -1228,7 +1228,7 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1294,7 +1294,7 @@ This operation returns the modified [**Media Node object**](#the-media-node-obje
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1652,7 +1652,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1714,7 +1714,7 @@ Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is 
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;

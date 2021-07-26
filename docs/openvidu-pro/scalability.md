@@ -145,10 +145,10 @@ There are 3 important aspects to consider:
 
 Different environments are supported when deploying an OpenVidu Pro cluster. At the current moment you can:
 
-- [Deploy your OpenVidu Pro cluster in AWS](openvidu-pro/deployment/aws){:target="_blank"}
-- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](openvidu-pro/deployment/on-premises){:target="_blank"}
+- [Deploy your OpenVidu Pro cluster in AWS](deployment/pro-enterprise/aws){:target="_blank"}
+- [Deploy your OpenVidu Pro cluster on premises in your own infrastructure](deployment/pro-enterprise/on-premises){:target="_blank"}
 
-> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premises](openvidu-pro/deployment/on-premises){:target="_blank"}
+> We are currently working to natively support other cloud providers such as **Azure**, **Google Cloud** and **Digital Ocean** the same way we support Amazon. But remember you are still able to deploy OpenVidu Pro wherever you want following the guide of [deployment on premises](deployment/pro-enterprise/on-premises){:target="_blank"}
 
 > **Kubernetes** support will also be available soon. Stay tuned!
 
@@ -160,8 +160,8 @@ Different environments are supported when deploying an OpenVidu Pro cluster. At 
 
 When deploying your OpenVidu Pro cluster, you can set the initial desired number of Media Nodes. Each type of deployment has a way of setting this number. Visit your specific OpenVidu Pro cluster deployment instructions to learn more:
 
-- **[AWS](openvidu-pro/deployment/aws#scalability){:target="_blank"}**
-- **[On premises](openvidu-pro/deployment/on-premises#scalability){:target="_blank"}**
+- **[AWS](deployment/pro-enterprise/aws#scalability){:target="_blank"}**
+- **[On premises](deployment/pro-enterprise/on-premises#scalability){:target="_blank"}**
 
 <br>
 
@@ -190,8 +190,8 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 > **WARNING**: depending on the environment where your OpenVidu Pro cluster is deployed, you must take into account some important aspects regarding the launch and drop of Media Nodes. Visit the specific documentation page for your environment:
 >
-> - [AWS](openvidu-pro/deployment/aws/#with-openvidu-pro-rest-api){:target="_blank"}
-> - [On premises](openvidu-pro/deployment/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}
+> - [AWS](deployment/pro-enterprise/aws/#with-openvidu-pro-rest-api){:target="_blank"}
+> - [On premises](deployment/pro-enterprise/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}
 
 <br>
 
@@ -219,7 +219,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 - `running`: the Media Node is up and running. New sessions can now be established in this Media Node. This status can be reached from _launching_ and _waiting-idle-to-terminate_ statuses.
 - `waiting-idle-to-terminate`: the Media Node is waiting until the last of its sessions is closed. Once this happens, it will automatically enter _terminating_ status. The Media Node won't accept new sessions during this status. This status can be reached from _running_ status.
 - `terminating`: the Media Node is shutting down. This status can be reached from _running_ and _waiting-idle-to-terminate_ statuses.
-- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For [On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"} OpenVidu Pro clusters, this status means that you can safely shut down the Media Node instance.
+- `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For [On Premises](deployment/pro-enterprise/on-premises/){:target="_blank"} OpenVidu Pro clusters, this status means that you can safely shut down the Media Node instance.
 
 <br>
 
@@ -314,8 +314,8 @@ OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD=30
  The scope of autoscaling is different depending on the environment OpenVidu Pro is deployed:
  
  - For **any deployment environment different to On Premises**, OpenVidu Pro will automatically manage the complete lifecycle of all Media Nodes, being able to launch and drop instances on its own. In this case the user doesn't need to do anything regarding instance management.<br><br>
- - For **[On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"}** deployments, OpenVidu Pro won't be able to launch and drop instances from the cluster on its own. It will only be able to transition Media Node statuses from one status to another. That includes disconnecting Media Nodes from the cluster when required (so that you are no longer charged for them), but you will still be responsible of launching and adding to the cluster new Media Nodes when indicated and terminating the instances of disconnected Media Nodes (if that's what you want). In order to accomplish this you must listen to:
-    - Event [autoscaling](reference-docs/openvidu-server-cdr/#autoscaling){:target="_blank"}: to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](openvidu-pro/deployment/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}.
+ - For **[On Premises](deployment/pro-enterprise/on-premises/){:target="_blank"}** deployments, OpenVidu Pro won't be able to launch and drop instances from the cluster on its own. It will only be able to transition Media Node statuses from one status to another. That includes disconnecting Media Nodes from the cluster when required (so that you are no longer charged for them), but you will still be responsible of launching and adding to the cluster new Media Nodes when indicated and terminating the instances of disconnected Media Nodes (if that's what you want). In order to accomplish this you must listen to:
+    - Event [autoscaling](reference-docs/openvidu-server-cdr/#autoscaling){:target="_blank"}: to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](deployment/pro-enterprise/on-premises/#with-openvidu-pro-rest-api){:target="_blank"}.
     - Event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"}: to know when to terminate the instance of a Media Node, if that's what you want. Wait for `terminated` status to know when you can safely terminate the Media Node instance without losing any data.
 
 ### How does the autoscaling algorithm behave?

@@ -38,7 +38,7 @@ session.createConnection(connectionProperties).then(connection => {
     width: 100%;
     margin-top: 20px;
     margin-bottom: 15px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;

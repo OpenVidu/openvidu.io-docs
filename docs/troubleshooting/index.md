@@ -26,14 +26,14 @@
 
 You have an app that uses OpenVidu to stream some video user-to-user, and the process looks perfectly okey. No errors on the console and all the OpenVidu events you are subscribed to are correctly triggered. So what's happening?
 
-99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy our ready-to-use [OpenVidu Server in Amazon](deployment/deploying-aws){:target="_blank"}.
+99% of the time this is a problem related with **OPENVIDU SERVER NOT HAVING A PUBLIC IP**. To learn more about it, you can check [this FAQ](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them). The quickest solution to this problem is to deploy our ready-to-use [OpenVidu Server in Amazon](deployment/ce/aws){:target="_blank"}.
 
-If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself with Docker. Check [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section to learn how to properly do it.
+If you are a bit reluctant to this quick solution with Amazon CloudFormation, you can always deploy OpenVidu by yourself with Docker. Check [Deploying OpenVidu on premises](deployment/ce/on-premises/){:target="_blank"} section to learn how to properly do it.
 
 Besides that, these are the recommended steps to follow when videos are not received:
 
   - Access your OpenVidu dashboard (`https://YOUR_OPENVIDU_IP:4443`) to quickly test the video transmission (user: _OPENVIDUAPP_, pass: _[your private secret]_)
-  - Please be sure that your OpenVidu Server host meets the [network requirements](deployment/deploying-on-premises#1-prerequisites){:target="_blank"}.
+  - Please be sure that your OpenVidu Server host meets the [network requirements](deployment/ce/on-premises#1-prerequisites){:target="_blank"}.
 
 The other 1% of the time this can be an attempt of **accessing the same camera from two different browsers at the same time**. Remember that Chrome, Firefox, Opera and Safari are distinct processes which cannot generally access the same physical resource (as a webcam) at the same time on your computer. On the other hand, accessing the camera from different tabs of the same browser is tipically possible.
 
@@ -174,7 +174,7 @@ You must let know your app/tutorial how to initialize _openvidu-java-client_ or 
 
 First of all, let's differentiate between OpenVidu server-side and your application's server-side.
 
-  - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](deployment/deploying-aws/){:target="_blank"} to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
+  - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](deployment/ce/aws/){:target="_blank"} to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
   - You will generally want your application to have its own server-side. Why?
 
 Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"}, [openvidu-insecure-js](tutorials/openvidu-insecure-js/){:target="_blank"}, [openvidu-getaroom](demos/openvidu-getaroom/){:target="_blank"}
@@ -209,7 +209,7 @@ The problem here is pretty evident: if you don't have any kind of server side to
 
 ### 5. The CloudFormation Stack is a nice option for Amazon, but I don't like it. I want more control
 
-You can always easily deploy everything by yourself with Docker. To do so, check [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section.
+You can always easily deploy everything by yourself with Docker. To do so, check [Deploying OpenVidu on premises](deployment/ce/on-premises/){:target="_blank"} section.
 
 ---
 
@@ -224,8 +224,8 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
 
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
 
-  - Our ready-to-use [CloudFormation stack](deployment/deploying-aws){:target="_blank"} already includes a properly configured COTURN server.
-  - If you are deploying OpenVidu Server on your own, instructions in the [Deploying OpenVidu on premises](deployment/deploying-on-premises/){:target="_blank"} section already include a COTURN server.
+  - Our ready-to-use [CloudFormation stack](deployment/ce/aws){:target="_blank"} already includes a properly configured COTURN server.
+  - If you are deploying OpenVidu Server on your own, instructions in the [Deploying OpenVidu on premises](deployment/ce/on-premises/){:target="_blank"} section already include a COTURN server.
 
     > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
@@ -258,16 +258,12 @@ OpenVidu supports a wide range of platforms:
 <br>
 ##### Mobile browsers
 
-- For Android
-    - Chrome
-    - Firefox
-    - Microsoft Edge
-    - Opera
-    - Samsung Internet Browser
-- For iOS
-    - Safari (Safari is the only browser in iOS with WebRTC support)
-
-> **IMPORTANT**: In iOS versions less than 13 have been found several bugs (videos and audio frozen) with WebRTC in Safari! These bugs look solved in iOS 13.
+- Chrome
+- Firefox
+- Microsoft Edge
+- Opera
+- Safari (for iOS)
+- Samsung Internet Browser (for Android)
 
 <br>
 ##### Mobile native applications
@@ -385,7 +381,7 @@ nginx_1            | ===Mode letsencrypt===
 ...
 ```
 
-If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/deploying-on-premises/#1-prerequisites) (OpenVidu CE) and [here](openvidu-pro/deployment/on-premises/#1-prerequisites) (OpenVidu Pro).**
+If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/ce/on-premises/#1-prerequisites) (OpenVidu CE) and [here](deployment/pro-enterprise/on-premises/#1-prerequisites) (OpenVidu Pro).**
 
 #### 13.2 Let's Encrypt challenges errors
 
@@ -426,7 +422,7 @@ If none of this errors is your problem, ensure that your deployment accomplish t
 
 - **Make sure to not run any services at port 80 or port 443.** Let's Encrypt will not be able to make the challenges to validate your certificate
 - **Try, if possible, to not run any other service (Nginx, Apache, Tomcat) in your OpenVidu machine**.
-- **Be sure that all ports documented [here](deployment/deploying-on-premises/#1-prerequisites)(OpenVidu CE) or [here](openvidu-pro/deployment/on-premises/#1-prerequisites) (OpenVidu PRO) are visible using your domain name and your public ip. Also ensure that all the documented ports are available and not used by other services.**
+- **Be sure that all ports documented [here](deployment/ce/on-premises/#1-prerequisites)(OpenVidu CE) or [here](deployment/pro-enterprise/on-premises/#1-prerequisites) (OpenVidu PRO) are visible using your domain name and your public ip. Also ensure that all the documented ports are available and not used by other services.**
 
 If none of this works, you can try to remove `/opt/openvidu/certificates` folder and restart OpenVidu with:
 
@@ -468,10 +464,10 @@ Normally official certificates have a chain of public keys in the .cert file
 
 There are two ways to configure the nginx containers provided in the official deployments of OpenVidu CE and OpenVidu Pro. Before following the next ways of configure deployed nginx of openvidu you had to deploy following the following instructions:
 
-- [Deployment CE in AWS](/deployment/deploying-aws) 
-- [Deployment CE On premises](/deployment/deploying-on-premises)
-- [Deployment PRO in AWS](openvidu-pro/deployment/aws)
-- [Deployment PRO On premises](openvidu-pro/deployment/on-premises)
+- [Deployment CE in AWS](/deployment/ce/aws) 
+- [Deployment CE On premises](/deployment/ce/on-premises)
+- [Deployment PRO in AWS](deployment/pro-enterprise/aws)
+- [Deployment PRO On premises](deployment/pro-enterprise/on-premises)
 
 #### 16.1 Create your own virtual hosts (Server blocks)
 

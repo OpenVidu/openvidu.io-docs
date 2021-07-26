@@ -1,33 +1,20 @@
-<h2 id="section-title">OpenVidu Pro</h2>
+<h2 id="section-title">OpenVidu Enterprise</h2>
 <hr>
 
-## Why
-
-OpenVidu is an **open source project**, and for sure will remain this way in the future. But OpenVidu team needs some source of income to continue working on this amazing project. The approach we'll be taking here is pretty straightforward: OpenVidu features themselves will always be open source, and only some tools or improvements related to **production environments** may end up being part of OpenVidu Pro stack. To sum up:
-<br>
-
-> You will always be able to access OpenVidu awesome features and build whatever you want with them. Our intention is to make OpenVidu platform long-term sustainable by offering **advanced production stage monitoring and management tools** for those companies interested in such capabilities
-
-<br>
-
+- **[OpenVidu Enterprise features](#openvidu-enterprise-features)**
+- **[OpenVidu Enterprise roadmap](#openvidu-enterprise-roadmap)**
+- **[OpenVidu Enterprise beta limitations](#openvidu-enterprise-beta-limitations)**
+- **[Enable OpenVidu Enterprise](#enable-openvidu-enterprise)**
 ---
-
-## What
-
-OpenVidu Pro consists of different modules working on top of OpenVidu Community Edition (OpenVidu CE). The three main features introduced by OpenVidu Pro are:
-
-- **[Scalability](openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
-- **[OpenVidu Inspector](openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](openvidu-pro/monitoring-elastic-stack/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
 
 <div style="
     display: table;
     border: 2px solid #0088aa9e;
     border-radius: 5px;
     width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0 0 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -41,7 +28,12 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>
+      OpenVidu Enterprise is currently in <strong>beta</strong>. As long as it remains in beta:
+      <ul style="margin-top: 6px">
+        <li style="color: inherit">It is completely free of charge. You can try it for free.</li>
+        <li style="color: inherit">There are some <a href="#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
+        <li style="color: inherit">There may be unexpected bugs.</li>
+      </ul>
 </div>
 </div>
 
@@ -304,19 +296,117 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     </tbody>
 </table>
 
+## OpenVidu Enterprise features
+
+OpenVidu Enterprise offers the best performance, improved media quality and better scalability for high-demand environments.
+
+The core of OpenVidu Enterprise is the support of **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server. OpenVidu has always used as Media Server the **[Kurento](https://www.kurento.org/){:target="_blank"}** platform. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
+
+#### Media quality improvements
+
+OpenVidu Enterprise with mediasoup supports modern WebRTC capabilities such as:
+
+- **Simulcast**: publishers may send different encodings of the same video stream, each one with a different quality, so that each subscriber can receive the one that best suits their network speed. This can substantially improve the experience for all participants in the videoconference: each participant receives the video that best suits their network conditions without affecting the experience of other users.<br><br>
+- **VP9** (_not available yet, work in progress_): this is a more advanced video codec than the widely extended VP8 and H264. It provides better compression rate and better quality with lower bandwidth usage, at the expense of a higher CPU usage on the client side. It also supports SVC. Google Chrome has had it for a while now, and other browsers are getting onboard.
+
+#### 6x more media streams
+
+Using the same hardware, OpenVidu Enterprise with mediasoup supports up to 6 times more media streams than with Kurento.
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-1.png">
+</p>
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-2.png">
+</p>
+
+#### 5x quicker connections
+
+Media connections are established **80% quicker** using OpenVidu Enterprise with mediasoup. This means that with Kurento the average time between a customer calling the subscription operation and the video being actually played on their device, it could average around **1.25 seconds**. With mediasoup it averages **0.25 seconds**.
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="img/docs/openvidu-enterprise/improved-performance-3.gif">
+</p>
+
+#### 100% compatible with your current OpenVidu applications
+
+Changing such a central component as the media server usually involves a lot of refactoring work at the application level. New SDKs must be used, basic architectural concepts may radically change, etc… But OpenVidu hides all of this complexity. There's no need to change a single line of your app. What used to work with OpenVidu Pro will work with OpenVidu Enterprise.
+
 <br>
 
 ---
 
-## How
+## OpenVidu Enterprise roadmap
 
-You can deploy OpenVidu Pro:
+#### Large scale sessions
 
-- **[On AWS](deployment/pro-enterprise/aws){:target="_blank"}**
-- **[On premises in your own infrastructure](deployment/pro-enterprise/on-premises/){:target="_blank"}**
+OpenVidu Enterprise will support much larger sessions in terms of users and streams. This is a statement based on 3 points:
+
+- The better performance of mediasoup allows processing more media streams in the same hardware.
+- Sessions will be able to be replicated in different Media Nodes, sharing the load of the same session in different machines. This will provide horizontal scaling in OpenVidu for the first time.
+- Selection of dominant speaker(s) will add the possibility of sessions with hundreds or thousands of publishers without crashing client devices. Only the latest active speakers in a session will be sent to the client side, theoretically allowing for an unlimited number of publishers in the same session.
+
+#### High availability
+
+OpenVidu Enterprise will offer replication of all nodes in AWS clusters, including the OpenVidu Server Pro Node (which for now is a single point of failure). Automatic load balancing of clients will also be possible, distributing the load among different OpenVidu Server Pro Nodes.
+
+#### E2E encryption
+
+Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC Insertable Streams. With Kurento, media streams are encrypted in the client-to-server and server-to-client channels, protecting them from man-in-the-middle attacks. But media streams have to be individually decoded and processed in the server side, so data must be decrypted by Kurento, which breaks the client-to-client encryption. But with mediasoup, media streams can remain protected client-to-client, without the server needing to decrypt it.
 
 <br>
 
-Visit <a href="https://openvidu.io/pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Pro.
+---
+
+## OpenVidu Enterprise beta limitations
+
+As a beta feature, mediasoup support in OpenVidu comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
+
+- There is no [INDIVIDUAL recording](advanced-features/recording/#individual-stream-recording){:target="_blank"} yet.
+- There is no support for the forced media codec feature yet.
+- Firefox for Android has been proven to present some issues.
+- As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
+
+<br>
+
+---
+
+## Enable OpenVidu Enterprise
+
+OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster version **2.19.0** up and running.
+
+Configure the following property in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu`)
+
+```yml
+OPENVIDU_EDITION=enterprise
+```
+
+Then restart the services running command `./openvidu restart` in the same installation path.
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+      <strong>NOTE</strong>. When the beta period officially ends, you will no longer be able to use your OpenVidu Pro cluster with mediasoup beta support. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running with mediasoup. A final release version of OpenVidu Enterprise edition will replace this beta version.
+</div>
+</div>
 
 <br>

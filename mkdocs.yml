@@ -62,10 +62,15 @@ nav:
   - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
 - Deployment:
   - Intro: deployment/index.md
-  - AWS: deployment/deploying-aws.md
-  - On premises: deployment/deploying-on-premises.md
-  - Deploying OpenVidu applications: deployment/deploying-openvidu-apps.md
-  - Upgrading OpenVidu: deployment/upgrading.md
+  - OpenVidu CE:
+    - AWS: deployment/ce/aws.md
+    - On premises: deployment/ce/on-premises.md
+    - Upgrading: deployment/ce/upgrading.md
+  - OpenVidu Pro / Enterprise:
+    - AWS: deployment/pro-enterprise/aws.md
+    - On premises: deployment/pro-enterprise/on-premises.md
+    - Upgrading: deployment/pro-enterprise/upgrading.md
+  - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
 - Contribute:
   - Developing OpenVidu: developing/index.md
   - OpenVidu Server RPC protocol: developing/rpc.md
@@ -76,10 +81,8 @@ nav:
   - Scalability: openvidu-pro/scalability.md
   - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
   - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
-  - Deployment:
-    - AWS: openvidu-pro/deployment/aws.md
-    - On premises: openvidu-pro/deployment/on-premises.md
-    - Upgrading OpenVidu Pro: openvidu-pro/deployment/upgrading.md
+- OpenVidu Enterprise:
+  - Home: openvidu-enterprise/index.md
 docs_dir: docs
 theme:
     name: mkdocs

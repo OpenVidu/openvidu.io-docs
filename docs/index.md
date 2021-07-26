@@ -53,7 +53,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 feature-text-col">
       <h3 style="text-align: left">Easy to deploy</h3>
-      <span class="feature-text">Developing your app is just the beginning. And of course we know that the go-to-production process can sometimes be pretty annoying. OpenVidu makes this a seamless process by supporting the <a href="deployment/deploying-aws/" target="_blank">deployment in the most popular cloud provider</a> in a few clicks. Or if you prefer, we have a very short <a href="deployment/deploying-on-premises/" target="_blank">step-by-step guide</a> on how to successfully deploy OpenVidu with Docker wherever you want</span>
+      <span class="feature-text">Developing your app is just the beginning. And of course we know that the go-to-production process can sometimes be pretty annoying. OpenVidu makes this a seamless process by supporting the <a href="deployment/ce/aws/" target="_blank">deployment in the most popular cloud provider</a> in a few clicks. Or if you prefer, we have a very short <a href="deployment/ce/on-premises/" target="_blank">step-by-step guide</a> on how to successfully deploy OpenVidu with Docker wherever you want</span>
     </div>
   </div>
   <hr>
@@ -221,7 +221,7 @@ These are the recommended steps for getting started with OpenVidu:
 
 3. Try now any of our **[Client-Side + Server-Side](tutorials/#client-side-server-side){:target="_blank"}** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
 
-4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](deployment/deploying-aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](deployment/deploying-aws/){:target="_blank"}** and **[Deploying your app on AWS](deployment/deploying-app/){:target="_blank"}**).
+4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](deployment/ce/aws/){:target="_blank"}**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](deployment/ce/aws/){:target="_blank"}** and **[Deploying your app on AWS](deployment/deploying-app/){:target="_blank"}**).
 
 ----------
 

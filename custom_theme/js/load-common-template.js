@@ -1,8 +1,9 @@
 var PATH_TO_FILE = document.currentScript.getAttribute('data-pathToFile');
 var ELEMENT_ID = document.currentScript.getAttribute('data-elementId');
 var RUN_ANCHOR_SCRIPT = document.currentScript.getAttribute('data-runAnchorScript').toLowerCase() === "true";
+var ELEMENT_ID_TO_REMOVE = document.currentScript.getAttribute('data-elementIdToRemove');
 
-function runAjax(pathToFile, elementId, runAnchorScript) {
+function runAjax(pathToFile, elementId, runAnchorScript, elementIdToRemove) {
     $.ajax({
         url: "https://docs.openvidu.io/en/stable/common/" + pathToFile,
         // url: "http://127.0.0.1:8000/common/" + pathToFile,
@@ -18,8 +19,12 @@ function runAjax(pathToFile, elementId, runAnchorScript) {
                     setTimeout(() => $(document.body).scrollTop($(window.location.hash).offset().top), 1);
                 }
             }
+            if (elementIdToRemove != null) {
+                // Remove element
+                $('#' + elementIdToRemove).remove();
+            }
         }
     });
 }
 
-runAjax(PATH_TO_FILE, ELEMENT_ID, RUN_ANCHOR_SCRIPT);
+runAjax(PATH_TO_FILE, ELEMENT_ID, RUN_ANCHOR_SCRIPT, ELEMENT_ID_TO_REMOVE);

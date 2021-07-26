@@ -329,7 +329,7 @@ Then you can initialize your recording as usual:
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -530,7 +530,7 @@ These are the properties in the JSON file
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1106,7 +1106,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -1124,7 +1124,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 </div>
 </div>
 
-OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/deploying-aws/){:target="_blank"}.
+OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/ce/aws/){:target="_blank"}.
 
 AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
 

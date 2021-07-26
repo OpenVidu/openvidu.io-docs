@@ -1,10 +1,21 @@
 {% if nav_item.children %}
 
-<li {% if nav_item.title=='OpenVidu Pro' %} style="width: 100%; display: inline-block" {% endif %}
-        class="subnav_drop {% if nav_item.active%}current{%endif%}">
+<li class="subnav_drop {% if nav_item.active%}current{%endif%}">
         <div style="display: flex; justify-content: space-between">
-                <span>{{ nav_item.title }}</span>
+                <span id="nav-item-title-{{ nav_item.title }}">{{ nav_item.title }}</span>
                 <div>
+                        {% if nav_item.title == 'OpenVidu CE' %}
+                        <script>document.getElementById('nav-item-title-OpenVidu CE').innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>CE</div>"</script>
+                        {% endif %}
+                        {% if nav_item.title == 'OpenVidu Pro' %}
+                        <script>document.getElementById('nav-item-title-OpenVidu Pro').innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #0088aa; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>PRO</div>"</script>
+                        {% endif %}
+                        {% if nav_item.title == 'OpenVidu Enterprise' %}
+                        <script>var el = document.getElementById('nav-item-title-OpenVidu Enterprise').innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>ENTEPRISE</div>";</script>
+                        {% endif %}
+                        {% if nav_item.title == 'OpenVidu Pro / Enterprise' %}
+                        <script>var el = document.getElementById('nav-item-title-OpenVidu Pro / Enterprise').innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #0088aa; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>PRO</div> <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>ENTEPRISE</div>";</script>
+                        {% endif %}
                         {% if nav_item.active%}
                         <span class="arrow-up">▴</span>
                         <span class="arrow-down" style="display: none">▾</span>
@@ -12,12 +23,6 @@
                         <span class="arrow-up" style="display: none">▴</span>
                         <span class="arrow-down">▾</span>
                         {% endif %}
-                        {% if nav_item.title == 'OpenVidu Pro' %}
-                        <a style="all: unset; display: inline">
-                                <div id="openvidu-pro-tag"
-                                        style=" pointer-events: none; float: left; margin-right: 12px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
-                                        PRO</div>
-                        </a>{% endif %}
                 </div>
         </div>
         <ul class="subnav" hidden>
@@ -28,18 +33,7 @@
 {% else %}
 
 <li class="toctree-l1 {% if nav_item.active%}current{%endif%}">
-        {% if nav_item.title == 'Network quality' %}
-        <div style="display: flex; justify-content: space-between">
-                <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-                <a style="all: unset; display: inline">
-                        <div id="openvidu-pro-tag"
-                                style=" pointer-events: none; float: left; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
-                                PRO</div>
-                </a>
-        </div>
-        {% else %}
         <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
-        {% endif %}
 </li>
 
 {% endif %}

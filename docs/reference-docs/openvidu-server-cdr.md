@@ -361,7 +361,7 @@ All kind of signals trigger `signalSent` event.
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -430,7 +430,7 @@ An easy strategy to rebuild any affected session is to make clients ask for a ne
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -495,7 +495,7 @@ Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed.
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -611,7 +611,7 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `launch`          | Media Nodes that are going to be added to the cluster | An object with 4 properties: <ul><li style="color: inherit"><code>total</code> : a number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li style="color: inherit"><code>newNodes</code> : a number counting the amount of completely new Media Nodes that will be launched. For [On Premises](openvidu-pro/deployment/on-premises/){:target="_blank"} OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li style="color: inherit"><code>waitingIdleToTerminateNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li style="color: inherit"><code>canceledNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |
+| `launch`          | Media Nodes that are going to be added to the cluster | An object with 4 properties: <ul><li style="color: inherit"><code>total</code> : a number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li style="color: inherit"><code>newNodes</code> : a number counting the amount of completely new Media Nodes that will be launched. For [On Premises](deployment/pro-enterprise/on-premises/){:target="_blank"} OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li style="color: inherit"><code>waitingIdleToTerminateNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li style="color: inherit"><code>canceledNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |
 | `terminate`       | Media Nodes that are going to be removed from the cluster | An object with 3 properties: <ul><li style="color: inherit"><code>total</code> : a number counting the total amount of Media Nodes that are going to be removed from the cluster (sum of the following properties).</li><li style="color: inherit"><code>runningNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>running</code> status to A) <code>waiting-idle-to-terminate</code> status, if there are ongoing sessions inside the Media Node, or B) <code>terminating</code> status, if the Media Node is empty and can be immediately removed.</li><li style="color: inherit"><code>launchingNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>launching</code> status to <code>canceled</code> status.</li></ul> |
 
 <br>

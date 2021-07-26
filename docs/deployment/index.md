@@ -13,10 +13,11 @@
 
 OpenVidu is a platform that you can install on your premises or in any cloud provider. **OpenVidu is not provided as a hosted service**.
 
-OpenVidu is provided in two editions:
+OpenVidu has different editions:
 
-- **OpenVidu Community Edition (CE)**: It has an open source Apache 2 license and is free to use. It can be installed on a linux machine. 
-- **OpenVidu Pro Edition (Pro)**: Provides additional features compared with CE edition. Its pricing model is described in the [pricing page](https://openvidu.io/pricing){:target="_blank"}. You can get a license wirh 15-days free trial creating an account. Find more information about PRO edition in its [documentation section](openvidu-pro/){:target="_blank"}.
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div>: it has an open source Apache 2 license and is free to use.<div style="margin-bottom: 5px"></div>
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div>: provides additional features built on top of CE edition. Its pricing model is described in the [pricing page](https://openvidu.io/pricing){:target="_blank"}. You can get a license with 15-days free trial creating an account. Find more information about PRO edition in its [documentation section](openvidu-pro/){:target="_blank"}.<div style="margin-bottom: 5px"></div>
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div>: offers the best performance, improved media quality and better scalability for high-demand environments. Find more information about ENTERPRISE edition in its [documentation section](openvidu-enterprise/){:target="_blank"}.
 
 <br>
 
@@ -26,26 +27,9 @@ OpenVidu is provided in two editions:
 
 OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [Cloud Formation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
 
-<div class="row" style="margin-top: 20px">
-  <div class="col-md-1"></div>
-  <div class="col-md-5 col-sm-6 team-member">
-      <div class="effect effects wow fadeInUp">
-          <div class="img">
-              <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa; padding: 15px"><h3 style="border-top: none; margin: 0; color: #0088aa; line-height: 30px"><div style="font-size: 18px; margin-bottom: 10px">Deploying</div>OpenVidu CE<br>on AWS</h3></div>
-              <a href="deployment/deploying-aws" class="cbp-singlePage"><div class="overlay"></div></a>
-          </div>
-      </div>
-  </div>
-  <div class="col-md-5 col-sm-6 team-member">
-      <div class="effect effects wow fadeInUp">
-          <div class="img">
-              <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa; padding: 15px"><h3 style="border-top: none; margin: 0; color: #0088aa; line-height: 30px"><div style="font-size: 18px; margin-bottom: 10px">Deploying</div>OpenVidu PRO<br>on AWS</h3></div>
-              <a href="openvidu-pro/deployment/aws" class="cbp-singlePage"><div class="overlay"></div></a>
-          </div>
-      </div>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+- <a href="deployment/ce/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on AWS</a><div style="margin-bottom: 5px"></div>
+- <a href="deployment/pro-enterprise/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on AWS</a><div style="margin-bottom: 5px"></div>
+- <a href="deployment/pro-enterprise/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on AWS</a>
 
 <br>
 
@@ -55,26 +39,9 @@ OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [
 
 OpenVidu platform can be deployed in any modern linux distribution on premises or in any cloud provider. Deployment is based on docker, allowing a better administration. Depending on the edition you want to deploy, instructions are different:
 
-<div class="row" style="margin-top: 20px">
-  <div class="col-md-1"></div>
-  <div class="col-md-5 col-sm-6 team-member">
-      <div class="effect effects wow fadeInUp">
-          <div class="img">
-              <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa; padding: 15px"><h3 style="border-top: none; margin: 0; color: #0088aa; line-height: 30px"><div style="font-size: 18px; margin-bottom: 10px">Deploying</div>OpenVidu CE<br>on premises</h3></div>
-              <a href="deployment/deploying-on-premises" class="cbp-singlePage"><div class="overlay"></div></a>
-          </div>
-      </div>
-  </div>
-  <div class="col-md-5 col-sm-6 team-member">
-      <div class="effect effects wow fadeInUp">
-          <div class="img">
-              <div class="img-responsive img-tutorials" alt="" style="text-align: center; border: 2px solid #0088aa; padding: 15px"><h3 style="border-top: none; margin: 0; color: #0088aa; line-height: 30px"><div style="font-size: 18px; margin-bottom: 10px">Deploying</div>OpenVidu PRO<br>on premises</h3></div>
-              <a href="openvidu-pro/deployment/on-premises" class="cbp-singlePage"><div class="overlay"></div></a>
-          </div>
-      </div>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+- <a href="deployment/ce/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on premises</a><div style="margin-bottom: 5px"></div>
+- <a href="deployment/pro-enterprise/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on premises</a><div style="margin-bottom: 5px"></div>
+- <a href="deployment/pro-enterprise/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on premises</a>
 
 <br>
 

@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.19.0](#2190)
 - [2.18.0](#2180)
 - [2.17.0](#2170)
 - [2.16.0](#2160)
@@ -24,6 +25,149 @@
 
 ---
 
+## 2.19.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/ce/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/ce/aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.19.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.19.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.19.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.19.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.16.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Beta support for mediasoup
+
+OpenVidu Enterprise edition is available in beta, free of charge for a limited time. It includes mediasoup support as Media Server, which includes a great boost in performance and quality. To test it you need an OpenVidu Pro license. Visit [OpenVidu Enterprise documentation](https://docs.openvidu.io/en/2.19.0/openvidu-enterprise/){:target="_blank"} to learn how to enable it.
+
+<br>
+
+##### New supported browsers in iOS
+
+Safari was the only supported browser in iOS until 2.19.0. Now latest versions of **Chrome**, **Firefox**, **Microsoft Edge** and **Opera** are also supported in iPhones and iPads.
+
+<br>
+
+##### New Timeline View in OpenVidu Inspector
+
+OpenVidu Inspector brings the Timeline View for your sessions. It provides a quick and visual way to review the events and actions that took place in a session, ordered in time. You can also filter by user or event type.
+
+#### BUG FIXES
+
+- _OpenVidu Pro_ : fix for [autoscaling event](https://docs.openvidu.io/en/2.19.0/reference-docs/openvidu-server-cdr/#autoscaling){:target="_blank"}. Property `system.status.avgLoad` had an invalid JSON value when `numNodes` was 0.
+- _COMPOSED recordings_: characters of non-european fonts could not be properly displayed in the recording layout. Lack of fonts in the recording module made these chars to show up like `?`. Now they will be displayed fine for the following language groups: Western Europe, Eastern/Central Europe, Baltic, Cyrillic, Greek, Turkish, Arabic, Simplified and Traditional Chinese, Hebrew, Japanese, Korean, Thai. Note that special versions of these chars (bold, italic....) could still be problematic to be shown in the recording layout.
+- _COMPOSED recordings_: an annoying Chrome translate banner could appear on the recording file if the layout was recognized in a language different than English. Now this banner won't show up.
+
+#### BREAKING CHANGES
+
+WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-docs/openvidu-server-cdr/#sessioncreated){:target="_blank"} is triggered earlier in time, and for all sessions. Before, it was only launched after the first user joined the session. Now it is launched after successfully initializing a session through REST API or server SDKs. This also means that `sessionDestroyed` event wasn't being launched before for sessions that haven't had any user connected to it. Now it is. We consider this to be a more predictable and more consistent behavior.
+
+<br>
+
+---
 
 ## 2.18.0
 

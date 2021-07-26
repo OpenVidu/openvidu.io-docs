@@ -806,6 +806,10 @@ img.img-more-info {
         line-height: 32px !important;
     }
 
+    #openvidu-enterprise-tag {
+        line-height: 32px !important;
+    }
+
     .cards-container{
         margin-bottom: 10px;
     }

@@ -9,8 +9,9 @@ These properties may be set:
 
 ---
 
-- **[Configuration parameters for OpenVidu CE](#configuration-parameters-for-openvidu-ce)**
-- **[Configuration parameters for OpenVidu Pro](#configuration-parameters-for-openvidu-pro)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</span>](#configuration-parameters-for-openvidu-ce)**<div style="margin-bottom: 5px"></div>
+- **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span>](#configuration-parameters-for-openvidu-pro)**<div style="margin-bottom: 5px"></div>
+<!-- - **[Configuration parameters for OpenVidu Enterprise](#configuration-parameters-for-openvidu-enterprise)**<a href="openvidu-enterprise/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>-->
 - **[Special conditions of OpenVidu development container](#special-conditions-of-openvidu-development-container)**
 
 ---
@@ -62,7 +63,7 @@ These configuration parameters apply to both OpenVidu CE and OpenVidu Pro.
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -83,8 +84,9 @@ These configuration parameters are part of <a href="openvidu-pro/" target="_blan
 | Parameter       | Description                               | Default value                                      |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
 | **`OPENVIDU_PRO_LICENSE`** | License key of your OpenVidu Pro account. This parameter is mandatory to launch OpenVidu Pro clusters.<br>**[Sign up now to get your 15 day free trial!](https://openvidu.io/account)** |  |
+| **`OPENVIDU_EDITION`** | OpenVidu Edition to run. Possible values are:<br>• `pro`: run an **[OpenVidu Pro](openvidu-pro/){:target="_blank"}** cluster<br>• `enterprise`: run an **[OpenVidu Enterprise](openvidu-enterprise/){:target="_blank"}** cluter  | **pro** |
 | **`OPENVIDU_PRO_CLUSTER_ID`**                | Unique identifier of your cluster. Each OpenVidu Server Pro instance corresponds to one cluster. You can launch as many clusters as you want with your license key. Cluster ID will always be stored to disk so restarting OpenVidu Server Pro will keep the same previous cluster ID if this configuration parameter is not given a distinct value | _A random string_ |
-| **`OPENVIDU_PRO_CLUSTER_MEDIA_NODES`**       | The desired number of Media Nodes on startup. If there are too many existing Media Nodes on startup, they will be automatically dropped until this number is reached. If there are not enough, more will be automatically launched. This property has effect only on **[AWS deployments](openvidu-pro/deployment/aws/){:target="_blank"}** and if `OPENVIDU_PRO_CLUSTER_AUTOSCALING=false` | **1** |
+| **`OPENVIDU_PRO_CLUSTER_MEDIA_NODES`**       | The desired number of Media Nodes on startup. If there are too many existing Media Nodes on startup, they will be automatically dropped until this number is reached. If there are not enough, more will be automatically launched. This property has effect only on **[AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}** and if `OPENVIDU_PRO_CLUSTER_AUTOSCALING=false` | **1** |
 | **`OPENVIDU_PRO_CLUSTER_AUTOSCALING`**     | Whether to enable or disable autoscaling. With autoscaling the number of Media Nodes will be automatically adjusted according to existing load. This property being true will make property `OPENVIDU_PRO_CLUSTER_MEDIA_NODES` useless (instead will be using the value given to property `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES`) | **false** |
 | **`OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES`** | If `OPENVIDU_PRO_CLUSTER_AUTOSCALING=true`, the upper limit of Media Nodes that can be reached. Even when the average load exceeds the threshold, no more Media Nodes will be added to cluster | **2** |
 | **`OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES`** | If `OPENVIDU_PRO_CLUSTER_AUTOSCALING=true`, the lower limit of Media Nodes that can be reached. Even when the average load is inferior to the threshold, no more Media Nodes will be removed from the cluster. This property acts as `OPENVIDU_PRO_CLUSTER_MEDIA_NODES` when autoscaling is enabled | **1** |
@@ -108,14 +110,50 @@ These configuration parameters are part of <a href="openvidu-pro/" target="_blan
 | **`OPENVIDU_PRO_AWS_ACCESS_KEY`** | If `OPENVIDU_PRO_RECORDING_STORAGE=s3`, AWS long-lived credentials access key. Must have read and write permissions over the bucket defined in property `OPENVIDU_PRO_AWS_S3_BUCKET`. If not provided, then the internal S3 client will try to use the default AWS credentials of the machine, if available (see the credentials search order in the [Java Doc](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html)) | |
 | **`OPENVIDU_PRO_AWS_SECRET_KEY`** | If `OPENVIDU_PRO_RECORDING_STORAGE=s3`, AWS long-lived credentials secret key. If not provided, then the internal S3 client will try to use the default AWS credentials of the machine, if available (see the credentials search order in the [Java Doc](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html) | |
 | **`OPENVIDU_PRO_AWS_REGION`** | If `OPENVIDU_PRO_RECORDING_STORAGE=s3`, AWS region in which the S3 bucket is located (e.g. "eu-west-1"). If not provided, the region will try to be discovered automatically, although this is not always possible | |
-| **`OPENVIDU_PRO_PRIVATE_IP`** | Private IP of OpenVidu Server Pro Node. Media Nodes will use this property to communicate with OpenVidu Server Pro Node. **This property is optional and as a general rule should remain empty**, as Media Nodes will automatically discover this IP. It is only suitable for **[On Premises deployments](openvidu-pro/deployment/on-premises/){:target="_blank"}** when Media Nodes are not able to autodiscover the IP address for any kind of not contemplated reason |  |
-| **`KMS_URIS`** | Array of Media Node URIs (comma separated list of strings) that should be automatically added to the cluster on startup. If any value is provided, then it must be valid and accessible, or OpenVidu will fail to start. This property has effect only on **[On Premises deployments](openvidu-pro/deployment/on-premises/){:target="blank"}**. All of Media Node URIs have the same format: `ws://MEDIA_NODE_IP:8888/kurento`. A possible value for this property for a single Media Node could be `["ws://56.11.23.45:8888/kurento"]` | **[ ]** |
+| **`OPENVIDU_PRO_PRIVATE_IP`** | Private IP of OpenVidu Server Pro Node. Media Nodes will use this property to communicate with OpenVidu Server Pro Node. **This property is optional and as a general rule should remain empty**, as Media Nodes will automatically discover this IP. It is only suitable for **[On Premises deployments](deployment/pro-enterprise/on-premises/){:target="_blank"}** when Media Nodes are not able to autodiscover the IP address for any kind of not contemplated reason |  |
+| **`KMS_URIS`** | Array of Media Node URIs (comma separated list of strings) that should be automatically added to the cluster on startup. If any value is provided, then it must be valid and accessible, or OpenVidu will fail to start. This property has effect only on **[On Premises deployments](deployment/pro-enterprise/on-premises/){:target="blank"}**. All of Media Node URIs have the same format: `ws://MEDIA_NODE_IP:8888/kurento`. A possible value for this property for a single Media Node could be `["ws://56.11.23.45:8888/kurento"]` | **[ ]** |
 | **`ELASTICSEARCH_USERNAME`** | When using a secured **[external Elastic stack](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}**, the name of the Elastic user | |
 | **`ELASTICSEARCH_PASSWORD`** | When using a secured **[external Elastic stack](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}** is configured, the password of the Elastic user | |
 
 <br>
 
 ---
+
+<!--### Configuration parameters for OpenVidu Enterprise
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+These configuration parameters are part of <a href="openvidu-enterprise/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> tier.
+</div>
+</div>
+
+| Parameter       | Description                               | Default value                                      |
+| --------------- | ----------------------------------------- | -------------------------------------------------- |
+| **`OPENVIDU_ENTERPRISE_MEDIA_SERVER`** | Which media server to use in your deployment. Possible values are:<br>• `kurento`<br>• `mediasoup`<br> | `mediasoup` |
+
+<br>
+
+---
+-->
 
 ### Special conditions of OpenVidu development container
 

@@ -7,7 +7,7 @@
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;
@@ -50,7 +50,7 @@ Having a strong network link is one of the most important aspects of a successfu
     width: 100%;
     margin-top: 30px;
     margin-bottom: 30px;
-    padding: 10px 0 5px 0;
+    padding: 10px 0;
     background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
     <i class="icon ion-android-alert" style="
     font-size: 50px;

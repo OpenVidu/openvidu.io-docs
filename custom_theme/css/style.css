@@ -81,7 +81,7 @@ a:focus, a:active, button::-moz-focus-inner, input[type="reset"]::-moz-focus-inn
     .container {
         max-width: 1425px;
         width: 100%;
-        padding: 0 90px;
+        padding: 0 70px;
     }
 }
 @media (min-width: 768px) and (max-width: 991px)) {

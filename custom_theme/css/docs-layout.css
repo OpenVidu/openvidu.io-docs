@@ -401,10 +401,12 @@ ul.subnav > li.current {
 
 span.arrow-up {
     color: #bfbfbf !important;
+    float: right;
 }
 
 span.arrow-down {
     color: #bfbfbf !important;
+    float: right;
 }
 
 @media all and (min-width: 992px) {
