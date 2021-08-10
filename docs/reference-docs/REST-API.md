@@ -289,6 +289,7 @@ A Connection represents each one of the users connected to a Session. You must c
     "createdAt": 1538481999022,
     "activeAt": 1538481999843,
     "location": "Madrid, Spain",
+    "ip": "37.122.145.190",
     "platform": "Chrome 85.0.4183.102 on Linux 64-bit",
     "token": "wss://localhost:4443?sessionId=TestSession&token=tok_AVe8o7iltWqtijyl&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=M2ALIY&turnCredential=7kfjy2",
     "serverData": "My Server Data",
@@ -344,6 +345,7 @@ A Connection represents each one of the users connected to a Session. You must c
 | createdAt | Number | Time when the Connection was created in UTC milliseconds |
 | activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
 | location <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Geographic location of the participant |
+| ip | String | IP of the participant, as seen by OpenVidu Server |
 | platform | String | Complete description of the platform used by the participant to connect to the Session. Set to `IPCAM` if `type=IPCAM` |
 | token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
 | serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-openviduapisessionsltsession_idgtconnection) (`data` parameter) |

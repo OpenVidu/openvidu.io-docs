@@ -1124,7 +1124,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 </div>
 </div>
 
-OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/ce/aws/){:target="_blank"}.
+OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}.
 
 AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
 
