@@ -89,6 +89,10 @@ theme:
     custom_dir: custom_theme
 
 markdown_extensions:
-  - markdown.extensions.extra
+  # https://python-markdown.github.io/extensions/extra/
+  - extra
+
+  # https://python-markdown.github.io/extensions/toc/
   - toc:
+        marker: "[TOC]"
         permalink: " 🔗"
