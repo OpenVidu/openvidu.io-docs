@@ -273,8 +273,8 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <th scope="row">License</th>
             <td scope="row"></td>
             <td>Apache 2.0</td>
-            <td>Copyrighted</td>
-            <td>Copyrighted</td>
+            <td>Commercial</td>
+            <td>Commercial</td>
         </tr>
         <tr>
             <th scope="row">Support</th>
