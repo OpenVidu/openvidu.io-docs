@@ -332,7 +332,7 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     This comes in contrast with the more traditional method of adaptive video bitrate in Kurento, which was all-or-nothing and affected all participants equally, so it wasn't possible to adjust the quality individually for each one of them.
 
-    For more technical details about how simulcast works, check the [Simulcast technical details](./simulcast.md) page.
+    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast) page.
 
 - **VP9** (_not available yet, work in progress_)
 
@@ -383,7 +383,7 @@ As a beta feature, mediasoup support in OpenVidu comes with a handful of limitat
 - Firefox for Android has been proven to present some issues.
 - As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
 
-For a technical description of some other low-level limitations in this beta version, please check the [Simulcast technical details](./simulcast.md#simulcast-enterprise-beta-limitations) page.
+For a technical description of some other low-level limitations in this beta version, please check the [Simulcast technical details](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations) page.
 
 <br>
 
