@@ -300,14 +300,7 @@
 
 OpenVidu Enterprise offers the best performance, improved media quality and better scalability for high-demand environments.
 
-The core of OpenVidu Enterprise is the support of **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server. OpenVidu has always used as Media Server the **[Kurento](https://www.kurento.org/){:target="_blank"}** platform. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
-
-#### Media quality improvements
-
-OpenVidu Enterprise with mediasoup supports modern WebRTC capabilities such as:
-
-- **Simulcast**: publishers may send different encodings of the same video stream, each one with a different quality, so that each subscriber can receive the one that best suits their network speed. This can substantially improve the experience for all participants in the videoconference: each participant receives the video that best suits their network conditions without affecting the experience of other users.<br><br>
-- **VP9** (_not available yet, work in progress_): this is a more advanced video codec than the widely extended VP8 and H264. It provides better compression rate and better quality with lower bandwidth usage, at the expense of a higher CPU usage on the client side. It also supports SVC. Google Chrome has had it for a while now, and other browsers are getting onboard.
+The key feature of OpenVidu Enterprise is that it supports using **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server instead of **[Kurento](https://www.kurento.org/){:target="_blank"}**. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
 
 #### 6x more media streams
 
@@ -329,9 +322,31 @@ Media connections are established **80% quicker** using OpenVidu Enterprise with
   <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="img/docs/openvidu-enterprise/improved-performance-3.gif">
 </p>
 
+#### Media quality improvements
+
+OpenVidu Enterprise with mediasoup raises the bar of what is possible with adaptive video quality for WebRTC, compared to what was possible with Kurento:
+
+- **Simulcast**
+
+    Simulcast is a technique that allows **optimizing the quality** of routed video, in accordance with the needs of each individual Subscriber. Depending on aspects such as device form-factor or network link quality, the video that gets delivered to each participant in a session can be adjusted to be the perfect match for each circumstance.
+
+    This comes in contrast with the more traditional method of adaptive video bitrate in Kurento, which was all-or-nothing and affected all participants equally, so it wasn't possible to adjust the quality individually for each one of them.
+
+    For more technical details about how simulcast works, check the [Simulcast technical details](./simulcast.md) page.
+
+- **VP9** (_not available yet, work in progress_)
+
+    An advanced video codec that brings better quality features when compared to VP8 and H264.
+
+    VP9 achieves better compression rates and better quality with lower bandwidth usage. It also supports SVC, which is in itself an improvement over the benefits provided by Simulcast.
+
+    Popular web browsers such as Google Chrome have integrated VP9 support for a while now, other browsers are slowly getting onboard, and OpenVidu will allow you to benefit from it too.
+
 #### 100% compatible with your current OpenVidu applications
 
-Changing such a central component as the media server usually involves a lot of refactoring work at the application level. New SDKs must be used, basic architectural concepts may radically change, etc… But OpenVidu hides all of this complexity. There's no need to change a single line of your app. What used to work with OpenVidu Pro will work with OpenVidu Enterprise.
+OpenVidu hides all complexity that lies behind swapping Media Server technologies: New SDKs, architecture changes, etc...
+
+With OpenVidu, there's no need to change a single line of your application: **what used to work with OpenVidu Pro will work as-is with OpenVidu Enterprise**.
 
 <br>
 
@@ -368,6 +383,8 @@ As a beta feature, mediasoup support in OpenVidu comes with a handful of limitat
 - Firefox for Android has been proven to present some issues.
 - As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
 
+For a technical description of some other low-level limitations in this beta version, please check the [Simulcast technical details](./simulcast.md#simulcast-enterprise-beta-limitations) page.
+
 <br>
 
 ---
@@ -376,7 +393,7 @@ As a beta feature, mediasoup support in OpenVidu comes with a handful of limitat
 
 OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster version **2.19.0** up and running.
 
-Configure the following property in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu`)
+Configure the following property in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu/`)
 
 ```yml
 OPENVIDU_EDITION=enterprise
@@ -405,7 +422,9 @@ Then restart the services running command `./openvidu restart` in the same insta
     padding-left: 20px;
     padding-right: 20px;
     ">
-      <strong>NOTE</strong>. When the beta period officially ends, you will no longer be able to use your OpenVidu Pro cluster with mediasoup beta support. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running with mediasoup. A final release version of OpenVidu Enterprise edition will replace this beta version.
+<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Pro cluster with mediasoup beta support. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running with mediasoup.
+
+A final release version of OpenVidu Enterprise edition will replace this beta version.
 </div>
 </div>
 

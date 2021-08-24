@@ -83,6 +83,7 @@ nav:
   - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
 - OpenVidu Enterprise:
   - Home: openvidu-enterprise/index.md
+  - Simulcast: openvidu-enterprise/simulcast.md
 docs_dir: docs
 theme:
     name: mkdocs
