@@ -3,11 +3,6 @@
 
 [TOC]
 
-- **[What is Simulcast?](#simulcast-what)**
-    - [How does Simulcast work?](#simulcast-how)
-- **[OpenVidu Enterprise beta limitations](#simulcast-enterprise-beta-limitations)**
-- **[How to deploy your OpenVidu Pro cluster](#how-to-deploy-your-openvidu-pro-cluster)**
-
 ---
 
 ## What is Simulcast? {: #simulcast-what }
