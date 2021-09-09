@@ -167,7 +167,7 @@ LETSENCRYPT_EMAIL=user@example.com
 
 #### Videoconference application
 
-By default, the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
+By default, the [OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"} application is deployed alongside OpenVidu Platform. It is accessible in the URL:
 
 ```console
 https://DOMAIN_OR_PUBLIC_IP:HTTPS_PORT/
