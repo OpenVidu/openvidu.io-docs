@@ -35,9 +35,20 @@ For more information about Simulcast and how it works in popular web browsers, c
 
 - [WebRTC Codelab - Simulcast](https://webrtccourse.com/course/webrtc-codelab/module/fiddle-of-the-month/lesson/simulcast-playground/){:target="_blank"}, where Tsahi Levent-Levi and Philipp Hancke present the basic concepts of Simulcast and later proceed to show some practical examples.
 
-## OpenVidu Enterprise beta limitations {: #simulcast-enterprise-beta-limitations }
+## Simulcast in OpenVidu Enterprise
 
-### Fixed amount of layers
+Simulcast is enabled directly in the client, using OpenVidu Browser. For this, the client platform itself must support the Simulcast feature: web browsers such as Firefox and Chrome are two of the best candidates. You enable this feature by setting the [enableSimulcastExperimental](api/openvidu-browser/interfaces/openviduadvancedconfiguration.html#enablesimulcastexperimental){:target="_blank"} flag in the [setAdvancedConfiguration](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} call of OpenVidu Browser:
+
+```javascript
+let OV = new OpenVidu();
+OV.setAdvancedConfiguration({
+    enableSimulcastExperimental: true
+});
+```
+
+### Beta limitations {: #simulcast-enterprise-beta-limitations }
+
+#### Fixed amount of layers
 
 For now, the number of simulcast encodings is fixed to **3**. This means that, in principle, the client will be asked to send 3 different video qualities, although depending on the implementation this number could be honored or not.
 
@@ -54,7 +65,7 @@ The exact decision logic followed by Chrome can be checked in its source code ([
 |          480x270 |                   450 |          2 |
 |          320x180 |                   200 |          1 |
 
-### Fixed resolution of each layer
+#### Fixed resolution of each layer
 
 Each of the simulcast encodings requested to the client browser can indicate by how much the original size should be divided. This is the [scaleResolutionDownBy](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpEncodingParameters/scaleResolutionDownBy) parameter, and currently it is fixed as per the default values in the WebRTC spec:
 
@@ -62,14 +73,14 @@ Each of the simulcast encodings requested to the client browser can indicate by 
 - The medium layer has the video size scaled down by 2.
 - The highest layer maintains the original video size (no scaling).
 
-### No max bitrate per layer
+#### No max bitrate per layer
 
 Simulcast encodings can be configured with a [maxBitrate](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpEncodingParameters/maxBitrate) parameter, which allows defining lower bitrates for each lower quality layer. However we're not using it, and instead rely on the internal logic that the web browsers use to auto-detect the available bandwidth and distribute bitrate as they see appropriate between layers.
 
-### No layer selection in the Media Server
+#### No layer selection in the Media Server
 
 In the future, OpenVidu will allow applications to do an explicit selection of which simulcast layer one Subscriber should receive. However, for the moment this feature is not available yet, and the actual selection is automatically performed by the Media Server, according to parameters such as the available download bandwidth of the Subscriber.
 
-### No layer deactivation in the Publisher
+#### No layer deactivation in the Publisher
 
 If a Simulcast layer won't be needed by the Media Server, the Publisher might as well be instructed to stop producing it altogether. This makes a lot of sense because otherwise it would be spending lots of resources to encode a layer that nobody needs! (and encoding video is a very expensive operation, so it should be avoided whenever possible).
