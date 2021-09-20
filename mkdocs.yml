@@ -66,10 +66,13 @@ nav:
     - AWS: deployment/ce/aws.md
     - On premises: deployment/ce/on-premises.md
     - Upgrading: deployment/ce/upgrading.md
-  - OpenVidu Pro / Enterprise:
+  - OpenVidu Pro:
     - AWS: deployment/pro-enterprise/aws.md
     - On premises: deployment/pro-enterprise/on-premises.md
     - Upgrading: deployment/pro-enterprise/upgrading.md
+  - OpenVidu Enterprise:
+    - AWS: deployment/pro-enterprise/enterprise-aws.md
+    - On premises: deployment/pro-enterprise/enterprise-on-premises.md
   - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
 - Contribute:
   - Developing OpenVidu: developing/index.md
