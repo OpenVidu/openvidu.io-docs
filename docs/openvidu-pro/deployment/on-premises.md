@@ -1,1 +1,1 @@
-<script src="js/redirect-to-path.js" data-pathToRedirect="/deployment/pro-enterprise/on-premises"></script>
+<script src="js/redirect-to-path.js" data-pathToRedirect="/deployment/pro/on-premises"></script>

@@ -218,6 +218,16 @@
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">High Availability</th>
+            <td scope="row"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
             <th scope="row">VP9</th>
             <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
@@ -234,17 +244,6 @@
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Support for sessions with hundreds or even thousands of users"></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">High Availability</th>
-            <td scope="row"><i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -364,7 +363,7 @@ OpenVidu Enterprise will support much larger sessions in terms of users and stre
 
 #### High availability
 
-OpenVidu Enterprise will offer replication of all nodes in AWS clusters, including the OpenVidu Server Pro Node (which for now is a single point of failure). Automatic load balancing of clients will also be possible, distributing the load among different OpenVidu Server Pro Nodes.
+OpenVidu Enterprise will offer replication of all nodes in AWS clusters, including the Master Node (which for now is a single point of failure). Automatic load balancing of clients will also be possible, distributing the load among different Master Nodes.
 
 #### E2E encryption
 
@@ -378,12 +377,11 @@ Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC 
 
 As a beta feature, mediasoup support in OpenVidu comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
 
-- There is no [INDIVIDUAL recording](advanced-features/recording/#individual-stream-recording){:target="_blank"} yet.
 - There is no support for the forced media codec feature yet.
 - Firefox for Android has been proven to present some issues.
+- See beta limitations on [Simulcast](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations){:target="_blank"}
+- See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}
 - As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
-
-For a technical description of some other low-level limitations in this beta version, please check the [Simulcast technical details](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations) page.
 
 <br>
 
@@ -393,7 +391,7 @@ For a technical description of some other low-level limitations in this beta ver
 
 OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster version **2.19.0** up and running.
 
-Configure the following property in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu/`)
+Configure the following property in the **`.env`** file at Master Node installation path (default to `/opt/openvidu/`)
 
 ```yml
 OPENVIDU_EDITION=enterprise

@@ -226,6 +226,16 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">High Availability</th>
+            <td scope="row"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
             <th scope="row">VP9</th>
             <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
@@ -242,17 +252,6 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Support for sessions with hundreds or even thousands of users"></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">High Availability</th>
-            <td scope="row"><i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -312,8 +311,8 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
 
 You can deploy OpenVidu Pro:
 
-- **[On AWS](deployment/pro-enterprise/aws){:target="_blank"}**
-- **[On premises in your own infrastructure](deployment/pro-enterprise/on-premises/){:target="_blank"}**
+- **[On AWS](deployment/pro/aws){:target="_blank"}**
+- **[On premises in your own infrastructure](deployment/pro/on-premises/){:target="_blank"}**
 
 <br>
 

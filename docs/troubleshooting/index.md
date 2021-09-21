@@ -381,7 +381,7 @@ nginx_1            | ===Mode letsencrypt===
 ...
 ```
 
-If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/ce/on-premises/#1-prerequisites) (OpenVidu CE) and [here](deployment/pro-enterprise/on-premises/#1-prerequisites) (OpenVidu Pro).**
+If you see in your logs this: `bind() to 0.0.0.0:80 failed (98: Address already in use)`, or any other errors related with binding ports, your deployment is failing because Nginx service can not use this specified port. In most of the cases this error happens because of port 80 is being used by other services running in the same machine as OpenVidu. Port 80 is used by our Nginx container for https redirection and letsencrypt. **Be sure to not run any services at ports used by OpenVidu. These ports are defined [here](deployment/ce/on-premises/#1-prerequisites) (OpenVidu CE) and [here](deployment/pro/on-premises/#1-prerequisites) (OpenVidu Pro).**
 
 #### 13.2 Let's Encrypt challenges errors
 
@@ -422,7 +422,7 @@ If none of this errors is your problem, ensure that your deployment accomplish t
 
 - **Make sure to not run any services at port 80 or port 443.** Let's Encrypt will not be able to make the challenges to validate your certificate
 - **Try, if possible, to not run any other service (Nginx, Apache, Tomcat) in your OpenVidu machine**.
-- **Be sure that all ports documented [here](deployment/ce/on-premises/#1-prerequisites)(OpenVidu CE) or [here](deployment/pro-enterprise/on-premises/#1-prerequisites) (OpenVidu PRO) are visible using your domain name and your public ip. Also ensure that all the documented ports are available and not used by other services.**
+- **Be sure that all ports documented [here](deployment/ce/on-premises/#1-prerequisites)(OpenVidu CE) or [here](deployment/pro/on-premises/#1-prerequisites) (OpenVidu PRO) are visible using your domain name and your public ip. Also ensure that all the documented ports are available and not used by other services.**
 
 If none of this works, you can try to remove `/opt/openvidu/certificates` folder and restart OpenVidu with:
 
@@ -466,8 +466,8 @@ There are two ways to configure the nginx containers provided in the official de
 
 - [Deployment CE in AWS](/deployment/ce/aws) 
 - [Deployment CE On premises](/deployment/ce/on-premises)
-- [Deployment PRO in AWS](deployment/pro-enterprise/aws)
-- [Deployment PRO On premises](deployment/pro-enterprise/on-premises)
+- [Deployment PRO in AWS](deployment/pro/aws)
+- [Deployment PRO On premises](deployment/pro/on-premises)
 
 #### 16.1 Create your own virtual hosts (Server blocks)
 
@@ -570,10 +570,10 @@ Exceptions may happen in OpenVidu Pro if the machine is running out of disk spac
 We made a lot of improvements since version 2.16.0 to avoid this, so problems should not appear if you have configured in `/opt/openvidu/.env` file
 a reasonable value in `OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE`. By default the value of this property is **15** days, but if you see that the space 
 of your disk is growing too fast, you may need to change this value to a smaller one. 
-You can take a look into the disk space in [Monitoring OpenVidu Server Pro Node](openvidu-pro/monitoring-elastic-stack/#monitoring-openvidu-server-pro-node) dashboard
+You can take a look into the disk space in [Node Monitoring Metrics](openvidu-pro/monitoring-elastic-stack/#metricbeat-node-monitoring-metrics) dashboard
 in Kibana.
 
-> **WARNING**: To avoid disk or JVM heap problems in your OpenVidu Server Pro Node, we encourage you to configure an external Elastic Stack. Take a look into how to configure
+> **WARNING**: To avoid disk or JVM heap problems in your Master Node, we encourage you to configure an external Elastic Stack. Take a look into how to configure
 > an external Elastic Stack [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
 <br>
 

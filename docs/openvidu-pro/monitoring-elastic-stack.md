@@ -898,7 +898,7 @@ An external Elastic Stack can be configured with and without security. The table
 ### OpenVidu Pro Configuration for external Elastic Stack
 
 If you have an external Elastic Stack configured without security, you only need to specify these properties in the `/opt/openvidu/.env` file
-of your OpenVidu Server Pro Node. These properties are URLs that need to have specified a port, even if it is port 80 or 443. For example:
+of your Master Node. These properties are URLs that need to have specified a port, even if it is port 80 or 443. For example:
 
 ```html
 OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com:443

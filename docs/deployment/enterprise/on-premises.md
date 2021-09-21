@@ -47,27 +47,25 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-<strong>NOTE</strong>: <strong>Highly available OpenVidu Enterprise is not available for on premises deployments.</strong> To deploy an highly available OpenVidu Enterprise check: <a href="openvidu-enterprise/pro-enterprise/enterprise-aws" target="_blank">Deploying OpenVidu Enterprise in AWS</a>
+<strong>NOTE</strong>: <strong>High Availability OpenVidu Enterprise is not compatible with on premises deployments.</strong> To deploy a highly available OpenVidu Enterprise check: <a href="deployment/pro/enterprise-aws" target="_blank">Deploying OpenVidu Enterprise in AWS</a>
 </div>
 </div>
 
 <br>
 
-# OpenVidu Enterprise On premises
+# OpenVidu Enterprise on premises
 
 <br>
-OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster version **2.20.0** up and running. If you don't have a previous **OpenVidu Pro** deployment, follow the instructions to [Deploy OpenVidu Pro on premises](deployment/pro-enterprise/on-premises).
+OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster up and running. If you don't have a previous **OpenVidu Pro** deployment, follow the instructions to [Deploy OpenVidu Pro on premises](deployment/pro/on-premises).
 
 To change from **OpenVidu Pro** to **OpenVidu Enterprise** you just need to:
 
-**1)** Configure the following property in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu/`):
-```
-OPENVIDU_EDITION=enterprise
-```
+1. Configure the following property in the **`.env`** file at your Master Node installation path (default to `/opt/openvidu/`)
 
-**2)** Restart OpenVidu as usually:
-```
-sudo su
-cd /opt/openvidu
-./openvidu start
-```
+        OPENVIDU_EDITION=enterprise
+
+2. Restart OpenVidu as usually
+
+        sudo su
+        cd /opt/openvidu
+        ./openvidu start

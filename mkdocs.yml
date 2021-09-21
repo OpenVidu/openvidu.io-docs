@@ -67,12 +67,12 @@ nav:
     - On premises: deployment/ce/on-premises.md
     - Upgrading: deployment/ce/upgrading.md
   - OpenVidu Pro:
-    - AWS: deployment/pro-enterprise/aws.md
-    - On premises: deployment/pro-enterprise/on-premises.md
-    - Upgrading: deployment/pro-enterprise/upgrading.md
+    - AWS: deployment/pro/aws.md
+    - On premises: deployment/pro/on-premises.md
+    - Upgrading: deployment/pro/upgrading.md
   - OpenVidu Enterprise:
-    - AWS: deployment/pro-enterprise/enterprise-aws.md
-    - On premises: deployment/pro-enterprise/enterprise-on-premises.md
+    - AWS: deployment/enterprise/aws.md
+    - On premises: deployment/enterprise/on-premises.md
   - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
 - Contribute:
   - Developing OpenVidu: developing/index.md
@@ -87,6 +87,7 @@ nav:
 - OpenVidu Enterprise:
   - Home: openvidu-enterprise/index.md
   - Simulcast: openvidu-enterprise/simulcast.md
+  - High availability: openvidu-enterprise/high-availability.md
 docs_dir: docs
 theme:
     name: mkdocs

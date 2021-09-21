@@ -1,7 +1,11 @@
 <h2 id="section-title">Simulcast</h2>
 <hr>
 
-[TOC]
+- **[What is Simulcast?](#simulcast-what)**
+    - [How does Simulcast work?](#simulcast-how)
+- **[Simulcast in OpenVidu Enterprise](#simulcast-in-openvidu-enterprise)**
+    - [Enable simulcast](#enable-simulcast)
+    - [Beta limitations](#simulcast-enterprise-beta-limitations)
 
 ---
 
@@ -35,7 +39,13 @@ For more information about Simulcast and how it works in popular web browsers, c
 
 - [WebRTC Codelab - Simulcast](https://webrtccourse.com/course/webrtc-codelab/module/fiddle-of-the-month/lesson/simulcast-playground/){:target="_blank"}, where Tsahi Levent-Levi and Philipp Hancke present the basic concepts of Simulcast and later proceed to show some practical examples.
 
+<br>
+
+---
+
 ## Simulcast in OpenVidu Enterprise
+
+### Enable simulcast {: #enable-simulcast }
 
 Simulcast is enabled directly in the client, using OpenVidu Browser. For this, the client platform itself must support the Simulcast feature: web browsers such as Firefox and Chrome are two of the best candidates. You enable this feature by setting the [enableSimulcastExperimental](api/openvidu-browser/interfaces/openviduadvancedconfiguration.html#enablesimulcastexperimental){:target="_blank"} flag in the [setAdvancedConfiguration](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} call of OpenVidu Browser:
 

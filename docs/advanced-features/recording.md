@@ -347,7 +347,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 </div>
 </div>
 
-For an OpenVidu Pro cluster, by default **composed recordings with video** take place in the same Media Node hosting the recorded Session (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). By transferring the recording process to Media Nodes, the OpenVidu Server Pro Node avoids being overloaded even with multiple composed video recordings in progress. Hosting the recording in the same Media Node as its session is the optimal and default choice, as the media doesn't need to be sent across different Media Nodes, saving network traffic. But you can decide to start the composed video recording of a session in a different Media Node, if your specific use case can take advantage of it:
+For an OpenVidu Pro cluster, by default **composed recordings with video** take place in the same Media Node hosting the recorded Session (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). By transferring the recording process to Media Nodes, the Master Node avoids being overloaded even with multiple composed video recordings in progress. Hosting the recording in the same Media Node as its session is the optimal and default choice, as the media doesn't need to be sent across different Media Nodes, saving network traffic. But you can decide to start the composed video recording of a session in a different Media Node, if your specific use case can take advantage of it:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -1124,7 +1124,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 </div>
 </div>
 
-OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/pro-enterprise/aws/){:target="_blank"}.
+OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/pro/aws/){:target="_blank"}.
 
 AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
 
@@ -1134,7 +1134,7 @@ AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brin
 
 Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"}** event to know when a recording has been successfully uploaded to S3.
 
-To enable S3 recording storage configure the following properties in the **`.env`** file at OpenVidu Server Pro Node installation path (default to `/opt/openvidu`)
+To enable S3 recording storage configure the following properties in the **`.env`** file at Master Node installation path (default to `/opt/openvidu`)
 
 ```yaml
 OPENVIDU_PRO_RECORDING_STORAGE=s3
@@ -1173,7 +1173,7 @@ If the resulting video file of a COMPOSED or COMPOSED_QUICK_START recording with
 COMPOSED and COMPOSED_QUICK_START  recordings with video uses a special module that connects to the recorded session using the public domain of your OpenVidu deployment. This is only true if you are **not** using an [external custom layout](#using-an-external-custom-layout). This means:
 
 - For OpenVidu CE and its single-node environment, this means that the recording module is not able to connect to OpenVidu Server from inside the same machine.
-- For OpenVidu PRO and its multi-node environment, this means that Media Nodes are not able to reach OpenVidu Server Pro Node using its public IP (the recording module is hosted in the Media Nodes).
+- For OpenVidu PRO and its multi-node environment, this means that Media Nodes are not able to reach Master Node using its public IP (the recording module is hosted in the Media Nodes).
 
 There are 2 possible solutions to this problem:
 
@@ -1181,7 +1181,7 @@ There are 2 possible solutions to this problem:
 2. **HACKY ONE**: allow the recording module to connect to the session using the internal private IP of the OpenVidu host. To do so set [configuration property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_COMPOSED_URL` to a specific value.
 
      - For OpenVidu CE: `https://HOST:PORT/dashboard` being `HOST` the internal IP of the host and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
-    - For OpenVidu PRO: `https://HOST:PORT/inspector` being `HOST` the internal IP of the OpenVidu Server Pro Node and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
+    - For OpenVidu PRO: `https://HOST:PORT/inspector` being `HOST` the internal IP of the Master Node and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
 
 #### Enable debug mode of COMPOSED or COMPOSED_QUICK_START recordings
 
