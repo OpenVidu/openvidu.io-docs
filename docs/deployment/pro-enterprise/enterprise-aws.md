@@ -82,7 +82,7 @@ cd /opt/openvidu
 
 To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
-- **A FQDN (Fully Qualified Domain Name) pointing to any IP**. This domain should be pointing to a _"Dummy IP"_ before deploying anything, for example "`8.8.8.8`" (it could be any IP). The Domain name will be changed at the end of the instructions to the Load Balancer URL created by the Cloudformation Stack.
+- **A FQDN (Fully Qualified Domain Name)**.The Domain name will be configured at the end of the instructions to point to the Load Balancer URL created by the Cloudformation Stack.
 - **A Certificate installed in AWS valid for the previous FQDN (Fully Qualified Domain Name)**: This cloudformation automatically configures a Load Balancer to work with OpenVidu. It is necessary to use the ARN of the certificate as a parameter to the cloudformation.
 - **A running Elasticsearch and Kibana deployment**. If you don't have any Elastic Stack deployed, check this [guide](/openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
 - **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
@@ -134,7 +134,7 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
-      <td class="first-col">Domain Name</br><span class="field-comment">This is the domain that will be used to access OpenVidu Enterprise.<span></td>
+      <td class="first-col">Domain Name</br><span class="field-comment">This is the domain that will be used to access OpenVidu Enterprise. This parameter will be configured at the end of the instructions to point to the Load Balancer URL in this section:  <strong><a href="#6-configure-your-domain-when-the-stack-has-been-created">6. Configure your domain when the stack has been created</a></strong>.<span></td>
       <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: <em><strong>example-multimaster.openvidu.io</strong></em></span></td>
     </tr>
     <tr>
@@ -150,15 +150,6 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
       <td><em>Your choice</em></td>
     </tr>
   </table>
-</div>
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    The <strong>Domain Name</strong> specified in the parameter must point to a <em>"Dummy IP"</em> while deploying the Cloudformation. It could be pointing to anything, like: "<code>8.8.8.8</code>" for example. This is because <strong>the Load Balancer URL will not be known until the stack is deployed</strong>. The domain name will be changed at the end of the deployment when the Load Balancer URL is available (Check section: <strong><a href="#6-configure-your-domain-when-the-stack-has-been-created">6. Configure your domain when the stack has been created</a></strong>)
-  </div>
 </div>
 
 <br>
