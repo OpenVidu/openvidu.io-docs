@@ -11,7 +11,8 @@
                         <script>Array.prototype.forEach.call(document.getElementsByClassName('nav-item-title-OpenVidu Pro'), element => element.innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #0088aa; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>PRO</div>")</script>
                         {% endif %}
                         {% if nav_item.title == 'OpenVidu Enterprise' %}
-                        <script>Array.prototype.forEach.call(document.getElementsByClassName('nav-item-title-OpenVidu Enterprise'), element => element.innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>ENTERPRISE</div>")</script>
+                        <script>Array.prototype.forEach.call(document.getElementsByClassName('nav-item-title-OpenVidu Enterprise'), element => element.innerHTML = "OpenVidu <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>ENTERPRISE</div>" +
+                        "<div id='openvidu-pro-tag' style='display: inline-block;pointer-events: none;margin-left: 4px;background-color: #777;color: white;font-weight: bold;padding: 0px 4px;border-radius: 3px;font-size: 10.5px;line-height: 19px;font-family: Montserrat, sans-serif;'>beta</div>")</script>
                         {% endif %}
                         {% if nav_item.active%}
                         <span class="arrow-up">▴</span>
