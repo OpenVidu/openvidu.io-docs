@@ -151,6 +151,16 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
       <td class="first-col">Openvidu Secret<br><span class="field-comment">Secret to connect to this OpenVidu Platform. Cannot be empty and must contain only alphanumeric characters [a-zA-Z0-9], hypens "-" and underscores "_"<span></td>
       <td><em>Your choice</em></td>
     </tr>
+    <tr>
+      <td class="first-col">Media Server<br><span class="field-comment">The Media Server implementation you want to use<span></td>
+      <td>
+        Possible values:
+        <ul>
+          <li><strong>mediasoup</strong></li>
+          <li><strong>kurento</strong></li>
+        </ul>
+      </td>
+    </tr>
   </table>
 </div>
 
