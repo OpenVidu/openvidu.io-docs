@@ -22,6 +22,7 @@
         - [OpenVidu Enterprise Configuration](#openvidu-enterprise-configuration)
             - [1) Change the configuration via API Rest (Recommended)](#1-change-the-configuration-via-api-rest-recommended)
             - [2) Change configuration by modifying S3 configuration file (Not recommended)](#2-change-configuration-by-modifying-s3-configuration-file-not-recommended)
+        - [Autoscaling Configuration](#autoscaling-configuration)
         - [Deploying an OpenVidu application](#deploying-an-openvidu-application)
 
 ---
@@ -429,6 +430,25 @@ curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/media-n
 
 This request will return a JSON with all registered media nodes and related information.
 
+### Autoscaling Configuration
+
+OpenVidu Enterprise Autoscaling is managed by AWS Autoscaling Groups, in consequence, all autoscaling parameters can be changed through Cloudformation parameters. Some examples of possible autoscaling configurations will be shown in this section, so you can easily manage your cluster.
+
+To change those parameters you just need to go to the ** AWS Cloudformation Panel 🠚 Select Your Stack 🠚 Update 🠚 Use current template**.
+
+<div class="row">
+    <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
+        <a data-fancybox="gallery-pro1" data-caption="First, go to the 'Cloudformation panel' and Select your Stack. Then click in the 'Update' button." href="iimg/docs/deployment/multimaster_asg_config_1.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_1.png"/></a>
+        <a data-fancybox="gallery-pro1" data-caption="Select 'Use current template' and click in the 'Next' button." href="img/docs/deployment/multimaster_asg_config_2.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_2.png"/></a>
+        <a data-fancybox="gallery-pro1" data-caption="Only these parameters can be changed through Cloudformation" href="img/docs/deployment/multimaster_asg_config_3.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_3.png"/></a>
+    </div>
+    <div class="slick-captions-text slick-captions">
+      <div class="caption"><p>First, go to the <strong>Cloudformation Panel</strong> and Select your Stack. Then click in the <strong>Update</strong> button.</p></div>
+      <div class="caption"><p>Select your stack and click in the <strong>Update</strong> button.</p></div>
+      <div class="caption"><p><strong>Only these parameters can be changed through Cloudformation</strong>.</p></div>
+    </div>
+</div>
+
 ### OpenVidu Enterprise Configuration
 
 Technically, you can connect to any instance through SSH, but this could lead to inconsistencies in the configuration, because master nodes and media nodes are now **volatile objects** of the infrastructure. They exist temporary, they can be destroyed and new nodes can be created, so the configuration can not live on any EC2 instance. For this reason, administrative task are done via **API Rest** or **by changing a persisted configuration file in a S3 bucket.**
@@ -514,13 +534,22 @@ If you want to benefit of all reconnection capabilites you can also take a look 
       },
     ]
     });
+    $('.slick-captions').slick({
+      asNavFor: '.pro-gallery-steps',
+      arrows: false,
+      infinite: false,
+      speed: 200,
+      fade: true,
+      dots: false
+    });
     $('.pro-gallery-steps').slick({
+      asNavFor: '.slick-captions',
       autoplay: false,
       arrows: true,
       prevArrow: '<div class="slick-btn slick-btn-prev"><i class="icon ion-chevron-left"></i></div>',
       nextArrow: '<div class="slick-btn slick-btn-next"><i class="icon ion-chevron-right"></i></div>',
-      dots: true,
       infinite: false,
+      dots: true,
       responsive: [
       {
         breakpoint: 768,
