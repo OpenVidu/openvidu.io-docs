@@ -95,7 +95,7 @@ OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deplo
 ## Beta limitations
 
 - [Recording](advanced-features/recording/){:target="_blank"} is not available yet in OpenVidu Enterprise High Availability. This requires further work to be completely supported, which will be in an upcoming release.
-- Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it.
+- Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it. Take a look to [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo application to see how to easily do it.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
