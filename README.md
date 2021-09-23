@@ -27,7 +27,6 @@ sudo apt-get update && sudo apt-get install --no-install-recommends --yes \
 
 ```sh
 # Install MkDocs and its dependencies (includes Markdown and an HTTP server)
-sudo -H pip3 install --upgrade -r requirements.txt
 pip3 install --upgrade -r requirements.txt
 export PATH="$HOME/.local/bin:$PATH"
 ```
