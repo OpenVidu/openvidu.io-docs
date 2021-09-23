@@ -25,11 +25,11 @@ OpenVidu has different editions:
 
 ## OpenVidu for production on AWS
 
-OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [Cloud Formation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
+OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [CloudFormation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
 
 - <a href="deployment/ce/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on AWS</a><div style="margin-bottom: 5px"></div>
 - <a href="deployment/pro/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on AWS</a><div style="margin-bottom: 5px"></div>
-- <a href="deployment/pro/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on AWS</a>
+- <a href="deployment/enterprise/aws" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on AWS</a>
 
 <br>
 
@@ -41,7 +41,7 @@ OpenVidu platform can be deployed in any modern linux distribution on premises o
 
 - <a href="deployment/ce/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on premises</a><div style="margin-bottom: 5px"></div>
 - <a href="deployment/pro/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on premises</a><div style="margin-bottom: 5px"></div>
-- <a href="deployment/pro/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on premises</a>
+- <a href="deployment/enterprise/on-premises" target="_blank">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div> on premises</a>
 
 <br>
 

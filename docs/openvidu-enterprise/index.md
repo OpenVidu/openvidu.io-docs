@@ -2,9 +2,17 @@
 <hr>
 
 - **[OpenVidu Enterprise features](#openvidu-enterprise-features)**
+    - [6x more media streams](#6x-more-media-streams)
+    - [5x quicker connections](#5x-quicker-connections)
+    - [Media quality improvements](#media-quality-improvements)
+    - [100% compatible with your current OpenVidu applications](#100-compatible-with-your-current-openvidu-applications)
+    - [High Availability deployment option](#high-availability-deployment-option)
 - **[OpenVidu Enterprise roadmap](#openvidu-enterprise-roadmap)**
+    - [Large scale sessions](#large-scale-sessions)
+    - [E2E encryption](#e2e-encryption)
 - **[OpenVidu Enterprise beta limitations](#openvidu-enterprise-beta-limitations)**
 - **[Enable OpenVidu Enterprise](#enable-openvidu-enterprise)**
+
 ---
 
 <div style="
@@ -31,9 +39,34 @@
       OpenVidu Enterprise is currently in <strong>beta</strong>. As long as it remains in beta:
       <ul style="margin-top: 6px">
         <li style="color: inherit">It is completely free of charge. You can try it for free.</li>
-        <li style="color: inherit">There are some <a href="#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
+        <li style="color: inherit">There are some <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
         <li style="color: inherit">There may be unexpected bugs.</li>
       </ul>
+</div>
+</div>
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
 </div>
 </div>
 
@@ -331,7 +364,7 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     This comes in contrast with the more traditional method of adaptive video bitrate in Kurento, which was all-or-nothing and affected all participants equally, so it wasn't possible to adjust the quality individually for each one of them.
 
-    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast) page.
+    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast){:target="_blank"} page.
 
 - **VP9** (_not available yet, work in progress_)
 
@@ -347,6 +380,10 @@ OpenVidu hides all complexity that lies behind swapping Media Server technologie
 
 With OpenVidu, there's no need to change a single line of your application: **what used to work with OpenVidu Pro will work as-is with OpenVidu Enterprise**.
 
+#### High Availability deployment option
+
+OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/){:target="_blank"} documentation for further information.
+
 <br>
 
 ---
@@ -361,10 +398,6 @@ OpenVidu Enterprise will support much larger sessions in terms of users and stre
 - Sessions will be able to be replicated in different Media Nodes, sharing the load of the same session in different machines. This will provide horizontal scaling in OpenVidu for the first time.
 - Selection of dominant speaker(s) will add the possibility of sessions with hundreds or thousands of publishers without crashing client devices. Only the latest active speakers in a session will be sent to the client side, theoretically allowing for an unlimited number of publishers in the same session.
 
-#### High availability
-
-OpenVidu Enterprise will offer replication of all nodes in AWS clusters, including the Master Node (which for now is a single point of failure). Automatic load balancing of clients will also be possible, distributing the load among different Master Nodes.
-
 #### E2E encryption
 
 Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC Insertable Streams. With Kurento, media streams are encrypted in the client-to-server and server-to-client channels, protecting them from man-in-the-middle attacks. But media streams have to be individually decoded and processed in the server side, so data must be decrypted by Kurento, which breaks the client-to-client encryption. But with mediasoup, media streams can remain protected client-to-client, without the server needing to decrypt it.
@@ -377,7 +410,7 @@ Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC 
 
 As a beta feature, mediasoup support in OpenVidu comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
 
-- There is no support for the forced media codec feature yet.
+- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config){:target="_blank"}, or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-openviduapisessions){:target="_blank"}). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
 - Firefox for Android has been proven to present some issues.
 - See beta limitations on [Simulcast](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations){:target="_blank"}
 - See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}
@@ -420,9 +453,7 @@ Then restart the services running command `./openvidu restart` in the same insta
     padding-left: 20px;
     padding-right: 20px;
     ">
-<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Pro cluster with mediasoup beta support. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running with mediasoup.
-
-A final release version of OpenVidu Enterprise edition will replace this beta version.
+<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
 </div>
 </div>
 

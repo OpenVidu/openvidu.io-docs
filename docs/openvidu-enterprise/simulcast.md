@@ -9,6 +9,61 @@
 
 ---
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0 0 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+      OpenVidu Enterprise is currently in <strong>beta</strong>. As long as it remains in beta:
+      <ul style="margin-top: 6px">
+        <li style="color: inherit">It is completely free of charge. You can try it for free.</li>
+        <li style="color: inherit">There are some <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
+        <li style="color: inherit">There may be unexpected bugs.</li>
+      </ul>
+</div>
+</div>
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
+</div>
+</div>
+
 ## What is Simulcast? {: #simulcast-what }
 
 Simulcast is a technique that allows **optimizing the quality** of routed video, in accordance with the needs of each individual Subscriber. Depending on aspects such as device form-factor or network link quality, the video that gets delivered to each participant in a session can be adjusted to be the perfect match for each circumstance.

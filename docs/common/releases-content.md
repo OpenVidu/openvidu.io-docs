@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.20.0](#2200)
 - [2.19.0](#2190)
 - [2.18.0](#2180)
 - [2.17.0](#2170)
@@ -22,6 +23,152 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.20.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/ce/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/ce/aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">OpenVidu PRO</td>
+    <td>On Premises</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/pro/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/pro/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.20.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.20.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.20.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.20.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.16.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.7.19</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### OpenVidu Enterprise High Availability beta
+
+OpenVidu Enterprise edition comes with beta support for a [High Availability deployment](https://docs.openvidu.io/en/2.20.0/openvidu-enterprise/high-availability/){:target="_blank"}, with replication of all nodes and load balancing for clients. All functionality of OpenVidu Enterprise remains in beta during version 2.20.0 of OpenVidu, so it is still free of charge, just as it was for version 2.19.0.
+
+<br>
+
+##### Individual recording for OpenVidu Enterprise with mediasoup
+
+One of the limitations of using mediasoup with OpenVidu Enterprise is now fixed: [INDIVIDUAL recording](https://docs.openvidu.io/en/2.20.0/advanced-features/recording/#individual-stream-recording){:target="_blank"} is already possible when using mediasoup.
+
+<br>
+
+##### New property "ip" for the Connection object
+
+The [Connection object](https://docs.openvidu.io/en/2.20.0/reference-docs/REST-API/#the-connection-object){:target="_blank"} now has an `ip` property with the IP of the client, just as OpenVidu Server sees it. This can help further identifying your final users. Of course, this property is also available in the official server SDKs [openvidu-java-client](https://docs.openvidu.io/en/2.20.0/api/openvidu-java-client/io/openvidu/java/client/Connection.html#getIp()){:target="_blank"} and [openvidu-node-client](https://docs.openvidu.io/en/2.20.0/api/openvidu-node-client/classes/connection.html#ip){:target="_blank"}.
+
+#### BUG FIXES
+
+- _Recording_ : for OpenVidu deployments in AWS, the first time a COMPOSED recording was initialized inside a node, it could take a long time to return. The operation usually finished with an error. This has to do with the EBS volumes from the AMIs which are pulled down from S3 when data is read for the first time. Now the content is cached before the node starts, so the problem is fixed and the first recording starts as fast as any other.
+
+<br>
 
 ---
 
@@ -128,7 +275,15 @@
     <td>Ubuntu package</td>
     <td>6.16.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.7.17</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -272,7 +427,7 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
     <td>Ubuntu package</td>
     <td>6.16.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -560,7 +715,7 @@ openVidu.createSession(properties).then(session => { ... });
     <td>Ubuntu package</td>
     <td>6.16.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -759,7 +914,7 @@ Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvi
     <td>Ubuntu package</td>
     <td>6.15.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.15.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1040,7 +1195,7 @@ If that property is set to false (by default it is true), old API will no longer
     <td>Ubuntu package</td>
     <td>6.14.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.14.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1232,7 +1387,7 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
     <td>Ubuntu package</td>
     <td>6.13.2</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.2/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1437,7 +1592,7 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
     <td>Ubuntu package</td>
     <td>6.13.1</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1584,7 +1739,7 @@ The new Docker deployment stack requires OpenVidu to manage its configuration pr
     <td>Ubuntu package</td>
     <td>6.13.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.13.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1804,7 +1959,7 @@ OpenVidu Pro is now using the [latest Elasticsearch and Kibana version](https://
     <td>Ubuntu package</td>
     <td>6.11.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.11.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -1959,7 +2114,7 @@ OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated
     <td>Ubuntu package</td>
     <td>6.10.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.10.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -2102,7 +2257,7 @@ Yes, it’s 2019. But there’s still a lot of companies out there that provide/
     <td>Ubuntu package</td>
     <td>6.10.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.10.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -2273,7 +2428,7 @@ We are excited to announce OpenVidu Pro: a commercial tier for OpenVidu platform
     <td>Ubuntu package</td>
     <td>6.9.0</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.9.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -2421,7 +2576,7 @@ Even though this is not a major update with incompatibility changes according to
     <td>Ubuntu package</td>
     <td>6.8.1</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.8.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>
@@ -2556,7 +2711,7 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
     <td>Ubuntu package</td>
     <td>6.8.1</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.8.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
-    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Core component in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
 </table>

@@ -137,12 +137,12 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
-      <td class="first-col">Domain Name</br><span class="field-comment">This is the domain that will be used to access OpenVidu Enterprise. This parameter will be configured at the end of the instructions to point to the Load Balancer URL in this section:  <strong><a href="#6-configure-your-domain-when-the-stack-has-been-created">6. Configure your domain when the stack has been created</a></strong>.<span></td>
+      <td class="first-col">Domain Name</br><span class="field-comment">This is the FQDN that will be used to access OpenVidu Enterprise. This parameter will be configured at the end of the instructions to point to the Load Balancer URL in this section:  <strong><a href="#6-configure-your-domain-when-the-stack-has-been-created">6. Configure your domain when the stack has been created</a></strong>.<span></td>
       <td><em>Your fully qualified domain</em></br><span class="field-comment">For example: <em><strong>example-multimaster.openvidu.io</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">OpenVidu Pro Cluster Id<br><span class="field-comment">This parameter is used by OpenVidu Pro to send indexed statistics to ElasticSearch, and can be used as a way to distinguish different clusters.<span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>openvidu-multimaster</strong></em></span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>openvidu-multimaster</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">OpenVidu Pro License<br><span class="field-comment">Your purchased license key from your <a href="https://openvidu.io/account" target="_blank">OpenVidu account</a>. While in beta, you will not be charged.<span></td>
@@ -187,7 +187,7 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
     </tr>
     <tr>
       <td class="first-col">Elasticsearch and Kibana username<br><span class="field-comment">Elasticsearch username for OpenVidu<span></td>
-       <td><em>Your Choice.</em></td>
+       <td><em>Your choice</em></td>
     </tr>
     <tr>
       <td class="first-col">Elasticsearch and Kibana password<br><span class="field-comment">Password of the previous username<span></td>
@@ -227,19 +227,19 @@ This autoscaling group will control the number of master nodes you will have in 
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
       <td class="first-col">Master Nodes instance type:</br><span class="field-comment">The type of instance you want to use for master nodes.<span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>c5.xlarge</strong></em></span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>c5.xlarge</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Minimum Master Nodes<br><span class="field-comment">Minimum number of Master nodes that you want to have configured.<span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>1</strong></em></span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>1</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Maximum Master Nodes<br><span class="field-comment">Maximum number of Master nodes that you want to have configured.<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Desired Master Nodes<br><span class="field-comment">Number of Master nodes you want to run on deploy.<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
     </tr>
   </table>
 </div>
@@ -254,27 +254,27 @@ This autoscaling group will control the number of media nodes you will have in y
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
       <td class="first-col">Media Nodes instance type:</br><span class="field-comment">The type of instance you want to use for your Media Nodes.<span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>c5.xlarge</strong></em></span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>c5.xlarge</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Minimum Media Nodes<br><span class="field-comment">Minimum number of Media Nodes that you want to have configured.<span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Maximum Media Nodes<br><span class="field-comment">Maximum number of Media Nodes that you want to have configured.<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>4</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>4</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Desired Media Nodes<br><span class="field-comment">Number of Media Nodes you want to run on deploy.<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>2</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Scale Up Media Nodes on Average CPU<br><span class="field-comment">Average CPU necessary to scale up Media Nodes<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>70</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>70</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Scale Down Media Nodes on Average CPU<br><span class="field-comment">Average CPU necessary to scale down Media Nodes<span></td>
-       <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>30</strong></em></span></td>
+       <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>30</strong></em></span></td>
     </tr>
   </table>
 </div>
@@ -288,8 +288,8 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
-      <td class="first-col">SSH Key Name:</br><span class="field-comment">EC2 Key which will be used in the future for administrative tasks.<span></td>
-      <td><em>Your choice.</em></td>
+      <td class="first-col">SSH Key Name</br><span class="field-comment">EC2 Key to be used in future for administrative tasks.<span></td>
+      <td><em>Your choice</em></td>
     </tr>
   </table>
 </div>
@@ -307,8 +307,9 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
-      <td class="first-col">ARN of the AWS Certificate:</br><span class="field-comment">This is the unique parameter you need to configure your Load Balancer. Put here the specific ARN of the resource which <strong>reference your Certificate for your Domain Name in AWS.</strong><span></td>
-      <td><em>Your choice.</em></br><span class="field-comment">For example: <em><strong>c5.xlarge</strong></em></span></td>
+      <td class="first-col">ARN of the AWS Certificate</br><span class="field-comment">ARN of the Certificate imported in your AWS account for your FQDN</strong><span></td>
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>arn:aws:acm:us-east-1:8652176897:certificate/06g83923-d8fc-45b0-6t43-e7345ba099d1
+</strong></em></span></td>
     </tr>
   </table>
 </div>
@@ -327,11 +328,11 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
       <td class="first-col">OpenVidu Pro VPC:</br><span class="field-comment">Which VPC you want to deploy the cluster.</strong><span></td>
-      <td><em>Your choice.</em></td>
+      <td><em>Your choice</em></td>
     </tr>
     <tr>
       <td class="first-col">OpenVidu Pro Subnets:</br><span class="field-comment">Which Subnets you want to use for OpenVidu Pro Cluster. You need to select minimum 2 subnets!</strong><span></td>
-      <td><em>Your choice.</em></td>
+      <td><em>Your choice</em></td>
     </tr>
   </table>
 </div>
@@ -356,6 +357,8 @@ When everything is deployed, you should see this in the _Outputs section_ of Clo
 </div>
 
 Now you need to point the configured **Domain Name** (which was pointing to a _"Dummy IP"_ before the stack was deployed) to the **Load Balancer URL** with a **CNAME** in your DNS. Wait until the domain name is replicated and then, you will be able to reach OpenVidu Enterprise using your Domain name.
+
+---
 
 ## Administration
 
@@ -430,15 +433,16 @@ curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/media-n
 
 This request will return a JSON with all registered media nodes and related information.
 
+---
 ### Autoscaling Configuration
 
-OpenVidu Enterprise Autoscaling is managed by AWS Autoscaling Groups, in consequence, all autoscaling parameters can be changed through Cloudformation parameters. Some examples of possible autoscaling configurations will be shown in this section, so you can easily manage your cluster.
+OpenVidu Enterprise Autoscaling is managed by AWS Autoscaling Groups. In consequence, all autoscaling parameters can be changed through Cloudformation parameters.
 
-To change those parameters you just need to go to the ** AWS Cloudformation Panel 🠚 Select Your Stack 🠚 Update 🠚 Use current template**.
+To change those parameters you just need to go to ** AWS Cloudformation Panel 🠚 Select Your Stack 🠚 Update 🠚 Use current template**.
 
 <div class="row">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro1" data-caption="First, go to the 'Cloudformation panel' and Select your Stack. Then click in the 'Update' button." href="iimg/docs/deployment/multimaster_asg_config_1.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_1.png"/></a>
+        <a data-fancybox="gallery-pro1" data-caption="First, go to the 'Cloudformation panel' and Select your Stack. Then click in the 'Update' button." href="img/docs/deployment/multimaster_asg_config_1.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_1.png"/></a>
         <a data-fancybox="gallery-pro1" data-caption="Select 'Use current template' and click in the 'Next' button." href="img/docs/deployment/multimaster_asg_config_2.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_2.png"/></a>
         <a data-fancybox="gallery-pro1" data-caption="Only these parameters can be changed through Cloudformation" href="img/docs/deployment/multimaster_asg_config_3.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_3.png"/></a>
     </div>
@@ -448,6 +452,8 @@ To change those parameters you just need to go to the ** AWS Cloudformation Pane
       <div class="caption"><p><strong>Only these parameters can be changed through Cloudformation</strong>.</p></div>
     </div>
 </div>
+
+---
 
 ### OpenVidu Enterprise Configuration
 
@@ -481,11 +487,13 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
 
 **2.3) Restart Master Nodes via AWS**: After changing the `.env` file in the S3 bucket, you need to restart all Master Nodes via AWS EC2 Panel, or terminating all Master Nodes and wait for the Autoscaling Group to create those instances. New EC2 instances created by the Autoscaling Group will download the updated configuration `.env` file from the S3 bucket.
 
+---
+
 ## Deploying an OpenVidu application
 
-To deploy an OpenVidu application which uses our recently deployed stack, you can use any OpenVidu developed application for OpenVidu. You just need to point your application to the configured **Domain Name** and the **OpenVidu Secret** used in CloudFormation deployment. Additionaly, remember that your app needs to be deployed with a valid certificate for WebRTC to work.
+To deploy an OpenVidu application which uses our recently deployed stack, you can use any application developed for OpenVidu. You just need to point your application to the configured **Domain Name** and the **OpenVidu Secret** used in CloudFormation deployment. Additionally, remember that your app needs to be deployed with a valid certificate for WebRTC to work.
 
-If you want to benefit of all reconnection capabilites you can also take a look to the [multi-master-sample-app](https://github.com/OpenVidu/multi-master-sample-app){:target="_blank"}
+If you want to see and example of an application that automatically reconnects users after a node crashes, take a look to the [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo.
 
 <script src="js/copy-btn.js"></script>
 <br>

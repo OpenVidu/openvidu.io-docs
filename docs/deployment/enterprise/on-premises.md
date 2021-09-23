@@ -47,7 +47,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-<strong>NOTE</strong>: <strong>High Availability OpenVidu Enterprise is not compatible with on premises deployments.</strong> To deploy a highly available OpenVidu Enterprise check: <a href="deployment/pro/enterprise-aws" target="_blank">Deploying OpenVidu Enterprise in AWS</a>
+<strong>NOTE</strong>: <strong>High Availability OpenVidu Enterprise is not compatible with on premises deployments.</strong> To deploy a highly available OpenVidu Enterprise check: <a href="deployment/enterprise/aws/#high-availability-deployment" target="_blank">Deploying OpenVidu Enterprise in AWS</a>
 </div>
 </div>
 
