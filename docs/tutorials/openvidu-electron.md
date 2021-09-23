@@ -32,7 +32,7 @@ node -v
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.19.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.20.0
 ```
 
 3) Install dependencies and run the tutorial:
@@ -49,7 +49,7 @@ npm start
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.19.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
 ```
 
 5) The app will start automatically as a native desktop application, regardless of the OS you are using. If you are on Windows, it will launch as a Windows app. In OSX as an OSX app, and in Linux as a Linux app.

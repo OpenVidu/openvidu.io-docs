@@ -29,7 +29,7 @@ mvn -v
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.19.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.20.0
 ```
 
 3) Run the tutorial:
@@ -45,7 +45,7 @@ mvn package exec:java
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.19.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
 ```
 
 5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.

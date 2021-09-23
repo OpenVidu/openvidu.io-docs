@@ -48,7 +48,7 @@ exit
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.19.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
 ```
 
 5) Install NPM dependencies of frontend:
@@ -112,7 +112,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom:2.19.0
+        image: openvidu/openvidu-classroom:2.20.0
         restart: on-failure
         network_mode: host
         environment:
@@ -146,7 +146,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom-demo:2.19.0
+        image: openvidu/openvidu-classroom-demo:2.20.0
         restart: on-failure
         network_mode: host
         environment:

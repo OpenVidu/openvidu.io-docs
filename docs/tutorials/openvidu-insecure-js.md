@@ -49,7 +49,7 @@ background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; ver
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.19.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.20.0
 ```
 
 2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
@@ -70,7 +70,7 @@ http-server openvidu-tutorials/openvidu-insecure-js/web
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.19.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
 ```
 
 5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
@@ -415,7 +415,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-insecure-js-demo:2.19.0
+        image: openvidu/openvidu-insecure-js-demo:2.20.0
         restart: on-failure
         network_mode: host
         environment:
