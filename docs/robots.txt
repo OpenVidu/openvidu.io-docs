@@ -1,0 +1,7 @@
+# Disallow indexing of old documentation versions.
+User-agent: *
+Disallow: /en/*/
+Allow: /en/stable/
+Allow: /en/latest/
+
+Sitemap: https://docs.openvidu.io/sitemap.xml
