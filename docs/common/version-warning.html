@@ -84,19 +84,20 @@
                 return;
             }
 
-            const currentVersion = pathSplitted[1];
+            const urlVersion = pathSplitted[1];
 
-            if (currentVersion === "latest" || currentVersion === "stable") {
+            if (urlVersion === "latest" || urlVersion === "stable") {
                 return;
             }
 
+            // Newest version obtained from selector in version-button.html
             const selectorNewestVersion = document
-                .getElementById("version-selector")[2]
+                .getElementById("version-selector")[0]
                 .value.split("/")
                 .filter((v) => v)
                 .pop();
 
-            if (currentVersion !== selectorNewestVersion) {
+            if (urlVersion !== selectorNewestVersion) {
                 const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
                 const hash = window.location.hash;
 

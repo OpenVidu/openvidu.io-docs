@@ -10,8 +10,6 @@
     }
 </style>
 <select id="version-selector" onchange="navigateToNewVersion(this)">
-    <option value="/en/latest/"><a href="/en/latest/">Latest</a></option>
-    <option value="/en/stable/"><a href="/en/stable/">Stable</a></option>
     <option value="/en/2.20.0/"><a href="/en/2.20.0/">2.20.0</a></option>
     <option value="/en/2.19.0/"><a href="/en/2.19.0/">2.19.0</a></option>
     <option value="/en/2.18.0/"><a href="/en/2.18.0/">2.18.0</a></option>
@@ -26,17 +24,23 @@
 
 <script>
     $(document).ready(function () {
-        const urlVersion = window.location.pathname.split("/").filter(function (el) {
-            return el.length != 0
-        })[1];
-        document.getElementById('version-selector').value = '/en/' + urlVersion + "/";
+        const urlVersion = window.location.pathname.split("/").filter((v) => v)[1];
+
+        if (urlVersion === "latest" || urlVersion === "stable") {
+            const selectorNewestVersion = document
+                .getElementById("version-selector")[0]
+                .value.split("/")
+                .filter((v) => v)
+                .pop();
+            document.getElementById("version-selector").value = "/en/" + selectorNewestVersion + "/";
+        } else {
+            document.getElementById("version-selector").value = "/en/" + urlVersion + "/";
+        }
     });
 
     function navigateToNewVersion(selectValue) {
-        const pathSplitted = window.location.pathname.split("/").filter(function (el) {
-            return el.length != 0
-        });
-        const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
+        const pathSplitted = window.location.pathname.split("/").filter((v) => v);
+        const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
         window.location = selectValue.value + restOfPath + window.location.hash;
     }
 </script>
