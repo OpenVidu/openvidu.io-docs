@@ -69,19 +69,40 @@
                 }, 50);
             }
         };
+
         // Check if latest version from url path and top version button value
         waitForEl("#version-selector", function () {
-            const pathSplitted = window.location.pathname.split("/").filter(function (el) {
-                return el.length != 0
-            });
-            const urlVersion = pathSplitted[1];
-            const restOfPath = pathSplitted.slice(2, pathSplitted.length).join('/');
-            const selectorValue = document.getElementById('version-selector')[0].value;
-            const hash = window.location.hash;
-            if (selectorValue !== ("/en/" + urlVersion + "/")) {
-                document.getElementById('link-to-stable').onclick = function () {
-                    window.location.href = '/en/stable/' + restOfPath + '/' + hash;
-                }
+            // Split by non-empty URL components
+            const pathSplitted = window.location.pathname.split("/").filter((v) => v);
+
+            // Filter cases of local development. Example URLs in this case:
+            // http://127.0.0.1:8000/
+            //     -> []
+            // http://127.0.0.1:8000/tutorials/openvidu-hello-world/
+            //     -> ["tutorials", "openvidu-hello-world"]
+            if (pathSplitted.length < 2 || pathSplitted[0] !== "en") {
+                return;
+            }
+
+            const currentVersion = pathSplitted[1];
+
+            if (currentVersion === "latest" || currentVersion === "stable") {
+                return;
+            }
+
+            const selectorNewestVersion = document
+                .getElementById("version-selector")[2]
+                .value.split("/")
+                .filter((v) => v)
+                .pop();
+
+            if (currentVersion !== selectorNewestVersion) {
+                const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
+                const hash = window.location.hash;
+
+                document.getElementById("link-to-stable").onclick = function () {
+                    window.location.href = "/en/stable/" + restOfPath + "/" + hash;
+                };
                 $("#version-warning").show();
             }
         });
