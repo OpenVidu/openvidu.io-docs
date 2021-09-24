@@ -76,6 +76,9 @@ cd /opt/openvidu
 <br><hr>
 
 ## High Availability deployment
+<br>
+
+OpenVidu Enterprise can be deployed with multiple Master nodes to have High Availability and be fault tolerant. In this section, we will explain step by step, how to deploy OpenVidu Enterprise with such capabilities. If you want to read more about OpenVidu Enterprise High Availability architecture, check it out [here](openvidu-enterprise/high-availability){:target="_blank"}.
 
 ### Deployment
 
@@ -448,7 +451,7 @@ To change those parameters you just need to go to ** AWS Cloudformation Panel ðŸ
     </div>
     <div class="slick-captions-text slick-captions">
       <div class="caption"><p>First, go to the <strong>Cloudformation Panel</strong> and Select your Stack. Then click in the <strong>Update</strong> button.</p></div>
-      <div class="caption"><p>Select your stack and click in the <strong>Update</strong> button.</p></div>
+      <div class="caption"><p>Select <strong>Use current template</strong> and click in the 'Next' button.</p></div>
       <div class="caption"><p><strong>Only these parameters can be changed through Cloudformation</strong>.</p></div>
     </div>
 </div>
