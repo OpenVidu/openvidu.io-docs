@@ -102,7 +102,11 @@
                 const hash = window.location.hash;
 
                 document.getElementById("link-to-stable").onclick = function () {
-                    window.location.href = "/en/stable/" + restOfPath + "/" + hash;
+                    if (restOfPath.length > 0) {
+                        window.location.href = "/en/stable/" + restOfPath + "/" + hash;
+                    } else {
+                        window.location.href = "/en/stable/" + hash;
+                    }
                 };
                 $("#version-warning").show();
             }
