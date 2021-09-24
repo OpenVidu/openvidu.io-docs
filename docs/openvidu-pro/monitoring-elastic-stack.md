@@ -221,6 +221,7 @@ All data sent by **Filebeat** and **Metricbeat** follows a common format named *
 | 2.16.0           | 7.8.0                   | 1.5.0                   |
 | 2.17.0           | 7.8.0                   | 1.5.0                   |
 | 2.18.0           | 7.8.0                   | 1.5.0                   |
+| 2.19.0           | 7.8.0                   | 1.5.0                   |
 
 ### Logs and metrics
 
@@ -894,6 +895,7 @@ An external Elastic Stack can be configured with and without security. The table
 | 2.16.0           | ≥ 7.3.0                   | ≥ 7.3.0        | ≥ 7.3.0                   |
 | 2.17.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
 | 2.18.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
+| 2.19.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
 
 ### OpenVidu Pro Configuration for external Elastic Stack
 
