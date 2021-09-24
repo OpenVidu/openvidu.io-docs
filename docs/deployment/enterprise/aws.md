@@ -311,7 +311,7 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
       <td class="first-col">ARN of the AWS Certificate</br><span class="field-comment">ARN of the Certificate imported in your AWS account for your FQDN</strong><span></td>
-      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong>arn:aws:acm:us-east-1:8652176897:certificate/06g83923-d8fc-45b0-6t43-e7345ba099d1
+      <td><em>Your choice</em></br><span class="field-comment">For example: <em><strong><code>arn:aws:acm:&lt;region&gt;:&lt;user-id&gt;:certificate/&lt;certicate-id&gt;</code>
 </strong></em></span></td>
     </tr>
   </table>
@@ -451,7 +451,7 @@ To change those parameters you just need to go to ** AWS Cloudformation Panel ðŸ
     </div>
     <div class="slick-captions-text slick-captions">
       <div class="caption"><p>First, go to the <strong>Cloudformation Panel</strong> and Select your Stack. Then click in the <strong>Update</strong> button.</p></div>
-      <div class="caption"><p>Select <strong>Use current template</strong> and click in the 'Next' button.</p></div>
+      <div class="caption"><p>Select <strong>Use current template</strong> and click in the <strong>Next</strong> button.</p></div>
       <div class="caption"><p><strong>Only these parameters can be changed through Cloudformation</strong>.</p></div>
     </div>
 </div>
