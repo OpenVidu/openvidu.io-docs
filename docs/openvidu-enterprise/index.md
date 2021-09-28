@@ -410,7 +410,7 @@ Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC 
 
 As a beta feature, mediasoup support in OpenVidu and High Availability deployments comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
 
-- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config){:target="_blank"}, or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-openviduapisessions){:target="_blank"}). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
+- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config){:target="_blank"}, or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
 - Firefox for Android has been proven to present some issues.
 - See beta limitations on [Simulcast](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations){:target="_blank"}
 - See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}

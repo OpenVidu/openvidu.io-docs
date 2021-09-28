@@ -22,7 +22,7 @@ You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.o
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}**
+Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}**
 
 </div>
 
@@ -140,7 +140,7 @@ To unpublish an IP camera you must remove its Connection. You can do it from you
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-openviduapisessionsltsession_idgtconnectionltconnection_idgt){:target="_blank"}**
+Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-connection){:target="_blank"}**
 
 </div>
 
@@ -168,7 +168,7 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:ta
 
 </div>
 
-> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](reference-docs/REST-API#delete-openviduapisessionsltsession_idgtstreamltstream_idgt){:target="_blank"}
+> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](reference-docs/REST-API#delete-stream){:target="_blank"}
 
 <br>
 

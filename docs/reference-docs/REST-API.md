@@ -14,36 +14,36 @@ You have full control over OpenVidu Server through its REST API. All of the REST
 <div class="index-list" markdown="1">
 
 - [The Session object](#the-session-object)
-    - [Initialize a session](#post-openviduapisessions)
-    - [Retrieve session info](#get-openviduapisessionsltsession_idgt)
-    - [Retrieve all sessions info](#get-openviduapisessions)
-    - [Close a session](#delete-openviduapisessionsltsession_idgt)
+    - [Initialize a session](#post-session)
+    - [Retrieve session info](#get-session)
+    - [Retrieve all sessions info](#get-all-sessions)
+    - [Close a session](#delete-session)
 - [The Connection object](#the-connection-object)
-    - [Initialize a connection](#post-openviduapisessionsltsession_idgtconnection)
-    - [Retrieve connection info](#get-openviduapisessionsltsession_idgtconnectionltconnection_idgt)
-    - [Retrieve all connections info](#get-openviduapisessionsltsession_idgtconnection)
-    - [Modify a connection](#patch-openviduapisessionsltsession_idgtconnectionltconnection_idgt)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Close a connection](#delete-openviduapisessionsltsession_idgtconnectionltconnection_idgt)
+    - [Initialize a connection](#post-connection)
+    - [Retrieve connection info](#get-connection)
+    - [Retrieve all connections info](#get-all-connections)
+    - [Modify a connection](#patch-connection)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Close a connection](#delete-connection)
 - [The Recording object](#the-recording-object)
-    - [Start the recording of a session](#post-openviduapirecordingsstart)
-    - [Stop the recording of a session](#post-openviduapirecordingsstopltrecording_idgt)
-    - [Retrieve recording info](#get-openviduapirecordingsltrecording_idgt)
-    - [Retrieve all recording info](#get-openviduapirecordings)
-    - [Delete a recording](#delete-openviduapirecordingsltrecording_idgt)
+    - [Start the recording of a session](#post-recording-start)
+    - [Stop the recording of a session](#post-recording-stop)
+    - [Retrieve recording info](#get-recording)
+    - [Retrieve all recording info](#get-all-recordings)
+    - [Delete a recording](#delete-recording)
 - [The Media Node object](#the-media-node-object)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Retrieve Media Node info](#get-openviduapimedia-nodesltmedia_node_idgt)
-    - [Retrieve all Media Nodes info](#get-openviduapimedia-nodes)
-    - [Add Media Node](#post-openviduapimedia-nodes)
-    - [Remove Media Node](#delete-openviduapimedia-nodesltmedia_node_idgt)
-    - [Modify Media Node](#patch-openviduapimedia-nodesltmedia_node_idgt)
-    - [Autodiscover Media Nodes](#put-openviduapimedia-nodes)
+    - [Retrieve Media Node info](#get-medianode)
+    - [Retrieve all Media Nodes info](#get-all-medianodes)
+    - [Add Media Node](#post-medianode)
+    - [Remove Media Node](#delete-medianode)
+    - [Modify Media Node](#patch-medianode)
+    - [Autodiscover Media Nodes](#put-medianode)
 - [Others](#others)
-    - [Generate a token](#post-openviduapitokens) **(DEPRECATED. Use [Initialize a connection](#post-openviduapisessionsltsession_idgtconnection))**
-    - [Unpublish a stream from a connection](#delete-openviduapisessionsltsession_idgtstreamltstream_idgt)
-    - [Send a signal to a session](#post-openviduapisignal)
-    - [Get OpenVidu active configuration](#get-openviduapiconfig)
-    - [Check OpenVidu health](#get-openviduapihealth)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Restart OpenVidu](#post-openviduapirestart)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Generate a token](#post-token) **(DEPRECATED. Use [Initialize a connection](#post-connection))**
+    - [Unpublish a stream from a connection](#delete-stream)
+    - [Send a signal to a session](#post-signal)
+    - [Get OpenVidu active configuration](#get-config)
+    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 </div>
 
@@ -95,7 +95,7 @@ A Session is a conference room where users can send/receive media streams to/fro
 | mediaMode | String | Media mode configured for the session (`ROUTED` or `RELAYED`) |
 | recordingMode | String | Recording mode configured for the session (`ALWAYS` or `MANUAL`) |
 | defaultRecordingProperties | Object | The recording properties to apply by default to any recording started for this Session |
-| customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /openvidu/api/sessions**](#post-openviduapisessions) |
+| customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /openvidu/api/sessions**](#post-session) |
 | connections | Object | Collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual active connections. Active connections are those with `status` property set to `active`. See [**Connection object**](#the-connection-object) |
 | recording | Boolean | Whether the session is being recorded or not at this moment |
 | forcedVideoCodec | String | This parameter will ensure that all the browsers use the same codec, avoiding transcoding process in the media server, which result in a reduce of CPU usage. (`VP8`, `H264` or `NONE`)
@@ -104,7 +104,7 @@ A Session is a conference room where users can send/receive media streams to/fro
 
 ---
 
-### POST `/openvidu/api/sessions`
+### POST `/openvidu/api/sessions` {:id=post-session}
 
 ##### Description
 
@@ -160,7 +160,7 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
 > - **allowTranscoding** _(optional Boolean)_ : defines whether transcoding is allowed or not. Only applies when `forcedVideoCodec` is defined (different from `NONE`) and only for those client devices that don't support the codec set in `forcedVideoCodec`. If `forcedVideoCodec` is set to `NONE`, then this parameter has no effect and transcoding will always take place if necessary.
 >     - `false` _(default)_: no video transcoding will be performed. The video streams of a client device won't work if it doesn't support the codecs being used in a session.
 >     - `true`: video transcoding will be performed when necessary, only for the client streams which require it.<br><br>
-> - **defaultRecordingProperties** _(optional Object)_ : the recording properties to apply by default to any recording started for this Session. You can of course override these default values and change the recording properties of any Recording [when starting them](#post-openviduapirecordingsstart). The object structure is the same as the one defined in [Start the recording of a session](#post-openviduapirecordingsstart).<br><br>
+> - **defaultRecordingProperties** _(optional Object)_ : the recording properties to apply by default to any recording started for this Session. You can of course override these default values and change the recording properties of any Recording [when starting them](#post-recording-start). The object structure is the same as the one defined in [Start the recording of a session](#post-recording-start).<br><br>
 > - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : an object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the less loaded Media Node.<br><br>
 
 ##### Returns
@@ -179,7 +179,7 @@ This operation returns a [**Session object**](#the-session-object).
 
 ---
 
-### GET `/openvidu/api/sessions/<SESSION_ID>`
+### GET `/openvidu/api/sessions/<SESSION_ID>` {:id=get-session}
 
 ##### Description
 
@@ -208,7 +208,7 @@ This operation returns a [**Session object**](#the-session-object).
 
 ---
 
-### GET `/openvidu/api/sessions`
+### GET `/openvidu/api/sessions` {:id=get-all-sessions}
 
 ##### Description
 
@@ -246,7 +246,7 @@ Retrieve all Sessions from OpenVidu Server.
 
 ---
 
-### DELETE `/openvidu/api/sessions/<SESSION_ID>`
+### DELETE `/openvidu/api/sessions/<SESSION_ID>` {:id=delete-session}
 
 ##### Description
 
@@ -348,7 +348,7 @@ A Connection represents each one of the users connected to a Session. You must c
 | ip | String | IP of the participant, as seen by OpenVidu Server |
 | platform | String | Complete description of the platform used by the participant to connect to the Session. Set to `IPCAM` if `type=IPCAM` |
 | token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
-| serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-openviduapisessionsltsession_idgtconnection) (`data` parameter) |
+| serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-connection) (`data` parameter) |
 | clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
 | record <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connections will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} |
 | role | String | **Only for `type=WEBRTC`**. Role of the Connection |
@@ -362,7 +362,7 @@ A Connection represents each one of the users connected to a Session. You must c
 
 ---
 
-### POST `/openvidu/api/sessions/<SESSION_ID>/connection`
+### POST `/openvidu/api/sessions/<SESSION_ID>/connection` {:id=post-connection}
 
 ##### Description
 
@@ -445,7 +445,7 @@ Returns a [**Connection object**](#the-connection-object).
 
 ---
 
-### GET `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>`
+### GET `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>` {:id=get-connection}
 
 ##### Description
 
@@ -475,7 +475,7 @@ This operation returns a [**Connection object**](#the-connection-object).
 
 ---
 
-### GET `/openvidu/api/sessions/<SESSION_ID>/connection`
+### GET `/openvidu/api/sessions/<SESSION_ID>/connection` {:id=get-all-connections}
 
 ##### Description
 
@@ -514,7 +514,7 @@ List all Connections from a Session.
 
 ---
 
-### PATCH `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>`
+### PATCH `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>` {:id=patch-connection}
 
 <div style="
     display: table;
@@ -586,7 +586,7 @@ This operation returns the modified [**Connection object**](#the-connection-obje
 
 ---
 
-### DELETE `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>`
+### DELETE `/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID>` {:id=delete-connection}
 
 ##### Description
 
@@ -660,7 +660,7 @@ A Recording represents the recording process of a Session.
 
 ---
 
-### POST `/openvidu/api/recordings/start`
+### POST `/openvidu/api/recordings/start` {:id=post-recording-start}
 
 ##### Description
 
@@ -700,7 +700,7 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
 > - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file.
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
 >     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
->     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session. See [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information. This output mode only applies when defined in the `defaultRecordingProperties` object when [initializing a Session](#post-openviduapisessions).<br><br>
+>     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session. See [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information. This output mode only applies when defined in the `defaultRecordingProperties` object when [initializing a Session](#post-session).<br><br>
 > - **hasAudio** _(optional Boolean)_ : whether to record audio or not. Default to `true`<br><br>
 > - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true`<br><br>
 > - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the layout to be used in this recording.
@@ -735,7 +735,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 
 ---
 
-### POST `/openvidu/api/recordings/stop/<RECORDING_ID>`
+### POST `/openvidu/api/recordings/stop/<RECORDING_ID>` {:id=post-recording-stop}
 
 ##### Description
 
@@ -766,7 +766,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 
 ---
 
-### GET `/openvidu/api/recordings/<RECORDING_ID>`
+### GET `/openvidu/api/recordings/<RECORDING_ID>` {:id=get-recording}
 
 ##### Description
 
@@ -796,7 +796,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 
 ---
 
-### GET `/openvidu/api/recordings`
+### GET `/openvidu/api/recordings` {:id=get-all-recordings}
 
 ##### Description
 
@@ -835,7 +835,7 @@ Retrieve all Recordings from OpenVidu Server.
 
 ---
 
-### DELETE `/openvidu/api/recordings/<RECORDING_ID>`
+### DELETE `/openvidu/api/recordings/<RECORDING_ID>` {:id=delete-recording}
 
 ##### Description
 
@@ -855,7 +855,7 @@ Delete a Recording. This will delete all of the recording files from disk.
 | - ||
 | 204 | All of the recording files have been successfully deleted from disk |
 | 404 | No recording exists for the passed `RECORDING_ID` |
-| 409 | The recording has `started` status. [Stop](#post-openviduapirecordingsstopltrecording_idgt) it before deletion |
+| 409 | The recording has `started` status. [Stop](#post-recording-stop) it before deletion |
 | 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
 
 <br>
@@ -922,13 +922,13 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 | disconnectionTime | Number | When OpenVidu Server lost its connection to the Media Node, in UTC milliseconds. Only available if `connected` is false |
 | load | Number | CPU load of the Media Node. Decimal number between 0.00 and 100.00 |
 | status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses){:target="blank"} |
-| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object)<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
-| recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording){:target="blank"} <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
-| kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-openviduapimedia-nodesltmedia_node_idgt"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-openviduapimedia-nodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object)<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording){:target="blank"} <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 
 ---
 
-### GET `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
+### GET `/openvidu/api/media-nodes/<MEDIA_NODE_ID>` {:id=get-medianode}
 
 <div style="
     display: table;
@@ -992,7 +992,7 @@ This operation returns a [**Media Node object**](#the-media-node-object).
 
 ---
 
-### GET `/openvidu/api/media-nodes`
+### GET `/openvidu/api/media-nodes` {:id=get-all-medianodes}
 
 <div style="
     display: table;
@@ -1065,7 +1065,7 @@ Retrieve the information of all Media Nodes.
 
 ---
 
-### POST `/openvidu/api/media-nodes`
+### POST `/openvidu/api/media-nodes` {:id=post-medianode}
 
 <div style="
     display: table;
@@ -1158,7 +1158,7 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
 
 ---
 
-### DELETE `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
+### DELETE `/openvidu/api/media-nodes/<MEDIA_NODE_ID>` {:id=delete-medianode}
 
 <div style="
     display: table;
@@ -1221,7 +1221,7 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 
 ---
 
-### PATCH `/openvidu/api/media-nodes/<MEDIA_NODE_ID>`
+### PATCH `/openvidu/api/media-nodes/<MEDIA_NODE_ID>` {:id=patch-medianode}
 
 <div style="
     display: table;
@@ -1287,7 +1287,7 @@ This operation returns the modified [**Media Node object**](#the-media-node-obje
 
 ---
 
-### PUT `/openvidu/api/media-nodes`
+### PUT `/openvidu/api/media-nodes` {:id=put-medianode}
 
 <div style="
     display: table;
@@ -1354,14 +1354,14 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 
 ## Others
 
-### POST `/openvidu/api/tokens`
+### POST `/openvidu/api/tokens` {:id=post-token}
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    The Token API is deprecated. Use the Connection API: instead of generating a Token with <a href="#post-openviduapitokens"><strong>POST /openvidu/api/tokens</strong></a>, create a Connection with <a href="#post-openviduapisessionsltsession_idgtconnection"><strong>POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection</strong></a>
+    The Token API is deprecated. Use the Connection API: instead of generating a Token with <a href="#post-token"><strong>POST /openvidu/api/tokens</strong></a>, create a Connection with <a href="#post-connection"><strong>POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection</strong></a>
   </div>
 </div>
 
@@ -1452,13 +1452,13 @@ This operation returns a Token object:
 | - ||
 | 200 | Token successfully created and ready to be used by one client to connect to the associated session |
 | 400 | Problem with some body parameter |
-| 404 | Provided value for `session` parameter was not found in OpenVidu Server. You must first call [**POST /openvidu/api/sessions**](#post-openviduapisessions) to get a session id |
+| 404 | Provided value for `session` parameter was not found in OpenVidu Server. You must first call [**POST /openvidu/api/sessions**](#post-session) to get a session id |
 
 <br>
 
 ---
 
-### DELETE `/openvidu/api/sessions/<SESSION_ID>/stream/<STREAM_ID>`
+### DELETE `/openvidu/api/sessions/<SESSION_ID>/stream/<STREAM_ID>` {:id=delete-stream}
 
 ##### Description
 
@@ -1479,13 +1479,13 @@ Force the unpublishing of a media stream from a Session. The stream belongs to a
 | 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
 | 400 | No session exists for the passed `SESSION_ID` |
 | 404 | No stream exists for the passed `STREAM_ID` |
-| 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-openviduapisessionsltsession_idgtconnection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-openviduapisessionsltsession_idgtconnectionltconnection_idgt) |
+| 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-connection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-connection) |
 
 <br>
 
 ---
 
-### POST `/openvidu/api/signal`
+### POST `/openvidu/api/signal` {:id=post-signal}
 
 ##### Description
 
@@ -1528,7 +1528,7 @@ Send a signal to a Session, to specific [Connections](#the-connection-object) or
 
 ---
 
-### GET `/openvidu/api/config`
+### GET `/openvidu/api/config` {:id=get-config}
 
 ##### Description
 
@@ -1645,7 +1645,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
 
 ---
 
-### GET `/openvidu/api/health`
+### GET `/openvidu/api/health` {:id=get-health}
 
 <div style="
     display: table;
@@ -1707,7 +1707,7 @@ Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is 
 
 ---
 
-### POST `/openvidu/api/restart`
+### POST `/openvidu/api/restart` {:id=post-restart}
 
 <div style="
     display: table;
