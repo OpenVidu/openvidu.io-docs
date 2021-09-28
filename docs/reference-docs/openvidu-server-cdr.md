@@ -35,7 +35,7 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 
 #### sessionCreated
 
-Recorded when a new session has been created. This event will be triggered at the end of a successful call to the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-openviduapisessions){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}).
+Recorded when a new session has been created. This event will be triggered at the end of a successful call to the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-session){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}).
 
 ```json
 {
@@ -111,7 +111,7 @@ Recorded when a user has connected to a session.
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
 
 <br>
 
@@ -148,7 +148,7 @@ Recorded when a user has left a session.
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
 | `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
 | `reason`        | How the participant left the session                                                   | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
@@ -326,7 +326,7 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 Recorded when a signal has been sent to a Session. Signals can be sent:
 
 - By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/session.html#signal){:target="_blank"}
-- By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-openviduapisignal){:target="_blank"}
+- By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-signal){:target="_blank"}
 
 All kind of signals trigger `signalSent` event.
 

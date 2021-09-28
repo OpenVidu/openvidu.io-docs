@@ -12,7 +12,7 @@ session.connect(token, "USER_DATA")
 
 - **Server-Side**: when creating a Connection
 
-    - [API REST](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}: add body parameter `"data"` to the POST operation
+    - [API REST](reference-docs/REST-API#post-connection){:target="_blank"}: add body parameter `"data"` to the POST operation
     - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection){:target="_blank"}: construct ConnectionProperties with `ConnectionProperties.Builder().data("USER_DATA").build()`
     - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection){:target="_blank"}: construct ConnectionProperties with `{data: "USER_DATA"}` <br><br>
 

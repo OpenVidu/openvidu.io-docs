@@ -27,7 +27,7 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-openviduapisessionsltsession_idgtconnection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```json  
 {
