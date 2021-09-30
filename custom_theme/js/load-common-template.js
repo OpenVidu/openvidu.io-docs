@@ -5,8 +5,7 @@ var ELEMENT_ID_TO_REMOVE = document.currentScript.getAttribute('data-elementIdTo
 
 function runAjax(pathToFile, elementId, runAnchorScript, elementIdToRemove) {
     $.ajax({
-        url: "https://docs.openvidu.io/en/stable/common/" + pathToFile,
-        // url: "http://127.0.0.1:8000/common/" + pathToFile,
+        url: "common/" + pathToFile,
         context: document.body,
         dataType: "html",
         success: response => {

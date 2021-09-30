@@ -2,7 +2,6 @@
 {% if page.title != 'Releases content' %}
 
 <head>
-	<base href="/en/2.20.0/">
 	<title>OpenVidu Docs</title>
 	<meta charset="utf-8">
 	<meta name="format-detection" content="telephone=no">
@@ -21,6 +20,41 @@
 	<link rel="stylesheet" type="text/css" href="css/downloads/cookieconsent-3.0.3.css" />
 	<script src="js/plugins/jquery.min.js"></script>
 	<script src="js/anchor-links.js"></script>
+
+	{#
+	Create a `<base>` element that matches the current RTD version.
+	There are 2 parts of the URL slug we need to get:
+	* Language.
+	* Version name. Something like "latest", "stable", "2.20.0", etc.
+	#}
+	{%- if config.extra.READTHEDOCS %}
+	<base href="/{{ config.extra.READTHEDOCS_LANGUAGE }}/{{ config.extra.READTHEDOCS_VERSION }}/" />
+	{%- elif "docs.openvidu.io" in config.site_url %}
+	{#
+	The MkDocs implementation in RTD is too limited and they still don't
+	have env vars working: https://github.com/readthedocs/readthedocs.org/issues/8529
+
+	So let's go with an Ugly Hack:
+	* Language: Obtained from the theme's locale config.
+	* Version name: RTD checks out the repo into a directory named like the
+	version that is being built. So we get the version name from there.
+
+	Sample `docs_dir` string for a build of the `latest` version:
+	"/home/docs/checkouts/readthedocs.org/user_builds/openvidu/checkouts/latest/docs".
+
+	Actual values:
+	config.theme.locale.language: {{ config.theme.locale.language }}
+	config.docs_dir: {{ config.docs_dir }}
+	#}
+	{% if page %}<link rel="canonical" href="{{ config.site_url }}{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/{{ page.url }}">{% endif %}
+	<base href="/{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/" />
+	{%- else %}
+	{#
+	When not deploying in the public subdomain, default to root.
+	This is the case when using `mkdocs serve` for local authoring.
+	#}
+	<base href="/" />
+	{%- endif %}
 </head>
 
 <header>
