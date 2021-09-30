@@ -262,37 +262,39 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
 	window.addEventListener("load", function () {
-		window.cookieconsent.initialise({
-			"palette": {
-				"popup": {
-					"background": "#000"
+		if (typeof window.cookieconsent !== "undefined") {
+			window.cookieconsent.initialise({
+				palette: {
+					popup: {
+						background: "#000",
+					},
+					button: {
+						background: "#0088aa",
+						color: "#fff",
+						padding: "9px 22px",
+						"box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-moz-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-webkit-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-o-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						margin: "0 7px 0 7px",
+						"text-transform": "uppercase",
+						"text-decoration": "none",
+						color: "#ff7302",
+						"text-shadow": "none",
+						"-webkit-transition": "all .2s ease-out",
+						"-moz-transition": "all .2s ease-out",
+						"-o-transition": "all .2s ease-out",
+						"-ms-transition": "all .2s ease-out",
+					},
 				},
-				"button": {
-					"background": "#0088aa",
-					"color": "#fff",
-					"padding": "9px 22px",
-					"box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-moz-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-webkit-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-o-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"margin": "0 7px 0 7px",
-					"text-transform": "uppercase",
-					"text-decoration": "none",
-					"color": "#ff7302",
-					"text-shadow": "none",
-					"-webkit-transition": "all .2s ease-out",
-					"-moz-transition": "all .2s ease-out",
-					"-o-transition": "all .2s ease-out",
-					"-ms-transition": "all .2s ease-out"
-				}
-			},
-			"theme": "classic",
-			"position": "bottom-right",
-			"content": {
-				"href": "https://openvidu.io/conditions/cookie-policy",
-				"policy": 'Cookie Policy',
-			}
-		})
+				theme: "classic",
+				position: "bottom-right",
+				content: {
+					href: "https://openvidu.io/conditions/cookie-policy",
+					policy: "Cookie Policy",
+				},
+			});
+		}
 	});
 </script>
 
