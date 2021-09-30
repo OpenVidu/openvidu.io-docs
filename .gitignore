@@ -1,3 +1,4 @@
-site/
-.vscode/
 .venv
+.vscode/
+python_modules/
+site/
