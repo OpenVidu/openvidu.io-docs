@@ -52,6 +52,15 @@
 </div>
 </div>
 
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    Remember that this is a Free BETA, and it is still in development. Check <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations" target="_blank">OpenVidu Enterprise beta limitations.</a>
+  </div>
+</div>
+
 ## Regular deployment
 
 <br>
