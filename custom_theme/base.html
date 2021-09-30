@@ -171,12 +171,21 @@
 						<h3 style="margin: 0">Explore docs</h3>
 						{% include "version-button.html" %}
 					</div>
-					<hr>
 				</div>
+				{%- block search_button %}
+					{%- if 'search' in config['plugins'] %}
+					<h4>
+						<a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+							<i class="fa fa-search"></i> Search
+						</a>
+					</h4>
+					{%- endif %}
+				{%- endblock %}
+				<hr>
 				<ul id="menu-list">
 					{% for nav_item in nav %}
 					<li>
-						<ul class="top-ul {% if nav_item.active%}current{%endif%}">{% include "toc.html" %}</ul>
+						<ul class="top-ul {% if nav_item.active %}current{% endif %}">{% include "toc.html" %}</ul>
 					</li>
 					{% endfor %}
 				</ul>
@@ -297,6 +306,31 @@
 		}
 	});
 </script>
+
+{%- block scripts %}
+	<script>
+		var base_url = ".";
+		var shortcuts = {{ config.theme.shortcuts | tojson }};
+	</script>
+	<script src="js/base.js" defer></script>
+	{#
+	The original mkdocs theme includes here all scripts from `config.extra_javascript`:
+	* readthedocs-data.js
+	* https://assets.readthedocs.org/static/core/js/readthedocs-doc-embed.js
+	* https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js
+	However in RTD this injects the advertisement and version selection footer,
+	which is not styled, so it appears as an ugly section below the page. Instead,
+	just manually include the scripts that allow for search to work.
+
+	{%- for path in config.extra_javascript %}
+	<script src="{{ path }}" defer></script>
+	{%- endfor %}
+	#}
+	<script src="search/main.js" defer></script>
+{%- endblock %}
+
+{% if 'search' in config['plugins'] %}{%- include "search-modal.html" %}{% endif %}
+{%- include "keyboard-modal.html" %}
 
 </body>
 </html>

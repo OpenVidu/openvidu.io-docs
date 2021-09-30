@@ -118,7 +118,12 @@ markdown_extensions:
           marker: "[TOC]"
           permalink: " 🔗"
 plugins:
-    - search
+    - search:
+          separator: '[\s]+'
+    - exclude-search:
+          exclude:
+              # This is a special unstyled file that contains all Release Notes.
+              - common/releases-content.md
 
 # Environment Variables.
 # Make RTD env vars available to the template context.
