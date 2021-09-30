@@ -5,4 +5,4 @@
 #     $ pip3 install --upgrade -r requirements.txt
 #     $ export PATH="$HOME/.local/bin:$PATH"
 
-mkdocs==1.1
+mkdocs==1.2.2

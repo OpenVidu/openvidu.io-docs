@@ -1,103 +1,140 @@
-strict: false
-site_url: https://openvidu.io/
+# MkDocs configuration file.
+# https://www.mkdocs.org/user-guide/configuration/
+
+# Project information.
 site_name: OpenVidu Docs
+site_url: https://docs.openvidu.io/
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
+edit_uri: blob/master/docs/
+site_description: OpenVidu documentation pages
+
+# Documentation layout.
 nav:
-- What is OpenVidu?: index.md
-- Tutorials:
-  - Intro: tutorials/index.md
-  - openvidu-webcomponent: tutorials/openvidu-webcomponent.md
-  - openvidu-hello-world: tutorials/openvidu-hello-world.md
-  - openvidu-iframe: tutorials/openvidu-iframe.md
-  - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
-  - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
-  - openvidu-library-angular: tutorials/openvidu-library-angular.md
-  - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
-  - openvidu-library-react: tutorials/openvidu-library-react.md
-  - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
-  - openvidu-ionic: tutorials/openvidu-ionic.md
-  - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
-  - openvidu-react-native: tutorials/openvidu-react-native.md
-  - openvidu-android: tutorials/openvidu-android.md
-  - openvidu-ios: tutorials/openvidu-ios.md
-  - openvidu-electron: tutorials/openvidu-electron.md
-  - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
-  - openvidu-js-java: tutorials/openvidu-js-java.md
-  - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
-  - openvidu-js-node: tutorials/openvidu-js-node.md
-  - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
-  - openvidu-recording-java: tutorials/openvidu-recording-java.md
-  - openvidu-recording-node: tutorials/openvidu-recording-node.md
-- Demos:
-  - openvidu-call: demos/openvidu-call.md
-  - openvidu-call-react: demos/openvidu-call-react.md
-  - openvidu-call-ionic: demos/openvidu-call-ionic.md
-  - openvidu-classroom: demos/openvidu-classroom.md
-  - openvidu-getaroom: demos/openvidu-getaroom.md
-- Cheatsheet:
-  - Join a session: cheatsheet/join-session.md
-  - Leave a session: cheatsheet/leave-session.md
-  - Subscribe/Unsubscribe from a stream: cheatsheet/subscribe-unsubscribe.md
-  - Publish/Unpublish a stream: cheatsheet/publish-unpublish.md
-  - Mute/Unmute audio and video: cheatsheet/mute-audio-video.md
-  - Manage video players: cheatsheet/manage-videos.md
-  - Share data between users: cheatsheet/share-data.md
-  - Send text messages: cheatsheet/send-messages.md
-- Advanced features:
-  - Recording: advanced-features/recording.md
-  - Screen share: advanced-features/screen-share.md
-  - IP cameras: advanced-features/ip-cameras.md
-  - Speech detection: advanced-features/speech-detection.md
-  - Voice and video filters: advanced-features/filters.md
-  - Switch camera: advanced-features/switch-camera.md
-  - Automatic reconnection: advanced-features/automatic-reconnection.md
-  - Network quality: advanced-features/network-quality.md
-- Reference Documentation:
-  - openvidu-browser API: reference-docs/openvidu-browser.md
-  - openvidu-java-client API: reference-docs/openvidu-java-client.md
-  - openvidu-node-client API: reference-docs/openvidu-node-client.md
-  - REST API: reference-docs/REST-API.md
-  - OpenVidu configuration: reference-docs/openvidu-config.md
-  - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
-  - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
-- Deployment:
-  - Intro: deployment/index.md
-  - OpenVidu CE:
-    - AWS: deployment/ce/aws.md
-    - On premises: deployment/ce/on-premises.md
-    - Upgrading: deployment/ce/upgrading.md
-  - OpenVidu Pro:
-    - AWS: deployment/pro/aws.md
-    - On premises: deployment/pro/on-premises.md
-    - Upgrading: deployment/pro/upgrading.md
-  - OpenVidu Enterprise:
-    - AWS: deployment/enterprise/aws.md
-    - On premises: deployment/enterprise/on-premises.md
-  - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
-- Contribute:
-  - Developing OpenVidu: developing/index.md
-  - OpenVidu Server RPC protocol: developing/rpc.md
-- Troubleshooting / FAQ: troubleshooting/index.md
-- Releases: releases/index.md
-- OpenVidu Pro:
-  - Home: openvidu-pro/index.md
-  - Scalability: openvidu-pro/scalability.md
-  - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
-  - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
-- OpenVidu Enterprise:
-  - Home: openvidu-enterprise/index.md
-  - Simulcast: openvidu-enterprise/simulcast.md
-  - High availability: openvidu-enterprise/high-availability.md
-docs_dir: docs
+    - What is OpenVidu?: index.md
+    - Tutorials:
+          - Intro: tutorials/index.md
+          - openvidu-webcomponent: tutorials/openvidu-webcomponent.md
+          - openvidu-hello-world: tutorials/openvidu-hello-world.md
+          - openvidu-iframe: tutorials/openvidu-iframe.md
+          - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
+          - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
+          - openvidu-library-angular: tutorials/openvidu-library-angular.md
+          - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
+          - openvidu-library-react: tutorials/openvidu-library-react.md
+          - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
+          - openvidu-ionic: tutorials/openvidu-ionic.md
+          - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
+          - openvidu-react-native: tutorials/openvidu-react-native.md
+          - openvidu-android: tutorials/openvidu-android.md
+          - openvidu-ios: tutorials/openvidu-ios.md
+          - openvidu-electron: tutorials/openvidu-electron.md
+          - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
+          - openvidu-js-java: tutorials/openvidu-js-java.md
+          - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
+          - openvidu-js-node: tutorials/openvidu-js-node.md
+          - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
+          - openvidu-recording-java: tutorials/openvidu-recording-java.md
+          - openvidu-recording-node: tutorials/openvidu-recording-node.md
+    - Demos:
+          - openvidu-call: demos/openvidu-call.md
+          - openvidu-call-react: demos/openvidu-call-react.md
+          - openvidu-call-ionic: demos/openvidu-call-ionic.md
+          - openvidu-classroom: demos/openvidu-classroom.md
+          - openvidu-getaroom: demos/openvidu-getaroom.md
+    - Cheatsheet:
+          - Join a session: cheatsheet/join-session.md
+          - Leave a session: cheatsheet/leave-session.md
+          - Subscribe/Unsubscribe from a stream: cheatsheet/subscribe-unsubscribe.md
+          - Publish/Unpublish a stream: cheatsheet/publish-unpublish.md
+          - Mute/Unmute audio and video: cheatsheet/mute-audio-video.md
+          - Manage video players: cheatsheet/manage-videos.md
+          - Share data between users: cheatsheet/share-data.md
+          - Send text messages: cheatsheet/send-messages.md
+    - Advanced features:
+          - Recording: advanced-features/recording.md
+          - Screen share: advanced-features/screen-share.md
+          - IP cameras: advanced-features/ip-cameras.md
+          - Speech detection: advanced-features/speech-detection.md
+          - Voice and video filters: advanced-features/filters.md
+          - Switch camera: advanced-features/switch-camera.md
+          - Automatic reconnection: advanced-features/automatic-reconnection.md
+          - Network quality: advanced-features/network-quality.md
+    - Reference Documentation:
+          - openvidu-browser API: reference-docs/openvidu-browser.md
+          - openvidu-java-client API: reference-docs/openvidu-java-client.md
+          - openvidu-node-client API: reference-docs/openvidu-node-client.md
+          - REST API: reference-docs/REST-API.md
+          - OpenVidu configuration: reference-docs/openvidu-config.md
+          - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
+          - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
+    - Deployment:
+          - Intro: deployment/index.md
+          - OpenVidu CE:
+                - AWS: deployment/ce/aws.md
+                - On premises: deployment/ce/on-premises.md
+                - Upgrading: deployment/ce/upgrading.md
+          - OpenVidu Pro:
+                - AWS: deployment/pro/aws.md
+                - On premises: deployment/pro/on-premises.md
+                - Upgrading: deployment/pro/upgrading.md
+          - OpenVidu Enterprise:
+                - AWS: deployment/enterprise/aws.md
+                - On premises: deployment/enterprise/on-premises.md
+          - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
+    - Contribute:
+          - Developing OpenVidu: developing/index.md
+          - OpenVidu Server RPC protocol: developing/rpc.md
+    - Troubleshooting / FAQ: troubleshooting/index.md
+    - Releases: releases/index.md
+    - OpenVidu Pro:
+          - Home: openvidu-pro/index.md
+          - Scalability: openvidu-pro/scalability.md
+          - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
+          - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
+    - OpenVidu Enterprise:
+          - Home: openvidu-enterprise/index.md
+          - Simulcast: openvidu-enterprise/simulcast.md
+          - High availability: openvidu-enterprise/high-availability.md
+
+# Build directories.
 theme:
     name: mkdocs
-    custom_dir: custom_theme
+    locale: en
+    custom_dir: custom_theme/
+docs_dir: docs/
+site_dir: site/
 
+# Preview controls.
+strict: false
+dev_addr: "127.0.0.1:8000"
+
+# Formatting options.
 markdown_extensions:
-  # https://python-markdown.github.io/extensions/extra/
-  - extra
+    # https://python-markdown.github.io/extensions/extra/
+    - extra
 
-  # https://python-markdown.github.io/extensions/toc/
-  - toc:
-        marker: "[TOC]"
-        permalink: " 🔗"
+    # https://python-markdown.github.io/extensions/toc/
+    - toc:
+          marker: "[TOC]"
+          permalink: " 🔗"
+plugins:
+    - search
+
+# Environment Variables.
+# Make RTD env vars available to the template context.
+# Syntax:
+# * https://www.mkdocs.org/user-guide/configuration/#environment-variables
+# * https://www.mkdocs.org/dev-guide/themes/#extra-context
+# RTD env vars:
+# * https://docs.readthedocs.io/en/stable/builds.html#build-environment
+#
+# FIXME: This should be used to set the <base> URL in the HTML template,
+# but for some readon RTD sets these to the string "null", so an alternative
+# had to be used while the issue gets fixed. Issue report:
+#     READTHEDOCS environment variables are null #8529
+#     https://github.com/readthedocs/readthedocs.org/issues/8529
+extra:
+    READTHEDOCS: !ENV [READTHEDOCS, null]
+    READTHEDOCS_VERSION: !ENV [READTHEDOCS_VERSION, null]
+    READTHEDOCS_PROJECT: !ENV [READTHEDOCS_PROJECT, null]
+    READTHEDOCS_LANGUAGE: !ENV [READTHEDOCS_LANGUAGE, null]
