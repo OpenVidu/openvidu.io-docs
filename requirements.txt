@@ -6,3 +6,4 @@
 #     $ export PATH="$HOME/.local/bin:$PATH"
 
 mkdocs==1.2.2
+mkdocs-exclude-search
