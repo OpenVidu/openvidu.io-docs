@@ -422,7 +422,7 @@ As a beta feature, mediasoup support in OpenVidu and High Availability deploymen
 
 ## Enable OpenVidu Enterprise
 
-OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster version **2.19.0** up and running.
+OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster up and running.
 
 Configure the following property in the **`.env`** file at Master Node installation path (default to `/opt/openvidu/`)
 
