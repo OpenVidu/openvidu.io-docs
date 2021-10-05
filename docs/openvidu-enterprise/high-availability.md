@@ -97,7 +97,6 @@ OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deplo
 - [Recording](advanced-features/recording/){:target="_blank"} is not available yet in OpenVidu Enterprise High Availability. This requires further work to be completely supported, which will be in an upcoming release.
 - Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it. Take a look to [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo application to see how to easily do it.
 -  All API REST requests beginning with `/api` are no longer supported. All requests using this deployment must use `openvidu/api/` instead. These REST API requests [was announced as deprecated since version 2.16.0](releases/#breaking-changes_3)
--  OpenVidu Inspector is still in development and is not available yet.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
