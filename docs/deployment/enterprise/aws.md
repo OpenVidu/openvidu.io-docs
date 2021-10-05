@@ -128,7 +128,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Enterprise-<strong>2.20.0</strong>.yaml</code>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Enterprise-<strong>2.20.1</strong>.yaml</code>
 
 <br>
 
