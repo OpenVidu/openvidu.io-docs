@@ -237,7 +237,7 @@ You can access to them through the following way:
 ```
 2) You have to declare the openvidu component variable in `app.component.ts`:
 
-```typescript
+```javascript
 @ViewChild('ovSessionComponent')
 public ovSessionComponent: OpenviduSessionComponent;
 ```
@@ -249,7 +249,7 @@ public ovSessionComponent: OpenviduSessionComponent;
 * **getOpenviduLayout**: This method will return the OpenVidu Layout Object. You can check the information about the OpenVidu Layout Class [here](tutorials/layout-doc/classes/openvidu_layout.openvidulayout.html){:target="_blank"}
 * **getOpenviduLayoutOptions**: This method will return the layout options. Click [here](tutorials/layout-doc/interfaces/openvidu_layout.openvidulayoutoptions.html){:target="_blank"} to more information.
 
-```typescript
+```javascript
 myMethod() {
   this.ovSession = this.ovSessionComponent.getSession();
   this.ovLocalUser = this.ovSessionComponent.getLocalUser();
@@ -261,10 +261,10 @@ We are invoking *myMethod* inside of *handlerJoinSessionEvent*.
 
 4) Last but not least, you must establish the local variables like this:
 
-```typescript
+```javascript
 import {OpenviduSessionComponent, StreamEvent, Session, Publisher, UserModel, OpenViduLayout, OpenViduLayoutOptions, OvSettingsModel} from 'openvidu-angular';
 ```
-```typescript
+```javascript
 ovRemotesArray: UserModel[];
 ovLocalUser: UserModel;
 ovLayout: OpenViduLayout;
@@ -277,7 +277,7 @@ Moreover, if you want to customize the interface of **opv-session-component** yo
 
 And initializate it with the config properties:
 
-```typescript
+```javascript
 this.ovSettings = {
   chat: false,
   autopublish: true,

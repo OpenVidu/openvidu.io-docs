@@ -259,7 +259,7 @@ Let's see first how `app.component.ts` uses NPM package `openvidu-browser`:
 
 #### We import the necessary objects from `openvidu-browser`:
 
-```typescript
+```javascript
 import { OpenVidu, Publisher, Session, StreamEvent, StreamManager, Subscriber } from 'openvidu-browser';
 ```
 
@@ -267,7 +267,7 @@ import { OpenVidu, Publisher, Session, StreamEvent, StreamManager, Subscriber } 
 
 ####`app.component.ts` declares the following properties:
 
-```typescript
+```javascript
  // OpenVidu objects
 OV: OpenVidu;
 session: Session;
@@ -289,7 +289,7 @@ myUserName: string;
 
 We first get an OpenVidu object and initialize a Session object with it.
 
-```typescript
+```javascript
 // --- 1) Get an OpenVidu object ---
 
 this.OV = new OpenVidu();
@@ -301,7 +301,7 @@ this.session = this.OV.initSession();
 
 Then we subscribe to the Session events that interest us.
 
-```typescript
+```javascript
  // --- 3) Specify the actions when events take place in the session ---
 
 // On every new Stream received...
@@ -367,7 +367,7 @@ As we are using Ionic and Angular framework, a good approach for managing the re
 </div>
 </div>
 
-```typescript
+```javascript
 // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.
@@ -388,7 +388,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 #### Connect to the session:
 
-```typescript
+```javascript
 // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.
@@ -429,7 +429,7 @@ We do further talk about Android permissions under section [Android specific req
 
 #### Finally publish your webcam calling `initPublisher()` method:
 
-```typescript
+```javascript
 initPublisher() {
     // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
     // element: we will manage it on our own) and with the desired properties
@@ -472,7 +472,7 @@ Last point worth considering is the implementation of *UserVideoComponent* and *
 </div>
 ```
 
-```typescript
+```javascript
 export class UserVideoComponent {
 
     @Input()
@@ -496,7 +496,7 @@ export class UserVideoComponent {
 
 And the responsibility of the component's logic is letting OpenVidu know the exact HTML DOM video player associated to its StreamManger. To do so we use method `StreamManager.addVideoElement`, which receives a native HTML video element. The way we implement this is Angular dependant: we get the video element with *@ViewChild* tag and we call the method once after the view has initialized (*ngAfterViewInit*) and once every time the StreamManager input changes (*set* method with *@Input* tag)
 
-```typescript
+```javascript
 export class OpenViduVideoComponent implements AfterViewInit, OnDestroy {
 
     @ViewChild('videoElement') elementRef: ElementRef;
@@ -521,7 +521,7 @@ To actually see the real implementation of this class, check out [iOS specific r
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `app.component.ts`:
 
-```typescript
+```javascript
 leaveSession() {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
 
@@ -555,7 +555,7 @@ npm install --save @ionic-native/android-permissions@latest
 
 2) Add this plugin to your app's module ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.module.ts){:target="_blank"})
 
-```typescript
+```javascript
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 @NgModule({
     providers: [
@@ -567,7 +567,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 3) Add this plugin to your component and use it ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts){:target="_blank"})
 
-```typescript
+```javascript
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 export class AppComponent  {
@@ -582,7 +582,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 You should also declare an array of permissions to use as parameter of `requestPermissions()`
 
-```typescript
+```javascript
 ANDROID_PERMISSIONS = [
     this.androidPermissions.PERMISSION.CAMERA,
     this.androidPermissions.PERMISSION.RECORD_AUDIO,
@@ -678,7 +678,7 @@ One limitation for iOS is the background color of your app: we need it to be tra
 
 **2)** Initialize _cordova-plugin-iosrtc_. The easiest way is doing so in `app.component.ts` constructor, using Platform library to identify iOS Ionic context. It is very important to initialize the plugin only for **iOS** devices running a **cordova** app.
 
-```typescript
+```javascript
 // Import declarations...
 declare var cordova;
 
@@ -702,7 +702,7 @@ In openvidu-ionic app this is done as follows in file [`ov-video.component.ts`](
 
 We check if the platform is iOS with the following method:
 
-```typescript
+```javascript
 private isIos(): boolean {
     return this.platform.is('ios') && this.platform.is('cordova');
 }
@@ -710,7 +710,7 @@ private isIos(): boolean {
 
 We call the following `updateVideoView` method inside `ngAfterViewInit`, so our video elementRef is properly defined:
 
-```typescript
+```javascript
 private updateVideoView() {
     this._streamManager.addVideoElement(this.elementRef.nativeElement);
     if (this.isIos()) {
@@ -723,7 +723,7 @@ private updateVideoView() {
 
 We call `applyIosIonicVideoAttributes` method only after the video element has triggered 'loadedmetadata' event. This way we know that the video has certain computed width and we can calculate the exact height it must have according to its aspect ratio, got from `Stream.videoDimensions`. This is necessary because the plugin needs an exact width and height in order to paint the native iOS video. In this case, every video will have the full width of its container and the height will be obtained from the final computed width and the aspect ratio got from metadata  `Stream.videoDimensions`.
 
-```typescript
+```javascript
 private applyIosIonicVideoAttributes() {
     const ratio = this._streamManager.stream.videoDimensions.height / this._streamManager.stream.videoDimensions.width;
     this.elementRef.nativeElement.style.width = '100% !important';
@@ -743,7 +743,7 @@ Finally we also need to listen to dynamic changes on the videos to refresh the p
 
 - Listen to `streamPropertyChanged` event of StreamManager, and if `videoDimensions` changes update the video element accordingly. In openvidu-ionic app we do so when setting StreamManager property in [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}
 
-```typescript
+```javascript
 @Input()
 set streamManager(streamManager: StreamManager) {
     this._streamManager = streamManager;
@@ -759,7 +759,7 @@ set streamManager(streamManager: StreamManager) {
 
 - **Only if your app supports orientation changes**: you will have to listen to `orientationchange` window event for remote streams to update their video dimensions and adjust them to the new window ratio. openvidu-ionic app does this in method `ngAfterViewInit` in [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}. The timeout gives the video some time to refresh its properties before updating its view.
 
-```typescript
+```javascript
 ngAfterViewInit() {
     if (this.isIos() && this._streamManager.remote) {
         this.rotationFunction = () => {
@@ -780,7 +780,7 @@ ngAfterViewInit() {
 <ion-content [scrollEvents]="true" (ionScroll)="refreshVideos()">
 ```
 
-```typescript
+```javascript
 refreshVideos() {
     if (this.platform.is('ios') && this.platform.is('cordova')) {
         cordova.plugins.iosrtc.refreshVideos();

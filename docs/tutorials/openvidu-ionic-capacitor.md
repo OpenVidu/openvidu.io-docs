@@ -136,7 +136,7 @@ Moreover, an explicit change to bear in mind is in the `applyIosIonicVideoAttrib
 
 The method would be as follows:
 
-```typescript
+```javascript
 private applyIosIonicVideoAttributes() {
     const ratio = this._streamManager.stream.videoDimensions.height / this._streamManager.stream.videoDimensions.width;
     this.elementRef.nativeElement.style.width = '100% !important';

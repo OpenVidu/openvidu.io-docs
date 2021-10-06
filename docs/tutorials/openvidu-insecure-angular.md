@@ -114,7 +114,7 @@ Let's see first how `app.component.ts` uses NPM package `openvidu-browser`:
 
 #### We import the necessary objects from `openvidu-browser`:
 
-```typescript
+```javascript
 import { OpenVidu, Publisher, Session, StreamEvent, StreamManager, Subscriber } from 'openvidu-browser';
 ```
 
@@ -122,7 +122,7 @@ import { OpenVidu, Publisher, Session, StreamEvent, StreamManager, Subscriber } 
 
 ####`app.component.ts` declares the following properties:
 
-```typescript
+```javascript
 // OpenVidu objects
 OV: OpenVidu;
 session: Session;
@@ -148,7 +148,7 @@ mainStreamManager: StreamManager;
 
 We first get an OpenVidu object and initialize a Session object with it.
 
-```typescript
+```javascript
 // --- 1) Get an OpenVidu object ---
 
 this.OV = new OpenVidu();
@@ -160,7 +160,7 @@ this.session = this.OV.initSession();
 
 Then we subscribe to the Session events that interest us.
 
-```typescript
+```javascript
 // --- 3) Specify the actions when events take place in the session ---
 
 // On every new Stream received...
@@ -226,7 +226,7 @@ As we are using Angular framework, a good approach for managing the remote media
 </div>
 </div>
 
-```typescript
+```javascript
 // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.
@@ -247,7 +247,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 #### Finally connect to the session and publish your webcam:
 
-```typescript
+```javascript
  // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.
@@ -317,7 +317,7 @@ Last point worth considering is the implementation of *UserVideoComponent* and *
 </div>
 ```
 
-```typescript
+```javascript
 export class UserVideoComponent {
 
     @Input()
@@ -337,7 +337,7 @@ export class UserVideoComponent {
 
 And the unique responsibility of the component's logic is letting OpenVidu know the exact HTML DOM video player associated to its StreamManger. To do so we use method `StreamManager.addVideoElement`, which receives a native HTML video element. The way we implement this is Angular dependant: we get the video element with *@ViewChild* tag and we call the method once after the view has initialized (*ngAfterViewInit*) and once every time the StreamManager input changes (*set* method with *@Input* tag)
 
-```typescript
+```javascript
 export class OpenViduVideoComponent implements AfterViewInit {
 
     @ViewChild('videoElement') elementRef: ElementRef;
@@ -364,7 +364,7 @@ export class OpenViduVideoComponent implements AfterViewInit {
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `app.component.ts`:
 
-```typescript
+```javascript
   leaveSession() {
 
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
