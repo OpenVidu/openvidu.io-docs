@@ -343,7 +343,7 @@ Here we subscribe to the Session events that interest us. As we are using React 
 </div>
 </div>
 
-```typescript
+```javascript
 // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.

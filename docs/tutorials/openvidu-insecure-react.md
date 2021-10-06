@@ -114,7 +114,7 @@ import { OpenVidu } from 'openvidu-browser';
 
 ####`App.js` declares the following properties in the state:
 
-```typescript
+```javascript
 //These properties are in the state's component in order to re-render the HTML when the values of them change
 this.state = {
     mySessionId: 'SessionA',
@@ -235,7 +235,7 @@ Here we subscribe to the Session events that interest us. As we are using React 
 </div>
 </div>
 
-```typescript
+```javascript
 // --- 4) Connect to the session with a valid user token ---
 
 // 'getToken' method is simulating what your server-side should do.
