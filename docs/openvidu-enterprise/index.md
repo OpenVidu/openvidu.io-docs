@@ -426,7 +426,7 @@ OpenVidu Enterprise is very easy to enable. While in beta, you just need an **Op
 
 Configure the following property in the **`.env`** file at Master Node installation path (default to `/opt/openvidu/`)
 
-```yml
+```properties
 OPENVIDU_EDITION=enterprise
 ```
 
