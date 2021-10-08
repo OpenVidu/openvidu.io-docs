@@ -38,7 +38,7 @@ OpenVidu Server can be configured to record sessions. Two modes of recordings ar
 
 Configure the following property in the **`.env`** file at OpenVidu installation path (default to `/opt/openvidu`)
 
-```yaml
+```properties
 OPENVIDU_RECORDING=true
 ```
 
@@ -49,7 +49,7 @@ OPENVIDU_RECORDING=true
 
 If your are using the official [openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"} docker container in your development environment and want to enable the recording module, then run it like this:
 
-```console
+```shell
 docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
@@ -645,7 +645,7 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:t
 
 If the same stream of some user is recorded multiple times during one INDIVIDUAL session recording, then the resulting ZIP file described in [Individual stream recording](#individual-stream-recording) may have this content:
 
-```console
+```plaintext
 MyRecording.zip
 +-- MyRecording.json
 +-- str_CAM_WyJt_con_HZPIDsWXBx.webm
@@ -963,7 +963,7 @@ openvidu.startRecording(sessionId, {
 
 In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `OPENVIDU_RECORDING_CUSTOM_LAYOUT` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu Server host:
 
-```
+```plaintext
 /opt
 +-- /openvidu
 |   +-- /my_custom_layouts
@@ -1136,7 +1136,7 @@ Bare in mind that the upload process **is not performed in real time** while the
 
 To enable S3 recording storage configure the following properties in the **`.env`** file at Master Node installation path (default to `/opt/openvidu`)
 
-```yaml
+```properties
 OPENVIDU_PRO_RECORDING_STORAGE=s3
 OPENVIDU_PRO_AWS_S3_BUCKET=your-bucket-name
 OPENVIDU_PRO_AWS_S3_HEADERS=

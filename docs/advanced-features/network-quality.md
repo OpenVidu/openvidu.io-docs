@@ -70,7 +70,7 @@ OpenVidu network quality is only available for <strong>PUBLISHERS</strong>. You 
 
 To be able to receive the network quality events in your application's client-side, you must enable [OpenVidu Pro configuration property](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro){:target="_blank"} `OPENVIDU_PRO_NETWORK_QUALITY`. You can also set the frequency with which OpenVidu Server Pro will check the network quality of each participant with property `OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL`.
 
-```yaml
+```properties
 OPENVIDU_PRO_NETWORK_QUALITY=true
 OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL=5
 ```
