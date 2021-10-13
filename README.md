@@ -48,8 +48,8 @@ python3 -m venv python_modules
 source python_modules/bin/activate
 
 # Install MkDocs and its dependencies
-python -m pip install wheel
-python -m pip install --upgrade -r requirements.txt
+python3 -m pip install wheel
+python3 -m pip install --upgrade -r requirements.txt
 ```
 
 
