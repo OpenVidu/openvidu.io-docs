@@ -105,8 +105,7 @@ Without going into greater detail, the backend has [one controller](https://gith
 
 As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker){:target="_blank"}, to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
 
-This is how should looks like the `docker-compose-override.yml` after be redefined:
-
+This is how your `docker-compose-override.yml` should be with your own modifications:
 ```
 version: '3.1'
 
@@ -137,10 +136,9 @@ This script will create an image named `openvidu/openvidu-classroom-demo:X.Y.Z`.
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-The steps are exactly the same as those described above but you have to take account change the image name by your custom name (`openvidu/openvidu-classroom-demo` on this sample).
+The steps are exactly the same as those described above but you have to take account of changing the image name by your custom name (`openvidu/openvidu-classroom-demo` on this sample).
 
-[Here](https://github.com/OpenVidu/classroom-demo/blob/2a931237dc232743fbdb847bc70b93dd0c014d18/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Classroom application.
-
+Your `docker-compose.override.yml` should look like this:
 ```
 version: '3.1'
 
