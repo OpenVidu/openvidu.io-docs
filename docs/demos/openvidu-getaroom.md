@@ -278,8 +278,7 @@ Once the openvidu-classrom image has been created, you will can deploy it.
 
 Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-getaroom-demo` on this sample).
 
-[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/83ad2c0832362f94e94d88ca77df7ff0c572a2eb/openvidu-getaroom/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu Getaroom application.
-
+Your `docker-compose.override.yml` should look like this:
 ```
 version: '3.1'
 
@@ -289,7 +288,7 @@ services:
         restart: on-failure
         network_mode: host
         environment:
-            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_URL=https://${DOMAIN_OR_PUBLIC_IP:-}:${HTTPS_PORT:-443}
             - OPENVIDU_SECRET=${OPENVIDU_SECRET}
 ```
 

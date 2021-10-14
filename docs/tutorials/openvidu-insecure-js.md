@@ -402,13 +402,13 @@ First of all, you will need to create the **openvidu-insecure-js** docker image.
 ./create_image.sh
 ```
 
-This script will create an image named `openvidu/openvidu-insecure-js-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/b8c8ac37cf541c2681d35ef24cd15b0f44d8c0b8/openvidu-insecure-js/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will can deploy it.
+This script will create an image named `openvidu/openvidu-insecure-js-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name here [here](https://github.com/OpenVidu/openvidu-tutorials/blob/b8c8ac37cf541c2681d35ef24cd15b0f44d8c0b8/openvidu-insecure-js/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will be able to deploy it.
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
 Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-insecure-js-demo` on this sample).
 
-[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/dcdb9f06fdcc3bec01fbf02868446edaa6bd3a77/openvidu-insecure-js/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu insecure-js application.
+Your `docker-compose.override.yml` should look like this:
 
 ```
 version: '3.1'
@@ -419,7 +419,7 @@ services:
         restart: on-failure
         network_mode: host
         environment:
-            - OPENVIDU_URL=http://localhost:5443
+            - OPENVIDU_URL=https://${DOMAIN_OR_PUBLIC_IP:-}:${HTTPS_PORT:-443}
             - OPENVIDU_SECRET=${OPENVIDU_SECRET}
 ```
 

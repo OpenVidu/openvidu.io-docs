@@ -497,8 +497,7 @@ When the last user leaves the session `this.mapSessions.remove(sessionName);` wi
 
 As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker){:target="_blank"}, to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu js-java `docker-compose-override.yml`.
 
-This is how should looks like the `docker-compose-override.yml` after be redefined:
-
+Your `docker-compose.override.yml` should look like this:
 ```
 version: '3.1'
 
@@ -525,14 +524,13 @@ First of all, you will need to create the **openvidu-js-java** docker image.
 ./create_image.sh
 ```
 
-This script will create an image named `openvidu/openvidu-basic-webinar-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-js-java/docker/create_image.sh#L5-L6). Once the openvidu-js-java image has been created, you will can deploy it.
+This script will create an image named `openvidu/openvidu-basic-webinar-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-js-java/docker/create_image.sh#L5-L6). Once the openvidu-js-java image has been created, you will be able to deploy it.
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
 The steps are exactly the same as those described above but you have to take account change the image name by your custom name (`openvidu/openvidu-basic-webinar-demo` on this sample).
 
-[Here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-js-java/docker/docker-compose.override.yml#L1) it is the `docker-compose-override.yml` used by OpenVidu js.java application.
-
+Your `docker-compose.override.yml` should look like this:
 ```
 version: '3.1'
 
