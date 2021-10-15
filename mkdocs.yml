@@ -17,6 +17,7 @@ nav:
           - openvidu-hello-world: tutorials/openvidu-hello-world.md
           - openvidu-iframe: tutorials/openvidu-iframe.md
           - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
+          - openvidu-insecure-js-screen-share: tutorials/openvidu-insecure-js-screen-share.md
           - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
           - openvidu-library-angular: tutorials/openvidu-library-angular.md
           - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
