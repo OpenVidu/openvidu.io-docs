@@ -113,7 +113,7 @@ These configuration parameters are part of <a href="openvidu-pro/" target="_blan
 | **`OPENVIDU_PRO_PRIVATE_IP`** | Private IP of Master Node. Media Nodes will use this property to communicate with Master Node. **This property is optional and as a general rule should remain empty**, as Media Nodes will automatically discover this IP. It is only suitable for **[On Premises deployments](deployment/pro/on-premises/){:target="_blank"}** when Media Nodes are not able to autodiscover the IP address for any kind of not contemplated reason |  |
 | **`KMS_URIS`** | Array of Media Node URIs (comma separated list of strings) that should be automatically added to the cluster on startup. If any value is provided, then it must be valid and accessible, or OpenVidu will fail to start. This property has effect only on **[On Premises deployments](deployment/pro/on-premises/){:target="blank"}**. All of Media Node URIs have the same format: `ws://MEDIA_NODE_IP:8888/kurento`. A possible value for this property for a single Media Node could be `["ws://56.11.23.45:8888/kurento"]` | **[ ]** |
 | **`ELASTICSEARCH_USERNAME`** | When using a secured **[external Elastic stack](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}**, the name of the Elastic user | |
-| **`ELASTICSEARCH_PASSWORD`** | When using a secured **[external Elastic stack](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}** is configured, the password of the Elastic user | |
+| **`ELASTICSEARCH_PASSWORD`** | When using a secured **[external Elastic stack](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack){:target="_blank"}**, the password of the Elastic user | |
 
 <br>
 
