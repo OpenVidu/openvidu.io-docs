@@ -91,6 +91,12 @@ OpenVidu Enterprise can be deployed with multiple Master nodes to have High Avai
 
 ### Deployment
 
+In this section there is a detailed explanation on how to deploy OpenVidu Enterprise and what is needed previously. You can follow this guide and if you have some doubts, you can also check this tutorial:
+
+<br>
+<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/lezhHlJg-xM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<br>
+
 #### 1) Previous requirements
 
 <br>
