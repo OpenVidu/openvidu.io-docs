@@ -77,7 +77,7 @@ Recorded when a session has finished.
 | `timestamp` | Time when the event was triggered         | UTC milliseconds                                                                      |
 | `startTime` | Time when the session started             | UTC milliseconds                                                                      |
 | `duration`  | Total duration of the session             | Seconds                                                                               |
-| `reason`    | Why the session was destroyed             | [`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"openviduServerStopped"`] |
+| `reason`    | Why the session was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})   | [`"lastParticipantLeft"`, <br>`"sessionClosedByServer"`, <br>`"mediaServerDisconnect"`, <br>`"nodeCrashed"`,  <br>`"openviduServerStopped"`] |
 
 <br>
 
@@ -151,7 +151,7 @@ Recorded when a user has left a session.
 | `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
-| `reason`        | How the participant left the session                                                   | [`"disconnect"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`] |
+| `reason`        | How the participant left the session ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                   | [`"disconnect"`, <br>`"forceDisconnectByUser"`, <br>`"forceDisconnectByServer"`, <br>`"sessionClosedByServer"`, <br>`"networkDisconnect"`, <br>`"mediaServerDisconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"`] |
 
 <br>
 
@@ -235,7 +235,7 @@ Recorded when any media stream connection is closed.
 | `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | String with the dimensions (e.g. `"1920x1080"`)                                                                                                                                                                                                                        |
 | `startTime`       | Time when the media connection was established                                                                                                                                    | UTC milliseconds                                                                                                                                                                                                                                                       |
 | `duration`        | Total duration of the media connection                                                                                                                                            | Seconds                                                                                                                                                                                                                                                                |
-| `reason`          | How the WebRTC connection was destroyed                                                                                                                                           | [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"forceUnpublishByUser"`,<br>`"forceUnpublishByServer"`,<br>`"forceDisconnectByUser"`,<br>`"forceDisconnectByServer"`,<br>`"sessionClosedByServer"`,<br>`"networkDisconnect"`,<br>`"openviduServerStopped"`,<br>`"mediaServerDisconnect"`] |
+| `reason`          | How the WebRTC connection was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                                                                                                          |  [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"forceUnpublishByUser"`,<br>`"forceUnpublishByServer"`, <br>`"forceDisconnectByUser"`, <br>`"forceDisconnectByServer"`, <br>`"sessionClosedByServer"`, <br>`"networkDisconnect"`, <br>`"mediaServerDisconnect"`, <br>`"mediaServerReconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"` ]|
 
 <br>
 
@@ -283,7 +283,7 @@ Recorded when the status of a recording has changed. The status may be:
 | `size`            | The size of the video file. Only guaranteed to be greater than `0` if status is `ready` | Bytes                            |
 | `duration`        | Duration of the video file. Only guaranteed to be greater than `0` if status is `ready` | Seconds                          |
 | `status`          | Status of the recording                    | [`"started"`,`"stopped"`,`"ready"`,`"failed"`] |
-| `reason`          | Why the recording stopped. Only defined when status is _stopped_ or _ready_ | [`"recordingStoppedByServer"`,<br>`"lastParticipantLeft"`,<br>`"sessionClosedByServer"`,<br>`"automaticStop"`,<br>`"openviduServerStopped"`, <br>`"mediaServerDisconnect"`] |
+| `reason`          | Why the recording stopped. Only defined when status is _stopped_ or _ready_ ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"}) | [`"recordingStoppedByServer"`, <br>`"lastParticipantLeft"`, <br>`"sessionClosedByServer"`, <br>`"mediaServerDisconnect"`, <br>`"mediaServerReconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"`, <br>`"automaticStop"` ] |
 
 <br>
 
