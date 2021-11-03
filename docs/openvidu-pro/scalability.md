@@ -259,31 +259,6 @@ In the monolithic setup of OpenVidu CE, this module must be launched in the sing
 
 ## Autoscaling
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	OpenVidu Pro Autoscaling feature is considered to be in preview phase. What this means is that there could potentially be some bugs affecting its behavior. We recommend some caution in its activation.
-</div>
-</div>
-
 OpenVidu Pro autoscaling feature allows you to forget about monitoring the status and load of your cluster, letting the cluster itself decide when to automatically increase or decrease the number of Media Nodes. This provides a number of important advantages:
 
 - **Real CPU load** in your existing Media Nodes will determine the optimal size of the cluster at every moment. That very definite and conclusive measure is the one taken into account to decide if your cluster should grow or shrink.
