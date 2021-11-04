@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-recording-java" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A simple Java application that uses [openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording]{:target="_blank"} documentation before diving into the tutorial.
+A simple Java application that uses [openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/){:target="_blank"} documentation before diving into the tutorial.
 
 ## Understanding this tutorial
 
