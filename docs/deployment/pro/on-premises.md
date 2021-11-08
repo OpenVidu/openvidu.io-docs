@@ -342,6 +342,31 @@ Run the following commands to manage OpenVidu Pro service:
 
 ### 3) Media Nodes
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 5px 0 5px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+    Remember that Media Nodes <b>must be deployed in their own separate instance</b>. They cannot coexist with the Master Node or other Media Nodes in the same instance.
+</div>
+</div>
+
 #### 3.1) Deployment
 
 Follow these steps to add one Media Nodes to the cluster. You can add as many Media Nodes as you want by repeating these instructions in different instances.
