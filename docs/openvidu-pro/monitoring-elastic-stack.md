@@ -251,13 +251,11 @@ Logs and metrics sent by **Filebeat** and **Metricbeat** include some properties
 
 All events of OpenVidu are stored in the index `openvidu`, which have an `elastic_type` field to identify the specific type of event. This field may be:
 
-<div>
+<div markdown="1">
 
-<div class="monitoring-div">
+<div class="monitoring-div" markdown="1">
 
-<div></div>
-
-<div class="version-container" markdown="1" style="margin-right: 5px; margin-top: 15px">
+<div style="margin-right: 5px; margin-top: 15px" markdown="1">
 
 - `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
@@ -273,7 +271,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 
 </div>
 
-<div class="lang-tabs-container elastic-events version-container" markdown="1">
+<div class="lang-tabs-container elastic-events">
 
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">cdr</button>
@@ -289,7 +287,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">subscriberSummary</button>
 </div>
 
-<div id="cdr" class="lang-tabs-content" markdown="1">
+<div id="cdr" class="lang-tabs-content">
 ```json
 {
   "elastic_type": "cdr",
@@ -306,7 +304,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="kms" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="kms" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "kms",
@@ -327,7 +325,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="webrtcstats" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="webrtcstats" class="lang-tabs-content" style="display:none">
 ```json
 {
     "elastic_type": "webrtcStats",
@@ -354,7 +352,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="webrtcdebug" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="webrtcdebug" class="lang-tabs-content" style="display:none">
 ```json
 {
     "elastic_type": "webrtcDebug",
@@ -374,7 +372,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="networkqualitystats" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="networkqualitystats" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "networkQualityStats",
@@ -390,7 +388,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="sessionsummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="sessionsummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "sessionSummary",
@@ -566,7 +564,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="recordingsummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="recordingsummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "recordingSummary",
@@ -589,7 +587,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="usersummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="usersummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "userSummary",
@@ -657,7 +655,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="connectionsummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="connectionsummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "connectionSummary",
@@ -708,7 +706,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="publishersummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="publishersummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "publisherSummary",
@@ -733,7 +731,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 ```
 </div>
 
-<div id="subscribersummary" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="subscribersummary" class="lang-tabs-content" style="display:none">
 ```json
 {
   "elastic_type": "subscriberSummary",
@@ -835,7 +833,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
     </div>
 </div>
 
@@ -843,7 +841,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
     </div>
 </div>
 
@@ -851,14 +849,14 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
     </div>
 </div>
 
 - Search for OpenVidu Server logs:
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-4.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-4.mp4"/>
     </div>
 </div>
 
@@ -1092,14 +1090,14 @@ You can see an example of both HTTP requests here:
 
 <div class="monitoring-div">
 
-<div class="lang-tabs-container kibana-user-post elastic-events version-container" markdown="1">
+<div class="lang-tabs-container kibana-user-post elastic-events">
 
 <div class="lang-tabs-header">
   <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">CREATE ROLE</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">CREATE USER</button>
 </div>
 
-<div id="create-role" class="lang-tabs-content" markdown="1">
+<div id="create-role" class="lang-tabs-content">
 <ul>
   <li><p><code>ROLE_NAME</code>: Name that you want for the role you are creating</p></li>
 </ul>
@@ -1159,7 +1157,7 @@ $ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true'
 ```
 </div>
 
-<div id="create-user" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="create-user" class="lang-tabs-content" style="display:none">
 <ul>
   <li><p><code>USER_NAME</code>: Name for the user you are creating</p></li>
   <li><p><code>USER_PASSWORD</code>: Password for the user you are creating</p></li>
