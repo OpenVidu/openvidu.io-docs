@@ -268,8 +268,7 @@
                     title="Advanced codec by supported devices"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Large scale sessions</th>
@@ -366,7 +365,7 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast){:target="_blank"} page.
 
-- **VP9** (_not available yet, work in progress_)
+- **VP9**
 
     An advanced video codec that brings better quality features when compared to VP8 and H264.
 

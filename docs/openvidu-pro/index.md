@@ -243,8 +243,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     title="Advanced codec by supported devices"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Large scale sessions</th>

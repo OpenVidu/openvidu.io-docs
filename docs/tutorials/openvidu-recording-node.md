@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-recording-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A simple Node application that uses [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording]{:target="_blank"} documentation before diving into the tutorial.
+A simple Node application that uses [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/){:target="_blank"} documentation before diving into the tutorial.
 ## Understanding this tutorial
 
 <p align="center">

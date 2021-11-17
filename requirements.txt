@@ -9,8 +9,5 @@
 #     # Install packages
 #     python -m pip install --upgrade -r requirements.txt
 
-mkdocs==1.2.2
+mkdocs==1.2.3
 mkdocs-exclude-search
-
-# Cannot update to Markdown 3.3, it breaks `typescript` block highlighting.
-Markdown==3.2.2
