@@ -835,7 +835,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-1.mp4"/>
     </div>
 </div>
 
@@ -843,7 +843,7 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-2.mp4"/>
     </div>
 </div>
 
@@ -851,14 +851,14 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-3.mp4"/>
     </div>
 </div>
 
 - Search for OpenVidu Server logs:
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <video controls class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-4.mp4"/>
+        <video controls preload="none" class="img-responsive video-pro" style="max-height: 600px" src="img/docs/openvidu-pro/elastic/search-example-4.mp4"/>
     </div>
 </div>
 
