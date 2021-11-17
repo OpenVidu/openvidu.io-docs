@@ -149,6 +149,7 @@ Join a client to an already initialized session. The equivalent method in OpenVi
     "record": false,
     "role": "PUBLISHER",
     "coturnIp": "127.0.0.1",
+    "coturnPort": 3478,
     "turnUsername": "WMYB64",
     "turnCredential": "3vl4bc",
     "sessionId": "nqo83ml4kc2kgaoe65311n7in0"
