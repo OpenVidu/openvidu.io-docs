@@ -1,9 +1,9 @@
 # openvidu-call
 <a href="https://github.com/OpenVidu/openvidu-call.git" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call is a videoconference app allowing users to make videoconference calls with many of the capabilities integrated by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on. Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
+OpenVidu Call is the flagship videoconference app integrating many of the capabilities offered by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on. Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
-OpenVidu Call frontend is built with <strong>Angular 9</strong> and its backend is built with <strong>NodeJS</strong> using ExpressJS.
+OpenVidu Call frontend is built with <strong>Angular</strong> and its backend is built with <strong>Node</strong> using ExpressJS.
 
 <p align="center">
   <img class="img-responsive" src="img/demos/openvidu-call-architecture.png">
@@ -32,7 +32,7 @@ git clone https://github.com/OpenVidu/openvidu-call.git
 cd openvidu-call
 ```
 
-2) You will need node and NPM execute the app (frontend and backend). You can install them with in ubuntu with the following commands:
+2) You will need Node and NPM to run the app. You can install them in Linux with the following commands:
 
 ```bash
 sudo apt-get update
@@ -40,13 +40,13 @@ sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
-Plase visit <a href="https://nodejs.org/">https://nodejs.org/</a> to install it on other platforms.
+Please visit <a href="https://nodejs.org/">https://nodejs.org/</a> to install it on other platforms.
 
-3) Execute OpenVidu platform
+3) Execute OpenVidu:
 
 > If you are using **Docker Toolbox on Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly execute OpenVidu development container and how to adapt these instructions.
 
-OpenVidu Platform must be up and running. The easiest way is running this OpenVidu development container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+OpenVidu platform must be up and running. The easiest way is running this OpenVidu development container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
@@ -55,7 +55,7 @@ OpenVidu Platform must be up and running. The easiest way is running this OpenVi
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
 ```
 
-4) Install NPM dependencies of NodeJS backend:
+4) Install dependencies of OpenVidu Call backend (Node):
 
 ```
 npm install --prefix openvidu-call-back
@@ -67,13 +67,13 @@ npm install --prefix openvidu-call-back
 npm run start --prefix openvidu-call-back
 ```
 
-6) Install NPM dependencies of Angular frontend. **Open another terminal** to run the following command:
+6) Install dependencies of OpenVidu Call frontend (Angular). **Open another terminal** to run the following command:
 
 ```
 npm install --prefix openvidu-call-front
 ```
 
-7) Finally, start OpenVidu Call frontend
+7) Finally, serve OpenVidu Call frontend
 
 ```
 cd openvidu-call-front
@@ -90,7 +90,7 @@ npx ng serve --open
 | **`OPENVIDU_URL`**            | URL where connect to OpenVidu platform   | http://localhost:4443 |
 | **`OPENVIDU_SECRET`**         | Secret for the OpenVidu platform         | MY_SECRET       |
 
-This configuration parameters can be configured as environment variables. For example, to execute the application against an OpenVidu Platform deployed for production you should use the command:
+This configuration parameters can be set as environment variables. For example, to execute the application against an OpenVidu platform deployed for production you should use the command:
 
 ```
 $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD nodemon src/app.ts
@@ -105,7 +105,7 @@ $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWOR
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    OpenVidu Call container is designed to be used into OpenVidu deployment. To allow use this image out of OpenVidu deployment, you have two options:
+    OpenVidu Call container is designed to be served next to an OpenVidu deployment. To allow the use of this image out of an OpenVidu deployment, you have two options:
 	  <ol>
 		  <li>Handle the NGINX certificates with a proxy	</li>
 		  <li>To edit OpenVidu Call image including the certificate</li>
@@ -113,7 +113,7 @@ $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWOR
   </div>
 </div>
 
-Build a docker image of OpenVidu call is really easy.
+Building a Docker image of OpenVidu call is really easy.
 
 1) Under **openvidu-call** directory, execute:
 
@@ -121,14 +121,14 @@ Build a docker image of OpenVidu call is really easy.
 docker build -f docker/custom.dockerfile -t <your-tag-name> --build-arg BASE_HREF=<your-base-href> .
 ```
 
-2) After that, you can run the docker container:
+2) After that, you can run the Docker container:
 
 ```
 docker run -p <your-port>:5000 -e OPENVIDU_URL=<your-openvidu-url> -e OPENVIDU_SECRET=<your-secret> <your-tag-name>
 ```
 3) Go to **http://localhost:your-port**
 
-#### Configuration parameters for build OpenVidu Call with docker
+#### Configuration parameters for build OpenVidu Call with Docker
 
 | Parameter                     | Description   					       | Default value   |
 | ----------------------------- | ---------------------------------------- | --------------- |
@@ -139,7 +139,7 @@ docker run -p <your-port>:5000 -e OPENVIDU_URL=<your-openvidu-url> -e OPENVIDU_S
 
 ### Packaged Node.js application
 
-You also can build OpenVidu Call using webpack. Under **openvidu-call** directory:
+You can also build OpenVidu Call using webpack. Under **openvidu-call** directory:
 
 1) Build OpenVidu Call frontend:
 
@@ -154,7 +154,7 @@ cd openvidu-call-back
 npm run build
 ```
 
-3) You will found the app built in dist directory. You can use node to launch it:
+3) You will find the app built in dist directory. You can use Node to launch it:
 
 ```
 cd dist/
