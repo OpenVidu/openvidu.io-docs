@@ -39,9 +39,9 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
 
 OpenVidu is composed by the three modules displayed on the image above in its insecure version.
 
--   **openvidu-android**: Android application built with Java connected to OpenVidu through websocket
--   **openvidu-server**: Java application that controls Kurento Media Server
--   **Kurento Media Server**: server that handles low level operations of media flow transmissions
+-   **openvidu-android**: Android application built with Java, connected to OpenVidu through WebSocket.
+-   **openvidu-server**: Java application that controls Kurento Media Server.
+-   **Kurento Media Server**: Server that handles low-level operations of media flow transmissions.
 
 ## Running this tutorial
 
@@ -66,14 +66,14 @@ OpenVidu is composed by the three modules displayed on the image above in its in
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial is compatible for Android >= 5.0 (API level >= 21)
+	This tutorial is compatible with Android >= 5.0 (API level >= 21)
 </div>
 </div>
 
 To deploy the Android APK you need to have **Android Studio**, an **Android device** (recommended) or an **Android emulator** and **Android SDK** installed.
-You can download Android Studio [here](https://developer.android.com/studio/index.html){:target="_blank"}. You also can check the [official Android Studio guide](https://developer.android.com/studio/intro){:target="_blank"}
+You can download Android Studio [here](https://developer.android.com/studio/index.html){:target="_blank"}. You also can check the [official Android Studio guide](https://developer.android.com/studio/intro){:target="_blank"}.
 
-After we have set up Android Studio we must continue with the following commands:
+After we have set Android Studio up, we must continue with the following commands:
 
 **1)** Clone the repo:
 
@@ -81,16 +81,16 @@ After we have set up Android Studio we must continue with the following commands
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.20.0
 ```
 
-**2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_
+**2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_.
 
-**3)** Now you need the IP of your PC in your LAN network, which we will use in points 4) and 5) to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`)
+**3)** Now you need the local IP address of your PC in your LAN network, which we will use in points 4) and 5) to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`):
 
 
 ```console
 awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 ```
 
-**4)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 3). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
+**4)** OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 3). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` with `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`:
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
@@ -99,14 +99,13 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.20.0
 ```
 
-**5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, go to `app > res > values > strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your OpenVidu Server. Complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443/`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example that would be: `https://192.168.1.111:4443/`
+**5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, on the *Project Files* view, open the file `app/src/main/res/values/strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your OpenVidu Server. Complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443/`, where DOMAIN_OR_PUBLIC_IP is the IP address configured in your OpenVidu Platform service. In this example that would be: `https://192.168.1.111:4443/`.
 
-**6)** Connect the device to the same network as your PC
+**6)** Connect the Android device to the same LAN than your PC.
 
-**7)** Connect the device to the PC. You must enable USB debugging and give permissions (check out [official Android docs](https://developer.android.com/training/basics/firstapp/running-app){:target="_blank"})
+**7)** Connect the Android device to the PC with an USB cable. You must enable *USB Debugging* and give permissions (check out [official Android docs](https://developer.android.com/training/basics/firstapp/running-app){:target="_blank"}).
 
-**8)** Run the tutorial. In Android Studio, click the **app** module in the **Project** window and then select **Run** > **Run** .
-   In the **Select Deployment Target** window, select your device, and click **OK**.
+**8)** Run the tutorial. In Android Studio, select the **app** from the run/debug configurations drop-down menu in the toolbar. In the **Select Deployment Target** window, select your device, and click **OK**. Finally, click **Run**.
 
 <p align="center">
   <img class="img-responsive" style="padding: 25px 0" src="img/demos/openvidu-android-devices.png">
