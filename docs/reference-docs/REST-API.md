@@ -1,12 +1,19 @@
 <h2 id="section-title">REST API</h2>
 <hr>
 
-You have full control over OpenVidu Server through its REST API. All of the REST API operations exposed by OpenVidu Server...
+You have full control over OpenVidu Server through its REST API. All of the REST API operations exposed by OpenVidu Server:
 
-- Share the same base path `/openvidu/api/`
-- Share the same Authorization header. It is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "OPENVIDUAPP") and the password ([configuration property](reference-docs/openvidu-config/){:target="blank"}`OPENVIDU_SECRET`). All REST API operations return HTTP status `401` if the Authorization header is wrong or not provided. For example, for secret "MY_SECRET" the final HTTP header would be:
+* Share the same base path: `/openvidu/api/`.
+* Share the same Authorization header.
+
+The Authorization header is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "*OPENVIDUAPP*") and the password (the `OPENVIDU_SECRET` [configuration property](reference-docs/openvidu-config/){:target="blank"}).
+
+All REST API operations return HTTP status `401` if the Authorization header is wrong or not provided.
+
+For example, with a secret "*MY_SECRET*" the HTTP header would be:
 
 > `Authorization: Basic T1BFTlZJRFVBUFA6TVlfU0VDUkVU`
+
 
 ### Index
 <br>
@@ -87,8 +94,8 @@ A Session is a conference room where users can send/receive media streams to/fro
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | id | String | Identifier of the session |
 | object | String (`session`) | String representing the object’s type. Objects of the same type share the same value |
 | createdAt | Number | Time when the session was created in UTC milliseconds |
@@ -231,8 +238,8 @@ Retrieve all Sessions from OpenVidu Server.
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | numberOfElements | Number | Total number of Sessions |
 | content | Array of Objects | Array of [**Session objects**](#the-session-object) |
 
@@ -335,8 +342,8 @@ A Connection represents each one of the users connected to a Session. You must c
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | id | String | Identifier of the Connection |
 | object | String (`connection`) | String representing the object’s type. Objects of the same type share the same value |
 | type | String | Type of the Connection. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera |
@@ -498,8 +505,8 @@ List all Connections from a Session.
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | numberOfElements | Number | Total number of Connections |
 | content | Array of Objects | Array of [**Connection objects**](#the-connection-object) |
 
@@ -639,8 +646,8 @@ A Recording represents the recording process of a Session.
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | id | String | Identifier of the Recording. It will be based on the identifier of the session. Store it to perform other operations such as stop, get or delete the Recording |
 | object | String (`recording`) | String representing the object’s type. Objects of the same type share the same value |
 | name | String | Name of the Recording. If no `name` parameter is provided, will be equal to `id` field |
@@ -819,8 +826,8 @@ Retrieve all Recordings from OpenVidu Server.
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | count | Number | Total number of recordings |
 | items | Array of Objects | Array of [**Recording objects**](#the-recording-object) |
 
@@ -909,8 +916,8 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | id | String | Media Node unique identifier. Use it to perform REST operations on this Media Node |
 | object | String (`mediaNode`) | String representing the object’s type. Objects of the same type share the same value |
 | environmentId | String | Media Node unique identifier dependent on the deployment environment. For example, an AWS EC2 machine identifier if the cluster is deployed in AWS |
@@ -970,8 +977,8 @@ Retrieve the information of a Media Node.
 
 ##### Query params
 
-| Parameter  | Type | Default | Description |
-| - ||||
+| Parameter | Type | Default | Description |
+| --------- | ---- | --------| ----------- |
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
@@ -1034,8 +1041,8 @@ Retrieve the information of all Media Nodes.
 
 ##### Query params
 
-| Parameter  | Type | Default | Description |
-| - ||||
+| Parameter | Type | Default | Description |
+| --------- | ---- | --------| ----------- |
 | sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
@@ -1050,8 +1057,8 @@ Retrieve the information of all Media Nodes.
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | numberOfElements | Number | Total number of Media Nodes |
 | content | Array of Objects | Array of [**Media Node objects**](#the-media-node-object) |
 
@@ -1107,8 +1114,8 @@ Add a new Media Node to the cluster.
 
 ##### Query params
 
-| Parameter  | Type | Default | Description |
-| - ||||
+| Parameter | Type | Default | Description |
+| --------- | ---- | --------| ----------- |
 | wait | Boolean | false | Whether to wait until the new Media Node reaches `running` status or not. Setting this property to true basically makes this method synchronized. You will not receive a response until the Media Node is properly running or an error is thrown |
 
 > https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?wait=false
@@ -1200,8 +1207,8 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 
 ##### Query params
 
-| Parameter  | Type | Default | Description |
-| - ||||
+| Parameter | Type | Default | Description |
+| --------- | ---- | --------| ----------- |
 | wait | Boolean | false | Whether to wait until the new Media Node reaches `terminated` status or not. Setting this property to true basically makes this method synchronized. You will not receive a response until the Media Node is fully terminated or an error is thrown |
 | deletion&#8209;strategy | String | "if&#8209;no&#8209;sessions" | How should OpenVidu Pro proceed with the Media Node deletion. Can be: <ul style="margin-top:10px"><li style="color: inherit"><code><strong>now</strong></code> : OpenVidu Pro will remove the Media Node immediately. All OpenVidu sessions hosted by this Media Node will be closed with reason <code>mediaServerDisconnect</code> (all streams, participants and recordings of all these sessions will be stopped with this same reason)</li><li style="color: inherit"><code><strong>if-no-sessions</strong></code> : if there's any OpenVidu session initialized inside of this Media Node, then this operation will fail with HTTP status <strong>409</strong>. If the Media Node has no ongoing sessions, then OpenVidu Pro will remove it immediately, returning status <strong>204</strong>.</li> <li style="color: inherit"><code><strong>when-no-sessions</strong></code> : if there's any OpenVidu session initialized inside this Media Node, then it will not be immediately deleted, but instead will be set to `waiting-idle-to-terminate` status. This status means the Media Node is under quarantine and no more sessions will be initialized inside of it. Whenever the last session of this Media Node is destroyed (no matter the reason), then it will be automatically deleted. The response status will be <strong>202</strong> if this operation changed the Media Node to <code>waiting-idle-to-terminate</code> status and <strong>204</strong> if there were no ongoing sessions inside the Media Node and therefore OpenVidu Pro has deleted it.</li></ul> |
 
@@ -1335,8 +1342,8 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | numberOfElements | Number | Total number of newly autodiscovered Media Nodes |
 | content | Array of Objects | Array of newly autodiscovered [**Media Node objects**](#the-media-node-object) |
 
@@ -1434,8 +1441,8 @@ This operation returns a Token object:
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} |
 | token | String | Same value as `id` |
 | connectionId | String | Connection identifier that will be assigned to the user consuming this token |
@@ -1510,7 +1517,7 @@ Send a signal to a Session, to specific [Connections](#the-connection-object) or
 }
 ```
 
-> - **session** _(mandatory String)_ : the sessionId of the session you want to send the signal to.<br><br> 
+> - **session** _(mandatory String)_ : the sessionId of the session you want to send the signal to.<br><br>
 > - **to** _(optional Array of String)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session.<br><br>
 > - **type** _(optional String)_ : type of the signal. In the body example above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type.<br><br>
 > - **data** _(optional String)_ : actual data of the signal.
@@ -1692,8 +1699,8 @@ Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is 
 }
 ```
 
-||||
-| - |||
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
 | status | String | Health status of the OpenVidu Pro cluster. Can be `UP` or `DOWN` |
 
 ##### HTTP responses
