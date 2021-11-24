@@ -464,8 +464,8 @@ Normally official certificates have a chain of public keys in the .cert file
 
 There are two ways to configure the nginx containers provided in the official deployments of OpenVidu CE and OpenVidu Pro. Before following the next ways of configure deployed nginx of openvidu you had to deploy following the following instructions:
 
-- [Deployment CE in AWS](/deployment/ce/aws) 
-- [Deployment CE On premises](/deployment/ce/on-premises)
+- [Deployment CE in AWS](deployment/ce/aws) 
+- [Deployment CE On premises](deployment/ce/on-premises)
 - [Deployment PRO in AWS](deployment/pro/aws)
 - [Deployment PRO On premises](deployment/pro/on-premises)
 

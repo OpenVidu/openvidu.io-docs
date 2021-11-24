@@ -195,7 +195,7 @@ You can configure the deployment to use an external Elastic Stack, or deploy one
 
 Requirements to use an external Elasticsearch and Kibana are:
 
-- A running Elasticsearch and Kibana deployment. If you don't have any Elastic Stack deployed, check this [guide](/openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- A running Elasticsearch and Kibana deployment. If you don't have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
 - An user configured in your Elastic Stack to be used in the OpenVidu configuration. You can use a normal user with all privileges or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
 
 After that, just fill this section of the form with these parameters:
