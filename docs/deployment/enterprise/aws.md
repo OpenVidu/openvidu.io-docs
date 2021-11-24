@@ -105,7 +105,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 - **A FQDN (Fully Qualified Domain Name)**. The domain name will be configured at the end of the instructions to point to the Load Balancer URL created by the CloudFormation Stack.
 - **A valid certificate for your FQDN installed in AWS**. The CloudFormation automatically launches a Load Balancer to be used as entry point to the OpenVidu cluster. The CloudFormation needs the ARN of the certificate as a parameter.
-- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](/openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services){:target="_blank"} on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services){:target="_blank"} on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
 - **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user){:target="_blank"} user.
 
 #### 2) Access to the console of AWS Cloud Formation
