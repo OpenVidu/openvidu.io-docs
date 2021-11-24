@@ -111,10 +111,17 @@ dev_addr: "127.0.0.1:8000"
 
 # Formatting options.
 markdown_extensions:
-    # https://python-markdown.github.io/extensions/extra/
+    # Extra features for Markdown: https://python-markdown.github.io/extensions/extra/
+    # - Abbreviations: https://python-markdown.github.io/extensions/abbreviations/
+    # - Attribute Lists: https://python-markdown.github.io/extensions/attr_list/
+    # - Definition Lists: https://python-markdown.github.io/extensions/definition_lists/
+    # - Fenced Code Blocks: https://python-markdown.github.io/extensions/fenced_code_blocks/
+    # - Footnotes: https://python-markdown.github.io/extensions/footnotes/
+    # - Tables: https://python-markdown.github.io/extensions/tables/
+    # - Markdown in HTML: https://python-markdown.github.io/extensions/md_in_html/
     - extra
 
-    # https://python-markdown.github.io/extensions/toc/
+    # Table of Contents: https://python-markdown.github.io/extensions/toc/
     - toc:
           marker: "[TOC]"
           permalink: " 🔗"
