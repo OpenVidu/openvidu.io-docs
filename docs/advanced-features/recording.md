@@ -13,7 +13,7 @@
     - [Using an external custom layout](#using-an-external-custom-layout)
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
-- **[Uploading recordings to AWS S3](#uploading-recordings-to-aws-s3)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Uploading recordings to S3](#uploading-recordings-to-s3)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
 - **[Troubleshooting](#troubleshooting)**
 
@@ -1097,7 +1097,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 
 ---
 
-# Uploading recordings to AWS S3
+# Uploading recordings to S3
 
 <div style="
     display: table;
@@ -1124,9 +1124,9 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 </div>
 </div>
 
-OpenVidu Pro can be configured to upload recordings to an Amazon Web Services S3 bucket instead of storing them in local storage. You can enable S3 recording storage in any deployment environment. It is not limited to [OpenVidu Pro AWS deployments](deployment/pro/aws/){:target="_blank"}.
+OpenVidu Pro can be configured to upload recordings to **any S3 compatible bucket** instead of storing them in local storage.
 
-AWS S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
+S3 provides persistance for recording data in OpenVidu Pro clusters. It brings multiple advantages:
 
 - You can terminate clusters without worrying losing your recordings, as long as they are properly uploaded to the bucket.
 - Launching an OpenVidu Pro cluster configured to use an already populated S3 bucket will make the existing recordings accessible and manageable from the new cluster.
@@ -1140,8 +1140,9 @@ To enable S3 recording storage configure the following properties in the **`.env
 OPENVIDU_PRO_RECORDING_STORAGE=s3
 OPENVIDU_PRO_AWS_S3_BUCKET=your-bucket-name
 OPENVIDU_PRO_AWS_S3_HEADERS=
-OPENVIDU_PRO_AWS_ACCESS_KEY=your-aws-access-key
-OPENVIDU_PRO_AWS_SECRET_KEY=your-aws-secret-key
+OPENVIDU_PRO_AWS_S3_SERVICE_ENDPOINT=
+OPENVIDU_PRO_AWS_ACCESS_KEY=your-access-key
+OPENVIDU_PRO_AWS_SECRET_KEY=your-secret-key
 OPENVIDU_PRO_AWS_REGION=eu-west-1
 ```
 
@@ -1149,8 +1150,9 @@ There is a complete description of these properties at [OpenVidu Pro configurati
 
 - Property `OPENVIDU_PRO_AWS_S3_BUCKET` can have a folder structure if you want OpenVidu Pro to upload recordings to a specific folder of your bucket.
 - Property `OPENVIDU_PRO_AWS_S3_HEADERS` allows further configuring the internal S3 client of OpenVidu Pro with the HTTP headers used when uploading the recordings. The property is a key-value map of strings, following the format of a JSON object. For example, according to AWS documentation, for applying server-side encryption with AES-256, this header is mandatory: `{"x-amz-server-side-encryption":"AES256"}`. The list of available headers can be found [here](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/Headers.html){:target="_blank"}.
+- Property `OPENVIDU_PRO_AWS_S3_SERVICE_ENDPOINT` allows you to configure any S3 compatible endpoint. If blank, then AWS S3 will be assumed. Must be an URL. For example: _https://s3.us-west-002.backblazeb2.com_
 - Properties `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` refer only to long-lived AWS credentials with read and write access to the specified bucket. They can be omitted. If so, the internal S3 client will try to use the default AWS credentials of the machine, if available (see the credentials search order in the [Java Doc](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/auth/DefaultAWSCredentialsProviderChain.html){:target="_blank"}). For short-lived credentials, the internal S3 client will do its best to automatically refresh them when expired.
-- Property `OPENVIDU_PRO_AWS_REGION` may not be necessary. AWS S3 buckets are not tied to a specific world region, and theoretically the internal S3 client should be able to autodiscover the AWS region from the bucket's name only. But this has been proven to may not be possible in some occasions, and the property must be specified explicitly in these cases.
+- Property `OPENVIDU_PRO_AWS_REGION` may not be necessary. S3 buckets are not tied to a specific world region, and theoretically the internal S3 client should be able to autodiscover the region from the bucket's name only. But this has been proven to may not be possible in some occasions, and the property must be specified explicitly in these cases.
 
 <br>
 
