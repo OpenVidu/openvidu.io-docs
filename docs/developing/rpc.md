@@ -1,4 +1,3 @@
-
 <h2 id="section-title">OpenVidu Server RPC protocol</h2>
 <hr>
 
@@ -12,7 +11,9 @@ But of course it would be possible to develop an SDK implementing this WebSocket
 
 For example, **[openvidu-android](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-android){:target="_blank"}** tutorial is a native Android app, so it cannot make use of _OpenVidu Browser_ JavaScript library. The solution to this problem: the application internally implements the OpenVidu Server RPC protocol. But to do so, it is necessary to be very clear about what operations-responses and what server events are defined in OpenVidu Server.
 
-<br>
+Table of Contents:
+
+[TOC]
 
 ---
 
