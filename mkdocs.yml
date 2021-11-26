@@ -53,6 +53,7 @@ nav:
           - Send text messages: cheatsheet/send-messages.md
     - Advanced features:
           - Recording: advanced-features/recording.md
+          - Media Codecs: advanced-features/media-codecs.md
           - Screen share: advanced-features/screen-share.md
           - IP cameras: advanced-features/ip-cameras.md
           - Speech detection: advanced-features/speech-detection.md
