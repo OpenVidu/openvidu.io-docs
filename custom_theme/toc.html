@@ -31,7 +31,12 @@
 {% else %}
 
 <li class="toctree-l1 {% if nav_item.active%}current{%endif%}">
-        <a class="{% if nav_item.active%}current{%endif%}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+        <a class="{% if nav_item.active%}current{%endif%} nav-item-title-{{ nav_item.title }}" href="{{ nav_item.url }}">{{ nav_item.title }}</a>
+        <div>
+                {% if nav_item.title == 'Network quality' %}
+                <script>Array.prototype.forEach.call(document.getElementsByClassName('nav-item-title-Network quality'), element => element.innerHTML = "Network quality <div id='openvidu-pro-tag' style='display: inline-block; pointer-events: none; margin-left: 5px; background-color: #0088aa; color: white; font-weight: bold; padding: 0px 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;'>PRO</div>")</script>
+                {% endif %}
+        </div>
 </li>
 
 {% endif %}
