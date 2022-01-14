@@ -315,7 +315,7 @@ About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-
 
 ### 11. My Safari users with role `SUBSCRIBER` are not able to receive any remote video
 
-  Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](api/openvidu-browser/classes/openvidu.html#initpublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
+  Safari needs a user gesture to allow videos to automatically start playing if they have audio. This applies to users with role `SUBSCRIBER`: that is, users that don't need to perform a call to [OpenVidu.initPublisher](api/openvidu-browser/classes/OpenVidu.html#initPublisher){:target="_blank"}. If a user access its camera or microphone, then there's no need of user gestures at all (as soon as they accept camera permissions, remote videos will automatically start playing).
 
   So, in this particular case developers must show a button their SUBSCRIBER users must click (any other action that counts as user-gesture is also suitable), and the action executed upon click event should include a call to `video.play()`. The actual video element is completely irrelevant. It can be hidden and with no media attached at all. For example:
 

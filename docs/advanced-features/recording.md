@@ -1160,7 +1160,7 @@ There is a complete description of these properties at [OpenVidu Pro configurati
 
 # Local recording in the browser
 
-OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/localrecorder.html){:target="_blank"}.
+OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/LocalRecorder.html){:target="_blank"}.
 
 <br>
 

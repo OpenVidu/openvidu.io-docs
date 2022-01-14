@@ -6,12 +6,12 @@ That being said, there are two ways of switching the media source of a published
 
 #### By using method `Publisher.replaceTrack`
 
-You can use method [Publisher.replaceTrack](api/openvidu-browser/classes/publisher.html#replacetrack){:target="_blank"} to seamlessly change the video track being published by a Publisher object.
+You can use method [Publisher.replaceTrack](api/openvidu-browser/classes/Publisher.html#replaceTrack){:target="_blank"} to seamlessly change the video track being published by a Publisher object.
 
 ```javascript
 // 'myPublisher' a Publisher object obtained through 'OpenVidu.initPublisher()' method
 // 'myTrack' a MediaStreamTrack object
-// 'properties' a PublisherProperties object https://docs.openvidu.io/en/stable/api/openvidu-browser/interfaces/publisherproperties.html
+// 'properties' a PublisherProperties object https://docs.openvidu.io/en/stable/api/openvidu-browser/interfaces/PublisherProperties.html
 
 var mediaStream = await this.OV.getUserMedia(properties);
 
@@ -24,7 +24,7 @@ myPublisher.replaceTrack(myTrack)
     .catch(error => console.error('Error replacing track', error));
 ```
 
-You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](api/openvidu-browser/classes/openvidu.html#getusermedia){:target="_blank"} method.
+You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](api/openvidu-browser/classes/OpenVidu.html#getUserMedia){:target="_blank"} method.
 
 > **WARNING:** this method has been proven to work, but there may be some combinations of published/replaced tracks that may be incompatible between them and break the connection in OpenVidu Server.
 > A complete renegotiation may be the only solution in this case
@@ -38,7 +38,7 @@ You can also take a more "radical" path and directly use a new Publisher initial
 3. Unpublish the old Publisher
 4. Publish our new Publisher created with the new `videoSource`
 
-To list the video and audio devices of a client, you must use `OpenVidu.getDevices()` method (take a look to [getDevices](api/openvidu-browser/classes/openvidu.html#getdevices){:target="_blank"} method and [Device](api/openvidu-browser/interfaces/device.html){:target="_blank"} object in openvidu-browser documentation)
+To list the video and audio devices of a client, you must use `OpenVidu.getDevices()` method (take a look to [getDevices](api/openvidu-browser/classes/OpenVidu.html#getDevices){:target="_blank"} method and [Device](api/openvidu-browser/interfaces/Device.html){:target="_blank"} object in openvidu-browser documentation)
 
 ```javascript
 var OV = new OpenVidu();

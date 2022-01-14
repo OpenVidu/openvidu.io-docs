@@ -266,7 +266,7 @@ Close a Session. This will stop all of the processes of this Session: all of its
 
 |||
 | - ||
-| 204 | The Session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"}, [**connectionDestroyed**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} and [**sessionDisconnected**](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others: the first user evicted will only receive the events related to himself, last one will receive every possible event |
+| 204 | The Session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"}, [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others: the first user evicted will only receive the events related to himself, last one will receive every possible event |
 | 404 | No Session exists for the passed `SESSION_ID` |
 
 <br>
@@ -278,7 +278,7 @@ Close a Session. This will stop all of the processes of this Session: all of its
 A Connection represents each one of the users connected to a Session. You must create a Connection for each final user connecting to the Session.
 
 - After creating the Connection, its `status` property will be set to `pending`. This means that the Connection is currently available to be taken by a final user.
-- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}** of OpenVidu Browser library.
+- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}** of OpenVidu Browser library.
 - After this, the Connection object will be associated to this final user and its `status` property will be set to `active`. Other properties will also be now populated with the data of the final user.
 
 ```json
@@ -342,16 +342,16 @@ A Connection represents each one of the users connected to a Session. You must c
 | id | String | Identifier of the Connection |
 | object | String (`connection`) | String representing the object’s type. Objects of the same type share the same value |
 | type | String | Type of the Connection. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera |
-| status | String | Status of the Connection: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>pending</code>: the Connection is waiting for any user to use its internal <code>token</code> to connect to the Session, calling method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} OpenVidu Browser.</li><li style="color:inherit;margin-bottom:4px"><code>active</code>: the internal <code>token</code> of the Connection has already been used by some user to connect to the Session, and it cannot be used again.</li></ul> |
+| status | String | Status of the Connection: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>pending</code>: the Connection is waiting for any user to use its internal <code>token</code> to connect to the Session, calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} OpenVidu Browser.</li><li style="color:inherit;margin-bottom:4px"><code>active</code>: the internal <code>token</code> of the Connection has already been used by some user to connect to the Session, and it cannot be used again.</li></ul> |
 | sessionId | String | Identifier of the Session to which the user is connected |
 | createdAt | Number | Time when the Connection was created in UTC milliseconds |
-| activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
+| activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
 | location <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Geographic location of the participant |
 | ip | String | IP of the participant, as seen by OpenVidu Server |
 | platform | String | Complete description of the platform used by the participant to connect to the Session. Set to `IPCAM` if `type=IPCAM` |
-| token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
+| token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
 | serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-connection) (`data` parameter) |
-| clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"}  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
+| clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
 | record <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connections will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} |
 | role | String | **Only for `type=WEBRTC`**. Role of the Connection |
 | kurentoOptions | Object | **Only for `type=WEBRTC`**. Configuration properties applied to the streams of this Connection, regarding Kurento |
@@ -359,7 +359,7 @@ A Connection represents each one of the users connected to a Session. You must c
 | adaptativeBitrate | Boolean | **Only for `type=IPCAM`**. Whether to use adaptative bitrate (and therefore adaptative quality) or not |
 | onlyPlayWithSubscribers | Boolean | **Only for `type=IPCAM`**. Whether to enable the IP camera stream only when some user is subscribed to it, or not |
 | networkCache | Number | **Only for `type=IPCAM`**. Size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds |
-| publishers | Array of Objects | Collection of Publisher objects: streams the Connection is currently publishing. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : identifier of the stream</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the stream was published in UTC milliseconds</li><li style="color:inherit;margin-bottom:4px">mediaOptions (Object) : current properties of the published stream. See [**Stream**](api/openvidu-browser/classes/stream.html){:target="blank"} object from openvidu-browser library for a description of them. Some may change dynamically. See [**StreamPropertyChanged**](api/openvidu-browser/classes/streampropertychangedevent.html){:target="blank"} event of openvidu-browser library. <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">hasVideo (Boolean)</li><li style="color:inherit;margin-bottom:4px">hasAudio (Boolean)</li><li style="color:inherit;margin-bottom:4px">videoActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">audioActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">frameRate (Number)</li><li style="color:inherit;margin-bottom:4px">videoDimensions (String)</li><li style="color:inherit;margin-bottom:4px">typeOfVideo (String)</li><li style="color:inherit;margin-bottom:4px">filter (Object)</li></ul></li></ul> |
+| publishers | Array of Objects | Collection of Publisher objects: streams the Connection is currently publishing. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : identifier of the stream</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the stream was published in UTC milliseconds</li><li style="color:inherit;margin-bottom:4px">mediaOptions (Object) : current properties of the published stream. See [**Stream**](api/openvidu-browser/classes/Stream.html){:target="blank"} object from openvidu-browser library for a description of them. Some may change dynamically. See [**StreamPropertyChanged**](api/openvidu-browser/classes/StreamPropertyChangedEvent.html){:target="blank"} event of openvidu-browser library. <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">hasVideo (Boolean)</li><li style="color:inherit;margin-bottom:4px">hasAudio (Boolean)</li><li style="color:inherit;margin-bottom:4px">videoActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">audioActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">frameRate (Number)</li><li style="color:inherit;margin-bottom:4px">videoDimensions (String)</li><li style="color:inherit;margin-bottom:4px">typeOfVideo (String)</li><li style="color:inherit;margin-bottom:4px">filter (Object)</li></ul></li></ul> |
 | subscribers | Array of Objects | Collection of Subscriber objects: streams the user is currently subscribed to. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : equal to the `streamId` property of its associated publisher, that must be present in the `publishers` array of some other connection of the Session</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the subscription was established in UTC milliseconds</li></ul> |
 
 ---
@@ -438,7 +438,7 @@ Returns a [**Connection object**](#the-connection-object).
 
 |||
 | - ||
-| 200 | The Connection has been successfully created. If it is of type `WEBRTC`, its token can now be used to connect a final user. If it is of type `IPCAM`, every participant will immediately receive the proper events in OpenVidu Browser: [**connectionCreated**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} identifying the new IP camera Connection and [**streamCreated**](api/openvidu-browser/classes/streamevent.html){:target="blank"} so they can subscribe to the IP camera stream. |
+| 200 | The Connection has been successfully created. If it is of type `WEBRTC`, its token can now be used to connect a final user. If it is of type `IPCAM`, every participant will immediately receive the proper events in OpenVidu Browser: [**connectionCreated**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} identifying the new IP camera Connection and [**streamCreated**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} so they can subscribe to the IP camera stream. |
 | 400 | Problem with some body parameter |
 | 404 | No session exists for the passed `SESSION_ID` |
 | 500 | Unexpected error when creating the Connection object. This can only happen if type is `IPCAM`. See the error message for further information |
@@ -550,7 +550,7 @@ Modify the properties of a Connection. The following properties are modifiable:
 - `role`: you can dynamically change the role of the Connection in the Session.
 - `record`: you can enable or disable INDIVIDUAL recording of the streams published by this Connection. See [Selecting streams to be recorded](advanced-features/recording/#selecting-streams-to-be-recorded){:target="blank"} for further information.
 
-The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvidu-browser/classes/connectionpropertychangedevent.html){:target="blank"} for each modified property.
+The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvidu-browser/classes/ConnectionPropertyChangedEvent.html){:target="blank"} for each modified property.
 
 ##### Operation
 
@@ -608,7 +608,7 @@ If the `CONNECTION_ID` belongs to a Connection in `pending` status, this method 
 
 |||
 | - ||
-| 204 | The Connection has been successfully removed from the session. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"} if the user was publishing, [**connectionDestroyed**](api/openvidu-browser/classes/connectionevent.html){:target="blank"} for the remaining users and [**sessionDisconnected**](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer".<br>If the `CONNECTION_ID` belongs to a Connection in `pending` status, it has been successfully invalidated and its token can no longer be used. |
+| 204 | The Connection has been successfully removed from the session. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} if the user was publishing, [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} for the remaining users and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer".<br>If the `CONNECTION_ID` belongs to a Connection in `pending` status, it has been successfully invalidated and its token can no longer be used. |
 | 400 | No Session exists for the passed `SESSION_ID` |
 | 404 | No Connection for the passed `CONNECTION_ID` |
 
@@ -698,7 +698,7 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
 ```
 
 > - **session** _(mandatory String)_ : the sessionId belonging to the session you want to start recording.<br><br>
-> - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/recordingevent.html){:target="blank"}. If no name is provided, the video file will be named after `id` property of the recording.<br><br>
+> - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/RecordingEvent.html){:target="blank"}. If no name is provided, the video file will be named after `id` property of the recording.<br><br>
 > - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file.
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
 >     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
@@ -1438,7 +1438,7 @@ This operation returns a Token object:
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/session.html#connect){:target="blank"} |
+| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} |
 | token | String | Same value as `id` |
 | connectionId | String | Connection identifier that will be assigned to the user consuming this token |
 | createdAt | Number | Time when the token was created in UTC milliseconds |
@@ -1478,7 +1478,7 @@ Force the unpublishing of a media stream from a Session. The stream belongs to a
 
 |||
 | - ||
-| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/streamevent.html){:target="blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
+| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
 | 400 | No session exists for the passed `SESSION_ID` |
 | 404 | No stream exists for the passed `STREAM_ID` |
 | 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-connection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-connection) |
@@ -1491,7 +1491,7 @@ Force the unpublishing of a media stream from a Session. The stream belongs to a
 
 ##### Description
 
-Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/session.html#signal){:target="blank"}.
+Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/Session.html#signal){:target="blank"}.
 
 ##### Operation
 

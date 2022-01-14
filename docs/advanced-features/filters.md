@@ -86,7 +86,7 @@ session.createConnection(connectionProperties).then(connection => {
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
+Use [PublisherProperties](api/openvidu-browser/interfaces/PublisherProperties.html){:target="_blank"}, specifically property [filter](api/openvidu-browser/interfaces/PublisherProperties.html#filter){:target="_blank"}:
 
 ```javascript
 var OV = new OpenVidu();

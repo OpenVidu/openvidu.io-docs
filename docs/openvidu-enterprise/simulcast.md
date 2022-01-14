@@ -102,7 +102,7 @@ For more information about Simulcast and how it works in popular web browsers, c
 
 ### Enable simulcast {: #enable-simulcast }
 
-Simulcast is enabled directly in the client, using OpenVidu Browser. For this, the client platform itself must support the Simulcast feature: web browsers such as Firefox and Chrome are two of the best candidates. You enable this feature by setting the [enableSimulcastExperimental](api/openvidu-browser/interfaces/openviduadvancedconfiguration.html#enablesimulcastexperimental){:target="_blank"} flag in the [setAdvancedConfiguration](api/openvidu-browser/classes/openvidu.html#setadvancedconfiguration){:target="_blank"} call of OpenVidu Browser:
+Simulcast is enabled directly in the client, using OpenVidu Browser. For this, the client platform itself must support the Simulcast feature: web browsers such as Firefox and Chrome are two of the best candidates. You enable this feature by setting the [enableSimulcastExperimental](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#enablesimulcastexperimental){:target="_blank"} flag in the [setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration){:target="_blank"} call of OpenVidu Browser:
 
 ```javascript
 let OV = new OpenVidu();

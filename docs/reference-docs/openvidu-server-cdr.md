@@ -110,7 +110,7 @@ Recorded when a user has connected to a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
 | `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
 
 <br>
@@ -147,7 +147,7 @@ Recorded when a user has left a session.
 | `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
 | `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
 | `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
@@ -325,7 +325,7 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 
 Recorded when a signal has been sent to a Session. Signals can be sent:
 
-- By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/session.html#signal){:target="_blank"}
+- By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/Session.html#signal){:target="_blank"}
 - By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-signal){:target="_blank"}
 
 All kind of signals trigger `signalSent` event.
@@ -387,7 +387,7 @@ Recorded when a node of an OpenVidu Pro cluster has crashed. For now this only a
 
 When a Media Node crashes, all of its sessions and recordings are automatically closed and the node is removed from the OpenVidu Pro cluster. No session is automatically reconstructed: it is the responsibility of the application to rebuild any affected session.
 
-On the client side, participants will trigger a [sessionDisconnected](api/openvidu-browser/classes/sessiondisconnectedevent.html){:target="_blank"} event with `reason` set to `nodeCrashed`.
+On the client side, participants will trigger a [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="_blank"} event with `reason` set to `nodeCrashed`.
 
 On the server side, this event is always followed by other events for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
 

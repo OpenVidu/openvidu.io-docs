@@ -413,7 +413,7 @@ As a beta feature, mediasoup support in OpenVidu and High Availability deploymen
 - Firefox for Android has been proven to present some issues.
 - [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"} is not available.
 - Some SDK/API methods may not be supported yet. Including:
-    - openvidu-browser: [Publisher.subscribeToRemote](api/openvidu-browser/classes/publisher.html#subscribetoremote){:target="_blank"}
+    - openvidu-browser: [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote){:target="_blank"}
 - See beta limitations on [Simulcast](openvidu-enterprise/simulcast#simulcast-enterprise-beta-limitations){:target="_blank"}
 - See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}
 - As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
