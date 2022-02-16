@@ -110,13 +110,13 @@ Simulcast is enabled at the Publisher level, but it can only be used in **OpenVi
 
 1. Use a global setting, to have it enabled by default for all Publishers. This is done by setting `OPENVIDU_WEBRTC_SIMULCAST=true` in the OpenVidu Server's `.env` file.
 
-2. Configure individually when creating each Publisher from the client side. This can be done with openvidu-browser, by setting [`PublisherProperties.videoSimulcast = true`](api/openvidu-browser/interfaces/publisherproperties.html#videosimulcast) when calling [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher).
+2. Configure individually when creating each Publisher from the client side. This can be done with *openvidu-browser*, by setting [`PublisherProperties.videoSimulcast = true`](api/openvidu-browser/interfaces/publisherproperties.html#videosimulcast) when calling [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher).
 
 Note that it is possible to combine these methods to achieve a very easy configuration for some common use cases:
 
-* To use simulcast on **all Publishers except one**, you can enable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=true`), then disable it just on the appropriate Publisher (openvidu-browser with `PublisherProperties.videoSimulcast = false`).
+* To use simulcast on **all Publishers except one**, you can enable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=true`), then disable it just on the appropriate Publisher (*openvidu-browser* with `PublisherProperties.videoSimulcast = false`).
 
-* To use simulcast **only on one Publisher** (e.g. for a Teacher - Students kind of room), you can disable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=false`), then enable it only on the appropriate Publisher (openvidu-browser with `PublisherProperties.videoSimulcast = true`).
+* To use simulcast **only on one Publisher** (e.g. for a Teacher - Students kind of room), you can disable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=false`), then enable it only on the appropriate Publisher (*openvidu-browser* with `PublisherProperties.videoSimulcast = true`).
 
 
 ### Pros and Cons: Bandwidth and power usage {: #simulcast-pros-cons }
@@ -192,17 +192,17 @@ Layers can later be reconfigured or deactivated with the [`active`](https://w3c.
 
 OpenVidu automatically configures simulcast to do the correct thing depending on the source of the video:
 
-* For **webcam**, our eyes tend to perceive that video feels better when it is smoother, even if it contains some visual defects. In case of network congestion, simulcast will try to keep **high framerate**, at the cost of lower bitrate and video resolution.
-* For **screenshare**, text and details are of utmost importance. In case of network congestion, simulcast will try to keep **high bitrate and resolution**, at the cost of lower framerate.
+* For **webcam**, due to how human perception works, video feels better when it is smoother, even if it contains some visual defects. In case of network congestion, simulcast tries to keep **high framerate**, at the cost of lower bitrate and video resolution.
+* For **screenshare**, text and details are of utmost importance. In case of network congestion, simulcast tries to keep **high bitrate and resolution**, at the cost of lower framerate.
 
-openvidu-browser will automatically apply the correct settings when requesting video tracks from the browser.
+*openvidu-browser* will automatically apply the correct settings when requesting video tracks from the browser.
 
-If you are providing your own custom track (passing a `MediaStreamTrack` to the [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/publisherproperties.html#videosource) object, then calling [`OpenVidu.initPublisher`](api/openvidu-browser/classes/openvidu.html#initpublisher)) you might want to let openvidu-browser know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
+If you are providing your own custom track (setting a `MediaStreamTrack` into [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/publisherproperties.html#videosource), then passing it to [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher)) you might want to let *openvidu-browser* know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
 
 
 ### Advanced: Customizing simulcast layers {: #simulcast-customizing }
 
-While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/stream.html#getrtcpeerconnection) in openvidu-browser.
+While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/stream.html#getrtcpeerconnection) in *openvidu-browser*.
 
 Simulcast layers are set in what WebRTC calls an **RTP Sender**, which can be retrieved with [`RTCPeerConnection.getSenders()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getSenders). Note that your PeerConnection object will contain one Sender for audio and another for video, so you should filter them by track type:
 
@@ -211,9 +211,9 @@ const pc = ovStream.getRTCPeerConnection();
 const sender = pc.getSenders().find((s) => s.track?.kind === "video");
 ```
 
-Once you have the video RTP Sender, [`sender.getParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/getParameters) returns a parameters object that can be modified and later applied back with [`sender.setParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/setParameters). Each of the simulcast layers is called an **encoding**, and can be found in `parameters.encodings`, which is an array of [RTCRtpEncodingParameters](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters).
+Once you have the video RTP Sender, [`sender.getParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/getParameters) returns a `parameters` object that can be modified and later applied back with [`sender.setParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/setParameters). Each of the simulcast layers is called an **encoding**, and can be found in `parameters.encodings`, which is an array of [RTCRtpEncodingParameters](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters).
 
-You can use the [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active), [`maxBitrate`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-maxbitrate), and [`scaleResolutionDownBy`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-scaleresolutiondownby) members to alter the contents of each simulcast layer. Refer to the docs of *RTCRtpEncodingParameters* for a detailed description. Note that an extra member named [`maxFramerate`](https://www.w3.org/TR/2018/CR-webrtc-20180927/#dom-rtcrtpencodingparameters-maxframerate) used to exist too; while it got deleted from the WebRTC standard, Chrome 97 does in fact implement it as of this writing, so you might want to use it to fine tune the framerate.
+You can use the [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active), [`maxBitrate`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-maxbitrate), and [`scaleResolutionDownBy`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-scaleresolutiondownby) members to alter the contents of each simulcast layer. Refer to the docs of *RTCRtpEncodingParameters* for a detailed description. Note that an extra member named [`maxFramerate`](https://www.w3.org/TR/2018/CR-webrtc-20180927/#dom-rtcrtpencodingparameters-maxframerate) used to exist too; while it got deleted from the WebRTC standard, Chrome 98 does in fact implement it as of this writing, so you might want to use it to fine tune the framerate.
 
 Note that it's only possible to modify already existing entries in the `parameters.encodings` array; you cannot add or remove new entries.
 
@@ -279,4 +279,4 @@ Firefox and Safari also implement their own set of rules, but again they are lac
 
 ### No layer selection in Subscribers
 
-In the future, OpenVidu might allow applications to do an explicit selection of which simulcast layer one Subscriber prefers to receive. However, for the moment this feature is not available yet, and Subscribers will just leave the layer selection logic to the Media Server, which works according to parameters such as the available download bandwidth of the Subscriber.
+In the future, OpenVidu might allow applications to do an explicit selection of which simulcast layer one Subscriber prefers to receive. However, for the moment this feature is not available yet, and Subscribers will just leave the layer selection logic to the Media Server. This works according to parameters such as the available download bandwidth of the Subscriber, and will always attempt to use the highest possible quality layer.
