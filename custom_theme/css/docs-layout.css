@@ -485,3 +485,7 @@ span.arrow-down {
         display: inherit;
     }
 }
+
+a > code {
+    color: #0088aa !important;
+}
