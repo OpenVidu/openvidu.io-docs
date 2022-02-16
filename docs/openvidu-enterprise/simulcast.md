@@ -64,13 +64,17 @@
 </div>
 </div>
 
-## What is Simulcast? {: #simulcast-what }
 
-Simulcast is a technique that allows **optimizing the quality** of routed video, in accordance with the needs of each individual Subscriber. Depending on aspects such as device form-factor or network link quality, the video that gets delivered to each participant in a session can be adjusted to be the perfect match for each circumstance.
+## What is simulcast? {: #simulcast-intro }
 
-### How does Simulcast work? {: #simulcast-how }
+Simulcast is a technique used with WebRTC, that allows **optimized quality of routed video**, in accordance with the needs of each individual receiver.
 
-The way Simulcast works is by making Publishers send several copies of the same video; these are called "layers", and each layer is of a different quality. Participants sending video will pay a small price of higher bandwidth and power requirements, in exchange for the ability to select what is the most appropriate layer for each Subscriber:
+Depending on aspects such as device form-factor or network link bandwidth, the video quality that gets delivered can be selected to be the perfect match for the particular circumstances of each receiver. This is in contrast with the more traditional methods of adaptive video bitrate in WebRTC, which affect all participants equally while delivering the same capped video quality for all of them.
+
+
+### Simulcast technical details
+
+The way simulcast works is by having each Publisher send their video in two or three variants. These are called "*layers*", and **each layer contains a different quality level of the same video**. The SFU (media server) is then able to select the layer of most adequate quality for the network conditions and functional needs of each Subscriber:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
@@ -80,72 +84,203 @@ The way Simulcast works is by making Publishers send several copies of the same 
 
 The criteria used to select which layer should get delivered to which Subscriber tends to be based on several key metrics or features of the receiving device, such as:
 
-- Quality of the receiver's internet connection. As one would expect, higher bandwidth allows transmitting higher quality video.
+* **Network link** quality of the receiver's connection. As one would expect, higher bandwidth allows transmitting higher quality video.
 
-- Performance of the receiver device. While a powerful workstation would be able to cope with the highest quality H.264 encoded video, a mobile phone might struggle with it. In this case, it probably makes sense to send lower quality video to those devices, regardless of their network bandwidth.
+* **Performance** of the receiver device. While a powerful workstation would be able to cope with the highest quality H.264 encoded video, a mobile phone might struggle with it. In this case, it probably makes sense to send lower quality video to those devices, regardless of their network bandwidth.
 
-- Power usage. Similar to the previous point, a mobile device might put a lot of stress on the battery while trying to decode a higher quality video, which puts it at a disadvantage. You don't want your users to run out of charge while in a meeting! So one possibility might be to send lower quality video to those devices which have lower battery levels.
+* **Power usage**. Similar to the previous point, a mobile device might put a lot of stress on the battery while trying to decode a higher quality video, which puts it at a disadvantage. You don't want your users to run out of charge while in a meeting! So one possibility might be to send lower quality video to those devices with strict battery usage requirements.
 
-- Application layout. Sometimes it just doesn't make sense to send the highest possible quality, even if receivers could cope with it just fine. For example, if there is a central speaker shown in a large area of the screen, and all other participants are shown as small thumbnails, the speaker should get the highest quality while all others could be shown with the lowest one. This technique helps with saving CPU + battery + network bandwidth of all Publishers, and CPU + network bandwidth on the Media Server.
+* **Application layout**. Sometimes it just doesn't make sense to send the highest possible quality, even if receivers could cope with it just fine. For example, if there is a central speaker shown in a large area of the screen, and all other participants are shown as small thumbnails, the speaker should get the highest quality while all others could be shown with the lowest one. This technique helps with saving CPU + battery + network bandwidth of all Publishers, and CPU + network bandwidth on the Media Server.
 
-For more information about Simulcast and how it works in popular web browsers, check these resources:
+For more information about simulcast and how it works in popular web browsers, check these resources:
 
-- [WebRTC Glossary - Simulcast](https://webrtcglossary.com/simulcast/){:target="_blank"}, a short video introduction that visualizes what Simulcast does.
-
-- [WebRTC Codelab - Simulcast](https://webrtccourse.com/course/webrtc-codelab/module/fiddle-of-the-month/lesson/simulcast-playground/){:target="_blank"}, where Tsahi Levent-Levi and Philipp Hancke present the basic concepts of Simulcast and later proceed to show some practical examples.
+* [WebRTC Glossary - Simulcast](https://webrtcglossary.com/simulcast/), a short video introduction that visualizes what simulcast does.
+* [WebRTC Codelab - Simulcast](https://webrtccourse.com/course/webrtc-codelab/module/fiddle-of-the-month/lesson/simulcast-playground/), where Tsahi Levent-Levi and Philipp Hancke present the basic concepts of simulcast and later proceed to show some practical examples.
 
 <br>
 
 ---
 
-## Simulcast in OpenVidu Enterprise
+## Using simulcast in OpenVidu
 
-### Enable simulcast {: #enable-simulcast }
+Simulcast is a video routing optimization that is enabled at the Publisher level.  good optimization that can be safely enabled in most cases, given that it allows the Media Server to adjust the quality that is distributed to each Subscriber independently. Since its introduction in **OpenVidu 2.21**, it will remain disabled by default until we can gather some end user feedback and decide whether this feature should come enabled by default in future releases.
 
-Simulcast is enabled directly in the client, using OpenVidu Browser. For this, the client platform itself must support the Simulcast feature: web browsers such as Firefox and Chrome are two of the best candidates. You enable this feature by setting the [enableSimulcastExperimental](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#enablesimulcastexperimental){:target="_blank"} flag in the [setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration){:target="_blank"} call of OpenVidu Browser:
+The only situation where enabling simulcast could be worse than disabling it, is when the Publisher is a low-power device, or if the Publisher has severe bandwidth limitations; in those cases, simulcast might produce worse results, given that it imposes a small extra power and bandwidth toll on Producers.
+
+
+### Enabling simulcast {: #simulcast-enabling }
+
+Simulcast is enabled at the Publisher level, but it can only be used in OpenVidu deployments that use mediasoup as their Media Server. To actually enable it, there are two alternatives:
+
+1. Use a global setting, to have it enabled by default for all Publishers. This is done by setting `OPENVIDU_WEBRTC_SIMULCAST=true` in the OpenVidu Server's `.env` file.
+
+2. Configure individually when creating each Publisher from the client side. This can be done with openvidu-browser, by setting [`PublisherProperties.videoSimulcast = true`](api/openvidu-browser/interfaces/publisherproperties.html#videosimulcast) when calling [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher).
+
+Note that it is possible to combine these methods to achieve a very easy configuration for some common use cases:
+
+* To use simulcast on **all Publishers except one**, you can enable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=true`), then disable it just on the appropriate Publisher (openvidu-browser with `PublisherProperties.videoSimulcast = false`).
+
+* To use simulcast **only on one Publisher** (e.g. for a Teacher - Students kind of room), you can disable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=false`), then enable it only on the appropriate Publisher (openvidu-browser with `PublisherProperties.videoSimulcast = true`).
+
+
+### Pros and Cons: Bandwidth and power usage {: #simulcast-pros-cons }
+
+Enabling simulcast incurs a small penalty on Publishers, which see their network and power usage slightly incremented (around 20% to 30%). This is because with simulcast, Publishers now need to generate duplicate or triplicate versions of their video (causing an increment on CPU usage), and send them all to the Media Server (causing an increment in network usage).
+
+This penalty on Publishers is generally considered worth it, because simulcast allows the Media Server to quickly switch between quality layers for every individual outbound stream. This means Subscribers will see an improvement in how well and how fast the received quality is adapted to their network and performance conditions.
+
+
+### Codec and platform compatibility {: #simulcast-compatibility }
+
+Simulcast can be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
+
+Compatibility also varies a lot across platforms and applications. This table shows that the best results are obtained with VP8, but even that shows issues on some web browsers:
+
+|             | Simulcast VP8 | Simulcast H.264 |
+| ----------- | ------------- | --------------- |
+| **WINDOWS** |               |                 |
+| Chrome      | ✔ 98          | ✔ 98            |
+| Firefox     | ✔ 97          | ✔ 97            |
+| Opera       | ✔ 83          | ✖ 83 [2]        |
+| Edge        | ✔ 98          | ✔ 98            |
+| **LINUX**   | ------------- | --------------- |
+| Chrome      | ✔ 98          | ✔ 98            |
+| Firefox     | ✔ 97          | ✔ 97            |
+| Opera       | ✔ 83          | ✖ 83 [2]        |
+| Edge        | ✔ 98          | ✔ 98            |
+| **ANDROID** | ------------- | --------------- |
+| Chrome      | ✔ 98          | ✖ 98 [2]        |
+| Firefox     | ✔ 97          | ✖ 97 [2]        |
+| Opera       | ✔ 67          | ✖ 67 [2]        |
+| Edge        | ✖ 97 [1]      | ✖ 97 [2]        |
+| Samsung     | ✔ 16          | ✖ 16 [2]        |
+| **MACOS**   | ------------- | --------------- |
+| Chrome      | ✔ 98          | ✔ 98            |
+| Firefox     | ✔ 96          | ✖ 97 [3]        |
+| Opera       | ✔ 83          | ✖ 83 [1]        |
+| Edge        | ✔ 98          | ✔ 98            |
+| Safari      | ✔ 15.1        | ✔ 15.1          |
+| **IOS**     | ------------- | --------------- |
+| [4]         |               |                 |
+
+[1]: Remote video is black. The receiver is constantly requesting new keyframes, but it never gets to decode the incoming video.
+
+[2]: [1] + Local video is not viewable on some remote clients (Firefox, Opera) but it can be viewed in others (Chrome, Edge).
+
+[3]: Local video is not even sent. The media server complains with error messages such as "*RTP inactivity detected*".
+
+[4]: Compatibility tests on iOS platforms will be incorporated soon to this table.
+
+
+### Recording compatibility
+
+OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature works the same with or without simulcast enabled. Note however that the [INDIVIDUAL recording](advanced-features/recording/#individual-stream-recording){:target="_blank"} is just a dump of all media received by the media server; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the storage of the recording. Some media players might struggle with abrupt changes in resolution or framerate, and even outright reject playing them back. In those cases, a post-processing step might be required.
+
+
+### Default layer settings {: #simulcast-settings }
+
+Each of the simulcast encodings requested by the client can indicate by how much the original size should be divided. This is the [`scaleResolutionDownBy`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-scaleresolutiondownby) parameter, and OpenVidu currently requests them as per the default values in the WebRTC spec:
+
+* The **low** quality layer contains the video size scaled down by **4**.
+* The **medium** layer has the video size scaled down by **2**.
+* The **high** layer maintains the original video size (no scaling).
+
+For cases where less than 3 layers will be sent (e.g. if source video is too small), OpenVidu omits the lowest layers. So, for example, a 640x360 video will be sent with just the *medium* and *high* quality layers.
+
+Regarding bitrate, simulcast layers can be configured with a [`maxBitrate`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-maxbitrate) parameter. However OpenVidu doesn't use it, and instead relies on the default values assigned by WebRTC implementations.
+
+Layers can later be reconfigured or deactivated with the [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active) parameter; see the customization section below for instructions and example code.
+
+
+### Content Hint: Webcam, Screenshare, Custom {: #simulcast-content-hint }
+
+OpenVidu automatically configures simulcast to do the correct thing depending on the source of the video:
+
+* For **webcam**, our eyes tend to perceive that video feels better when it is smoother, even if it contains some visual defects. In case of network congestion, simulcast will try to keep **high framerate**, at the cost of lower bitrate and video resolution.
+* For **screenshare**, text and details are of utmost importance. In case of network congestion, simulcast will try to keep **high bitrate and resolution**, at the cost of lower framerate.
+
+openvidu-browser will automatically apply the correct settings when requesting video tracks from the browser.
+
+If you are providing your own custom track (passing a `MediaStreamTrack` to the [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/publisherproperties.html#videosource) object, then calling [`OpenVidu.initPublisher`](api/openvidu-browser/classes/openvidu.html#initpublisher)) you might want to let openvidu-browser know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
+
+
+### Advanced: Customizing simulcast layers {: #simulcast-customizing }
+
+While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/stream.html#getrtcpeerconnection) in openvidu-browser.
+
+Simulcast layers are set in what WebRTC calls an **RTP Sender**, which can be retrieved with [`RTCPeerConnection.getSenders()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getSenders). Note that your PeerConnection object will contain one Sender for audio and another for video, so you should filter them by track type:
 
 ```javascript
-let OV = new OpenVidu();
-OV.setAdvancedConfiguration({
-    enableSimulcastExperimental: true
-});
+const pc = ovStream.getRTCPeerConnection();
+const sender = pc.getSenders().find((s) => s.track?.kind === "video");
 ```
 
-### Beta limitations {: #simulcast-enterprise-beta-limitations }
+Once you have the video RTP Sender, [`sender.getParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/getParameters) returns a parameters object that can be modified and later applied back with [`sender.setParameters()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/setParameters). Each of the simulcast layers is called an **encoding**, and can be found in `parameters.encodings`, which is an array of [RTCRtpEncodingParameters](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters).
 
-#### Fixed amount of layers
+You can use the [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active), [`maxBitrate`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-maxbitrate), and [`scaleResolutionDownBy`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-scaleresolutiondownby) members to alter the contents of each simulcast layer. Refer to the docs of *RTCRtpEncodingParameters* for a detailed description. Note that an extra member named [`maxFramerate`](https://www.w3.org/TR/2018/CR-webrtc-20180927/#dom-rtcrtpencodingparameters-maxframerate) used to exist too; while it got deleted from the WebRTC standard, Chrome 97 does in fact implement it as of this writing, so you might want to use it to fine tune the framerate.
 
-For now, the number of simulcast encodings is fixed to **3**. This means that, in principle, the client will be asked to send 3 different video qualities, although depending on the implementation this number could be honored or not.
+Note that it's only possible to modify already existing entries in the `parameters.encodings` array; you cannot add or remove new entries.
 
-For example, Firefox does send all the requested qualities, regardless of the source video. Meanwhile, Chrome won't send all qualities if the source video doesn't have enough resolution, or if its outbound bandwidth is not high enough to accommodate all of the layers.
 
-The exact decision logic followed by Chrome can be checked in its source code ([simulcast.cc](https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/media/engine/simulcast.cc;l=90-114;drc=2afff37ba007429cd1cb65369ee815bceee6f3c9)):
+#### About layer deactivation
 
-| Source Size (px) | Source Bitrate (kbps) | Max Layers |
-| ----------------:| ---------------------:| ----------:|
-|        1920x1080 |                  5000 |          3 |
-|         1280x720 |                  2500 |          3 |
-|          960x540 |                  1200 |          3 |
-|          640x360 |                   700 |          2 |
-|          480x270 |                   450 |          2 |
-|          320x180 |                   200 |          1 |
+The [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active) parameter should be remarked here, because it can be used to stop or resume sending of a simulcast layer.
 
-#### Fixed resolution of each layer
+If a Publisher is started with several simulcast layers, but after a while some of them won't be needed temporarily, the Publisher might as well be instructed to stop producing them altogether.
 
-Each of the simulcast encodings requested to the client browser can indicate by how much the original size should be divided. This is the [scaleResolutionDownBy](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpEncodingParameters/scaleResolutionDownBy) parameter, and currently it is fixed as per the default values in the WebRTC spec:
+This makes a lot of sense because otherwise Publishers might be spending their resources to encode layers that nobody needs! Encoding video is quite an expensive operation, so it should be avoided whenever possible.
 
-- The lowest quality layer contains the video size scaled down by 4.
-- The medium layer has the video size scaled down by 2.
-- The highest layer maintains the original video size (no scaling).
 
-#### No max bitrate per layer
+#### A complete example
 
-Simulcast encodings can be configured with a [maxBitrate](https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpEncodingParameters/maxBitrate) parameter, which allows defining lower bitrates for each lower quality layer. However we're not using it, and instead rely on the internal logic that the web browsers use to auto-detect the available bandwidth and distribute bitrate as they see appropriate between layers.
+Say that you know that a Publisher's video will be shown only as a very small picture in every Subscriber's screen. It is probably worth saving CPU and network bandwidth by telling the Publisher to only send a low quality video. This is how you would stop the highest-quality simulcast layers from being sent, while at the same time reducing the lower ones to 1/8th of the original size:
 
-#### No layer selection in the Media Server
+```javascript
+// Get the RTCRtpEncodingParameters from the video sender.
+const pc = ovStream.getRTCPeerConnection();
+const sender = pc.getSenders().find((s) => s.track.kind === "video");
+const params = sender.getParameters();
+const encodings = params.encodings ?? [];
 
-In the future, OpenVidu will allow applications to do an explicit selection of which simulcast layer one Subscriber should receive. However, for the moment this feature is not available yet, and the actual selection is automatically performed by the Media Server, according to parameters such as the available download bandwidth of the Subscriber.
+// Reduce resolution of the 2 lowest layers by /16 and /8.
+for (let i = 0; i < Math.min(2, encodings.length); i++) {
+  encodings[i].scaleResolutionDownBy = 16.0 / (2 ** i);
+}
 
-#### No layer deactivation in the Publisher
+// Stop sending the highest layer(s).
+for (let i = 2; i < encodings.length; i++) {
+  encodings[i].active = false;
+}
 
-If a Simulcast layer won't be needed by the Media Server, the Publisher might as well be instructed to stop producing it altogether. This makes a lot of sense because otherwise it would be spending lots of resources to encode a layer that nobody needs! (and encoding video is a very expensive operation, so it should be avoided whenever possible).
+// Apply the changes.
+await sender.setParameters(params);
+```
+
+The effect is an immediate change in the simulcast layers that are being sent by the Publisher.
+
+
+## Simulcast features and limitations in OpenVidu {: #simulcast-limitations }
+
+### Maximum amount of layers
+
+Different WebRTC implementations handle simulcast in specific ways, and one of the most important differences is how many simulcast layers can be sent at the same time.
+
+Google Chrome (and all Chromium-based browsers, such as Edge or Opera) will send only a fixed amount of layers depending on the size of the captured video; the exact decision logic can be checked in its source code here: [simulcast.cc](https://source.chromium.org/chromium/chromium/src/+/main:third_party/webrtc/media/engine/simulcast.cc;l=90-114;drc=d3251968d1b3dbe7e1353a3f15970b47173103e9).
+
+| Video size (px) | Max layers |
+| ---------------:| ----------:|
+|       1920x1080 |          3 |
+|        1280x720 |          3 |
+|         960x540 |          3 |
+|         640x360 |          2 |
+|         480x270 |          2 |
+|         320x180 |          1 |
+
+On top of that, Chrome might apply other dynamic criteria such as available bandwidth, hardware performance, or battery usage. Sadly, it seems that the Chrome development team hasn't documented a comprehensive list of such conditions that we could share here.
+
+Firefox and Safari also implement their own set of rules, but again they are lacking proper documentation so it's difficult to present a reliable guide here. In general, using 3 simulcast layers seems to be the most common setting across all implementations.
+
+
+### No layer selection in Subscribers
+
+In the future, OpenVidu might allow applications to do an explicit selection of which simulcast layer one Subscriber prefers to receive. However, for the moment this feature is not available yet, and Subscribers will just leave the layer selection logic to the Media Server, which works according to parameters such as the available download bandwidth of the Subscriber.
