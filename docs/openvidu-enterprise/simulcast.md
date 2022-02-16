@@ -99,14 +99,14 @@ For more information about simulcast and how it works in popular web browsers, c
 
 ## Using simulcast in OpenVidu
 
-Simulcast is a video routing optimization that is enabled at the Publisher level.  good optimization that can be safely enabled in most cases, given that it allows the Media Server to adjust the quality that is distributed to each Subscriber independently. Since its introduction in **OpenVidu 2.21**, it will remain disabled by default until we can gather some end user feedback and decide whether this feature should come enabled by default in future releases.
+Simulcast is a video routing optimization that can be safely enabled in most cases, given that it allows the Media Server to adjust the quality that is distributed to each Subscriber independently. Since its introduction in **OpenVidu 2.21**, it will remain disabled by default until we can gather some end user feedback and decide whether this feature should come enabled in future releases.
 
 The only situation where enabling simulcast could be worse than disabling it, is when the Publisher is a low-power device, or if the Publisher has severe bandwidth limitations; in those cases, simulcast might produce worse results, given that it imposes a small extra power and bandwidth toll on Producers.
 
 
 ### Enabling simulcast {: #simulcast-enabling }
 
-Simulcast is enabled at the Publisher level, but it can only be used in OpenVidu deployments that use mediasoup as their Media Server. To actually enable it, there are two alternatives:
+Simulcast is enabled at the Publisher level, but it can only be used in **OpenVidu deployments with the mediasoup media server**. To actually enable it, there are two alternatives:
 
 1. Use a global setting, to have it enabled by default for all Publishers. This is done by setting `OPENVIDU_WEBRTC_SIMULCAST=true` in the OpenVidu Server's `.env` file.
 
