@@ -57,14 +57,14 @@ In addition to this, live streaming platforms allow viewers to **interact with t
             <li>You want a versatile solution for a larger audience</li>
             <li>You want simplicity for the viewer</li>
             <li>You want production level quality</li>
-        </ul>   
+        </ul>
     </div>
     <div class="col-md-6 col-sm-6">
         <h5 style="color: #d80000;">You shouldn't be using these tools for:</h5>
         <ul>
             <li>Face to face meetings</li>
             <li>Create live events with less than one second of latency</li>
-        </ul> 
+        </ul>
     </div>
 </div>
 
@@ -80,21 +80,21 @@ In addition, this type of tools allow you to communicate in a clearer and more c
             <li>One-on-One or groups meetings</li>
             <li>Active interaction between participants</li>
             <li>Low video and audio latency</li>
-        </ul>   
+        </ul>
     </div>
     <div class="col-md-6 col-sm-6">
         <h5 style="color: #d80000;">You shouldn't be using these tools for:</h5>
         <ul>
             <li>Sending a stream to more than a few dozen people</li>
             <li>Creating high quality live video</li>
-        </ul> 
+        </ul>
     </div>
 </div>
 
 <h3 id="section-title">Apps or Development Platforms</h3>
 <hr>
 
-The next step, once you have decided to use Video Conferences or Live Streaming, is to choose which option adapts to your needs: 
+The next step, once you have decided to use Video Conferences or Live Streaming, is to choose which option adapts to your needs:
 
 #### I) Standalone third-party application
 
@@ -559,7 +559,7 @@ Your needs may be met simply by using a third-party application as a non-integra
             </div>
         </div>
     </div>
-    
+
 </div>
 
 <h4>Streaming Open Source</h4>
@@ -654,10 +654,10 @@ Your needs may be met simply by using a third-party application as a non-integra
 </div>
 
 <h4>OpenVidu</h4>
-Once we have learned the differences between live streaming and video conferences and its subcategories, we will be able to clarify what openvidu is. 
+Once we have learned the differences between live streaming and video conferences and its subcategories, we will be able to clarify what openvidu is.
 
-First of all, OpenVidu is an **on premises open and closed source video conferences platform**. This means that OpenVidu is an OpenSource project lisenced under [Apache Lisence v2](https://choosealicense.com/licenses/apache-2.0/){target: "_blank"} and you can use it for free.  
-However, OpenVidu Team have developed [OpenVidu PRO](http://docs.openvidu.io/en/stable/openvidu-pro/) which consists of different modules working over OpenVidu Community Edition (OpenVidu CE).
+First of all, OpenVidu is an **on premises open and closed source video conferences platform**. This means that OpenVidu is an OpenSource project lisenced under [Apache Lisence v2](https://choosealicense.com/licenses/apache-2.0/){target: "_blank"} and you can use it for free.
+However, OpenVidu Team have developed [OpenVidu PRO](openvidu-pro/) which consists of different modules working over OpenVidu Community Edition (OpenVidu CE).
 
 And secondly, OpenVidu offers **as a service external app videoconference** ([call.openvidu.io](https://call.openvidu.io)) and **on premises external app videoconference** ([OpenVidu Call](https://github.com/OpenVidu/openvidu-call/releases)).
 

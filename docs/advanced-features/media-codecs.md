@@ -9,7 +9,7 @@ OpenVidu is able to handle WebRTC media streams by using different media servers
 
 These are selected with the `OPENVIDU_ENTERPRISE_MEDIA_SERVER` parameter in the OpenVidu's `.env` configuration file.
 
-While OpenVidu goes to great lengths to hide the differences between each media server, there are some key aspects that cannot be abstracted away and will have a direct impact on how applications work. One such aspect is how video codecs are handled between participants in a session, depending on the [OpenVidu configuration](https://docs.openvidu.io/en/stable/reference-docs/openvidu-config/).
+While OpenVidu goes to great lengths to hide the differences between each media server, there are some key aspects that cannot be abstracted away and will have a direct impact on how applications work. One such aspect is how video codecs are handled between participants in a session, depending on the [OpenVidu configuration](reference-docs/openvidu-config/).
 
 Table of Contents:
 
@@ -100,7 +100,7 @@ In practice, transcoding is rarely needed because all implementations of WebRTC 
 
 ## Codecs on Recording
 
-How media codecs are selected will have an impact on the [OpenVidu's Recording](https://docs.openvidu.io/en/stable/advanced-features/recording/) feature. The *INDIVIDUAL* recording mode will generate different file formats, depending on the media server that is being used by OpenVidu:
+How media codecs are selected will have an impact on the OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature. The *INDIVIDUAL* recording mode will generate different file formats, depending on the media server that is being used by OpenVidu:
 
 * For *mediasoup*, the [Matroska](https://en.wikipedia.org/wiki/Matroska) container format is used; the recording file extension is `.mkv`.
 
