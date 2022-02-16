@@ -1,11 +1,7 @@
 <h2 id="section-title">Simulcast</h2>
 <hr>
 
-- **[What is Simulcast?](#simulcast-what)**
-    - [How does Simulcast work?](#simulcast-how)
-- **[Simulcast in OpenVidu Enterprise](#simulcast-in-openvidu-enterprise)**
-    - [Enable simulcast](#enable-simulcast)
-    - [Beta limitations](#simulcast-enterprise-beta-limitations)
+[TOC]
 
 ---
 
