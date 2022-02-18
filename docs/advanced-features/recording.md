@@ -4,8 +4,8 @@
 - **[Composed recording](#composed-recording)**
     - [Composed quick start recording](#composed-quick-start-recording)
     - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- **[Individual stream recording](#individual-stream-recording)**
-    - [Selecting streams to be recorded](#selecting-streams-to-be-recorded)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Individual stream recording](#individual-recording)**
+    - [Selecting streams to be recorded](#individual-recording-selection)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
 - **[Custom recording layouts](#custom-recording-layouts)**
@@ -181,7 +181,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 <br>
 
-# Composed recording
+# Composed recording {: #composed-recording }
 
 Every publisher stream is composed in the same video file in a grid layout. This is the default recording mode, and it will generate as output an MP4 file.
 
@@ -256,7 +256,7 @@ For example, for a session with two publishers the video file will look like thi
 
 ## Composed quick start recording
 
-There is an extra recording output mode which is a variation of [Composed recording](#composed-recording). The resulting recorded file will be exactly the same, but in this case the lifespan of the recording module will be attached to the **lifecycle of the session**, not to the lifecycle of the recording. This means that:
+There is an extra recording output mode which is a variation of [COMPOSED recording](#composed-recording). The resulting recorded file will be exactly the same, but in this case the lifespan of the recording module will be attached to the **lifecycle of the session**, not to the lifecycle of the recording. This means that:
 
 - If you configure a Session with this composed quick start recording mode, a new recording module especially dedicated to this session will be instantiated even before you start to record it. All of the session streams will be rendered by the recording module all the time, even when not being recorded.
 - When starting the recording, the process will be as fast as physically possible for composed recordings: no need to launch the recording module and to establish the inner media connections, as this has already been done in the background.
@@ -404,7 +404,7 @@ For another perspective on this matter, visit [Scalable recording](openvidu-pro/
 
 ---
 
-# Individual stream recording
+# Individual stream recording {: #individual-recording }
 
 Every publisher stream is recorded in its own file. The final result is a ZIP file containing one WEBM file for each published stream during the recording (named after each stream identifier), along with a text file with synchronization information.
 
@@ -521,7 +521,7 @@ These are the properties in the JSON file
 
 ---
 
-## Selecting streams to be recorded
+## Selecting streams to be recorded {: #individual-recording-selection }
 
 <div style="
     display: table;
@@ -550,7 +550,7 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 
 In OpenVidu CE all of the streams published to a session being recorded with INDIVIDUAL mode will always be stored to disk. In OpenVidu Pro you have greater control: you can configure in detail which streams are to be recorded, and even activate and deactivate the recording of a specific stream during the very same recording process.
 
-This applies to [INDIVIDUAL](#individual-stream-recording) recording. You can specify the streams that should or shouldn't be recorded in a session when creating the Connection for a participant. The default option when creating a Connection is to record all of the streams published by it. Below there are examples of Connections being created that will make their published streams NOT to be recorded when recording the session in INDIVIDUAL mode.
+This applies to [INDIVIDUAL recording](#individual-recording). You can specify the streams that should or shouldn't be recorded in a session when creating the Connection for a participant. The default option when creating a Connection is to record all of the streams published by it. Below there are examples of Connections being created that will make their published streams NOT to be recorded when recording the session in INDIVIDUAL mode.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -643,7 +643,7 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:t
 
 </div><br>
 
-If the same stream of some user is recorded multiple times during one INDIVIDUAL session recording, then the resulting ZIP file described in [Individual stream recording](#individual-stream-recording) may have this content:
+If the same stream of some user is recorded multiple times during one INDIVIDUAL session recording, then the resulting ZIP file described in [INDIVIDUAL recording](#individual-recording) may have this content:
 
 ```plaintext
 MyRecording.zip

@@ -92,7 +92,7 @@ This dashboard presents at a glance the status of your recordings. It includes i
 - The total number of recordings per day
 - Average duration and size of your recorded files
 - The distributions of you recordings by duration and size
-- The ratio of recordings according to their output mode ([COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} or [INDIVIDUAL](advanced-features/recording/#individual-stream-recording){:target="_blank"} recordings) and their recorded tracks ([audio/video recordings](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"})
+- The ratio of recordings according to their output mode ([COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} or [INDIVIDUAL](advanced-features/recording/#individual-recording){:target="_blank"}) and their recorded tracks ([audio/video recordings](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"})
 
 <br>
 
@@ -234,7 +234,7 @@ Logs and metrics indexes are:
   - **filebeat-coturn***: Coturn(TURN/STUN server) logs.
   - **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
   - **filebeat-media-node-controller***: Logs of the media-node-controller which manage orchestration in media nodes.
-  - **filebeat-openvidu-recording***: Logs of [COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} recordings.
+  - **filebeat-openvidu-recording***: Logs of [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"}.
   - **filebeat-nginx***: Logs of Nginx container.
   - **openvidu-logs***: Logs of OpenVidu Server Pro.
   - **openvidu-browser-logs***: Logs of clients/browsers using openvidu-browser related with OpenVidu itself. These are only sent if `OPENVIDU_BROWSER_LOGS=debug` in `/opt/openvidu/.env`file ([More info](reference-docs/openvidu-config/)). 

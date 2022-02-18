@@ -442,7 +442,7 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
 
 Recording API has been extended in this release. The two main new features are:
 
-- You can now set the desired frame rate of your [COMPOSED recordings](https://docs.openvidu.io/en/2.18.0/advanced-features/recording/#composed-recording){:target="_blank"}.
+- You can now set the desired frame rate of your [COMPOSED recording](https://docs.openvidu.io/en/2.18.0/advanced-features/recording/#composed-recording){:target="_blank"}.
 - You can set default values for all recording properties when initializing a Session.
 
 This second point is the result of a small but significant refactoring of the Session object. Before, Session objects had custom attributes for defining default values for its recordings:
@@ -728,7 +728,7 @@ openVidu.createSession(properties).then(session => { ... });
 
 ##### Scalable COMPOSED recordings (OpenVidu Pro)
 
-OpenVidu Pro has always been focused on offering scalability features upon OpenVidu CE, and there was still one very important limitation: [COMPOSED recordings](https://docs.openvidu.io/en/2.17.0/advanced-features/recording/#composed-recording){:target="_blank"} were not scalable, as they were being performed in the **OpenVidu Server Pro Node**. Until today: from 2.17.0, recording modules will be launched in **Media Nodes**. Since Media Nodes are infinitely scalable, the limit of simultaneous COMPOSED recordings has been effectively eliminated, and the load on your OpenVidu Server Pro node should remain much lower and stable. This is great news!
+OpenVidu Pro has always been focused on offering scalability features upon OpenVidu CE, and there was still one very important limitation: [COMPOSED recording](https://docs.openvidu.io/en/2.17.0/advanced-features/recording/#composed-recording){:target="_blank"} were not scalable, as they were being performed in the **OpenVidu Server Pro Node**. Until today: from 2.17.0, recording modules will be launched in **Media Nodes**. Since Media Nodes are infinitely scalable, the limit of simultaneous COMPOSED recordings has been effectively eliminated, and the load on your OpenVidu Server Pro node should remain much lower and stable. This is great news!
 
 <br>
 
@@ -965,7 +965,7 @@ For some particular use cases, the automatic session distribution algorithm base
 
 Let’s assume the following scenario: your application offers webinar-type video meetings, where a main speaker addresses an audience that can intervene from time to time. And you are recording these sessions. So far, any video stream published into the session would be recorded, so you couldn’t specify to record only the main speaker. Now in OpenVidu Pro you can choose which specific participants must be recorded. See how [here](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#selecting-streams-to-be-recorded){:target="_blank"}. Not only that, with this new feature you can also start and stop the recording of one stream as many times as you want, for the very same session recording process! In our example, the main speaker could be the only participant recorded, and also only at certain specific times.
 
-This applies only to [INDIVIDUAL](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#individual-stream-recording){:target="_blank"} recording, as in [COMPOSED](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#composed-recording){:target="_blank"} recording with [custom layouts](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#custom-recording-layouts){:target="_blank"} there is total freedom to record as you wish.
+This applies only to [INDIVIDUAL recording](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#individual-stream-recording){:target="_blank"}, as in [COMPOSED recording](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#composed-recording){:target="_blank"} with [custom layouts](https://docs.openvidu.io/en/2.16.0/advanced-features/recording/#custom-recording-layouts){:target="_blank"} there is total freedom to record as you wish.
 
 <br>
 
