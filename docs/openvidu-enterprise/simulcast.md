@@ -61,7 +61,7 @@
 </div>
 
 
-## What is simulcast? {: #simulcast-intro }
+## What is simulcast? {: #intro }
 
 Simulcast is a technique used with WebRTC, that allows **optimized quality of routed video**, in accordance with the needs of each individual receiver.
 
@@ -104,7 +104,7 @@ Simulcast is a video routing optimization that can be safely enabled in most cas
 The only situation where enabling simulcast could be worse than disabling it, is when the Publisher is a low-power device, or if the Publisher has severe bandwidth limitations; in those cases, simulcast might produce worse results, given that it imposes a small extra power and bandwidth toll on Producers.
 
 
-### Enabling simulcast {: #simulcast-enabling }
+### Enabling simulcast {: #enabling }
 
 Simulcast is enabled at the Publisher level, but it can only be used in **OpenVidu deployments with the mediasoup media server**. To actually enable it, there are two alternatives:
 
@@ -119,14 +119,14 @@ Note that it is possible to combine these methods to achieve a very easy configu
 * To use simulcast **only on one Publisher** (e.g. for a Teacher - Students kind of room), you can disable it globally (OpenVidu Server with `OPENVIDU_WEBRTC_SIMULCAST=false`), then enable it only on the appropriate Publisher (*openvidu-browser* with `PublisherProperties.videoSimulcast = true`).
 
 
-### Pros and Cons: Bandwidth and power usage {: #simulcast-pros-cons }
+### Pros and Cons: Bandwidth and power usage {: #pros-cons }
 
 Enabling simulcast incurs a small penalty on Publishers, which see their network and power usage slightly incremented (around 20% to 30%). This is because with simulcast, Publishers now need to generate duplicate or triplicate versions of their video (causing an increment on CPU usage), and send them all to the Media Server (causing an increment in network usage).
 
 This penalty on Publishers is generally considered worth it, because simulcast allows the Media Server to quickly switch between quality layers for every individual outbound stream. This means Subscribers will see an improvement in how well and how fast the received quality is adapted to their network and performance conditions.
 
 
-### Codec and platform compatibility {: #simulcast-compatibility }
+### Codec and platform compatibility {: #codec-compatibility }
 
 Simulcast can be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
 
@@ -173,7 +173,7 @@ Compatibility also varies a lot across platforms and applications. This table sh
 OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature works the same with or without simulcast enabled. Note however that the [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} is just a dump of all media received by the media server; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the storage of the recording. Some media players might struggle with abrupt changes in resolution or framerate, and even outright reject playing them back. In those cases, a post-processing step might be required.
 
 
-### Default layer settings {: #simulcast-settings }
+### Default layer settings {: #layer-settings }
 
 Each of the simulcast encodings requested by the client can indicate by how much the original size should be divided. This is the [`scaleResolutionDownBy`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-scaleresolutiondownby) parameter, and OpenVidu currently requests them as per the default values in the WebRTC spec:
 
@@ -188,7 +188,7 @@ Regarding bitrate, simulcast layers can be configured with a [`maxBitrate`](http
 Layers can later be reconfigured or deactivated with the [`active`](https://w3c.github.io/webrtc-pc/#dom-rtcrtpencodingparameters-active) parameter; see the customization section below for instructions and example code.
 
 
-### Content Hint: Webcam, Screenshare, Custom {: #simulcast-content-hint }
+### Content Hint: Webcam, Screenshare, Custom {: #content-hint }
 
 OpenVidu automatically configures simulcast to do the correct thing depending on the source of the video:
 
@@ -200,7 +200,7 @@ OpenVidu automatically configures simulcast to do the correct thing depending on
 If you are providing your own custom track (setting a `MediaStreamTrack` into [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/publisherproperties.html#videosource), then passing it to [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher)) you might want to let *openvidu-browser* know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
 
 
-### Advanced: Customizing simulcast layers {: #simulcast-customizing }
+### Advanced: Customizing simulcast layers {: #layer-customizing }
 
 While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/stream.html#getrtcpeerconnection) in *openvidu-browser*.
 
@@ -255,7 +255,7 @@ await sender.setParameters(params);
 The effect is an immediate change in the simulcast layers that are being sent by the Publisher.
 
 
-## Simulcast features and limitations in OpenVidu {: #simulcast-limitations }
+## Simulcast features and limitations in OpenVidu {: #limitations }
 
 ### Maximum amount of layers
 
