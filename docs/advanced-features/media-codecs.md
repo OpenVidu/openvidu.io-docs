@@ -113,6 +113,8 @@ The value `NONE` is of special interest because it leaves every participant to n
 
 * mediasoup doesn't have the ability to perform transcoding. It leaves Publishers to use their platform's favored codec, but Subscribers will consequently be constrained to that choice, so that Subscribers will not end up requesting a codec that is not being already provided by their Publisher. This constraint on the Subscribers is what makes it safe to use `NONE`, and it's why `MEDIA_SERVER_PREFERRED` translates to `NONE` for mediasoup.
 
+    A potential caveat of this codec selection logic, is that a Publisher might decide to send video with some codec that is not supported by a Subscriber; the consequence would be a black video in the Subscriber, caused by a failed decoding. In practice, **this is rarely the case** for participants that are compliant with the WebRTC specification, because WebRTC mandates support for **both VP8 and H.264 codecs**. No matter which one is selected by the Publisher, any proper WebRTC Subscriber should be able to handle it.
+
 
 ### Allow Transcoding (Kurento only)
 
