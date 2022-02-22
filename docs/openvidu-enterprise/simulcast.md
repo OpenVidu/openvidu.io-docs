@@ -170,7 +170,7 @@ Compatibility also varies a lot across platforms and applications. This table sh
 
 ### Recording compatibility
 
-OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature works the same with or without simulcast enabled. Note however that the [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} is just a dump of all media received by the media server; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the storage of the recording. Some media players might struggle with abrupt changes in resolution or framerate, and even outright reject playing them back. In those cases, a post-processing step might be required.
+OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature works the same with or without simulcast enabled. Note however, what the [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} does is just to dump all media received by the media server as-is into a file; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the resolution or framerate of the recording. Such abrupt changes most probably won't cause any issues, and we were able to check that popular programs work fine, such as VLC, MPlayer, FFmpeg, etc.
 
 
 ### Default layer settings {: #layer-settings }
