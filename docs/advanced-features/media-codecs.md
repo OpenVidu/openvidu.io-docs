@@ -17,6 +17,27 @@ Table of Contents:
 
 ---
 
+## Quick tour on video codecs
+
+The WebRTC specification mandates compatibility with two video codecs: [VP8] and [H.264]. These are well rounded and established codecs, with mature implementations in lots of systems, and even hardware decoders in computers and mobile devices. *VP8* is the default choice for most WebRTC implementations, due to its good overall quality and the fact that it is royalty free. Meanwhile, *H.264* is a de-facto standard in the audiovisual industry, well supported in all kinds of hardware and software platforms.
+
+On top of these two codecs, there are some new names that have been slowly appearing in the landscape of WebRTC; none of these are mandated by the WebRTC specification, so support for them varies greatly among platforms:
+
+* [VP9] is the successor of *VP8*, and brings to the table a greater ability to compress the video streams without noticeable loss of quality.
+* [H.265] is the equivalent evolution of *H.264*, with also much improved compression ratios and other features, but still limited penetration in the market, probably because it is encumbered with usage licenses.
+* [AV1] is the newest arrival, and promises to be the best overall codec for real time video transmission; however, it still has a long way until enough adoption makes it a safe choice when compatibility between platforms is a deciding factor.
+
+Codec support in OpenVidu is as follows:
+
+* Kurento:
+    - *VP8*
+    - *H.264*
+* mediasoup <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>:
+    - *VP8*
+    - *H.264*
+    - *VP9* (check [limitations](#limitations) below)
+
+
 ## Codecs on OpenVidu Sessions
 
 ### Forced Video Codec
@@ -80,11 +101,11 @@ Possible values are:
 
 * **`NONE`**: No specific codec is enforced. This means that a negotiation will occur between the media server and every participant, where the client platform's preferred codec will be given preference whenever possible.
 
-* **`VP8`**: All participants will use the [VP8](https://en.wikipedia.org/wiki/VP8) codec.
+* **`VP8`**: All participants will use the [VP8] codec.
 
-* **`VP9`**: All participants will use the [VP9](https://en.wikipedia.org/wiki/VP9) codec (mediasoup only).
+* **`VP9`**: All participants will use the [VP9] codec (mediasoup only).
 
-* **`H264`**: All participants will use the [H.264](https://en.wikipedia.org/wiki/Advanced_Video_Coding) codec.
+* **`H264`**: All participants will use the [H.264] codec.
 
 The value `NONE` is of special interest because it leaves every participant to negotiate codecs with the media server. Depending on the participant's platform, a different codec might be selected; most platforms favor usage of VP8 as video codecs, while Safari is the prominent exception and will choose H.264 if given the chance. The actual selection, however, is influenced by the media server used by OpenVidu:
 
@@ -140,11 +161,19 @@ How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL 
 All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"} files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses MP3 and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
 
 
-### Limitations
+### Limitations {: #limitations }
 
 **mediasoup**:
 
 * Recording VP9 is still an experimental feature that is not ready for use. As of current versions of OpenVidu, the resulting `.mkv` files are playable, but will only contain audio, and no video.
+
+
+
+[VP8]: https://en.wikipedia.org/wiki/VP8
+[VP9]: https://en.wikipedia.org/wiki/VP9
+[H.264]: https://en.wikipedia.org/wiki/Advanced_Video_Coding
+[H.265]: https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding
+[AV1]: https://en.wikipedia.org/wiki/AV1
 
 
 
