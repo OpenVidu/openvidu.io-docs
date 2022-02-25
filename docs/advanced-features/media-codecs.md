@@ -38,6 +38,44 @@ Codec support in OpenVidu is as follows:
     - *VP9* (check [limitations](#limitations) below)
 
 
+## Codec compatibility table
+
+|             | Kurento VP8 | Kurento H.264 | mediasoup VP8 | mediasoup H.264 | mediasoup VP9 |
+|-------------|-------------|---------------|---------------|-----------------|---------------|
+| **WINDOWS** |             |               |               |                 |               |
+| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔           | ✔             | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
+| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| **LINUX**   |             |               |               |                 |               |
+| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔           | ✔             | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
+| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| **ANDROID** |             |               |               |                 |               |
+| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔           | ✔             | ✔ 67          | ✔ 67            | ✔ 67          |
+| Edge        | ✔           | ✔             | ✖ 98 [1]      | ✖ 98 [1]        | ✖ 98 [1]      |
+| Samsung     | ✔           | ✔             | ✔ 16.0        | ✔ 16.0          | ✔ 16.0        |
+| **MACOS**   |             |               |               |                 |               |
+| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔           | ✔             | ✔ 84          | ✔ 84            | ✔ 84          |
+| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Safari      | ✔           | ✔             | ✔ 15.1        | ✔ 15.1          | ✔ 15.1        |
+| **IOS**     |             |               |               |                 |               |
+| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔           | ✔             | ✔ 3.2.9       | ✔ 3.2.9         | ✔ 3.2.9       |
+| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Safari      | ✔           | ✔             | ✔ 15.3        | ✔ 15.3          | ✔ 15.3        |
+
+<!-- Markdown Tables Generator: https://www.tablesgenerator.com/markdown_tables -->
+
+[1]: Remote video is black. The client is unable to decode incoming video.
+
+
 ## Codecs on OpenVidu Sessions
 
 ### Forced Video Codec
