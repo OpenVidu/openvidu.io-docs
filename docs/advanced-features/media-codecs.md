@@ -7,7 +7,7 @@ OpenVidu is able to handle WebRTC media streams by using different media servers
 * [Kurento](https://www.kurento.org/)
 * [mediasoup](https://mediasoup.org/) <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
-These are selected with the `OPENVIDU_ENTERPRISE_MEDIA_SERVER` parameter in the OpenVidu's `.env` configuration file.
+These are selected with the `OPENVIDU_ENTERPRISE_MEDIA_SERVER` parameter in OpenVidu's `.env` configuration file.
 
 While OpenVidu goes to great lengths to hide the differences between each media server, there are some key aspects that cannot be abstracted away and will have a direct impact on how applications work. One such aspect is how video codecs are handled between participants in a session, depending on the [OpenVidu configuration](reference-docs/openvidu-config/).
 
@@ -141,7 +141,7 @@ In practice, **transcoding is rarely needed** for participants that are complian
 
 How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} feature, depending on the media server that is being used by OpenVidu:
 
-* For Kurento, the [WebM](https://en.wikipedia.org/wiki/WebM) container format is used; the recording file extension is `.webm`.
+* With Kurento, the [WebM](https://en.wikipedia.org/wiki/WebM) container format is used, and the recording file extension is `.webm`.
 
     This is a format that has great compatibility with all web browsers out there; you can play a WebM file back directly on a web browser, without any prior conversion, which is something that cannot be done with Matroska. However, WebM is not as flexible, only being able to store video encoded with VP8 or VP9 codecs.
 
@@ -149,9 +149,9 @@ How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL 
 
     Transcoding can have an expensive toll on CPU usage; for this reason, **we recommend to force VP8 when using Kurento as media server**, with *Forced Video Codec* set to either `VP8` or `MEDIA_SERVER_PREFERRED` (the default).
 
-* For mediasoup, [Matroska](https://en.wikipedia.org/wiki/Matroska) is used instead; the recording file extension is `.mkv`.
+* With mediasoup, [Matroska](https://en.wikipedia.org/wiki/Matroska) is used instead, and the recording file extension is `.mkv`.
 
-    The reasoning behind this choice is that mediasoup is not able to perform any kind of transcoding, so a flexible container format must be chosen such that (mostly) any codec can be stored in it, as-is from what Publishers sends to the server.
+    The reasoning behind this choice is that mediasoup is not able to perform any kind of transcoding, so a flexible container format must be chosen such that (mostly) any codec can be stored in it, as-is from what Publishers send to the server.
 
     mediasoup recordings are stored with whatever video codec is sent by Publishers, which in turn can be configured in OpenVidu with the *Forced Video Codec* feature. If *Forced Video Codec* is set to `NONE`, every Publisher will use their platform's favored codec, meaning that different recorded files might end up with different codecs.
 
@@ -160,7 +160,7 @@ How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL 
 
 ### COMPOSED recording
 
-All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"} files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses MP3 and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
+All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"} files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses AAC and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
 
 
 ### Limitations {: #limitations }

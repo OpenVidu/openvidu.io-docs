@@ -159,9 +159,10 @@ Compatibility also varies a lot across platforms and applications. This table sh
 | **IOS**     | ------------- | --------------- |
 | [4]         |               |                 |
 
-[1]: Remote video is black. The receiver is constantly requesting new keyframes, but it never gets to decode the incoming video.
 
-[2]: [1] + Local video is not viewable on some remote clients (Firefox, Opera) but it can be viewed in others (Chrome, Edge).
+[1]: Remote video is black. The client is unable to decode incoming video.
+
+[2]: [1] + Local video is not viewable on some remote clients (Firefox, Opera), however for some reason it can be viewed in others (Chrome, Edge).
 
 [3]: Local video is not even sent. The media server complains with error messages such as "*RTP inactivity detected*".
 
