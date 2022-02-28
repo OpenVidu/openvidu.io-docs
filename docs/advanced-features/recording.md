@@ -18,6 +18,7 @@
 - **[Troubleshooting](#troubleshooting)**
 
 ---
+
 <br>
 
 OpenVidu Server can be configured to record sessions. Two modes of recordings are available:
@@ -25,6 +26,10 @@ OpenVidu Server can be configured to record sessions. Two modes of recordings ar
 - **COMPOSED**: every publisher stream is composed in the same video file in a grid layout. You can use the default layout, that will evenly distribute each stream in the available space, or you can use your own custom layout implemented with HTML/CSS/JS.
 
 - **INDIVIDUAL**: every publisher stream is recorded in its own file, generating a ZIP file containing all videos along with a text file with synchronization data. This recording mode cannot directly produce a single mixed video file of all the streams of the session, but is much more efficient than COMPOSED mode (which is quite demanding in terms of CPU).
+
+<br>
+
+For technical information about the media codecs and formats used for recording, check here: [Codecs on OpenVidu Recordings](advanced-features/media-codecs/#recording){:target="_blank"}.
 
 <br>
 
@@ -234,7 +239,7 @@ openvidu.startRecording(sessionId, {
 
 </div>
 
-<br> 
+<br>
 
 For example, for a session with two publishers the video file will look like this when using output mode `COMPOSED` and recording layout `BEST_FIT`
 
@@ -586,7 +591,7 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#crea
 var connectionProperties = {
     record: false
 };
-session.createConnection(connectionProperties).then(connection => { 
+session.createConnection(connectionProperties).then(connection => {
     var token = connection.token; // Send this string to the client side
 });
 ```

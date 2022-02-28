@@ -35,7 +35,7 @@ Codec support in OpenVidu is as follows:
 * mediasoup <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>:
     - *VP8*
     - *H.264*
-    - *VP9* (check [limitations](#limitations) below)
+    - *VP9* (check [recording limitations](#recording-limitations) below)
 
 
 ## Codec compatibility table {: #codec-compatibility }
@@ -181,7 +181,7 @@ For example:
 In practice, **transcoding is rarely needed** for participants that are compliant with the WebRTC specification, because WebRTC mandates support for **both VP8 and H.264 codecs**. This is also why the choice of `MEDIA_SERVER_PREFERRED` translates to `VP8` for Kurento, in an attempt to avoid server-side transcoding by forcing everybody to use the same codec.
 
 
-## Codecs on OpenVidu Recordings
+## Codecs on OpenVidu Recordings {: #recording }
 
 ### INDIVIDUAL recording
 
@@ -209,7 +209,7 @@ How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL 
 All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"} files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses AAC and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
 
 
-### Limitations {: #limitations }
+### Limitations {: #recording-limitations }
 
 **mediasoup**:
 
