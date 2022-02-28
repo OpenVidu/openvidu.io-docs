@@ -38,39 +38,47 @@ Codec support in OpenVidu is as follows:
     - *VP9* (check [limitations](#limitations) below)
 
 
-## Codec compatibility table
+## Codec compatibility table {: #codec-compatibility }
+
+This table summarizes compatibility of different platforms with the video codecs supported by OpenVidu. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
+
+For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility){:target="_blank"}.
+
+The test method was as follows:
+* Create a new session from Chrome on Linux.
+* Use the OpenVidu's [Forced Video Codec](#forced-video-codec) feature to ensure that only the desired codec was used by all participants.
+* Connect one by one with all desired combinations of Operating System, WebRTC client, and OpenVidu's media server.
 
 |             | Kurento VP8 | Kurento H.264 | mediasoup VP8 | mediasoup H.264 | mediasoup VP9 |
 |-------------|-------------|---------------|---------------|-----------------|---------------|
 | **WINDOWS** |             |               |               |                 |               |
-| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
-| Opera       | ✔           | ✔             | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
-| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Chrome      | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔ 97        | ✔ 97          | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔ 84        | ✖ 84 [1]      | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
+| Edge        | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
 | **LINUX**   |             |               |               |                 |               |
-| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
-| Opera       | ✔           | ✔             | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
-| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
+| Chrome      | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔ 97        | ✔ 97          | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔ 84        | ✖ 84 [1]      | ✔ 84          | ✖ 84 [1]        | ✔ 84          |
+| Edge        | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
 | **ANDROID** |             |               |               |                 |               |
-| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
-| Opera       | ✔           | ✔             | ✔ 67          | ✔ 67            | ✔ 67          |
-| Edge        | ✔           | ✔             | ✖ 98 [1]      | ✖ 98 [1]        | ✖ 98 [1]      |
-| Samsung     | ✔           | ✔             | ✔ 16.0        | ✔ 16.0          | ✔ 16.0        |
+| Chrome      | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔ 97        | ✔ 97          | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔ 67        | ✔ 67          | ✔ 67          | ✔ 67            | ✔ 67          |
+| Edge        | ✖ 98 [1]    | ✖ 98 [1]      | ✖ 98 [1]      | ✖ 98 [1]        | ✖ 98 [1]      |
+| Samsung     | ✔ 16.0      | ✔ 16.0        | ✔ 16.0        | ✔ 16.0          | ✔ 16.0        |
 | **MACOS**   |             |               |               |                 |               |
-| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
-| Opera       | ✔           | ✔             | ✔ 84          | ✔ 84            | ✔ 84          |
-| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Safari      | ✔           | ✔             | ✔ 15.1        | ✔ 15.1          | ✔ 15.1        |
+| Chrome      | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔ 97        | ✔ 97          | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔ 84        | ✔ 84          | ✔ 84          | ✔ 84            | ✔ 84          |
+| Edge        | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Safari      | ✔ 15.1      | ✔ 15.1        | ✔ 15.1        | ✔ 15.1          | ✔ 15.1        |
 | **IOS**     |             |               |               |                 |               |
-| Chrome      | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Firefox     | ✔           | ✔             | ✔ 97          | ✔ 97            | ✔ 97          |
-| Opera       | ✔           | ✔             | ✔ 3.2.9       | ✔ 3.2.9         | ✔ 3.2.9       |
-| Edge        | ✔           | ✔             | ✔ 98          | ✔ 98            | ✔ 98          |
-| Safari      | ✔           | ✔             | ✔ 15.3        | ✔ 15.3          | ✔ 15.3        |
-
+| Chrome      | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Firefox     | ✔ 97        | ✔ 97          | ✔ 97          | ✔ 97            | ✔ 97          |
+| Opera       | ✔ 3.2.9     | ✔ 3.2.9       | ✔ 3.2.9       | ✔ 3.2.9         | ✔ 3.2.9       |
+| Edge        | ✔ 98        | ✔ 98          | ✔ 98          | ✔ 98            | ✔ 98          |
+| Safari      | ✔ 15.3      | ✔ 15.3        | ✔ 15.3        | ✔ 15.3          | ✔ 15.3        |
 <!-- Markdown Tables Generator: https://www.tablesgenerator.com/markdown_tables -->
 
 [1]: Remote video is black. The client is unable to decode incoming video.
@@ -78,7 +86,7 @@ Codec support in OpenVidu is as follows:
 
 ## Codecs on OpenVidu Sessions
 
-### Forced Video Codec
+### Forced Video Codec {: #forced-video-codec }
 
 OpenVidu allows you to make a decision about the video codec(s) that participants will use to encode their videos in a session.
 

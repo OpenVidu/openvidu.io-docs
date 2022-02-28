@@ -126,7 +126,7 @@ Enabling simulcast incurs a small penalty on Publishers, which see their network
 This penalty on Publishers is generally considered worth it, because simulcast allows the Media Server to quickly switch between quality layers for every individual outbound stream. This means Subscribers will see an improvement in how well and how fast the received quality is adapted to their network and performance conditions.
 
 
-### Codec and platform compatibility {: #codec-compatibility }
+## Codec compatibility table {: #codec-compatibility }
 
 Simulcast can be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
 
