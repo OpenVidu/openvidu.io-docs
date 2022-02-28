@@ -5,6 +5,7 @@
 OpenVidu is able to handle WebRTC media streams by using different media servers in the backend, depending on its configuration:
 
 * [Kurento](https://www.kurento.org/)
+
 * [mediasoup](https://mediasoup.org/) <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
 These are selected with the `OPENVIDU_ENTERPRISE_MEDIA_SERVER` parameter in OpenVidu's `.env` configuration file.
@@ -19,20 +20,30 @@ Table of Contents:
 
 ## Quick tour on video codecs
 
-The WebRTC specification mandates compatibility with two video codecs: [VP8] and [H.264]. These are well rounded and established codecs, with mature implementations in lots of systems, and even hardware decoders in computers and mobile devices. *VP8* is the default choice for most WebRTC implementations, due to its good overall quality and the fact that it is royalty free. Meanwhile, *H.264* is a de-facto standard in the audiovisual industry, well supported in all kinds of hardware and software platforms.
+The WebRTC specification mandates compatibility with two video codecs:
 
-On top of these two codecs, there are some new names that have been slowly appearing in the landscape of WebRTC; none of these are mandated by the WebRTC specification, so support for them varies greatly among platforms:
+* [VP8].
+* [H.264].
+
+These are well rounded and established codecs, with mature implementations in lots of systems, and even hardware decoders in computers and mobile devices.
+
+*VP8* is the default choice for most WebRTC implementations, due to its good overall quality and the fact that it is royalty free. Meanwhile, *H.264* is a de-facto standard in the audiovisual industry, well supported in all kinds of hardware and software platforms.
+
+On top of those, there are some new codecs have been slowly added to some clients. None of these are mandated by the WebRTC specification, so support for them varies greatly among platforms:
 
 * [VP9] is the successor of *VP8*, and brings to the table a greater ability to compress the video streams without noticeable loss of quality.
-* [H.265] is the equivalent evolution of *H.264*, with also much improved compression ratios and other features, but still limited penetration in the market, probably because it is encumbered with usage licenses.
+* [H.265] is the equivalent evolution of *H.264*, with also much improved compression ratios, but still limited adoption, probably because it is encumbered with usage licenses.
 * [AV1] is the newest arrival, and promises to be the best overall codec for real time video transmission; however, it still has a long way until enough adoption makes it a safe choice when compatibility between platforms is a deciding factor.
 
 Codec support in OpenVidu is as follows:
 
-* Kurento:
+* Kurento
+
     - *VP8*
     - *H.264*
-* mediasoup <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>:
+
+* mediasoup <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
+
     - *VP8*
     - *H.264*
     - *VP9* (check [recording limitations](#recording-limitations) below)
@@ -45,6 +56,7 @@ This table summarizes compatibility of different platforms with the video codecs
 For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility){:target="_blank"}.
 
 The test method was as follows:
+
 * Create a new session from Chrome on Linux.
 * Use the OpenVidu's [Forced Video Codec](#forced-video-codec) feature to ensure that only the desired codec was used by all participants.
 * Connect one by one with all desired combinations of Operating System, WebRTC client, and OpenVidu's media server.
