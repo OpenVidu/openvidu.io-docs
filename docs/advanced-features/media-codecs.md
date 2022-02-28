@@ -53,7 +53,7 @@ Codec support in OpenVidu is as follows:
 
 This table summarizes compatibility of different platforms with the video codecs supported by OpenVidu. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
 
-For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility){:target="_blank"}.
+For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility).
 
 The test method was as follows:
 
@@ -116,7 +116,7 @@ This feature can be set globally for the OpenVidu Server by setting the `OPENVID
 
 <div id="rest-api" class="lang-tabs-content" markdown="1">
 
-Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}**, passing `{ "forcedVideoCodec": "VP8" }`.
+Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session)**, passing `{ "forcedVideoCodec": "VP8" }`.
 
 </div>
 
@@ -142,7 +142,7 @@ const sessionProperties = { forcedVideoCodec: VideoCodec.VP8 };
 const session = openvidu.createSession(sessionProperties);
 ```
 
-See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec){:target="_blank"}.
+See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec).
 
 </div>
 
@@ -197,7 +197,7 @@ In practice, **transcoding is rarely needed** for participants that are complian
 
 ### INDIVIDUAL recording
 
-How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} feature, depending on the media server that is being used by OpenVidu:
+How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL recording](advanced-features/recording/#individual-recording) feature, depending on the media server that is being used by OpenVidu:
 
 * With Kurento, the [WebM](https://en.wikipedia.org/wiki/WebM) container format is used, and the recording file extension is `.webm`.
 
@@ -218,7 +218,7 @@ How media codecs are selected will have an impact on the OpenVidu's [INDIVIDUAL 
 
 ### COMPOSED recording
 
-All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"} files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses AAC and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
+All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-recording) files get generated the same way, and they are not affected by other features such as *Forced Video Codec*. COMPOSED recordings are actually made from adding a ghost participant in the session and recording its whole screen; this process uses AAC and H.264 for audio and video respectively, and they are stored into an MP4 container format, where the recording file extension is `.mp4`.
 
 
 ### Limitations {: #recording-limitations }

@@ -125,7 +125,7 @@ OpenVidu Platform configuration is specified in the **`.env`** file with environ
 
 - You _must_ give a value to properties **`DOMAIN_OR_PUBLIC_IP`** and **`OPENVIDU_SECRET`**. Default empty values will fail.
 - You can change the **`CERTIFICATE_TYPE`** if you have a valid domain name. Setting this property to `letsencrypt` will automatically generate a valid certificate for you (it is required to set property `LETSENCRYPT_EMAIL`). Or if for any unknown reason you prefer to use your own certificate, set the property to `owncert` and place the certificate files as explained.
-- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-config/){:target="_blank"} for further information.
+- All other configuration properties come with sane defaults. You can go through them and change whatever you want. Visit [OpenVidu Server configuration](reference-docs/openvidu-config/) for further information.
 
 The **`.env`** file is pretty self-explanatory. It looks like this:
 
@@ -219,7 +219,7 @@ You can press `Ctrl+C` to come back to the shell and OpenVidu will be executed i
 
 #### Available services
 
-- Consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"} through `https://DOMAIN_OR_PUBLIC_IP/`
+- Consume [OpenVidu REST API](reference-docs/REST-API/) through `https://DOMAIN_OR_PUBLIC_IP/`
 - If the [application](#videoconference-application) is enabled, it will also be available at `https://DOMAIN_OR_PUBLIC_IP/`
 - You can open OpenVidu Dashboard to verify everything is working as expected at `https://DOMAIN_OR_PUBLIC_IP/dashboard/` with credentials:
     - user: OPENVIDUAPP
@@ -273,7 +273,7 @@ Run the following commands to manage OpenVidu Platform service:
 
 ## Domain and SSL Configuration Examples
 
-For these examples, all steps from [Deploying OpenVidu on premises](#deployment-instructions) should be followed. These examples are focusing in the Domain and SSL Configuration. The necessary parameters to use are explained in the [Configuration Section](#3-configuration). This examples scenarios have the purpose to clarify any doubt on how to configure the Domain and SSL configuration of OpenVidu on premises. 
+For these examples, all steps from [Deploying OpenVidu on premises](#deployment-instructions) should be followed. These examples are focusing in the Domain and SSL Configuration. The necessary parameters to use are explained in the [Configuration Section](#3-configuration). This examples scenarios have the purpose to clarify any doubt on how to configure the Domain and SSL configuration of OpenVidu on premises.
 
 As OpenVidu is deployed with default sane configuration, your domain and SSL certificate configuration are the most important parameters to deploy your stack correctly.
 
@@ -313,7 +313,7 @@ CERTIFICATE_TYPE=selfsigned
 OPENVIDU_SECRET=<YOUR_SECRET>
 ```
 
-Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/). 
+Only these variables are needed to make it works. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/).
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
@@ -327,7 +327,7 @@ DOMAIN_OR_PUBLIC_IP=example.openvidu.io
 
 This scenario is meant for you if you want to:
 
-- Deploy OpenVidu for production or even developing purposes. 
+- Deploy OpenVidu for production or even developing purposes.
 - Deploy OpenVidu with a Fully Qualified Domain Name (FQDN).
 - Use a valid SSL certificate.
 
@@ -337,7 +337,7 @@ For this specific scenario you will need to:
 
 This depends of the DNS register you want to use. You need to create a DNS register of **type A pointing to your server public IP**. Let's suppose that our domain is: **example.openvidu.io**.
 
-#### 2.2) Edit `/opt/openvidu/.env` 
+#### 2.2) Edit `/opt/openvidu/.env`
 
 To make our deployment works with a **Let's encrypt** certificate, you just need to edit the file in `/opt/openvidu/.env` and fill the next variables:
 
@@ -360,7 +360,7 @@ You must define the `LETSENCRYPT_EMAIL` where you want to register the domain an
 
 This scenario is meant for you if you want to:
 
-- Deploy OpenVidu for production. 
+- Deploy OpenVidu for production.
 - Deploy OpenVidu with a Fully Qualified Domain Name (FQDN).
 - Use a valid SSL certificate from a **Commercial CA**.
 
@@ -372,7 +372,7 @@ This depends of the DNS register you want to use. You need to create a DNS regis
 
 #### 3.2) Generate certificates files
 
-**1)** Create a CSR and a private key. This can be easily done by executing: 
+**1)** Create a CSR and a private key. This can be easily done by executing:
 ```bash
 openssl req -newkey rsa:2048 -nodes -keyout certificate.key -out certificate.csr
 ```
@@ -432,7 +432,7 @@ The directory should look like this:
 └── certificate.key
 ```
 
-#### 3.4) Edit `/opt/openvidu/.env` 
+#### 3.4) Edit `/opt/openvidu/.env`
 
 To make our deployment works with a **Custom Certificate (Commercial CA)** certificate, you just need to edit the file in `/opt/openvidu/.env` and fill the next variables:
 
@@ -444,7 +444,7 @@ OPENVIDU_SECRET=<YOUR_SECRET>
 CERTIFICATE_TYPE=owncert
 ```
 
-Only these variables are needed to start OpenVidu. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/). 
+Only these variables are needed to start OpenVidu. The rest of the variables in the `/opt/openvidu/.env` are referred to [OpenVidu Configuration parameters](reference-docs/openvidu-config/).
 
 The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 
@@ -452,7 +452,7 @@ The variable `LETSENCRYPT_EMAIL` should be empty for this kind of certificate.
 ### Common problems
 
 - [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates)
 - [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
 - [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 

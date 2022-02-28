@@ -10,7 +10,7 @@ session.on('streamCreated', (event) => {
 });
 ```
 
-A new HTML video element will be appended to DOM inside the element `targetElement`. It can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [SubscriberProperties.insertMode](api/openvidu-browser/interfaces/SubscriberProperties.html#insertMode){:target="_blank"}).
+A new HTML video element will be appended to DOM inside the element `targetElement`. It can be an `HTMLElement` or its `id` attribute, and you can also indicate how to insert the video according to it (see [SubscriberProperties.insertMode](api/openvidu-browser/interfaces/SubscriberProperties.html#insertMode)).
 
 To cancel the subscription and stop receiving media:
 

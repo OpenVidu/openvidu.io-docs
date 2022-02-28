@@ -65,7 +65,7 @@
 
 ## OpenVidu Enterprise High Availability architecture
 
-OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}.
+OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture).
 
 The main difference between a regular OpenVidu Pro deployment and a high availability OpenVidu Enterprise deployment is the replication of Master Nodes. In the image below, on the left a regular OpenVidu Pro deployment and on the right a high availability OpenVidu Enterprise deployment:
 
@@ -90,11 +90,11 @@ A more accurate architectural description is available in the image below. As ca
 
 ## How to deploy your OpenVidu Enterprise High Availability cluster
 
-OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deploying OpenVidu Enterprise in AWS](deployment/enterprise/aws/){:target="_blank"} to learn how.
+OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deploying OpenVidu Enterprise in AWS](deployment/enterprise/aws/) to learn how.
 
 ## Beta limitations
 
-- [Recording](advanced-features/recording/){:target="_blank"} is not available yet in OpenVidu Enterprise High Availability. This requires further work to be completely supported, which will be in an upcoming release.
+- [Recording](advanced-features/recording/) is not available yet in OpenVidu Enterprise High Availability. This requires further work to be completely supported, which will be in an upcoming release.
 - Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it. Take a look to [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo application to see how to easily do it.
 -  All API REST requests beginning with `/api` are no longer supported. All requests using this deployment must use `openvidu/api/` instead. These REST API requests [was announced as deprecated since version 2.16.0](releases/#breaking-changes_3)
 

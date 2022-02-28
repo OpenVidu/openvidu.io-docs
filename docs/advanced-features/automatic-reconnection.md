@@ -37,17 +37,17 @@ Both the signaling plane and the media plane are fine. Nothing else must be done
 
 ##### 2) The client recovers its signaling connection too late _(> 12 seconds)_
 
-OpenVidu thinks the client has disconnected with no chance of recovery and proceeds to kick him out of the Session. Once the user recovers their connection, they will receive a rejection message from OpenVidu. They are by all means no longer part of the Session, and they need to join it again as a new user. 
+OpenVidu thinks the client has disconnected with no chance of recovery and proceeds to kick him out of the Session. Once the user recovers their connection, they will receive a rejection message from OpenVidu. They are by all means no longer part of the Session, and they need to join it again as a new user.
 
 The affected participant will trigger the appropriate events with reason property set to `networkDisconnect`:
 
-- [streamDestroyed](api/openvidu-browser/classes/StreamEvent.html){:target="_blank"} event triggered by the [Publisher](api/openvidu-browser/classes/Publisher.html){:target="_blank"} object, if the affected participant was publishing to the Session.
-- [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="_blank"} event.
+- [streamDestroyed](api/openvidu-browser/classes/StreamEvent.html) event triggered by the [Publisher](api/openvidu-browser/classes/Publisher.html) object, if the affected participant was publishing to the Session.
+- [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html) event.
 
 Every other participant of the Session will already have received the proper events with `reason` property set to `networkDisconnect`:
 
-- [streamDestroyed](api/openvidu-browser/classes/StreamEvent.html){:target="_blank"} event triggered by the [Session](api/openvidu-browser/classes/Session.html){:target="_blank"} object, if the disconnected participant was publishing to the Session.
-- [connectionDestroyed](api/openvidu-browser/classes/ConnectionEvent.html){:target="_blank"} event.
+- [streamDestroyed](api/openvidu-browser/classes/StreamEvent.html) event triggered by the [Session](api/openvidu-browser/classes/Session.html) object, if the disconnected participant was publishing to the Session.
+- [connectionDestroyed](api/openvidu-browser/classes/ConnectionEvent.html) event.
 
 <br>
 
@@ -61,16 +61,16 @@ In this case, the only solution is to renegotiate the whole media connections wi
 
 <div></div>
 
-> **NOTE 2**: In rare occasions the client-side may tell the media plane is OK, but it is actually frozen. OpenVidu gathers in the client side all of the available information to decide whether the connection is fully recovered or not (analyzing the ICE connection status), but under some unknown conditions this might not be enough. For this reason, openvidu-browser provides an advanced configuration option to always force the renegotiation of all the media streams established by a client after a network reconnection: [OpenViduAdvancedConfiguration.forceMediaReconnectionAfterNetworkDrop](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#forceMediaReconnectionAfterNetworkDrop){:target="_blank"}. Developers can enable this option if in their particular use case are seeing this problem repeatedly.
+> **NOTE 2**: In rare occasions the client-side may tell the media plane is OK, but it is actually frozen. OpenVidu gathers in the client side all of the available information to decide whether the connection is fully recovered or not (analyzing the ICE connection status), but under some unknown conditions this might not be enough. For this reason, openvidu-browser provides an advanced configuration option to always force the renegotiation of all the media streams established by a client after a network reconnection: [OpenViduAdvancedConfiguration.forceMediaReconnectionAfterNetworkDrop](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#forceMediaReconnectionAfterNetworkDrop). Developers can enable this option if in their particular use case are seeing this problem repeatedly.
 
 ### Reconnection events
 
-To help managing disconnections in the signaling plane, the [Session](api/openvidu-browser/classes/Session.html){:target="_blank"} object owned by the affected user will dispatch the following events during the reconnection process:
+To help managing disconnections in the signaling plane, the [Session](api/openvidu-browser/classes/Session.html) object owned by the affected user will dispatch the following events during the reconnection process:
 
 1. Event `reconnecting` is triggered once the client realizes its signaling connection to OpenVidu is broken.
 2. Once the connection is recovered:
     - If OpenVidu has not evicted the user yet, `reconnected` event is dispatched. Media streams may be renegotiated under the hood if necessary.
-    - If OpenVidu has evicted the user, [`sessionDisconnected`](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="_blank"} event is fired with reason set to `networkDisconnect`.
+    - If OpenVidu has evicted the user, [`sessionDisconnected`](api/openvidu-browser/classes/SessionDisconnectedEvent.html) event is fired with reason set to `networkDisconnect`.
 
 ```javascript
 session.on('reconnecting', () => console.warn('Oops! Trying to reconnect to the session'));
@@ -97,7 +97,7 @@ Luckily, openvidu-browser SDK is able to detect these situations in the client s
 - If a media connection enters `failed` ICE connection state, then the reconnection process is triggered immediately.
 - If a media connection enters `disconnected` ICE connection state, then a short timeout is started to give the connection time to return to a valid state. If this timeout elapses and the media connection is still broken, then the reconnection process is triggered.
 
-These two situations can be detected with the [ExceptionEvent](api/openvidu-browser/classes/ExceptionEvent.html){:target="_blank"} triggered by the [Session](api/openvidu-browser/classes/Session.html){:target="_blank"} object.
+These two situations can be detected with the [ExceptionEvent](api/openvidu-browser/classes/ExceptionEvent.html) triggered by the [Session](api/openvidu-browser/classes/Session.html) object.
 
 ```javascript
 session.on('exception', (event) => {
@@ -114,7 +114,7 @@ session.on('exception', (event) => {
 });
 ```
 
-In case of an ExceptionEvent of name `ICE_CONNECTION_DISCONNECTED`, you can customize the amount of time that openvidu-browser grants to media connections to restore on their own before triggering the reconnection process. To do so change property `iceConnectionDisconnectedExceptionTimeout` of [OpenViduAdvancedConfiguration](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#iceConnectionDisconnectedExceptionTimeout){:target="_blank"}.
+In case of an ExceptionEvent of name `ICE_CONNECTION_DISCONNECTED`, you can customize the amount of time that openvidu-browser grants to media connections to restore on their own before triggering the reconnection process. To do so change property `iceConnectionDisconnectedExceptionTimeout` of [OpenViduAdvancedConfiguration](api/openvidu-browser/interfaces/OpenViduAdvancedConfiguration.html#iceConnectionDisconnectedExceptionTimeout).
 
 > **NOTE**: this automatic media reconnection feature is subject to the health of the signaling connection. Only applies to media connections that break while the signaling connection is still alive. If media connections break but the signaling connection also breaks (for example, after an Internet network drop), then everything explained in section [Signaling plane breaks](#signaling-plane-breaks) comes into play instead.
 

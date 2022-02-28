@@ -92,7 +92,7 @@ This dashboard presents at a glance the status of your recordings. It includes i
 - The total number of recordings per day
 - Average duration and size of your recorded files
 - The distributions of you recordings by duration and size
-- The ratio of recordings according to their output mode ([COMPOSED](advanced-features/recording/#composed-recording){:target="_blank"} or [INDIVIDUAL](advanced-features/recording/#individual-recording){:target="_blank"}) and their recorded tracks ([audio/video recordings](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"})
+- The ratio of recordings according to their output mode ([COMPOSED](advanced-features/recording/#composed-recording) or [INDIVIDUAL](advanced-features/recording/#individual-recording)) and their recorded tracks ([audio/video recordings](advanced-features/recording/#audio-only-and-video-only-recordings))
 
 <br>
 
@@ -234,10 +234,10 @@ Logs and metrics indexes are:
   - **filebeat-coturn***: Coturn(TURN/STUN server) logs.
   - **filebeat-redis***: Redis logs (This service is used to store TURN credentials).
   - **filebeat-media-node-controller***: Logs of the media-node-controller which manage orchestration in media nodes.
-  - **filebeat-openvidu-recording***: Logs of [COMPOSED recording](advanced-features/recording/#composed-recording){:target="_blank"}.
+  - **filebeat-openvidu-recording***: Logs of [COMPOSED recording](advanced-features/recording/#composed-recording).
   - **filebeat-nginx***: Logs of Nginx container.
   - **openvidu-logs***: Logs of OpenVidu Server Pro.
-  - **openvidu-browser-logs***: Logs of clients/browsers using openvidu-browser related with OpenVidu itself. These are only sent if `OPENVIDU_BROWSER_LOGS=debug` in `/opt/openvidu/.env`file ([More info](reference-docs/openvidu-config/)). 
+  - **openvidu-browser-logs***: Logs of clients/browsers using openvidu-browser related with OpenVidu itself. These are only sent if `OPENVIDU_BROWSER_LOGS=debug` in `/opt/openvidu/.env`file ([More info](reference-docs/openvidu-config/)).
   - **metricbeat-***: Metrics sent by all the nodes of the OpenVidu Pro Cluster.
 
 Logs and metrics sent by **Filebeat** and **Metricbeat** include some properties to distinguish the origin of the data, in addition to the ECS attributes. These properties are present in all
@@ -257,13 +257,13 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 
 <div style="margin-right: 5px; margin-top: 15px" markdown="1">
 
-- `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/){:target="_blank"})
+- `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/))
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
 - `webrtcDebug`: event with further information about the WebRTC negotiation process, such as SDPs, for each media endpoint established in Media Nodes
-- `networkQualityStats`: event of network quality for a specific client. See [Network quality](advanced-features/network-quality/){:target="_blank"}
+- `networkQualityStats`: event of network quality for a specific client. See [Network quality](advanced-features/network-quality/)
 - `sessionSummary`: summary of a session, stored once it is closed
-- `recordingSummary`: summary of a recording, stored once its session is closed. This object does not hold the final values of the recording entity and some properties may not be properly defined. Use _cdr_ event *[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}* with property _status_ set to _ready_ to get the full recording object
+- `recordingSummary`: summary of a recording, stored once its session is closed. This object does not hold the final values of the recording entity and some properties may not be properly defined. Use _cdr_ event *[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged)* with property _status_ set to _ready_ to get the full recording object
 - `userSummary`: summary of a user, stored once its session is closed
 - `connectionSummary`: summary of a connection, stored once its session is closed
 - `publisherSummary`: summary of a publisher, stored once its session is closed
@@ -769,7 +769,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 > **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
 > To sum up, this is just a denormalization of the `sessionSummary` document, so Elasticsearch requests and Kibana visualizations are more flexible and easier to accomplish
 > ---
-> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="_blank"}). There you will have all properties of the recording well defined
+> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](reference-docs/openvidu-server-cdr/#recordingstatuschanged)). There you will have all properties of the recording well defined
 
 <br>
 
@@ -989,7 +989,7 @@ Remember that any change you do in `/opt/openvidu/.env` will require you to rest
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    <strong>WARNING</strong>: Elasticsearch index deletion policy (which is responsible for delete indexes after the specified days in <code>OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE</code>) does not work with AWS Elasticsearch. 
+    <strong>WARNING</strong>: Elasticsearch index deletion policy (which is responsible for delete indexes after the specified days in <code>OPENVIDU_PRO_ELASTICSEARCH_MAX_DAYS_DELETE</code>) does not work with AWS Elasticsearch.
     You must create your own deletion policy strategy in your AWS Elasticsearch service.
 </div>
 </div>
@@ -1082,7 +1082,7 @@ ELASTICSEARCH_PASSWORD=<USER_PASSWORD>
 
 If you want to create a role and a user without using the UI you can create both by using REST API requests.
 
-1. First you need to create a role using the name you want by calling Kibana REST API. 
+1. First you need to create a role using the name you want by calling Kibana REST API.
 2. Secondly, create a user which will use the role created before by calling Elasticsearch REST API.
 
 You can see an example of both HTTP requests here:
@@ -1167,8 +1167,8 @@ $ curl -X PUT "localhost:5601/api/security/role/<ROLE_NAME>" -H 'kbn-xsrf: true'
 $ curl -X POST "localhost:9200/_security/user/<USER_NAME>?pretty" -H 'Content-Type: application/json' -d'
 {
   "password" : "<USER_PASSWORD>",
-  "roles" : [ "<ROLE_NAME>" ]        
-}                                
+  "roles" : [ "<ROLE_NAME>" ]
+}
 '
 ```
 </div>

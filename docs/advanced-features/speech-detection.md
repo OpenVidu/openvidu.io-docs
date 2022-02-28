@@ -9,7 +9,7 @@
   </div>
 </div>
 
-A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through [PublisherSpeakingEvents](api/openvidu-browser/classes/PublisherSpeakingevent.html){:target="_blank"} that can be configured in [Session](api/openvidu-browser/classes/Session.html){:target="_blank"} object:
+A pretty common requested event is one that allows you to detect when a publisher starts and stops speaking. OpenVidu offers this ability through [PublisherSpeakingEvents](api/openvidu-browser/classes/PublisherSpeakingevent.html) that can be configured in [Session](api/openvidu-browser/classes/Session.html) object:
 
 ```javascript
 session.on('publisherStartSpeaking', (event) => {
@@ -21,7 +21,7 @@ session.on('publisherStopSpeaking', (event) => {
 });
 ```
 
-It can also be configured for specific [Publishers](api/openvidu-browser/classes/Publisher.html){:target="_blank"} or [Subscribers](api/openvidu-browser/classes/Subscriber.html){:target="_blank"} objects, if you are interested just in certain streams:
+It can also be configured for specific [Publishers](api/openvidu-browser/classes/Publisher.html) or [Subscribers](api/openvidu-browser/classes/Subscriber.html) objects, if you are interested just in certain streams:
 
 ```javascript
 publisher.on('publisherStartSpeaking', (event) => {
@@ -33,7 +33,7 @@ subscriber.on('publisherStopSpeaking', (event) => {
 });
 ```
 
-You can further globally configure the behavior of these two events by using [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration){:target="_blank"} method:
+You can further globally configure the behavior of these two events by using [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration) method:
 
 ```javascript
 var OV = new OpenVidu();
@@ -45,7 +45,7 @@ OV.setAdvancedConfiguration({
 });
 ```
 
-You can adjust dynamically this property for each specific Stream by using [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/StreamManager.html#updatePublisherSpeakingEventsOptions){:target="_blank"} method:
+You can adjust dynamically this property for each specific Stream by using [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/StreamManager.html#updatePublisherSpeakingEventsOptions) method:
 
 ```javascript
 // 'streamManager' being a Publisher or Subscriber object
@@ -61,7 +61,7 @@ With these events it is really easy to build a layout that can make the main spe
 
 ### Audio volume detection
 
-There is available a [StreamManagerEvent](api/openvidu-browser/classes/StreamManagerEvent.html){:target="_blank"} called `streamAudioVolumeChange`. You can get the audio volume (-100 being silence to 0 being max volume) of any Publisher or Subscriber by doing this:
+There is available a [StreamManagerEvent](api/openvidu-browser/classes/StreamManagerEvent.html) called `streamAudioVolumeChange`. You can get the audio volume (-100 being silence to 0 being max volume) of any Publisher or Subscriber by doing this:
 
 ```javascript
 publisher.on('streamAudioVolumeChange', (event) => {
@@ -71,6 +71,6 @@ publisher.on('streamAudioVolumeChange', (event) => {
 
 > With event `streamAudioVolumeChange` you can easily build a volume meter to inform your users that their microphone is working ok, showing the volume being received by the input device.
 
-> The frequency `streamAudioVolumeChange` event is fired with is defined by property `interval` of [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration){:target="_blank"} (default 100ms). You can also adjust these values for each specific Publisher or Subscriber object with method [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/StreamManager.html#updatePublisherSpeakingEventsOptions){:target="_blank"}
+> The frequency `streamAudioVolumeChange` event is fired with is defined by property `interval` of [OpenVidu.setAdvancedConfiguration](api/openvidu-browser/classes/OpenVidu.html#setAdvancedConfiguration) (default 100ms). You can also adjust these values for each specific Publisher or Subscriber object with method [StreamManager.updatePublisherSpeakingEventsOptions](api/openvidu-browser/classes/StreamManager.html#updatePublisherSpeakingEventsOptions)
 
 <br>

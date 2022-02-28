@@ -6,7 +6,7 @@ You have full control over OpenVidu Server through its REST API. All of the REST
 * Share the same base path: `/openvidu/api/`.
 * Share the same Authorization header.
 
-The Authorization header is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "*OPENVIDUAPP*") and the password (the `OPENVIDU_SECRET` [configuration property](reference-docs/openvidu-config/){:target="blank"}).
+The Authorization header is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "*OPENVIDUAPP*") and the password (the `OPENVIDU_SECRET` [configuration property](reference-docs/openvidu-config/)).
 
 All REST API operations return HTTP status `401` if the Authorization header is wrong or not provided.
 
@@ -29,7 +29,7 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Initialize a connection](#post-connection)
     - [Retrieve connection info](#get-connection)
     - [Retrieve all connections info](#get-all-connections)
-    - [Modify a connection](#patch-connection)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Modify a connection](#patch-connection)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [Close a connection](#delete-connection)
 - [The Recording object](#the-recording-object)
     - [Start the recording of a session](#post-recording-start)
@@ -37,7 +37,7 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Retrieve recording info](#get-recording)
     - [Retrieve all recording info](#get-all-recordings)
     - [Delete a recording](#delete-recording)
-- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [Retrieve Media Node info](#get-medianode)
     - [Retrieve all Media Nodes info](#get-all-medianodes)
     - [Add Media Node](#post-medianode)
@@ -49,8 +49,8 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Unpublish a stream from a connection](#delete-stream)
     - [Send a signal to a session](#post-signal)
     - [Get OpenVidu active configuration](#get-config)
-    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 </div>
 
@@ -107,7 +107,7 @@ A Session is a conference room where users can send/receive media streams to/fro
 | recording | Boolean | Whether the session is being recorded or not at this moment |
 | forcedVideoCodec | String | Enforce a specific video codec to be used by all clients, to avoid compatibility issues:<ul><li>`MEDIA_SERVER_PREFERRED`<br>A recommended choice is done for you</li><li>`NONE`<br>Let each client use their preferred codec</li><li>`VP8`</li><li>`VP9`</li><li>`H264`</li></ul>[More details](advanced-features/media-codecs/). |
 | allowTranscoding | Boolean | Allow the media server to perform live transcoding of video streams, ensuring that all codecs match in the session (**Kurento only**).<br>[More details](advanced-features/media-codecs/). |
-| mediaNodeId <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Identifier of the Media Node hosting this session. It is the `id` property of a [Media Node object](#the-media-node-object). Only defined after the session has actually been allocated inside the Media Node, which only happens after the first user connects to the session. See [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions |
+| mediaNodeId <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Identifier of the Media Node hosting this session. It is the `id` property of a [Media Node object](#the-media-node-object). Only defined after the session has actually been allocated inside the Media Node, which only happens after the first user connects to the session. See [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed) of OpenVidu Pro sessions |
 
 ---
 
@@ -163,7 +163,7 @@ Initialize a Session in OpenVidu Server. This is the very first operation to per
 > - **forcedVideoCodec** _(optional String)_ : Enforce a specific video codec to be used by all clients.<br><br>
 > - **allowTranscoding** _(optional Boolean)_ : Allow the media server to perform live transcoding of video streams.<br><br>
 > - **defaultRecordingProperties** _(optional Object)_ : the recording properties to apply by default to any recording started for this Session. You can of course override these default values and change the recording properties of any Recording [when starting them](#post-recording-start). The object structure is the same as the one defined in [Start the recording of a session](#post-recording-start).<br><br>
-> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : an object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed){:target="blank"} of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the less loaded Media Node.<br><br>
+> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : an object with the Media Node selector to force the Media Node allocation of this session (see [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed) of OpenVidu Pro sessions). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the less loaded Media Node.<br><br>
 
 ##### Returns
 
@@ -266,7 +266,7 @@ Close a Session. This will stop all of the processes of this Session: all of its
 
 |||
 | - ||
-| 204 | The Session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"}, [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="blank"}, all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others: the first user evicted will only receive the events related to himself, last one will receive every possible event |
+| 204 | The Session has been successfully closed. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html), [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html) and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html), all of them with "reason" property set to "sessionClosedByServer". Depending on the order of eviction of the users, some of them will receive more events than the others: the first user evicted will only receive the events related to himself, last one will receive every possible event |
 | 404 | No Session exists for the passed `SESSION_ID` |
 
 <br>
@@ -278,7 +278,7 @@ Close a Session. This will stop all of the processes of this Session: all of its
 A Connection represents each one of the users connected to a Session. You must create a Connection for each final user connecting to the Session.
 
 - After creating the Connection, its `status` property will be set to `pending`. This means that the Connection is currently available to be taken by a final user.
-- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}** of OpenVidu Browser library.
+- Pass the `token` attribute of a Connection object to the client-side, and use it to call method **[Session.connect](api/openvidu-browser/classes/Session.html#connect)** of OpenVidu Browser library.
 - After this, the Connection object will be associated to this final user and its `status` property will be set to `active`. Other properties will also be now populated with the data of the final user.
 
 ```json
@@ -342,24 +342,24 @@ A Connection represents each one of the users connected to a Session. You must c
 | id | String | Identifier of the Connection |
 | object | String (`connection`) | String representing the object’s type. Objects of the same type share the same value |
 | type | String | Type of the Connection. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera |
-| status | String | Status of the Connection: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>pending</code>: the Connection is waiting for any user to use its internal <code>token</code> to connect to the Session, calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} OpenVidu Browser.</li><li style="color:inherit;margin-bottom:4px"><code>active</code>: the internal <code>token</code> of the Connection has already been used by some user to connect to the Session, and it cannot be used again.</li></ul> |
+| status | String | Status of the Connection: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>pending</code>: the Connection is waiting for any user to use its internal <code>token</code> to connect to the Session, calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect) OpenVidu Browser.</li><li style="color:inherit;margin-bottom:4px"><code>active</code>: the internal <code>token</code> of the Connection has already been used by some user to connect to the Session, and it cannot be used again.</li></ul> |
 | sessionId | String | Identifier of the Session to which the user is connected |
 | createdAt | Number | Time when the Connection was created in UTC milliseconds |
-| activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
-| location <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Geographic location of the participant |
+| activeAt | Number | Time when the Connection was taken by a user by calling method [Session.connect](api/openvidu-browser/classes/Session.html#connect) with the Connection's `token` property, in UTC milliseconds. This is the time when the Connection `status` passed from `pending` to `active` |
+| location <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Geographic location of the participant |
 | ip | String | IP of the participant, as seen by OpenVidu Server |
 | platform | String | Complete description of the platform used by the participant to connect to the Session. Set to `IPCAM` if `type=IPCAM` |
-| token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}. Set to null if `type=IPCAM` |
+| token | String | Token of the Connection. Pass it to the client-side to be used in method [Session.connect](api/openvidu-browser/classes/Session.html#connect). Set to null if `type=IPCAM` |
 | serverData | String | Data assigned to the Connection in your application's server-side when [creating the Connection](#post-connection) (`data` parameter) |
-| clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"}  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
-| record <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connection will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection){:target="_blank"} |
+| clientData | String | Data assigned to the Connection in your application's client-side when calling [Session.connect](api/openvidu-browser/classes/Session.html#connect)  (`metadata` parameter). Set to null if `type=IPCAM` or `status=pending` |
+| record <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connection will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection) |
 | role | String | **Only for `type=WEBRTC`**. Role of the Connection |
 | kurentoOptions | Object | **Only for `type=WEBRTC`**. Configuration properties applied to the streams of this Connection, regarding Kurento |
 | rtspUri | String | **Only for `type=IPCAM`**. RTSP URI of the IP camera |
 | adaptativeBitrate | Boolean | **Only for `type=IPCAM`**. Whether to use adaptative bitrate (and therefore adaptative quality) or not |
 | onlyPlayWithSubscribers | Boolean | **Only for `type=IPCAM`**. Whether to enable the IP camera stream only when some user is subscribed to it, or not |
 | networkCache | Number | **Only for `type=IPCAM`**. Size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds |
-| publishers | Array of Objects | Collection of Publisher objects: streams the Connection is currently publishing. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : identifier of the stream</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the stream was published in UTC milliseconds</li><li style="color:inherit;margin-bottom:4px">mediaOptions (Object) : current properties of the published stream. See [**Stream**](api/openvidu-browser/classes/Stream.html){:target="blank"} object from openvidu-browser library for a description of them. Some may change dynamically. See [**StreamPropertyChanged**](api/openvidu-browser/classes/StreamPropertyChangedEvent.html){:target="blank"} event of openvidu-browser library. <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">hasVideo (Boolean)</li><li style="color:inherit;margin-bottom:4px">hasAudio (Boolean)</li><li style="color:inherit;margin-bottom:4px">videoActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">audioActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">frameRate (Number)</li><li style="color:inherit;margin-bottom:4px">videoDimensions (String)</li><li style="color:inherit;margin-bottom:4px">typeOfVideo (String)</li><li style="color:inherit;margin-bottom:4px">filter (Object)</li></ul></li></ul> |
+| publishers | Array of Objects | Collection of Publisher objects: streams the Connection is currently publishing. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : identifier of the stream</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the stream was published in UTC milliseconds</li><li style="color:inherit;margin-bottom:4px">mediaOptions (Object) : current properties of the published stream. See [**Stream**](api/openvidu-browser/classes/Stream.html) object from openvidu-browser library for a description of them. Some may change dynamically. See [**StreamPropertyChanged**](api/openvidu-browser/classes/StreamPropertyChangedEvent.html) event of openvidu-browser library. <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">hasVideo (Boolean)</li><li style="color:inherit;margin-bottom:4px">hasAudio (Boolean)</li><li style="color:inherit;margin-bottom:4px">videoActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">audioActive (Boolean)</li><li style="color:inherit;margin-bottom:4px">frameRate (Number)</li><li style="color:inherit;margin-bottom:4px">videoDimensions (String)</li><li style="color:inherit;margin-bottom:4px">typeOfVideo (String)</li><li style="color:inherit;margin-bottom:4px">filter (Object)</li></ul></li></ul> |
 | subscribers | Array of Objects | Collection of Subscriber objects: streams the user is currently subscribed to. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">streamId (String) : equal to the `streamId` property of its associated publisher, that must be present in the `publishers` array of some other connection of the Session</li><li style="color:inherit;margin-bottom:4px">createdAt (Number) : time when the subscription was established in UTC milliseconds</li></ul> |
 
 ---
@@ -414,17 +414,17 @@ For an IP camera Connection (type `IPCAM`)
 
 > - **type** _(optional String)_ : which type of Connection will be created. It can be `WEBRTC` for a regular user connecting from an application or `IPCAM` for an IP camera. Default to `WEBRTC`<br><br>
 > - **data** _(optional String)_ : metadata associated to this Connection (usually participant's information). This populates property `serverData` of the [Connection object](#the-connection-object)<br><br>
-> - **record** _(optional Boolean)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : whether to record the streams published by the Connection or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection){:target="_blank"}. Default to `true`<br><br>
-> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description)_: only for type `WEBRTC`. Defines the role of the Connection:
+> - **record** _(optional Boolean)_ <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> : whether to record the streams published by the Connection or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection). Default to `true`<br><br>
+> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description)_: only for type `WEBRTC`. Defines the role of the Connection:
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
 > - **kurentoOptions** _(optional Object)_ : only for type `WEBRTC`. You can set some configuration properties for the Connection regarding Kurento. This is a JSON object with the following optional properties:<br><br>
->     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the Connection will be able to receive from Kurento Media Server per subscriber stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the Connection. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
->     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the Connection will try to receive from Kurento Media Server per subscriber stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the Connection.<br><br>
->     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the Connection will be able to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the Connection. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
->     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the Connection will try to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the Connection.<br><br>
->     - **allowedFilters** _(optional array of strings)_ : names of the filters the Connection will be able to apply to its published streams (see [Voice and video filters](advanced-features/filters/){:target="blank"}).<br><br>
+>     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the Connection will be able to receive from Kurento Media Server per subscriber stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the Connection. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
+>     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the Connection will try to receive from Kurento Media Server per subscriber stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the Connection.<br><br>
+>     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the Connection will be able to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the Connection. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
+>     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the Connection will try to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the Connection.<br><br>
+>     - **allowedFilters** _(optional array of strings)_ : names of the filters the Connection will be able to apply to its published streams (see [Voice and video filters](advanced-features/filters/)).<br><br>
 > - **rtspUri** _(mandatory String if property `type` is `IPCAM`)_ : only for type `IPCAM`. RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
 > - **adaptativeBitrate** _(optional Boolean)_ : only for type `IPCAM`. Whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
 > - **onlyPlayWithSubscribers** _(optional Boolean)_ : only for type `IPCAM`. Enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
@@ -438,7 +438,7 @@ Returns a [**Connection object**](#the-connection-object).
 
 |||
 | - ||
-| 200 | The Connection has been successfully created. If it is of type `WEBRTC`, its token can now be used to connect a final user. If it is of type `IPCAM`, every participant will immediately receive the proper events in OpenVidu Browser: [**connectionCreated**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} identifying the new IP camera Connection and [**streamCreated**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} so they can subscribe to the IP camera stream. |
+| 200 | The Connection has been successfully created. If it is of type `WEBRTC`, its token can now be used to connect a final user. If it is of type `IPCAM`, every participant will immediately receive the proper events in OpenVidu Browser: [**connectionCreated**](api/openvidu-browser/classes/ConnectionEvent.html) identifying the new IP camera Connection and [**streamCreated**](api/openvidu-browser/classes/StreamEvent.html) so they can subscribe to the IP camera stream. |
 | 400 | Problem with some body parameter |
 | 404 | No session exists for the passed `SESSION_ID` |
 | 500 | Unexpected error when creating the Connection object. This can only happen if type is `IPCAM`. See the error message for further information |
@@ -539,7 +539,7 @@ List all Connections from a Session.
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -548,9 +548,9 @@ This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu
 Modify the properties of a Connection. The following properties are modifiable:
 
 - `role`: you can dynamically change the role of the Connection in the Session.
-- `record`: you can enable or disable INDIVIDUAL recording of the streams published by this Connection. See [Selecting streams to be recorded](advanced-features/recording/#individual-recording-selection){:target="blank"} for further information.
+- `record`: you can enable or disable INDIVIDUAL recording of the streams published by this Connection. See [Selecting streams to be recorded](advanced-features/recording/#individual-recording-selection) for further information.
 
-The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvidu-browser/classes/ConnectionPropertyChangedEvent.html){:target="blank"} for each modified property.
+The affected client will trigger one [ConnectionPropertyChangedEvent](api/openvidu-browser/classes/ConnectionPropertyChangedEvent.html) for each modified property.
 
 ##### Operation
 
@@ -608,7 +608,7 @@ If the `CONNECTION_ID` belongs to a Connection in `pending` status, this method 
 
 |||
 | - ||
-| 204 | The Connection has been successfully removed from the session. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} if the user was publishing, [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html){:target="blank"} for the remaining users and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="blank"} for the evicted user. All of them with "reason" property set to "forceDisconnectByServer".<br>If the `CONNECTION_ID` belongs to a Connection in `pending` status, it has been successfully invalidated and its token can no longer be used. |
+| 204 | The Connection has been successfully removed from the session. Every participant will have received the proper events in OpenVidu Browser: [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html) if the user was publishing, [**connectionDestroyed**](api/openvidu-browser/classes/ConnectionEvent.html) for the remaining users and [**sessionDisconnected**](api/openvidu-browser/classes/SessionDisconnectedEvent.html) for the evicted user. All of them with "reason" property set to "forceDisconnectByServer".<br>If the `CONNECTION_ID` belongs to a Connection in `pending` status, it has been successfully invalidated and its token can no longer be used. |
 | 400 | No Session exists for the passed `SESSION_ID` |
 | 404 | No Connection for the passed `CONNECTION_ID` |
 
@@ -657,8 +657,8 @@ A Recording represents the recording process of a Session.
 | createdAt | Number | Time when the Recording started in UTC milliseconds |
 | size | Number | Size in bytes of the video file. Only guaranteed to be greater than `0` if status is `ready` |
 | duration | Number | Duration of the video file in seconds. Only guaranteed to be greater than `0` if status is `ready` |
-| url | String | URL where the Recording file is available.  Only guaranteed to different than `null` if status is `ready`<div style="margin-top:10px"></div>The final URL value follows this format:<div style="margin-top:5px"></div>`https://YOUR_OPENVIDUSERVER_IP/openvidu/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>`<br>This path will be protected with OpenVidu credentials depending on whether [openvidu-server configuration property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/){:target="blank"} is false or true. This format is equals to the AWS S3 URL object property of the uploaded object for OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3){:target="blank"} |
-| status | String | Status of the Recording: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>starting</code>: the Recording is being started. This is in a way a special status, because it can only appear if a concurrent REST API call to list recordings is done at the narrow time frame in which the Recording starts. The moment the start operation returns, the Recording status will be <i>started</i>. A Recording in this status cannot be stopped. It does not get triggered in CDR/Webhook [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"}.</li><li style="color:inherit;margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="color:inherit;margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="color:inherit;margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3){:target="blank"} this status means that the Recording has been successfully stored in the S3 bucket.</li><li style="color:inherit;margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul> The recording status will be `started` after calling the start operation and while the Recording is active. After calling stop operation, the status may be `stopped` or `ready` depending on the type of deployment of OpenVidu. OpenVidu CE will always return `ready` status. OpenVidu Pro will always return `stopped` status and properties `size`, `duration` and `url` will not have their final value defined yet. Listen to [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"} CDR/Webhook event to know when the Recording has reached `ready` status in this case |
+| url | String | URL where the Recording file is available.  Only guaranteed to different than `null` if status is `ready`<div style="margin-top:10px"></div>The final URL value follows this format:<div style="margin-top:5px"></div>`https://YOUR_OPENVIDUSERVER_IP/openvidu/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>`<br>This path will be protected with OpenVidu credentials depending on whether [openvidu-server configuration property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/) is false or true. This format is equals to the AWS S3 URL object property of the uploaded object for OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3) |
+| status | String | Status of the Recording: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>starting</code>: the Recording is being started. This is in a way a special status, because it can only appear if a concurrent REST API call to list recordings is done at the narrow time frame in which the Recording starts. The moment the start operation returns, the Recording status will be <i>started</i>. A Recording in this status cannot be stopped. It does not get triggered in CDR/Webhook [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged).</li><li style="color:inherit;margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="color:inherit;margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="color:inherit;margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3) this status means that the Recording has been successfully stored in the S3 bucket.</li><li style="color:inherit;margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul> The recording status will be `started` after calling the start operation and while the Recording is active. After calling stop operation, the status may be `stopped` or `ready` depending on the type of deployment of OpenVidu. OpenVidu CE will always return `ready` status. OpenVidu Pro will always return `stopped` status and properties `size`, `duration` and `url` will not have their final value defined yet. Listen to [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged) CDR/Webhook event to know when the Recording has reached `ready` status in this case |
 
 ---
 
@@ -666,7 +666,7 @@ A Recording represents the recording process of a Session.
 
 ##### Description
 
-Start the recording of a Session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
+Start the recording of a Session. See [**Recording**](advanced-features/recording/) documentation.
 
 ##### Operation
 
@@ -698,24 +698,24 @@ Start the recording of a Session. See [**Recording**](advanced-features/recordin
 ```
 
 > - **session** _(mandatory String)_ : the sessionId belonging to the session you want to start recording.<br><br>
-> - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/RecordingEvent.html){:target="blank"}. If no name is provided, the video file will be named after `id` property of the recording.<br><br>
+> - **name** _(optional String)_ : the name you want to give to the video file. You can access this same property in openvidu-browser on [recordingEvents](api/openvidu-browser/classes/RecordingEvent.html). If no name is provided, the video file will be named after `id` property of the recording.<br><br>
 > - **outputMode** _(optional String)_ : record all streams in a single file in a grid layout or record each stream in its own separate file.
 >     - `COMPOSED`_(default)_ : when recording the session, all streams will be composed in the same file in a grid layout.
 >     - `INDIVIDUAL`: when recording the session, every stream is recorded in its own file.
->     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session. See [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording){:target="blank"} for further information. This output mode only applies when defined in the `defaultRecordingProperties` object when [initializing a Session](#post-session).<br><br>
+>     - `COMPOSED_QUICK_START` : same as `COMPOSED`, but the recording will start much quicker in exchange for a higher CPU usage during the lifespan of the session. See [Composed quick start recording](advanced-features/recording/#composed-quick-start-recording) for further information. This output mode only applies when defined in the `defaultRecordingProperties` object when [initializing a Session](#post-session).<br><br>
 > - **hasAudio** _(optional Boolean)_ : whether to record audio or not. Default to `true`<br><br>
 > - **hasVideo** _(optional Boolean)_ : whether to record video or not. Default to `true`<br><br>
 > - **recordingLayout** _(optional String. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the layout to be used in this recording.
 >     - `BEST_FIT`_(default)_ : a grid layout where all the videos are evenly distributed.
->     - `CUSTOM`: use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts){:target="blank"} section to learn how.
+>     - `CUSTOM`: use your own custom layout. See [Custom recording layouts](advanced-features/recording/#custom-recording-layouts) section to learn how.
 >     - Not available yet: `PICTURE_IN_PICTURE`, `VERTICAL_PRESENTATION`, `HORIZONTAL_PRESENTATION`<br><br>
-> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/){:target="blank"} `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).<br><br>
+> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom recording layout to be used if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/) `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).<br><br>
 > - **resolution** _(optional String. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the resolution of the recorded video file. It is a string indicating the width and height in pixels like this: `"1280x720"`. Values for both width and height must be between 100 and 1999. Default to `"1280x720"`.<br><br>
 > - **frameRate** _(optional Number. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the frame rate of the recorded video file. Minimum 1 and maximum 120. Default to 25.<br><br>
 > - **shmSize** _(optional Number. Only applies if `outputMode` is set to `COMPOSED` or `COMPOSED_QUICK_START` and `hasVideo` to true)_ : the amount of memory dedicated to the recording module in charge of this specific recording, in bytes. The default value is usually fine, but you can adjust it to your needs. Default to 536870912 (512 MB).<br><br>
-> - **ignoreFailedStreams** _(optional Boolean. Only applies if `outputMode` is set to `INDIVIDUAL`)_ : whether to ignore failed streams or not when starting the recording. For [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"}, by default all the streams available at the moment the recording process starts must be healthy and properly sending media. If some stream that should be sending media is broken, then the recording process fails after a 10s timeout. In this way your application is notified that some stream is not being recorded, so it can retry the process again. But you can disable this rollback behavior and simply ignore any failed stream, which will be susceptible to be recorded in the future if media starts flowing as expected at any point. The downside of this behavior is that you will have no guarantee that all streams present at the beginning of a recording are actually being recorded. Default to false.<br><br>
-> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
->     - An object with the Media Node selector to force the Media Node allocation of this recording. Only for composed recordings with video (see [Scalable composed recording](advanced-features/recording/#scalable-composed-recording){:target="blank"}). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the same Media Node as the one hosting the recorded session, which is the best option in terms of network traffic.<br><br>
+> - **ignoreFailedStreams** _(optional Boolean. Only applies if `outputMode` is set to `INDIVIDUAL`)_ : whether to ignore failed streams or not when starting the recording. For [INDIVIDUAL recording](advanced-features/recording/#individual-recording), by default all the streams available at the moment the recording process starts must be healthy and properly sending media. If some stream that should be sending media is broken, then the recording process fails after a 10s timeout. In this way your application is notified that some stream is not being recorded, so it can retry the process again. But you can disable this rollback behavior and simply ignore any failed stream, which will be susceptible to be recorded in the future if media starts flowing as expected at any point. The downside of this behavior is that you will have no guarantee that all streams present at the beginning of a recording are actually being recorded. Default to false.<br><br>
+> - **mediaNode** _(optional Object)_ <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+>     - An object with the Media Node selector to force the Media Node allocation of this recording. Only for composed recordings with video (see [Scalable composed recording](advanced-features/recording/#scalable-composed-recording)). Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the recording will be allocated in the same Media Node as the one hosting the recorded session, which is the best option in terms of network traffic.<br><br>
 
 ##### Returns
 
@@ -731,7 +731,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 | 404 | No session exists for the passed `session` body parameter |
 | 406 | The session has no connected participants |
 | 409 | The session is not configured for using MediaMode `ROUTED` or it is already being recorded |
-| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/) is set to `false` |
 
 <br>
 
@@ -741,7 +741,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 
 ##### Description
 
-Stop the recording of a Session. See [**Recording**](advanced-features/recording/){:target="blank"} documentation.
+Stop the recording of a Session. See [**Recording**](advanced-features/recording/) documentation.
 
 ##### Operation
 
@@ -762,7 +762,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 | 200 | The session has successfully stopped from being recorded |
 | 404 | No recording exists for the passed `RECORDING_ID` |
 | 406 | Recording has `starting` status. Wait until `started` status before stopping the recording |
-| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/) is set to `false` |
 
 <br>
 
@@ -792,7 +792,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 | - ||
 | 200 | The recording information has been successfully retrieved |
 | 404 | No recording exists for the passed `RECORDING_ID` |
-| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/) is set to `false` |
 
 <br>
 
@@ -831,7 +831,7 @@ Retrieve all Recordings from OpenVidu Server.
 |||
 | - ||
 | 200 | All the recording information has been successfully retrieved |
-| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/) is set to `false` |
 
 <br>
 
@@ -858,7 +858,7 @@ Delete a Recording. This will delete all of the recording files from disk.
 | 204 | All of the recording files have been successfully deleted from disk |
 | 404 | No recording exists for the passed `RECORDING_ID` |
 | 409 | The recording has `started` status. [Stop](#post-recording-stop) it before deletion |
-| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/){:target="blank"} is set to `false` |
+| 501 | OpenVidu Server recording module is disabled: `OPENVIDU_RECORDING` [configuration property](reference-docs/openvidu-config/) is set to `false` |
 
 <br>
 
@@ -866,7 +866,7 @@ Delete a Recording. This will delete all of the recording files from disk.
 
 ## The Media Node object
 
-Media Nodes represent each one of the worker instances of your OpenVidu Pro cluster. See [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}.
+Media Nodes represent each one of the worker instances of your OpenVidu Pro cluster. See [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture).
 
 <div style="
     display: table;
@@ -889,7 +889,7 @@ Media Nodes represent each one of the worker instances of your OpenVidu Pro clus
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -923,9 +923,9 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
 | connectionTime | Number | When OpenVidu Server established the connection with the Media Node, in UTC milliseconds |
 | disconnectionTime | Number | When OpenVidu Server lost its connection to the Media Node, in UTC milliseconds. Only available if `connected` is false |
 | load | Number | CPU load of the Media Node. Decimal number between 0.00 and 100.00 |
-| status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses){:target="blank"} |
+| status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses) |
 | sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object)<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
-| recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording){:target="blank"} <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording) <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 | kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 
 ---
@@ -953,7 +953,7 @@ The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>Op
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -974,7 +974,7 @@ Retrieve the information of a Media Node.
 
 | Parameter | Type | Default | Description |
 | --------- | ---- | --------| ----------- |
-| sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
+| sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object) |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
 > https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes/`MEDIA_NODE_ID`?sessions=false&recordings=true&extra-info=false
@@ -1017,7 +1017,7 @@ This operation returns a [**Media Node object**](#the-media-node-object).
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1038,7 +1038,7 @@ Retrieve the information of all Media Nodes.
 
 | Parameter | Type | Default | Description |
 | --------- | ---- | --------| ----------- |
-| sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object){:target="blank"} |
+| sessions | Boolean | false | Whether to return session information along Media Node information or not. Only sessions hosted in this Media Node will be retrieved. See [**Session object**](reference-docs/REST-API/#the-session-object) |
 | extra&#8209;info | Boolean | false | Whether to return extra information about the Media Node or not. Only for advanced users |
 
 > https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/media-nodes?sessions=false&recordings=true&extra-info=false
@@ -1090,7 +1090,7 @@ Retrieve the information of all Media Nodes.
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1117,7 +1117,7 @@ Add a new Media Node to the cluster.
 
 ##### Body
 
-Example for [On Premises deployments](deployment/pro/on-premises/){:target="_blank"}:
+Example for [On Premises deployments](deployment/pro/on-premises/):
 
 ```json
 {
@@ -1126,10 +1126,10 @@ Example for [On Premises deployments](deployment/pro/on-premises/){:target="_bla
 }
 ```
 
-> - **uri** _(mandatory String only for [On Premises deployments](deployment/pro/on-premises/){:target="_blank"})_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](deployment/pro/on-premises/){:target="_blank"}**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`.
-> - **environmentId** _(optional String only for [On Premises deployments](deployment/pro/on-premises/){:target="_blank"})_ : a custom environment id. This can help further identify your on premises Media Node.
+> - **uri** _(mandatory String only for [On Premises deployments](deployment/pro/on-premises/))_ : the websocket endpoint of a running Media Node. Should be something similar to `ws://media.server.ip:8888/kurento`. **This property is only necessary and is only taken into account [On Premises deployments](deployment/pro/on-premises/)**. For other deployment environments a new Media Node will be automatically launched completely ignoring parameter `uri`.
+> - **environmentId** _(optional String only for [On Premises deployments](deployment/pro/on-premises/))_ : a custom environment id. This can help further identify your on premises Media Node.
 
-Example for [AWS deployments](deployment/pro/aws/){:target="_blank"}:
+Example for [AWS deployments](deployment/pro/aws/):
 
 ```json
 {
@@ -1138,12 +1138,12 @@ Example for [AWS deployments](deployment/pro/aws/){:target="_blank"}:
 }
 ```
 
-> - **instanceType** _(optional String only for [AWS deployments](deployment/pro/aws/){:target="_blank"})_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. If not especified, value `AWS_INSTANCE_TYPE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro/aws/){:target="_blank"}**.
-> - **volumeSize** _(optional Number only for [AWS deployments](deployment/pro/aws/){:target="_blank"})_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. If not especified, value `AWS_VOLUME_SIZE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro/aws/){:target="_blank"}**.
+> - **instanceType** _(optional String only for [AWS deployments](deployment/pro/aws/))_ : a valid EC2 instance type. If specified, a Media Node will be created using the specified EC2 instance type. If not especified, value `AWS_INSTANCE_TYPE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro/aws/)**.
+> - **volumeSize** _(optional Number only for [AWS deployments](deployment/pro/aws/))_ : Volume size for the new Media Node in GB. If specified, the Media Node will be created with such disk volume size. If not especified, value `AWS_VOLUME_SIZE` in `/opt/openvidu/.env` will be used. **This property is only taken into account in [AWS deployments](deployment/pro/aws/)**.
 
 ##### Sample return
 
-This operation returns the created [**Media Node object**](#the-media-node-object). Most of its properties won't be defined until the Media Node reaches `running` status. You can user query param `wait=true` to wait until the Media Node is running before receiving the response, or you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="blank"} webhook event.
+This operation returns the created [**Media Node object**](#the-media-node-object). Most of its properties won't be defined until the Media Node reaches `running` status. You can user query param `wait=true` to wait until the Media Node is running before receiving the response, or you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) webhook event.
 
 ##### HTTP responses
 
@@ -1153,8 +1153,8 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
 | 400 | Problem with some body parameter |
 | 404 | The Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration... |
 | 409 | The Media Node was already registered in OpenVidu Server as part of the cluster |
-| 501 | The cluster is deployed [On Premises](deployment/pro/on-premises/){:target="_blank"} and no `uri` parameter was passed in the body request |
-| 502 | The process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/){:target="_blank"}, where instances require to be previously launched |
+| 501 | The cluster is deployed [On Premises](deployment/pro/on-premises/) and no `uri` parameter was passed in the body request |
+| 502 | The process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/), where instances require to be previously launched |
 
 <br>
 
@@ -1183,7 +1183,7 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1217,7 +1217,7 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 | 204 | The Media Node was successfully removed |
 | 404 | No Media Node exists for the passed `MEDIA_NODE_ID` |
 | 409 | If query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all |
-| 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/){:target="blank"}, where instances require manual shut down |
+| 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/), where instances require manual shut down |
 
 <br>
 
@@ -1246,13 +1246,13 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
 ##### Description
 
-Modify the status of a Media Node. This method allows you to manually transition a Media Node through its [statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"}.
+Modify the status of a Media Node. This method allows you to manually transition a Media Node through its [statuses](openvidu-pro/scalability/#media-node-statuses).
 
 ##### Operation
 
@@ -1270,7 +1270,7 @@ Modify the status of a Media Node. This method allows you to manually transition
 }
 ```
 
-> - **status** _(mandatory String)_ : new desired status of the Media Node. Valid values are `canceled` (from `launching` status), `launching` (from `canceled` status), `waiting-idle-to-terminate` (from `running` status), `running` (from `waiting-idle-to-terminate`) and `terminating` (from both `running` and `waiting-idle-to-terminate`). Visit **[Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"}** to understand the Media Node lifecycle
+> - **status** _(mandatory String)_ : new desired status of the Media Node. Valid values are `canceled` (from `launching` status), `launching` (from `canceled` status), `waiting-idle-to-terminate` (from `running` status), `running` (from `waiting-idle-to-terminate`) and `terminating` (from both `running` and `waiting-idle-to-terminate`). Visit **[Media Node statuses](openvidu-pro/scalability/#media-node-statuses)** to understand the Media Node lifecycle
 
 ##### Sample return
 
@@ -1312,7 +1312,7 @@ This operation returns the modified [**Media Node object**](#the-media-node-obje
     padding-left: 20px;
     padding-right: 20px;
     ">
-The Media Node API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+The Media Node API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1397,17 +1397,17 @@ Generate a token for a Session. This token must be sent to the client side to be
 ```
 
 > - **session** _(mandatory String)_ : the sessionId for which the token should be associated.<br><br>
-> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description)_
+> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description)_
 >     - `SUBSCRIBER`
 >     - `PUBLISHER` _(default)_
 >     - `MODERATOR`<br><br>
 > - **data** _(optional String)_ : metadata associated to this token. Usually participant's information.<br><br>
 > - **kurentoOptions** _(optional Object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
->     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
->     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.<br><br>
->     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
->     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.<br><br>
->     - **allowedFilters** _(optional array of strings)_ : names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/){:target="blank"}).
+>     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
+>     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.<br><br>
+>     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
+>     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.<br><br>
+>     - **allowedFilters** _(optional array of strings)_ : names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/)).
 
 ##### Returns
 
@@ -1438,14 +1438,14 @@ This operation returns a Token object:
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/Session.html#connect){:target="blank"} |
+| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/Session.html#connect) |
 | token | String | Same value as `id` |
 | connectionId | String | Connection identifier that will be assigned to the user consuming this token |
 | createdAt | Number | Time when the token was created in UTC milliseconds |
 | session | String | Identifier of the session for which this token is valid |
-| role | String | Role of the token. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html){:target="blank"} section of OpenVidu Node Client for a complete description |
+| role | String | Role of the token. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description |
 | data | String | Metadata associated to this token. Usually participant's information |
-| record | Boolean | Whether the streams published by the participant owning this token will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection){:target="_blank"} <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
+| record | Boolean | Whether the streams published by the participant owning this token will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
 | kurentoOptions | Object | Configuration properties for the participant owning this token regarding Kurento. See a complete description of them in the body of [POST /openvidu/api/tokens](#body_1) |
 
 ##### HTTP responses
@@ -1478,7 +1478,7 @@ Force the unpublishing of a media stream from a Session. The stream belongs to a
 
 |||
 | - ||
-| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html){:target="blank"} event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
+| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html) event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
 | 400 | No session exists for the passed `SESSION_ID` |
 | 404 | No stream exists for the passed `STREAM_ID` |
 | 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-connection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-connection) |
@@ -1491,7 +1491,7 @@ Force the unpublishing of a media stream from a Session. The stream belongs to a
 
 ##### Description
 
-Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/Session.html#signal){:target="blank"}.
+Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/Session.html#signal).
 
 ##### Operation
 
@@ -1534,7 +1534,7 @@ Send a signal to a Session, to specific [Connections](#the-connection-object) or
 
 ##### Description
 
-Retrieve current [OpenVidu configuration](reference-docs/openvidu-config/){:target="blank"}.
+Retrieve current [OpenVidu configuration](reference-docs/openvidu-config/).
 
 ##### Operation
 
@@ -1546,7 +1546,7 @@ Retrieve current [OpenVidu configuration](reference-docs/openvidu-config/){:targ
 
 ##### Returns
 
-Returns an object with the current [OpenVidu configuration](reference-docs/openvidu-config/){:target="blank"}. This is an example of the object returned by OpenVidu CE:
+Returns an object with the current [OpenVidu configuration](reference-docs/openvidu-config/). This is an example of the object returned by OpenVidu CE:
 
 ```json
 {
@@ -1579,7 +1579,7 @@ Returns an object with the current [OpenVidu configuration](reference-docs/openv
 }
 ```
 
-This is an example of an object returned by OpenVidu Pro. It includes all properties of [OpenVidu CE configuration](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-ce){:target="blank"} and others unique to [OpenVidu Pro configuration](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro){:target="blank"}:
+This is an example of an object returned by OpenVidu Pro. It includes all properties of [OpenVidu CE configuration](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-ce) and others unique to [OpenVidu Pro configuration](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro):
 
 ```json
 {
@@ -1670,13 +1670,13 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
     padding-left: 20px;
     padding-right: 20px;
     ">
-Health API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+Health API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
 ##### Description
 
-Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is healthy if Master Node is up and there is at least one Media Node running and connected to the cluster (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}).
+Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is healthy if Master Node is up and there is at least one Media Node running and connected to the cluster (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture)).
 
 ##### Operation
 
@@ -1732,7 +1732,7 @@ Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is 
     padding-left: 20px;
     padding-right: 20px;
     ">
-Restart API is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+Restart API is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1780,7 +1780,7 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 }
 ```
 
-> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/){:target="blank"} and [OpenVidu Pro configuration properties](reference-docs/openvidu-config){:target="blank"}. All of them are optional. Not all properties can be modified this way. Others require a manual update. The complete list of available properties to be modified with this method is listed below. Visit the configuration docs for a detailed description of each one of them.
+> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/) and [OpenVidu Pro configuration properties](reference-docs/openvidu-config). All of them are optional. Not all properties can be modified this way. Others require a manual update. The complete list of available properties to be modified with this method is listed below. Visit the configuration docs for a detailed description of each one of them.
 >
 > ---
 >

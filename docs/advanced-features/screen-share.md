@@ -21,7 +21,7 @@ The following desktop platforms support screen sharing (mobile platforms do not 
 
 ### Chrome, Opera, Firefox, Safari, Edge
 
-To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](cheatsheet/publish-unpublish){:target="_blank"}** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
+To share your screen instead of your webcam, the process is exactly the same as stated in **[Publish a stream](cheatsheet/publish-unpublish)** section, but setting to _"screen"_ `videoSource` property when initializing a Publisher object:
 
 ```javascript
 var OV = new OpenVidu();
@@ -50,7 +50,7 @@ getToken().then((token) => {
 
 ```
 
-> This code requires relatively modern versions of browsers (from the beginning of 2019). After so much time we can assume that an overwhelming majority of users will not have a version of these browsers from years ago. But if for any reason you want to support Chrome and Firefox from before 2019, please visit and [old version](https://docs.openvidu.io/en/2.16.0/advanced-features/screen-share/){:target="_blank"} of this same documentation to see how.
+> This code requires relatively modern versions of browsers (from the beginning of 2019). After so much time we can assume that an overwhelming majority of users will not have a version of these browsers from years ago. But if for any reason you want to support Chrome and Firefox from before 2019, please visit and [old version](https://docs.openvidu.io/en/2.16.0/advanced-features/screen-share/) of this same documentation to see how.
 
 ### Desktop Electron apps
 
@@ -80,7 +80,7 @@ desktopCapturer.getSources({
 });
 ```
 
-You can check out [openvidu-electron tutorial](tutorials/openvidu-electron/){:target="_blank"}, which includes a fully functional screen selector dialog.
+You can check out [openvidu-electron tutorial](tutorials/openvidu-electron/), which includes a fully functional screen selector dialog.
 
 <br>
 

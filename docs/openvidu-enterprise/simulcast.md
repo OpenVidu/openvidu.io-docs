@@ -132,7 +132,7 @@ Simulcast can only be used with the **VP8** and **H.264** video codecs. Enabling
 
 This table summarizes compatibility of different platforms with the simulcast feature. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
 
-For a similar table that shows compatibility with all non-simulcast video codecs supported by OpenVidu, check the [media codecs compatibility table](advanced-features/media-codecs/#codec-compatibility){:target="_blank"}.
+For a similar table that shows compatibility with all non-simulcast video codecs supported by OpenVidu, check the [media codecs compatibility table](advanced-features/media-codecs/#codec-compatibility).
 
 |             | Simulcast VP8 | Simulcast H.264 |
 |-------------|---------------|-----------------|
@@ -171,7 +171,7 @@ For a similar table that shows compatibility with all non-simulcast video codecs
 
 ### Recording compatibility
 
-OpenVidu's [Recording](advanced-features/recording/){:target="_blank"} feature works the same with or without simulcast enabled. Note however, what the [INDIVIDUAL recording](advanced-features/recording/#individual-recording){:target="_blank"} does is just to dump all media received by the media server as-is into a file; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the resolution or framerate of the recording. Such abrupt changes most probably won't cause any issues, and we were able to check that popular programs work fine, such as VLC, MPlayer, FFmpeg, etc.
+OpenVidu's [Recording](advanced-features/recording/) feature works the same with or without simulcast enabled. Note however, what the [INDIVIDUAL recording](advanced-features/recording/#individual-recording) does is just to dump all media received by the media server as-is into a file; if (when) a Publisher stops sending a simulcast layer, this will cause an abrupt change in the resolution or framerate of the recording. Such abrupt changes most probably won't cause any issues, and we were able to check that popular programs work fine, such as VLC, MPlayer, FFmpeg, etc.
 
 
 ### Default layer settings {: #layer-settings }

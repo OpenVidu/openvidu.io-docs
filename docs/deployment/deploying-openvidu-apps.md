@@ -14,7 +14,7 @@ When deploying OpenVidu platform for production the [OpenVidu Call](https://open
 https://DOMAIN_OR_PUBLIC_IP/
 ```
 
-If you set a custom port in property `HTTPS_PORT` as defined in [configuration properties](reference-docs/openvidu-config/){:target="_blank"}, the URL will be:
+If you set a custom port in property `HTTPS_PORT` as defined in [configuration properties](reference-docs/openvidu-config/), the URL will be:
 
 ```console
 https://DOMAIN_OR_PUBLIC_IP:HTTPS_PORT/
@@ -104,7 +104,7 @@ You will have to control the lifecyle of your application, usually installing it
 
 If you prefer to deploy the application in a different port, just take into account the following aspects:
 
-- You can configure OpenVidu platform in any port with [configuration param](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`, freeing default 443 if that's what you want.
+- You can configure OpenVidu platform in any port with [configuration param](reference-docs/openvidu-config/) `HTTPS_PORT`, freeing default 443 if that's what you want.
 - If you are using Let's Encrypt in OpenVidu platform, you can not change `HTTP_PORT` (by default to 80). If you change it, Let's Encrypt won't work properly when SSL certificate is going to be renewed.
 - Just publish your application in the port you want, but make sure this port is HTTPS, as secure protocol is mandatory for WebRTC applications.
 - OpenVidu platform URL has to be configured to `http://localhost:5443`
