@@ -128,45 +128,45 @@ This penalty on Publishers is generally considered worth it, because simulcast a
 
 ## Codec compatibility table {: #codec-compatibility }
 
-Simulcast can be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
+Simulcast can only be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
 
-Compatibility also varies a lot across platforms and applications. This table shows that the best results are obtained with VP8, but even that shows issues on some web browsers:
+This table summarizes compatibility of different platforms with the simulcast feature. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
+
+For a similar table that shows compatibility with all non-simulcast video codecs supported by OpenVidu, check the [media codecs compatibility table](advanced-features/media-codecs/#codec-compatibility){:target="_blank"}.
 
 |             | Simulcast VP8 | Simulcast H.264 |
-| ----------- | ------------- | --------------- |
+|-------------|---------------|-----------------|
 | **WINDOWS** |               |                 |
 | Chrome      | ✔ 98          | ✔ 98            |
 | Firefox     | ✔ 97          | ✔ 97            |
-| Opera       | ✔ 83          | ✖ 83 [2]        |
+| Opera       | ✔ 84          | ✖ 84 [1]        |
 | Edge        | ✔ 98          | ✔ 98            |
-| **LINUX**   | ------------- | --------------- |
+| **LINUX**   |               |                 |
 | Chrome      | ✔ 98          | ✔ 98            |
 | Firefox     | ✔ 97          | ✔ 97            |
-| Opera       | ✔ 83          | ✖ 83 [2]        |
+| Opera       | ✔ 84          | ✖ 84 [1]        |
 | Edge        | ✔ 98          | ✔ 98            |
-| **ANDROID** | ------------- | --------------- |
-| Chrome      | ✔ 98          | ✖ 98 [2]        |
-| Firefox     | ✔ 97          | ✖ 97 [2]        |
-| Opera       | ✔ 67          | ✖ 67 [2]        |
-| Edge        | ✖ 97 [1]      | ✖ 97 [2]        |
-| Samsung     | ✔ 16          | ✖ 16 [2]        |
-| **MACOS**   | ------------- | --------------- |
+| **ANDROID** |               |                 |
 | Chrome      | ✔ 98          | ✔ 98            |
-| Firefox     | ✔ 96          | ✖ 97 [3]        |
-| Opera       | ✔ 83          | ✖ 83 [1]        |
+| Firefox     | ✔ 97          | ✔ 97            |
+| Opera       | ✔ 67          | ✔ 67            |
+| Edge        | ✖ 98 [1]      | ✖ 98 [1]        |
+| Samsung     | ✔ 16.0        | ✔ 16.0          |
+| **MACOS**   |               |                 |
+| Chrome      | ✔ 98          | ✔ 98            |
+| Firefox     | ✔ 97          | ✔ 97            |
+| Opera       | ✔ 84          | ✔ 84            |
 | Edge        | ✔ 98          | ✔ 98            |
 | Safari      | ✔ 15.1        | ✔ 15.1          |
-| **IOS**     | ------------- | --------------- |
-| [4]         |               |                 |
-
+| **IOS**     |               |                 |
+| Chrome      | ✔ 98          | ✔ 98            |
+| Firefox     | ✔ 97          | ✔ 97            |
+| Opera       | ✔ 3.2.9       | ✔ 3.2.9         |
+| Edge        | ✔ 98          | ✔ 98            |
+| Safari      | ✔ 15.3        | ✔ 15.3          |
+<!-- Markdown Tables Generator: https://www.tablesgenerator.com/markdown_tables -->
 
 [1]: Remote video is black. The client is unable to decode incoming video.
-
-[2]: [1] + Local video is not viewable on some remote clients (Firefox, Opera), however for some reason it can be viewed in others (Chrome, Edge).
-
-[3]: Local video is not even sent. The media server complains with error messages such as "*RTP inactivity detected*".
-
-[4]: Compatibility tests on iOS platforms will be incorporated soon to this table.
 
 
 ### Recording compatibility
