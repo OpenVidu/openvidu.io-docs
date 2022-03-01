@@ -333,6 +333,13 @@ A Connection represents each one of the users connected to a Session. You must c
             "streamId": "str_MIC_JSXs_con_OV0CsFsykJ",
             "createdAt": 1538482000856
         }
+    ],
+    "customIceServers": [
+        {
+            "url": "turn:turn-domain.com:443",
+            "username": "usertest",
+            "credential": "userpass"
+        }
     ]
 }
 ```
@@ -355,6 +362,7 @@ A Connection represents each one of the users connected to a Session. You must c
 | record <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | Boolean | Whether the streams published by this Connection will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection){:target="_blank"} |
 | role | String | **Only for `type=WEBRTC`**. Role of the Connection |
 | kurentoOptions | Object | **Only for `type=WEBRTC`**. Configuration properties applied to the streams of this Connection, regarding Kurento |
+| customIceServers | Array of Objects | **Only for `type=WEBRTC`**. Collection of IceServer objects specified on the creation of the connection. By default, if this parameter was not specified in its creation, it will return an empty list. Each one has the following properties: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px">url (String): Url of the custom STUN/TURN configured.</li><li style="color:inherit;margin-bottom:4px;margin-top:4px">username (Optional String): Specified username for TURN configured.</li><li style="color:inherit;margin-bottom:4px;margin-top:4px">credential (Optional String): Specified credential for TURN configured.</li></ul> |
 | rtspUri | String | **Only for `type=IPCAM`**. RTSP URI of the IP camera |
 | adaptativeBitrate | Boolean | **Only for `type=IPCAM`**. Whether to use adaptative bitrate (and therefore adaptative quality) or not |
 | onlyPlayWithSubscribers | Boolean | **Only for `type=IPCAM`**. Whether to enable the IP camera stream only when some user is subscribed to it, or not |
@@ -394,7 +402,14 @@ For a regular user Connection (type `WEBRTC`)
         "videoMaxSendBandwidth": 1000,
         "videoMinSendBandwidth": 300,
         "allowedFilters": [ "GStreamerFilter", "ZBarFilter" ]
-    }
+    },
+    "customIceServers": [
+        {
+            "url": "turn:turn-domain.com:443",
+            "username": "usertest",
+            "credential": "userpass"
+        }
+    ]
 }
 ```
 
@@ -425,6 +440,10 @@ For an IP camera Connection (type `IPCAM`)
 >     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the Connection will be able to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the Connection. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
 >     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the Connection will try to send to Kurento Media Server per publisher stream. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config){:target="blank"}_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the Connection.<br><br>
 >     - **allowedFilters** _(optional array of strings)_ : names of the filters the Connection will be able to apply to its published streams (see [Voice and video filters](advanced-features/filters/){:target="blank"}).<br><br>
+> - **customIceServers** _(optional Array of Objects)_ : only for type `WEBRTC`. By default OpenVidu uses its own TURN/STUN server in its deployments, but you can use a custom ICE Server (STUN/TURN server) if you wish by setting those in this parameter. The objects inside of the array has these properties<br><br>
+>     - **url** _(mandatory String)_ : Url of the custom STUN/TURN configured.<br><br>
+>     - **username** _(Optional with STUN, mandatory with TURN. String)_ : Specified username for TURN configured.<br><br>
+>     - **credential** _(Optional with STUN, mandatory with TURN. String)_ : Specified username for TURN configured.<br><br>
 > - **rtspUri** _(mandatory String if property `type` is `IPCAM`)_ : only for type `IPCAM`. RTSP URI of the IP camera. For example: `rtsp://your.camera.ip:7777/path`<br><br>
 > - **adaptativeBitrate** _(optional Boolean)_ : only for type `IPCAM`. Whether to use adaptative bitrate (and therefore adaptative quality) or not. For local network connections that do not require media transcoding this can be disabled to save CPU power. If you are not sure if transcoding might be necessary, setting this property to false **may result in media connections not being established**. Default to `true`<br><br>
 > - **onlyPlayWithSubscribers** _(optional Boolean)_ : only for type `IPCAM`. Enable the IP camera stream only when some user is subscribed to it. This allows you to reduce power consumption and network bandwidth in your server while nobody is asking to receive the camera's video. On the counterpart, first user subscribing to the IP camera stream will take a little longer to receive its video. Default to `true`<br><br>
