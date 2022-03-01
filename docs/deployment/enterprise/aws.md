@@ -1,7 +1,7 @@
 <h2 id="section-title">Deploying OpenVidu Enterprise in AWS</h2>
 <hr>
 
-- **[Regular deployment](#regular-deployment)**
+- **[Standard deployment](#regular-deployment)**
 - **[High Availability deployment](#high-availability-deployment)**
     - **[Deployment](#deployment)**
         - [1) Previous requirements](#1-previous-requirements)
@@ -30,23 +30,14 @@
 ## Regular deployment
 
 <br>
-OpenVidu Enterprise is very easy to enable from an existing OpenVidu Pro deployment. While in beta, you just need an **OpenVidu Pro** cluster up and running. If you don't have an **OpenVidu Pro** cluster yet, follow the instructions to [Deploy OpenVidu Pro in AWS](deployment/pro/aws){:target="_blank"}.
+OpenVidu Enterprise with a single master node (Standard deployment) can be deployed with the [same Cloudformation used for OpenVidu PRO](deployment/pro/aws)
 
-To change from **OpenVidu Pro** to **OpenVidu Enterprise** you just need to:
+You just need to specify `enterprise` at the OpenVidu Edition section while deploying the Cloudformation.
 
-**1)** Configure the following property in the **`.env`** file at your Master Node installation path (default to `/opt/openvidu/`):
-```
-OPENVIDU_EDITION=enterprise
-```
+<p>
+    <img class="img-responsive deploy-img" src="img/docs/deployment/openvidu_edition_CF.png">
+</p>
 
-**2)** Restart OpenVidu as usually:
-```
-sudo su
-cd /opt/openvidu
-./openvidu start
-```
-
-**3)** That's it, now you're running OpenVidu Enterprise with a unique master node!. All documentation related with administration, OpenVidu configuration, etc... which are present in the [OpenVidu Pro AWS Deployment documentation](deployment/pro/aws){:target="_blank"} applies to OpenVidu Enterprise with a Single Master Node.
 
 <br><hr>
 
