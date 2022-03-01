@@ -8,61 +8,6 @@
 
 ---
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0 0 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-      OpenVidu Enterprise is currently in <strong>beta</strong>. As long as it remains in beta:
-      <ul style="margin-top: 6px">
-        <li style="color: inherit">It is completely free of charge. You can try it for free.</li>
-        <li style="color: inherit">There are some <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
-        <li style="color: inherit">There may be unexpected bugs.</li>
-      </ul>
-</div>
-</div>
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
-</div>
-</div>
-
 ## OpenVidu Enterprise High Availability architecture
 
 OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}.
@@ -94,9 +39,10 @@ OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deplo
 
 ## Beta limitations
 
-- [Recording](advanced-features/recording/){:target="_blank"} is not available yet in OpenVidu Enterprise High Availability. This requires further work to be completely supported, which will be in an upcoming release.
 - Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it. Take a look to [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo application to see how to easily do it.
 -  All API REST requests beginning with `/api` are no longer supported. All requests using this deployment must use `openvidu/api/` instead. These REST API requests [was announced as deprecated since version 2.16.0](releases/#breaking-changes_3)
+
+<br>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

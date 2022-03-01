@@ -272,7 +272,7 @@ a.try-now-btn {
 
 .last-table-col i {
     font-size: 18px;
-    color: #0088aa;
+    color: #4d4d4d;
 }
 
 ul.top-ul > li.subnav_drop > div > span {
@@ -1075,6 +1075,14 @@ table.table-pricing {
     font-size: 17px;
     color: #4d4d4d;
     margin-left: 8px;
+}
+
+a .pricing-table-icon-info {
+    color: #007492;
+}
+
+.icon-info-right {
+    float: right;
 }
 
 .pricing-table-icon.ion-checkmark {

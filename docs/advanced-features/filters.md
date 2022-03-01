@@ -2,6 +2,7 @@
 
 OpenVidu API offers a simple way of applying filters to video and audio streams in the server side by making use of Kurento Media Server capabilities. This is the current status of filter support in OpenVidu:
 
+- Real time filters are only available for **Kurento Media Server**. OpenVidu Enterprise edition supports mediasoup as media server, and audio and video filters are not compatible with it.
 - You can apply **one filter at a time to a published Stream**. Every user subscribed to it will receive the modified stream.
 - You can **remove an applied filter**.
 - You can **call any remote method** offered by an applied filter

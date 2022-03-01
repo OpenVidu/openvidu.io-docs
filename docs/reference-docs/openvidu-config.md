@@ -11,14 +11,14 @@ These properties may be set:
 
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</span>](#configuration-parameters-for-openvidu-ce)**<div style="margin-bottom: 5px"></div>
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span>](#configuration-parameters-for-openvidu-pro)**<div style="margin-bottom: 5px"></div>
-<!-- - **[Configuration parameters for OpenVidu Enterprise](#configuration-parameters-for-openvidu-enterprise)**<a href="openvidu-enterprise/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>-->
+- **[Configuration parameters for OpenVidu Enterprise](#configuration-parameters-for-openvidu-enterprise)**<a href="openvidu-enterprise/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
 - **[Special conditions of OpenVidu development container](#special-conditions-of-openvidu-development-container)**
 
 ---
 
 ### Configuration parameters for OpenVidu CE
 
-These configuration parameters apply to both OpenVidu CE and OpenVidu Pro.
+These configuration parameters apply to OpenVidu CE, OpenVidu Pro and OpenVidu Enterprise.
 
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
@@ -56,30 +56,7 @@ These configuration parameters apply to both OpenVidu CE and OpenVidu Pro.
 
 ### Configuration parameters for OpenVidu Pro
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-These configuration parameters are part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
-</div>
-</div>
+These configuration parameters apply to OpenVidu Pro and OpenVidu Enterprise.
 
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
@@ -121,32 +98,9 @@ These configuration parameters are part of <a href="openvidu-pro/" target="_blan
 
 ---
 
-<!--### Configuration parameters for OpenVidu Enterprise
+### Configuration parameters for OpenVidu Enterprise
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-These configuration parameters are part of <a href="openvidu-enterprise/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> tier.
-</div>
-</div>
+These configuration parameters apply only to OpenVidu Enterprise.
 
 | Parameter       | Description                               | Default value                                      |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
@@ -155,7 +109,6 @@ These configuration parameters are part of <a href="openvidu-enterprise/" target
 <br>
 
 ---
--->
 
 ### Special conditions of OpenVidu development container
 
