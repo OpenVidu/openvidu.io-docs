@@ -1,7 +1,7 @@
 <h2 id="section-title">Deploying OpenVidu Enterprise in AWS</h2>
 <hr>
 
-- **[Standard deployment](#regular-deployment)**
+- **[Single master deployment](#regular-deployment)**
 - **[High Availability deployment](#high-availability-deployment)**
     - **[Deployment](#deployment)**
         - [1) Previous requirements](#1-previous-requirements)
@@ -27,7 +27,7 @@
 
 ---
 
-## Regular deployment
+## Single master deployment
 
 <br>
 OpenVidu Enterprise with a single master node (Standard deployment) can be deployed with the [same Cloudformation used for OpenVidu PRO](deployment/pro/aws)
