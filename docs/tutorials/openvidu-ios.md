@@ -34,7 +34,7 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     padding-left: 20px;
     padding-right: 20px;
     ">
-	 OpenVidu does not provide an iOS client SDK yet, so this application directly implements <a href="developing/rpc/">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
+	 OpenVidu does not provide an iOS client SDK yet, so this application directly implements <a href="developing/rpc/" target="_blank">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
 </div>
 </div>
 

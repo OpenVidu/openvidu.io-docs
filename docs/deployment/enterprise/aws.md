@@ -48,7 +48,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-<strong>NOTE</strong>: OpenVidu Enterprise is free while in BETA! Check <a href="openvidu-enterprise/">OpenVidu Enterprise</a> for more information. When the beta period officially ends, <strong>you will no longer be able to use your OpenVidu Enterprise cluster</strong>. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running. A final release version of OpenVidu Enterprise edition will replace this beta version.
+<strong>NOTE</strong>: OpenVidu Enterprise is free while in BETA! Check <a href="openvidu-enterprise/" target="_blank">OpenVidu Enterprise</a> for more information. When the beta period officially ends, <strong>you will no longer be able to use your OpenVidu Enterprise cluster</strong>. We will notify through all our official channels before suspending the beta, which will result in the automatic shutdown of any OpenVidu Enterprise cluster running. A final release version of OpenVidu Enterprise edition will replace this beta version.
 </div>
 </div>
 
@@ -57,14 +57,14 @@
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    Remember that this is a Free BETA, and it is still in development. Check <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations">OpenVidu Enterprise beta limitations.</a>
+    Remember that this is a Free BETA, and it is still in development. Check <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations" target="_blank">OpenVidu Enterprise beta limitations.</a>
   </div>
 </div>
 
 ## Regular deployment
 
 <br>
-OpenVidu Enterprise is very easy to enable from an existing OpenVidu Pro deployment. While in beta, you just need an **OpenVidu Pro** cluster up and running. If you don't have an **OpenVidu Pro** cluster yet, follow the instructions to [Deploy OpenVidu Pro in AWS](deployment/pro/aws).
+OpenVidu Enterprise is very easy to enable from an existing OpenVidu Pro deployment. While in beta, you just need an **OpenVidu Pro** cluster up and running. If you don't have an **OpenVidu Pro** cluster yet, follow the instructions to [Deploy OpenVidu Pro in AWS](deployment/pro/aws){:target="_blank"}.
 
 To change from **OpenVidu Pro** to **OpenVidu Enterprise** you just need to:
 
@@ -80,14 +80,14 @@ cd /opt/openvidu
 ./openvidu start
 ```
 
-**3)** That's it, now you're running OpenVidu Enterprise with a unique master node!. All documentation related with administration, OpenVidu configuration, etc... which are present in the [OpenVidu Pro AWS Deployment documentation](deployment/pro/aws) applies to OpenVidu Enterprise with a Single Master Node.
+**3)** That's it, now you're running OpenVidu Enterprise with a unique master node!. All documentation related with administration, OpenVidu configuration, etc... which are present in the [OpenVidu Pro AWS Deployment documentation](deployment/pro/aws){:target="_blank"} applies to OpenVidu Enterprise with a Single Master Node.
 
 <br><hr>
 
 ## High Availability deployment
 <br>
 
-OpenVidu Enterprise can be deployed with multiple Master nodes to have High Availability and be fault tolerant. In this section, we will explain step by step, how to deploy OpenVidu Enterprise with such capabilities. If you want to read more about OpenVidu Enterprise High Availability architecture, check it out [here](openvidu-enterprise/high-availability).
+OpenVidu Enterprise can be deployed with multiple Master nodes to have High Availability and be fault tolerant. In this section, we will explain step by step, how to deploy OpenVidu Enterprise with such capabilities. If you want to read more about OpenVidu Enterprise High Availability architecture, check it out [here](openvidu-enterprise/high-availability){:target="_blank"}.
 
 ### Deployment
 
@@ -105,8 +105,8 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 - **A FQDN (Fully Qualified Domain Name)**. The domain name will be configured at the end of the instructions to point to the Load Balancer URL created by the CloudFormation Stack.
 - **A valid certificate for your FQDN installed in AWS**. The CloudFormation automatically launches a Load Balancer to be used as entry point to the OpenVidu cluster. The CloudFormation needs the ARN of the certificate as a parameter.
-- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
-- **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
+- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services){:target="_blank"} on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user){:target="_blank"} user.
 
 #### 2) Access to the console of AWS Cloud Formation
 
@@ -411,7 +411,7 @@ You can check that master nodes are deployed correctly if:
 <br>
 **1.3) Check Openvidu API Load Balancing:**
 
-Execute a GET request to [/openvidu/api/config](reference-docs/REST-API/#get-config). You can do this with `curl`:
+Execute a GET request to [/openvidu/api/config](reference-docs/REST-API/#get-config){:target="_blank"}. You can do this with `curl`:
 
 ```
 curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/config
@@ -443,7 +443,7 @@ As media nodes are not attached to any Load Balancer, the health of these nodes 
 
 **2.3) Check OpenVidu has registered all media nodes**:
 
-Execute a GET request to [/openvidu/api/media-nodes](reference-docs/REST-API/#get-all-medianodes) for more information about this request). You can do this with `curl`:
+Execute a GET request to [/openvidu/api/media-nodes](reference-docs/REST-API/#get-all-medianodes){:target="_blank"} for more information about this request). You can do this with `curl`:
 
 ```
 curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/media-nodes
@@ -481,7 +481,7 @@ Technically, you can connect to any instance through SSH, but this could lead to
 
 #### 1) Change the configuration via API Rest (Recommended)
 
-While OpenVidu Enterprise is running, you can change some parameters of OpenVidu by calling [/openvidu/api/restart](reference-docs/REST-API/#post-restart). All OpenVidu master nodes will restart automatically and the configuration will be persisted in an S3 bucket. All modifiable parameters are [documented](reference-docs/REST-API/#body_8).
+While OpenVidu Enterprise is running, you can change some parameters of OpenVidu by calling [/openvidu/api/restart](reference-docs/REST-API/#post-restart){:target="_blank"}. All OpenVidu master nodes will restart automatically and the configuration will be persisted in an S3 bucket. All modifiable parameters are [documented](reference-docs/REST-API/#body_8){:target="_blank"}.
 
 </br>
 
@@ -495,7 +495,7 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
     </div>
 </div>
 
-**2.2) Modify the .env configuration in the S3 bucket**: In this S3 bucket you will see a file named `.env`. Any change you want to do which is not possible to do using the API Rest request to [/openvidu/api/restart](reference-docs/REST-API/#post-restart) will be done by modifying the content of the `.env` file in this S3 bucket.
+**2.2) Modify the .env configuration in the S3 bucket**: In this S3 bucket you will see a file named `.env`. Any change you want to do which is not possible to do using the API Rest request to [/openvidu/api/restart](reference-docs/REST-API/#post-restart){:target="_blank"} will be done by modifying the content of the `.env` file in this S3 bucket.
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">

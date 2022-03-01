@@ -25,7 +25,7 @@
       Be careful when upgrading your version of OpenVidu:
       <ul>
         <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.13.0 to 2.15.0, you must first go through 2.14.0.</li>
-        <li style="color: inherit">Read carefully the <a href="releases/"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
+        <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
       </ul>
 </div>
 </div>
@@ -85,7 +85,7 @@ Openvidu successfully upgraded to version VERSION
 Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-VERSION'.
 When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-VERSION'.
 
-3. If you were using Openvidu Call application, it has been automatically updated in file
+3. If you were using Openvidu Call application, it has been automatically updated in file 
 'docker-compose.override.yml'. However, if you were using your own application, a file called
 'docker-compose.override.yml-VERSION' has been created with the latest version of Openvidu Call.
 If you don't plan to use it you can delete it.
@@ -104,7 +104,7 @@ For further information, check readme.md
 - The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
 - Persistent data is preserved when upgrading. This means that all of your recordings will be available in the new version.
 - Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/) page.
+- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
 - In case you have **mobile applications**: the previous minor version of openvidu-browser is always compatible with the next minor version of openvidu-server. This way you can upgrade your openvidu-server while giving your clients time to update their applications. Applications using the previous and the new version of openvidu-browser can coexist in the new openvidu-server version. For example, if you upgrade openvidu-server to 2.16.0, it will work fine with applications using both openvidu-browser 2.15.0 and 2.16.0. Of course, you must notify your users to update their applications until all of them are using openvidu-browser 2.16.0.
 
 <br><br>

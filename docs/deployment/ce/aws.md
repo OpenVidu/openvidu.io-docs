@@ -188,7 +188,7 @@ That URL is the one to be used to consume OpenVidu REST API. Besides:
 - If you have deployed OpenVidu Call (see [Other configuration](#other-configuration)) you can also access to it through that same URL.
 - You can access OpenVidu Server dashboard to make a quick test of your deployment through `/dashboard`. Credentials to access to it are `OPENVIDUAPP` as username and your [OpenVidu secret](#openvidu-configuration) as password.
 
-You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications).
+You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications){:target="_blank"}.
 
 <br>
 
@@ -196,10 +196,10 @@ You can now add your own application to your instance. To learn how check out se
 
 ### 6. Administration
 
-AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/ce/on-premises/). This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH. Located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`) you will be able to:
+AWS deployments of OpenVidu CE are internally identical to [on premises deployments](deployment/ce/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH. Located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`) you will be able to:
 
-- Manage the services as explained in [on premises administration](deployment/ce/on-premises/#5-administration).
-- Update [OpenVidu configuration](reference-docs/openvidu-config) just by modifying `.env` file and restarting the services with `./openvidu restart` command.
+- Manage the services as explained in [on premises administration](deployment/ce/on-premises/#5-administration){:target="_blank"}.
+- Update [OpenVidu configuration](reference-docs/openvidu-config){:target="_blank"} just by modifying `.env` file and restarting the services with `./openvidu restart` command.
 
 <br>
 
@@ -246,7 +246,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 This scenario is meant for you if you want to:
 
-- Deploy OpenVidu for production or even developing purposes.
+- Deploy OpenVidu for production or even developing purposes. 
 - Deploy OpenVidu with a Fully Qualified Domain Name (FQDN).
 - Use a valid SSL certificate.
 
@@ -254,7 +254,7 @@ For this specific scenario you will need to:
 
 #### 2.1) Create an Elastic IP
 
-1. Go to your EC2 AWS section, and click here:
+1. Go to your EC2 AWS section, and click here: 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-example-lets-1" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
@@ -266,7 +266,7 @@ For this specific scenario you will need to:
         <a data-fancybox="gallery-example-lets-2" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
     </div>
 </div>
-3. This will generate an Elastic IP that you will be able to use for your OpenVidu deployment with letsencrypt
+3. This will generate an Elastic IP that you will be able to use for your OpenVidu deployment with letsencrypt 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-example-lets-3" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
@@ -278,7 +278,7 @@ For this specific scenario you will need to:
 This step will depend of the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. For the next steps, let's suppose that our domain is: **example.openvidu.io**.
 
 #### 2.3) Cloudformation parameters
-
+  
 Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
@@ -297,7 +297,7 @@ The important fields of this section are:
 
 This scenario is meant for you if you want to:
 
-- Deploy OpenVidu for production.
+- Deploy OpenVidu for production. 
 - Deploy OpenVidu with a Fully Qualified Domain Name (FQDN).
 - Use a valid SSL certificate from a **Commercial CA**.
 
@@ -307,7 +307,7 @@ For this specific scenario you will need to:
 
 To use this kind of certificate, you need to generate two files, `certificate.cert` (public keys of the certificate) and `certificate.key` (private key), and upload them to an HTTP server to make it available for the Cloudformation parameters. But first, follow these steps to generate these files: <br><br>
 
-**1)** Create a CSR and a private key. This can be easily done by executing:
+**1)** Create a CSR and a private key. This can be easily done by executing: 
 ```bash
 openssl req -newkey rsa:2048 -nodes -keyout certificate.key -out certificate.csr
 ```
@@ -391,7 +391,7 @@ It is very important after the deployment to invalidate the URLs created at step
 ### Common problems
 
 - [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
 - [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
 - [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
@@ -420,7 +420,7 @@ It is very important after the deployment to invalidate the URLs created at step
     padding-left: 20px;
     padding-right: 20px;
     ">
-  AWS deployments of OpenVidu CE work under the hood in the exact same manner as on premises deployments. So <strong>everything explained in <a href="deployment/ce/on-premises/#troubleshooting">Troubleshooting</a> section of on premises deployments also applies to AWS deployments</strong>. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
+  AWS deployments of OpenVidu CE work under the hood in the exact same manner as on premises deployments. So <strong>everything explained in <a href="deployment/ce/on-premises/#troubleshooting" target="_blank">Troubleshooting</a> section of on premises deployments also applies to AWS deployments</strong>. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
 </div>
 </div>
 

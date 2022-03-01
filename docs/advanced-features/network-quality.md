@@ -21,7 +21,7 @@
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -68,14 +68,14 @@ OpenVidu network quality is only available for <strong>PUBLISHERS</strong>. You 
 </div>
 </div>
 
-To be able to receive the network quality events in your application's client-side, you must enable [OpenVidu Pro configuration property](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) `OPENVIDU_PRO_NETWORK_QUALITY`. You can also set the frequency with which OpenVidu Server Pro will check the network quality of each participant with property `OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL`.
+To be able to receive the network quality events in your application's client-side, you must enable [OpenVidu Pro configuration property](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro){:target="_blank"} `OPENVIDU_PRO_NETWORK_QUALITY`. You can also set the frequency with which OpenVidu Server Pro will check the network quality of each participant with property `OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL`.
 
 ```properties
 OPENVIDU_PRO_NETWORK_QUALITY=true
 OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL=5
 ```
 
-After that, you can start receiving network quality events in the application's client side by adding listener **networkQualityLevelChanged** to the [Session object](api/openvidu-browser/classes/Session.html). This listener is able to receive events of type [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/NetworkQualityLevelChangedEvent.html).
+After that, you can start receiving network quality events in the application's client side by adding listener **networkQualityLevelChanged** to the [Session object](api/openvidu-browser/classes/Session.html){:target="_blank"}. This listener is able to receive events of type [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/NetworkQualityLevelChangedEvent.html){:target="_blank"}.
 
 ```javascript
 session.on('networkQualityLevelChanged', event => {
@@ -101,7 +101,7 @@ session.on('networkQualityLevelChanged', event => {
 
 ## Understanding the network quality level
 
-The [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/NetworkQualityLevelChangedEvent.html) provides a number between **0** and **5** in properties `newValue` and `oldValue` with the newest and previous value of the network quality level, respectively.
+The [NetworkQualityLevelChangedEvent](api/openvidu-browser/classes/NetworkQualityLevelChangedEvent.html){:target="_blank"} provides a number between **0** and **5** in properties `newValue` and `oldValue` with the newest and previous value of the network quality level, respectively.
 
 **The network quality level measures the strength of the network link, not the actual perception users will have of the video or audio**. This distinction is important to keep in mind: even in the face of a very bad network link, WebRTC contains very advanced mechanisms to try and adapt transmissions, but there is no guarantee that these mechanisms will be enough to provide a seamless experience. In the best case, nobody will notice and the video or audio streams will proceed with good quality as if nothing happened; otherwise, video and audio might suffer from choppiness, and overall quality degradation.
 

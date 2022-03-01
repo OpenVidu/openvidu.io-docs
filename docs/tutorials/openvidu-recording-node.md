@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-recording-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A simple Node application that uses [openvidu-node-client](reference-docs/openvidu-node-client/) to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/) documentation before diving into the tutorial.
+A simple Node application that uses [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"} to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/){:target="_blank"} documentation before diving into the tutorial.
 ## Understanding this tutorial
 
 <p align="center">
@@ -60,9 +60,9 @@ openvidu/openvidu-server-kms:2.20.0
 
 5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
 
 
 ## Understanding the code
@@ -83,7 +83,7 @@ This application provides the
 	- `style.css` : some CSS classes to style the templates
 
 
-Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object) provided by [openvidu-node-client](reference-docs/openvidu-node-client/#manage-recordings).
+Although this tutorial includes several methods to make the backend-frontend communication effective, we will focus on the recording features. The application shows how to manage the recordings using the [OpenVidu Recording API](reference-docs/REST-API/#the-recording-object){:target="_blank"} provided by [openvidu-node-client](reference-docs/openvidu-node-client/#manage-recordings){:target="_blank"}.
 
 #### 1) Start the recording:
 

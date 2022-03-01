@@ -38,7 +38,7 @@
       Be careful when upgrading your version of OpenVidu Pro:
       <ul>
         <li style="color: inherit">Never upgrade across <strong>multiple major versions</strong>: to upgrade from 2.16.0 to 2.18.0, you must first go through 2.17.0.</li>
-        <li style="color: inherit">Read carefully the <a href="releases/"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
+        <li style="color: inherit">Read carefully the <a href="releases/" target="_blank"><strong>Release Notes</strong></a> of any new version you plan to upgrade. Sometimes there are <strong>breaking changes</strong> that will require you to update your application.</li>
       </ul>
 </div>
 </div>
@@ -109,7 +109,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.20.0
+Openvidu successfully upgraded to version 2.20.0 
 ================================================
 
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.20.0 services
@@ -204,7 +204,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.19.0
+Openvidu successfully upgraded to version 2.19.0 
 ================================================
 
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.19.0 services
@@ -300,7 +300,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.18.0
+Openvidu successfully upgraded to version 2.18.0 
 ================================================
 
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.18.0 services
@@ -396,7 +396,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.17.0
+Openvidu successfully upgraded to version 2.17.0 
 ================================================
 
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.17.0 services
@@ -496,7 +496,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.16.0
+Openvidu successfully upgraded to version 2.16.0 
 ================================================
 
 1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.16.0 services
@@ -727,11 +727,11 @@ The only thing to take into account is the data you may want to keep when upgrad
 
 ### Backup recordings
 
-Only if you have used the [recording](advanced-features/recording/) feature you may want to keep your old recorded files available in your new deployment. This is as straightforward as copying the entire recording folder before wiping out your old server (≤2.12.0 config property `openvidu.recording.path`, by default `/opt/openvidu/recordings`). After successfully installing 2.13.0, simply paste this same folder at the recording path of your new installation. All of your recordings will be immediately available in the new version.
+Only if you have used the [recording](advanced-features/recording/){:target="_blank"} feature you may want to keep your old recorded files available in your new deployment. This is as straightforward as copying the entire recording folder before wiping out your old server (≤2.12.0 config property `openvidu.recording.path`, by default `/opt/openvidu/recordings`). After successfully installing 2.13.0, simply paste this same folder at the recording path of your new installation. All of your recordings will be immediately available in the new version.
 
 ### Backup Elasticsearch data
 
-If you want to keep your [Elasticsearch data](openvidu-pro/monitoring-elastic-stack/), then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
+If you want to keep your [Elasticsearch data](openvidu-pro/monitoring-elastic-stack/){:target="_blank"}, then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
 
 #### 1) Copy existing Elasticsearch data from your old ≤2.12.0 Master Node to your new 2.13.0 Master Node
 
@@ -784,7 +784,7 @@ Restart all services and you will have your Elasticsearch data available in your
 ./openvidu start
 ```
 
-> **NOTE**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/)**
+> **NOTE**: Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to **[Releases](releases/){:target="_blank"}**
 
 <br>
 
@@ -795,7 +795,7 @@ Restart all services and you will have your Elasticsearch data available in your
 - The upgrade process will restart all OpenVidu services. That means that **all ongoing sessions will be destroyed**.
 - Persistent data is preserved when upgrading. This means that all of your recordings and all of your Elasticsearch data will be available in the new version.
 - Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/) page.
+- Remember to update **openvidu-browser** library in your clients. Comply version compatibility according to [Releases](releases/){:target="_blank"} page.
 - In case you have **mobile applications**: the previous minor version of openvidu-browser is always compatible with the next minor version of openvidu-server. This way you can upgrade your openvidu-server while giving your clients time to update their applications. Applications using the previous and the new version of openvidu-browser can coexist in the new openvidu-server version. For example, if you upgrade openvidu-server to 2.16.0, it will work fine with applications using both openvidu-browser 2.15.0 and 2.16.0. Of course, you must notify your users to update their applications until all of them are using openvidu-browser 2.16.0.
 
 <br>

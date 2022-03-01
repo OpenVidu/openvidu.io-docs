@@ -8,25 +8,25 @@ Every Publisher and Subscriber object can display a media stream in as many vide
 <br>
 ##### A) Publisher videos
 
-- When initalizing a Publisher object, you can insert a video player by passing a valid `targetElement` in method `OpenVidu.initPublisher` (can be an HTMLElement or its `id` attribute). Second parameter allows you to customize the publisher's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/PublisherProperties.html)):
+- When initalizing a Publisher object, you can insert a video player by passing a valid `targetElement` in method `OpenVidu.initPublisher` (can be an HTMLElement or its `id` attribute). Second parameter allows you to customize the publisher's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/PublisherProperties.html){:target="_blank"}):
 
         var publisher = OV.initPublisher(targetElement, {insertMode: 'APPEND'});
 
-- After getting the Publisher object, you can create more video players to display its media stream just by calling `Publisher.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/VideoInsertMode.html):
+- After getting the Publisher object, you can create more video players to display its media stream just by calling `Publisher.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/VideoInsertMode.html){:target="_blank"}:
 
         publisher.createVideoElement(targetElement, 'APPEND');
 
 <br>
 ##### B) Subscriber videos
 
-- When subscribing to a Stream, you can insert a video player by passing a valid `targetElement` in method `Session.subscribe` (can be an HTMLElement or its `id` attribute). Third parameter allows you to customize the subscriber's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/SubscriberProperties.html)):
+- When subscribing to a Stream, you can insert a video player by passing a valid `targetElement` in method `Session.subscribe` (can be an HTMLElement or its `id` attribute). Third parameter allows you to customize the subscriber's stream, including how OpenVidu must insert the video player according to targetElement (more info in [OpenVidu Browser Docs](api/openvidu-browser/interfaces/SubscriberProperties.html){:target="_blank"}):
 
         var subscriber;
         session.on('streamCreated', event => {
             subscriber = session.subscribe(event.stream, targetElement, {insertMode: 'APPEND'});
         });
 
-- After getting the Subscriber object, you can create more video players to display its media stream just by calling `Subscriber.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/VideoInsertMode.html):
+- After getting the Subscriber object, you can create more video players to display its media stream just by calling `Subscriber.createVideoElement`. Pass a valid `targetElement` and the [insertMode](api/openvidu-browser/enums/VideoInsertMode.html){:target="_blank"}:
 
         subscriber.createVideoElement(targetElement, 'APPEND');
 
@@ -59,6 +59,6 @@ Every Publisher and Subscriber object can display a media stream in as many vide
 > This way of managing the video players is very useful when developing your application with some frontend declarative framework such as **Angular**,
 > **React** or **Vue.js**. It allows you to add to the proper `Publisher` or `Subscriber` any video element managed by the framework. Besides, it is possible to
 > treat both Publishers and Subscribers the same way regarding their rendering in the page, as they both inherit from the parent class `StreamManager`. If you are
-> interested in these concepts, you can check out our super simple [Angular tutorial](tutorials/openvidu-insecure-angular/).
+> interested in these concepts, you can check out our super simple [Angular tutorial](tutorials/openvidu-insecure-angular/){:target="_blank"}.
 
 <br>

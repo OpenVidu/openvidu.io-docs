@@ -103,7 +103,7 @@ Without going into greater detail, the backend has [one controller](https://gith
 
 **1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
+As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker){:target="_blank"}, to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
 
 This is how your `docker-compose-override.yml` should be with your own modifications:
 ```

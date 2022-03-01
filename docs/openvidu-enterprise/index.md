@@ -363,7 +363,7 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     This comes in contrast with the more traditional method of adaptive video bitrate in Kurento, which was all-or-nothing and affected all participants equally, so it wasn't possible to adjust the quality individually for each one of them.
 
-    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast) page.
+    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast){:target="_blank"} page.
 
 - **VP9**
 
@@ -381,7 +381,7 @@ With OpenVidu, there's no need to change a single line of your application: **wh
 
 #### High Availability deployment option
 
-OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/) documentation for further information.
+OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/){:target="_blank"} documentation for further information.
 
 <br>
 
@@ -409,13 +409,13 @@ Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC 
 
 As a beta feature, mediasoup support in OpenVidu and High Availability deployments comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
 
-- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config), or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session)). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
+- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config){:target="_blank"}, or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
 - Firefox for Android has been proven to present some issues.
-- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings) is not available.
+- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"} is not available.
 - Some SDK/API methods may not be supported yet. Including:
-    - openvidu-browser: [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote)
-- See beta limitations on [Simulcast](openvidu-enterprise/simulcast/#limitations)
-- See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations)
+    - openvidu-browser: [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote){:target="_blank"}
+- See beta limitations on [Simulcast](openvidu-enterprise/simulcast/#limitations){:target="_blank"}
+- See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}
 - As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
 
 <br>

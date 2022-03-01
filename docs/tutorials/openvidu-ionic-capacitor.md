@@ -3,7 +3,7 @@
 
 A client-side only application built with **Ionic 5** and **Angular 10** frameworks. It can be compiled into a **native Android app**, a **native iOS app** and into a standard **web app**.
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial due to this being a cordova ionic app and being a little more complex for OpenVidu starters.
+If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"}** tutorial due to this being a cordova ionic app and being a little more complex for OpenVidu starters.
 
 
 

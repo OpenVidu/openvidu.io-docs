@@ -167,7 +167,7 @@ Configuration for your CloudFormation stack certificate. We provide 3 different 
 #### OpenVidu Recording Configuration
 
 Configure if you want or not to enable OpenVidu Recordings and what type of persistence do you want.
-
+ 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
     <tr>
@@ -260,11 +260,11 @@ These properties configure specific details of the EC2 machines that will be lau
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px;">
     <tr>
-      <td class="first-col">Instance type for Master Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture">Master Node</a><span></td>
+      <td class="first-col">Instance type for Master Node<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Master Node</a><span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture">Media Nodes</a><span></td>
+      <td class="first-col">Instance type for Media Nodes<br><span class="field-comment">Type of EC2 Instance where to deploy the <a href="openvidu-pro/scalability/#openvidu-pro-architecture" target="_blank">Media Nodes</a><span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
@@ -320,19 +320,19 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
     </div>
 </div>
 
-To consume [OpenVidu REST API](reference-docs/REST-API/), use URL `https://OPENVIDUPRO_PUBLIC_IP/`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com/` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
+To consume [OpenVidu REST API](reference-docs/REST-API/){:target="_blank"}, use URL `https://OPENVIDUPRO_PUBLIC_IP/`. For example, in the image above that would be `https://ec2-34-244-193-135.eu-west-1.compute.amazonaws.com/` using AWS domain. When deploying with a custom domain name (which you should do for a production environment), of course you must use your domain name instead.
 
-If you have deployed OpenVidu Call you can also access to it through that same URL. You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications).
+If you have deployed OpenVidu Call you can also access to it through that same URL. You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications){:target="_blank"}.
 <br>
 
 ---
 
 ### 6. Administration
 
-AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](deployment/pro/on-premises/). This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
+AWS deployments of OpenVidu Pro are internally identical to [on premises deployments](deployment/pro/on-premises/){:target="_blank"}. This means that you can manage OpenVidu platform very easily by connecting to your instances through SSH.
 
-- **Master Node**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Master Node administration](deployment/pro/on-premises/#24-administration).
-- **Media Nodes**: located at the default installation path `/opt/kms` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](deployment/pro/on-premises/#34-administration).
+- **Master Node**: located at the default installation path `/opt/openvidu` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Master Node administration](deployment/pro/on-premises/#24-administration){:target="_blank"}.
+- **Media Nodes**: located at the default installation path `/opt/kms` as `root` user (`$ sudo su`), you will be able to manage the services as explained in on premises [Media Nodes administration](deployment/pro/on-premises/#34-administration){:target="_blank"}.
 
 <br>
 
@@ -379,7 +379,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 This scenario is meant for you if you want to:
 
-- Deploy OpenVidu Pro for production or even developing purposes.
+- Deploy OpenVidu Pro for production or even developing purposes. 
 - Deploy OpenVidu Pro with a Fully Qualified Domain Name (FQDN).
 - Use a valid SSL certificate.
 
@@ -387,7 +387,7 @@ For this specific scenario you will need to:
 
 #### 2.1) Create an Elastic IP
 
-1. Go to your EC2 AWS section, and click here:
+1. Go to your EC2 AWS section, and click here: 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-example-lets-1" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
@@ -399,7 +399,7 @@ For this specific scenario you will need to:
         <a data-fancybox="gallery-example-lets-2" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
     </div>
 </div>
-3. This will generate an Elastic IP that you will be able to use for your OpenVidu Pro deployment with letsencrypt
+3. This will generate an Elastic IP that you will be able to use for your OpenVidu Pro deployment with letsencrypt 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
         <a data-fancybox="gallery-example-lets-3" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
@@ -411,7 +411,7 @@ For this specific scenario you will need to:
 This step will depend of the DNS register you want to use. You need to create a DNS register of **type A pointing to the Elastic IP created before**. For the next steps, let's suppose that our domain is: **example.openvidu.io**.
 
 #### 2.3) Cloudformation parameters
-
+  
 Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
@@ -440,7 +440,7 @@ For this specific scenario you will need to:
 
 To use this kind of certificate, you need to generate two files, `certificate.cert` (public keys of the certificate) and `certificate.key` (private key), and upload them to an HTTP server to make it available for the Cloudformation parameters. But first, follow these steps to generate these files: <br><br>
 
-**1)** Create a CSR and a private key. This can be easily done by executing:
+**1)** Create a CSR and a private key. This can be easily done by executing: 
 ```bash
 openssl req -newkey rsa:2048 -nodes -keyout certificate.key -out certificate.csr
 ```
@@ -525,7 +525,7 @@ It is very important after the deployment to invalidate the URLs created at step
 ### Common problems
 
 - [Nginx is not working.](troubleshooting/#13-nginx-is-not-working)
-- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates)
+- [Do I need to update Let's Encrypt certificates?](troubleshooting/#14-do-i-need-to-update-lets-encrypt-certificates) 
 - [My commercial certificate is not working, What can I do?](troubleshooting/#15-my-commercial-certificate-is-not-working-what-can-i-do)
 - [How can I customize Nginx](troubleshooting/#16-how-can-i-customize-deployed-nginx)
 
@@ -569,13 +569,13 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 You can programmatically launch and drop Media Nodes from your application by consuming OpenVidu Pro REST API.
 
-- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-medianode)**
-- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode)**
+- **Launch a Media Node**: **[POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-medianode){:target="_blank"}**
+- **Drop a Media Node**: **[DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode){:target="_blank"}**
 
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployments, especially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
 >
-> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode) through parameter `deletion-strategy`.<br><br>
-> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) is triggered with value `terminated`.
+> - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode){:target="_blank"} through parameter `deletion-strategy`.<br><br>
+> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged){:target="_blank"} is triggered with value `terminated`.
 
 <br>
 
@@ -585,21 +585,21 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 You may want to change the current configuration of an existing OpenVidu Pro cluster. This configuration includes all of the parameters listed in these pages:
 
-- [OpenVidu CE configuration](reference-docs/openvidu-config)
-- [OpenVidu Pro configuration](reference-docs/openvidu-config)
+- [OpenVidu CE configuration](reference-docs/openvidu-config){:target="_blank"}
+- [OpenVidu Pro configuration](reference-docs/openvidu-config){:target="_blank"}
 
 Once the cluster is running, there are different ways you can update the value of the configuration parameters. Take into account that all of them require restarting your OpenVidu Server Pro process, so **any active OpenVidu Session will be terminated**.
 
 ### 1) With OpenVidu Inspector
 
-OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](openvidu-pro/openvidu-inspector#programmatic-reset).
+OpenVidu Inspector allows you to restart the OpenVidu Server Pro process from **Config** page just by filling a formulary.<br>More information [here](openvidu-pro/openvidu-inspector#programmatic-reset){:target="_blank"}.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
 
 ### 2) With OpenVidu Pro REST API
 
-You can consume REST API method **[POST /openvidu/api/restart](reference-docs/REST-API/#post-restart)** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
+You can consume REST API method **[POST /openvidu/api/restart](reference-docs/REST-API/#post-restart){:target="_blank"}** to programmatically restart the OpenVidu Server Pro process and update its configuration values.
 
 > **NOTE 1**: take into account that not all configuration properties are able to be updated this way<br>
 > **NOTE 2**: new values will be stored and remembered, so they will be used when OpenVidu Server Pro is restarted in the future
@@ -642,7 +642,7 @@ Keep an eye on the OpenVidu logs that will automatically display after restartin
     padding-left: 20px;
     padding-right: 20px;
     ">
-  AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So <strong>everything explained in <a href="deployment/pro/on-premises/#troubleshooting">Troubleshooting</a> section of on premises deployments also applies to AWS deployments</strong>. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
+  AWS deployments of OpenVidu Pro work under the hood in the exact same manner as on premises deployments. So <strong>everything explained in <a href="deployment/pro/on-premises/#troubleshooting" target="_blank">Troubleshooting</a> section of on premises deployments also applies to AWS deployments</strong>. There you have detailed instructions on how to debug all of OpenVidu services in case some unexpected problem appears.
 </div>
 </div>
 

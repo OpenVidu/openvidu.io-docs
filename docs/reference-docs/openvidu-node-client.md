@@ -1,9 +1,9 @@
 <h2 id="section-title">openvidu-node-client API</h2>
 <hr>
 
-_This is a Node library wrapping [OpenVidu Server REST API](reference-docs/REST-API/)_
+_This is a Node library wrapping [OpenVidu Server REST API](reference-docs/REST-API/){:target="_blank"}_
 
-<h3>Check <a href="api/openvidu-node-client">TypeDoc documentation</a></h3>
+<h3>Check <a href="api/openvidu-node-client" target="blank">TypeDoc documentation</a></h3>
 
 <hr>
 
@@ -24,7 +24,7 @@ var connectionProperties = {
     role: "PUBLISHER",
     data: "user_data"
 };
-session.createConnection(connectionProperties).then(connection => {
+session.createConnection(connectionProperties).then(connection => { 
     var token = connection.token; // Send this string to the client side
 });
 ```
@@ -52,7 +52,7 @@ session.createConnection(connectionProperties).then(connection => {
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 

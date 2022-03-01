@@ -130,7 +130,7 @@ VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
 ## Compiling OpenVidu Call
 
-Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-to-build-openvidu-call).
+Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-to-build-openvidu-call){:target="_blank"}.
 
 <br>
 
@@ -158,7 +158,7 @@ npm run build:openvidu-webcomponent
 npm run build-win:openvidu-webcomponent
 ```
 
-If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/). Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
+If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/){:target="_blank"}. Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
 
 ```bash
 # Same path as "git clone https://github.com/OpenVidu/openvidu-call.git"
@@ -202,7 +202,7 @@ cd dist/openvidu-angular
 npm pack
 ```
 
-This will generate in that same folder a file `openvidu-angular-{VERSION}.tgz`. You can install that file in any NPM project simply by running `npm install openvidu-angular-{VERSION}.tgz`. For example, tutorial [openvidu-library-angular](tutorials/openvidu-library-angular/) uses openvidu-angular dependency, and you can install your compilation in it to see your changes.
+This will generate in that same folder a file `openvidu-angular-{VERSION}.tgz`. You can install that file in any NPM project simply by running `npm install openvidu-angular-{VERSION}.tgz`. For example, tutorial [openvidu-library-angular](tutorials/openvidu-library-angular/){:target="_blank"} uses openvidu-angular dependency, and you can install your compilation in it to see your changes.
 
 
 <br>
