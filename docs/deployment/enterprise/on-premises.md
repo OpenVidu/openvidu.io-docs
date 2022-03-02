@@ -1,46 +1,24 @@
 <h2 id="section-title">Deploying OpenVidu Enterprise on premises</h2>
 <hr>
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>NOTE</strong>: <strong>High Availability OpenVidu Enterprise is not compatible with on premises deployments.</strong> To deploy a highly available OpenVidu Enterprise check: <a href="deployment/enterprise/aws/#high-availability-deployment" target="_blank">Deploying OpenVidu Enterprise in AWS</a>
-</div>
-</div>
+- **[Single master deployment](#regular-deployment)**
+- **[High Availability deployment](#high-availability-deployment)**
 
+<hr>
 <br>
 
-# OpenVidu Enterprise on premises
+## Single master deployment
+<br>
+
+OpenVidu Enterprise on premises is deployed just as [OpenVidu Pro on premises](/deployment/pro/on-premises). You just need to add the following property to OpenVidu configuration `.env` file [here](/deployment/pro/on-premises/#22-configuration).
+
+    OPENVIDU_EDITION=enterprise
+
+<br><hr>
+
+## High Availability deployment
+<br>
+
+Coming soon...
 
 <br>
-OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster up and running. If you don't have a previous **OpenVidu Pro** deployment, follow the instructions to [Deploy OpenVidu Pro on premises](deployment/pro/on-premises).
-
-To change from **OpenVidu Pro** to **OpenVidu Enterprise** you just need to:
-
-1. Configure the following property in the **`.env`** file at your Master Node installation path (default to `/opt/openvidu/`)
-
-        OPENVIDU_EDITION=enterprise
-
-2. Restart OpenVidu as usually
-
-        sudo su
-        cd /opt/openvidu
-        ./openvidu start

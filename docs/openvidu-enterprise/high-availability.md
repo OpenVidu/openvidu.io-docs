@@ -4,7 +4,6 @@
 
 - **[OpenVidu Enterprise High Availability architecture](#openvidu-enterprise-high-availability-architecture)**
 - **[How to deploy your OpenVidu Enterprise High Availability cluster](#how-to-deploy-your-openvidu-enterprise-high-availability-cluster)**
-- **[Beta limitations](#beta-limitations)**
 
 ---
 
@@ -12,7 +11,7 @@
 
 OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}.
 
-The main difference between a regular OpenVidu Pro deployment and a high availability OpenVidu Enterprise deployment is the replication of Master Nodes. In the image below, on the left a regular OpenVidu Pro deployment and on the right a high availability OpenVidu Enterprise deployment:
+The main difference between a regular OpenVidu Pro deployment and OpenVidu Enterprise High Availability deployment is the replication of Master Nodes. In the image below, on the left a regular OpenVidu Pro deployment and on the right a high availability OpenVidu Enterprise deployment:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
@@ -36,11 +35,6 @@ A more accurate architectural description is available in the image below. As ca
 ## How to deploy your OpenVidu Enterprise High Availability cluster
 
 OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deploying OpenVidu Enterprise in AWS](deployment/enterprise/aws/){:target="_blank"} to learn how.
-
-## Beta limitations
-
-- Sessions are not automatically rebuilt upon a Master Node or Media Node crash or removal. This doesn't mean that sessions cannot be rebuilt, but your application must take care of it. Take a look to [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo application to see how to easily do it.
--  All API REST requests beginning with `/api` are no longer supported. All requests using this deployment must use `openvidu/api/` instead. These REST API requests [was announced as deprecated since version 2.16.0](releases/#breaking-changes_3)
 
 <br>
 

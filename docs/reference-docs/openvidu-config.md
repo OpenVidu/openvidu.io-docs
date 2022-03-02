@@ -11,7 +11,7 @@ These properties may be set:
 
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</span>](#configuration-parameters-for-openvidu-ce)**<div style="margin-bottom: 5px"></div>
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span>](#configuration-parameters-for-openvidu-pro)**<div style="margin-bottom: 5px"></div>
-- **[Configuration parameters for OpenVidu Enterprise](#configuration-parameters-for-openvidu-enterprise)**<a href="openvidu-enterprise/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
+- **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>](#configuration-parameters-for-openvidu-enterprise)**<div style="margin-bottom: 5px"></div>
 - **[Special conditions of OpenVidu development container](#special-conditions-of-openvidu-development-container)**
 
 ---
@@ -45,8 +45,8 @@ These configuration parameters apply to OpenVidu CE, OpenVidu Pro and OpenVidu E
 | **`OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`** | Minimum video bandwidth sent from clients to OpenVidu Server, in kbps. 0 means *unconstrained*. | **300** |
 | **`OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`** | Maximum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means *unconstrained*. | **1000** |
 | **`OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`** | Minimum video bandwidth sent from OpenVidu Server to clients, in kbps. 0 means *unconstrained*. | **300** |
-| **`OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`** | Enforce a specific video codec to be used by all clients, to avoid compatibility issues:<ul><li>`MEDIA_SERVER_PREFERRED`<br>A recommended choice is done for you</li><li>`NONE`<br>Let each client use their preferred codec</li><li>`VP8`</li><li>`VP9`</li><li>`H264`</li></ul>[More details](advanced-features/media-codecs/). | **MEDIA_SERVER_PREFERRED** |
-| **`OPENVIDU_STREAMS_ALLOW_TRANSCODING`** | Allow the media server to perform live transcoding of video streams, ensuring that all codecs match in the session (**Kurento only**).<br>[More details](advanced-features/media-codecs/). | **false** |
+| **`OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`** | Enforce a specific video codec to be used by all clients, to avoid compatibility issues:<ul><li>`MEDIA_SERVER_PREFERRED` (a recommended choice is done for you)</li><li>`NONE` (let each client use their preferred codec)</li><li>`VP8`</li><li>`VP9`</li><li>`H264`</li></ul>[More details](advanced-features/media-codecs/) | **MEDIA_SERVER_PREFERRED** |
+| **`OPENVIDU_STREAMS_ALLOW_TRANSCODING`** | Allow the media server to perform live transcoding of video streams, ensuring that all codecs match in the session (**Kurento only**).<br>[More details](advanced-features/media-codecs/) | **false** |
 | **`OPENVIDU_SESSIONS_GARBAGE_INTERVAL`** | How often the garbage collector of non active sessions runs. This helps cleaning up Sessions that have been initialized through REST API, and maybe have had Connections created, but have had no final users connected (no Connection of the Session entered `active` status). Default to 900s (15 mins). 0 to disable the non active sessions garbage collector. | **900** |
 | **`OPENVIDU_SESSIONS_GARBAGE_THRESHOLD`** | Minimum time in seconds that a non active session must have been in existence for the garbage collector of non active sessions to remove it. Default to 3600s (1 hour). If non active sessions garbage collector is disabled (property `OPENVIDU_SESSIONS_GARBAGE_INTERVAL` is set to 0) this property is ignored. | **3600** |
 
@@ -104,7 +104,8 @@ These configuration parameters apply only to OpenVidu Enterprise.
 
 | Parameter       | Description                               | Default value                                      |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
-| **`OPENVIDU_ENTERPRISE_MEDIA_SERVER`** | Which media server to use in your deployment. Possible values are:<br>• `kurento`<br>• `mediasoup`<br> | `mediasoup` |
+| **`OPENVIDU_ENTERPRISE_MEDIA_SERVER`** | Which media server to use in your deployment (see [Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup)). Possible values are:<br>• `kurento`<br>• `mediasoup`<br> | `mediasoup` |
+| **`OPENVIDU_WEBRTC_SIMULCAST`** | Whether to enable [simulcast](openvidu-enterprise/simulcast/) for all Publishers or not | **false** |
 
 <br>
 

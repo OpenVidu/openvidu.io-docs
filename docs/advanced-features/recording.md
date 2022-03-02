@@ -717,6 +717,7 @@ openvidu.startRecording(sessionId, {
 > - Recordings configured to not record neither audio nor video will fail to start, returning a status error of 422<br><br>
 > - COMPOSED video-only recordings will generate an MP4 file. COMPOSED audio-only recordings will generate a WEBM file. INDIVIDUAL recordings will always generate a ZIP file containing one WEBM file for each recorded stream<br><br>
 > - Streams published during a video-only recording that are audio-only won't be recorded: they won't be included in the grid layout for COMPOSED recordings and won't generate a WEBM file in INDIVIDUAL recordings. Same for audio-only recordings with video-only streams<br><br>
+> - COMPOSED audio-only recording is not available when using mediasoup in [OpenVidu Enterprise](/openvidu-enterprise/#kurento-vs-mediasoup){:target="_blank"}<br><br>
 
 <br>
 

@@ -1,7 +1,8 @@
 <h2 id="section-title">Deploying OpenVidu Enterprise in AWS</h2>
 <hr>
 
-- **[Single master deployment](#regular-deployment)**
+- **[Intro](#intro)**
+- **[Single Master deployment](#single-master-deployment)**
 - **[High Availability deployment](#high-availability-deployment)**
     - **[Deployment](#deployment)**
         - [1) Previous requirements](#1-previous-requirements)
@@ -27,12 +28,27 @@
 
 ---
 
-## Single master deployment
+## Intro
+
+OpenVidu Enterprise offers two different deployment models:
+
+- **Single Master deployment**: one Master Node, multiple Media Nodes. This is the same architecture used by [OpenVidu Pro](openvidu-pro/scalability/#openvidu-pro-architecture).
+- **High Availability deployment**: multiple Master Nodes, multiple Media Nodes. See [High Availability documentation](openvidu-enterprise/high-availability/).
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture-models.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-enterprise/enterprise-architecture-models.png"/></a>
+    </div>
+</div>
+
+<br><hr>
+
+## Single Master deployment
 
 <br>
-OpenVidu Enterprise with a single master node (Standard deployment) can be deployed with the [same Cloudformation used for OpenVidu PRO](deployment/pro/aws)
+OpenVidu Enterprise with a single Master Node can be deployed with the [same Cloudformation used for OpenVidu PRO](deployment/pro/aws).
 
-You just need to specify `enterprise` at the OpenVidu Edition section while deploying the Cloudformation.
+You just need to specify `enterprise` at the OpenVidu Edition section while deploying the Cloudformation.<br><br>
 
 <p>
     <img class="img-responsive deploy-img" src="img/docs/deployment/openvidu_edition_CF.png">

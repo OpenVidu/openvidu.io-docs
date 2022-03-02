@@ -2,73 +2,20 @@
 <hr>
 
 - **[OpenVidu Enterprise features](#openvidu-enterprise-features)**
-    - [6x more media streams](#6x-more-media-streams)
+    - [5x more media streams](#5x-more-media-streams)
     - [5x quicker connections](#5x-quicker-connections)
     - [Media quality improvements](#media-quality-improvements)
     - [100% compatible with your current OpenVidu applications](#100-compatible-with-your-current-openvidu-applications)
     - [High Availability deployment option](#high-availability-deployment-option)
+- **[Kurento vs mediasoup](#kurento-vs-mediasoup)**
+    - [Additional mediasoup limitations](#additional-mediasoup-limitations)
+    - [Using Kurento in OpenVidu Enterprise](#using-kurento-in-openvidu-enterprise)
 - **[OpenVidu Enterprise roadmap](#openvidu-enterprise-roadmap)**
     - [Large scale sessions](#large-scale-sessions)
     - [E2E encryption](#e2e-encryption)
-- **[OpenVidu Enterprise beta limitations](#openvidu-enterprise-beta-limitations)**
-- **[Enable OpenVidu Enterprise](#enable-openvidu-enterprise)**
+- **[Deploying OpenVidu Enterprise](#deploying-openvidu-enterprise)**
 
 ---
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0 0 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-      OpenVidu Enterprise is currently in <strong>beta</strong>. As long as it remains in beta:
-      <ul style="margin-top: 6px">
-        <li style="color: inherit">It is completely free of charge. You can try it for free.</li>
-        <li style="color: inherit">There are some <a href="openvidu-enterprise/#openvidu-enterprise-beta-limitations">known limitations</a>.</li>
-        <li style="color: inherit">There may be unexpected bugs.</li>
-      </ul>
-</div>
-</div>
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
-</div>
-</div>
 
 <table class="table table-striped table-pricing" style="background: #e7e7e7">
     <colgroup>
@@ -100,122 +47,140 @@
     <tbody>
         <tr>
             <th scope="row">WebRTC media streams</th>
-            <td scope="row"></td>
+            <td scope="row"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="WebRTC provides high quality and low latency real time video over the Internet"></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Recording</th>
-            <td scope="row"></td>
+            <td scope="row"><a href="advanced-features/recording/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Record your video sessions with multiple configurations"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Screen sharing</th>
-            <td scope="row"></td>
+            <td scope="row"><a href="advanced-features/screen-share/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Easily integrate screen-sharing in your application"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Audio and video filters</th>
-            <td scope="row"></td>
+            <td scope="row"><a href="advanced-features/filters/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Apply real-time audio and video filters to media streams"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">IP cameras</th>
-            <td scope="row"></td>
+            <td scope="row"><a href="advanced-features/ip-cameras/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Integrate IP cameras with RTSP effortlessly"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Clients: JS, Angular, React, Vue.js, Ionic, Electron</th>
-            <td scope="row"></td>
+            <th scope="row">Clients: JS, Angular, React, Vue.js, Ionic, Electron, React Native</th>
+            <td scope="row"><a href="tutorials/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Use your preferred client framework. Check our tutorials"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Deployment on Premises</th>
-            <td scope="row"><i
+            <td scope="row"><a href="deployment/#openvidu-for-production-on-premises"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Deploy OpenVidu in your own Linux server"></td>
+                    title="Deploy OpenVidu in your own Linux server"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Deployment on Cloud</th>
-            <td scope="row"><i
+            <td scope="row"><a href="deployment/#openvidu-for-production-on-aws"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Deploy OpenVidu in Amazon Web Services" style="text-align: right;"></td>
+                    title="Deploy OpenVidu in Amazon Web Services" style="text-align: right;"></a></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">OpenVidu Inspector</th>
-            <td scope="row"><i
+            <td scope="row"><a href="openvidu-pro/openvidu-inspector/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="A powerful, easy-to-use and visually attractive dashboard to help with session monitoring, management and historical data"></td>
+                    title="A powerful, easy-to-use and visually attractive dashboard to help with session monitoring, management and historical data"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Advanced session monitoring</th>
-            <td scope="row"><i
+            <td scope="row"><a href="openvidu-pro/monitoring-elastic-stack/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Elastic stack integration. Elasticsearch and Kibana provide advanced analysis capabilities"></td>
+                    title="Elastic stack integration. Elasticsearch and Kibana provide advanced analysis capabilities"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Manual scalability</th>
-            <td scope="row"><i
+            <td scope="row"><a href="openvidu-pro/scalability/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of Media Nodes manually"></td>
+                    title="Increment or decrement the number of Media Nodes manually"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Elasticity</th>
-            <td scope="row"><i
+            <td scope="row"><a href="openvidu-pro/scalability/#autoscaling"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Increment or decrement the number of Media Nodes automatically according to CPU load"></td>
+                    title="Increment or decrement the number of Media Nodes automatically according to CPU load"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">S3 recording storage</th>
-            <td scope="row"><i
+            <td scope="row"><a href="advanced-features/recording/#uploading-recordings-to-s3"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Store your recordings in AWS S3"></td>
+                    title="Store your recordings in AWS S3"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">Network quality API</th>
-            <td scope="row"><i
+            <td scope="row"><a href="advanced-features/network-quality/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Monitor the network quality of your clients"></td>
+                    title="Monitor the network quality of your clients"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
@@ -236,50 +201,49 @@
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Supported Media Servers"></td>
-            <td><a href="https://www.kurento.org/" target="_blank">Kurento</a></td>
-            <td><a href="https://www.kurento.org/" target="_blank">Kurento</a></td>
-            <td><a href="https://www.kurento.org/" target="_blank">Kurento</a> / <a href="https://mediasoup.org/" target="_blank">mediasoup</a></td>
+            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a> / <a href="https://mediasoup.org/" target="_blank"><strong>mediasoup</strong></a></td>
         </tr>
         <tr>
-            <th scope="row">Simulcast and SVC</th>
+            <th scope="row">Streams per core</th>
             <td scope="row"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="To provide improved quality"></td>
+                    title="Increment the performance of your hardware with OpenVidu ENTERPRISE"></td>
+            <td>100</td>
+            <td>100</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <th scope="row">High Availability</th>
+            <td scope="row"><a href="openvidu-enterprise/high-availability/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">High Availability</th>
-            <td scope="row"><i
+            <th scope="row">Simulcast</th>
+            <td scope="row"><a href="openvidu-enterprise/simulcast/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Replication and decentralization of all nodes in AWS. Load balancing of clients"></td>
+                    title="To provide improved quality"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
             <th scope="row">VP9</th>
-            <td scope="row"><i
+            <td scope="row"><a href="advanced-features/media-codecs/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Advanced codec by supported devices"></td>
+                    title="Advanced codec by supported devices"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
-        </tr>
-        <tr>
-            <th scope="row">Large scale sessions</th>
-            <td scope="row"><i
-                    class="icon ion-information-circled pricing-table-icon-info"
-                    data-toggle="tooltip" data-placement="right"
-                    title="Support for sessions with hundreds or even thousands of users"></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-close pricing-table-icon"></i></td>
-            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
-                    data-placement="right" title="Work in progress"></i></td>
         </tr>
         <tr>
             <th scope="row">E2E encryption</th>
@@ -287,6 +251,17 @@
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="End-to-End encryption with WebRTC Insertable Streams"></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Large scale sessions</th>
+            <td scope="row"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Support for sessions with hundreds or even thousands of users"></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
@@ -310,10 +285,10 @@
             <th scope="row">Price</th>
             <td scope="row"></td>
             <td><span style="font-size: 2em">Free</span></td>
-            <td><span style="font-size: 2em">0.0006$ core/minute</span><br>
+            <td><span style="font-size: 2em">0.0006$ <span style="font-size: 20px">core/minute</span></span><br>
                 <div style="font-size: 1em; margin-top: 8px"><a href="https://openvidu.io/pricing" target="_blank"><strong>Visit Pricing</strong></a></div>
             </td>
-            <td><span style="font-size: 2em">Free while in beta</span><br><span style="text-decoration: line-through">0.0012$ core/minute</span><br>
+            <td><span style="font-size: 2em">0.0018$ <span style="font-size: 20px">core/minute</span></span><br>
                 <div style="font-size: 1em; margin-top: 8px"><a href="https://openvidu.io/pricing" target="_blank"><strong>Visit Pricing</strong></a></div>
             </td>
         </tr>
@@ -333,9 +308,9 @@ OpenVidu Enterprise offers the best performance, improved media quality and bett
 
 The key feature of OpenVidu Enterprise is that it supports using **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server instead of **[Kurento](https://www.kurento.org/){:target="_blank"}**. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
 
-#### 6x more media streams
+#### 5x more media streams
 
-Using the same hardware, OpenVidu Enterprise with mediasoup supports up to 6 times more media streams than with Kurento.
+Using the same hardware, OpenVidu Enterprise with mediasoup supports up to 5 times more media streams than with Kurento.
 
 <p align="center">
   <img class="img-responsive xcode-img" style="max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-1.png">
@@ -387,7 +362,89 @@ OpenVidu Enterprise offers a High Availability deployment option in AWS, with re
 
 ---
 
+## Kurento vs mediasoup
+
+OpenVidu Enterprise offers the possibility of choosing between two different media servers for routing media:
+
+- **Kurento** is a powerful full-featured media server used in OpenVidu CE and OpenVidu Pro. It is based on low-level processing of the media streams. This provides advanced features such as transcoding and real time audio-video filters. There is a downside to this power: it can bring some overhead for videoconferencing applications that do not need these advanced features.
+
+- **mediasoup** is a modern, lightweight and fast media server. Its performance for routing media in typical videoconferencing applications is higher than Kurento, as mediasoup does not process media streams at a low level like Kurento does. Besides, it brings the latest technologies in media transmission, such us simulcast, VP9 media codec and E2E encryption with Insertable Streams.
+
+In general, most applications built with OpenVidu will greatly benefit of using mediasoup. The only cases in which it is better to use Kurento is for those applications that specifically require some of the functionality only offered by Kurento (audio/video filters or IP cameras).
+
+<table class="table table-striped table-pricing" style="background: #e7e7e7; margin-top: 25px">
+    <colgroup>
+        <col span="1">
+        <col span="1">
+        <col span="1">
+    </colgroup>
+    <thead>
+        <tr>
+            <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
+            <th scope="col">Kurento</th>
+            <th scope="col">mediasoup</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Average number of streams per core <span style="font-weight: normal; font-style: italic;">(higher is better)</span></th>
+            <td>100</td>
+            <td>500</td>
+        </tr>
+        <tr>
+            <th scope="row">Average time for media establishment <span style="font-weight: normal; font-style: italic;">(lower is better)</span></th>
+            <td>1.25 s</td>
+            <td>0.25 s</td>
+        </tr>
+        <tr>
+            <th scope="row">Audio and video filters <span style="font-weight: normal">(<a href="advanced-features/filters/">Doc</a>)</span></th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">IP cameras <span style="font-weight: normal">(<a href="advanced-features/ip-cameras/">Doc</a>)</span></th>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Simulcast <span style="font-weight: normal">(<a href="openvidu-enterprise/simulcast/">Doc</a>)</span></th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">VP9</th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">E2E encryption</th>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-hammer pricing-table-icon" data-toggle="tooltip"
+                    data-placement="right" title="Work in progress"></i></td>
+        </tr>
+    </tbody>
+</table>
+
+#### Additional mediasoup limitations
+
+There are a couple of small limitations when using mediasoup that must be taken into account:
+
+- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"} is not available in mediasoup.
+- openvidu-browser method [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote){:target="_blank"} is not supported in mediasoup.
+
+#### Using Kurento in OpenVidu Enterprise
+
+OpenVidu Enterprise uses mediasoup as default media server. But you can use Kurento instead by overriding [configuration property `OPENVIDU_ENTERPRISE_MEDIA_SERVER`](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-enterprise).
+
+<br>
+
+---
+
 ## OpenVidu Enterprise roadmap
+
+#### E2E encryption
+
+Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC Insertable Streams. With Kurento, media streams are encrypted in the client-to-server and server-to-client channels, protecting them from man-in-the-middle attacks. But media streams have to be individually decoded and processed in the server side, so data must be decrypted by Kurento, which breaks the client-to-client encryption. But with mediasoup, media streams can remain protected client-to-client, without the server needing to decrypt it.
 
 #### Large scale sessions
 
@@ -397,66 +454,19 @@ OpenVidu Enterprise will support much larger sessions in terms of users and stre
 - Sessions will be able to be replicated in different Media Nodes, sharing the load of the same session in different machines. This will provide horizontal scaling in OpenVidu for the first time.
 - Selection of dominant speaker(s) will add the possibility of sessions with hundreds or thousands of publishers without crashing client devices. Only the latest active speakers in a session will be sent to the client side, theoretically allowing for an unlimited number of publishers in the same session.
 
-#### E2E encryption
-
-Thanks to mediasoup, OpenVidu Enterprise will offer E2E encryption using WebRTC Insertable Streams. With Kurento, media streams are encrypted in the client-to-server and server-to-client channels, protecting them from man-in-the-middle attacks. But media streams have to be individually decoded and processed in the server side, so data must be decrypted by Kurento, which breaks the client-to-client encryption. But with mediasoup, media streams can remain protected client-to-client, without the server needing to decrypt it.
-
 <br>
 
 ---
 
-## OpenVidu Enterprise beta limitations
-
-As a beta feature, mediasoup support in OpenVidu and High Availability deployments comes with a handful of limitations that will be solved in the near future, when it finally reaches the General Availability stage. These are:
-
-- There is no support for the forced video codec feature yet ([configuration property `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC`](reference-docs/openvidu-config){:target="_blank"}, or REST API parameter `forcedVideoCodec` of [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}). When using mediasoup **VP8** video codec will always be used under the hood, and for now it cannot be changed.
-- Firefox for Android has been proven to present some issues.
-- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"} is not available.
-- Some SDK/API methods may not be supported yet. Including:
-    - openvidu-browser: [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote){:target="_blank"}
-- See beta limitations on [Simulcast](openvidu-enterprise/simulcast/#limitations){:target="_blank"}
-- See beta limitations on [High Availability](openvidu-enterprise/high-availability/#beta-limitations){:target="_blank"}
-- As a beta, there may be bugs in OpenVidu Enterprise that affect the expected general behavior.
-
+## Deploying OpenVidu Enterprise
 <br>
 
----
+You can deploy OpenVidu Enterprise:
 
-## Enable OpenVidu Enterprise
+- **[On AWS](deployment/enterprise/aws){:target="_blank"}** (currently the only option for High Availability deployments)
+- **[On premises in your own infrastructure](deployment/enterprise/on-premises/){:target="_blank"}**
 
-OpenVidu Enterprise is very easy to enable. While in beta, you just need an **OpenVidu Pro** cluster up and running.
-
-Configure the following property in the **`.env`** file at Master Node installation path (default to `/opt/openvidu/`)
-
-```properties
-OPENVIDU_EDITION=enterprise
-```
-
-Then restart the services running command `./openvidu restart` in the same installation path.
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 40px;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>NOTE</strong>: When the beta period officially ends, you will no longer be able to use your OpenVidu Enterprise beta deployment. Any deployment of OpenVidu Enterprise beta (releases 2.19.0 and 2.20.0 for now) will automatically stop working. A final release version of OpenVidu Enterprise edition will be available for you to deploy before this happens. We will notify through all our official channels when the moment comes.
-</div>
-</div>
+<br>
+Visit <a href="https://openvidu.io/pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Enterprise.
 
 <br>

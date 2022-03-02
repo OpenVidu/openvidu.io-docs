@@ -8,7 +8,7 @@ OpenVidu is able to handle WebRTC media streams by using different media servers
 
 * [mediasoup](https://mediasoup.org/) <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
-These are selected with the `OPENVIDU_ENTERPRISE_MEDIA_SERVER` parameter in OpenVidu's `.env` configuration file.
+The media server to be used by OpenVidu is defined with [configuration property `OPENVIDU_ENTERPRISE_MEDIA_SERVER`](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-enterprise). You can compare both options at [Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup).
 
 While OpenVidu goes to great lengths to hide the differences between each media server, there are some key aspects that cannot be abstracted away and will have a direct impact on how applications work. One such aspect is how video codecs are handled between participants in a session, depending on the [OpenVidu configuration](reference-docs/openvidu-config/).
 
