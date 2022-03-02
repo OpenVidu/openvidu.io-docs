@@ -222,12 +222,11 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
   - **STUN** can easily provide to the user's devices their own public IP (the IP that other devices on the Internet use to connect to it), so they can tell OpenVidu where to send the video streams. Only with a STUN server, around **86%** of the time the connection will be successful.
   - **TURN** is an extension of STUN, and covers the most extreme cases of complex networks (symmetric NATs). It acts as a gateway, passing all the media streams from one side to the other. This situation will occur with a probability of around **8%**.
 
-For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that it is very easy to install a COTURN server, which offers both STUN and TURN:
+For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that OpenVidu offers a STUN/TURN service at port 3478 by default in all of its deployments.
 
-  - Our ready-to-use [CloudFormation stack](deployment/ce/aws){:target="_blank"} already includes a properly configured COTURN server.
-  - If you are deploying OpenVidu Server on your own, instructions in the [Deploying OpenVidu on premises](deployment/ce/on-premises/){:target="_blank"} section already include a COTURN server.
+For some cases this default Coturn deployed at OpenVidu is not enough for user behind too strictive firewalls. For such cases you can take a look to this section: [Allow users behind strict firewalls](deployment/allow-users-behind-strict-firewalls/)
 
-    > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
+  > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
 ---
 
@@ -676,4 +675,4 @@ Elasticsearch may take some minutes to start due to a lot of data saved or low m
 
 #### 18. OpenVidu does not work on restrictive firewall, What can I do?
 
-OpenVidu CE and OpenVidu Pro deploys by default a STUN/TURN server (Coturn) at port 3478. Some strict firewall has restrictions on requests which don't go out from ports 80 and 443, consequently denying requests to port 3478 from the browser. Follow the instructions of this [repository](https://github.com/OpenVidu/openvidu-external-coturn) to install and configure and external Coturn in port 443 with SSL configured to work with OpenVidu (You need one additional Linux machine to deploy it).
+OpenVidu CE and OpenVidu Pro deploys by default a STUN/TURN server (Coturn) at port 3478. Some strict firewall has restrictions on requests which don't go out from ports 80 and 443, consequently denying requests to port 3478 from the browser. Follow the instructions from [_"Allow users behind strict firewalls"_](deployment/allow-users-behind-strict-firewalls/) to solve this situations.
