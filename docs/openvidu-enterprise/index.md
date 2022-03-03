@@ -28,19 +28,19 @@
         <tr>
             <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
             <th scope="col" style="background: #fff; border-bottom: 0px;"></th>
-            <th scope="col" style="border-bottom: 2px solid #049145;">OpenVidu
+            <th scope="col" style="border-bottom: 2px solid #049145;"><span style="white-space: nowrap">OpenVidu
                             <div id="openvidu-pro-tag"
                     style=" pointer-events: none; display: inline-block; margin-right: 12px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
-                    CE</div></th>
+                    CE</div></span></th>
             </th>
-            <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu
+            <th scope="col" style="border-bottom: 2px solid #005f76;"><span style="white-space: nowrap">OpenVidu
                 <div id="openvidu-pro-tag"
                     style=" pointer-events: none; display: inline-block; margin-right: 12px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
-                    PRO</div></th>
-            <th scope="col" style="border-bottom: 2px solid #005f76;">OpenVidu
+                    PRO</div></span></th>
+            <th scope="col" style="border-bottom: 2px solid #005f76;"><span style="white-space: nowrap">OpenVidu
                 <div id="openvidu-pro-tag"
                     style=" pointer-events: none; display: inline-block; margin-right: 12px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">
-                    ENTERPRISE</div></th>
+                    ENTERPRISE</div></span></th>
             </th>
         </tr>
     </thead>

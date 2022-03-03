@@ -17,8 +17,8 @@
 14. [Do I need to update Let's Encrypt certificates?](#14-do-i-need-to-update-lets-encrypt-certificates)
 15. [My commercial certificate is not working, What can I do?](#15-my-commercial-certificate-is-not-working-what-can-i-do)
 16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
-17. [Elastic Search and OpenVidu Pro Common Problems](#17-elastic-search-and-openvidu-pro-common-problems)
-18. [OpenVidu does not work on restrictive firewall, What can I do?](#18-openvidu-does-not-work-on-restrictive-firewall-what-can-i-do)
+17. [Elastic Search and OpenVidu Pro common problems](#17-elastic-search-and-openvidu-pro-common-problems)
+18. [OpenVidu does not work for clients behind restrictive firewalls](#18-openvidu-does-not-work-for-clients-behind-restrictive-firewalls)
 
 ---
 
@@ -224,7 +224,7 @@ In order to support these circumstances, WebRTC relies on **STUN and TURN** serv
 
 For all purposes, OpenVidu Server acts as a final user, and your connections may fail if it is hosted behind a complex network. To provide a a solid service you definitely need both STUN and TURN servers. There are many public, free-to-use STUN servers ([STUN server list](https://gist.github.com/zziuni/3741933){:target="_blank"}), but because TURN always faces a much larger load when coming into play, no one offers it free of charge. The good news is that OpenVidu offers a STUN/TURN service at port 3478 by default in all of its deployments.
 
-For some cases this default Coturn deployed at OpenVidu is not enough for user behind too strictive firewalls. For such cases you can take a look to this section: [Allow users behind strict firewalls](deployment/allow-users-behind-strict-firewalls/)
+For some cases this default Coturn deployed at OpenVidu is not enough for user behind too restrictive firewalls. For such cases you can take a look to this section: [Allow users behind firewalls](deployment/allow-users-behind-firewalls/)
 
   > You can test your _COTURN_ server on this website: [Trickle ICE](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/){:target="_blank"}. To do so, remove the default Google server from the list and add your own following this format: `turn:YOUR_TURN_IP:YOUR_TURN_PORT` (add your TURN username and password below)
 
@@ -562,7 +562,7 @@ cd /opt/openvidu
 > custom nginx configuration to the new one.
 <br>
 
-#### 17. Elastic Search and OpenVidu Pro Common Problems
+#### 17. Elastic Search and OpenVidu Pro common problems
 
 Exceptions may happen in OpenVidu Pro if the machine is running out of disk space or if Elasticsearch have not enough JVM heap memory configured.
 
@@ -673,6 +673,8 @@ Take a look into [Elasticsearch heap config documentation](https://www.elastic.c
 
 Elasticsearch may take some minutes to start due to a lot of data saved or low memory resources.
 
-#### 18. OpenVidu does not work on restrictive firewall, What can I do?
+---
 
-OpenVidu CE and OpenVidu Pro deploys by default a STUN/TURN server (Coturn) at port 3478. Some strict firewall has restrictions on requests which don't go out from ports 80 and 443, consequently denying requests to port 3478 from the browser. Follow the instructions from [_"Allow users behind strict firewalls"_](deployment/allow-users-behind-strict-firewalls/) to solve this situations.
+#### 18. OpenVidu does not work for clients behind restrictive firewalls
+
+OpenVidu CE and OpenVidu Pro deploy by default a TURN server (Coturn) at port 3478. Some strict firewalls have restrictions on requests with origin ports other than 80 and 443, consequently denying requests from port 3478. Follow the instructions of section [Allow users behind firewalls](deployment/allow-users-behind-firewalls/) to solve these situations.

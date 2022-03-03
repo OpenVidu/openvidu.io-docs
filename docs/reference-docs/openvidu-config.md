@@ -49,7 +49,7 @@ These configuration parameters apply to OpenVidu CE, OpenVidu Pro and OpenVidu E
 | **`OPENVIDU_STREAMS_ALLOW_TRANSCODING`** | Allow the media server to perform live transcoding of video streams, ensuring that all codecs match in the session (**Kurento only**).<br>[More details](advanced-features/media-codecs/) | **false** |
 | **`OPENVIDU_SESSIONS_GARBAGE_INTERVAL`** | How often the garbage collector of non active sessions runs. This helps cleaning up Sessions that have been initialized through REST API, and maybe have had Connections created, but have had no final users connected (no Connection of the Session entered `active` status). Default to 900s (15 mins). 0 to disable the non active sessions garbage collector. | **900** |
 | **`OPENVIDU_SESSIONS_GARBAGE_THRESHOLD`** | Minimum time in seconds that a non active session must have been in existence for the garbage collector of non active sessions to remove it. Default to 3600s (1 hour). If non active sessions garbage collector is disabled (property `OPENVIDU_SESSIONS_GARBAGE_INTERVAL` is set to 0) this property is ignored. | **3600** |
-| **`OPENVIDU_WEBRTC_ICE_SERVERS`** | Array of ICE servers to use instead of default Coturn at browser/clients side (comma-separated list of ICE Servers). Examples: <ul><li>`["url=turns:example.turn.com:443,staticAuthSecret=secret"]`</li><li>`["url=turns:example.turn.com:443,username=usertest,credential=userpass"]`</li></ul> [More Details](deployment/allow-users-behind-strict-firewalls/){:target="\_blank"} | **[ ]** |
+| **`OPENVIDU_WEBRTC_ICE_SERVERS`** | Array of ICE servers to use instead of default Coturn at browser/clients side (comma-separated list of ICE Servers). Examples: <ul><li>`["url=turns:example.turn.com:443,staticAuthSecret=secret"]`</li><li>`["url=turns:example.turn.com:443,username=usertest,credential=userpass"]`</li></ul> [More Details](deployment/allow-users-behind-firewalls/){:target="\_blank"} | **[ ]** |
 
 <br>
 
@@ -127,7 +127,7 @@ Also, take into account that **these configuration properties have different def
 
 Below there is an example of a `docker run` command to launch the OpenVidu development container while setting multiple configuration properties:
 
-```bash
+```console
 docker run -p 4443:4443 --rm \
     -e OPENVIDU_SECRET=my_password \
     -e OPENVIDU_RECORDING=true \

@@ -1,13 +1,13 @@
-<h2 id="section-title">Allow users behind strict firewalls</h2>
+<h2 id="section-title">Allow users behind firewalls</h2>
 <hr>
 
 - **[Introduction](#introduction)**
-- **[Deploy a TURN service for clients connecting from strict firewall](#deploy-a-turn-service-for-clients-connecting-from-strict-firewall)**
+- **[Deploy a TURN service for clients behind firewalls](#deploy-a-turn-service-for-clients-behind-firewalls)**
     - [1) Prerequisites](#1-prerequisites)
     - [2) Installation](#2-installation)
     - [3) Configure OpenVidu to use the new TURN server deployed](#3-configure-openvidu-to-use-the-new-turn-server-deployed)
     - [Deployment Example](#deployment-example)
-- **[Use a third-party TURN SaaS for clients connecting from strict firewall](#use-a-third-party-turn-saas-for-clients-connecting-from-strict-firewall)**
+- **[Use a third-party TURN SaaS for clients behind firewalls](#use-a-third-party-turn-saas-for-clients-behind-firewalls)**
 
 ---
 
@@ -17,7 +17,11 @@ OpenVidu deployments include a TURN server ([Coturn](https://github.com/coturn/c
 
 To solve this limitation, OpenVidu now can be easily configured with external TURN servers, either to use our brand new TURN appliance that can be deployed externally, or a third-party TURN SaaS. In the next sections both scenarios will be described.
 
-## Deploy a TURN service for clients connecting from strict firewall
+<br>
+
+---
+
+## Deploy a TURN service for clients behind firewalls
 
 We provide our own deployment based on the [Coturn](https://github.com/coturn/coturn){:target="\_blank"} project which can be deployed at port 443 with SSL. In this section we will describe how to install it and configure it at OpenVidu configuration.
 
@@ -75,12 +79,12 @@ curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.5.2/inst
 docker-compose up -d
 ```
 
-To check if everything is working you should follow the logs. To do that, execute:
+Check the logs to see if everything is OK:
 ```
 docker-compose logs -f
 ```
 
-If everything works, you should see this trace of logs from `certbot` and `coturn` containers:
+You should see this log trace from `certbot` and `coturn` containers:
 
 ```text
 certbot    | Account registered.
@@ -101,7 +105,7 @@ coturn     | 0: : IPv4 <PROTOCOL> listener opened on : 0.0.0.0:443
 
 Now your TURN server is ready at port 443 with SSL.
 
-> Don't worry about some coturn errors in the log. Coturn is too verbose but most errors are caused by defaults configurations that Coturn tries to apply. The only important thing is to see previous described logs.
+> As long as the output of the coturn service matches the above one, you can ignore some error logs that you may see. Coturn is very verbose and tries to apply some default configurations that may produce those errors.
 
 #### 3) Configure OpenVidu to use the new TURN server deployed:
 
@@ -133,13 +137,39 @@ On the other hand the OpenVidu configuration at `/opt/openvidu/.env` should incl
 OPENVIDU_WEBRTC_ICE_SERVERS=["url=turns:turn-server.example.com:443,staticAuthSecret=mysecret"]
 ```
 
-## Use a third-party TURN SaaS for clients connecting from strict firewall
+<br>
+
+---
+
+## Use a third-party TURN SaaS for clients behind firewalls
 
 If you don't want to manage and provision your own server, we provide in our SDKs the possibility to configure a third-party TURN SaaS as [Xyrsys](https://xirsys.com/){:target="\_blank"} or [Twilio Turn](https://www.twilio.com/stun-turn){:target="\_blank"}. With such services you can also benefit of a **global network transversal service**. These services has its own TURN servers deployed around the world so you can reach the nearest TURN server and benefit of less latency connections.
 
-TURN SaaS offers easy to use APIs to generate TURN endpoints and credentials. You just need to get that information from the TURN SaaS API and pass it to OpenVidu while creating [Connections](reference-docs/REST-API/#the-connection-object){:target="\_blank"}
+TURN SaaS offers easy to use APIs to generate TURN endpoints and credentials. You just need to get that information from the TURN SaaS API and pass it to OpenVidu while creating [Connections](reference-docs/REST-API/#the-connection-object){:target="\_blank"}.
 
-**openvidu-java-client**
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+</div>
+
+<div id="rest-api" class="lang-tabs-content" markdown="1">
+
+When creating a Connection with method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection){:target="_blank"} provide parameter **`customIceServers`**
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+    -H "Content-Type: application/json" \
+    -u OPENVIDUAPP:<YOUR_SECRET> \
+    -d '{"type":"WEBRTC","customIceServers":[{"url":"turn:<your_turn_endpoint>:443","username":"<your_username>","credential":"<your_credential>"}]}'
+```
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
 ```java
 Session session = OV.createSession();
 IceServerProperties iceServerProperties = new IceServerProperties.Builder()
@@ -153,9 +183,13 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 session.createConnection(connectionProperties);
 ```
 
-**openvidu-node-client**
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/IceServerProperties.html){:target="_blank"}
 
-```js
+</div>
+
+<div id="node" class="lang-tabs-content" style="display:none" markdown="1">
+
+```javascript
 let session = await this.openvidu.createSession({});
 let connection = await session.createConnection({
     customIceServers: [
@@ -168,9 +202,47 @@ let connection = await session.createConnection({
 });
 ```
 
-You can also configure fixed credentials at OpenVidu global config if you wish, but usually these services has capabilities to create credentials dinamycally and it is not recommended:
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+
+</div>
+
+</div>
+
+<br>
+
+It is also possible to set fixed TURN credentials at OpenVidu global configuration, but please note that this is generally not recommended, as dynamic credentials associated to the lifecycle of each user is a much more secure option.
 
 ```bash
 OPENVIDU_WEBRTC_ICE_SERVERS=["url=turns:<your_turn_endpoint>:443,username=<your_username>,credential=<your_credential>"]
 ```
 
+<br>
+
+<script>
+function changeLangTab(event) {
+  var parent = event.target.parentNode.parentNode;
+  var txt = event.target.textContent || event.target.innerText;
+  var txt = txt.replace(/\s/g, "-").toLowerCase();
+  for (var i = 0; i < parent.children.length; i++) {
+    var child = parent.children[i];
+    // Change appearance of language buttons
+    if (child.classList.contains("lang-tabs-header")) {
+        for (var j = 0; j < child.children.length; j++) {
+            var btn = child.children[j];
+            if (btn.classList.contains("lang-tabs-btn")) {
+                btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
+                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+            }
+        }
+    }
+    // Change visibility of language content
+    if (child.classList.contains("lang-tabs-content")) {
+        if (child.id === txt) {
+            child.style.display = "block";
+        } else {
+            child.style.display = "none";
+        }
+    }
+  }
+}
+</script>

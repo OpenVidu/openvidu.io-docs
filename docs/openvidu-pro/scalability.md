@@ -87,7 +87,7 @@ SessionProperties sessionProperties = new SessionProperties.Builder()
 Session session = openvidu.createSession(sessionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#createSession-io.openvidu.java.client.SessionProperties-){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#createSession(io.openvidu.java.client.SessionProperties)){:target="_blank"}
 
 </div>
 

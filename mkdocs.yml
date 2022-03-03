@@ -83,7 +83,7 @@ nav:
                 - AWS: deployment/enterprise/aws.md
                 - On premises: deployment/enterprise/on-premises.md
           - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
-          - Allow users behind strict firewalls: deployment/allow-users-behind-strict-firewalls.md
+          - Allow users behind firewalls: deployment/allow-users-behind-firewalls.md
     - Contribute:
           - Developing OpenVidu: developing/index.md
           - OpenVidu Server RPC protocol: developing/rpc.md

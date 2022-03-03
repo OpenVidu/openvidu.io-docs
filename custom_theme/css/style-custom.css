@@ -1272,3 +1272,7 @@ nav.navbar.navbar-small #sign-in-button:hover {
     display: table-cell;
     padding: 10px 20px;
 }
+
+.table-pricing tbody tr:hover {
+    background-color: rgb(239 239 239) !important;
+}

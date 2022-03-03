@@ -581,7 +581,7 @@ Connection connection = session.createConnection(connectionProperties);
 String token = connection.getToken(); // Send this string to the client side
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection-io.openvidu.java.client.ConnectionProperties-){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection(io.openvidu.java.client.ConnectionProperties)){:target="_blank"}
 
 </div>
 
@@ -628,7 +628,7 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 session.updateConnection(connectionId, connectionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#updateConnection-java.lang.String-io.openvidu.java.client.ConnectionProperties-){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#updateConnection(java.lang.String,io.openvidu.java.client.ConnectionProperties)){:target="_blank"}
 
 </div>
 
