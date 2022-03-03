@@ -4,9 +4,9 @@
 
 OpenVidu is able to handle WebRTC media streams by using different media servers in the backend, depending on its configuration:
 
-* [Kurento](https://www.kurento.org/)
+* [Kurento](https://www.kurento.org/){:target="_blank"}
 
-* [mediasoup](https://mediasoup.org/) <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
+* [mediasoup](https://mediasoup.org/){:target="_blank"} <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
 The media server to be used by OpenVidu is defined with [configuration property `OPENVIDU_ENTERPRISE_MEDIA_SERVER`](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-enterprise). You can compare both options at [Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup).
 
@@ -22,8 +22,8 @@ Table of Contents:
 
 The WebRTC specification mandates compatibility with two video codecs:
 
-* [VP8].
-* [H.264].
+* [VP8]{:target="_blank"}
+* [H.264]{:target="_blank"}
 
 These are well rounded and established codecs, with mature implementations in lots of systems, and even hardware decoders in computers and mobile devices.
 
@@ -31,16 +31,16 @@ These are well rounded and established codecs, with mature implementations in lo
 
 On top of those, there are some new codecs have been slowly added to some clients. None of these are mandated by the WebRTC specification, so support for them varies greatly among platforms:
 
-* [VP9] is the successor of *VP8*, and brings to the table a greater ability to compress the video streams without noticeable loss of quality.
-* [H.265] is the equivalent evolution of *H.264*, with also much improved compression ratios, but still limited adoption, probably because it is encumbered with usage licenses.
-* [AV1] is the newest arrival, and promises to be the best overall codec for real time video transmission; however, it still has a long way until enough adoption makes it a safe choice when compatibility between platforms is a deciding factor.
+* [VP9]{:target="_blank"} is the successor of *VP8*, and brings to the table a greater ability to compress the video streams without noticeable loss of quality.
+* [H.265]{:target="_blank"} is the equivalent evolution of *H.264*, with also much improved compression ratios, but still limited adoption, probably because it is encumbered with usage licenses.
+* [AV1]{:target="_blank"} is the newest arrival, and promises to be the best overall codec for real time video transmission; however, it still has a long way until enough adoption makes it a safe choice when compatibility between platforms is a deciding factor.
 
 Codec support in OpenVidu is as follows:
 
 * Kurento
 
     - *VP8*
-    - *H.264*
+    - *H.264*<br><br>
 
 * mediasoup <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
@@ -109,18 +109,12 @@ This feature can be set globally for the OpenVidu Server by setting the `OPENVID
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}**, passing `{ "forcedVideoCodec": "VP8" }`.
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
@@ -143,6 +137,19 @@ const session = openvidu.createSession(sessionProperties);
 ```
 
 See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec){:target="_blank"}.
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}** passing `{ "forcedVideoCodec": "VP8" }`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "forcedVideoCodec": "VP8" }'
+```
 
 </div>
 
@@ -250,7 +257,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

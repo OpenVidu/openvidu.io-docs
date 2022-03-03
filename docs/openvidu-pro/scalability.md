@@ -56,28 +56,12 @@ You can force the Media Node where a session must be allocated.
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When initializing a Session by calling method **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}**, provide a Media Node selector through body parameter `mediaNode`.
-
-```json
-{
-    "mediaNode": {
-        "id": "media_i-1234567890abcdef0"
-    }
-}
-```
-
-The `id` value must be the `id` property of a [Media Node object](reference-docs/REST-API/#the-media-node-object){:target="_blank"}.
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
@@ -104,6 +88,21 @@ openVidu.createSession(sessionProperties)
 ```
 
 See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession){:target="_blank"}
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When initializing a Session by calling method **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}**, provide a Media Node selector through body parameter `mediaNode`.
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "mediaNode": {"id": "media_i-1234567890abcdef0" }}'
+```
+
+The `id` value must be the `id` property of a [Media Node object](reference-docs/REST-API/#the-media-node-object){:target="_blank"}.
 
 </div>
 
@@ -419,7 +418,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

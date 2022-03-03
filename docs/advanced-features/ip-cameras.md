@@ -15,18 +15,12 @@ You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.o
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}**
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
@@ -61,6 +55,29 @@ session.createConnection(connectionProperties)
 ```
 
 See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}**
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "type": "IPCAM",
+       "data": "Office security camera",
+       "record": true,
+       "rtspUri": "rtsp://your.camera.ip.sdp",
+       "adaptativeBitrate": true,
+       "onlyPlayWithSubscribers": true,
+       "networkCache": 2000
+     }
+BODY
+```
 
 </div>
 
@@ -133,25 +150,19 @@ To unpublish an IP camera you must remove its Connection. You can do it from you
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-connection){:target="_blank"}**
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 // Find the desired Connection object in the list returned by Session.getConnections()
 session.forceDisconnect(connection);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#forceDisconnect(io.openvidu.java.client.Connection){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#forceDisconnect(io.openvidu.java.client.Connection)){:target="_blank"}
 
 </div>
 
@@ -163,6 +174,17 @@ session.forceDisconnect(connection);
 ```
 
 See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:target="_blank"}
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-connection){:target="_blank"}**
+
+```sh
+curl -X DELETE https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID> \
+     -u OPENVIDUAPP:<YOUR_SECRET>
+```
 
 </div>
 
@@ -213,7 +235,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

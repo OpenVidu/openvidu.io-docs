@@ -102,24 +102,12 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-1. Initialize your sessions with this POST method: [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"}<br>You may configure default values for recordings started for this session by sending parameter `defaultRecordingProperties`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
-
-2. If you have configured your session with `"recordingMode": "MANUAL"`
-
-    - Start the recording with this POST method: [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"}<br>You can pass parameters to override the default recording properties set in step 1 or to further configure it with other available options.
-
-    - Stop the recording with this POST method: [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-recording-stop){:target="_blank"}
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 1. Call `OpenVidu.createSession()` passing as an optional parameter a `SessionProperties` object. You may configure default values for recordings started for this session with that object. This way you can pre-configure recordings that will be automatically started (for sessions with `RecordingMode.ALWAYS`)
 
@@ -178,6 +166,41 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 </div>
 
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+1. Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"}<br>You may configure default values for recordings started for this session by sending parameter `defaultRecordingProperties`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+
+        curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
+             -u OPENVIDUAPP:<YOUR_SECRET> \
+             -H "Content-Type: application/json" \
+             --data-binary @- <<BODY
+             {
+               "session": "ses_YnDaGYNcd7",
+               "recordingMode": "MANUAL",
+               "defaultRecordingProperties": {
+                 "outputMode": "COMPOSED",
+                 "resolution": "640x480",
+                 "frameRate": 24
+               }
+             }
+        BODY
+
+2. If you have configured your session with `"recordingMode": "MANUAL"` :
+
+    - Start the recording with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"}. You can pass parameters to override the default recording properties set in step 1 or to further configure it with other available options.
+
+            curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+                 -u OPENVIDUAPP:<YOUR_SECRET> \
+                 -H "Content-Type: application/json" \
+                 -d '{ "session": "ses_YnDaGYNcd7", "name": "MY_RECORDING_NAME" }'
+
+    - Stop the recording with method [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-recording-stop){:target="_blank"}
+
+            curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/stop/<RECORDING_ID> \
+                 -u OPENVIDUAPP:<YOUR_SECRET>
+
+</div>
+
 </div>
 
 <br>
@@ -195,18 +218,12 @@ You can use the default layout, that will evenly distribute each stream in the a
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters<br>`{"outputMode: "COMPOSED", "recordingLayout": "BEST_FIT", "resolution": "640x480", "frameRate": 24}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -233,6 +250,27 @@ openvidu.startRecording(sessionId, {
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameter `outputMode` to `"COMPOSED"`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "session": "ses_YnDaGYNcd7",
+       "outputMode": "COMPOSED",
+       "recordingLayout": "BEST_FIT",
+       "resolution": "640x480",
+       "frameRate": 24
+     }
+BODY
 ```
 
 </div>
@@ -274,18 +312,12 @@ To initialize a Session with this recording output mode, just use **`outputMode 
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-Initialize your sessions with this POST method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"} passing `{"defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START"}}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
     OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
     RecordingProperties recordingProperties = new RecordingProperties.Builder()
@@ -307,6 +339,19 @@ Initialize your sessions with this POST method [POST /openvidu/api/sessions](ref
         }
     };
     var mySession = openvidu.createSession(sessionProperties);
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"} providing `{"defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START"}}`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START" }}'
+```
 
 </div>
 
@@ -357,18 +402,12 @@ For an OpenVidu Pro cluster, by default **composed recordings with video** take 
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`. For example:<br>`{"mediaNode:{"id":"media_i-1234567890abcdef0"}}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -397,6 +436,19 @@ openvidu.startRecording(sessionId, {
 
 </div>
 
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "session": "ses_YnDaGYNcd7", "mediaNode": { "id": "media_i-1234567890abcdef0" }}'
+```
+
+</div>
+
 </div>
 
 <br>
@@ -416,18 +468,12 @@ Every publisher stream is recorded in its own file. The final result is a ZIP fi
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameter `{"outputMode:"INDIVIDUAL"}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -448,6 +494,19 @@ openvidu.startRecording(sessionId, {
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameter `outputMode` to `"INDIVIDUAL"`.
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "session": "ses_YnDaGYNcd7", "outputMode": "INDIVIDUAL" }'
 ```
 
 </div>
@@ -560,18 +619,12 @@ This applies to [INDIVIDUAL recording](#individual-recording). You can specify t
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** pass parameter `record` to false.
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
@@ -600,6 +653,19 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:t
 
 </div>
 
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** pass parameter `record` to false.
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "record": false }'
+```
+
+</div>
+
 </div><br>
 
 You can also change on the fly whether the streams of a Connection must be recorded or not. By using the capability of dynamically updating the options of a Connection you can start or stop the individual recording of the Connection's stream at any moment, even while the recording is active:
@@ -607,18 +673,12 @@ You can also change on the fly whether the streams of a Connection must be recor
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-Use method **[PATCH /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API/#patch-connection){:target="_blank"}** to modify the connection property `record` to true or false. This will start or stop the recording of the stream published by the Connection identified by `CONNECTION_ID`.
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
@@ -643,6 +703,19 @@ session.updateConnection(connectionId, connectionProperties).then(connection => 
 ```
 
 See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:target="_blank"}
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+Use method **[PATCH /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API/#patch-connection){:target="_blank"}** to modify the connection property `record` to true or false. This will start or stop the recording of the stream published by the Connection identified by `CONNECTION_ID`.
+
+```sh
+curl -X PATCH https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID> \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{ "record": false }'
+```
 
 </div>
 
@@ -672,18 +745,12 @@ By default recordings will be generated with both audio and video, but you can c
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -706,6 +773,19 @@ openvidu.startRecording(sessionId, {
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     -d '{"session": "ses_YnDaGYNcd7", "hasAudio": true, "hasVideo": false}'
 ```
 
 </div>
@@ -740,18 +820,12 @@ You can always manually stop any recording at any time, even during the automati
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-[POST /openvidu/api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-recording-stop){:target="_blank"}
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 Recording stoppedRecording = openVidu.stopRecording(recordingId);
@@ -766,6 +840,17 @@ var stoppedRecording;
 openvidu.stopRecording(recordingId)
     .then(response => stoppedRecording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+[POST /openvidu/api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-recording-stop){:target="_blank"}
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/stop/<RECORDING_ID> \
+     -u OPENVIDUAPP:<YOUR_SECRET>
 ```
 
 </div>
@@ -872,18 +957,12 @@ openvidu/openvidu-server-kms:2.20.0
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM"}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -910,6 +989,28 @@ openvidu.startRecording(sessionId, {
 
 </div>
 
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+
+- `"outputMode": "COMPOSED"`
+- `"recordingLayout": "CUSTOM"`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "session": "ses_YnDaGYNcd7",
+       "outputMode": "COMPOSED",
+       "recordingLayout": "CUSTOM"
+     }
+BODY
+```
+
+</div>
+
 </div>
 
 <br>
@@ -923,18 +1024,12 @@ You can implement as many custom recording layouts as you want. Simply store eac
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "RELATIVE/PATH/TO/INDEX"}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -959,6 +1054,30 @@ openvidu.startRecording(sessionId, {
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+
+- `"outputMode": "COMPOSED"`
+- `"recordingLayout": "CUSTOM"`
+- `"customLayout": "RELATIVE/PATH/TO/INDEX"`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "session": "ses_YnDaGYNcd7",
+       "outputMode": "COMPOSED",
+       "recordingLayout": "CUSTOM",
+       "customLayout": "RELATIVE/PATH/TO/INDEX"
+     }
+BODY
 ```
 
 </div>
@@ -995,18 +1114,12 @@ OpenVidu allows you to configure a recording to use a custom layout deployed out
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters<br>`{"outputMode": "COMPOSED", "recordingLayout": "CUSTOM", "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"}`
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 RecordingProperties properties = new RecordingProperties.Builder()
@@ -1031,6 +1144,30 @@ openvidu.startRecording(sessionId, {
 })
     .then(response => recording = response)
     .catch(error => console.error(error));
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+
+- `"outputMode": "COMPOSED"`
+- `"recordingLayout": "CUSTOM"`
+- `"customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"`
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "session": "ses_YnDaGYNcd7",
+       "outputMode": "COMPOSED",
+       "recordingLayout": "CUSTOM",
+       "customLayout": "https://USER:PASS@my.domain.com:8888/path?myParam=123"
+     }
+BODY
 ```
 
 </div>
@@ -1214,7 +1351,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

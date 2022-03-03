@@ -1198,7 +1198,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains('lang-tabs-btn')) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

@@ -150,25 +150,12 @@ TURN SaaS offers easy to use APIs to generate TURN endpoints and credentials. Yo
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When creating a Connection with method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection){:target="_blank"} provide parameter **`customIceServers`**
-
-```sh
-curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
-    -H "Content-Type: application/json" \
-    -u OPENVIDUAPP:<YOUR_SECRET> \
-    -d '{"type":"WEBRTC","customIceServers":[{"url":"turn:<your_turn_endpoint>:443","username":"<your_username>","credential":"<your_credential>"}]}'
-```
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 ```java
 Session session = OV.createSession();
@@ -206,6 +193,30 @@ See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:t
 
 </div>
 
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When creating a Connection with method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection){:target="_blank"} provide parameter **`customIceServers`**
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "type": "WEBRTC",
+       "customIceServers": [
+         {
+           "url": "turn:<your_turn_endpoint>:443",
+           "username": "<your_username>",
+           "credential": "<your_credential>"
+         }
+       ]
+     }
+BODY
+```
+
+</div>
+
 </div>
 
 <br>
@@ -231,7 +242,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }

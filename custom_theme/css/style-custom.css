@@ -919,6 +919,7 @@ div.lang-tabs-container div.lang-tabs-header .lang-tabs-btn {
     font-family: arciform;
     font-size: 18px;
     border-top: 2px solid #e8e8e8;
+    color: #777;
 }
 
 div.lang-tabs-container div.lang-tabs-header .lang-tabs-btn:hover {
@@ -960,7 +961,7 @@ div.lang-tabs-container.elastic-events div.lang-tabs-header {
 div.lang-tabs-container.elastic-events div.lang-tabs-header .lang-tabs-btn {
     width: unset !important;
     font-size: 11.8px !important;
-    font-weight: bold !important;
+    color: black !important;
     padding: 6px 5px 6px 5px !important;
     font-family: inherit;
 }

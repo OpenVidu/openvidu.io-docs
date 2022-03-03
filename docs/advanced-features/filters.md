@@ -21,29 +21,12 @@ This is a simple way of securing the ability of applying filters from OpenVidu B
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
-
-When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
-
-```json  
-{
-    "type": "WEBRTC",
-    "data": "user_data",
-    "role": "PUBLISHER",
-    "kurentoOptions": {
-        "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
-    }
-}
-```
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
 When creating a Connection, call `ConnectionProperties.Builder#connectionProperties(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
 
@@ -78,6 +61,28 @@ var connectionProperties = {
 session.createConnection(connectionProperties).then(connection => { 
     var token = connection.token; // Send this string to the client side
 });
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "type": "WEBRTC",
+       "data": "user_data",
+       "role": "PUBLISHER",
+       "kurentoOptions": {
+         "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
+       }
+     }
+BODY
 ```
 
 </div>
@@ -285,7 +290,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }
