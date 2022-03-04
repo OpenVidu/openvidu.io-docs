@@ -506,3 +506,11 @@ span.arrow-down {
 a > code {
     color: #0088aa !important;
 }
+
+div.toc > ul > li{
+    font-weight: bold;
+}
+
+div.toc > ul > li li {
+    font-weight: normal;
+}

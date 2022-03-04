@@ -162,7 +162,7 @@ Possible values are:
 * **`MEDIA_SERVER_PREFERRED`**: A recommended choice is done for you, based on the media server that is currently in use. This is the default setting, and gets automatically translated into these values:
 
     - For Kurento, the selected value is *VP8*.
-    - For mediasoup, the selected value is *NONE*.
+    - For mediasoup, the selected value is *NONE*.<div style="margin-bottom: 10px"></div>
 
 * **`NONE`**: No specific codec is enforced. This means that a negotiation will occur between the media server and every participant, where the client platform's preferred codec will be given preference whenever possible.
 
@@ -230,10 +230,9 @@ All of OpenVidu's [COMPOSED recording](advanced-features/recording/#composed-rec
 
 ### Limitations {: #recording-limitations }
 
-**mediasoup**:
+* **INDIVIDUAL recording** with **mediasoup** using **VP9** is still an experimental feature that is not ready for use. As of current versions of OpenVidu, the resulting `.mkv` files are playable, but will only contain audio, and no video.
 
-* Recording VP9 is still an experimental feature that is not ready for use. As of current versions of OpenVidu, the resulting `.mkv` files are playable, but will only contain audio, and no video.
-
+<br>
 
 
 [VP8]: https://en.wikipedia.org/wiki/VP8
