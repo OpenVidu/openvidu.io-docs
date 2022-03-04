@@ -48,8 +48,8 @@ Recorded when a new session has been created. This event will be triggered at th
 
 | Property    | Description                               | Value                                       |
 | ----------- | ----------------------------------------- | ------------------------------------------- |
-| `sessionId` | Session for which the event was triggered | A string with the session unique identifier |
-| `timestamp` | Time when the event was triggered         | UTC milliseconds                            |
+| `sessionId` | Session for which the event was triggered | A String with the session's unique identifier |
+| `timestamp` | Time when the event was triggered         | A Number (UTC milliseconds)                            |
 
 <br>
 
@@ -73,11 +73,11 @@ Recorded when a session has finished.
 
 | Property    | Description                               | Value                                                                                 |
 | ----------- | ----------------------------------------- | ------------------------------------------------------------------------------------- |
-| `sessionId` | Session for which the event was triggered | A string with the session unique identifier                                           |
-| `timestamp` | Time when the event was triggered         | UTC milliseconds                                                                      |
-| `startTime` | Time when the session started             | UTC milliseconds                                                                      |
-| `duration`  | Total duration of the session             | Seconds                                                                               |
-| `reason`    | Why the session was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})   | [`"lastParticipantLeft"`, <br>`"sessionClosedByServer"`, <br>`"mediaServerDisconnect"`, <br>`"nodeCrashed"`,  <br>`"openviduServerStopped"`] |
+| `sessionId` | Session for which the event was triggered | A String with the session's unique identifier                                           |
+| `timestamp` | Time when the event was triggered         | A Number (UTC milliseconds)                                                                      |
+| `startTime` | Time when the session started             | A Number (UTC milliseconds)                                                                      |
+| `duration`  | Total duration of the session             | A Number with the duration in seconds                                                                               |
+| `reason`    | Why the session was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})   | A String with one of these possible values <ul class="cdr-list"><li>`"lastParticipantLeft"`</li><li>`"sessionClosedByServer"`</li><li>`"mediaServerDisconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li></ul> |
 
 <br>
 
@@ -104,14 +104,14 @@ Recorded when a user has connected to a session.
 
 | Property        | Description                                                                            | Value                                                   |
 | --------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier             |
-| `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                        |
-| `connectionId` | Identifier of the participant                                                          | A string with the participant unique identifier         |
-| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`) |
-| `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
-| `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                  |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
+| `sessionId`     | Session for which the event was triggered                                              | A String with the session's unique identifier             |
+| `timestamp`     | Time when the event was triggered                                                      | A Number (UTC milliseconds)                                        |
+| `connectionId` | Identifier of the participant                                                          | A String with the participant's unique identifier         |
+| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`) |
+| `ip`            | The IP of the participant, as seen by OpenVidu Server | A String with the participant's IP |
+| `platform`      | Complete description of the platform used by the participant to connect to the session | A String with the platform description                  |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A String with the participant server-side metadata |
 
 <br>
 
@@ -141,17 +141,17 @@ Recorded when a user has left a session.
 
 | Property        | Description                                                                            | Value                                                                                                                                                                |
 | --------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId`     | Session for which the event was triggered                                              | A string with the session unique identifier                                                                                                                          |
-| `timestamp`     | Time when the event was triggered                                                      | UTC milliseconds                                                                                                                                                     |
-| `connectionId` | Identifier of the participant                                                          | A string with the participant unique identifier                                                                                                                      |
-| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A string with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
-| `ip`            | The IP of the participant, as seen by OpenVidu Server | A string with the participant's IP |
-| `platform`      | Complete description of the platform used by the participant to connect to the session | A string with the platform description                                                                                                                               |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A string with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A string with the participant server-side metadata |
-| `startTime`     | Time when the participant joined the session                                           | UTC milliseconds                                                                                                                                                     |
-| `duration`      | Total duration of the participant's connection to the session                          | Seconds                                                                                                                                                              |
-| `reason`        | How the participant left the session ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                   | [`"disconnect"`, <br>`"forceDisconnectByUser"`, <br>`"forceDisconnectByServer"`, <br>`"sessionClosedByServer"`, <br>`"networkDisconnect"`, <br>`"mediaServerDisconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"`] |
+| `sessionId`     | Session for which the event was triggered                                              | A String with the session's unique identifier                                                                                                                          |
+| `timestamp`     | Time when the event was triggered                                                      | A Number (UTC milliseconds)                                                                                                                                                     |
+| `connectionId` | Identifier of the participant                                                          | A String with the participant's unique identifier                                                                                                                      |
+| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
+| `ip`            | The IP of the participant, as seen by OpenVidu Server | A String with the participant's IP |
+| `platform`      | Complete description of the platform used by the participant to connect to the session | A String with the platform description                                                                                                                               |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A String with the participant server-side metadata |
+| `startTime`     | Time when the participant joined the session                                           | A Number (UTC milliseconds)                                                                                                                                                     |
+| `duration`      | Total duration of the participant's connection to the session                          | A Number with the duration in seconds                                                                                                                                                              |
+| `reason`        | How the participant left the session ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                   | A String with one of these possible values <ul class="cdr-list"><li>`"disconnect"`</li><li>`"forceDisconnectByUser"`</li><li>`"forceDisconnectByServer"`</li><li>`"sessionClosedByServer"`</li><li>`"networkDisconnect"`</li><li>`"mediaServerDisconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li></ul> |
 
 <br>
 
@@ -181,16 +181,16 @@ Recorded when a new media stream has been established. Can be an "INBOUND" conne
 
 | Property          | Description                                                                                                                                                                       | Value                                                    |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered                                                                                                                                         | A string with the session unique identifier              |
-| `timestamp`       | Time when the event was triggered                                                                                                                                                 | UTC milliseconds                                         |
-| `connectionId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier          |
-| `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | [`"INBOUND"`,`"OUTBOUND"`]                               |
-| `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A string with the participant (sender) unique identifier |
-| `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | [`true`,`false`]                                         |
-| `videoEnabled`    | Whether the media connection has negotiated video or not                                                                                                                          | [`true`,`false`]                                         |
-| `videoSource`     | If `videoEnabled` is `true`, the type of video that is being transmitted                                                                                                          | [`"CAMERA"`,`"SCREEN"`]                                  |
-| `videoFramerate`  | If `videoEnabled` is `true`, the framerate of the transmitted video                                                                                                               | Number of fps                                            |
-| `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | String with the dimensions (e.g. `"1920x1080"`)          |
+| `sessionId`       | Session for which the event was triggered                                                                                                                                         | A String with the session's unique identifier              |
+| `timestamp`       | Time when the event was triggered                                                                                                                                                 | A Number (UTC milliseconds)                                         |
+| `connectionId`   | Identifier of the participant                                                                                                                                                     | A String with the participant's unique identifier          |
+| `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | A String with one of these possible values <ul class="cdr-list"><li>`"INBOUND"`</li><li>`"OUTBOUND"`</li></ul>                               |
+| `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A String with the participant (sender) unique identifier |
+| `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | A Boolean                                         |
+| `videoEnabled`    | Whether the media connection has negotiated video or not                                                                                                                          | A Boolean                                         |
+| `videoSource`     | If `videoEnabled` is `true`, the type of video that is being transmitted                                                                                                          | A String with one of these possible values <ul class="cdr-list"><li>`"CAMERA"`</li><li>`"SCREEN"`</li><li>`"CUSTOM"`</li><li>`"IPCAM"`</li></ul>                                  |
+| `videoFramerate`  | If `videoEnabled` is `true`, the framerate of the transmitted video                                                                                                               | A Number with the fps                                            |
+| `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | A String with the dimensions (e.g. `"1920x1080"`)          |
 
 <br>
 
@@ -223,19 +223,19 @@ Recorded when any media stream connection is closed.
 
 | Property          | Description                                                                                                                                                                       | Value                                                                                                                                                                                                                                                                  |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered                                                                                                                                         | A string with the session unique identifier                                                                                                                                                                                                                            |
-| `timestamp`       | Time when the event was triggered                                                                                                                                                 | UTC milliseconds                                                                                                                                                                                                                                                       |
-| `connectionId`   | Identifier of the participant                                                                                                                                                     | A string with the participant unique identifier                                                                                                                                                                                                                        |
-| `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | [`"INBOUND"`,`"OUTBOUND"`]                                                                                                                                                                                                                                             |
-| `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A string with the participant (sender) unique identifier                                                                                                                                                                                                               |
-| `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | [`true`,`false`]                                                                                                                                                                                                                                                       |
-| `videoEnabled`    | Whether the media connection has negotiated video or not                                                                                                                          | [`true`,`false`]                                                                                                                                                                                                                                                       |
-| `videoSource`     | If `videoEnabled` is `true`, the type of video that is being transmitted                                                                                                          | [`"CAMERA"`,`"SCREEN"`]                                                                                                                                                                                                                                                |
-| `videoFramerate`  | If `videoEnabled` is `true`, the framerate of the transmitted video                                                                                                               | Number of fps                                                                                                                                                                                                                                                          |
-| `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | String with the dimensions (e.g. `"1920x1080"`)                                                                                                                                                                                                                        |
-| `startTime`       | Time when the media connection was established                                                                                                                                    | UTC milliseconds                                                                                                                                                                                                                                                       |
-| `duration`        | Total duration of the media connection                                                                                                                                            | Seconds                                                                                                                                                                                                                                                                |
-| `reason`          | How the WebRTC connection was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                                                                                                          |  [`"unsubscribe"`,<br>`"unpublish"`,<br>`"disconnect"`,<br>`"forceUnpublishByUser"`,<br>`"forceUnpublishByServer"`, <br>`"forceDisconnectByUser"`, <br>`"forceDisconnectByServer"`, <br>`"sessionClosedByServer"`, <br>`"networkDisconnect"`, <br>`"mediaServerDisconnect"`, <br>`"mediaServerReconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"` ]|
+| `sessionId`       | Session for which the event was triggered                                                                                                                                         | A String with the session's unique identifier                                                                                                                                                                                                                            |
+| `timestamp`       | Time when the event was triggered                                                                                                                                                 | A Number (UTC milliseconds)                                                                                                                                                                                                                                                       |
+| `connectionId`   | Identifier of the participant                                                                                                                                                     | A String with the participant's unique identifier                                                                                                                                                                                                                        |
+| `connection`      | Whether the media connection is an inbound connection (the participant is receiving media from OpenVidu) or an outbound connection (the participant is sending media to OpenVidu) | A String with one of these possible values <ul class="cdr-list"><li>`"INBOUND"`</li><li>`"OUTBOUND"`</li></ul>                                                                                                                                                                                                                                             |
+| `receivingFrom`   | If `connection` is `"INBOUND"`, the participant from whom the media stream is being received                                                                                      | A String with the participant (sender) unique identifier                                                                                                                                                                                                               |
+| `audioEnabled`    | Whether the media connection has negotiated audio or not                                                                                                                          | A Boolean                                                                                                                                                                                                                                                       |
+| `videoEnabled`    | Whether the media connection has negotiated video or not                                                                                                                          | A Boolean                                                                                                                                                                                                                                                       |
+| `videoSource`     | If `videoEnabled` is `true`, the type of video that is being transmitted                                                                                                          | A String with one of these possible values <ul class="cdr-list"><li>`"CAMERA"`</li><li>`"SCREEN"`</li><li>`"CUSTOM"`</li><li>`"IPCAM"`</li></ul>                                                                                                                                                                                                                                                |
+| `videoFramerate`  | If `videoEnabled` is `true`, the framerate of the transmitted video                                                                                                               | A Number with the fps                                                                                                                                                                                                                                                          |
+| `videoDimensions` | If `videoEnabled` is `true`, the dimensions transmitted video                                                                                                                     | A String with the dimensions (e.g. `"1920x1080"`)                                                                                                                                                                                                                        |
+| `startTime`       | Time when the media connection was established                                                                                                                                    | A Number (UTC milliseconds)                                                                                                                                                                                                                                                       |
+| `duration`        | Total duration of the media connection                                                                                                                                            | A Number with the duration in seconds                                                                                                                                                                                                                                                                |
+| `reason`          | How the WebRTC connection was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                                                                                                          | A String with one of these possible values <ul class="cdr-list"><li>`"unsubscribe"`</li><li>`"unpublish"`</li><li>`"disconnect"`</li><li>`"forceUnpublishByUser"`</li><li>`"forceUnpublishByServer"`</li><li>`"forceDisconnectByUser"`</li><li>`"forceDisconnectByServer"`</li><li>`"sessionClosedByServer"`</li><li>`"networkDisconnect"`</li><li>`"mediaServerDisconnect"`</li><li>`"mediaServerReconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"` </li></ul> |
 
 <br>
 
@@ -270,20 +270,20 @@ Recorded when the status of a recording has changed. The status may be:
 
 | Property          | Description                                | Value                                         |
 | ----------------- | ------------------------------------------ | --------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
-| `startTime`       | Time when the recording started            | UTC milliseconds |
-| `id`              | Unique identifier of the recording         | A string with the recording unique identifier |
-| `name`            | Name given to the recording file           | A string with the recording name              |
-| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A string with the recording output mode |
-| `hasAudio`        | Whether the recording file has audio or not | [`true`,`false`]                              |
-| `hasVideo`        | Whether the recording file has video or not | [`true`,`false`]                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (BEST_FIT, PICTURE_IN_PICTURE, CUSTOM ...) |
-| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A string with the width and height of the video file in pixels. e.g. `"1280x720"` |
-| `size`            | The size of the video file. Only guaranteed to be greater than `0` if status is `ready` | Bytes                            |
-| `duration`        | Duration of the video file. Only guaranteed to be greater than `0` if status is `ready` | Seconds                          |
-| `status`          | Status of the recording                    | [`"started"`,`"stopped"`,`"ready"`,`"failed"`] |
-| `reason`          | Why the recording stopped. Only defined when status is _stopped_ or _ready_ ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"}) | [`"recordingStoppedByServer"`, <br>`"lastParticipantLeft"`, <br>`"sessionClosedByServer"`, <br>`"mediaServerDisconnect"`, <br>`"mediaServerReconnect"`, <br>`"nodeCrashed"`, <br>`"openviduServerStopped"`, <br>`"automaticStop"` ] |
+| `sessionId`       | Session for which the event was triggered  | A String with the session's unique identifier   |
+| `timestamp`       | Time when the event was triggered          | A Number (UTC milliseconds)                              |
+| `startTime`       | Time when the recording started            | A Number (UTC milliseconds) |
+| `id`              | Unique identifier of the recording         | A String with the recording unique identifier |
+| `name`            | Name given to the recording file           | A String with the recording name              |
+| `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A String with the recording output mode |
+| `hasAudio`        | Whether the recording file has audio or not | A Boolean                              |
+| `hasVideo`        | Whether the recording file has video or not | A Boolean                              |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A String with the **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (`"BEST_FIT"`, `"PICTURE_IN_PICTURE"`, `"CUSTOM"` ... ) |
+| `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A String with the width and height of the video file in pixels. e.g. `"1280x720"` |
+| `size`            | The size of the video file. Only guaranteed to be greater than `0` if status is `ready` | A Number with the size in bytes                            |
+| `duration`        | Duration of the video file. Only guaranteed to be greater than `0` if status is `ready` | A Number with the duration in seconds                          |
+| `status`          | Status of the recording                    | A String with one of these possible values <ul class="cdr-list"><li>`"started"`</li><li>`"stopped"`</li><li>`"ready"`</li><li>`"failed"`</li></ul></li> |
+| `reason`          | Why the recording stopped. Only defined when status is _stopped_ or _ready_ ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"}) | A String with one of these possible values <ul class="cdr-list"><li>`"recordingStoppedByServer"`</li><li>`"lastParticipantLeft"`</li><li>`"sessionClosedByServer"`</li><li>`"mediaServerDisconnect"`</li><li>`"mediaServerReconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li><li>`"automaticStop"` </li></ul> |
 
 <br>
 
@@ -309,13 +309,13 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 
 | Property          | Description                                | Value                                         |
 | ----------------- | ------------------------------------------ | --------------------------------------------- |
-| `sessionId`       | Session for which the event was triggered  | A string with the session unique identifier   |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
-| `connectionId`   | Identifier of the participant              | A string with the participant unique identifier |
-| `streamId`        | Identifier of the stream for which the filter is applied | A string with the stream unique identifier |
-| `filterType`      | Type of the filter applied to the stream   | A string with the type of filter              |
-| `eventType`       | Event of the filter that was triggered     | A string with the type of event               |
-| `data`            | Data of the filter event                   | A string with the data returned by the filter event. Its value will depend on the type of filter and event |
+| `sessionId`       | Session for which the event was triggered  | A String with the session's unique identifier   |
+| `timestamp`       | Time when the event was triggered          | A Number (UTC milliseconds)                              |
+| `connectionId`   | Identifier of the participant              | A String with the participant's unique identifier |
+| `streamId`        | Identifier of the stream for which the filter is applied | A String with the stream unique identifier |
+| `filterType`      | Type of the filter applied to the stream   | A String with the type of filter              |
+| `eventType`       | Event of the filter that was triggered     | A String with the type of event               |
+| `data`            | Data of the filter event                   | A String with the data returned by the filter event. Its value will depend on the type of filter and event |
 
 <br>
 
@@ -345,12 +345,12 @@ All kind of signals trigger `signalSent` event.
 
 | Property          | Description                                | Value                                         |
 | ----------------- | ------------------------------------------ | --------------------------------------------- |
-| `sessionId` | Session for which the event was triggered  | A string with the session unique identifier         |
-| `timestamp` | Time when the event was triggered          | UTC milliseconds                                    |
-| `from`      | Identifier of the participant that sent the signal, or `null` if sent by the application's server | A string with the participant unique identifier, or `null` |
-| `to`        | Array of participant identifiers to whom the message was addressed | An array of strings |
-| `type`      | Type of the signal | A string |
-| `data`      | Actual data of the signal | A string |
+| `sessionId` | Session for which the event was triggered  | A String with the session's unique identifier         |
+| `timestamp` | Time when the event was triggered          | A Number (UTC milliseconds)                                    |
+| `from`      | Identifier of the participant that sent the signal, or `null` if sent by the application's server | A String with the participant's unique identifier, or `null` |
+| `to`        | Array of participant identifiers to whom the message was addressed | An Array of Strings |
+| `type`      | Type of the signal | A String |
+| `data`      | Actual data of the signal | A String |
 
 <br>
 
@@ -411,15 +411,15 @@ An easy strategy to rebuild any affected session is to make clients ask for a ne
 
 | Property          | Description                                 | Value                                          |
 | ----------------- | ------------------------------------------- | ---------------------------------------------- |
-| `id`              | Unique identifier of the crashed node | A string with the node's unique identifier |
-| `environmentId`   | Unique identifier of the crashed node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A string with the node's environment unique identifier |
-| `ip`              | IP of the crashed node | A string with the node's IP |
-| `uri`             | URI of the crashed node | A string with the node's URI |
-| `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A string with the cluster identifier |
-| `nodeRole`       | Role of the crashed node | A string with the node's role. It is `medianode` for now |
-| `sessionIds`     | The collection of session identifiers of all the sessions that were located in the crashed node. This way you can immediately know which sessions have been destroyed by the crash | An array of strings |
-| `recordingIds`    | The collection of recording identifiers of all the recordings that were located in the crashed node. This way you can immediately know which recordings have been affected by the crash | An array of strings |
-| `timestamp`       | Time when the event was triggered | UTC milliseconds                              |
+| `id`              | Unique identifier of the crashed node | A String with the node's unique identifier |
+| `environmentId`   | Unique identifier of the crashed node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A String with the node's environment unique identifier |
+| `ip`              | IP of the crashed node | A String with the node's IP |
+| `uri`             | URI of the crashed node | A String with the node's URI |
+| `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A String with the cluster identifier |
+| `nodeRole`       | Role of the crashed node | A String with the node's role. It is `medianode` for now |
+| `sessionIds`     | The collection of session identifiers of all the sessions that were located in the crashed node. This way you can immediately know which sessions have been destroyed by the crash | An Array of Strings |
+| `recordingIds`    | The collection of recording identifiers of all the recordings that were located in the crashed node. This way you can immediately know which recordings have been affected by the crash | An Array of Strings |
+| `timestamp`       | Time when the event was triggered | A Number (UTC milliseconds)                              |
 
 <br>
 
@@ -477,14 +477,14 @@ Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed.
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `id`              | Unique identifier of the Media Node        | A string with the Media Node unique identifier |
-| `environmentId`   | Unique identifier of the Media Node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A string with the Media Node environment unique identifier |
-| `ip`              | IP of the Media Node        | A string with the Media Node IP |
-| `uri`             | URI of the Media Node. This is the actual direction where OpenVidu Server Pro Media Node connects to this Media Node | A string with the Media Node URI |
-| `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the Media Node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A string with the cluster identifier |
-| `oldStatus`       | Old status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A string with the Media Node old status. `null` if _newStatus_ is `launching` |
-| `newStatus`       | New status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A string with the Media Node new status |
-| `timestamp`       | Time when the event was triggered          | UTC milliseconds                              |
+| `id`              | Unique identifier of the Media Node        | A String with the Media Node unique identifier |
+| `environmentId`   | Unique identifier of the Media Node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A String with the Media Node environment unique identifier |
+| `ip`              | IP of the Media Node        | A String with the Media Node IP |
+| `uri`             | URI of the Media Node. This is the actual direction where OpenVidu Server Pro Media Node connects to this Media Node | A String with the Media Node URI |
+| `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the Media Node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A String with the cluster identifier |
+| `oldStatus`       | Old status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node old status. `null` if _newStatus_ is `launching` |
+| `newStatus`       | New status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node new status |
+| `timestamp`       | Time when the event was triggered          | A Number (UTC milliseconds)                              |
 
 <br>
 
@@ -603,11 +603,11 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property     | Description                                | Value                                          |
 | ------------ | ------------------------------------------ | ---------------------------------------------- |
-| `clusterId`  | Unique identifier of this OpenVidu Pro cluster (configuration property `OPENVIDU_PRO_CLUSTER_ID`) | A string with the OpenVidu Pro cluster unique identifier |
-| `reason`     | A detailed description of why the autoscaling algorithm triggered this adjustment on the cluster size | A string with the reason of the autoscaling event |
-| `mediaNodes` | An object with the Media Nodes affected by the autoscaling event | See **[mediaNodes](#medianodes)** |
-| `system`     | An object with a complete description of the system regarding the state of autoscaling | See **[system](#system)** |
-| `timestamp`  | Time when the event was triggered          | UTC milliseconds                              |
+| `clusterId`  | Unique identifier of this OpenVidu Pro cluster (configuration property `OPENVIDU_PRO_CLUSTER_ID`) | A String with the OpenVidu Pro cluster unique identifier |
+| `reason`     | A detailed description of why the autoscaling algorithm triggered this adjustment on the cluster size | A String with the reason of the autoscaling event |
+| `mediaNodes` | An Object with the Media Nodes affected by the autoscaling event | An Object. See **[mediaNodes](#medianodes)** |
+| `system`     | An Object with a complete description of the system regarding the state of autoscaling | An Object. See **[system](#system)** |
+| `timestamp`  | Time when the event was triggered          | A Number (UTC milliseconds)                              |
 
 <br>
 
@@ -615,8 +615,8 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `launch`          | Media Nodes that are going to be added to the cluster | An object with 4 properties: <ul><li style="color: inherit"><code>total</code> : a number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li style="color: inherit"><code>newNodes</code> : a number counting the amount of completely new Media Nodes that will be launched. For [On Premises](deployment/pro/on-premises/){:target="_blank"} OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li style="color: inherit"><code>waitingIdleToTerminateNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li style="color: inherit"><code>canceledNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |
-| `terminate`       | Media Nodes that are going to be removed from the cluster | An object with 3 properties: <ul><li style="color: inherit"><code>total</code> : a number counting the total amount of Media Nodes that are going to be removed from the cluster (sum of the following properties).</li><li style="color: inherit"><code>runningNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>running</code> status to A) <code>waiting-idle-to-terminate</code> status, if there are ongoing sessions inside the Media Node, or B) <code>terminating</code> status, if the Media Node is empty and can be immediately removed.</li><li style="color: inherit"><code>launchingNodes</code> : an array of Media Nodes (see <a href="#medianode"><strong>mediaNode</strong></a>) that are transitioning from <code>launching</code> status to <code>canceled</code> status.</li></ul> |
+| `launch`          | Media Nodes that are going to be added to the cluster | An Object with 4 properties: <ul class="cdr-list"><li><code>total</code> : a Number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li><code>newNodes</code> : a Number counting the amount of completely new Media Nodes that will be launched. For [On Premises](deployment/pro/on-premises/){:target="_blank"} OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li><code>waitingIdleToTerminateNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li><code>canceledNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |<>
+| `terminate`       | Media Nodes that are going to be removed from the cluster | An Object with 3 properties: <ul class="cdr-list"><li><code>total</code> : a Number counting the total amount of Media Nodes that are going to be removed from the cluster (sum of the following properties).</li><li><code>runningNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>running</code> status to A) <code>waiting-idle-to-terminate</code> status, if there are ongoing sessions inside the Media Node, or B) <code>terminating</code> status, if the Media Node is empty and can be immediately removed.</li><li><code>launchingNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>launching</code> status to <code>canceled</code> status.</li></ul> |
 
 <br>
 
@@ -624,11 +624,11 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `id`              | Unique identifier of the Media Node        | A string with the Media Node unique identifier |
-| `environmentId`   | Unique identifier of the Media Node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A string with the Media Node environment unique identifier |
-| `ip`              | IP of the Media Node                       | A string with the Media Node IP |
-| `load`            | The CPU load of the Media Node | A decimal number between 0.00 and 100.00 |
-| `status`          | Status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A string with the Media Node new status |
+| `id`              | Unique identifier of the Media Node        | A String with the Media Node unique identifier |
+| `environmentId`   | Unique identifier of the Media Node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A String with the Media Node environment unique identifier |
+| `ip`              | IP of the Media Node                       | A String with the Media Node IP |
+| `load`            | The CPU load of the Media Node | A Number. It is a decimal between 0.00 and 100.00 |
+| `status`          | Status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node new status |
 
 <br>
 
@@ -636,8 +636,8 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property | Description                                | Value                                          |
 | -------- | ------------------------------------------ | ---------------------------------------------- |
-| `config` | Autoscaling configuration                  | An object with 4 properties with the current autoscaling-related [configuration properties](reference-docs/openvidu-config/){:target="_blank"}: <ul><li style="color: inherit"><code>maxNodes</code> : value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES</code> </li><li style="color: inherit"><code>minNodes</code> : value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES</code> </li><li style="color: inherit"><code>maxAvgLoad</code> : value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD</code> </li><li style="color: inherit"><code>minAvgLoad</code> : value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD</code> </li></ul> |
-| `status` | Current cluster status, including a complete description of its Media Nodes and the current load of the cluster | See **[status](#status)** |
+| `config` | Autoscaling configuration                  | An Object with 4 properties with the current autoscaling-related [configuration properties](reference-docs/openvidu-config/){:target="_blank"}: <ul class="cdr-list"><li><code>maxNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES</code> </li><li><code>minNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES</code> </li><li><code>maxAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD</code> </li><li><code>minAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD</code> </li></ul> |
+| `status` | Current cluster status, including a complete description of its Media Nodes and the current load of the cluster | An Object. See **[status](#status)** |
 
 <br>
 
@@ -645,12 +645,12 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `numNodes`        | Total number of active Media Nodes in the cluster. Active nodes are those in `running` or `launching` status | A number |
-| `totalLoad`       | Total CPU load of the cluster. It is calculated with the sum of all Media Nodes that may have load greater than 0: those in `running` or `waiting-idle-to-terminate` status | A decimal number |
-| `avgLoad`         | The average load per Media Node. It is calculated by dividing `totalLoad` by `numNodes`. This parameter is the one compared to the limits set with [configuration properties](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD` and `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD` to determine if the the cluster size must be modified | A decimal number between 0.00 and 100.00 |
-| `runningNodes`    | Media Nodes in `running` status | Array of **[mediaNode](#medianode)** |
-| `launchingNodes`  | Media Nodes in `launching` status | Array of **[mediaNode](#medianode)** |
-| `waitingIdleToTerminateNodes` | Media Nodes in `waiting-idle-to-terminate` status | Array of **[mediaNode](#medianode)** |
-| `canceledNodes`   | Media Nodes in `canceled` status | Array of **[mediaNode](#medianode)** |
+| `numNodes`        | Total number of active Media Nodes in the cluster. Active nodes are those in `running` or `launching` status | A Number |
+| `totalLoad`       | Total CPU load of the cluster. It is calculated with the sum of all Media Nodes that may have load greater than 0: those in `running` or `waiting-idle-to-terminate` status | A Number. It is a decimal between 0.00 and 100.00 |
+| `avgLoad`         | The average load per Media Node. It is calculated by dividing `totalLoad` by `numNodes`. This parameter is the one compared to the limits set with [configuration properties](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD` and `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD` to determine if the the cluster size must be modified | A Number. It is a decimal between 0.00 and 100.00 |
+| `runningNodes`    | Media Nodes in `running` status | An Array of Objects of type **[mediaNode](#medianode)** |
+| `launchingNodes`  | Media Nodes in `launching` status | An Array of Objects of type **[mediaNode](#medianode)** |
+| `waitingIdleToTerminateNodes` | Media Nodes in `waiting-idle-to-terminate` status | An Array of Objects of type **[mediaNode](#medianode)** |
+| `canceledNodes`   | Media Nodes in `canceled` status | An Array of Objects of type **[mediaNode](#medianode)** |
 
 <br>

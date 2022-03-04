@@ -95,6 +95,23 @@ ul#menu-list {
     overflow-x: auto;
 }
 
+#doc-container #openvidu-configuration-properties ~ table tbody tr td code {
+    word-break: break-all;
+}
+
+#doc-container #openvidu-configuration-properties ~ table tbody tr td:first-of-type code {
+    word-break: normal !important;
+    font-size: 11.85px;
+}
+
+.cdr-list {
+    margin-top: 7px;
+}
+
+.cdr-list li {
+    color: inherit !important;
+}
+
 #doc-container div.section > h1:first-child {
     margin-bottom: 35px;
 }
