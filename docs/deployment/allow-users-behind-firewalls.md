@@ -27,7 +27,7 @@ We provide our own deployment based on the [Coturn](https://github.com/coturn/co
 
 #### 1) Prerequisites
 
-1. A Linux machine with its own **public IP**.
+1. A Linux machine with its own **public IP**. **It must be a different machine than the OpenVidu ones**.
 2. A **FQDN(Fully Qualified Domain Name)** which must point to the public IP of the machine. No proxys or anything else, just a simple domain/subdomain with a registar of type A pointing to its public IP.
 3. Good network bandwidth.
 4. **Docker** and **docker-compose** installed.
@@ -123,7 +123,7 @@ Let's supose that we want to deploy a TURN server using 443 SSL using:
 - **Static auth secret (Shared secret)**: `mysecret`
 - **Letsencrypt email**: `example-email@example.com`
 
-The file `/opt/coturn/.env` should look like this:
+We should have a machine with its own **Public IP with a domain name pointing to it**. It must also be in a **different machine than OpenVidu ones**. The file `/opt/coturn/.env` should look like this:
 
 ```
 TURN_DOMAIN_NAME=turn-server.example.com
@@ -131,7 +131,7 @@ LETSENCRYPT_EMAIL=example-email@example.com
 TURN_STATIC_AUTH_SECRET=mysecret
 ```
 
-On the other hand the OpenVidu configuration at `/opt/openvidu/.env` should include this property:
+On the other hand at OpenVidu, configuration in `/opt/openvidu/.env` should include this property:
 
 ```
 OPENVIDU_WEBRTC_ICE_SERVERS=["url=turns:turn-server.example.com:443,staticAuthSecret=mysecret"]
