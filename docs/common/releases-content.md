@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.21.0](#2210)
 - [2.20.0](#2200)
 - [2.19.0](#2190)
 - [2.18.0](#2180)
@@ -26,6 +27,206 @@
 
 ---
 
+## 2.21.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/ce/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/ce/aws/" target="_blank">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/pro/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/pro/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/enterprise/on-premises/" target="_blank">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/" target="_blank">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.21.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.21.1</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.21.1%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+  
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.21.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.21.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.16.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.9.7</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### OpenVidu Enterprise general availability
+
+OpenVidu Enterprise edition has gone from beta to production-ready. OpenVidu Enterprise brings the best performance, improved media quality and better scalability for high-demand environments. Any OpenVidu CE or OpenVidu Pro application will be compatible out-of-the-box with it. Take a look at what OpenVidu Enterprise has to offer: [Documentation](https://docs.openvidu.io/en/2.21.0/openvidu-enterprise/).
+
+The transition from Beta to General Availability means the following limitations in OpenVidu Enterprise are now overcome:
+
+- Recording now available for [High Availability](https://docs.openvidu.io/en/2.21.0/openvidu-enterprise/high-availability/) deployments
+- OpenVidu Inspector is now available
+- Full support for Simulcast. Check [Simulcast](https://docs.openvidu.io/en/2.21.0/openvidu-enterprise/simulcast/) documentation section to learn more.
+- VP9 support thanks to mediasoup. Check our new [Media Codecs](https://docs.openvidu.io/en/2.21.0/advanced-features/media-codecs/) documentation section to learn more.
+
+<br>
+
+##### Support for any S3 provider for storing recordings
+
+If you want OpenVidu to automatically store your recordings in a separate storage service, now you are not limited to AWS S3. Any S3-compatible provider can be used. See [documentation](https://docs.openvidu.io/en/2.21.0/advanced-features/recording/#uploading-recordings-to-s3).
+
+<br>
+
+##### IP cameras now support RTSP over SSL
+
+You can now publish IP cameras with `rtsps` protocol. See [documentation](https://docs.openvidu.io/en/2.21.0/advanced-features/ip-cameras).
+
+<br>
+
+##### More flexible ICE configuration
+
+Now it is very easy to configure external TURN servers in the client-side. You can: 
+
+- Configure globally any TURN server. See [configuration property `OPENVIDU_WEBRTC_ICE_SERVERS`](https://docs.openvidu.io/en/2.21.0/reference-docs/openvidu-config/).
+- Set TURN credentials user by user from you application's server. See parameter `customIceServers` when [creating a Connection](https://docs.openvidu.io/en/2.21.0/reference-docs/REST-API/#post-connection).
+
+Before, this was only possible using the client-side library openvidu-browser (with [`OpenViduAdvancedConfiguration.iceServers`](https://docs.openvidu.io/en/2.20.0/api/openvidu-browser/interfaces/openviduadvancedconfiguration.html#iceservers) property), which always required more work on the developer side and had some limitations.
+
+<br>
+
+##### Allow users behind strict firewalls
+
+In some occasions users may be located behind strict firewalls that only allow connections though port 443 (for example, in restricted corporate networks). Now OpenVidu may be configured with external TURN servers to overcome these situations. You can use our brand new TURN server appliance that can be deployed externally, or use a third-party TURN SaaS. See documentation [here](https://docs.openvidu.io/en/2.21.0/deployment/allow-users-behind-firewalls/).
+
+<br>
+
+##### Strictly typed openvidu-browser events for TypeScript projects
+
+Event objects of openvidu-browser client library are now strictly typed in TypeScript. This has also greatly improved openvidu-browser documentation, centralizing all of the available events in interfaces. Now you have now a complete description of all events in one place:
+
+- [Session events](https://docs.openvidu.io/en/2.21.0/api/openvidu-browser/interfaces/SessionEventMap.html)
+- [StreamManager events](https://docs.openvidu.io/en/2.21.0/api/openvidu-browser/interfaces/StreamManagerEventMap.html)
+- [Publisher events](https://docs.openvidu.io/en/2.21.0/api/openvidu-browser/interfaces/PublisherEventMap.html)
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-browser_ : [LocalRecorder](https://docs.openvidu.io/en/2.21.0/api/openvidu-browser/classes/LocalRecorder.html) better management for long recordings.
+- _Monitoring - Elastic stack_: [summary objects](https://docs.openvidu.io/en/2.21.0/openvidu-pro/monitoring-elastic-stack/#openvidu-events) were lacking property `media_node_id`, that is used to identify the Media Node in which the object lived. This is now fixed and the property do actually exist.
+
+#### BREAKING CHANGES
+
+There is a small breaking change affecting recording IDs. These IDs (and recording default names) are different for consecutive recordings of the same session. Before, they where built with the session ID, plus a hyphen (`-`) and a number. For example, for three consecutive recordings of session `ses_ABCD`, the recording IDs would be: `ses_ABCD`, `ses_ABCD-1`, `ses_ABCD-2`. Now the hyphen has been replaced by a tilde (`~`) due to new restrictions that have arisen. Now the recording IDs would be: `ses_ABCD`, `ses_ABCD~1`, `ses_ABCD~2`. This should not really affect your application, unless you are explicitly assuming the existence of a hyphen in your own logic.
+
+<br>
+
+---
+
 ## 2.20.0
 
 ### Artifacts
@@ -41,11 +242,11 @@
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.20.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/ce/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -59,11 +260,11 @@
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.20.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.20.0/deployment/pro/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -72,11 +273,11 @@
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.20.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -187,11 +388,11 @@ The [Connection object](https://docs.openvidu.io/en/2.20.0/reference-docs/REST-A
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.19.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/ce/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -205,11 +406,11 @@ The [Connection object](https://docs.openvidu.io/en/2.20.0/reference-docs/REST-A
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.19.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -218,11 +419,11 @@ The [Connection object](https://docs.openvidu.io/en/2.20.0/reference-docs/REST-A
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.19.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -339,11 +540,11 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.18.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.18.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -357,11 +558,11 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.18.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.18.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -370,11 +571,11 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.18.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -627,11 +828,11 @@ openVidu.createSession(properties).then(session => { ... });
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.17.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.17.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -645,11 +846,11 @@ openVidu.createSession(properties).then(session => { ... });
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.17.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -658,11 +859,11 @@ openVidu.createSession(properties).then(session => { ... });
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.17.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -826,11 +1027,11 @@ Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvi
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.16.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.16.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -844,11 +1045,11 @@ Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvi
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.16.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -857,11 +1058,11 @@ Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvi
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.16.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1107,11 +1308,11 @@ If that property is set to false (by default it is true), old API will no longer
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.15.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.15.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1125,11 +1326,11 @@ If that property is set to false (by default it is true), old API will no longer
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.15.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1138,11 +1339,11 @@ If that property is set to false (by default it is true), old API will no longer
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.15.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1218,7 +1419,7 @@ We have added a new Autoscaling section to OpenVidu Pro documentation. We invite
 
 ##### Screen sharing in Safari 13
 
-Now Safari users can share their screen as long as they are using Safari ≥ 13. This is great news for lots of people! Available for both OpenVidu CE and OpenVidu PRO.
+Now Safari users can share their screen as long as they are using Safari ≥ 13. This is great news for lots of people! Available for both OpenVidu CE and OpenVidu Pro.
 
 <br>
 
@@ -1239,7 +1440,7 @@ INDIVIDUAL recording is very efficient, but lacks the potential of building the 
 
 Besides, COMPOSED recording requires OpenVidu to launch, manage and drop a recording module during the lifecycle of each recording. This process can make starting COMPOSED recordings a process with a somewhat slow response time. This is where the brand new **COMPOSED_QUICK_START** mode comes into play: some use cases may benefit of configuring OpenVidu Sessions with this recording mode if they need the recordings to start as quickly as possible, paying as a price a higher CPU usage during the whole lifecycle of the session.
 
-COMPOSED_QUICK_START recording mode is available for both OpenVidu CE and OpenVidu PRO. You have further information in OpenVidu Docs: [Composed quick start recording](https://docs.openvidu.io/en/2.15.0/advanced-features/recording/#composed-quick-start-recording){:target="_blank"}.
+COMPOSED_QUICK_START recording mode is available for both OpenVidu CE and OpenVidu Pro. You have further information in OpenVidu Docs: [Composed quick start recording](https://docs.openvidu.io/en/2.15.0/advanced-features/recording/#composed-quick-start-recording){:target="_blank"}.
 
 <br>
 
@@ -1299,11 +1500,11 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.14.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.14.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1317,11 +1518,11 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.14.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1330,11 +1531,11 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
   </tr>
 
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.14.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1432,7 +1633,7 @@ Another very demanded feature was having the ability to limit the IPs able to co
 
 You can do this with config properties:
 
-- ***A)*** `ALLOWED_ACCESS_TO_DASHBOARD`: limits the ability to connect to OpenVidu CE dashboard and to OpenVidu PRO Inspector.
+- ***A)*** `ALLOWED_ACCESS_TO_DASHBOARD`: limits the ability to connect to OpenVidu CE dashboard and to OpenVidu Pro Inspector.
 - ***B)*** `ALLOWED_ACCESS_TO_RESTAPI`: limits the ability to consume OpenVidu REST API (both CE and PRO).
 
 You can limit to a single IP, a single IP range, multiple IPs or multiple IP ranges. So total freedom in this regard:
@@ -1447,9 +1648,9 @@ ALLOWED_ACCESS_TO_DASHBOARD=198.51.100.1
 
 ##### New automated upgrade process
 
-Now upgrading your OpenVidu deployment will be a very easy guided process. We have included migration guides to upgrade to 2.14.0 for bot OpenVidu CE and OpenVidu PRO. Take a look at them!
+Now upgrading your OpenVidu deployment will be a very easy guided process. We have included migration guides to upgrade to 2.14.0 for bot OpenVidu CE and OpenVidu Pro. Take a look at them!
 
-> [Upgrading OpenVidu CE](https://docs.openvidu.io/en/2.14.0/deployment/upgrading/){:target="_blank"} and [Upgrading OpenVidu PRO](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/upgrading/){:target="_blank"}
+> [Upgrading OpenVidu CE](https://docs.openvidu.io/en/2.14.0/deployment/upgrading/){:target="_blank"} and [Upgrading OpenVidu Pro](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/upgrading/){:target="_blank"}
 
 <br>
 
@@ -1461,9 +1662,9 @@ A new platform has been added to OpenVidu family. Now Samsung browser for Androi
 
 ##### New region for OpenVidu AWS deployments
 
-AWS Africa (Cape Town) af-south-1 region is available now for deploying OpenVidu on AWS, both OpenVidu CE and OpenVidu PRO tiers. By using our CloudFormation template, you will have your OpenVidu deployment up and running in just a few minutes.
+AWS Africa (Cape Town) af-south-1 region is available now for deploying OpenVidu on AWS, both OpenVidu CE and OpenVidu Pro tiers. By using our CloudFormation template, you will have your OpenVidu deployment up and running in just a few minutes.
 
-> Deploying [OpenVidu CE on AWS](https://docs.openvidu.io/en/2.14.0/deployment/deploying-aws/){:target="_blank"} and deploying [OpenVidu PRO on AWS](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){:target="_blank"}
+> Deploying [OpenVidu CE on AWS](https://docs.openvidu.io/en/2.14.0/deployment/deploying-aws/){:target="_blank"} and deploying [OpenVidu Pro on AWS](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){:target="_blank"}
 
 <br>
 
@@ -1504,11 +1705,11 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
   </tr>
 
   <tr>
-    <td rowspan="3">OpenVidu CE</td>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
     <td>On Premises</td>
     <td>2.13.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.13.0/deployment/deploying-on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1522,11 +1723,11 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
   </tr>
 
   <tr>
-    <td rowspan="2">OpenVidu PRO</td>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
     <td>On Premises</td>
     <td>2.13.0</td>
     <td><a class="" href="https://docs.openvidu.io/en/2.13.0/openvidu-pro/deployment/on-premises/" target="_blank">Deploy</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu PRO server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>On AWS</td>
@@ -1535,11 +1736,11 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.13.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1664,11 +1865,11 @@ The new Docker deployment stack requires OpenVidu to manage its configuration pr
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.12.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1677,11 +1878,11 @@ The new Docker deployment stack requires OpenVidu to manage its configuration pr
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.12.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.12.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -1884,11 +2085,11 @@ OpenVidu Pro is now using the [latest Elasticsearch and Kibana version](https://
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.11.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -1897,11 +2098,11 @@ OpenVidu Pro is now using the [latest Elasticsearch and Kibana version](https://
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.11.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.11.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2039,11 +2240,11 @@ OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.10.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2052,11 +2253,11 @@ OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.10.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.10.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2182,11 +2383,11 @@ Yes, it’s 2019. But there’s still a lot of companies out there that provide/
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.9.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2195,11 +2396,11 @@ Yes, it’s 2019. But there’s still a lot of companies out there that provide/
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.9.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.9.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2353,11 +2554,11 @@ We are excited to announce OpenVidu Pro: a commercial tier for OpenVidu platform
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.8.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2366,11 +2567,11 @@ We are excited to announce OpenVidu Pro: a commercial tier for OpenVidu platform
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.8.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.8.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2501,11 +2702,11 @@ Even though this is not a major update with incompatibility changes according to
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.7.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2514,11 +2715,11 @@ Even though this is not a major update with incompatibility changes according to
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.7.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.7.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2636,11 +2837,11 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.6.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2649,11 +2850,11 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.6.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.6.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2771,11 +2972,11 @@ This bug has been completely solved in OpenVidu 2.6.0. Now media connections wil
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.5.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2784,11 +2985,11 @@ This bug has been completely solved in OpenVidu 2.6.0. Now media connections wil
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.5.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.5.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -2947,11 +3148,11 @@ Of course you can keep using OpenVidu Browser library instead of these component
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.4.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -2960,11 +3161,11 @@ Of course you can keep using OpenVidu Browser library instead of these component
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.4.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.4.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -3069,11 +3270,11 @@ Event `recordingStopped` event now has `reason` property. Can be:
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.3.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser/v/2.3.0" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -3082,11 +3283,11 @@ Event `recordingStopped` event now has `reason` property. Can be:
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.3.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.3.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -3263,11 +3464,11 @@ We have included a first way to set the maximum and minimum bandwidths for the m
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.2.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -3276,11 +3477,11 @@ We have included a first way to set the maximum and minimum bandwidths for the m
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.2.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.2.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -3340,11 +3541,11 @@ The platform now integrates by default a COTURN server as part of its ecosystem.
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.1.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -3353,11 +3554,11 @@ The platform now integrates by default a COTURN server as part of its ecosystem.
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.1.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.1.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -3423,11 +3624,11 @@ If you want to check out a real example of this behavior, explore our renovated 
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>2.0.0</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -3436,11 +3637,11 @@ If you want to check out a real example of this behavior, explore our renovated 
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>2.0.0</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.0.0" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
@@ -3584,11 +3785,11 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
   </tr>
   
   <tr>
-    <td rowspan="2">openvidu-browser</td>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
     <td>NPM package</td>
     <td>1.9.0-beta-1</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-browser?activeTab=versions" target="_blank">NPM</a></td>
-    <td rowspan="2" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>JS file</td>
@@ -3597,11 +3798,11 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
   </tr>
   
   <tr>
-    <td rowspan="3">openvidu-server</td>
+    <td rowspan="3" style="vertical-align: middle">openvidu-server</td>
     <td>JAR</td>
     <td>1.9.0-beta-1</td>
     <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v1.9.0-beta-1" target="_blank">GitHub</a></td>
-    <td rowspan="3" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations. YOU DON'T HAVE TO MAKE DIRECT USE OF IT. Just to run it and know its IP address and password" class="icon ion-information-circled"></i></td>
   </tr>
   <tr>
     <td>Docker container</td>
