@@ -125,10 +125,10 @@ When consuming openvidu-server REST API, change `location.hostname` to the IP of
 
 Change this url in every insecure tutorial right here:
 
-- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-hello-world/web/app.js#L56){:target="_blank"}
-- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-insecure-js/web/app.js#L194){:target="_blank"}
-- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-insecure-angular/src/app/app.component.ts#L15){:target="_blank"}
-- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-getaroom/web/app.js#L274){:target="_blank"}
+- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L56){:target="_blank"}
+- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-js/web/app.js#L194){:target="_blank"}
+- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-angular/src/app/app.component.ts#L15){:target="_blank"}
+- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L274){:target="_blank"}
 
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
 >
@@ -179,7 +179,7 @@ First of all, let's differentiate between OpenVidu server-side and your applicat
 
 Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"}, [openvidu-insecure-js](tutorials/openvidu-insecure-js/){:target="_blank"}, [openvidu-getaroom](demos/openvidu-getaroom/){:target="_blank"}
 
-The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-insecure-js/web/app.js#L184){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.20.0/openvidu-getaroom/web/app.js#L264){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
+The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-js/web/app.js#L184){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L264){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
 
 > **IMPORTANT**: Do NOT include your SECRET in your JavaScript or HTML files in a production environment!
 

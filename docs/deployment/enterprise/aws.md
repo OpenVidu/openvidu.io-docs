@@ -107,7 +107,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Enterprise-<strong>2.20.1</strong>.yaml</code>
+> For example: <code>https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Enterprise-<strong>2.21.0</strong>.yaml</code>
 
 <br>
 
@@ -503,7 +503,7 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
 
 To deploy an OpenVidu application which uses our recently deployed stack, you can use any application developed for OpenVidu. You just need to point your application to the configured **Domain Name** and the **OpenVidu Secret** used in CloudFormation deployment. Additionally, remember that your app needs to be deployed with a valid certificate for WebRTC to work.
 
-If you want to see and example of an application that automatically reconnects users after a node crashes, take a look to the [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} demo.
+If you want to see and example of an application that automatically reconnects users after a node crashes, take a look to the [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability/tree/v2.21.0){:target="_blank"} demo.
 
 <script src="js/copy-btn.js"></script>
 <br>
