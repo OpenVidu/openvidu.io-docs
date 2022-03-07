@@ -80,7 +80,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-call:2.20.0
+        image: openvidu/openvidu-call:2.21.0
         restart: on-failure
         network_mode: host
         environment:

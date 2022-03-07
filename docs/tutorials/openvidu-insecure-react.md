@@ -52,7 +52,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.20.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.21.0
 ```
 
 2) You will need [NPM](https://www.npmjs.com/get-npm){:target="_blank"} to serve the React frontend. Once you have npm installed, you can run the tutorial.
@@ -69,7 +69,7 @@ npm start
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.20.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.21.0
 ```
 
 4) Go to _[`http://localhost:3000`](http://localhost:3000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
