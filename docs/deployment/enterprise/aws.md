@@ -153,6 +153,25 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
         </ul>
       </td>
     </tr>
+    <tr>
+      <td class="first-col">OpenVidu S3 bucket<br><span class="field-comment">S3 bucket for storing configuration and recordings<span></td>
+      <td>
+        If empty, a new bucket will be created while launching the Cloudformation. If defined, the specified S3 bucket will be used in your deployment.
+        If you define it, make sure it is in the same AWS region as your deployment. Don't specify neither the ARN or S3 URL, just the bucket name.
+        <br>
+        <span class="field-comment">For example: <em><strong>my-s3-bucket</strong></em></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="first-col">Enable OpenVidu Recording<br><span class="field-comment">Whether to enable OpenVidu recording module or not<span></td>
+      <td>
+        Possible values:
+        <ul>
+          <li><strong><code>true</code></strong> to enable recording capabilities. All recordings will be saved in the <strong>OpenVidu S3 Bucket</strong></li>
+          <li><strong><code>false</code></strong> to disable recording capabilities.</li>
+        </ul>
+      </td>
+    </tr>
   </table>
 </div>
 
