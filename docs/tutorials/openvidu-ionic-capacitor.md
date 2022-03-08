@@ -35,7 +35,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 **1)** You will need **Node**, **NPM** and **Ionic** to serve the app. Install them with the following commands
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 sudo apt-get install -y nodejs
 sudo npm install -g ionic@latest
 ```
