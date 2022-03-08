@@ -173,7 +173,7 @@ As you can see in the code, the process is very simple: get an OpenVidu object a
 ```javascript
 // --- 3) Specify the actions when events of type 'streamCreated' take
 // --- place in the session. The reason why we're using two different objects
-// --- is to handle diferently the subscribers when it is of 'CAMERA' type, or 'SCREEN' type ---
+// --- is to handle subscribers differently when it is of 'CAMERA' type, or 'SCREEN' type ---
 // ------- 3.1) Handle subscribers of 'CAMERA' type
 sessionCamera.on('streamCreated', event => {
     if (event.stream.typeOfVideo == "CAMERA") {

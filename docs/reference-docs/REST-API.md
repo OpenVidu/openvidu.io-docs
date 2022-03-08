@@ -1483,7 +1483,7 @@ This operation returns a Token object:
 
 ##### Description
 
-Force the unpublishing of a media stream from a Session. The stream belongs to a specific [Connection obejct](#the-connection-object). All of the subscribers receiving this stream will also be destroyed.
+Force the unpublishing of a media stream from a Session. The stream belongs to a specific [Connection obejct](#the-connection-object). All subscribers receiving this stream will also be destroyed.
 
 ##### Operation
 
