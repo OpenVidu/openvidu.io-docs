@@ -48,7 +48,7 @@ String token = connection.getToken(); // Send this string to the client side
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When creating a Connection, include in [ConnectionProperties](api/openvidu-node-client/interfaces/connectionproperties.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When creating a Connection, include in [ConnectionProperties](api/openvidu-node-client/interfaces/connectionproperties.html) parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
 var connectionProperties = {
@@ -58,7 +58,7 @@ var connectionProperties = {
         allowedFilters: ["GStreamerFilter", "FaceOverlayFilter"]
     }
 };
-session.createConnection(connectionProperties).then(connection => { 
+session.createConnection(connectionProperties).then(connection => {
     var token = connection.token; // Send this string to the client side
 });
 ```
@@ -67,7 +67,7 @@ session.createConnection(connectionProperties).then(connection => {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection)** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
@@ -92,7 +92,7 @@ BODY
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](api/openvidu-browser/interfaces/PublisherProperties.html){:target="_blank"}, specifically property [filter](api/openvidu-browser/interfaces/PublisherProperties.html#filter){:target="_blank"}:
+Use [PublisherProperties](api/openvidu-browser/interfaces/PublisherProperties.html), specifically property [filter](api/openvidu-browser/interfaces/PublisherProperties.html#filter):
 
 ```javascript
 var OV = new OpenVidu();

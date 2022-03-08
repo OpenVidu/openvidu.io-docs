@@ -1,7 +1,7 @@
 # openvidu-iframe
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-iframe" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a simple demo where you can embed an OpenVidu application inside of an iframe. The embedded application will be _openvidu-hello-world_ tutorial, so it is highly recommended to complete [openvidu-hello-world](tutorials/openvidu-hello-world/){:target="_blank"} tutorial first.
+This is a simple demo where you can embed an OpenVidu application inside of an iframe. The embedded application will be _openvidu-hello-world_ tutorial, so it is highly recommended to complete [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial first.
 
 ## Running this tutorial
 <br>
@@ -37,9 +37,9 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 5) Go to _[`localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the _openvidu-hello-world_ app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
+> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
 6) Open **another terminal** and run the _openvidu-iframe_ tutorial:
 

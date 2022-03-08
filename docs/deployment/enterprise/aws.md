@@ -60,7 +60,7 @@ You just need to specify `enterprise` at the OpenVidu Edition section while depl
 ## High Availability deployment
 <br>
 
-OpenVidu Enterprise can be deployed with multiple Master nodes to have High Availability and be fault tolerant. In this section, we will explain step by step, how to deploy OpenVidu Enterprise with such capabilities. If you want to read more about OpenVidu Enterprise High Availability architecture, check it out [here](openvidu-enterprise/high-availability){:target="_blank"}.
+OpenVidu Enterprise can be deployed with multiple Master nodes to have High Availability and be fault tolerant. In this section, we will explain step by step, how to deploy OpenVidu Enterprise with such capabilities. If you want to read more about OpenVidu Enterprise High Availability architecture, check it out [here](openvidu-enterprise/high-availability).
 
 ### Deployment
 
@@ -78,8 +78,8 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 - **A FQDN (Fully Qualified Domain Name)**. The domain name will be configured at the end of the instructions to point to the Load Balancer URL created by the CloudFormation Stack.
 - **A valid certificate for your FQDN installed in AWS**. The CloudFormation automatically launches a Load Balancer to be used as entry point to the OpenVidu cluster. The CloudFormation needs the ARN of the certificate as a parameter.
-- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services){:target="_blank"} on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
-- **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user){:target="_blank"} user.
+- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
 
 #### 2) Access to the console of AWS Cloud Formation
 
@@ -403,7 +403,7 @@ You can check that master nodes are deployed correctly if:
 <br>
 **1.3) Check Openvidu API Load Balancing:**
 
-Execute a GET request to [/openvidu/api/config](reference-docs/REST-API/#get-config){:target="_blank"}. You can do this with `curl`:
+Execute a GET request to [/openvidu/api/config](reference-docs/REST-API/#get-config). You can do this with `curl`:
 
 ```
 curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/config
@@ -435,7 +435,7 @@ As media nodes are not attached to any Load Balancer, the health of these nodes 
 
 **2.3) Check OpenVidu has registered all media nodes**:
 
-Execute a GET request to [/openvidu/api/media-nodes](reference-docs/REST-API/#get-all-medianodes){:target="_blank"} for more information about this request). You can do this with `curl`:
+Execute a GET request to [/openvidu/api/media-nodes](reference-docs/REST-API/#get-all-medianodes) for more information about this request). You can do this with `curl`:
 
 ```
 curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/media-nodes
@@ -473,7 +473,7 @@ Technically, you can connect to any instance through SSH, but this could lead to
 
 #### 1) Change the configuration via API Rest (Recommended)
 
-While OpenVidu Enterprise is running, you can change some parameters of OpenVidu by calling [/openvidu/api/restart](reference-docs/REST-API/#post-restart){:target="_blank"}. All OpenVidu master nodes will restart automatically and the configuration will be persisted in an S3 bucket. All modifiable parameters are [documented](reference-docs/REST-API/#body_8){:target="_blank"}.
+While OpenVidu Enterprise is running, you can change some parameters of OpenVidu by calling [/openvidu/api/restart](reference-docs/REST-API/#post-restart). All OpenVidu master nodes will restart automatically and the configuration will be persisted in an S3 bucket. All modifiable parameters are [documented](reference-docs/REST-API/#body_8).
 
 </br>
 
@@ -487,7 +487,7 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
     </div>
 </div>
 
-**2.2) Modify the .env configuration in the S3 bucket**: In this S3 bucket you will see a file named `.env`. Any change you want to do which is not possible to do using the API Rest request to [/openvidu/api/restart](reference-docs/REST-API/#post-restart){:target="_blank"} will be done by modifying the content of the `.env` file in this S3 bucket.
+**2.2) Modify the .env configuration in the S3 bucket**: In this S3 bucket you will see a file named `.env`. Any change you want to do which is not possible to do using the API Rest request to [/openvidu/api/restart](reference-docs/REST-API/#post-restart) will be done by modifying the content of the `.env` file in this S3 bucket.
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">

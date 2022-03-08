@@ -338,7 +338,7 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     This comes in contrast with the more traditional method of adaptive video bitrate in Kurento, which was all-or-nothing and affected all participants equally, so it wasn't possible to adjust the quality individually for each one of them.
 
-    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast){:target="_blank"} page.
+    For more technical details about how simulcast works, check the [Simulcast technical details](openvidu-enterprise/simulcast) page.
 
 - **VP9**
 
@@ -356,7 +356,7 @@ With OpenVidu, there's no need to change a single line of your application: **wh
 
 #### High Availability deployment option
 
-OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/){:target="_blank"} documentation for further information.
+OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/) documentation for further information.
 
 <br>
 
@@ -429,8 +429,8 @@ In general, most applications built with OpenVidu will greatly benefit of using 
 
 There are a couple of small limitations when using mediasoup that must be taken into account:
 
-- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings){:target="_blank"} is not available in mediasoup.
-- openvidu-browser method [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote){:target="_blank"} is not supported in mediasoup.
+- [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings) is not available in mediasoup.
+- openvidu-browser method [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote) is not supported in mediasoup.
 
 #### Using Kurento in OpenVidu Enterprise
 
@@ -463,8 +463,8 @@ OpenVidu Enterprise will support much larger sessions in terms of users and stre
 
 You can deploy OpenVidu Enterprise:
 
-- **[On AWS](deployment/enterprise/aws){:target="_blank"}** (currently the only option for High Availability deployments)
-- **[On premises in your own infrastructure](deployment/enterprise/on-premises/){:target="_blank"}**
+- **[On AWS](deployment/enterprise/aws)** (currently the only option for High Availability deployments)
+- **[On premises in your own infrastructure](deployment/enterprise/on-premises/)**
 
 <br>
 Visit <a href="https://openvidu.io/pricing" target="_blank"><strong>Pricing</strong></a> section to learn more about the cost of OpenVidu Enterprise.

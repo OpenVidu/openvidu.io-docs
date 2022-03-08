@@ -53,7 +53,7 @@ Codec support in OpenVidu is as follows:
 
 This table summarizes compatibility of different platforms with the video codecs supported by OpenVidu. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
 
-For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility){:target="_blank"}.
+For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility).
 
 The test method was as follows:
 
@@ -136,13 +136,13 @@ const sessionProperties = { forcedVideoCodec: VideoCodec.VP8 };
 const session = openvidu.createSession(sessionProperties);
 ```
 
-See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec){:target="_blank"}.
+See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec).
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session){:target="_blank"}** passing `{ "forcedVideoCodec": "VP8" }`
+Initialize your Session object with **[POST /openvidu/api/sessions](reference-docs/REST-API/#post-session)** passing `{ "forcedVideoCodec": "VP8" }`
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \

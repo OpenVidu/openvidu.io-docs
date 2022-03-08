@@ -9,7 +9,7 @@
 
 ## OpenVidu Enterprise High Availability architecture
 
-OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}.
+OpenVidu Enterprise offers a high availability deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture).
 
 The main difference between a regular OpenVidu Pro deployment and OpenVidu Enterprise High Availability deployment is the replication of Master Nodes. In the image below, on the left a regular OpenVidu Pro deployment and on the right a high availability OpenVidu Enterprise deployment:
 
@@ -34,7 +34,7 @@ A more accurate architectural description is available in the image below. As ca
 
 ## How to deploy your OpenVidu Enterprise High Availability cluster
 
-OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deploying OpenVidu Enterprise in AWS](deployment/enterprise/aws/){:target="_blank"} to learn how.
+OpenVidu Enterprise High Availability is only available in **AWS**. Go to [Deploying OpenVidu Enterprise in AWS](deployment/enterprise/aws/) to learn how.
 
 <br>
 

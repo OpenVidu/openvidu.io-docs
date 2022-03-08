@@ -12,9 +12,9 @@ session.connect(token, "USER_DATA")
 
 - **Server-Side**: when creating a Connection
 
-    - [API REST](reference-docs/REST-API#post-connection){:target="_blank"}: add body parameter `"data"` to the POST operation
-    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection){:target="_blank"}: construct ConnectionProperties with `ConnectionProperties.Builder().data("USER_DATA").build()`
-    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection){:target="_blank"}: construct ConnectionProperties with `{data: "USER_DATA"}` <br><br>
+    - [API REST](reference-docs/REST-API#post-connection): add body parameter `"data"` to the POST operation
+    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection): construct ConnectionProperties with `ConnectionProperties.Builder().data("USER_DATA").build()`
+    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection): construct ConnectionProperties with `{data: "USER_DATA"}` <br><br>
 
 The result will be that in all clients, *Connection* objects will have in their *data* property the pertinent value you have provided for each user. So, an easy way to get the data associated to any user would be:
 

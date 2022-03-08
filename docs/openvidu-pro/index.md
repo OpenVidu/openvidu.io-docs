@@ -338,8 +338,8 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
 
 You can deploy OpenVidu Pro:
 
-- **[On AWS](deployment/pro/aws){:target="_blank"}**
-- **[On premises in your own infrastructure](deployment/pro/on-premises/){:target="_blank"}**
+- **[On AWS](deployment/pro/aws)**
+- **[On premises in your own infrastructure](deployment/pro/on-premises/)**
 
 <br>
 

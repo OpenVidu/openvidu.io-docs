@@ -54,13 +54,13 @@ session.createConnection(connectionProperties)
     .catch(error => console.error(error));
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}**
+Initialize a Connection of type `IPCAM` with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection)**
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
@@ -90,18 +90,18 @@ BODY
 Whenever you call this method, a new Connection to the session will be created and a new stream will be published. All the expected events are triggered in every client connected to the Session, just as when a regular client joins and publishes to a session. The workflow is:
 
 1. Your backend publishes an IP Camera to the session by creating a new Connection of type `IPCAM`, as shown in the code snippets above.
-2. Every client connected to that session will receive a **[connectionCreated](api/openvidu-browser/classes/ConnectionEvent.html){:target="_blank"}** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session.
-3. Every client connected to that session will receive a **[streamCreated](api/openvidu-browser/classes/StreamEvent.html){:target="_blank"}** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property [typeOfVideo](api/openvidu-browser/classes/Stream.html#typeOfVideo){:target="_blank"} set to `IPCAM`. Users can subscribe to this stream as any other regular stream to start receiving the IP camera's feed (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe){:target="_blank"}).
+2. Every client connected to that session will receive a **[connectionCreated](api/openvidu-browser/classes/ConnectionEvent.html)** event. This event will be no different to any *connectionCreated* event dispatched by a regular client joining the session.
+3. Every client connected to that session will receive a **[streamCreated](api/openvidu-browser/classes/StreamEvent.html)** event. The only difference with any other *streamCreated* event dispatched by a regular client publishing to the session is that the Stream object returned by the event will have property [typeOfVideo](api/openvidu-browser/classes/Stream.html#typeOfVideo) set to `IPCAM`. Users can subscribe to this stream as any other regular stream to start receiving the IP camera's feed (see [Subscribe/Unsubscribe from a stream](cheatsheet/subscribe-unsubscribe)).
 
-After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](api/openvidu-browser/classes/StreamEvent.html){:target="_blank"}** and **[connectionDestroyed](api/openvidu-browser/classes/ConnectionEvent.html){:target="_blank"}** events.
+After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participants connected to the session will receive the proper **[streamDestroyed](api/openvidu-browser/classes/StreamEvent.html)** and **[connectionDestroyed](api/openvidu-browser/classes/ConnectionEvent.html)** events.
 
 <br>
 
 #### Events dispatched in the backend
 
-Your backend side will also receive the expected events in the [CDR](reference-docs/openvidu-server-cdr){:target="_blank"} and [Webhook](reference-docs/openvidu-server-webhook){:target="_blank"}. Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user.
+Your backend side will also receive the expected events in the [CDR](reference-docs/openvidu-server-cdr) and [Webhook](reference-docs/openvidu-server-webhook). Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user.
 
-- **[participantJoined](reference-docs/openvidu-server-cdr/#participantjoined){:target="_blank"}** event fot the new IP camera Connection. `platform` property is set to `"IPCAM"`.
+- **[participantJoined](reference-docs/openvidu-server-cdr/#participantjoined)** event fot the new IP camera Connection. `platform` property is set to `"IPCAM"`.
 ```json
 {
   "participantJoined": {
@@ -115,7 +115,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
   }
 }
 ```
-- **[webrtcConnectionCreated](reference-docs/openvidu-server-cdr/#webrtcconnectioncreated){:target="_blank"}** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the sake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM` and there are new properties specific to IP cameras.
+- **[webrtcConnectionCreated](reference-docs/openvidu-server-cdr/#webrtcconnectioncreated)** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the sake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM` and there are new properties specific to IP cameras.
 ```json
 {
   "webrtcConnectionCreated": {
@@ -137,7 +137,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
 }
 ```
 
-After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-cdr/#webrtcconnectiondestroyed){:target="_blank"}** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-cdr/#participantleft){:target="_blank"}** event (only one for the camera's Connection).
+After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-cdr/#webrtcconnectiondestroyed)** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-cdr/#participantleft)** event (only one for the camera's Connection).
 
 <br>
 
@@ -173,13 +173,13 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#forc
 session.forceDisconnect(connection);
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect)
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-connection){:target="_blank"}**
+Use method **[DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API#delete-connection)**
 
 ```sh
 curl -X DELETE https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID> \
@@ -190,7 +190,7 @@ curl -X DELETE https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/
 
 </div>
 
-> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](reference-docs/REST-API#delete-stream){:target="_blank"}
+> **WARNING**: you cannot remove an IP camera by directly deleting its Stream. You must delete the Connection object instead. Trying to remove an IP camera by deleting its Stream instead of its Connection will result in an error. See HTTP responses of method [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/stream/&lt;STREAM_ID&gt;**](reference-docs/REST-API#delete-stream)
 
 <br>
 

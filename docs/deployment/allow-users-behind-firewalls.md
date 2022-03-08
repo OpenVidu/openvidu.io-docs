@@ -170,7 +170,7 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 session.createConnection(connectionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/IceServerProperties.html){:target="_blank"}
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/IceServerProperties.html)
 
 </div>
 
@@ -189,13 +189,13 @@ let connection = await session.createConnection({
 });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When creating a Connection with method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection){:target="_blank"} provide parameter **`customIceServers`**
+When creating a Connection with method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection) provide parameter **`customIceServers`**
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \

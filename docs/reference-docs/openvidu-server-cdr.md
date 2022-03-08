@@ -1,7 +1,7 @@
 <h2 id="section-title">OpenVidu CDR</h2>
 <hr>
 
-OpenVidu Server offers a CDR logging system that informs about all the relevant events that take place in the system. To start OpenVidu Server with CDR enabled, set [configuration property `OPENVIDU_CDR=true`](reference-docs/openvidu-config/){:target="_blank"}. The CDR file location is given by configuration property `OPENVIDU_CDR_PATH`, default to `/opt/openvidu/cdr`.
+OpenVidu Server offers a CDR logging system that informs about all the relevant events that take place in the system. To start OpenVidu Server with CDR enabled, set [configuration property `OPENVIDU_CDR=true`](reference-docs/openvidu-config/). The CDR file location is given by configuration property `OPENVIDU_CDR_PATH`, default to `/opt/openvidu/cdr`.
 
 The CDR file is a plain UTF-8 text file complying with [JSON Lines](http://jsonlines.org/){:target="_blank"} format: one standard JSON entry for each line. All JSON entries share the following structure:
 
@@ -25,9 +25,9 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 - [**recordingStatusChanged**](#recordingstatuschanged)
 - [**filterEventDispatched**](#filtereventdispatched)
 - [**signalSent**](#signalsent)
-- [**nodeCrashed**](#nodecrashed)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- [**autoscaling**](#autoscaling)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**nodeCrashed**](#nodecrashed)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**autoscaling**](#autoscaling)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 <br>
 
@@ -35,7 +35,7 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 
 #### sessionCreated
 
-Recorded when a new session has been created. This event will be triggered at the end of a successful call to the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-session){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}).
+Recorded when a new session has been created. This event will be triggered at the end of a successful call to the REST API method to initialize a session ([REST API](reference-docs/REST-API#post-session), [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session), [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session)).
 
 ```json
 {
@@ -107,11 +107,11 @@ Recorded when a user has connected to a session.
 | `sessionId`     | Session for which the event was triggered                                              | A String with the session's unique identifier             |
 | `timestamp`     | Time when the event was triggered                                                      | A Number (UTC milliseconds)                                        |
 | `connectionId` | Identifier of the participant                                                          | A String with the participant's unique identifier         |
-| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`) |
+| `location`      | Geo location of the participant <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`) |
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A String with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A String with the platform description                  |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A String with the participant server-side metadata |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect) | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection) or its Java/Node server SDKs variants | A String with the participant server-side metadata |
 
 <br>
 
@@ -144,11 +144,11 @@ Recorded when a user has left a session.
 | `sessionId`     | Session for which the event was triggered                                              | A String with the session's unique identifier                                                                                                                          |
 | `timestamp`     | Time when the event was triggered                                                      | A Number (UTC milliseconds)                                                                                                                                                     |
 | `connectionId` | Identifier of the participant                                                          | A String with the participant's unique identifier                                                                                                                      |
-| `location`      | Geo location of the participant <a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
+| `location`      | Geo location of the participant <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | A String with format `"CITY, COUNTRY"` (or `"unknown"`)                                                                                                              |
 | `ip`            | The IP of the participant, as seen by OpenVidu Server | A String with the participant's IP |
 | `platform`      | Complete description of the platform used by the participant to connect to the session | A String with the platform description                                                                                                                               |
-| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect){:target="_blank"} | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
-| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"} or its Java/Node server SDKs variants | A String with the participant server-side metadata |
+| `clientData`    | Metadata associated to this participant from the client side. This corresponds to parameter `metadata` of openvidu-browser method [`Session.connect`](api/openvidu-browser/classes/Session.html#connect) | A String with the participant client-side metadata (generated when calling `Session.connect` method) |
+| `serverData`    | Metadata associated to this participant from the server side. This corresponds to parameter `data` of REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection) or its Java/Node server SDKs variants | A String with the participant server-side metadata |
 | `startTime`     | Time when the participant joined the session                                           | A Number (UTC milliseconds)                                                                                                                                                     |
 | `duration`      | Total duration of the participant's connection to the session                          | A Number with the duration in seconds                                                                                                                                                              |
 | `reason`        | How the participant left the session ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})                                                   | A String with one of these possible values <ul class="cdr-list"><li>`"disconnect"`</li><li>`"forceDisconnectByUser"`</li><li>`"forceDisconnectByServer"`</li><li>`"sessionClosedByServer"`</li><li>`"networkDisconnect"`</li><li>`"mediaServerDisconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li></ul> |
@@ -245,7 +245,7 @@ Recorded when any media stream connection is closed.
 
 Recorded when the status of a recording has changed. The status may be:
 
-<ul><li style="margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to <a href="advanced-features/recording/#uploading-recordings-to-aws-s3" target="_blank">upload recordings to S3</a> this status means that the recording has been successfully stored in the S3 bucket.</li><li style="margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul>
+<ul><li style="margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to <a href="advanced-features/recording/#uploading-recordings-to-aws-s3">upload recordings to S3</a> this status means that the recording has been successfully stored in the S3 bucket.</li><li style="margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul>
 
 ```json
 {
@@ -278,7 +278,7 @@ Recorded when the status of a recording has changed. The status may be:
 | `outputMode`      | Output mode of the recording (`COMPOSED` or `INDIVIDUAL`) | A String with the recording output mode |
 | `hasAudio`        | Whether the recording file has audio or not | A Boolean                              |
 | `hasVideo`        | Whether the recording file has video or not | A Boolean                              |
-| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A String with the **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html){:target="_blank"}** (`"BEST_FIT"`, `"PICTURE_IN_PICTURE"`, `"CUSTOM"` ... ) |
+| `recordingLayout` | The type of layout used in the recording. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A String with the **[`RecordingLayout` value](api/openvidu-java-client/io/openvidu/java/client/RecordingLayout.html)** (`"BEST_FIT"`, `"PICTURE_IN_PICTURE"`, `"CUSTOM"` ... ) |
 | `resolution`      | Resolution of the recorded file. Only defined if `outputMode` is `COMPOSED` and `hasVideo` is true | A String with the width and height of the video file in pixels. e.g. `"1280x720"` |
 | `size`            | The size of the video file. Only guaranteed to be greater than `0` if status is `ready` | A Number with the size in bytes                            |
 | `duration`        | Duration of the video file. Only guaranteed to be greater than `0` if status is `ready` | A Number with the duration in seconds                          |
@@ -291,7 +291,7 @@ Recorded when the status of a recording has changed. The status may be:
 
 #### filterEventDispatched
 
-Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](advanced-features/filters){:target="_blank"} to learn more.
+Recorded when a filter event has been dispatched. This event can only be triggered if a filter has been applied to a stream and a listener has been added to a specific event offered by the filter. See [Voice and video filters](advanced-features/filters) to learn more.
 
 ```json
 {
@@ -325,8 +325,8 @@ Recorded when a filter event has been dispatched. This event can only be trigger
 
 Recorded when a signal has been sent to a Session. Signals can be sent:
 
-- By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/Session.html#signal){:target="_blank"}
-- By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-signal){:target="_blank"}
+- By the clients with openvidu-browser method [Session.signal](api/openvidu-browser/classes/Session.html#signal)
+- By the application's server with REST API method [POST /openvidu/api/signal](reference-docs/REST-API/#post-signal)
 
 All kind of signals trigger `signalSent` event.
 
@@ -379,15 +379,15 @@ All kind of signals trigger `signalSent` event.
     padding-left: 20px;
     padding-right: 20px;
     ">
-This event is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
-Recorded when a node of an OpenVidu Pro cluster has crashed. For now this only applies to Media Nodes (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). A Media Node is considered crashed if Master Node loses its connection to it and it does not recover in 3 seconds.
+Recorded when a node of an OpenVidu Pro cluster has crashed. For now this only applies to Media Nodes (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture)). A Media Node is considered crashed if Master Node loses its connection to it and it does not recover in 3 seconds.
 
 When a Media Node crashes, all of its sessions and recordings are automatically closed and the node is removed from the OpenVidu Pro cluster. No session is automatically reconstructed: it is the responsibility of the application to rebuild any affected session.
 
-On the client side, participants will trigger a [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html){:target="_blank"} event with `reason` set to `nodeCrashed`.
+On the client side, participants will trigger a [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html) event with `reason` set to `nodeCrashed`.
 
 On the server side, this event is always followed by other events for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
 
@@ -448,11 +448,11 @@ An easy strategy to rebuild any affected session is to make clients ask for a ne
     padding-left: 20px;
     padding-right: 20px;
     ">
-This event is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
-Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed. Below you have the finite-state machine defining the lifecycle of a Media Node and all of the possible transitions between its statuses. Visit [Scalability](openvidu-pro/scalability/#openvidu-pro-cluster-events){:target="_blank"} section for a full description of them.
+Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed. Below you have the finite-state machine defining the lifecycle of a Media Node and all of the possible transitions between its statuses. Visit [Scalability](openvidu-pro/scalability/#openvidu-pro-cluster-events) section for a full description of them.
 
 <div class="row">
     <div class="pro-gallery" style="margin-bottom: 25px">
@@ -482,8 +482,8 @@ Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed.
 | `ip`              | IP of the Media Node        | A String with the Media Node IP |
 | `uri`             | URI of the Media Node. This is the actual direction where OpenVidu Server Pro Media Node connects to this Media Node | A String with the Media Node URI |
 | `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the Media Node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A String with the cluster identifier |
-| `oldStatus`       | Old status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node old status. `null` if _newStatus_ is `launching` |
-| `newStatus`       | New status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node new status |
+| `oldStatus`       | Old status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses) | A String with the Media Node old status. `null` if _newStatus_ is `launching` |
+| `newStatus`       | New status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses) | A String with the Media Node new status |
 | `timestamp`       | Time when the event was triggered          | A Number (UTC milliseconds)                              |
 
 <br>
@@ -513,13 +513,13 @@ Recorded when the status of a Media Node of an OpenVidu Pro cluster has changed.
     padding-left: 20px;
     padding-right: 20px;
     ">
-This event is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
-Recorded when [autoscaling](openvidu-pro/scalability/#autoscaling){:target="_blank"} is enabled and the autoscaling algorithm has generated any kind of change in the status of the Media Nodes. This includes Media Nodes that must be launched and Media Nodes that must be terminated, taking into account the different statuses the Media Nodes may have in order to make the most optimal decision. That is: which specific Media Nodes must transit from which previous status to which new status in order to reach the new desired number of Media Nodes in the least possible amount of time.
+Recorded when [autoscaling](openvidu-pro/scalability/#autoscaling) is enabled and the autoscaling algorithm has generated any kind of change in the status of the Media Nodes. This includes Media Nodes that must be launched and Media Nodes that must be terminated, taking into account the different statuses the Media Nodes may have in order to make the most optimal decision. That is: which specific Media Nodes must transit from which previous status to which new status in order to reach the new desired number of Media Nodes in the least possible amount of time.
 
-For example, when a new Media Node is needed, the algorithm will always prioritize transitioning Media Nodes in `waiting-idle-to-terminate` status to `running` status, instead of launching a brand new Media Node. And if some Media Node must be removed because the load is low enough, the algorithm will always cancel any `launching` Media Node (setting its status to `canceled`) instead of removing a running one. Check out [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} and [austocaling](openvidu-pro/scalability/#autoscaling){:target="_blank"} sections to learn more.
+For example, when a new Media Node is needed, the algorithm will always prioritize transitioning Media Nodes in `waiting-idle-to-terminate` status to `running` status, instead of launching a brand new Media Node. And if some Media Node must be removed because the load is low enough, the algorithm will always cancel any `launching` Media Node (setting its status to `canceled`) instead of removing a running one. Check out [Media Node statuses](openvidu-pro/scalability/#media-node-statuses) and [austocaling](openvidu-pro/scalability/#autoscaling) sections to learn more.
 
 An autoscaling event will always be followed by one or more [mediaNodeStatusChanged](#medianodestatuschanged) events applying the required changes to the cluster.
 
@@ -615,7 +615,7 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property          | Description                                | Value                                          |
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
-| `launch`          | Media Nodes that are going to be added to the cluster | An Object with 4 properties: <ul class="cdr-list"><li><code>total</code> : a Number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li><code>newNodes</code> : a Number counting the amount of completely new Media Nodes that will be launched. For [On Premises](deployment/pro/on-premises/){:target="_blank"} OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li><code>waitingIdleToTerminateNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li><code>canceledNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |<>
+| `launch`          | Media Nodes that are going to be added to the cluster | An Object with 4 properties: <ul class="cdr-list"><li><code>total</code> : a Number counting the total amount of Media Nodes that are going to be added to the cluster (sum of the following properties).</li><li><code>newNodes</code> : a Number counting the amount of completely new Media Nodes that will be launched. For [On Premises](deployment/pro/on-premises/) OpenVidu Pro clusters, this is the number of Media Nodes that must be manually launched and/or added to the cluster.</li><li><code>waitingIdleToTerminateNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>waiting-idle-to-terminate</code> status to <code>running</code> status.</li><li><code>canceledNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>canceled</code> status to <code>launching</code> status.</li></ul> |<>
 | `terminate`       | Media Nodes that are going to be removed from the cluster | An Object with 3 properties: <ul class="cdr-list"><li><code>total</code> : a Number counting the total amount of Media Nodes that are going to be removed from the cluster (sum of the following properties).</li><li><code>runningNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>running</code> status to A) <code>waiting-idle-to-terminate</code> status, if there are ongoing sessions inside the Media Node, or B) <code>terminating</code> status, if the Media Node is empty and can be immediately removed.</li><li><code>launchingNodes</code> : an Array of Objects of type <a href="#medianode"><strong>mediaNode</strong></a>, that are transitioning from <code>launching</code> status to <code>canceled</code> status.</li></ul> |
 
 <br>
@@ -628,7 +628,7 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 | `environmentId`   | Unique identifier of the Media Node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A String with the Media Node environment unique identifier |
 | `ip`              | IP of the Media Node                       | A String with the Media Node IP |
 | `load`            | The CPU load of the Media Node | A Number. It is a decimal between 0.00 and 100.00 |
-| `status`          | Status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses){:target="_blank"} | A String with the Media Node new status |
+| `status`          | Status of the Media Node. See [Media Node statuses](openvidu-pro/scalability/#media-node-statuses) | A String with the Media Node new status |
 
 <br>
 
@@ -636,7 +636,7 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 
 | Property | Description                                | Value                                          |
 | -------- | ------------------------------------------ | ---------------------------------------------- |
-| `config` | Autoscaling configuration                  | An Object with 4 properties with the current autoscaling-related [configuration properties](reference-docs/openvidu-config/){:target="_blank"}: <ul class="cdr-list"><li><code>maxNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES</code> </li><li><code>minNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES</code> </li><li><code>maxAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD</code> </li><li><code>minAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD</code> </li></ul> |
+| `config` | Autoscaling configuration                  | An Object with 4 properties with the current autoscaling-related [configuration properties](reference-docs/openvidu-config/): <ul class="cdr-list"><li><code>maxNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES</code> </li><li><code>minNodes</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES</code> </li><li><code>maxAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD</code> </li><li><code>minAvgLoad</code> : a Number with the value of configuration property <code>OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD</code> </li></ul> |
 | `status` | Current cluster status, including a complete description of its Media Nodes and the current load of the cluster | An Object. See **[status](#status)** |
 
 <br>
@@ -647,7 +647,7 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 | ----------------- | ------------------------------------------ | ---------------------------------------------- |
 | `numNodes`        | Total number of active Media Nodes in the cluster. Active nodes are those in `running` or `launching` status | A Number |
 | `totalLoad`       | Total CPU load of the cluster. It is calculated with the sum of all Media Nodes that may have load greater than 0: those in `running` or `waiting-idle-to-terminate` status | A Number. It is a decimal between 0.00 and 100.00 |
-| `avgLoad`         | The average load per Media Node. It is calculated by dividing `totalLoad` by `numNodes`. This parameter is the one compared to the limits set with [configuration properties](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD` and `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD` to determine if the the cluster size must be modified | A Number. It is a decimal between 0.00 and 100.00 |
+| `avgLoad`         | The average load per Media Node. It is calculated by dividing `totalLoad` by `numNodes`. This parameter is the one compared to the limits set with [configuration properties](reference-docs/openvidu-config/) `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD` and `OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD` to determine if the the cluster size must be modified | A Number. It is a decimal between 0.00 and 100.00 |
 | `runningNodes`    | Media Nodes in `running` status | An Array of Objects of type **[mediaNode](#medianode)** |
 | `launchingNodes`  | Media Nodes in `launching` status | An Array of Objects of type **[mediaNode](#medianode)** |
 | `waitingIdleToTerminateNodes` | Media Nodes in `waiting-idle-to-terminate` status | An Array of Objects of type **[mediaNode](#medianode)** |

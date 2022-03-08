@@ -19,18 +19,18 @@ session.connect(token)
 You must ask OpenVidu Server for a user token. To do so:
 
 1. **Initialize a Session in OpenVidu Server**
-    - [REST API](reference-docs/REST-API#post-session){:target="_blank"}
-    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session){:target="_blank"}
-    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session){:target="_blank"}<br><br>
+    - [REST API](reference-docs/REST-API#post-session)
+    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-session)
+    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-session)<br><br>
 
 2. **Create a Connection in this session in OpenVidu Server**
-    - [REST API](reference-docs/REST-API#post-connection){:target="_blank"}
-    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection){:target="_blank"}
-    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection){:target="_blank"}<br><br>
+    - [REST API](reference-docs/REST-API#post-connection)
+    - [openvidu-java-client](reference-docs/openvidu-java-client#create-a-connection)
+    - [openvidu-node-client](reference-docs/openvidu-node-client#create-a-connection)<br><br>
 
 3. **Return the Connection's token to your client-side to use it on **`Session.connect()`<br><br>
 
-You can add an optional second parameter to pass some user metadata that will be received by every other user connected to the same session (check [Share data between users](cheatsheet/share-data/){:target="_blank"} to learn more).
+You can add an optional second parameter to pass some user metadata that will be received by every other user connected to the same session (check [Share data between users](cheatsheet/share-data/) to learn more).
 
 ```javascript
 session.connect(token, DATA)

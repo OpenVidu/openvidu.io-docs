@@ -3,9 +3,9 @@
 - **[How to record sessions](#how-to-record-sessions)**
 - **[Composed recording](#composed-recording)**
     - [Composed quick start recording](#composed-quick-start-recording)
-    - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Individual stream recording](#individual-recording)**
-    - [Selecting streams to be recorded](#individual-recording-selection)<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Selecting streams to be recorded](#individual-recording-selection)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
 - **[Custom recording layouts](#custom-recording-layouts)**
@@ -13,7 +13,7 @@
     - [Using an external custom layout](#using-an-external-custom-layout)
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
-- **[Uploading recordings to S3](#uploading-recordings-to-s3)**<a href="openvidu-pro/" target="_blank"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Uploading recordings to S3](#uploading-recordings-to-s3)**<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
 - **[Troubleshooting](#troubleshooting)**
 
@@ -29,7 +29,7 @@ OpenVidu Server can be configured to record sessions. Two modes of recordings ar
 
 <br>
 
-For technical information about the media codecs and formats used for recording, check here: [Codecs on OpenVidu Recordings](advanced-features/media-codecs/#recording){:target="_blank"}.
+For technical information about the media codecs and formats used for recording, check here: [Codecs on OpenVidu Recordings](advanced-features/media-codecs/#recording).
 
 <br>
 
@@ -48,7 +48,7 @@ OPENVIDU_RECORDING=true
 ```
 
 > There are other environment variables related to recordings configuration that may be set.<br>
-> Visit [OpenVidu configuration](reference-docs/openvidu-config/){:target="_blank"} to see the full list.
+> Visit [OpenVidu configuration](reference-docs/openvidu-config/) to see the full list.
 
 #### For OpenVidu development docker container
 
@@ -78,7 +78,7 @@ It is also necessary to mount 2 volumes:
 <p></p>
 
 > There are other environment variables related to recordings configuration that may be set.<br>
-> Visit [OpenVidu configuration](reference-docs/openvidu-config/){:target="_blank"} to see the full list.
+> Visit [OpenVidu configuration](reference-docs/openvidu-config/) to see the full list.
 
 <br>
 
@@ -97,7 +97,7 @@ In both cases you can stop the recording manually, and every recording will alwa
 
 <br>
 
-You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the server SDKs ([openvidu-java-client](reference-docs/openvidu-java-client/){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/){:target="_blank"}) to manage your recorded sessions.
+You can use [REST API](reference-docs/REST-API/) or any of the server SDKs ([openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/)) to manage your recorded sessions.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -123,7 +123,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
             .build();
         Session session = openVidu.createSession(sessionProperties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-java-client/io/openvidu/java/client/RecordingProperties.html) object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
 
         RecordingProperties properties = new RecordingProperties.Builder()
             .name("MY_RECORDING_NAME")
@@ -148,7 +148,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
         };
         var mySession = openvidu.createSession(sessionProperties);
 
-2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-node-client/interfaces/recordingproperties.html){:target="_blank"} object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
+2. If Session is configured with `RecordingMode.MANUAL`, manually start and stop the recording whenever you want. You may pass a [RecordingProperties](api/openvidu-node-client/interfaces/recordingproperties.html) object when calling `OpenVidu.startRecording` method to override default values configured in step 1 or to further configure it with other available options
 
         var recording;
 
@@ -168,7 +168,7 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-1. Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"}<br>You may configure default values for recordings started for this session by sending parameter `defaultRecordingProperties`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
+1. Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session)<br>You may configure default values for recordings started for this session by sending parameter `defaultRecordingProperties`. This way you can pre-configure recordings that will be automatically started (for sessions with `{"recordingMode": "ALWAYS"}`). For these sessions configured with `ALWAYS` recording mode, no more steps are needed.
 
         curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
              -u OPENVIDUAPP:<YOUR_SECRET> \
@@ -187,14 +187,14 @@ You can use [REST API](reference-docs/REST-API/){:target="_blank"} or any of the
 
 2. If you have configured your session with `"recordingMode": "MANUAL"` :
 
-    - Start the recording with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"}. You can pass parameters to override the default recording properties set in step 1 or to further configure it with other available options.
+    - Start the recording with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start). You can pass parameters to override the default recording properties set in step 1 or to further configure it with other available options.
 
             curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
                  -u OPENVIDUAPP:<YOUR_SECRET> \
                  -H "Content-Type: application/json" \
                  -d '{ "session": "ses_YnDaGYNcd7", "name": "MY_RECORDING_NAME" }'
 
-    - Stop the recording with method [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-recording-stop){:target="_blank"}
+    - Stop the recording with method [POST /openvidu/api/recordings/stop](reference-docs/REST-API#post-recording-stop)
 
             curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/stop/<RECORDING_ID> \
                  -u OPENVIDUAPP:<YOUR_SECRET>
@@ -256,7 +256,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameter `outputMode` to `"COMPOSED"`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) pass parameter `outputMode` to `"COMPOSED"`
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
@@ -344,7 +344,7 @@ To initialize a Session with this recording output mode, just use **`outputMode 
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session){:target="_blank"} providing `{"defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START"}}`
+Initialize your sessions with method [POST /openvidu/api/sessions](reference-docs/REST-API#post-session) providing `{"defaultRecordingProperties": {"outputMode": "COMPOSED_QUICK_START"}}`
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions \
@@ -393,11 +393,11 @@ Then you can initialize your recording as usual:
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
-For an OpenVidu Pro cluster, by default **composed recordings with video** take place in the same Media Node hosting the recorded Session (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture){:target="_blank"}). By transferring the recording process to Media Nodes, the Master Node avoids being overloaded even with multiple composed video recordings in progress. Hosting the recording in the same Media Node as its session is the optimal and default choice, as the media doesn't need to be sent across different Media Nodes, saving network traffic. But you can decide to start the composed video recording of a session in a different Media Node, if your specific use case can take advantage of it:
+For an OpenVidu Pro cluster, by default **composed recordings with video** take place in the same Media Node hosting the recorded Session (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture)). By transferring the recording process to Media Nodes, the Master Node avoids being overloaded even with multiple composed video recordings in progress. Hosting the recording in the same Media Node as its session is the optimal and default choice, as the media doesn't need to be sent across different Media Nodes, saving network traffic. But you can decide to start the composed video recording of a session in a different Media Node, if your specific use case can take advantage of it:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -438,7 +438,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} you can force the Media Node where to start the recording by providing parameter `mediaNode`
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) you can force the Media Node where to start the recording by providing parameter `mediaNode`
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
@@ -453,9 +453,9 @@ curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
 
 <br>
 
-If the provided Media Node does not exist or its status is not valid for starting a recording, then a `400 BAD_REQUEST` response is returned. The active recordings that are hosted by a Media Node at any given time are available in the [Media Node object](reference-docs/REST-API/#the-media-node-object){:target="_blank"} of the REST API, in attribute `recordingIds`.
+If the provided Media Node does not exist or its status is not valid for starting a recording, then a `400 BAD_REQUEST` response is returned. The active recordings that are hosted by a Media Node at any given time are available in the [Media Node object](reference-docs/REST-API/#the-media-node-object) of the REST API, in attribute `recordingIds`.
 
-For another perspective on this matter, visit [Scalable recording](openvidu-pro/scalability/#scalable-recording){:target="_blank"}.
+For another perspective on this matter, visit [Scalable recording](openvidu-pro/scalability/#scalable-recording).
 
 <br>
 
@@ -500,7 +500,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameter `outputMode` to `"INDIVIDUAL"`.
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) pass parameter `outputMode` to `"INDIVIDUAL"`.
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
@@ -608,7 +608,7 @@ These are the properties in the JSON file
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -649,13 +649,13 @@ session.createConnection(connectionProperties).then(connection => {
 });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection){:target="_blank"}** pass parameter `record` to false.
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection)** pass parameter `record` to false.
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
@@ -702,13 +702,13 @@ var connectionProperties = {
 session.updateConnection(connectionId, connectionProperties).then(connection => { ... });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection)
 
 </div>
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-Use method **[PATCH /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API/#patch-connection){:target="_blank"}** to modify the connection property `record` to true or false. This will start or stop the recording of the stream published by the Connection identified by `CONNECTION_ID`.
+Use method **[PATCH /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;](reference-docs/REST-API/#patch-connection)** to modify the connection property `record` to true or false. This will start or stop the recording of the stream published by the Connection identified by `CONNECTION_ID`.
 
 ```sh
 curl -X PATCH https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection/<CONNECTION_ID> \
@@ -779,7 +779,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} simply pass parameters `hasAudio` or `hasVideo` with the desired values.
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) simply pass parameters `hasAudio` or `hasVideo` with the desired values.
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
@@ -797,7 +797,7 @@ curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
 > - Recordings configured to not record neither audio nor video will fail to start, returning a status error of 422<br><br>
 > - COMPOSED video-only recordings will generate an MP4 file. COMPOSED audio-only recordings will generate a WEBM file. INDIVIDUAL recordings will always generate a ZIP file containing one WEBM file for each recorded stream<br><br>
 > - Streams published during a video-only recording that are audio-only won't be recorded: they won't be included in the grid layout for COMPOSED recordings and won't generate a WEBM file in INDIVIDUAL recordings. Same for audio-only recordings with video-only streams<br><br>
-> - COMPOSED audio-only recording is not available when using mediasoup in [OpenVidu Enterprise](/openvidu-enterprise/#kurento-vs-mediasoup){:target="_blank"}<br><br>
+> - COMPOSED audio-only recording is not available when using mediasoup in [OpenVidu Enterprise](/openvidu-enterprise/#kurento-vs-mediasoup)<br><br>
 
 <br>
 
@@ -805,7 +805,7 @@ curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/start \
 
 # Automatic stop of recordings
 
-Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-config/){:target="_blank"}. The automatic recording stop timout will start:
+Any started recording will automatically be stopped when any of the following situations occur and certain timeout elapses. This timeout is by default 120 seconds, but you can configure it with [system property `OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT`](reference-docs/openvidu-config/). The automatic recording stop timout will start:
 
 - For any recorded session, if last user disconnects from the session.
 
@@ -846,7 +846,7 @@ openvidu.stopRecording(recordingId)
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-[POST /openvidu/api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-recording-stop){:target="_blank"}
+[POST /openvidu/api/recordings/stop/&lt;RECORDING_ID&gt;](reference-docs/REST-API#post-recording-stop)
 
 ```sh
 curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/recordings/stop/<RECORDING_ID> \
@@ -991,7 +991,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) pass parameters:
 
 - `"outputMode": "COMPOSED"`
 - `"recordingLayout": "CUSTOM"`
@@ -1060,7 +1060,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) pass parameters:
 
 - `"outputMode": "COMPOSED"`
 - `"recordingLayout": "CUSTOM"`
@@ -1150,7 +1150,7 @@ openvidu.startRecording(sessionId, {
 
 <div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
 
-When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start){:target="_blank"} pass parameters:
+When starting the recording of a session with method [POST /openvidu/api/recordings/start](reference-docs/REST-API#post-recording-start) pass parameters:
 
 - `"outputMode": "COMPOSED"`
 - `"recordingLayout": "CUSTOM"`
@@ -1195,7 +1195,7 @@ Being:
 - `SECRET`: parameter `OPENVIDU_SECRET` configured when launching openvidu-server
 - `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
 - `OPENVIDU_PORT`: port where openvidu-server is listening. In OpenVidu production deployments this is by default `443` and if using the development container it is by default `4443`.
-- `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-session){:target="_blank"}, [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session){:target="_blank"}, [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session){:target="_blank"}) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
+- `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-session), [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session), [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session)) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 
 > By connecting with Chrome to the above URL you will see the exact result obtained when recording a session with your custom layout. You can open the browsers console to debug any error, and you can also change the HTML/CSS/JS files of your layout until you are happy with the outcome. Refresh the browser's tab after any change in the HTML/JS/CSS files to see the changes.
 
@@ -1263,7 +1263,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/" target="_blank"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
 </div>
 </div>
 
@@ -1275,7 +1275,7 @@ S3 provides persistance for recording data in OpenVidu Pro clusters. It brings m
 - Launching an OpenVidu Pro cluster configured to use an already populated S3 bucket will make the existing recordings accessible and manageable from the new cluster.
 - You can upload to the same S3 bucket from different OpenVidu Pro clusters.
 
-Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged){:target="blank"}** event to know when a recording has been successfully uploaded to S3.
+Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged)** event to know when a recording has been successfully uploaded to S3.
 
 To enable S3 recording storage configure the following properties in the **`.env`** file at Master Node installation path (default to `/opt/openvidu`)
 
@@ -1289,7 +1289,7 @@ OPENVIDU_PRO_AWS_SECRET_KEY=your-secret-key
 OPENVIDU_PRO_AWS_REGION=eu-west-1
 ```
 
-There is a complete description of these properties at [OpenVidu Pro configuration](reference-docs/openvidu-config/){:target="_blank"}. Take into account the following points:
+There is a complete description of these properties at [OpenVidu Pro configuration](reference-docs/openvidu-config/). Take into account the following points:
 
 - Property `OPENVIDU_PRO_AWS_S3_BUCKET` can have a folder structure if you want OpenVidu Pro to upload recordings to a specific folder of your bucket.
 - Property `OPENVIDU_PRO_AWS_S3_HEADERS` allows further configuring the internal S3 client of OpenVidu Pro with the HTTP headers used when uploading the recordings. The property is a key-value map of strings, following the format of a JSON object. For example, according to AWS documentation, for applying server-side encryption with AES-256, this header is mandatory: `{"x-amz-server-side-encryption":"AES256"}`. The list of available headers can be found [here](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/Headers.html){:target="_blank"}.
@@ -1303,7 +1303,7 @@ There is a complete description of these properties at [OpenVidu Pro configurati
 
 # Local recording in the browser
 
-OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/LocalRecorder.html){:target="_blank"}.
+OpenVidu Browser offers an extremely simple API to record Streams directly in the client's browser. Check it out [here](api/openvidu-browser/classes/LocalRecorder.html).
 
 <br>
 
@@ -1323,14 +1323,14 @@ COMPOSED and COMPOSED_QUICK_START  recordings with video uses a special module t
 There are 2 possible solutions to this problem:
 
 1. **RECOMMENDED ONE**: change your firewall/proxy/security to allow hairpinning from the affected host.
-2. **HACKY ONE**: allow the recording module to connect to the session using the internal private IP of the OpenVidu host. To do so set [configuration property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_COMPOSED_URL` to a specific value.
+2. **HACKY ONE**: allow the recording module to connect to the session using the internal private IP of the OpenVidu host. To do so set [configuration property](reference-docs/openvidu-config/) `OPENVIDU_RECORDING_COMPOSED_URL` to a specific value.
 
-     - For OpenVidu CE: `https://HOST:PORT/dashboard` being `HOST` the internal IP of the host and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
-    - For OpenVidu PRO: `https://HOST:PORT/inspector` being `HOST` the internal IP of the Master Node and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/){:target="_blank"} `HTTPS_PORT`)
+     - For OpenVidu CE: `https://HOST:PORT/dashboard` being `HOST` the internal IP of the host and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/) `HTTPS_PORT`)
+    - For OpenVidu PRO: `https://HOST:PORT/inspector` being `HOST` the internal IP of the Master Node and `PORT` the public port of the deployment ([configuration property](reference-docs/openvidu-config/) `HTTPS_PORT`)
 
 #### Enable debug mode of COMPOSED or COMPOSED_QUICK_START recordings
 
-COMPOSED and COMPOSED_QUICK_START recordings with video (not audio-only) use a special module that can be initialized in a debug mode that will log much more information. Set [configuration property](reference-docs/openvidu-config/){:target="_blank"} `OPENVIDU_RECORDING_DEBUG` to true to enable the recording debug mode.
+COMPOSED and COMPOSED_QUICK_START recordings with video (not audio-only) use a special module that can be initialized in a debug mode that will log much more information. Set [configuration property](reference-docs/openvidu-config/) `OPENVIDU_RECORDING_DEBUG` to true to enable the recording debug mode.
 
 #### First time launching a COMPOSED or COMPOSED_QUICK_START recording is taking too long or throwing an error
 
