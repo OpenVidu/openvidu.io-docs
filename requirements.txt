@@ -7,7 +7,7 @@
 #     source python_modules/bin/activate
 #
 #     # Install packages
-#     python -m pip install --upgrade -r requirements.txt
+#     python3 -m pip install --upgrade -r requirements.txt
 
 mkdocs==1.2.3
 mkdocs-exclude-search
