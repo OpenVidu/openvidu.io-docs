@@ -181,7 +181,7 @@ The value `NONE` is of special interest because it leaves every participant to n
     A potential caveat of this codec selection logic, is that a Publisher might decide to send video with some codec that is not supported by a Subscriber; the consequence would be a black video in the Subscriber, caused by a failed decoding. In practice, **this is rarely the case** for participants that are compliant with the WebRTC specification, because WebRTC mandates support for **both VP8 and H.264 codecs**. No matter which one is selected by the Publisher, any proper WebRTC Subscriber should be able to handle it.
 
 
-### Allow Transcoding (Kurento only)
+### Allow Transcoding (Kurento only) {: #allow-transcoding }
 
 Kurento media server is able to automatically convert between different codecs on the fly, if the need arises. This is called *transcoding*, and is a great way to ensure compatibility between endpoints; however, it is also a [very CPU intensive operation](https://doc-kurento.readthedocs.io/en/latest/user/troubleshooting.html#cpu-usage-grows-too-high){:target="_blank"}.
 
