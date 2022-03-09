@@ -54,7 +54,7 @@ Simulcast is enabled at the Publisher level, but it can only be used in **OpenVi
 
 1. Use a global setting, to have it enabled by default for all Publishers. This is done by setting `OPENVIDU_WEBRTC_SIMULCAST=true` in the OpenVidu Server's `.env` file.
 
-2. Configure individually when creating each Publisher from the client side. This can be done with *openvidu-browser*, by setting [`PublisherProperties.videoSimulcast = true`](api/openvidu-browser/interfaces/publisherproperties.html#videosimulcast) when calling [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher).
+2. Configure individually when creating each Publisher from the client side. This can be done with *openvidu-browser*, by setting [`PublisherProperties.videoSimulcast = true`](api/openvidu-browser/interfaces/PublisherProperties.html#videoSimulcast) when calling [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/OpenVidu.html#initPublisher).
 
 Note that it is possible to combine these methods to achieve a very easy configuration for some common use cases:
 
@@ -142,12 +142,12 @@ OpenVidu automatically configures simulcast to do the correct thing depending on
 
 *openvidu-browser* will automatically apply the correct settings when requesting video tracks from the browser.
 
-If you are providing your own custom track (setting a `MediaStreamTrack` into [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/publisherproperties.html#videosource), then passing it to [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/openvidu.html#initpublisher)) you might want to let *openvidu-browser* know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
+If you are providing your own custom track (setting a `MediaStreamTrack` into [`PublisherProperties.videoSource`](api/openvidu-browser/interfaces/PublisherProperties.html#videoSource), then passing it to [`OpenVidu.initPublisher()`](api/openvidu-browser/classes/OpenVidu.html#initPublisher)) you might want to let *openvidu-browser* know about what type of content your track will contain. Do this by providing a track where the [`track.contentHint`](https://w3c.github.io/mst-content-hint/#video-content-hints) property had been previously set to one of `"motion"` (for webcam kind of video, where there are people or real-world imagery) or `"detail"` (for screenshare kind of video, where there are geometric shapes, still pictures, or text).
 
 
 ### Advanced: Customizing simulcast layers {: #layer-customizing }
 
-While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/stream.html#getrtcpeerconnection) in *openvidu-browser*.
+While OpenVidu sets simulcast up appropriately for best overall performance on general use cases, you might want to fine tune its layer settings. This can be done directly in the Publisher's client by means of the [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) object. You can obtain a reference to this object with [`Stream.getRTCPeerConnection()`](api/openvidu-browser/classes/Stream.html#getRTCPeerConnection) in *openvidu-browser*.
 
 Simulcast layers are set in what WebRTC calls an **RTP Sender**, which can be retrieved with [`RTCPeerConnection.getSenders()`](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getSenders). Note that your PeerConnection object will contain one Sender for audio and another for video, so you should filter them by track type:
 
