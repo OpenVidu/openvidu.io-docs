@@ -43,9 +43,9 @@ For more information about simulcast and how it works in popular web browsers, c
 
 ## Using simulcast in OpenVidu
 
-Simulcast is a video routing optimization that can be safely enabled in most cases, given that it allows the Media Server to adjust the quality that is distributed to each Subscriber independently. Since its introduction in **OpenVidu 2.21**, it will remain disabled by default until we can gather some end user feedback and decide whether this feature should come enabled in future releases.
+Simulcast is a video routing optimization that can be safely enabled in most cases, given that it allows the Media Server to adjust the quality that is distributed to each Subscriber independently. However, since its introduction in **OpenVidu 2.21**, simulcast will remain disabled by default. When we gather enough user feedback, we'll decide whether this feature should come enabled by default in future releases.
 
-The only situation where enabling simulcast could be worse than disabling it, is when the Publisher is a low-power device, or if the Publisher has severe bandwidth limitations; in those cases, simulcast might produce worse results, given that it imposes a small extra power and bandwidth toll on Producers.
+In any case, the only situation where simulcast might be undesired is when a Publisher has severe bandwidth limitations or is a low-power device. In those cases, simulcast might provide worse results, given that it imposes a small extra bandwidth and power toll on Publishers.
 
 
 ### Enabling simulcast {: #enabling }
@@ -70,7 +70,7 @@ Enabling simulcast incurs a small penalty on Publishers, which see their network
 This penalty on Publishers is generally considered worth it, because simulcast allows the Media Server to quickly switch between quality layers for every individual outbound stream. This means Subscribers will see an improvement in how well and how fast the received quality is adapted to their network and performance conditions.
 
 
-## Codec compatibility table {: #codec-compatibility }
+## Simulcast compatibility table {: #simulcast-compatibility }
 
 Simulcast can only be used with the **VP8** and **H.264** video codecs. Enabling simulcast will fail and cause errors on Publishers if the video codecs of the WebRTC session have been forced to a different codec, such as VP9.
 

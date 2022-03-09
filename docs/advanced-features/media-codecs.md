@@ -53,7 +53,7 @@ Codec support in OpenVidu is as follows:
 
 This table summarizes compatibility of different platforms with the video codecs supported by OpenVidu. Here we show whether the codec worked as expected in our tests, together with the web browser or client version that was used for the test, and notes regarding failures.
 
-For compatibility tests with simulcast (mediasoup only), check the [simulcast codec compatibility table](openvidu-enterprise/simulcast/#codec-compatibility).
+For compatibility tests with simulcast (mediasoup only), check the [simulcast compatibility table](openvidu-enterprise/simulcast/#simulcast-compatibility).
 
 The test method was as follows:
 
@@ -124,7 +124,7 @@ SessionProperties sessionProperties = new SessionProperties.Builder()
 Session session = openVidu.createSession(sessionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html#forcedVideoCodec(io.openvidu.java.client.VideoCodec)){:target="_blank"}.
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html#forcedVideoCodec(io.openvidu.java.client.VideoCodec)).
 
 </div>
 
