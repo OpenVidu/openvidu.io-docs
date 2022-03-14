@@ -227,3 +227,21 @@ Firefox and Safari also implement their own set of rules, but again they are lac
 In the future, OpenVidu might allow applications to do an explicit selection of which simulcast layer one Subscriber prefers to receive. However, for the moment this feature is not available yet, and Subscribers will just leave the layer selection logic to the Media Server. This works according to parameters such as the available download bandwidth of the Subscriber, and will always attempt to use the highest possible quality layer.
 
 <br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>

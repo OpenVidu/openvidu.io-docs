@@ -187,10 +187,10 @@
         </tr>
         <tr>
             <th scope="row">Fault Tolerance</th>
-            <td scope="row"><i
+            <td scope="row"><a href="openvidu-pro/fault-tolerance/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
-                    title="Detect crashed nodes and manually rebuild your video sessions"></td>
+                    title="Detect crashed nodes and manually rebuild your video sessions"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>

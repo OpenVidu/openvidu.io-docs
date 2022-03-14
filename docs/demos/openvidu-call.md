@@ -160,21 +160,3 @@ npm run build
 cd dist/
 node openvidu-call-server.js
 ```
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>

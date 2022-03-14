@@ -111,24 +111,6 @@ For further information, check readme.md
 
 <script src="js/copy-btn.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
 

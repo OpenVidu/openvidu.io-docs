@@ -163,22 +163,3 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP
 
 
 **9)** Run the tutorial. In Xcode, click on the Play button after selecting your connected device.
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>

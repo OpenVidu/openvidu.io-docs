@@ -152,23 +152,3 @@ app.delete('/api/recording/delete', function (req, res) {
         .catch(error => res.status(400).send(error.message));
 });
 ```
-
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>

@@ -676,24 +676,6 @@ Replace `USER` with a user of your server with `root` permissions and `OPENVIDU_
 
 <br>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
-
 <link rel="stylesheet" type="text/css" href="css/downloads/slick-1.6.0.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="js/downloads/slick-1.6.0.min.js"></script>
