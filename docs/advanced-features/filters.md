@@ -9,6 +9,8 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
 - You can **add and remove event listeners** to any event dispatched by an applied filter.
 - You must configure the allowed filters the user will be able to apply when **creating the Connection**.
 
+Check out [openvidu-filters](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-filters){:target="_blank"} tutorial to see OpenVidu filters in action.
+
 ---
 
 ## Step by step

@@ -92,6 +92,7 @@ nav:
     - OpenVidu Pro:
           - Home: openvidu-pro/index.md
           - Scalability: openvidu-pro/scalability.md
+          - Fault tolerance: openvidu-pro/fault-tolerance.md
           - OpenVidu Inspector: openvidu-pro/openvidu-inspector.md
           - Monitoring - Elastic Stack: openvidu-pro/monitoring-elastic-stack.md
     - OpenVidu Enterprise:

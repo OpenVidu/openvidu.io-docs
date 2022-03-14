@@ -312,9 +312,9 @@ This method is part of <a href="openvidu-enterprise/"><strong>OpenVidu</strong><
 
 When using [mediasoup](openvidu-enterprise/#kurento-vs-mediasoup) as media server, the subscription operation must begin with this method. Instead of the client generating an SDP offer and the server sending back an SDP answer, roles are reversed. The server must first generate an SDP offer and the client send back an SDP answer. This is why this method is needed when using mediasoup. The steps to follow are the following ones:
 
-- Call [prepareReceiveVideoFrom](#preparereceivevideofrom) indicating with parameter `sender` the remote stream to subscribe to.
-- The response will bring and `spdOffer` parameter that must be used to generate an `sdpAnswer` in the client.
-- The `sdpAnswer` must be sent by the client in method [receiveVideoFrom](#receivevideofrom).
+1. Call [prepareReceiveVideoFrom](#preparereceivevideofrom) indicating with parameter `sender` the remote stream to subscribe to.
+2. The response will bring an SDP offer in the `spdOffer` attribute that must be used to generate an SDP answer in the client.
+3. The SDP answer must be sent by the client in method [receiveVideoFrom](#receivevideofrom), using parameter `sdpAnswer`.
 
 **Method sent by client**
 

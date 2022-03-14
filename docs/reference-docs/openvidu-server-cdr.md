@@ -383,15 +383,17 @@ This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id=
 </div>
 </div>
 
-Recorded when a node of an OpenVidu Pro cluster has crashed. For now this only applies to Media Nodes (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture)). A Media Node is considered crashed if Master Node loses its connection to it and it does not recover in 3 seconds.
+Recorded when a node of an OpenVidu Pro/Enterprise cluster has crashed. This is related to the the fault tolerance capabilities of OpenVidu:
 
-When a Media Node crashes, all of its sessions and recordings are automatically closed and the node is removed from the OpenVidu Pro cluster. No session is automatically reconstructed: it is the responsibility of the application to rebuild any affected session.
+- It can be a **Media Node** for OpenVidu Pro and OpenVidu Enterprise clusters.
+- It can also be a **Master Node** for OpenVidu Enterprise HA clusters.
 
-On the client side, participants will trigger a [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html) event with `reason` set to `nodeCrashed`.
+When a node crashes, all of its sessions are automatically closed and the node is removed from the OpenVidu cluster. No session is automatically reconstructed: it is the responsibility of the application to rebuild any affected session. Check out the following points for further information:
 
-On the server side, this event is always followed by other events for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
+- [OpenVidu Pro Fault Tolerance](openvidu-pro/fault-tolerance/)
+- [Fault tolerance in OpenVidu Enterprise HA](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha)
 
-An easy strategy to rebuild any affected session is to make clients ask for a new token to a new session to the application's backend once they receive the `sessionDisconnected` event with `reason` to `nodeCrashed`. The application's backend will know at some point which sessions have crashed thanks to this `nodeCrashed` webhook event. If a client's request for a new token matches a crashed session in the `nodeCrashed` event, then the application's backend can be sure that the request is legitimate. It can first create a new session, somehow associated with the recently crashed session, so we can know which new session should we use when answering a client's reconnection request. Then we just need to generate and send a new token back to any client asking to reconnect that crashed session. In the end all of the clients asking to reconnect to a crashed session should be handed a token for the proper new replacing session.
+This event is always preceded by other events for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
 
 ```json
 {
@@ -416,7 +418,7 @@ An easy strategy to rebuild any affected session is to make clients ask for a ne
 | `ip`              | IP of the crashed node | A String with the node's IP |
 | `uri`             | URI of the crashed node | A String with the node's URI |
 | `clusterId`       | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A String with the cluster identifier |
-| `nodeRole`       | Role of the crashed node | A String with the node's role. It is `medianode` for now |
+| `nodeRole`       | Role of the crashed node | A String with the node's role. It can be:<ul class="cdr-list"><li><code>medianode</code> : if a Media Node has crashed. See [OpenVidu Pro Fault Tolerance](openvidu-pro/fault-tolerance/)</li><li><code>masternode</code> : if a Master Node has crashed. See [Fault tolerance in OpenVidu Enterprise HA](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha) </li></ul> |
 | `sessionIds`     | The collection of session identifiers of all the sessions that were located in the crashed node. This way you can immediately know which sessions have been destroyed by the crash | An Array of Strings |
 | `recordingIds`    | The collection of recording identifiers of all the recordings that were located in the crashed node. This way you can immediately know which recordings have been affected by the crash | An Array of Strings |
 | `timestamp`       | Time when the event was triggered | A Number (UTC milliseconds)                              |
@@ -654,3 +656,21 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 | `canceledNodes`   | Media Nodes in `canceled` status | An Array of Objects of type **[mediaNode](#medianode)** |
 
 <br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script>
+  $().fancybox({
+    selector : '[data-fancybox]',
+    infobar : true,
+    arrows : false,
+    loop: true,
+    protect: true,
+    transitionEffect: 'slide',
+    buttons : [
+        'close'
+    ],
+    clickOutside : 'close',
+    clickSlide   : 'close',
+  });
+</script>

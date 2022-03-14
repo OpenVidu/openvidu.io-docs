@@ -6,7 +6,6 @@
 
 - **[OpenVidu Pro architecture](#openvidu-pro-architecture)**
     - [How OpenVidu Pro sessions are distributed](#how-openvidu-pro-sessions-are-distributed)
-- **[Pricing of an OpenVidu Pro cluster](#pricing-of-an-openvidu-pro-cluster)**
 - **[How to deploy your OpenVidu Pro cluster](#how-to-deploy-your-openvidu-pro-cluster)**
 - **[Set the number of Media Nodes on startup](#set-the-number-of-media-nodes-on-startup)**
 - **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)**
@@ -115,26 +114,6 @@ When is this method recommended?
 - **When your sessions are very big in number of participants** and may require a significant share of its Media Node capacity. In other words: if you expect a particular session to need 50% of the Media Node CPU power, then manually controlling which other sessions will also be initialized in that Media Node becomes essential to avoid overloading it.
 - **When your sessions keep growing over time**. If more and more participants keep being added to your sessions, then having full control over where new sessions are started is important.
 - **When you expect lots of sessions to be initialized in a very short amount of time**. OpenVidu doesn't know how much CPU capacity will consume each session, and by default will initialize them in the less loaded Media Node. This can cause lots of sessions to be allocated in the same Media Node (the less loaded one at that time), and when they begin streaming media and adding participants the load in that specific node can increase to a dangerous point, even with idle Media Nodes available in the cluster. Manual session allocation is the only solution in this case.
-
-<br>
-
----
-
-## Pricing of an OpenVidu Pro cluster
-
-The price of an OpenVidu Pro cluster is rather simple:
-
-<p style="font-size: 18px; color: #7a7a7a; margin: 25px 0; text-align: center">
-You pay <strong>0.0006$</strong> per core per minute in your OpenVidu Pro cluster
-</p>
-
-There are 3 important aspects to consider:
-
-1. You only pay for your OpenVidu Pro cluster for the time it is running. Usage will be registered the moment you start your cluster and will stop as soon as you shut your cluster down.
-2. You pay for every available core at any given time: if you cluster grows for one hour, that hour you will pay more. If your cluster decreases the next hour, next hour will be cheaper. Currently all Nodes have the same core per minute price.
-3. Your cluster (specifically your Master Node) needs Internet access at all times. If your specific use case doesn't allow your cluster to have Internet access, please contact us through [Commercial page](https://openvidu.io/support#commercial){:target="_blank"}.
-
-> In **[Pricing](https://openvidu.io/pricing){:target="_blank"}** section you will find a detailed with different use cases of OpenVidu Pro clusters and their associated cost depending on their size and running time
 
 <br>
 
