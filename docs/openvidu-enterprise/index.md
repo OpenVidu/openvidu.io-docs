@@ -5,8 +5,8 @@
     - [5x more media streams](#5x-more-media-streams)
     - [5x quicker connections](#5x-quicker-connections)
     - [Media quality improvements](#media-quality-improvements)
-    - [100% compatible with your current OpenVidu applications](#100-compatible-with-your-current-openvidu-applications)
     - [High Availability deployment option](#high-availability-deployment-option)
+    - [100% compatible with your current OpenVidu applications](#100-compatible-with-your-current-openvidu-applications)
 - **[Kurento vs mediasoup](#kurento-vs-mediasoup)**
     - [Additional mediasoup limitations](#additional-mediasoup-limitations)
     - [Using Kurento in OpenVidu Enterprise](#using-kurento-in-openvidu-enterprise)
@@ -348,15 +348,19 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
     Popular web browsers such as Google Chrome have integrated VP9 support for a while now, other browsers are slowly getting onboard, and OpenVidu will allow you to benefit from it too.
 
+#### High Availability deployment option
+
+OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/) documentation for further information.
+
+<p align="center">
+  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 500px" src="img/docs/openvidu-enterprise/ha-alone.png">
+</p>
+
 #### 100% compatible with your current OpenVidu applications
 
 OpenVidu hides all complexity that lies behind swapping Media Server technologies: New SDKs, architecture changes, etc...
 
 With OpenVidu, there's no need to change a single line of your application: **what used to work with OpenVidu Pro will work as-is with OpenVidu Enterprise**.
-
-#### High Availability deployment option
-
-OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/) documentation for further information.
 
 <br>
 

@@ -13,7 +13,7 @@
 
 OpenVidu Enterprise offers a High Availability (HA) deployment option in AWS, with replication of all nodes and load balancing for clients. It is made up of 2 different AWS Auto-Scaling groups, managing the 2 different types of nodes of [OpenVidu's Master-Worker architecture](openvidu-pro/scalability/#openvidu-pro-architecture).
 
-The main difference between a regular OpenVidu Pro deployment and OpenVidu Enterprise HA deployment is the replication of Master Nodes. In the image below, on the left a regular OpenVidu Pro deployment and on the right an OpenVidu Enterprise HA deployment:
+The main difference between an OpenVidu Enterprise Single Master deployment and an OpenVidu Enterprise HA deployment is the replication of Master Nodes. In the image below, on the left an OpenVidu Enterprise Single Master deployment and on the right an OpenVidu Enterprise HA deployment:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
