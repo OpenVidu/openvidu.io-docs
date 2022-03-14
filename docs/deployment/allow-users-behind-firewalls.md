@@ -2,33 +2,23 @@
 <hr>
 
 - **[Introduction](#introduction)**
-- **[Deploy a TURN service for clients behind firewalls](#deploy-a-turn-service-for-clients-behind-firewalls)**
-    - [1) Prerequisites](#1-prerequisites)
-    - [2) Installation](#2-installation)
-    - [3) Configure OpenVidu to use the new TURN server deployed](#3-configure-openvidu-to-use-the-new-turn-server-deployed)
-    - [Deployment Example](#deployment-example)
+- **[Prerequisites](#prerequisites)**
+- **[Deploy a TURN service for clients behind firewalls (Let's Encrypt)](#deploy-a-turn-service-for-clients-behind-firewalls-with-lets-encrypt)**
+- **[Deploy a TURN service for clients behind firewalls (with custom certificates)](#deploy-a-turn-service-for-clients-behind-firewalls-with-custom-certificates)**
 - **[Use a third-party TURN SaaS for clients behind firewalls](#use-a-third-party-turn-saas-for-clients-behind-firewalls)**
 
 ---
 
 ## Introduction
 
-OpenVidu deployments include a TURN server ([Coturn](https://github.com/coturn/coturn){:target="\_blank"}) that listens on the port 3478. While that's a good setup for most scenarios, some corporate networks only allow connections to port 443, which OpenVidu uses for its API and WebSocket endpoints. This means that the included TURN server cannot be used in those networks.
+OpenVidu deployments include a TURN server ([Coturn](https://github.com/coturn/coturn){:target="\_blank"}) that listens at port 3478. While that's a good setup for most scenarios, some corporate networks only allow connections to port 443, which OpenVidu uses for its API and WebSocket endpoints. This means that the included TURN server cannot be used in those networks.
 
-To solve this limitation, OpenVidu now can be easily configured with external TURN servers, either to use our brand new TURN appliance that can be deployed externally, or a third-party TURN SaaS. In the next sections both scenarios will be described.
+To solve this limitation, OpenVidu now can be easily configured with external TURN servers, either to use our brand new TURN appliance that can be deployed externally, or a third-party TURN SaaS. In the next sections, both scenarios will be described.
 
-<br>
+## Prerequisites
 
----
-
-## Deploy a TURN service for clients behind firewalls
-
-We provide our own deployment based on the [Coturn](https://github.com/coturn/coturn){:target="\_blank"} project which can be deployed at port 443 with SSL. In this section we will describe how to install it and configure it at OpenVidu configuration.
-
-#### 1) Prerequisites
-
-1. A Linux machine with its own **public IP**. **It must be a different machine than the OpenVidu ones**.
-2. A **FQDN(Fully Qualified Domain Name)** which must point to the public IP of the machine. No proxys or anything else, just a simple domain/subdomain with a registar of type A pointing to its public IP.
+1. A Linux machine with its own **public IP**. **It must be a different machine than those used by OpenVidu**.
+2. A **FQDN(Fully Qualified Domain Name)** which must point to the public IP of the machine. No proxies or anything else, just a simple domain/subdomain with a register of type A pointing to its public IP.
 3. Good network bandwidth.
 4. **Docker** and **docker-compose** installed.
 
@@ -56,9 +46,17 @@ Also, you will need to open these ports:
 
 <br>
 
-#### 2) Installation
+<br>
 
-**1)** SSH into the machine you will deploy coturn and change to the root user.
+---
+
+## Deploy a TURN service for clients behind firewalls (with Let's Encrypt)
+
+<br>
+We provide our own deployment based on the [Coturn](https://github.com/coturn/coturn){:target="\_blank"} project which can be deployed at port 443 with SSL using Let's Encrypt. In this section we will describe how to install it and configure it to be used by OpenVidu:
+
+<br>
+**1)** SSH into the machine you will deploy coturn as root.
 
 **2)** Go to `/opt/` directory.
 
@@ -70,8 +68,8 @@ curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.5.2/inst
 
 **4)** Fill in the file `/opt/coturn/.env` these environment variables:
 
-- `TURN_DOMAIN_NAME`: The domain which is pointing to the public ip of the machine.
-- `LETSENCRYPT_EMAIL`: The email you want to use for letsencrypt certificate.
+- `TURN_DOMAIN_NAME`: Domain which is pointing to the public ip of the machine.
+- `LETSENCRYPT_EMAIL`: Email you want to use for letsencrypt certificate.
 - `TURN_STATIC_AUTH_SECRET`: TURN shared key with OpenVidu. It is recommended to use alphanumeric characters.
 
 **5)** Execute coturn:
@@ -107,7 +105,7 @@ Now your TURN server is ready at port 443 with SSL.
 
 > As long as the output of the coturn service matches the above one, you can ignore some error logs that you may see. Coturn is very verbose and tries to apply some default configurations that may produce those errors.
 
-#### 3) Configure OpenVidu to use the new TURN server deployed:
+#### Configure OpenVidu to use the new TURN server deployed:
 
 Configure the previously defined `TURN_DOMAIN_NAME` and `TURN_STATIC_AUTH_SECRET` in OpenVidu server using this parameter at `/opt/openvidu/.env/`:
 
@@ -135,6 +133,112 @@ On the other hand at OpenVidu, configuration in `/opt/openvidu/.env` should incl
 
 ```
 OPENVIDU_WEBRTC_ICE_SERVERS=["url=turns:turn-server.example.com:443,staticAuthSecret=mysecret"]
+```
+
+<br>
+
+---
+
+## Deploy a TURN service for clients behind firewalls (with custom certificates)
+
+<br>
+The instructions we provide at [Deploy a TURN service for clients behind firewalls](#deploy-a-turn-service-for-clients-behind-firewalls) are prepared to work by default with SSL using Letsencrypt,
+but you may want to use a certificate purchased from a CA or you have your own self-signed certificate. To deploy it you just need to:
+<br>
+
+**1)** SSH into the machine you will deploy coturn and change to the root user.
+
+**2)** Go to `/opt/` directory.
+
+**3)** Execute this command to install our Coturn deployment.
+
+```bash
+curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.5.2/install_openvidu_external_coturn.sh | bash
+```
+
+**4)** Place your certificates in a directory, for example: `/opt/coturn/owncert`. You should have two files at this directory:
+
+- `privkey.pem` (Private key file)
+- `cert.pem` (Certificate file)
+
+**5)** Remove the `certbot` service from `/opt/coturn/docker-compose.yml`.
+
+**6)** Modify `/opt/coturn/docker-compose.yml` to use the directory of your certificates. Instead of this volume...:
+
+```yaml
+volumes:
+    - ./certbot/etc/letsencrypt:/etc/letsencrypt
+```
+
+... change it to this one...:
+
+```yaml
+volumes:
+    - /opt/coturn/owncert:/opt/coturn/owncert
+```
+
+**7)** Modify `/opt/coturn/docker-compose.yml` to change all certificate parameters of the `coturn` service from this...
+
+```yaml
+command:
+    - --cert=/etc/letsencrypt/live/${TURN_DOMAIN_NAME}/cert.pem
+    - --pkey=/etc/letsencrypt/live/${TURN_DOMAIN_NAME}/privkey.pem
+    ...
+```
+
+... to this...:
+
+```yaml
+command:
+    - --cert=/opt/coturn/owncert/cert.pem
+    - --pkey=/opt/coturn/owncert/privkey.pem
+...
+```
+
+**8)** Give permission to your certificates files at `/opt/coturn/owncert` so it can be accessed by the `coturn` service:
+
+```bash
+chmod -R 655 /opt/coturn/owncert
+```
+
+**9)** Fill only these parameters in `/opt/coturn/.env` file:
+
+```
+TURN_DOMAIN_NAME=turn-server.example.com
+TURN_STATIC_AUTH_SECRET=mysecret
+```
+
+**10)** Execute coturn:
+
+```
+docker-compose up -d
+```
+
+Check the logs to see if everything is OK:
+```
+docker-compose logs -f
+```
+
+You should see this log trace from `coturn` container:
+
+```text
+coturn     | 0: : <SSL_TLS_DTLS_VERSION>: Certificate file found: //opt/openvidu/owncert/cert.pem
+...
+coturn     | 0: : <SSL_TLS_DTLS_VERSION>: Certificate file found: //opt/openvidu/owncert/privkey.pem
+...
+coturn     | 0: : IPv4 <PROTOCOL> listener opened on : 0.0.0.0:443
+```
+
+Now your TURN server is ready at port 443 with SSL.
+
+> As long as the output of the coturn service matches the above one, you can ignore some error logs that you may see. Coturn is very verbose and tries to apply some default configurations that may produce those errors.
+
+#### Configure OpenVidu to use the new TURN server deployed:
+
+Configure the previously defined `TURN_DOMAIN_NAME` and `TURN_STATIC_AUTH_SECRET` in OpenVidu server using this parameter at `/opt/openvidu/.env/`:
+
+```bash
+OPENVIDU_WEBRTC_ICE_SERVERS=["url=turns:<TURN_DOMAIN_NAME>:443,staticAuthSecret=<TURN_STATIC_AUTH_SECRET>"]
 ```
 
 <br>
