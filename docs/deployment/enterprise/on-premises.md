@@ -10,7 +10,7 @@
 ## Single master deployment
 <br>
 
-OpenVidu Enterprise on premises is deployed just as [OpenVidu Pro on premises](/deployment/pro/on-premises). You just need to add the following property to OpenVidu configuration `.env` file [here](/deployment/pro/on-premises/#22-configuration).
+OpenVidu Enterprise on premises is deployed just as [OpenVidu Pro on premises](deployment/pro/on-premises). You just need to add the following property to OpenVidu configuration `.env` file [here](/deployment/pro/on-premises/#22-configuration).
 
     OPENVIDU_EDITION=enterprise
 
