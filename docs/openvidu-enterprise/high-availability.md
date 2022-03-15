@@ -104,44 +104,52 @@ public String getToken(String sessionId) {
 // This method creates a Session with a custom session identifier
 // It will retry the operation if a 50X error is received
 public Session getSession(String sessionId) {
-    SessionProperties properties = new SessionProperties.Builder().customSessionId(sessionId).build();
-    try {
-        Session session = OV.createSession(properties);
-        return session;
-    } catch (OpenViduHttpException e) {
-        if (e.getStatus() == 502 || e.getStatus() == 503 || e.getStatus() == 504) {
-            System.out.println("Retry. The node handling the operation is crashed: " + e.getMessage());
-            Thread.sleep(100);
-            return getSession(sessionId);
-        } else {
-            System.err.println("Unexpected error: " + e.getMessage());
+    Session session = null;
+    boolean success = false;
+    while (!success) {
+        SessionProperties properties = new SessionProperties.Builder().customSessionId(sessionId).build();
+        try {
+            session = OV.createSession(properties);
+            success = true;
+        } catch (OpenViduHttpException e) {
+            if (e.getStatus() == 502 || e.getStatus() == 503 || e.getStatus() == 504) {
+                System.out.println("Retry. The node handling the operation is crashed: " + e.getMessage());
+                Thread.sleep(100);
+            } else {
+                System.err.println("Unexpected error: " + e.getMessage());
+                throw e;
+            }
+        } catch (OpenViduJavaClientException e) {
+            System.err.println("Unexpected internal error: " + e.getMessage());
             throw e;
         }
-    } catch (OpenViduJavaClientException e) {
-        System.err.println("Unexpected internal error: " + e.getMessage());
-        throw e;
     }
+    return session;
 }
 
 // This method creates a Connection for a particular Session
 // It will retry the operation if a 50X error is received
 public Connection getConnection(Session session) {
-    try {
-        Connection connection = session.createConnection();
-        return connection;
-    } catch (OpenViduHttpException e) {
-        if (e.getStatus() == 502 || e.getStatus() == 503 || e.getStatus() == 504) {
-            System.out.println("Retry. The node handling the operation is crashed: " + e.getMessage());
-            Thread.sleep(100);
-            return getConnection(session);
-        } else {
-            System.err.println("Unexpected error: " + e.getMessage());
+    Connection connection = null;
+    boolean success = false;
+    while (!success) {
+        try {
+            connection = session.createConnection();
+            success = true;
+        } catch (OpenViduHttpException e) {
+            if (e.getStatus() == 502 || e.getStatus() == 503 || e.getStatus() == 504) {
+                Thread.sleep(100);
+                System.out.println("Retry. The node handling the operation is crashed: " + e.getMessage());
+            } else {
+                System.err.println("Unexpected error: " + e.getMessage());
+                throw e;
+            }
+        } catch (OpenViduJavaClientException e) {
+            System.err.println("Unexpected internal error: " + e.getMessage());
             throw e;
         }
-    } catch (OpenViduJavaClientException e) {
-        System.err.println("Unexpected internal error: " + e.getMessage());
-        throw e;
     }
+    return connection;
 }
 ```
 
@@ -163,37 +171,45 @@ async function getToken(sessionId) {
 // This method creates a Session with a custom session identifier
 // It will retry the operation if a 50X error is received
 async function getSession(sessionId) {
-    try {
-        var session = await OV.createSession({ customSessionId: sessionId });
-        return session;
-    } catch (error) {
-        if (error.message === 502 || error.message === 503 || error.message === 504) {
-            console.warn("Retry. The node handling the operation is crashed", e);
-            await new Promise(resolve => setTimeout(resolve, 100));
-            return await getSession(sessionId);
-        } else {
-            console.error("Unexpected error", e);
-            throw e;
+    var session;
+    var success = false;
+    while (!success) {
+        try {
+            session = await OV.createSession({ customSessionId: sessionId });
+            success = true;
+        } catch (error) {
+            if (error.message === 502 || error.message === 503 || error.message === 504) {
+                await new Promise(resolve => setTimeout(resolve, 100)); // Wait 100 ms
+                console.warn("Retry. The node handling the operation is crashed", e);
+            } else {
+                console.error("Unexpected error", e);
+                throw e;
+            }
         }
     }
+    return session;
 }
 
 // This method creates a Connection for a particular Session
 // It will retry the operation if a 50X error is received
 async function getConnection(session) {
-    try {
-        var connection = await session.createConnection({ customSessionId: sessionId });
-        return connection;
-    } catch (error) {
-        if (error.message === 502 || error.message === 503 || error.message === 504) {
-            console.warn("Retry. The node handling the operation is crashed", e);
-            await new Promise(resolve => setTimeout(resolve, 100));
-            return await getConnection(session);
-        } else {
-            console.error("Unexpected error", e);
-            throw e;
+    var connection;
+    var success = false;
+    while (!success) {
+        try {
+            var connection = await session.createConnection({ customSessionId: sessionId });
+            success = true;
+        } catch (error) {
+            if (error.message === 502 || error.message === 503 || error.message === 504) {
+                await new Promise(resolve => setTimeout(resolve, 100)); // Wait 100 ms
+                console.warn("Retry. The node handling the operation is crashed", e);
+            } else {
+                console.error("Unexpected error", e);
+                throw e;
+            }
         }
     }
+    return connection;
 }
 ```
 
