@@ -820,7 +820,7 @@ Remove a listener from an applied filter. The equivalent method in OpenVidu Brow
 
 #### connect
 
-After a network loss and a WebSocket reconnection, this is the first method that the client must send to the server. It will tell if the client still belongs to the OpenVidu Session, or if it is too late and it was evicted from it. See See [Automatic reconnection ➞ Signaling plane breaks](/advanced-features/automatic-reconnection/#signaling-plane-breaks).
+After a network loss and a WebSocket reconnection, this is the first method that the client must send to the server. It will tell if the client still belongs to the OpenVidu Session, or if it is too late and it was evicted from it. See See [Automatic reconnection ➞ Signaling plane breaks](advanced-features/automatic-reconnection/#signaling-plane-breaks).
 
 **Method sent by client**
 
@@ -868,7 +868,7 @@ If the server evicted the user:
 
 #### reconnectStream
 
-Silently re-negotiates an already established stream, whether it is an outgoing stream (Publisher) or an incoming stream (Subscriber). This can be helpful to reconnect a frozen stream, which may happen when a client loses and recovers its network connection with OpenVidu Server but the media plane remains broken (See [Automatic reconnection ➞ Media plane breaks](/advanced-features/automatic-reconnection/#media-plane-breaks)). This method will recreate a new RTC peer connection in a silent manner (without triggering any events in the clients) using the properties of the previous one.
+Silently re-negotiates an already established stream, whether it is an outgoing stream (Publisher) or an incoming stream (Subscriber). This can be helpful to reconnect a frozen stream, which may happen when a client loses and recovers its network connection with OpenVidu Server but the media plane remains broken (See [Automatic reconnection ➞ Media plane breaks](advanced-features/automatic-reconnection/#media-plane-breaks)). This method will recreate a new RTC peer connection in a silent manner (without triggering any events in the clients) using the properties of the previous one.
 
 <div style="
     display: table;
