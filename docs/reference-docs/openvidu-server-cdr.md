@@ -393,7 +393,7 @@ When a node crashes, all of its sessions are automatically closed and the node i
 - [OpenVidu Pro Fault Tolerance](openvidu-pro/fault-tolerance/)
 - [Fault tolerance in OpenVidu Enterprise HA](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha)
 
-This event is always preceded by other events for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
+This event **is always followed by other events** for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
 
 ```json
 {
