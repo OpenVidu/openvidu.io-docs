@@ -202,7 +202,11 @@ Start publishing a stream to the session. The equivalent method in OpenVidu Brow
         "sdpOffer": "v=0\r\no=- 9136980301272336337 2 IN IP4 [...] 0c97ae838dfa\r\n",
         "typeOfVideo": "CAMERA",
         "videoActive": true,
-        "videoDimensions": "{\"width\":640,\"height\":480}"
+        "videoDimensions": "{\"width\":640,\"height\":480}",
+        "filter": {
+            "options": "{\"command\":\"videobalance saturation=0.0\"}",
+            "type": "GStreamerFilter"
+        }
     }
 }
 ```
