@@ -3,7 +3,7 @@
 
 - **[How OpenVidu Pro provides fault tolerance](#how-openvidu-pro-provides-fault-tolerance)**
 - **[Making your OpenVidu app fault tolerant](#making-your-openvidu-app-fault-tolerant)**
-<!--- **[Recordings and fault tolerance](#recordings-and-fault-tolerance)**-->
+- **[Recordings and fault tolerance](#recordings-and-fault-tolerance)**
 
 ---
 
@@ -65,6 +65,19 @@ session.on('sessionDisconnected', event => {
 Your application's backend can also receive the [`nodeCrashed`](reference-docs/openvidu-server-cdr/#nodecrashed) CDR event if you want. Listening to this CDR event is really not necessary for achieving fault tolerance and re-building sessions after a Media Node crash, but you can still use it for custom logic and monitoring purposes.
 
 > If you want to see an example of an application that automatically reconnects users after a node crash, take a look to the simple [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} tutorial.
+
+<br>
+
+---
+
+## Recordings and fault tolerance
+
+By the time being, the recordings hosted by a crashed Media Node should be considered lost and are not recoverable in a standardized way. Qualifying this statement:
+
+- For [OpenVidu Pro AWS deployments](deployment/pro/aws/) the Media Node is immediately terminated after a crash, so there is no possibility of recovering any recording file.
+- For [OpenVidu Pro On Premises deployments](deployment/pro/on-premises/) a Media Node cannot be automatically terminated after a crash. It will be removed from the cluster so that it is no longer charged, but OpenVidu will not terminate the machine (WebHook event [`mediaNodeStatusChanged`](reference-docs/openvidu-server-cdr/#medianodestatuschanged) may be used to performed the termination task from outside OpenVidu). For this reason, recording files may be recoverable while the machine previously provisioned with the OpenVidu Media Node is still accessible. Inside the recording folder (by default `/opt/openvidu/recordings`) there should be a subfolder for any ongoing recording in the crashed Media Node. INDIVIDUAL recording files should be healthy. COMPOSED recordings files can be corrupted and require a repair process to make it playable.
+
+In any case, there is no guarantee that recordings can be recovered after a Media Node crash. Future versions of OpenVidu will address this limitation.
 
 <br>
 
