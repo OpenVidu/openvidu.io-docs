@@ -1,4 +1,5 @@
 # openvidu-webcomponent
+
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-webcomponent" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
 OpenVidu Web Component is the simplest and quickest way to add videoconference capabilities to your existing web application. It brings many of the features of OpenVidu platform, making it very powerful.
@@ -36,7 +37,7 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.21.0
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a session.
 
 
 <div class="row no-margin row-gallery">
@@ -112,14 +113,14 @@ As you can see, the `index.html` body has the form to connect to a video-session
 
 </body>
 ```
+In this tutorial, we just alternate the view between the form and the web component, hiding or showing them depending on the Web Component events received. See next point for checking the details.
 
 ---
 
 #### app.js (I): OpenVidu Web Component events
 
-OpenVidu Web Component emits events _`sessionCreated`_, _`publisherCreated`_ or _`error`_, so we can handle them in our JavaScript code.
 
-
+<!--
 <div style="
     display: table;
     border: 2px solid #ffb600;
@@ -139,9 +140,12 @@ OpenVidu Web Component emits events _`sessionCreated`_, _`publisherCreated`_ or 
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    <strong>NOTE</strong>: New event names and properties have been defined (<i>sessionCreated</i> , <i>publisherCreated</i> previous ones are still available (<i>joinSession</i> and <i>leaveSession</i>) but deprecated.
+    <strong>NOTE</strong>: From 2.22.0 onwards the webcomponent api has been redefined and the previous ones are not available.
 </div>
-</div>
+</div> -->
+
+The OpenVidu Web Component offers several events you can handle them in our JavaScript code.
+As the OpenVidu Web Component is created from the [_**openvidu-angular**_](reference-docs/openvidu-angular/) library, you can see all events [here](api/openvidu-angular/components/OpenviduWebComponentComponent.html#outputs).
 
 We just need to get the element once the document is ready and add all the listeners we want:
 
@@ -149,130 +153,63 @@ We just need to get the element once the document is ready and add all the liste
 $(document).ready(() => {
     var webComponent = document.querySelector('openvidu-webcomponent');
 
-    webComponent.addEventListener('sessionCreated', (event) => {
-        var session = event.detail;
-
-        session.on('connectionCreated', (e) => {
-            console.log("connectionCreated", e);
-        });
-
-        session.on('streamDestroyed', (e) => {
-            console.log("streamDestroyed", e);
-        });
-
-        session.on('streamCreated', (e) => {
-            console.log("streamCreated", e);
-        });
-
-        session.on('exception', (exception) => {
-            console.warn(exception);
-        });
-        ...
-    });
-
-    webComponent.addEventListener('publisherCreated', (event) => {
-        console.log("publisherCreated event", event);
-        var publisher = event.detail;
-
-        publisher.on('streamCreated', (e) => {
-            console.log("Publisher streamCreated", e);
-        });
-    });
-    webComponent.addEventListener('error', (event) => {
-        // Do something
-    });
+    webComponent.addEventListener('onSessionCreated', (event) => {
+         var session = event.detail;
+     });
+    webComponent.addEventListener('onJoinButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarLeaveButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarCameraButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarMicrophoneButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarScreenshareButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarParticipantsPanelButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarChatPanelButtonClicked', (event) => {});
+    webComponent.addEventListener('onToolbarFullscreenButtonClicked', (event) => {});
+    webComponent.addEventListener('onParticipantCreated', (event) => {});
 });
 ```
-Now, we will be able to use `session` and `publisher` in the same way as if we used **openvidu-browser** directly, and of course use <span><a href="api/openvidu-browser">openvidu-browser API</a></span>
+We should mention that the `onSessionCreated` is returning the openvidu-browser [Session](api/openvidu-browser/classes/Session.html) object so we will be able to use `session` in the same way as if we used **openvidu-browser** directly, and of course use <span><a href="api/openvidu-browser">openvidu-browser API</a></span>.
 <br>
-
-In this tutorial, we just alternate the view between the form and the web component, hiding or showing them when receiving `connectionCreated` or `sessionDisconnected` events.
 
 ---
 
 #### app.js (II): Configuring OpenVidu Web Component
 
-##### Session Configuration
+The **joinSession** method is invoked after clicking on the our webapp _join_ button. The main logic that it handles is the following:
 
-Method `joinSession()` gets:
+ - Get the form input values, with the videoconference to connect and the nickname the user will have in it.
+ - Get the two `tokens` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
 
- - The form input values, with the video-call to connect and the nickname the user will have in it.
- - The `tokens` from OpenVidu Server. Check out [next point](#get-a-token-from-openvidu-server) to see how this is done.
+The tokens are the only parameter that the webcomponent needs. Once we have our tokens ready, we set them to the webcomponent.
 
-When we have our tokens available, the only thing left to do is to give the desired configuration to openvidu-webcomponent. To do so we use an object with three parameters: `sessionName`, `user` and  `tokens`.
+We also have assigned a **participantName** for displaying our name in the videoconference. In addition, there are several optional parameters that we can set up for **customizing the UI**. Check them [here](#ui-customization).
 
-- `sessionName`: the session name that will be displayed inside the component
-- `user`: the nickname that the user will have in the session
-- `tokens`: the retrieved tokens from OpenVidu Server
-
-However, if we give the *openvidu-url* and *openvidu-secret*, the webcomponent will build the token for us.
 
 ```javascript
 async function joinSession() {
+    //Getting form inputvalue
     var sessionName = document.getElementById('sessionName').value;
-    var user = document.getElementById('user').value;
-    var tokens = [];
-    var form = document.getElementById('main');
+    var participantName = document.getElementById('user').value;
+
+    // Requesting tokens
+    var tokens = {webcam: await getToken(sessionName), screen: await getToken(sessionName)};
+
+    //Getting the webcomponent element
     var webComponent = document.querySelector('openvidu-webcomponent');
 
-    form.style.display = 'none';
+    hideForm();
+
+    // Displaying webcomponent
     webComponent.style.display = 'block';
 
-    if(webComponent.getAttribute("openvidu-secret") != undefined && webComponent.getAttribute("openvidu-server-url") != undefined ){
-        location.reload();
-    }else {
-        var token1 = await getToken(sessionName);
-        var token2 = await getToken(sessionName);
-        tokens.push(token1, token2);
-        webComponent.sessionConfig = { sessionName, user, tokens};
-    }
+    // Setting up our name and tokens
+    webComponent.participantName = participantName;
+    webComponent.tokens = tokens;
 }
 ```
 
-That's it. Once you configure the token into the webcomponent, it will automatically join the proper session (`sessionCreated` event will be dispatched so you can update your web). The user will see in the webcomponent all other users joined to the same session and will publish the webcam. You have a video-call working!
+That's it. Once you configure the tokens into the webcomponent, it will automatically join the proper session ([onSessionCreated](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#onSessionCreated) event will be dispatched so you can update your webapp).
 
-##### Interface Configuration
-
-Optionally, you can add an extra JSON param inside of **webcomponent.sessionConfig** object named `ovSettings`. This parameter allows you to set up an extra custom interface. We have the choice to enabling or disabling the chat and each of the toolbar buttons. Besides, openvidu-webcomponent allows you configure your **camera** and **audio device**, your **avatar** and your **nickname** before join to the room. To do that, you only have to set `autopublish` property to `false`.
-
-To do that, is necessary to declare the following **ovSettings** variable:
-
-```javascript
-var ovSettings = {
-  chat: true,
-  autopublish: true,
-  toolbar: true,
-  footer: true,
-  toolbarButtons: {
-    audio: true,
-    video: true,
-    screenShare: true,
-    fullscreen: true,
-    layoutSpeaking: true,
-    exit: true,
-  }
-};
-```
-
-and add it inside of **webcomponent.sessionConfig** object:
-
-```javascript
-webComponent.sessionConfig = { sessionName, user, token, ovSettings };
-```
-
-
-<div class="row no-margin row-gallery">
-	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent3.png">
-		<img class="img-responsive" src="img/demos/ov-webcomponent3.png">
-	</a>
-	</div>
-	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent4.png">
-		<img class="img-responsive" src="img/demos/ov-webcomponent4.png">
-	</a>
-	</div>
-</div>
+You will be able to see the videconference working and every participant who connects to the same session will be displayed on it.
 
 ---
 
@@ -321,37 +258,54 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 <hr>
 
-## Extra features of OpenVidu Web Component
 
+## Close the session dynamically
 
-#### Alternatives to connect to OpenVidu session
-
-In the example above, **OpenVidu Web Component** receives the `sessionConfig` parameter dynamically like this:
+You can also disconnect the user from the session dynamically calling to **leaveSession** method which the OpenVidu Webcomponent provides:
 
 ```javascript
-webComponent.sessionConfig = { sessionId, user, token };
+webComponent.leaveSession();
 ```
 
-But you can also set them statically, for example if you are building your template in the backend:
+## OpenVidu Web Component Customization
 
-```html
-<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1", "token": "[TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER]"}'></openvidu-webcomponent>
+#### UI Customization
+
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent5.png">
+		    <img class="img-responsive" src="img/demos/ov-webcomponent5.png">
+	    </a>
+	</div>
+    <div class="col-md-6">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent4.png">
+		    <img class="img-responsive" src="img/demos/ov-webcomponent4.png">
+	    </a>
+	</div>
+</div>
+
+In the tutorial above, **OpenVidu Web Component** receives the `participantName` parameter dynamically like this:
+
+```javascript
+webComponent.participantName = participantName;
+```
+In addition to this parameter, OpenVidu Web Component offers several other parameters for **customizing the UI** as you wish. You can see all the UI parameters [here](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#inputs).
+
+Here are some **examples**:
+
+```javascript
+// Hide the prejoin page
+webComponent.prejoin = false;
+
+// Hide the fullscreen button
+webComponent.toolbarFullscreenButton = false;
+
+// Hide the branding logo
+webComponent.toolbarDisplayLogo = false;
 ```
 
-Besides, openvidu-webcomponent allows you to add **ovSettings** parameter statically:
-
-```html
-<openvidu-webcomponent session-config='{"sessionName":"SessionA", "user":"User1",               "ovSettings": {"chat": true, "autopublish": true, "toolbar": true, "footer": true, "toolbarButtons": {"audio": true,
- "video": true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
-</openvidu-webcomponent>
-```
-
-And if you want to let the webcomponent get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
-
-```html
-<openvidu-webcomponent  openvidu-server-url="https://localhost:4443" openvidu-secret="MY_SECRET" session-config='{"sessionName":"SessionA", "user":"User1", "ovSettings": {"chat": true, "autopublish": true, "toolbar": true, "footer": true, "toolbarButtons": {"audio": true, "video":true, "screenShare": true, "fullscreen": true, "layoutSpeaking": true, "exit": true }}}'>
-</openvidu-webcomponent>
-```
+You can also set them statically, for example if you are building your template in the backend:
 
 <div style="
     display: table;
@@ -374,30 +328,28 @@ And if you want to let the webcomponent get the token for you, you can just disp
     padding-left: 20px;
     padding-right: 20px;
     ">
-	<strong>WARNING</strong>: As you can see, when you add parameters to OpenVidu web component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.
+	<strong>WARNING</strong>: As you can see, when you add parameters to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.
 </div>
 </div>
-
-#### Close the session dynamically
-
-You can also disconnect the user from the session assigning dynamically `empty object` to the **sessionConfig** property :
-
-```javascript
-ov.sessionConfig = {};
-```
-
-#### Choose a theme
-
-OpenVidu  allows you to choose between two themes. By default, the theme selected is **dark theme** but if you prefer change it for a **light them**, you can add `theme="light"`
 
 ```html
-<openvidu-webcomponent theme="light"></openvidu-webcomponent>
+<openvidu-webcomponent
+    tokens="TOKEN_RETRIEVED_FROM_OPENVIDU_SERVER"
+    prejoin="false"
+    toolbar-fullscreen-button="false"
+    toolbar-display-logo="false"
+    >
+</openvidu-webcomponent>
 ```
+
+#### Styles Customization
+
+The OpenVidu Web Component also allows you to **customize the styles** to your liking.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent5.png">
-		    <img class="img-responsive" src="img/demos/ov-webcomponent5.png">
+		<a data-fancybox="gallery" href="img/demos/ov-webcomponent7.png">
+		    <img class="img-responsive" src="img/demos/ov-webcomponent7.png">
 	    </a>
 	</div>
     <div class="col-md-6">
@@ -407,14 +359,32 @@ OpenVidu  allows you to choose between two themes. By default, the theme selecte
 	</div>
 </div>
 
+You can update the css styles which you can find [here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-webcomponent/web/app.css).
+
+```css
+:root {
+  --ov-primary-color: #303030;
+  --ov-secondary-color: #3e3f3f;
+  --ov-secondary-light-color: #e6e6e6;
+  --ov-tertiary-color: #598eff;
+  --ov-warn-color: #EB5144;
+  --ov-accent-color: #ffae35;
+
+  --ov-text-color: #ffffff;
+
+  --ov-panel-text-color: #1d1d1d;
+  --ov-panel-background: #ffffff;
+
+  --ov-buttons-radius: 50%;
+  --ov-leave-button-radius: 10px;
+  --ov-video-radius: 5px;
+  --ov-panel-radius: 5px;
+}
+```
+
 #### Change the OpenVidu logo
 
-OpenVidu webcomponent allows you to replace the default static resources (icons and images). You only have to go to `web/assets/images/` and add your custom images files with the following names:
-
-* `openvidu_globe.png`: The application icon.
-* `openvidu_logo.png`: The application logo.
-* `poster.png`: The application image which will appear when a participant has the video muted.
-
+With OpenVidu Web Component you will also be able to replace the OpenVidu branding logo with yours. You only have to go to `web/assets/images/` and add your custom logo file with the `logo.png` name.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
