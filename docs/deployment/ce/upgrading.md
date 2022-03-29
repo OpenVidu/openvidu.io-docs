@@ -1,5 +1,8 @@
-<h2 id="section-title">Upgrading OpenVidu CE</h2>
+<h2 id="section-title">Upgrading OpenVidu CE deployment</h2>
 <hr>
+
+- **[Upgrading OpenVidu CE deployment (AWS Cloudformation)](#upgrading-openvidu-ce-deployment-aws-cloudformations)**
+- **[Upgrading OpenVidu CE deployment (On premises)](#upgrading-openvidu-ce-deployment-on-premises)**
 
 <div style="
     display: table;
@@ -55,7 +58,58 @@
 </div>
 </div>
 
-## Upgrade instructions
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    padding: 10px 0 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+      <strong>If you have deployed using Cloudformation we strongly recommend to update by deploying a brandly new <a target="_blank" href="deployment/ce/aws/#3-option-specify-template-amazon-s3-url-with-the-following-url">OpenVidu Cloudformation template</a></strong> corresponding to the version you want to update.
+      <br><br>
+      By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+      <br><br>
+      To do it, you just need to:
+      <ul>
+        <li style="color: inherit">Deploy the OpenVidu Cloudformation template of the version you want to deploy.</li>
+        <li style="color: inherit">If you have recordings, move the recording at `/opt/openvidu/recordings` to the new deployment.</li>
+        <li style="color: inherit">If you have your app deployed next to OpenVidu, move your app to your new deployment.</li>
+      </ul>
+      <br>
+      However, if you don't want to deploy a new Cloudformation, you can follow the instructions if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
+</div>
+</div>
+
+---
+
+## Upgrading OpenVidu CE deployment (AWS Cloudformation)
+
+If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template](deployment/ce/aws/#3-option-specify-template-amazon-s3-url-with-the-following-url){target: "_blank"}** corresponding to the version you want to update.
+
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+
+To do it, you just need to:
+- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
+- If you have recordings, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- If you have your app deployed next to OpenVidu, move your app to your new deployment.
+
+However, if you don't want to deploy a new Cloudformation, you can follow the [next section](#upgrading-openvidu-ce-deployment-on-premises) with instructions to upgrade OpenVidu CE _On premises_ deployments if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
+
+## Upgrading OpenVidu CE deployment (On premises)
 
 Connect to the server hosting OpenVidu CE through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`. From this point, instructions will assume the installation path of OpenVidu CE is `/opt/openvidu`.
 
