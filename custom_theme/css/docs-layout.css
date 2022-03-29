@@ -516,23 +516,24 @@ div.toc > ul > li li {
 }
 
 
-.hljs-keyword, .hljs-meta {
+.language-typescript .hljs-keyword, .language-typescript .hljs-meta {
     color: #dbb4ff !important;
 }
-.hljs-title.function_ {
+.language-typescript .hljs-title.function_ {
     color: #f5ad28;
 
 }
-.hljs-title {
+.language-typescript .hljs-title {
     color: #45e6a3;
 }
-.hljs-string {
+.language-typescript .hljs-string {
     color: #ff951c !important;
 }
-.hljs-attr {
+
+.language-typescript .hljs-attr {
     color: #8fe7fd
 }
 
-.hljs-comment {
-    color: #4d8b50 !important;
+.language-typescript .hljs-comment {
+    color: #6daa70 !important;
 }
