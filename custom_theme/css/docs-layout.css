@@ -430,13 +430,13 @@ span.arrow-down {
     #doc-container img.login-form-img {
         max-width: 300px;
     }
-    
+
     #doc-container img.join-form-img {
-        max-width: 500px;   
+        max-width: 500px;
     }
 
     #doc-container img.openvidu-pro-img {
-        max-width: 500px;   
+        max-width: 500px;
     }
 }
 
@@ -486,7 +486,7 @@ span.arrow-down {
     }
     #doc-container #deploy-arch-row {
         display: inherit;
-        align-items: inherit; 
+        align-items: inherit;
     }
     #doc-container #deploy-arch-desc {
         margin: 30px 20px 10px 20px;
@@ -513,4 +513,26 @@ div.toc > ul > li{
 
 div.toc > ul > li li {
     font-weight: normal;
+}
+
+
+.hljs-keyword, .hljs-meta {
+    color: #dbb4ff !important;
+}
+.hljs-title.function_ {
+    color: #f5ad28;
+
+}
+.hljs-title {
+    color: #45e6a3;
+}
+.hljs-string {
+    color: #ff951c !important;
+}
+.hljs-attr {
+    color: #8fe7fd
+}
+
+.hljs-comment {
+    color: #4d8b50 !important;
 }
