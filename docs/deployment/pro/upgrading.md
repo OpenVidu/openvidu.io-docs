@@ -44,18 +44,18 @@
 </div>
 </div>
 
-## Migrating from 2.20.0 to 2.21.0
+## Migrating from 2.21.0 to 2.22.0
 
 Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
 
-- **[Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)](#migrating-from-2200-to-2210-aws-cloudformation)**
-- **[Migrating from 2.20.0 to 2.21.0 (On premises)](#migrating-from-2200-to-2210-on-premises)**
+- **[Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)](#migrating-from-2210-to-2220-aws-cloudformation)**
+- **[Migrating from 2.21.0 to 2.22.0 (On premises)](#migrating-from-2200-to-2210-on-premises)**
 
-### Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)
+### Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.21.0
+#### Option 1 (recommended): Deploy a new Cloudformation for 2.22.0
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.21.0](https://docs.openvidu.io/en/2.21.0/deployment/pro/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.22.0](https://docs.openvidu.io/en/2.22.0/deployment/pro/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
@@ -66,9 +66,9 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.21.0 to 2.22.0 (On Premises)](#migrating-from-2200-to-2210-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
-#### Option 2: Update current deployment to 2.21.0:
+#### Option 2: Update current deployment to 2.22.0:
 
 **1)** SSH into your OpenVidu Server Master Node.
 
@@ -88,39 +88,14 @@ cd /opt/openvidu
 ```
 **5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
 
-**6)** Upgrade OpenVidu to version 2.21.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.21.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
+**6)** As OpenVidu uses an AMI to deploy and provision media nodes, we need to get and copy the media node AMI of the version we want to deploy. To get the Id of our official AMI you just need to execute:
 
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.21.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.21.0`: Empty configuration file of the 2.21.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.21.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.21.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.21.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
 ```bash
 ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.21.0)
 ```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
+But `ORIGINAL_AMI_ID` should not be used in your deployment, you need to copy this AMI to your accouint and region where you have OpenVidu deployed.
+Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you can copy the AMI to your account and region with these commands:
+
 ```bash
 # Region where OpenVidu is deployed
 REGION=<YOUR_REGION>
@@ -134,18 +109,149 @@ NEW_IMAGE_ID=$(aws ec2 copy-image \
 aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
 
 # Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
+echo "${NEW_IMAGE_ID}"
 ```
 
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+        To be able to execute the previous commands in your aws account you need <strong><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region</strong>
+  </div>
+</div>
+
+
+
+Where `<YOUR_REGION>` is the region your OpenVidu is deployed.
+
+The command `echo "${NEW_IMAGE_ID}"` will print your new AMI to be used in OpenVidu. Now you just need to execute the upgrade script with the new image id as an argument:
+
+```console
+curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.21.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
+```
+
+
+The installation steps will output their progress as they run. If everything goes well you should see:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.21.0
+================================================
+```
+
+**7)** After executing the previous command you will end up with two environment files:
+
+  - `.env-2.21.0`: Empty configuration file of the 2.21.0 version.
+  - `.env`: Previous configuration which remains intact.
+
+
+Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.21.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
+
+**8)** When you have the file `.env-2.21.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.21.0` to `.env`.
+
+
+**9)** Start Openvidu.
 
 ```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
+./openvidu start
 ```
 
-**10)** Start Openvidu.
+### Migrating from 2.21.0 to 2.22.0 (On Premises)
+
+#### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
+
+At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+
+```bash
+sudo -s
+cd /opt/kms # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.22.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.22.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.22.0 services
+
+2. This new version 2.22.0 does not need any .env file. Everything is configured from OpenVidu Pro
+
+3. Start new version of Media Node
+$ ./media_node start
+
+4. This will run a service at port 3000 which OpenVidu will use to deploy necessary containers.
+Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
+in file located at "/opt/openvidu/.env" with this format:
+    ...
+    KMS_URIS=["ws://<MEDIA_NODE_PRIVATE_IP>:8888/kurento"]
+    ...
+You can also add Media Nodes from inspector
+
+5. Start or restart OpenVidu Pro and all containers will be provisioned
+automatically to all the media nodes configured in "KMS_URIS"
+```
+
+<div></div>
+
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
+
+<br>
+
+
+#### 2) Upgrading Master Node
+
+After all of your media nodes are updated, you just need to connect to the Master Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.22.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.22.0
+================================================
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.22.0 services
+
+2. The previous file '.env' remains intact, but a new file '.env-2.22.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.22.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.22.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
+However, if you were using your own application, a file called 'docker-compose.override.yml-2.22.0'
+has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.21.0'
+```
+
+Make sure that you have all of your needed properties at your .env file and start OpenVidu with:
 
 ```
 ./openvidu start
@@ -155,9 +261,34 @@ AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
 
 > **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
 
+## Migrating from 2.20.0 to 2.21.0
+
+Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+
+- **[Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)](#migrating-from-2200-to-2210-aws-cloudformation)**
+- **[Migrating from 2.20.0 to 2.21.0 (On premises)](#migrating-from-2200-to-2210-on-premises)**
+
+### Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)
+
+If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.21.0](https://docs.openvidu.io/en/2.21.0/deployment/pro/aws/){target="_blank"}**.
+
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+
+To do it, you just need to:
+
+- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
+- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- If you have your app deployed next to OpenVidu, move your app to your new deployment.
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.20.0 to 2.21.0 (On Premises)](#migrating-from-2200-to-2210-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
+
 ### Migrating from 2.20.0 to 2.21.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -267,8 +398,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.19.0 to 2.20.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.20.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.20.0](https://docs.openvidu.io/en/2.20.0/deployment/pro/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -280,98 +409,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.20.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.20.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.20.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.20.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.20.0`: Empty configuration file of the 2.20.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.20.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.20.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.20.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.20.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.20.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.19.0 to 2.20.0 (On Premises)](#migrating-from-2190-to-2200-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.19.0 to 2.20.0 (On premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -473,8 +518,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.18.0 to 2.19.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.19.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.19.0](https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -486,98 +529,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.19.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.19.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.19.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.19.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.19.0`: Empty configuration file of the 2.19.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.19.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.19.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.19.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.19.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.19.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.18.0 to 2.19.0 (On Premises)](#migrating-from-2180-to-2190-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.18.0 to 2.19.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -680,8 +639,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.17.0 to 2.18.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.18.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.18.0](https://docs.openvidu.io/en/2.18.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -693,98 +650,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.18.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.18.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.18.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.18.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.18.0`: Empty configuration file of the 2.18.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.18.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.18.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.18.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.18.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.18.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.17.0 to 2.18.0 (On Premises)](#migrating-from-2170-to-2180-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.17.0 to 2.18.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -888,8 +761,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.16.0 to 2.17.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.17.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.17.0](https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -901,98 +772,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.17.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.17.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.17.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.17.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.17.0`: Empty configuration file of the 2.17.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.17.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.17.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.17.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.17.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.17.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.16.0 to 2.17.0 (On Premises)](#migrating-from-2160-to-2170-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.16.0 to 2.17.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -1097,8 +884,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.15.1 to 2.16.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.16.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.16.0](https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -1110,98 +895,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.16.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.16.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.16.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.16.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.16.0`: Empty configuration file of the 2.16.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.16.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.16.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.16.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.16.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.16.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.15.1 to 2.16.0 (On Premises)](#migrating-from-2151-to-2160-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.15.1 to 2.16.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
@@ -1308,8 +1009,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.14.0 to 2.15.1 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.15.1
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.15.1](https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -1321,102 +1020,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.15.1:
-
-**1)** First you need to modify the Security groups of all nodes in this way:
-- **Master node** can reach port **3000 TCP** of all media nodes.
-- **Media Node** can reach port **9200 TCP** and  and **5044 TCP**
-
-**2)** SSH into your OpenVidu Server Master Node.
-
-**3)** Change to the root user:
-```bash
-sudo -s
-```
-
-**4)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**5)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**6)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**7)** Upgrade OpenVidu to version 2.15.1
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.1.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.15.1
-================================================
-```
-
-
-**8)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.15.1`: Empty configuration file of the 2.15.1 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.15.1`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**9)** When you have the file `.env-2.15.1` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.15.1` to `.env`.
-
-**10)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.15.1)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.15.1" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**11)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.14.0 to 2.15.1 (On Premises)](#migrating-from-2140-to-2151-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.14.0 to 2.15.1 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 Open port **3000 TCP** so **OpenVidu Server Pro** can use it. This port is necessary to provision **Media Node** by **OpenVidu Server Pro**.
 
@@ -1523,8 +1134,6 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.13.0 to 2.14.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.14.0
-
 If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.14.0](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
@@ -1536,98 +1145,14 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instructions we will provide in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
-
-#### Option 2: Update current deployment to 2.14.0:
-
-**1)** SSH into your OpenVidu Server Master Node.
-
-**2)** Change to the root user:
-```bash
-sudo -s
-```
-
-**3)** Go to the OpenVidu installation directory:
-```bash
-cd /opt/openvidu
-```
-
-**4)** Stop OpenVidu Server:
-```bash
-./openvidu stop
-```
-**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
-
-**6)** Upgrade OpenVidu to version 2.14.0
-<p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.14.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
-                              title="Copy to Clipboard">Copy</button>
-</p>
-
-The installation steps will output their progress as they run. If everything goes well you should see:
-
-```console
-================================================
-Openvidu successfully upgraded to version 2.14.0
-================================================
-```
-
-
-**7)** After executing the previous command you will end up with two environment files:
-
-  - `.env-2.14.0`: Empty configuration file of the 2.14.0 version.
-  - `.env`: Previous configuration which remains intact.
-
-
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.14.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
-
-**8)** When you have the file `.env-2.14.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.14.0` to `.env`.
-
-**9)** In your `.env` file you will have a parameter `AWS_IMAGE_ID`, but this value is not a valid AMI Id. You need to get our official one from `eu-west-1` and copy it to your account and region where you have OpenVidu deployed.
-
-To get the Id of our official AMI from `eu-west-1` you just need to execute:
-```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.14.0)
-```
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you need to copy that AMI to your account and region where you have OpenVidu deployed. (You need [aws-cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured with root credentials to be able to copy the AMI to your region):
-```bash
-# Region where OpenVidu is deployed
-REGION=<YOUR_REGION>
-
-# Copy AMI and get AMI Id
-NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.14.0" \
-    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
-
-# Wait for the AMI to be available
-aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
-
-# Print AMI Id
-echo "AWS_IMAGE_ID=${NEW_IMAGE_ID}"
-```
-
-Where `<YOUR_REGION>` is the region your OpenVidu is deployed. Take into account that some commands may take some minutes to execute. The last command will output the parameter that you need to setup in the `.env`file with your new AMI. Your `.env` file should have this parameter in the `.env` file in the end:
-
-```
-...
-AWS_IMAGE_ID=ami-xxxxxxxxxxxxxxx
-...
-```
-
-**10)** Start Openvidu.
-
-```
-./openvidu start
-```
-
-<div></div>
-
-> **Check out the [notes when upgrading Master Node](#notes-when-upgrading-master-node)**
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.13.0 to 2.14.0 (On Premises)](#migrating-from-2130-to-2140-on-premises) in this section if you wish, but you should know that the upgrading process may have some breaking changes if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.13.0 to 2.14.0 (On Premises)
 
 #### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
 At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
