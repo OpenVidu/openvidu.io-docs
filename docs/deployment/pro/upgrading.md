@@ -1,6 +1,7 @@
 <h2 id="section-title">Upgrading OpenVidu Pro</h2>
 <hr>
 
+- **[Migrating from 2.21.0 to 2.22.0](#migrating-from-2210-to-2220)**
 - **[Migrating from 2.20.0 to 2.21.0](#migrating-from-2200-to-2210)**
 - **[Migrating from 2.19.0 to 2.20.0](#migrating-from-2190-to-2200)**
 - **[Migrating from 2.18.0 to 2.19.0](#migrating-from-2180-to-2190)**
@@ -96,6 +97,16 @@ ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov
 But `ORIGINAL_AMI_ID` should not be used in your deployment, you need to copy this AMI to your accouint and region where you have OpenVidu deployed.
 Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you can copy the AMI to your account and region with these commands:
 
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+        To be able to execute the next commands in your aws account you need <strong><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region</strong>
+  </div>
+</div>
+
 ```bash
 # Region where OpenVidu is deployed
 REGION=<YOUR_REGION>
@@ -111,15 +122,6 @@ aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
 # Print AMI Id
 echo "${NEW_IMAGE_ID}"
 ```
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-        To be able to execute the previous commands in your aws account you need <strong><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region</strong>
-  </div>
-</div>
 
 
 
