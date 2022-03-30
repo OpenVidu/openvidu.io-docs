@@ -92,7 +92,7 @@ cd /opt/openvidu
 **6)** As OpenVidu uses an AMI to deploy and provision media nodes, we need to get and copy the media node AMI of the version we want to deploy. To get the Id of our official AMI you just need to execute:
 
 ```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.21.0)
+ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.22.0)
 ```
 But `ORIGINAL_AMI_ID` should not be used in your deployment, you need to copy this AMI to your accouint and region where you have OpenVidu deployed.
 Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you can copy the AMI to your account and region with these commands:
@@ -113,7 +113,7 @@ REGION=<YOUR_REGION>
 
 # Copy AMI and get AMI Id
 NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.21.0" \
+    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.22.0" \
     --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
 
 # Wait for the AMI to be available
@@ -130,7 +130,7 @@ Where `<YOUR_REGION>` is the region your OpenVidu is deployed.
 The command `echo "${NEW_IMAGE_ID}"` will print your new AMI to be used in OpenVidu. Now you just need to execute the upgrade script with the new image id as an argument:
 
 ```console
-curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.21.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
+curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.22.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
 ```
 
 
@@ -138,19 +138,19 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.21.0
+Openvidu successfully upgraded to version 2.22.0
 ================================================
 ```
 
 **7)** After executing the previous command you will end up with two environment files:
 
-  - `.env-2.21.0`: Empty configuration file of the 2.21.0 version.
+  - `.env-2.22.0`: Empty configuration file of the 2.22.0 version.
   - `.env`: Previous configuration which remains intact.
 
 
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.21.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
+Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.22.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
 
-**8)** When you have the file `.env-2.21.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.21.0` to `.env`.
+**8)** When you have the file `.env-2.22.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.22.0` to `.env`.
 
 
 **9)** Start Openvidu.
