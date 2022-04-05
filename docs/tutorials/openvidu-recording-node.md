@@ -88,7 +88,7 @@ Although this tutorial includes several methods to make the backend-frontend com
 #### 1) Start the recording:
 
 ```javascript
-app.post('/api/recording/start', function (req, res) {
+app.post('/recording-node/api/recording/start', function (req, res) {
 	// Retrieve params from POST body
 	var recordingProperties = {
 		outputMode: req.body.outputMode,
@@ -106,7 +106,7 @@ app.post('/api/recording/start', function (req, res) {
 #### 2) Stop the recording:
 
 ```javascript
-app.post('/api/recording/stop', function (req, res) {
+app.post('/recording-node/api/recording/stop', function (req, res) {
     // Retrieve params from POST body
     var recordingId = req.body.recording;
 
@@ -119,7 +119,7 @@ app.post('/api/recording/stop', function (req, res) {
 #### 3) Get a recording:
 
 ```javascript
-app.get('/api/recording/get/:recordingId', function (req, res) {
+app.get('/recording-node/api/recording/get/:recordingId', function (req, res) {
     // Retrieve params from GET url
     var recordingId = req.params.recordingId;
 
@@ -133,7 +133,7 @@ app.get('/api/recording/get/:recordingId', function (req, res) {
 #### 4) List the recording:
 
 ```javascript
-app.get('/api/recording/list', function (req, res) {
+app.get('/recording-node/api/recording/list', function (req, res) {
     OV.listRecordings()
         .then(recordings => res.status(200).send(recordings))
         .catch(error => res.status(400).send(error.message));
@@ -143,7 +143,7 @@ app.get('/api/recording/list', function (req, res) {
 #### 5) Delete the recording:
 
 ```javascript
-app.delete('/api/recording/delete', function (req, res) {
+app.delete('/recording-node/api/recording/delete', function (req, res) {
     // Retrieve params from DELETE body
     var recordingId = req.body.recording;
 
