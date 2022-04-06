@@ -1210,7 +1210,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.8.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.21.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>
@@ -1231,6 +1231,60 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     session.connect(TOKEN)
         .then(() => { console.log('Recorder participant connected') })
         .catch(error => { console.error(error) });
+</script>
+
+</html>
+```
+
+You also can use an additional layout library for improving the layout and get a more compact and professional look for your recordings. This example is using the [opentok-layout-js](https://github.com/aullman/opentok-layout-js) (you will need **[latest `openvidu-browser-VERSION.min.js` file](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}** and the [`opentok-layout.min.js` static file](https://github.com/aullman/opentok-layout-js/releases) to be in the same folder.
+
+```html
+<html>
+
+<head>
+    <script src="openvidu-browser-2.21.0.min.js"></script>
+    <script src="opentok-layout.min.js"></script>
+</head>
+
+<body>
+    <div id="layout" style="height: 100%;"></div>
+</body>
+
+<script>
+
+    var layoutContainer = document.getElementById("layout");
+
+    // Initialize the layout container and get a reference to the layout method
+    var layout = initLayoutContainer(layoutContainer);
+    layout.layout();
+    var resizeTimeout;
+    window.onresize = function() {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(function () {
+            layout.layout();
+        }, 20);
+    };
+
+
+    var url = new URL(window.location.href);
+    var SESSION_ID = url.searchParams.get("sessionId");
+    var SECRET = url.searchParams.get("secret");
+    var TOKEN = 'wss://localhost:4443' + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+
+    var OV = new OpenVidu();
+    var session = OV.initSession();
+
+    session.on("streamCreated", (event) => {
+        session.subscribe(event.stream, 'layout');
+        layout.layout();
+    });
+    session.connect(TOKEN)
+        .then(() => {
+            console.log('Recorder participant connected');
+            layout.layout();
+    }).catch(error => { console.error(error) });
+
+
 </script>
 
 </html>
