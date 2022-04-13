@@ -37,11 +37,28 @@ nav:
           - openvidu-recording-java: tutorials/openvidu-recording-java.md
           - openvidu-recording-node: tutorials/openvidu-recording-node.md
     - Demos:
-          - openvidu-call: demos/openvidu-call.md
           - openvidu-call-react: demos/openvidu-call-react.md
           - openvidu-call-ionic: demos/openvidu-call-ionic.md
           - openvidu-classroom: demos/openvidu-classroom.md
           - openvidu-getaroom: demos/openvidu-getaroom.md
+    - OpenVidu Components:
+          - Intro: components/index.md
+          - Tutorials:
+              - openvidu-custom-ui: components/openvidu-custom-ui.md
+              - openvidu-custom-toolbar: components/openvidu-custom-toolbar.md
+              - openvidu-toolbar-buttons: components/openvidu-toolbar-buttons.md
+              - openvidu-panel-buttons: components/openvidu-toolbar-panel-buttons.md
+              - openvidu-custom-layout: components/openvidu-custom-layout.md
+              - openvidu-custom-stream: components/openvidu-custom-stream.md
+              - openvidu-custom-panels: components/openvidu-custom-panels.md
+              - openvidu-additional-panels: components/openvidu-additional-panels.md
+              - openvidu-custom-chat-panel: components/openvidu-custom-chat-panel.md
+              - openvidu-custom-participants-panel: components/openvidu-custom-participants-panel.md
+              - openvidu-custom-participant-panel-item: components/openvidu-custom-participant-panel-item.md
+              - openvidu-custom-participant-panel-item-element: components/openvidu-custom-participant-panel-item-element.md
+
+              - openvidu-call: tutorials/openvidu-call.md
+              - openvidu-toggle-hand: components/openvidu-toggle-hand.md
     - Cheatsheet:
           - Join a session: cheatsheet/join-session.md
           - Leave a session: cheatsheet/leave-session.md
@@ -62,6 +79,7 @@ nav:
           - Automatic reconnection: advanced-features/automatic-reconnection.md
           - Network quality: advanced-features/network-quality.md
     - Reference Documentation:
+          - openvidu-angular API: reference-docs/openvidu-angular.md
           - openvidu-browser API: reference-docs/openvidu-browser.md
           - openvidu-java-client API: reference-docs/openvidu-java-client.md
           - openvidu-node-client API: reference-docs/openvidu-node-client.md

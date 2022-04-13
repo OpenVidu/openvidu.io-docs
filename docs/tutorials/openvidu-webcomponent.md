@@ -261,10 +261,10 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 ## Close the session dynamically
 
-You can also disconnect the user from the session dynamically calling to **leaveSession** method which the OpenVidu Webcomponent provides:
+You can also disconnect the user from the session dynamically calling to **disconnect** method which the OpenVidu Webcomponent provides:
 
 ```javascript
-webComponent.leaveSession();
+webComponent.disconnect();
 ```
 
 ## OpenVidu Web Component Customization

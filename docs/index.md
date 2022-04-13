@@ -187,7 +187,7 @@ Some interesting use cases you can implement with OpenVidu:
 The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
 
 <div class="docs-gallery">
-  <a data-fancybox="gallery-wellcome" href="img/demos/call-good2.png"><img class="img-responsive img-wellcome" src="img/demos/call-good2.png"/></a>
+  <a data-fancybox="gallery-wellcome" href="img/demos/ov-call-greetings.gif"><img class="img-responsive img-wellcome" src="img/demos/ov-call-greetings.gif"/></a>
   <a data-fancybox="gallery-wellcome" href="img/demos/insecure-session.png"><img class="img-responsive img-wellcome" src="img/demos/insecure-session.png"/></a>
   <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6.png"/></a>
   <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6-mob.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6-mob.png"/></a>
