@@ -1,7 +1,9 @@
 # openvidu-call
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call is the flagship videoconference app integrating many of the capabilities offered by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on. Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
+OpenVidu Call is the flagship videoconference app integrating many of the capabilities offered by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on.
+
+Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
 <p align="center">
   <img class="img-responsive" style="max-width: 80%" src="img/demos/ov-call-greetings.gif">
@@ -51,28 +53,8 @@ We are also listening the `onJoinButtonClicked` and `onLeaveButtonClicked` event
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library:
+First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
 
-```bash
-npm install openvidu-angular
-```
-
-After that, for setting up the angular library you need to add its module (`OpenViduAngularModule`) in your `app.module.ts` file:
-
-```typescript
-import { OpenViduAngularConfig, OpenViduAngularModule } from 'openvidu-angular';
-
-const config: OpenViduAngularConfig = {
-	production: environment.production
-};
-
-@NgModule({
-	imports: [
-		...
-		OpenViduAngularModule.forRoot(config)
-	]
-})
-```
 Now, we can use all components that the openvidu-angular provides.
 
 ---

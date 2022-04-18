@@ -1,6 +1,6 @@
 # OpenVidu Components
 
-OpenVidu tries once again to facilitate the development of videoconferencing applications and that is why we have developed a **npm library** (**currently only available for Angular Framework**) that provides the developer with **powerful and complete videoconferencing components** and allows, in a very simple way, to adapt or replace those components to suit your needs.
+OpenVidu tries once again to facilitate the development of videoconferencing applications and that is why we have developed a **npm library** (**currently only available for Angular Framework**) that provides the developer **powerful and complete videoconferencing components** and allows, in a very simple way, to adapt or replace those components to suit your needs.
 
 Our professional and ready to use [OpenVidu Call](https://openvidu.io/openvidu-call) application is developed using **OpenVidu Components**.
 
@@ -9,7 +9,7 @@ Our professional and ready to use [OpenVidu Call](https://openvidu.io/openvidu-c
 OpenVidu's main goal is to **reduce the developer's effort in creating a video conferencing application** to a minimum. With **OpenVidu Components** we try to give you the possibility to develop fully customised applications avoiding low level details and without starting from scratch.
 
 ### How can I use it?
-We have prepared a very detailed documentation to make it really simple to use this components library. Have a look [here](api/openvidu-angular/).
+We have prepared a very detailed documentation to make it really simple to use this components library. You can check the openvidu-angular documentation [here](api/openvidu-angular/).
 
 We have also prepared several tutorials so you can see how it works. The purpose of these tutorials is to help you use the library and they cover everything from customising colours to injecting new features:
 

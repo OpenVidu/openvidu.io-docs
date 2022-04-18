@@ -516,11 +516,16 @@ div.toc > ul > li li {
 }
 
 
-.language-typescript .hljs-keyword, .language-typescript .hljs-meta {
-    color: #dbb4ff !important;
+.language-typescript .hljs-keyword, .language-typescript .hljs-variable, .language-typescript .hljs-meta {
+    color: #76bdff !important;
 }
+
+.language-typescript .hljs-property {
+    color: #b6eaff !important;
+}
+
 .language-typescript .hljs-title.function_ {
-    color: #f5ad28;
+    color: #ffd689;
 
 }
 .language-typescript .hljs-title {
@@ -535,5 +540,5 @@ div.toc > ul > li li {
 }
 
 .language-typescript .hljs-comment {
-    color: #6daa70 !important;
+    color: #88ad8a !important;
 }

@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-components/openvidu-custom-ui" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-openvidu-custom-ui tutorial is made for showing how the easy it is the UI customizing of your openvidu-angular based application.
+openvidu-custom-ui tutorial is made for showing how the easy it is the UI customizing of your **openvidu-angular** based application.
 
 <p align="center">
   <img class="img-responsive" style="max-width: 80%" src="img/components/custom-ui.png">
@@ -29,40 +29,18 @@ This is an Angular project generated with angular-cli tool, and therefore you wi
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library:
-
-```bash
-npm install openvidu-angular
-```
-After that, we need to configure the library in our `app.module.ts`
-
-```typescript
-import { OpenViduAngularConfig, OpenViduAngularModule } from 'openvidu-angular';
-
-const config: OpenViduAngularConfig = {
-	production: environment.production
-};
-
-@NgModule({
-	imports: [
-		...
-		OpenViduAngularModule.forRoot(config)
-	]
-})
-```
+First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
 
 ---
 
-####`app.component.html` declares the following template view:
+The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+
 
 ```html
-<ov-videoconference
-  (onJoinButtonClicked)="onJoinButtonClicked()"
-  [tokens]="tokens"
-></ov-videoconference>
+<ov-videoconference (onJoinButtonClicked)="onJoinButtonClicked()" [tokens]="tokens">
+  ...
+</ov-videoconference>
 ```
-
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening.
 
 ####`app.component.ts` declares the following properties and methods:
 
@@ -89,7 +67,35 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 
 ```
 
-The `onJoinButtonClicked` method will be incoked when the user clicks on the _Join Button_ of the prejoin page. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+#### Customize the UI
+
+With openvidu-angular you have to customize the basic UI to suit your tastes. You will be able to handle the **shape of buttons, panels abd videos customization**, the **background color personalization** of panels, buttons and videoconference and also you will can **change the text color**.
+
+To archieve this, you only have to personalize the css styles added in `variables.scss` file.
+
+
+```css
+:root {
+  --ov-primary-color: #303030;
+  --ov-secondary-color: #3e3f3f;
+  --ov-secondary-light-color: #e6e6e6;
+  --ov-tertiary-color: #598eff;
+  --ov-warn-color: #EB5144;
+  --ov-accent-color: #ffae35;
+
+  --ov-text-color: #ffffff;
+
+  --ov-panel-text-color: #1d1d1d;
+  --ov-panel-background: #ffffff;
+
+  --ov-buttons-radius: 50%;
+  --ov-leave-button-radius: 10px;
+  --ov-video-radius: 5px;
+  --ov-panel-radius: 5px;
+}
+```
+
+Moreover you can change the branding logo which is appearing in the toolbar. For doing this, you only have to add you own logo under `/assets/images` and name this file as `logo.png`.
 
 ---
 
@@ -134,35 +140,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 
 
-#### Customize the UI
 
-With openvidu-angular you have to customize the basic UI to suit your tastes. You will be able to handle the **shape of buttons, panels abd videos customization**, the **background color personalization** of panels, buttons and videoconference and also you will can **change the text color**.
-
-To archieve this, you only have to personalize the css styles added in `variables.scss` file.
-
-
-```css
-:root {
-  --ov-primary-color: #303030;
-  --ov-secondary-color: #3e3f3f;
-  --ov-secondary-light-color: #e6e6e6;
-  --ov-tertiary-color: #598eff;
-  --ov-warn-color: #EB5144;
-  --ov-accent-color: #ffae35;
-
-  --ov-text-color: #ffffff;
-
-  --ov-panel-text-color: #1d1d1d;
-  --ov-panel-background: #ffffff;
-
-  --ov-buttons-radius: 50%;
-  --ov-leave-button-radius: 10px;
-  --ov-video-radius: 5px;
-  --ov-panel-radius: 5px;
-}
-```
-
-Moreover you can change the branding logo which is appearing in the toolbar. For doing this, you only have to add you own logo under `/assets/images` and name this file as `logo.png`.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

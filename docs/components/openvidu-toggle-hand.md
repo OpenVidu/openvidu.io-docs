@@ -29,28 +29,8 @@ The files we're going to focus on are the following:
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library:
+First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
 
-```bash
-npm install openvidu-angular
-```
-
-After that, for setting up the angular library you need to add its module (`OpenViduAngularModule`) in your `app.module.ts` file:
-
-```typescript
-import { OpenViduAngularConfig, OpenViduAngularModule } from 'openvidu-angular';
-
-const config: OpenViduAngularConfig = {
-	production: environment.production
-};
-
-@NgModule({
-	imports: [
-		...
-		OpenViduAngularModule.forRoot(config)
-	]
-})
-```
 Now, we can use all components that the openvidu-angular provides to us.
 
 #### Adding toggle-hand feature
@@ -76,6 +56,52 @@ The first step is include a custom **hand button** in the [ToolbarComponent](api
 	...
 
 </ov-videoconference>
+```
+
+The `onSessionCreated` method is invoked when the session is created. We are going to use this event for subscribing to the `handToggle` signal and be able to know when a remote participant has raised the hand. For doing this, we are using the [signal](https://docs.openvidu.io/en/stable/api/openvidu-browser/classes/Session.html#signal) method which **openvidu-browser** provides to us.
+
+
+```typescript
+handleRemoteHand() {
+	// Subscribe to hand toggling events from others
+	this.session.on(`signal:${SignalApp.HAND_TOGGLE}`, (event: any) => {
+		const connectionId = event.from.connectionId;
+		const participant = <ParticipantAppModel>this.participantService.getRemoteParticipantByConnectionId(connectionId);
+		if (participant) {
+			participant.toggleHandRaised();
+			this.participantService.updateRemoteParticipants();
+		}
+	});
+}
+```
+
+As you also can see in the toggle hand button, we have added a new additional button to the default toolbar and we have assigned the `handleLocalHand` callback when this button is clicked.
+
+
+```typescript
+handleLocalHand() {
+	this.hasHandRaised = !this.hasHandRaised;
+
+	// Get local participant with ParticipantService
+	const participant = <ParticipantAppModel>this.participantService.getLocalParticipant();
+
+	// Toggle the participant hand with the method we wil add in our ParticipantAppModel
+	participant.toggleHandRaised();
+
+	// Refresh the local participant object for others component and services
+	this.participantService.updateLocalParticipant();
+
+	// Send a signal with the new value to others participant using the openvidu-browser signal
+	const remoteConnections = this.openviduService.getRemoteConnections();
+	if (remoteConnections.length > 0) {
+		//Sending hand toggle signal to others
+		const signalOptions: SignalOptions = {
+			type: SignalApp.HAND_TOGGLE,
+			to: remoteConnections
+		};
+		this.session.signal(signalOptions);
+	}
+}
 ```
 
 
