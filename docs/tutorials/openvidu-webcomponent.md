@@ -365,11 +365,12 @@ You can update the css styles which you can find [here](https://github.com/OpenV
 :root {
   --ov-primary-color: #303030;
   --ov-secondary-color: #3e3f3f;
-  --ov-secondary-light-color: #e6e6e6;
   --ov-tertiary-color: #598eff;
   --ov-warn-color: #EB5144;
   --ov-accent-color: #ffae35;
+  --ov-light-color: #e6e6e6;
 
+  --ov-logo-background-color: #3e3f3f;
   --ov-text-color: #ffffff;
 
   --ov-panel-text-color: #1d1d1d;
