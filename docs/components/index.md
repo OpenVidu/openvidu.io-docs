@@ -17,16 +17,16 @@ We have also prepared several tutorials so you can see how it works. The purpose
 * [**openvidu-custom-toolbar**](components/openvidu-custom-toolbar/): Shows how to replace the default toolbar with your own.
 * [**openvidu-toolbar-buttons**](components/openvidu-toolbar-buttons/): Shows how to add custom buttons to the toolbar.
 * [**openvidu-toolbar-panel-buttons**](components/openvidu-panel-buttons/): Shows how to add custom panel buttons to the toolbar.
-* [**openvidu-custom-layout**](): Shows how to replace the default layout with your own.
-* [**openvidu-custom-stream**](): Shows how to replace the default stream with your own.
-* [**openvidu-custom-panels**](): Shows how to replace the default panels with your own.
-* [**openvidu-additional-panel**](): Shows how to add a new extra panel besides the defaults.
-* [**openvidu-custom-chat-panel**](): Shows how to replace the default chat panel with your own.
-* [**openvidu-custom-participants-panel**](): Shows how to replace the default participants panel with your own.
-* [**openvidu-custom-participants-panel-item**](): Shows how to replace the default participant panel item with your own.
-* [**openvidu-custom-participants-panel-item-element**](): Shows how to replace the default participant panel item element with your own.
-* [**openvidu-call**](): The production ready to use videoconference OpenVidu application.
-* [**openvidu-toggle-hand**](): Shows how to add extra features to the videoconference.
+* [**openvidu-custom-layout**](components/openvidu-custom-layout): Shows how to replace the default layout with your own.
+* [**openvidu-custom-stream**](components/openvidu-custom-stream): Shows how to replace the default stream with your own.
+* [**openvidu-custom-panels**](components/openvidu-custom-panels): Shows how to replace the default panels with your own.
+* [**openvidu-additional-panel**](components/openvidu-additional-panels): Shows how to add a new extra panel besides the defaults.
+* [**openvidu-custom-chat-panel**](components/openvidu-custom-chat-panel): Shows how to replace the default chat panel with your own.
+* [**openvidu-custom-participants-panel**](components/openvidu-custom-participants-panel): Shows how to replace the default participants panel with your own.
+* [**openvidu-custom-participant-panel-item**](components/openvidu-custom-participant-panel-item): Shows how to replace the default participant panel item with your own.
+* [**openvidu-custom-participant-panel-item-element**](components/openvidu-custom-participant-panel-item-element): Shows how to replace the default participant panel item element with your own.
+* [**openvidu-call**](components/openvidu-call): The production ready to use videoconference OpenVidu application.
+* [**openvidu-toggle-hand**](components/openvidu-toggle-hand): Shows how to add extra features to the videoconference.
 
 ### Is it possible to use it with another frontend technologie?
 **Our roadmap is to support most frontend technologies** but for the moment OpenVidu Components is only available for Angular applications.
