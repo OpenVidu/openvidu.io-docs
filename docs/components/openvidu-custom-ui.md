@@ -69,7 +69,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 
 #### Customize the UI
 
-With openvidu-angular you have to customize the basic UI to suit your tastes. You will be able to handle the **shape of buttons, panels abd videos customization**, the **background color personalization** of panels, buttons and videoconference and also you will can **change the text color**.
+With openvidu-angular you will can customize the basic UI to suit your tastes. You will be able to handle the **shape of buttons, panels and videos customization**, the **background color personalization** of panels, buttons and videoconference and also you will can **change the text color**.
 
 To archieve this, you only have to personalize the css styles added in `variables.scss` file.
 
