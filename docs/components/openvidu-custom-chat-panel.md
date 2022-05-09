@@ -4,7 +4,7 @@
 
 The openvidu-custom-chat-panel tutorial shows how to replace the default **chat panel** with a custom one.
 
-This customization is possible thanks to the [**ChatPanelDirective**](/reference-docs/openvidu-angular/directives/ChatPanelDirective.html), which provides us a simple way to customizing the [**ChatPanelComponent**](/reference-docs/openvidu-angular/components/ChatPanelComponent.html).
+This customization is possible thanks to the [**ChatPanelDirective**](/api/openvidu-angular/directives/ChatPanelDirective.html), which provides us a simple way to customizing the [**ChatPanelComponent**](/api/openvidu-angular/components/ChatPanelComponent.html).
 
 
 <p align="center">
@@ -24,18 +24,18 @@ This customization is possible thanks to the [**ChatPanelDirective**](/reference
 
 This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
-- `app.module.ts`: Define the AppComponent module where we import and configure the [openvidu-angular](reference-docs/openvidu-angular/) library.
+- `app.module.ts`: Define the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
 - `app.component.ts`: defines *AppComponent*, main component of the app. It contains the functionalities for requesting the OpenVidu token for setting them up to the videoconference component and start the session.
 - `app.component.html`: HTML for AppComponent.
 ---
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library. You can check how to do that [here](/reference-docs/openvidu-angular/).
+First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
 ---
 
-The [VideoconferenceComponent](/reference-docs/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
 
 
 ```html
@@ -45,7 +45,7 @@ The [VideoconferenceComponent](/reference-docs/openvidu-angular/components/Video
 ```
 
 
-Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovChatPanel`__. You can see how the __`ChatPanelDirective`__ works [here](/reference-docs/openvidu-angular/directives/ChatPanelDirective.html).
+Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovChatPanel`__. You can see how the __`ChatPanelDirective`__ works [here](/api/openvidu-angular/directives/ChatPanelDirective.html).
 
 
 ## Running this tutorial

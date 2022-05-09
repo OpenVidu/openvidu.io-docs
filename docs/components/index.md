@@ -18,7 +18,7 @@ Nothing better than a real example to see the potential of OpenVidu Components. 
 
 ## Where to start
 
-OpenVidu components is currently available for **Angular** framework. You can check the openvidu-angular documentation **[here](reference-docs/openvidu-angular/)**.
+OpenVidu components is currently available for **Angular** framework. You can check the openvidu-angular documentation **[here](api/openvidu-angular/)**.
 
 There are also multiple tutorials available that show the benefits of OpenVidu Components and guide you step by step through each customization process. These tutorials cover everything OpenVidu Components offers, from customizing colors and branding logos to injecting new features:
 
