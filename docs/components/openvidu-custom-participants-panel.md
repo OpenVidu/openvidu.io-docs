@@ -2,9 +2,9 @@
 
 <a href="#" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-The openvidu-custom-participants-panel tutorial is created for showing we can replace the default **participants panel** and injecting our own with the aim of adapting the app to our needs.
+The openvidu-custom-participants-panel tutorial shows how to replace the default **participants panel**, injecting our own with the aim of adapting the app to our needs.
 
-This customization can be possible because of the the [**ParticipantsPanelDirective**](api/openvidu-angular/directives/ParticipantsPanelDirective.html) which provides us a simple way to customizing the [**ParticipantsPanelComponent**](/api/openvidu-angular/components/ParticipantsPanelComponent.html).
+This customization is possible thanks to the [**ParticipantsPanelDirective**](reference-docs/openvidu-angular/directives/ParticipantsPanelDirective.html), which provides us a simple way to customizing the [**ParticipantsPanelComponent**](/reference-docs/openvidu-angular/components/ParticipantsPanelComponent.html).
 
 <p align="center">
   <img class="img-responsive" style="max-width: 80%" src="img/components/participants-panel.png">
@@ -23,18 +23,18 @@ This customization can be possible because of the the [**ParticipantsPanelDirect
 
 This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
-- `app.module.ts`: Define the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
+- `app.module.ts`: Define the AppComponent module where we import and configure the [openvidu-angular](reference-docs/openvidu-angular/) library.
 - `app.component.ts`: defines *AppComponent*, main component of the app. It contains the functionalities for requesting the OpenVidu token for setting them up to the videoconference component and start the session.
 - `app.component.html`: HTML for AppComponent.
 ---
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
+First, we need to install the openvidu-angular library. You can check how to do that [here](/reference-docs/openvidu-angular/).
 
 ---
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+The [VideoconferenceComponent](/reference-docs/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
 
 
 ```html
@@ -44,7 +44,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 ```
 
 
-Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovParticipantsPanel`__. You can see how the __`ParticipantsPanelDirective`__ works [here](/api/openvidu-angular/directives/ParticipantsPanelDirective.html).
+Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovParticipantsPanel`__. You can see how the __`ParticipantsPanelDirective`__ works [here](/reference-docs/openvidu-angular/directives/ParticipantsPanelDirective.html).
 
 
 ## Running this tutorial

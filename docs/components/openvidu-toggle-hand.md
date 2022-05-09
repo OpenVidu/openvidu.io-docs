@@ -2,7 +2,7 @@
 # openvidu-toggle-hand
 <a href="#" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-openvidu-toggle-hand is an Angular app developed using the openvidu-angular library and its powerful components for customization. In this app we have added a toggle hand feature for requesting the attention to others.
+openvidu-toggle-hand is an Angular app developed using the openvidu-angular library and its powerful components for customization. In this app we have added a toggle hand feature to request a turn to speak.
 
 <p align="center">
   <img class="img-responsive" style="max-width: 80%" src="img/components/toggle-hand.gif">
@@ -29,16 +29,16 @@ The files we're going to focus on are the following:
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
+First, we need to install the openvidu-angular library. You can check how to do that [here](/reference-docs/openvidu-angular/).
 
 Now, we can use all components that the openvidu-angular provides to us.
 
 #### Adding toggle-hand feature
 
-Focusing on the `app.component.html`, we discover how to customize the [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) for developing an application with toggle hand feature.
+Focusing on the `app.component.html`, we discover how to customize the [VideoconferenceComponent](reference-docs/openvidu-angular/components/VideoconferenceComponent.html) for developing an application with toggle hand feature.
 
 
-The first step is include a custom **hand button** in the [ToolbarComponent](api/openvidu-angular/components/ToolbarComponent.html) adding an element tagged with the [ToolbarAdditionalButtonsDirective](api/openvidu-angular/directives/ToolbarAdditionalButtonsDirective.html)   (`*ovToolbarAdditionalButtons`).
+The first step is include a custom **hand button** in the [ToolbarComponent](reference-docs/openvidu-angular/components/ToolbarComponent.html) adding an element tagged with the [ToolbarAdditionalButtonsDirective](reference-docs/openvidu-angular/directives/ToolbarAdditionalButtonsDirective.html)   (`*ovToolbarAdditionalButtons`).
 
 ```html
 <ov-videoconference
@@ -105,7 +105,7 @@ handleLocalHand() {
 ```
 
 
-After that we must customize the [StreamComponent](api/openvidu-angular/components/StreamComponent.html) injecting a new element when a participant is raising the hand. Let's see how can we do that:
+After that we must customize the [StreamComponent](reference-docs/openvidu-angular/components/StreamComponent.html) injecting a new element when a participant is raising the hand. Let's see how can we do that:
 
 ```html
 <ov-videoconference
@@ -134,9 +134,9 @@ After that we must customize the [StreamComponent](api/openvidu-angular/componen
 </ov-videoconference>
 ```
 
-Now, using the [StreamDirective](api/openvidu-angular/directives/StreamDirective.html) (`*ovStream`) we can customize the StreamComponent and we can add whatever we want. As we just want to add a new html element to realise that a participant is raising the hand, we can use the entire default StreamComponent that the openvidu-angular provide to us.
+Now, using the [StreamDirective](reference-docs/openvidu-angular/directives/StreamDirective.html) (`*ovStream`) we can customize the StreamComponent and we can add whatever we want. As we just want to add a new html element to realise that a participant is raising the hand, we can use the entire default StreamComponent that the openvidu-angular provide to us.
 
-We also have added the hand notification to participants panel. We can handle this using the [ParticipantPanelItemElementsDirective](/api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html) (`*ovParticipantPanelItemElements`) on a very simple way:
+We also have added the hand notification to participants panel. We can handle this using the [ParticipantPanelItemElementsDirective](/reference-docs/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html) (`*ovParticipantPanelItemElements`) on a very simple way:
 
 ```html
 <ov-videoconference
@@ -170,7 +170,7 @@ We also have added the hand notification to participants panel. We can handle th
 
 We have to take account that we can assign a participant variable to the `*ovParticipantPanelItemElements` directive for getting the participant object value from its context and be able to access to the participant properties.
 
-So, as we want to add a new feature and as a consequence add a new property (`hasHandRaised`) to the [ParticipantAbstractModel](api/openvidu-angular/classes/ParticipantAbstractModel.html) we have to extend the ParticipantAbstractModel from the library.
+So, as we want to add a new feature and as a consequence add a new property (`hasHandRaised`) to the [ParticipantAbstractModel](reference-docs/openvidu-angular/classes/ParticipantAbstractModel.html) we have to extend the ParticipantAbstractModel from the library.
 
 To handle this, we've created a simple `ParticipantAppModel` class under `app/models/` with the `hasHandRaised` property and `toggleHandRaised` method:
 
