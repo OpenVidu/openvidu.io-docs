@@ -14,11 +14,7 @@ OpenVidu is an **open source project**, and for sure will remain this way in the
 
 ## What
 
-OpenVidu Pro consists of different modules working on top of OpenVidu Community Edition (OpenVidu CE). The three main features introduced by OpenVidu Pro are:
-
-- **[Scalability](openvidu-pro/scalability/)**: add and remove Media Nodes on demand to adapt your cluster size depending on the expected load.
-- **[OpenVidu Inspector](openvidu-pro/openvidu-inspector/)**: a powerful, easy-to-use and visually attractive dashboard that will help you monitor, manage and review all your videoconferences.
-- **[Detail session monitoring](openvidu-pro/monitoring-elastic-stack/)**: the Elastic stack integration provides a powerful and customizable way to monitor your sessions.
+OpenVidu Pro consists of different modules working on top of OpenVidu Community Edition (OpenVidu CE). The table below shows the unique features of OpenVidu Pro and OpenVidu Enterprise.
 
 <div style="
     display: table;
@@ -41,7 +37,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>
+	OpenVidu Pro and OpenVidu Enterprise users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>
 </div>
 </div>
 
@@ -209,6 +205,16 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Monitor the network quality of your clients"></a></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Virtual Background</th>
+            <td scope="row"><a href="advanced-features/virtual-background/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Apply a blur effect or background images to video streams"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>

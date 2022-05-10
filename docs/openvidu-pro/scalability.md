@@ -194,7 +194,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 - `failed`: the Media Node failed to launch. This status can be reached from _launching_ status.
 - `running`: the Media Node is up and running. New sessions can now be established in this Media Node. This status can be reached from _launching_ and _waiting-idle-to-terminate_ statuses.
 - `waiting-idle-to-terminate`: the Media Node is waiting until the last of its sessions is closed. Once this happens, it will automatically enter _terminating_ status. The Media Node won't accept new sessions during this status. This status can be reached from _running_ status.
-- `terminating`: the Media Node is shutting down. This status can be reached from _running_ and _waiting-idle-to-terminate_ statuses.
+- `terminating`: the Media Node is shutting down. This status can be reached from _running_, _waiting-idle-to-terminate_ and _canceled_ statuses.
 - `terminated`: the Media Node is shut down. This status can be reached from _terminating_ status. For [On Premises](deployment/pro/on-premises/) OpenVidu Pro clusters, this status means that you can safely shut down the Media Node instance.
 
 <br>

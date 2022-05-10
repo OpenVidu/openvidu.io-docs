@@ -30,7 +30,7 @@ OpenVidu Call is production ready videconference app which OpenVidu includes in 
     - `OpenViduService.ts`: service capable to connect with OpenVidu Server using *openvidu-node-client*.
 
 
-* **openvidu-call-front**: A simple Angular frontend using [openvidu-angular](reference-docs/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-front).
+* **openvidu-call-front**: A simple Angular frontend using [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-front).
 
     - `services/rest.service.ts`: services for requesting token to backend.
     - `components/home`: component which contains the home screen where the user can define the session name and join to the session.
@@ -53,7 +53,7 @@ We are also listening the `onJoinButtonClicked` and `onLeaveButtonClicked` event
 
 #### Configure openvidu-angular
 
-First, we need to install the openvidu-angular library. You can check how to do that [here](/api/openvidu-angular/).
+First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
 Now, we can use all components that the openvidu-angular provides.
 
