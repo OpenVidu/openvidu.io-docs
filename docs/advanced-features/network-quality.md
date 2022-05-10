@@ -29,8 +29,6 @@ OpenVidu is able to estimate a **quality rating** of the client-side network con
 
 Having a strong network link is one of the most important aspects of a successful WebRTC connection. The problem is that modern networks are very complex systems, and can suffer from a myriad of issues that will have a huge impact in the quality of the media streams being transmitted. While you will typically be in control of your own server's network resources, and will make sure your connection is of a high enough quality, that won't be the case for end users using your application. For that reason, it is especially important to monitor and to be able to warn users about any network issues on their end.
 
-
-
 <br>
 
 <p>

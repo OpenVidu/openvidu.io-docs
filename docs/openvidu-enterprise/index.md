@@ -434,6 +434,7 @@ In general, most applications built with OpenVidu will greatly benefit of using 
 There are a couple of small limitations when using mediasoup that must be taken into account:
 
 - [Audio-only COMPOSED recording](advanced-features/recording/#audio-only-and-video-only-recordings) is not available in mediasoup.
+- [Network Quality API](advanced-features/network-quality/) is not available in mediasoup.
 - openvidu-browser method [Publisher.subscribeToRemote](api/openvidu-browser/classes/Publisher.html#subscribeToRemote) is not supported in mediasoup.
 
 #### Using Kurento in OpenVidu Enterprise
