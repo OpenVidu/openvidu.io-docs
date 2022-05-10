@@ -8,7 +8,8 @@ This customization is possible thanks to the [**AdditionalPanelsDirective**](api
 
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/components/additional-panels.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/additional-panels.mp4" loop autoplay async>
+  </video>
 </p>
 
 ## Understanding the code

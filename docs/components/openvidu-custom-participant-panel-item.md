@@ -7,7 +7,7 @@ The openvidu-custom-participant-panel-item tutorial shows how to replace the def
 This customization is possible thanks to the [**ParticipantsPanelItemDirective**](api/openvidu-angular/directives/ParticipantPanelItemDirective.html), which provides us a simple way to customizing the [**ParticipantsPanelItemComponent**](/api/openvidu-angular/components/ParticipantPanelItemComponent.html).
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/components/participant-panel-item.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/participant-panel-item.mp4" autoplay loop async></video>
 </p>
 
 ## Understanding the code

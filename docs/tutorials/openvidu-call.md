@@ -6,7 +6,7 @@ OpenVidu Call is the flagship videoconference app integrating many of the capabi
 Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/demos/ov-call-greetings.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video>
 </p>
 
 </br>

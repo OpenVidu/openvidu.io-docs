@@ -8,7 +8,7 @@ This customization is possible thanks to the [**PanelDirective**](api/openvidu-a
 
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/components/custom-panels.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/custom-panels.mp4" autoplay loop async></video>
 </p>
 
 ## Understanding the code

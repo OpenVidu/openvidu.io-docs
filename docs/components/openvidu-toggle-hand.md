@@ -5,7 +5,7 @@
 openvidu-toggle-hand is an Angular app developed using the openvidu-angular library and its powerful components for customization. In this app we have added a toggle hand feature to request a turn to speak.
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/components/toggle-hand.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/toggle-hand.mp4" async autoplay loop></video>
 </p>
 
 ## Understanding the code

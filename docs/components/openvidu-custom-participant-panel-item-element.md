@@ -8,7 +8,7 @@ This customization is possible thanks to the [**ParticipantsPanelItemElementsDir
 
 
 <p align="center">
-  <img class="img-responsive" style="max-width: 80%" src="img/components/participant-panel-item-element.gif">
+  <video class="img-responsive" style="max-width: 80%" src="video/components/participant-panel-item-element.mp4" async loop autoplay></video>
 </p>
 
 ## Understanding the code
