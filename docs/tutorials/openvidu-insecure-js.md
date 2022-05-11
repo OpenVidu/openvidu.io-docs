@@ -388,7 +388,7 @@ function initMainVideo(videoElement, userData) {
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    This application <strong>must not be deployed in a production environment</strong> becasue of it's insecure (it has not backend).
+    This application <strong>must not be deployed in a production environment</strong> as it is insecure (it has not backend).
   </div>
 </div>
 

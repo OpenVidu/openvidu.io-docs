@@ -29,6 +29,7 @@ nav:
           - openvidu-ios: tutorials/openvidu-ios.md
           - openvidu-electron: tutorials/openvidu-electron.md
           - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
+          - openvidu-virtual-background: tutorials/openvidu-virtual-background.md
           - openvidu-js-java: tutorials/openvidu-js-java.md
           - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
           - openvidu-js-node: tutorials/openvidu-js-node.md
@@ -78,10 +79,10 @@ nav:
           - Network quality: advanced-features/network-quality.md
           - Virtual Background: advanced-features/virtual-background.md
     - Reference Documentation:
-          - openvidu-angular API: reference-docs/openvidu-angular.md
           - openvidu-browser API: reference-docs/openvidu-browser.md
           - openvidu-java-client API: reference-docs/openvidu-java-client.md
           - openvidu-node-client API: reference-docs/openvidu-node-client.md
+          - openvidu-angular API: reference-docs/openvidu-angular.md
           - REST API: reference-docs/REST-API.md
           - OpenVidu configuration: reference-docs/openvidu-config.md
           - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
