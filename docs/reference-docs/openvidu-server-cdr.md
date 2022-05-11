@@ -26,6 +26,7 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 - [**filterEventDispatched**](#filtereventdispatched)
 - [**signalSent**](#signalsent)
 - [**nodeCrashed**](#nodecrashed)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**nodeRecovered**](#noderecovered)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [**autoscaling**](#autoscaling)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
@@ -421,12 +422,71 @@ This event **is always followed by other events** for any session that was being
 | `nodeRole`       | Role of the crashed node | A String with the node's role. It can be:<ul class="cdr-list"><li><code>medianode</code> : if a Media Node has crashed. See [OpenVidu Pro Fault Tolerance](openvidu-pro/fault-tolerance/)</li><li><code>masternode</code> : if a Master Node has crashed. See [Fault tolerance in OpenVidu Enterprise HA](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha) </li></ul> |
 | `sessionIds`     | The collection of session identifiers of all the sessions that were located in the crashed node. This way you can immediately know which sessions have been destroyed by the crash | An Array of Strings |
 | `recordingIds`    | The collection of recording identifiers of all the recordings that were located in the crashed node. This way you can immediately know which recordings have been affected by the crash | An Array of Strings |
-| `timestamp`       | Time when the event was triggered | A Number (UTC milliseconds)                              |
+| `timeOfDisconnection` | Time when the connection with the Media Node was lost. It will be smaller than `timestamp`: the difference between both values is the time OpenVidu tried to reconnect to it | A Number (UTC milliseconds) |
+| `timestamp`       | Time when the event was triggered | A Number (UTC milliseconds)   |
 
 <br>
 
 ---
 
+#### nodeRecovered
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
+
+Recorded when a Media Node of an OpenVidu Pro/Enterprise cluster has been reconnected after a crash. This is related to the the [fault tolerance](openvidu-pro/fault-tolerance/) capabilities of OpenVidu.
+
+Hablar de que este evento debe estar siempre precedido por un nodeCrashed, de cómo influye la property OPENVIDU_PRO_CLUSTER_RECONNECTION_TIMEOUT
+
+```json
+{
+  "nodeRecovered": {
+    "timestamp": 1622548120514,
+    "id": "media_i-1234567890abcdef0",
+    "environmentId": "i-1234567890abcdef0",
+    "ip": "172.17.0.3",
+    "uri": "ws://172.17.0.3:8888/kurento",
+    "nodeRole": "medianode",
+    "clusterId": "MY_CLUSTER"
+  }
+}
+```
+
+| Property         | Description                                 | Value                                          |
+| ---------------- | ------------------------------------------- | ---------------------------------------------- |
+| `id`             | Unique identifier of the recovered node | A String with the node's unique identifier |
+| `environmentId`  | Unique identifier of the recovered node, dependent on the deployment environment. For example, an AWS EC2 machine id if the cluster is deployed in AWS | A String with the node's environment unique identifier |
+| `ip`             | IP of the recovered node | A String with the node's IP |
+| `uri`            | URI of the recovered node | A String with the node's URI |
+| `clusterId`      | OpenVidu Pro cluster identifier. This allows you to identify the specific cluster to which the node triggering this event belongs, especially if you have more than one OpenVidu Pro cluster running (see ) | A String with the cluster identifier |
+| `nodeRole`       | Role of the recovered node | <code>medianode</code> |
+| `timestamp`      | Time when the event was triggered | A Number (UTC milliseconds) |
+
+<br>
+
+---
 #### mediaNodeStatusChanged
 
 <div style="

@@ -28,7 +28,7 @@ npm install -g http-server
 http-server openvidu-tutorials/openvidu-webcomponent/web
 ```
 
-4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform

@@ -41,7 +41,7 @@ cd openvidu-tutorials/openvidu-recording-java
 mvn package exec:java
 ```
 
-4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}). Bare in mind the additional configuration properties and volumes you must set for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
+4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}). Bare in mind the additional configuration properties and volumes you must set for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
