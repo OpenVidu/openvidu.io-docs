@@ -128,8 +128,11 @@ publisher.stream.applyFilter("VB:image", {
 
 Keep the following points in mind when implementing Virtual Background in your application:
 
-- Virtual Background is compatible with most platforms, but not all. It has been successfully tested in desktop browsers (Chrome, Firefox, Edge, Opera, Safari), mobile browsers (Chrome, Firefox, Edge, Opera, Safari, Samsung Internet Browser)
+- Virtual Background is compatible with most platforms, but not all. It has been successfully tested in desktop browsers (Chrome, Firefox, Edge, Opera, Safari), mobile browsers (Chrome, Firefox, Edge, Opera, Safari, Samsung Internet Browser), Electron and Ionic for Android. Right now it is not supported in React Native, Ionic for iOS and native Android/iOS apps.
+- HD resolutions may reduce performance. It is recommended to apply Virtual Background only on SD resolutions and below (max 640x480).
+- On mobile devices, a change in screen orientation after applying a Virtual Background (because of mobile rotation) can distort the filtered video. Mobile applications that allow screen rotation should not use Virtual Background.
 - Applying **more than one Virtual Background in the same device** can reduce performance to the point of making it unusable. Make sure to apply only one Virtual Background to a single Stream per device.
 - Virtual Backgrounds can only by applied to **Publisher's streams**.
 - It is not possible to apply both a Virtual Background filter and a server-side filter at the same time on the same Stream.
+- In Ionic when applying a background image, high resolution images may fail to be applied. The exact height and width in pixels from which the problem occurs has not been determined.
 - The behavior of Virtual Backgrounds may vary and its performance be affected when the **focus** of the application is lost. For example, in recent versions of Google Chrome, the Publisher's stream will freeze if a Virtual Background is being applied to it and the user changes the application's tab. In recent versions of Firefox, the image will not freeze, but the framerate will significantly drop.
