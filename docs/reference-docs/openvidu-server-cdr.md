@@ -25,10 +25,10 @@ So every entry is a JSON object with a single key (the event name) and a JSON ob
 - [**recordingStatusChanged**](#recordingstatuschanged)
 - [**filterEventDispatched**](#filtereventdispatched)
 - [**signalSent**](#signalsent)
-- [**nodeCrashed**](#nodecrashed)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- [**nodeRecovered**](#noderecovered)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-- [**autoscaling**](#autoscaling)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**nodeCrashed**](#nodecrashed)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**nodeRecovered**](#noderecovered)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**autoscaling**](#autoscaling)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 <br>
 
@@ -396,6 +396,8 @@ When a node crashes, all of its sessions are automatically closed and the node i
 
 This event **is always followed by other events** for any session that was being hosted by the crashed node. All of them with `reason` property set to `nodeCrashed`: [webrtcConnectionDestroyed](#webrtcconnectiondestroyed), [participantLeft](#participantleft), [sessionDestroyed](#sessiondestroyed), [recordingStatusChanged](#recordingstatuschanged). Finally events [mediaNodeStatusChanged](#medianodestatuschanged) will be triggered (first to status `terminating` and secondly to status`terminated`), informing that the crashed Media Node is no longer part of the cluster.
 
+Check out [Media Node reconnection configuration](openvidu-pro/fault-tolerance/#media-node-reconnection-configuration) for further information on this event, when triggered for Media Nodes.
+
 ```json
 {
   "nodeCrashed": {
@@ -456,9 +458,14 @@ This event is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id=
 </div>
 </div>
 
-Recorded when a Media Node of an OpenVidu Pro/Enterprise cluster has been reconnected after a crash. This is related to the the [fault tolerance](openvidu-pro/fault-tolerance/) capabilities of OpenVidu.
+Recorded when a Media Node of an OpenVidu Pro/Enterprise cluster has been reconnected after a crash.
 
-Hablar de que este evento debe estar siempre precedido por un nodeCrashed, de cómo influye la property OPENVIDU_PRO_CLUSTER_RECONNECTION_TIMEOUT
+Event `nodeRecovered` event only takes place for a Media Node if two conditions are met:
+
+- A [`nodeCrashed`](#nodecrashed) event has been previously triggered for the Media Node.
+- Configuration property [`OPENVIDU_PRO_CLUSTER_RECONNECTION_TIMEOUT`](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) grants sufficient time for the event `nodeRecovered` to be triggered before event `mediaNodeStatusChanged` with status `terminating` is produced (and therefore the Media Node is removed from the cluster).
+
+Check out [Media Node reconnection configuration](openvidu-pro/fault-tolerance/#media-node-reconnection-configuration) for further information on this event.
 
 ```json
 {

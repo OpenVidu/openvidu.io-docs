@@ -2,6 +2,7 @@
 <hr>
 
 - **[How OpenVidu Pro provides fault tolerance](#how-openvidu-pro-provides-fault-tolerance)**
+- **[Media Node reconnection configuration](#media-node-reconnection-configuration)**
 - **[Making your OpenVidu app fault tolerant](#making-your-openvidu-app-fault-tolerant)**
 - **[Recordings and fault tolerance](#recordings-and-fault-tolerance)**
 
@@ -13,7 +14,7 @@ Fault tolerance in OpenVidu Pro is provided through the presence of multiple Med
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/fault-tolerance.png" data-caption='If the Media Node hosting "Session 1" crashes, a healthy Media Node can take over it. The application can re-create "Session 1" and clients may reconnect to it'><img class="img-responsive" style="margin: auto; max-height: 480px; transform: translateZ(0);" src="img/docs/openvidu-pro/fault-tolerance.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/fault-tolerance.png" data-caption='If the Media Node hosting "Session 1" crashes, a healthy Media Node can take over it. The application can re-create "Session 1" and clients may reconnect to it'><img class="img-responsive" style="margin: auto; max-height: 480px; transform: translateZ(0); image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-pro/fault-tolerance.png"/></a>
     </div>
 </div>
 
@@ -22,6 +23,28 @@ The points below summarize the functioning of OpenVidu Pro in terms of fault tol
 1. The Master Node keeps a persistent, full-duplex connection with Media Nodes through WebSocket.
 2. Whenever the Master Node detects a disconnection of a Media Node, it starts a reconnection process that grants 3 seconds to successfully reconnect. At this point, it is possible that videos on the client side are frozen, if the disconnection of the Media Node was an actual crash of the media routing process.
 3. If the Master Node succeeds in reconnecting to the Media Node within the allowed time interval, it is considered a one-time issue and no further action is taken. But if the reconnection is not possible, then every OpenVidu session hosted in the crashed Media Node is closed and every participant will receive the proper event to allow the application to rebuild the session. This is further explained in the next section [Making your OpenVidu app fault tolerant](#making-your-openvidu-app-fault-tolerant).
+
+<br>
+
+---
+
+## Media Node reconnection configuration
+
+When a Media Node disconnects from the OpenVidu cluster, a sequence of processes and events are triggered to try to recover the connection.
+The diagram below provides a temporal view of this sequence.
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 15px">
+        <a data-fancybox="gallery-pro2" href="img/docs/cdr/node-crashed.png"><img class="img-responsive" style="margin: auto; max-height: 325px; transform: translateZ(0); image-rendering: -webkit-optimize-contrast;" src="img/docs/cdr/node-crashed.png"/></a>
+    </div>
+</div>
+
+- The Master Node detects a disconnection of a Media Node.
+- Tries to silently reconnect to it during 3 seconds. If that is possible, the Media Node is considered healthy and no further action is taken.
+- If a silent reconnection is not possible, a WebHook event [`nodeCrashed`](reference-docs/openvidu-server-cdr/#nodecrashed) is triggered and an active reconnection process starts.
+- The active reconnection process depends on configuration property [`OPENVIDU_PRO_CLUSTER_RECONNECTION_TIMEOUT`](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro). You can configure this property with a custom value, though the default one offers the behavior considered most reasonable for most use cases. The default value of this property depends on the deployment environment of the OpenVidu cluster:
+    - For [On Premises](deployment/pro/on-premises/) deployments with [autoscaling](openvidu-pro/scalability/#autoscaling) disabled, default value is infinite time. This means that by default there will never be a [`mediaNodeStatusChanged`](reference-docs/openvidu-server-cdr/#medianodestatuschanged) (status to `terminating`). The Media Node will infinitely try to reconnect to the cluster and a [`nodeRecovered`](reference-docs/openvidu-server-cdr/#noderecovered) event will always be possible. This behavior can be assumed because in on premises deployments Media Nodes will generally have fixed IPs.
+    - For any other type of deployment, default value is 3 seconds. This means that there will be no time for [`nodeRecovered`](reference-docs/openvidu-server-cdr/#noderecovered) event: as soon as a [`nodeCrashed`](reference-docs/openvidu-server-cdr/#nodecrashed) event is triggered, a [`mediaNodeStatusChanged`](reference-docs/openvidu-server-cdr/#medianodestatuschanged) (status to `terminating`) will be triggered. This behavior can be assumed because 
 
 <br>
 
@@ -64,7 +87,7 @@ session.on('sessionDisconnected', event => {
 
 Your application's backend can also receive the [`nodeCrashed`](reference-docs/openvidu-server-cdr/#nodecrashed) CDR event if you want. Listening to this CDR event is really not necessary for achieving fault tolerance and re-building sessions after a Media Node crash, but you can still use it for custom logic and monitoring purposes.
 
-> If you want to see an example of an application that automatically reconnects users after a node crash, take a look to the simple [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} tutorial.
+> If you want to see an example of an application that automatically reconnects users after a node crash, take a look to the simple [openvidu-fault-tolerance](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-fault-tolerance){:target="_blank"} tutorial.
 
 <br>
 

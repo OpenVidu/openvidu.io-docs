@@ -503,7 +503,7 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
 
 To deploy an OpenVidu application which uses our recently deployed stack, you can use any application developed for OpenVidu. You just need to point your application to the configured **Domain Name** and the **OpenVidu Secret** used in CloudFormation deployment. Additionally, remember that your app needs to be deployed with a valid certificate for WebRTC to work.
 
-If you want to see and example of an application that automatically reconnects users after a node crashes, take a look to the [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability/tree/v2.21.0){:target="_blank"} demo.
+If you want to see and example of an application that automatically reconnects users after a node crashes, take a look to the [openvidu-fault-tolerance](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-fault-tolerance){:target="_blank"} demo.
 
 <script src="js/copy-btn.js"></script>
 <br>

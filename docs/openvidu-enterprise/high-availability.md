@@ -17,7 +17,7 @@ The main difference between an OpenVidu Enterprise Single Master deployment and 
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-enterprise/enterprise-architecture.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture.png"><img class="img-responsive" style="margin: auto; max-height: 480px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture.png"/></a>
     </div>
 </div>
 
@@ -30,7 +30,7 @@ A more accurate architectural description is available in the image below. As ca
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture-2.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-enterprise/enterprise-architecture-2.png"/></a>
+        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture-2.png"><img class="img-responsive" style="margin: auto; max-height: 600px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture-2.png"/></a>
     </div>
 </div>
 
@@ -216,7 +216,7 @@ async function getConnection(session) {
 </div>
 </div>
 
-> If you want to see an example of an application that automatically reconnects users after a node crash, take a look to the simple [openvidu-high-availability](https://github.com/OpenVidu/openvidu-high-availability){:target="_blank"} tutorial.
+> If you want to see an example of an application that automatically reconnects users after a node crash, take a look to the simple [openvidu-fault-tolerance](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-fault-tolerance){:target="_blank"} tutorial.
 
 <br>
 
