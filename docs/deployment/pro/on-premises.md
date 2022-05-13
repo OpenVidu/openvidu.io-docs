@@ -107,11 +107,14 @@ Once you have your instances ready, be sure to meet the following criteria in th
 
     - **Free ports inside the server**: Master Node services will need the following ports to be available inside the machine: 80, 443,  3478, 5044, 5442, 5443, 6379, 9200. If some of these ports is used by any process, OpenVidu platform won't work correctly. It is a typical error to have an NGINX process in the system before installing OpenVidu. Please uninstall it.
 
+    - It is also recommended to allow outbound traffic to all ports.
+
 - **Port configuration in _Media Nodes_**
 
     - **Open these ports** ([here](#close-ports-to-avoid-external-attacks_1) you have an UFW sample to configure a firewall)
 
         - **22 TCP**: to connect using SSH to admin OpenVidu.
+        - **443 TCP+UDP**: used by TURN server to resolve clients IPs when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`.
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.
         - **3000 TCP**: All _Media Nodes_ offer a REST API endpoint to provision their services. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.<br><br>
@@ -119,6 +122,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check Media Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1) to learn more about this.
 
     - **Free ports inside the server**: Media Node services will need the port 8888 and 3000 to be available inside the machine.
+    - It is also recommended to allow outbound traffic to all ports.
 
 <br>
 
@@ -239,6 +243,16 @@ This can be convenient sometimes but it have it downsides because Elasticsearch,
 We recommend to configure an External Elasticsearch and Kibana. Take a look into how to configure it [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
 
 <br>
+
+##### Coturn Configuration
+
+Coturn is an implementation of the TURN/STUN protocol needed for WebRTC ICE candidates discovery, and it is an essential part of WebRTC. By default it is configured in OpenVidu, but you can choose where to deploy this service.
+
+It is configured with the parameter `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES` which by default is set to `false`, so Coturn will be deployed at the master node. If you want to deploy Coturn across all media nodes, you need to set `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`, and OpenVidu will deploy that services in all your media nodes.
+
+You can check for more parameters that can be used for Coturn configuration in the [Advanced parameters for OpenVidu Pro](reference-docs/openvidu-config/#advanced-parameters-for-openvidu-pro-and-enterprise)
+
+> Note: If you are using `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=false`, you need port 3478 TCP/UDP open in the master node. Otherwise, with `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`, you need to open port 443 TCP/UDP in media nodes.
 
 ##### Videoconference application
 

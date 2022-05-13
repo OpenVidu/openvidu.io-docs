@@ -11,8 +11,10 @@ These properties may be set:
 ---
 
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</span>](#configuration-parameters-for-openvidu-ce)**<div style="margin-bottom: 5px"></div>
+    - **[Advanced parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</span>](#advanced-parameters-for-openvidu-ce)**<div style="margin-bottom: 5px"></div>
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span>](#configuration-parameters-for-openvidu-pro)**<div style="margin-bottom: 5px"></div>
 - **[Configuration parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>](#configuration-parameters-for-openvidu-enterprise)**<div style="margin-bottom: 5px"></div>
+    - **[Advanced parameters for OpenVidu <span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span> <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>](#advanced-parameters-for-openvidu-pro-and-enterprise)**<div style="margin-bottom: 5px"></div>
 - **[Special conditions of OpenVidu development container](#special-conditions-of-openvidu-development-container)**
 
 ---
@@ -51,6 +53,26 @@ These configuration parameters apply to OpenVidu CE, OpenVidu Pro and OpenVidu E
 | **`OPENVIDU_SESSIONS_GARBAGE_INTERVAL`** | How often the garbage collector of non active sessions runs. This helps cleaning up Sessions that have been initialized through REST API, and maybe have had Connections created, but have had no final users connected (no Connection of the Session entered `active` status). Default to 900s (15 mins). 0 to disable the non active sessions garbage collector. | **900** |
 | **`OPENVIDU_SESSIONS_GARBAGE_THRESHOLD`** | Minimum time in seconds that a non active session must have been in existence for the garbage collector of non active sessions to remove it. Default to 3600s (1 hour). If non active sessions garbage collector is disabled (property `OPENVIDU_SESSIONS_GARBAGE_INTERVAL` is set to 0) this property is ignored. | **3600** |
 | **`OPENVIDU_WEBRTC_ICE_SERVERS`** | Array of ICE servers to use instead of default Coturn at browser/clients side (comma-separated list of ICE Servers). Examples: <ul><li>`["url=turns:example.turn.com:443,staticAuthSecret=secret"]`</li><li>`["url=turns:example.turn.com:443,username=usertest,credential=userpass"]`</li></ul> [More Details](deployment/allow-users-behind-firewalls/){:target="\_blank"} | **[ ]** |
+
+<br>
+
+### Advanced parameters for OpenVidu CE
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    OpenVidu is deployed by default with some sane defaults. We assume, for example, that all Nodes has its own Public IP, so public IPs are autodiscovered while deploying. If you deploy using Cloudformation or you have a netowork infrastructure similar to the one described in our guides, you don't need to modify any of these parameters. In any case, here are those parameters.
+  </div>
+</div>
+
+| Parameter | Description | Default value |
+| --------- | ----------- | ------------- |
+| **`COTURN_IP`** | This is the IP of the default TURN/STUN Coturn server deployed with OpenVidu. <br><ul><li>By default it is autodiscovered Public IPv4. This IP is used by browsers and Kurento Media Server as TURN/STUN service for ICE protocol to autodiscover its own Public IP.</li><li>Possible values: <ul><li>`auto-ipv4`</li><li>`auto-ipv6`</li><li>Any valid Public Ipv4 or Public IPv6</li></ul></li></ul> | **auto-ipv4** |
+| **`COTURN_PORT`** | This is the port used for TURN/STUN Coturn server deployed with OpenVidu in the master node. <br><ul><li>By default it is 3478. This port is used by browsers and Kurento Media Server as TURN/STUN service port for ICE protocol to autodiscover its own Public IP.</li><li>Possible values: Any value between 1-65535 | **3478** |
+| **`OPENVIDU_WEBRTC_ICE_SERVERS`** | Array of ICE servers to use instead of default Coturn at browser/clients side (comma-separated list of ICE Servers). When `OPENVIDU_WEBRTC_ICE_SERVERS` is used, Kurento <br> still uses `COTURN_IP` (or the public IP of media nodes if `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`) but browsers uses the TURN/STUN servers defined at `OPENVIDU_WEBRTC_ICE_SERVERS`.</li> Examples: <ul><li>`["url=turns:example.turn.com:443,staticAuthSecret=secret"]`</li><li>`["url=turns:example.turn.com:443,username=usertest,credential=userpass"]`</li></ul> [More Details](deployment/allow-users-behind-firewalls/){:target="\_blank"} | **[ ]** |
+
 
 <br>
 
@@ -111,6 +133,30 @@ These configuration parameters apply only to OpenVidu Enterprise.
 | **`OPENVIDU_WEBRTC_SIMULCAST`** | Whether to enable [simulcast](openvidu-enterprise/simulcast/) for all Publishers or not | **false** |
 
 <br>
+
+### Advanced parameters for OpenVidu Pro and Enterprise
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    OpenVidu is deployed by default with some sane defaults. We assume, for example, that all Nodes has its own Public IP, so public IPs are autodiscovered while deploying. If you deploy using Cloudformation or you have a netowork infrastructure similar to the one described in our guides, you don't need to modify any of these parameters. In any case, here are those parameters.
+  </div>
+</div>
+
+| Parameter | Description | Default value |
+| --------- | ----------- | ------------- |
+| **`COTURN_IP`** | This is the IP of the default TURN/STUN Coturn server deployed with OpenVidu in the master node. <br><ul><li>By default it is autodiscovered Public IPv4. This IP is used by browsers and Kurento Media Server (Mediasoup does not need it) as TURN/STUN service for ICE protocol to autodiscover its own Public IP.</li><li>This parameter is used when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=false`. When <br> `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true` the public IP used for Coturn is the public IPv4 of the media node being in use, ignoring any value of `COTURN_IP`</li><li>Possible values: <ul><li>`auto-ipv4`</li><li>`auto-ipv6`</li><li>Any valid Public Ipv4 or Public IPv6</li></ul></li></ul> | **auto-ipv4** |
+| **`COTURN_PORT`** | This is the port used for TURN/STUN Coturn server deployed with OpenVidu in the master node. <br><ul><li>By default it is 3478. This port is used by browsers and Kurento Media Server (Mediasoup does not need it) as TURN/STUN service port for ICE protocol to autodiscover its own Public IP.</li><li>This parameter is used when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=false`. When <br> `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`, defined port here is ignored and `OPENVIDU_PRO_COTURN_PORT_MEDIA_NODES` is used instead (which by default is 443)</li><li>Possible values: Any value between 1-65535 | **3478** |
+| **`OPENVIDU_WEBRTC_ICE_SERVERS`** | Array of ICE servers to use instead of default Coturn at browser/clients side (comma-separated list of ICE Servers). When `OPENVIDU_WEBRTC_ICE_SERVERS` is used, Kurento <br> still uses `COTURN_IP` (or the public IP of media nodes if `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`) but browsers uses the TURN/STUN servers defined at `OPENVIDU_WEBRTC_ICE_SERVERS`.</li> Examples: <ul><li>`["url=turns:example.turn.com:443,staticAuthSecret=secret"]`</li><li>`["url=turns:example.turn.com:443,username=usertest,credential=userpass"]`</li></ul> [More Details](deployment/allow-users-behind-firewalls/){:target="\_blank"} | **[ ]** |
+| **`COTURN_INTERNAL_RELAY`** | If `true`, Coturn will autodiscover its own default network gateway and use the default network gateway IP as a relay IP for ICE candidates. This is usefull if you want relayed traffic to go through internal network instead of the public internet | **false** |
+| **`OPENVIDU_PRO_COTURN_IN_MEDIA_NODES`** | **(Experimental)** If `true`, Coturn will be deployed in media nodes. As Public IP and Port configuration for Coturn, parameters `OPENVIDU_PRO_MEDIA_NODE_PUBLIC_IP_AUTODISCOVER` and `OPENVIDU_PRO_COTURN_PORT_MEDIA_NODES` configures how the Public IP is autodiscovered and what port is used respectively. | **false** |
+| **`OPENVIDU_PRO_MEDIA_NODE_PUBLIC_IP_AUTODISCOVER`** | This parameter defines how the public IP for Coturn is autodiscovered in media nodes when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`. This IP is used by browsers and Kurento Media Server (Mediasoup does not need it) as TURN/STUN service for ICE protocol. Possible values: <ul><li>`auto-ipv4`</li><li>`auto-ipv6`</li></ul> | **false** |
+| **`OPENVIDU_PRO_COTURN_PORT_MEDIA_NODES`** | This parameter defines what port is used for Coturn in media nodes when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`. This port is used by browsers and Kurento Media Server (Mediasoup does not need it) as TURN/STUN service port for ICE protocol. Possible values: Any value between 1-65535 | 443 |
+| **`KMS_DOCKER_ENV_*`** | You can add any environment variable to Kurento/Mediasoup running in the media node. If you want to add an environment variable to this container, you must add a variable using this prefix: `KMS_DOCKER_ENV_`, followed by the environment variable you want to setup. For example if you want to setup `KMS_MIN_PORT` to `50000`, it would be `KMS_DOCKER_ENV_KMS_MIN_PORT=50000`. | |
+| **`AWS_*`** | These parameters are used in [OpenVidu PRO](deployment/pro/aws/) and [OpenVidu Enterprise](deployment/enterprise/aws/#single-master-deployment) and are related with AWS needed parameters for interactions with AWS itself. You should not touch this parameters because they are configured on start in Cloudformation deployments. | |
+| **`RM_*`** | These parameters are used in [OpenVidu Enterprise](openvidu-enterprise) to configure a service called `Replication manager`. This is autoconfigured by default while deploying so you don't need to touch these variables. | |
 
 ---
 

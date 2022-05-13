@@ -100,6 +100,7 @@ nav:
           - OpenVidu Enterprise:
                 - AWS: deployment/enterprise/aws.md
                 - On premises: deployment/enterprise/on-premises.md
+                - Upgrading: deployment/enterprise/upgrading.md
           - Deploy OpenVidu applications: deployment/deploying-openvidu-apps.md
           - Allow users behind firewalls: deployment/allow-users-behind-firewalls.md
     - Contribute:

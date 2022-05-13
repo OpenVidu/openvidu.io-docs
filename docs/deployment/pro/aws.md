@@ -299,6 +299,10 @@ These properties configure some other options of your stack.
       <td class="first-col">Deploy OpenVidu Call application<br><span class="field-comment">Choose if you want to deploy OpenVidu Call application alongside OpenVidu platform<span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
+    <tr>
+      <td class="first-col">Deploy Coturn in Media Nodes. (Experimental)<br><span class="field-comment">Now TURN/STUN (Coturn) service can be deployed at media nodes. Using Media nodes for Coturn implies better performance and scalability for the Coturn service deployed with OpenVidu. If true, Coturn will be deployed at media nodes.<span></td>
+      <td><em>Choose from the drop-down button</em></td>
+    </tr>
   </table>
 </div>
 
