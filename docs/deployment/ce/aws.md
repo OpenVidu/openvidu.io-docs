@@ -190,6 +190,16 @@ That URL is the one to be used to consume OpenVidu REST API. Besides:
 
 You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications).
 
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    While deploying the stack, you will see a warning with this message: <br><br><strong><center>The following resource(s) require capabilities: [AWS::IAM::Role]</center></strong><br> You need to accept it for OpenVidu CE deployment to work. The <code>CloudformationLambdaRole</code> role is only used by a Lambda resource to copy the original AMI of OpenVidu to your account. In this way, we can ensure that your deployment will still work even if the AMI is deprecated or removed officially, so your deployment will always work. <br><br> AMIs will be copied once, and their names start with <code>[ OpenVidu CE AMI Copy ]</code>. This is the AMI that will be used in your deployment. You can check the Role in the Cloudformation template.
+  </div>
+</div>
+
 <br>
 
 ---

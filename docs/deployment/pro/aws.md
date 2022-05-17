@@ -300,7 +300,7 @@ These properties configure some other options of your stack.
       <td><em>Choose from the drop-down button</em></td>
     </tr>
     <tr>
-      <td class="first-col">Deploy Coturn in Media Nodes. (Experimental)<br><span class="field-comment">Now TURN/STUN (Coturn) service can be deployed at media nodes. Using Media nodes for Coturn implies better performance and scalability for the Coturn service deployed with OpenVidu. If true, Coturn will be deployed at media nodes.<span></td>
+      <td class="first-col">Deploy Coturn in Media Nodes. (Experimental)<br><span class="field-comment">Now TURN/STUN (Coturn) service can be deployed at media nodes. Using Media nodes for Coturn implies better performance and scalability for the Coturn service deployed with OpenVidu. If true, Coturn will be deployed at media nodes. <a href="deployment/pro/on-premises/#coturn-configuration" target="_blank">More info.</a><span></td>
       <td><em>Choose from the drop-down button</em></td>
     </tr>
   </table>
@@ -328,6 +328,15 @@ To consume [OpenVidu REST API](reference-docs/REST-API/), use URL `https://OPENV
 
 If you have deployed OpenVidu Call you can also access to it through that same URL. You can now add your own application to your instance. To learn how check out section [Deploy OpenVidu based applications](deployment/#deploy-openvidu-based-applications).
 <br>
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+   While deploying the stack, you will see a warning in Cloudformation with this message: <br><br><strong><center>The following resource(s) require capabilities: [AWS::IAM::Role]</center></strong><br> You need to accept it for OpenVidu PRO deployment to work. OpenVidu PRO needs two IAM Roles: <br><br><ul><li>The <code>CloudformationLambdaRole</code> only used by a Lambda resource to copy original AMIs of OpenVidu to your account. In this way, we can ensure that your deployment will still work even if the AMI is deprecated or removed officially, so your deployment will always work. <br><br> The AMI will be copied once, and their names start with <code>[ OpenVidu PRO Master Node AMI Copy ]</code> and <code>[ OpenVidu PRO/ENTERPRISE Media Node AMI Copy ]</code>. This is the AMI that will be used in your deployment. Also, the <code>CloudformationLambdaRole</code> is used to remove all media nodes when the Cloudformation is removed.</li><br><li>Another role which OpenVidu PRO needs to create, remove and autodiscover media nodes deployed. This role is defined in the cloudformation template as <code>OpenViduManageEC2Role</code></li></ul><br>You can check both roles in the Cloudformation template.
+  </div>
+</div>
 
 ---
 

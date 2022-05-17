@@ -58,7 +58,7 @@ This procedure installs the following services:
         - **22 TCP**: to connect using SSH to admin OpenVidu.
         - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
         - **443 TCP**: OpenVidu server and application are published by default in standard https port.
-        - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
+        - **3478 TCP+UDP**: used by STUN/TURN server to resolve clients IPs.
         - **40000 - 57000 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **57001 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
 

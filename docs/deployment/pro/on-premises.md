@@ -98,7 +98,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **22 TCP**: to connect using SSH to admin OpenVidu.
         - **80 TCP**: if you select Let's Encrypt to generate an SSL certificate this port is used by the generation process.
         - **443 TCP**: OpenVidu Inspector is served by default in standard https port.
-        - **3478 TCP+UDP**: used by TURN server to resolve clients IPs.
+        - **3478 TCP+UDP**: used by STUN/TURN server to resolve clients IPs
         - **5044 TCP**: Necessary for Media Nodes instances to send metrics to OpenVidu. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could send metrics information to OpenVidu.
         - **9200 TCP** Necessary for Media Nodes Instances to send metrics and logs to ElasticSearch. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Media Nodes**, or anyone could do http requests to your ElasticSearch.
         - **40000 - 65535 TCP+UDP**: used by TURN server to establish relayed media connections.<br><br>
@@ -114,7 +114,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
     - **Open these ports** ([here](#close-ports-to-avoid-external-attacks_1) you have an UFW sample to configure a firewall)
 
         - **22 TCP**: to connect using SSH to admin OpenVidu.
-        - **443 TCP+UDP**: used by TURN server to resolve clients IPs when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`.
+        - **443 TCP+UDP**: used by STUN/TURN server to resolve clients IPs when `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`.
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.
         - **3000 TCP**: All _Media Nodes_ offer a REST API endpoint to provision their services. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.<br><br>

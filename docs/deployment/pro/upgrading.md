@@ -158,6 +158,11 @@ Transfer any configuration you wish to keep in the upgraded version from `.env` 
 ```
 ./openvidu start
 ```
+<br>
+
+##### Additional steps (Optional)
+
+From version 2.22.0 it is now possible to deploy our default TURN/STUN service (Coturn) in Media nodes. To do that, you just need to open inbound port 443 TCP/UDP in addition to the ports previously opened in your media node and configure `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`. Your media nodes needs to have a reachable Public IP for this to work. [More info](https://docs.openvidu.io/en/2.22.0/deployment/pro/on-premises/#coturn-configuration)
 
 ### Migrating from 2.21.0 to 2.22.0 (On Premises)
 
@@ -258,6 +263,12 @@ Make sure that you have all of your needed properties at your .env file and star
 ```
 ./openvidu start
 ```
+
+<br>
+
+##### Additional steps (Optional)
+
+From version 2.22.0 it is now possible to deploy Coturn in Media nodes. To do that, you just need to open inbound port 443 TCP/UDP in addition to the ports previously opened in your media node and configure `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES=true`. Your media nodes needs to have a reachable Public IP for this to work.
 
 <div></div>
 
