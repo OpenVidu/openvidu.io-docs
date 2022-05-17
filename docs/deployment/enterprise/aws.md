@@ -20,10 +20,12 @@
         - [Check cluster after deploy](#check-cluster-after-deploy)
             - [1) Check Master Nodes](#1-check-master-nodes)
             - [2) Check Media Nodes](#2-check-media-nodes)
+            - [3) Check AWS Events reaching Master Nodes](#3-check-aws-events-reaching-master-nodes)
         - [OpenVidu Enterprise Configuration](#openvidu-enterprise-configuration)
-            - [1) Change the configuration via API Rest (Recommended)](#1-change-the-configuration-via-api-rest-recommended)
-            - [2) Change configuration by modifying S3 configuration file (Not recommended)](#2-change-configuration-by-modifying-s3-configuration-file-not-recommended)
+            - [1) Change the configuration via API Rest](#1-change-the-configuration-via-api-rest)
+            - [2) Change configuration by modifying S3 configuration file](#2-change-configuration-by-modifying-s3-configuration-file)
         - [Autoscaling Configuration](#autoscaling-configuration)
+        - [Troubleshouting](#troubleshouting)
         - [Deploying an OpenVidu application](#deploying-an-openvidu-application)
 
 ---
@@ -456,6 +458,69 @@ curl -u OPENVIDUAPP:<OPENVIDU_SECRET> https://<DOMAIN_NAME>/openvidu/api/media-n
 
 This request will return a JSON with all registered media nodes and related information.
 
+#### 3) Check AWS Events reaching Master Nodes
+
+OpenVidu Enterprise depends on some AWS Events to be able to register/deregister media nodes in the cluster and for autoscaling events. To check that all events are working properly, SSH into one of your master nodes, and go to `/opt/openvidu/` directory:
+
+```
+sudo su
+cd /opt/openvidu
+```
+
+Now we will check the logs of a service used by OpenVidu Enterprise called `replication-manager`.
+
+> NOTE: As AWS Events are sent into an [SQS Queue](https://aws.amazon.com/es/sqs/), if you have more than one master node, you need to check the logs of all master nodes.
+> To consider that such events works correctly, you must see the mentioned events below at least once in one master node.
+
+##### 3.1) Check for autoscaling events
+
+To check for autoscaling events, just execute:
+
+```text
+docker-compose logs -f replication-manager | grep custom.autoscaling_schedule
+```
+
+After some minutes with your stack deployed, you should see a trace log like this one:
+
+```text
+openvidu-replication-manager-1  | 2022-05-17 11:55:58.863  INFO 8 --- [           main] i.o.r.m.s.SQSNotificationListenerAWS     : Notification content: {"source":"custom.autoscaling_schedule","detail":{"time":"2022-05-17T11:55:14Z"}}
+```
+
+This means that autoscaling events are reaching master nodes, so media nodes will autoscale accordingly.
+
+<br>
+
+##### 3.2) Check for media nodes Autoscaling Group events
+
+To check for media nodes Autoscaling Group events, you need to increase/decrease the desired capacity of Media Nodes in the Autoscaling group or wait until Cloudwatch rules modifies the number of media nodes.
+
+<br>
+
+###### Check for new media nodes events
+
+```text
+docker-compose logs -f replication-manager | grep 'launched in autoscaling group'
+```
+
+The result of the log should be:
+
+```text
+openvidu-replication-manager-1  | 2022-05-17 12:19:56.656  INFO 8 --- [           main] i.o.r.m.s.SQSNotificationListenerAWS     : New Media Node (i-0ed87803133aaca76,172.31.41.202) launched in autoscaling group
+```
+
+###### Check for drop media nodes events
+
+```text
+docker-compose logs -f replication-manager | grep 'terminated in autoscaling group'
+```
+
+The result of the log should be something like:
+
+```text
+openvidu-replication-manager-1  | 2022-05-17 12:23:41.002  INFO 8 --- [           main] i.o.r.m.s.SQSNotificationListenerAWS     : Media Node (i-022d3b9d2d0f42cf7,172.31.10.206) terminated in autoscaling group
+```
+
+
 ---
 ### Autoscaling Configuration
 
@@ -480,13 +545,15 @@ To change those parameters you just need to go to ** AWS Cloudformation Panel ðŸ
 
 ### OpenVidu Enterprise Configuration
 
-Technically, you can connect to any instance through SSH, but this could lead to inconsistencies in the configuration, because master nodes and media nodes are now **volatile objects** of the infrastructure. They exist temporary, they can be destroyed and new nodes can be created, so the configuration can not live on any EC2 instance. For this reason, administrative task are done via **API Rest** or **by changing a persisted configuration file in a S3 bucket.**
+Technically, you can connect to any instance through SSH to change OpenVidu Enterprise configuration, but this will lead to inconsistencies in the configuration, because master nodes and media nodes are now **volatile objects** of the infrastructure. They exist temporary, they can be destroyed and new nodes can be created, so the configuration can not live on any EC2 instance. For this reason, administrative task are done via **API Rest** or **by changing a persisted configuration file in a S3 bucket.**
 
 </br>
 
-#### 1) Change the configuration via API Rest (Recommended)
+#### 1) Change the configuration via API Rest
 
 While OpenVidu Enterprise is running, you can change some parameters of OpenVidu by calling [/openvidu/api/restart](reference-docs/REST-API/#post-restart). All OpenVidu master nodes will restart automatically and the configuration will be persisted in an S3 bucket. All modifiable parameters are [documented](reference-docs/REST-API/#body_8).
+
+Take into account that not all parameters can be changed via API Rest, so in case you need to change something which can not be changed using this method, you must change the [S3 configuration file](#2-change-configuration-by-modifying-s3-configuration-file-not-recommended)
 
 </br>
 
@@ -507,8 +574,31 @@ While OpenVidu Enterprise is running, you can change some parameters of OpenVidu
         <a data-fancybox="gallery-example-multimaster-12" href="img/docs/deployment/multimaster_end_7.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_7.png"/></a>
     </div>
 </div>
+<br>
 
-**2.3) Restart Master Nodes via AWS**: After changing the `.env` file in the S3 bucket, you need to restart all Master Nodes via AWS EC2 Panel, or terminating all Master Nodes and wait for the Autoscaling Group to create those instances. New EC2 instances created by the Autoscaling Group will download the updated configuration `.env` file from the S3 bucket.
+
+**2.3) (Optional) Restart Master Nodes via AWS**: By default, OpenVidu Enterprise is configured with this parameter from version 2.22.0:
+
+- `OPENVIDU_ENTERPRISE_S3_CONFIG_AUTORESTART=true`
+
+This means that any change which happens in the `.env` file of OpenVidu Enterprise bucket, will restart automatically all master nodes. You need to restart your master nodes only if `OPENVIDU_ENTERPRISE_S3_CONFIG_AUTORESTART=false`. In this case, you must restart all your master nodes through your AWS EC2 Panel, or terminating all Master Nodes and wait for the Autoscaling Group to create those instances. New EC2 instances created by the Autoscaling Group will download the updated configuration `.env` file from the S3 bucket.
+
+---
+
+## Troubleshouting
+
+If your master nodes do not reach a **healthy** state as described [here](#1-check-master-nodes), you may need to check the logs of the running services in your master nodes to check what the problem could be.
+
+Usually, the error should appear in the `replication-manager` service, or `openvidu-server` service. SSH into one of your unhealthy master nodes and check the logs of both service to search for possible missconfiguration errors:
+
+```
+sudo su
+cd /opt/openvidu
+docker-compose logs openvidu-server
+docker-compose logs replication-manager
+```
+
+Also, make sure that all events are processed correctly. Check the section: __[Check cluster after deploy](#check-cluster-after-deploy)__, to verify that the cluster is correctly set up.
 
 ---
 

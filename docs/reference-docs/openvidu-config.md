@@ -128,6 +128,7 @@ These configuration parameters apply only to OpenVidu Enterprise.
 | Parameter       | Description                               | Default value                                      |
 | --------------- | ----------------------------------------- | -------------------------------------------------- |
 | **`OPENVIDU_ENTERPRISE_MEDIA_SERVER`** | Which media server to use in your deployment (see [Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup)). Possible values are:<br>• `kurento`<br>• `mediasoup`<br> | `mediasoup` |
+| **`OPENVIDU_ENTERPRISE_S3_CONFIG_AUTORESTART`** | If true, master nodes restart automatically on S3 changes. | **true** |
 | **`OPENVIDU_WEBRTC_SIMULCAST`** | Whether to enable [simulcast](openvidu-enterprise/simulcast/) for all Publishers or not | **false** |
 
 <br>
