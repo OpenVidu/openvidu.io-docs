@@ -64,7 +64,7 @@ Now, we can use all components that the openvidu-angular provides.
 1)  Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.21.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
 cd openvidu-call
 ```
 
@@ -88,7 +88,7 @@ OpenVidu platform must be up and running. The easiest way is running this OpenVi
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.21.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
 4) Install dependencies of OpenVidu Call backend (Node):

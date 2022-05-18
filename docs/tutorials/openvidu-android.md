@@ -78,7 +78,7 @@ After we have set Android Studio up, we must continue with the following command
 **1)** Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.21.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
 ```
 
 **2)** Open **Android Studio** and import the project _(openvidu-tutorials/openvidu-android)_.
@@ -96,7 +96,7 @@ awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 # WARNING: this container is not suitable for production deployments of OpenVidu Platform
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.21.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.22.0
 ```
 
 **5)** In Android Studio, you must also indicate the OpenVidu Server URL to the app. To do that, on the *Project Files* view, open the file `app/src/main/res/values/strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your OpenVidu Server. Complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443/`, where DOMAIN_OR_PUBLIC_IP is the IP address configured in your OpenVidu Platform service. In this example that would be: `https://192.168.1.111:4443/`.

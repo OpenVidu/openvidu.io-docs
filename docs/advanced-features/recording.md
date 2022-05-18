@@ -60,7 +60,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-openvidu/openvidu-server-kms:2.21.0
+openvidu/openvidu-server-kms:2.22.0
 ```
 
 The two configuration properties that must be set are:
@@ -943,7 +943,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -e OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.21.0
+openvidu/openvidu-server-kms:2.22.0
 ```
 
 > **WARNING**: remember to add the `-v` option mounting the path defined with `OPENVIDU_RECORDING_CUSTOM_LAYOUT`
@@ -1210,7 +1210,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.21.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.22.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>
@@ -1242,7 +1242,7 @@ You also can use an additional layout library for improving the layout and get a
 <html>
 
 <head>
-    <script src="openvidu-browser-2.21.0.min.js"></script>
+    <script src="openvidu-browser-2.22.0.min.js"></script>
     <script src="opentok-layout.min.js"></script>
 </head>
 
