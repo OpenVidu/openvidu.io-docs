@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.22.0](#2220)
 - [2.21.0](#2210)
 - [2.20.0](#2200)
 - [2.19.0](#2190)
@@ -24,6 +25,199 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.22.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.22.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.22.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.22.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.22.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.22.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.16.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.9.7</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Virtual Background
+
+Virtual Background allows you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Check out the [documentation](https://docs.openvidu.io/en/2.22.0/advanced-features/virtual-background/) for further information.
+
+<br>
+
+##### OpenVidu Components
+
+OpenVidu Components is a new frontend framework built for making videoconferencing applications for OpenVidu in the simplest possible way. It is an **npm library** (currently available for **Angular**) that provides the developer powerful and complete videoconferencing components. These components can be adapted, extended and replaced very easily to suit your application's needs. Visit the [documentation page](https://docs.openvidu.io/en/2.22.0/components/) for extended information and guided tutorials.
+
+<br>
+
+##### Fault tolerance improvements
+
+OpenVidu Pro and OpenVidu Enterprise improve their fault tolerance capabilities. There are two new additions:
+
+- New [configuration property](https://docs.openvidu.io/en/2.22.0/reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) `OPENVIDU_PRO_CLUSTER_RECONNECTION_TIMEOUT` allows you to customize the reconnection timeout in case a Media Node undergoes an unexpected disconnection from the cluster. Before this property, an OpenVidu cluster did not provide any time window for Media Node reconnections (they were simply removed from the cluster, and you would have to manually add them through REST API after their recovery). Now, depending on the deployment environment, the OpenVidu cluster will actually try to recover the connection with the crashed Media Node. This is especially useful in On Premises deployments, where Media Nodes have fixed IPs.
+- New WebHook event [`nodeRecovered`](https://docs.openvidu.io/en/2.22.0/reference-docs/openvidu-server-cdr/#noderecovered) will be triggered after a Media Node is successfully reconnected to the OpenVidu cluster.
+
+Check out [Fault Tolerance](https://docs.openvidu.io/en/2.22.0/openvidu-pro/fault-tolerance/#media-node-reconnection-configuration) documentation for further information.
+
+<br>
+
+##### Turn off webcam light when disabling video
+
+Method [`Publisher.publishVideo`](https://docs.openvidu.io/en/2.22.0/api/openvidu-browser/classes/Publisher.html#publishVideo) has been extended in openvidu-browser library to support the forced release of hardware resources. This allows webcam lights to turn off.
+
+<br>
+
+##### TURN server can now be configured in Media nodes
+
+For OpenVidu Pro and OpenVidu Enterprise clusters, the default [TURN server](https://docs.openvidu.io/en/2.22.0/troubleshooting/#6-what-are-stun-and-turn-servers-and-why-do-i-need-them) can now be deployed in Media Nodes instead of in the Master Node. This is nothing more than the natural evolution for OpenVidu deployments: TURN is in charge of relaying media streams when necessary, so it makes sense to host the service in Media Nodes. This brings to major advantages:
+
+- The TURN server becomes a scalable service, as it can now be replicated in multiple Media Nodes.
+- Networking performance improves, as video stream data flows directly between TURN server and media server in the same node. This means no unexpected extra charges due to data transfer between your servers.
+
+Hosting TURN server in Media Nodes is considered an experimental feature, so right now the default location is still the Master Node. To test the new location inside Media Nodes you just need to open port 443 TCP/UDP in your Media Nodes and set [configuration property](https://docs.openvidu.io/en/2.22.0/reference-docs/openvidu-config/#advanced-parameters-for-openvidu-pro-and-enterprise) `OPENVIDU_PRO_COTURN_IN_MEDIA_NODES` to `true`.
+
+<br>
+
+##### Easier configuration for OpenVidu Enterprise HA
+
+[OpenVidu Enterprise HA](https://docs.openvidu.io/en/2.22.0/openvidu-enterprise/high-availability/) provides now a very easy way for updating [configuration properties](https://docs.openvidu.io/en/2.22.0/reference-docs/openvidu-config). Simply modify the S3 configuration file, and all Master Nodes will automatically restart to apply the new configuration! No need to connect to your machines to manually restart OpenVidu services. This behavior is enabled by default, using property `OPENVIDU_ENTERPRISE_S3_CONFIG_AUTORESTART=true`.
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-server_: a race condition could arise after a Media Node crash if the application performed a great amount of petitions to restore a crashed session. This could cause some unexpected 500 errors that could only be overcome by retrying the request. This is now fixed.
+- _openvidu-browser_ : muting a screen-sharing Publisher (calling [`Publisher.publishVideo(false)`](https://docs.openvidu.io/en/2.22.0/api/openvidu-browser/classes/Publisher.html#publishVideo)) would generate infinite `streamPropertyChanged` events with `changedProperty` "videoDimensions", `reason` "screenResized" and same `oldValue` and `newValue` ({width: 0, height: 0}). This is now fixed.
+- _openvidu-browser_ : Connections with role SUBSCRIBER were logging some errors in the browser's console when subscribing to a Publisher's stream. These errors were harmless, but still unpleasant. This is now fixed.
+- _openvidu-browser_ :  now method [`Publisher.publishVideo`](https://docs.openvidu.io/en/2.22.0/api/openvidu-browser/classes/Publisher.html#publishVideo) returns a Promise, so you can subscribe to it to directly know when the video has been really muted.
+- PR [https://github.com/OpenVidu/openvidu/pull/689](https://github.com/OpenVidu/openvidu/pull/689)
+
+<br>
 
 ---
 

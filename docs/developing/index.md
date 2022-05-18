@@ -6,12 +6,12 @@
     - [Compiling OpenVidu Server dashboard](#compiling-openvidu-server-dashboard)
 - **[Building OpenVidu Server Docker container](#building-openvidu-server-docker-container)**
 - **[Compiling OpenVidu Browser](#compiling-openvidu-browser)**
-- **[Compiling OpenVidu Call](#compiling-openvidu-call)**
-- **[Compiling OpenVidu WebComponent](#compiling-openvidu-webcomponent)**
-- **[Compiling OpenVidu Angular Library](#compiling-openvidu-angular-library)**
 - **[Running KMS](#running-kms)**
 - **[Example: setup for development](#example-setup-for-development)**
 - **[Example: setup for advanced development](#example-setup-for-advanced-development-share-the-app-through-your-network)**
+<!--- **[Compiling OpenVidu Call](#compiling-openvidu-call)**
+- **[Compiling OpenVidu WebComponent](#compiling-openvidu-webcomponent)**
+- **[Compiling OpenVidu Angular Library](#compiling-openvidu-angular-library)**-->
 
 ---
 
@@ -128,7 +128,7 @@ VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
 ---
 
-## Compiling OpenVidu Call
+<!--## Compiling OpenVidu Call
 
 Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-to-build-openvidu-call).
 
@@ -208,6 +208,7 @@ This will generate in that same folder a file `openvidu-angular-{VERSION}.tgz`. 
 <br>
 
 ---
+-->
 
 ## Running KMS
 

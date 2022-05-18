@@ -2,7 +2,7 @@
 
 ## What is it
 
-OpenVidu Components is a new frontend framework built for making videoconferencing applications for OpenVidu in the simplest possible way. It is an **npm library** (currently only available for **Angular**) that provides the developer **powerful and complete videoconferencing components**. These components can be adapted, extended and replaced very easily to suit your application's needs.
+OpenVidu Components is a new frontend framework built for making videoconferencing applications for OpenVidu in the simplest possible way. It is an **npm library** (currently available for **Angular**) that provides the developer **powerful and complete videoconferencing components**. These components can be adapted, extended and replaced very easily to suit your application's needs.
 
 <p align="center" style="margin: 40px 0px">
   <img class="img-responsive" style="max-width: 70%" src="img/components/toggle-hand.gif">

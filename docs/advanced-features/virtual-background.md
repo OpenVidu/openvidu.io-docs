@@ -56,7 +56,7 @@ This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span i
 </div>
 </div>
 
-OpenVidu Virtual Background allows you to apply a filter to a video stream, such as a blurring effect or a background image. This allows you to cut out the person from the background, giving a more professional look to your video calls. Take a look to the video below to get an idea of what is possible with OpenVidu Virtual Background:
+OpenVidu Virtual Background allows you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Take a look to the video below to get an idea of what is possible with OpenVidu Virtual Background:
 
 <video class="img-responsive" style="margin: auto; margin-top: 40px; margin-bottom: 40px; max-width: 80%;" src="img/docs/advanced-features/virtual-background.mp4" muted autoplay playsinline async loop></video>
 
