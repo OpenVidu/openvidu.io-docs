@@ -57,7 +57,7 @@ nav:
               - openvidu-custom-participant-panel-item: components/openvidu-custom-participant-panel-item.md
               - openvidu-custom-participant-panel-item-element: components/openvidu-custom-participant-panel-item-element.md
               - openvidu-toggle-hand: components/openvidu-toggle-hand.md
-              - openvidu-call: tutorials/openvidu-call.md
+              - openvidu-call: components/openvidu-call.md
     - Cheatsheet:
           - Join a session: cheatsheet/join-session.md
           - Leave a session: cheatsheet/leave-session.md
