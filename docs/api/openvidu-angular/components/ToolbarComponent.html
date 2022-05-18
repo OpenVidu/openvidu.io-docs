@@ -1,0 +1,563 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OpenVidu Angular Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ToolbarComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/lib/components/toolbar/toolbar.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The <strong>ToolbarComponent</strong> is hosted inside of the <a href="../components/VideoconferenceComponent.html">VideoconferenceComponent</a>.
+It is in charge of displaying the participants controlls for handling the media, panels and more videoconference features.</p>
+<div class="custom-table-container">
+<div>
+ <h3>API Directives</h3>
+
+<p>This component allows us to show or hide certain HTML elements with the following <a href="https://angular.io/guide/attribute-directives">Angular attribute directives</a>
+with the aim of fully customizing the ToolbarComponent.</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th align="center"><strong>Name</strong></th>
+<th align="center"><strong>Type</strong></th>
+<th align="center"><strong>Reference</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><strong>screenshareButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarScreenshareButtonDirective.html">ToolbarScreenshareButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>fullscreenButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarFullscreenButtonDirective.html">ToolbarFullscreenButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>backgroundEffectsButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarBackgroundEffectsButtonDirective.html">ToolbarBackgroundEffectsButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>leaveButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarLeaveButtonDirective.html">ToolbarLeaveButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>chatPanelButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarChatPanelButtonDirective.html">ToolbarChatPanelButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>participantsPanelButton</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarParticipantsPanelButtonDirective.html">ToolbarParticipantsPanelButtonDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>displayLogo</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarDisplayLogoDirective.html">ToolbarDisplayLogoDirective</a></td>
+</tr>
+<tr>
+<td align="center"><strong>displaySessionName</strong></td>
+<td align="center"><code>boolean</code></td>
+<td align="center"><a href="../directives/ToolbarDisplaySessionNameDirective.html">ToolbarDisplaySessionNameDirective</a></td>
+</tr>
+</tbody>
+</table>
+<p class="component-link-text">
+<span class="italic">See all <a href="../modules/ApiDirectiveModule.html">API Directives</a></span>
+</p>
+
+</div>
+<div>
+
+<h3>OpenVidu Angular Directives</h3>
+
+<p>The ToolbarComponent can be replaced with a custom component. It provides us the following <a href="https://angular.io/guide/structural-directives">Angular structural directives</a>
+for doing this.</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th align="center"><strong>Directive</strong></th>
+<th align="center"><strong>Reference</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">*<strong>ovToolbar</strong></td>
+<td align="center"><a href="../directives/ToolbarDirective.html">ToolbarDirective</a></td>
+</tr>
+</tbody>
+</table>
+</br>
+
+<p>It is also providing us a way to <strong>add additional buttons</strong> to the default toolbar.
+It will recognise the following directive in a child element.</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th align="center"><strong>Directive</strong></th>
+<th align="center"><strong>Reference</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">*<strong>ovToolbarAdditionalButtons</strong></td>
+<td align="center"><a href="../directives/ToolbarAdditionalButtonsDirective.html">ToolbarAdditionalButtonsDirective</a></td>
+</tr>
+<tr>
+<td align="center">*<strong>ovToolbarAdditionalPanelButtons</strong></td>
+<td align="center"><a href="../directives/ToolbarAdditionalPanelButtonsDirective.html">ToolbarAdditionalPanelButtonsDirective</a></td>
+</tr>
+</tbody>
+</table>
+<p class="component-link-text">
+    <span class="italic">See all <a href="../modules/OpenViduAngularDirectiveModule.html">OpenVidu Angular Directives</a></span>
+</p>
+</div>
+</div>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ov-toolbar</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./toolbar.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./toolbar.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#subscribeToRecordingStatus" >subscribeToRecordingStatus</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#onCameraButtonClicked" >onCameraButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#onFullscreenButtonClicked" >onFullscreenButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#onLeaveButtonClicked" >onLeaveButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#onMicrophoneButtonClicked" >onMicrophoneButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#onParticipantsPanelButtonClicked" >onParticipantsPanelButtonClicked</a>
+                            </li>
+                            <li>
+                                <a href="#onScreenshareButtonClicked" >onScreenshareButtonClicked</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onCameraButtonClicked"></a>
+                        <b>onCameraButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when camera toolbar button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onFullscreenButtonClicked"></a>
+                        <b>onFullscreenButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when fullscreen toolbar button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onLeaveButtonClicked"></a>
+                        <b>onLeaveButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when leave button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onMicrophoneButtonClicked"></a>
+                        <b>onMicrophoneButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when microphone toolbar button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onParticipantsPanelButtonClicked"></a>
+                        <b>onParticipantsPanelButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when participants panel button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onScreenshareButtonClicked"></a>
+                        <b>onScreenshareButtonClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when screenshare toolbar button has been clicked.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subscribeToRecordingStatus"></a>
+                    <span class="name">
+                        <span ><b>subscribeToRecordingStatus</b></span>
+                        <a href="#subscribeToRecordingStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>subscribeToRecordingStatus()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+
+
+
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><mat-toolbar id="toolbar" role="heading" fxLayout fxLayoutAlign="center" fxLayoutGap="10px">	<div fxFlex="20%" fxLayoutAlign="start center" id="info-container">		<div>			<img *ngIf="!isMinimal && showLogo" id="branding-logo" src="assets/images/logo.png" ovLogo />			<div id="session-info-container" [class.colapsed]="isRecording">				<span id="session-name" *ngIf="!isMinimal && session && session.sessionId && showSessionName">{{ session.sessionId }}</span>				<div id="recording-tag" *ngIf="isRecording">					<mat-icon>radio_button_checked</mat-icon>					<span>REC</span>				</div>			</div>		</div>	</div>	<div fxFlex="60%" fxFlexOrder="2" fxLayoutAlign="center center" id="media-buttons-container">		<!-- Microphone button -->		<button			id="mic-btn"			mat-icon-button			(click)="toggleMicrophone()"			[disabled]="isConnectionLost || !hasAudioDevices"			[class.warn-btn]="!isAudioActive"		>			<mat-icon *ngIf="isAudioActive" matTooltip="Mute your audio" id="mic">mic</mat-icon>			<mat-icon *ngIf="!isAudioActive" matTooltip="Unmute your audio" id="mic_off">mic_off</mat-icon>		</button>		<!-- Camera button -->		<button			id="camera-btn"			mat-icon-button			(click)="toggleCamera()"			[disabled]="isConnectionLost || !hasVideoDevices || videoMuteChanging"			[class.warn-btn]="!isWebcamVideoActive"		>			<mat-icon *ngIf="isWebcamVideoActive" matTooltip="Mute your cam" id="videocam">videocam</mat-icon>			<mat-icon *ngIf="!isWebcamVideoActive" matTooltip="Unmute your cam" id="videocam_off">videocam_off</mat-icon>		</button>		<!-- Screenshare button -->		<button			mat-icon-button			*ngIf="!isMinimal && showScreenshareButton"			id="screenshare-btn"			(click)="toggleScreenShare()"			[disabled]="isConnectionLost"			[class.active-btn]="isScreenShareActive"		>			<mat-icon *ngIf="!isScreenShareActive" matTooltip="Enable screen share">screen_share</mat-icon>			<mat-icon *ngIf="isScreenShareActive" matTooltip="Disable screen share">screen_share</mat-icon>		</button>		<!-- Fullscreen button -->		<button			mat-icon-button			id="fullscreen-btn"			*ngIf="!isMinimal && showFullscreenButton && !showBackgroundEffectsButton"			(click)="toggleFullscreen()"			[disabled]="isConnectionLost"			[class.active-btn]="isFullscreenActive"		>			<mat-icon *ngIf="isFullscreenActive" matTooltip="Exit Fullscreen">fullscreen_exit</mat-icon>			<mat-icon *ngIf="!isFullscreenActive" matTooltip="Fullscreen">fullscreen</mat-icon>		</button>		<button			mat-icon-button			id="more-options-btn"			*ngIf="!isMinimal && showBackgroundEffectsButton"			[matMenuTriggerFor]="menu"			[disabled]="isConnectionLost"		>			<mat-icon matTooltip="More options">more_vert</mat-icon>		</button>		<mat-menu #menu="matMenu">			<!-- Fullscreen button -->			<button mat-menu-item id="fullscreen-btn" (click)="toggleFullscreen()">				<mat-icon *ngIf="!isFullscreenActive">fullscreen</mat-icon>				<span *ngIf="!isFullscreenActive">Fullscreen</span>				<mat-icon *ngIf="isFullscreenActive">fullscreen_exit</mat-icon>				<span *ngIf="isFullscreenActive">Exit fullscreen</span>			</button>			<!-- Recording button -->			<!-- <button				*ngIf="!isMinimal && showActivitiesPanelButton"				mat-menu-item				id="recording-btn"				(click)="toggleActivitiesPanel(\'recording\')"			>				<mat-icon color="warn">radio_button_checked</mat-icon>				<span>Recording</span>			</button> -->			<!-- Virtual background button -->			<button				*ngIf="!isMinimal && showBackgroundEffectsButton"				[disabled]="!isWebcamVideoActive"				mat-menu-item				id="virtual-bg-btn"				(click)="toggleBackgroundEffects()"			>				<mat-icon>auto_awesome</mat-icon>				<span>Background effects</span>			</button>		</mat-menu>		<!-- External additional buttons  -->		<ng-container *ngIf="toolbarAdditionalButtonsTemplate">			<ng-container *ngTemplateOutlet="toolbarAdditionalButtonsTemplate"></ng-container>		</ng-container>		<!-- Leave session button -->		<button mat-icon-button *ngIf="showLeaveButton" (click)="leaveSession()" id="leave-btn">			<mat-icon matTooltip="Leave the session">call_end</mat-icon>		</button>	</div>	<div fxFlex="20%" fxFlexOrder="3" fxLayoutAlign="end center" id="menu-buttons-container">		<!-- Default activities button -->		<!-- <button			mat-icon-button			id="activities-panel-btn"			*ngIf="!isMinimal && showActivitiesPanelButton"			matTooltip="Activities"			(click)="toggleActivitiesPanel()"			[disabled]="isConnectionLost"			[class.active-btn]="isActivitiesOpened"		>			<mat-icon>category</mat-icon>		</button> -->		<!-- Default participants button -->		<button			mat-icon-button			id="participants-panel-btn"			*ngIf="!isMinimal && showParticipantsPanelButton"			matTooltip="Participants"			(click)="toggleParticipantsPanel()"			[disabled]="isConnectionLost"			[class.active-btn]="isParticipantsOpened"		>			<mat-icon>people</mat-icon>		</button>		<!-- Default chat button -->		<button			mat-icon-button			id="chat-panel-btn"			*ngIf="!isMinimal && showChatPanelButton"			matTooltip="Chat"			(click)="toggleChatPanel()"			[disabled]="isConnectionLost"			[class.active-btn]="isChatOpened"		>			<mat-icon				matBadge="{{ unreadMessages }}"				[matBadgeHidden]="unreadMessages === 0"				matBadgePosition="above before"				matBadgeSize="small"				matBadgeColor="accent"			>				chat			</mat-icon>		</button>		<!-- External additional panel buttons  -->		<ng-container *ngIf="toolbarAdditionalPanelButtonsTemplate">			<ng-container *ngTemplateOutlet="toolbarAdditionalPanelButtonsTemplate"></ng-container>		</ng-container>	</div></mat-toolbar></div>'
+    var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'BackgroundEffectsPanelComponent', 'selector': 'ov-background-effects-panel'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
+    var DIRECTIVES = [{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
+    var ACTUAL_COMPONENT = {'name': 'ToolbarComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ToolbarComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
