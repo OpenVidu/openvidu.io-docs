@@ -190,9 +190,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/ActivitiesPanelComponent.html" data-type="entity-link" >ActivitiesPanelComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/BackgroundEffectsPanelComponent.html" data-type="entity-link" >BackgroundEffectsPanelComponent</a>
                             </li>
                             <li class="link">
@@ -209,9 +206,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="components/ParticipantsPanelComponent.html" data-type="entity-link" >ParticipantsPanelComponent</a>
-                            </li>
-                            <li class="link">
-                                <a href="components/RecordingActivityComponent.html" data-type="entity-link" >RecordingActivityComponent</a>
                             </li>
                             <li class="link">
                                 <a href="components/StreamComponent.html" data-type="entity-link" >StreamComponent</a>
@@ -255,9 +249,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <a href="injectables/ParticipantService.html" data-type="entity-link" >ParticipantService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/RecordingService.html" data-type="entity-link" >RecordingService</a>
-                                </li>
-                                <li class="link">
                                     <a href="injectables/VirtualBackgroundService.html" data-type="entity-link" >VirtualBackgroundService</a>
                                 </li>
                             </ul>
@@ -275,9 +266,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ParticipantProperties.html" data-type="entity-link" >ParticipantProperties</a>
-                            </li>
-                            <li class="link">
-                                <a href="interfaces/RecordingInfo.html" data-type="entity-link" >RecordingInfo</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/StreamModel.html" data-type="entity-link" >StreamModel</a>
