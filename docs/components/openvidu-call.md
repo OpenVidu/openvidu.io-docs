@@ -154,7 +154,7 @@ Building a Docker image of OpenVidu call is really easy.
 1) Under **openvidu-call** directory, execute:
 
 ```
-docker build -f docker/custom.dockerfile -t <your-tag-name> --build-arg BASE_HREF=<your-base-href> .
+docker build -f docker/Dockerfile -t <your-tag-name> .
 ```
 
 2) After that, you can run the Docker container:
