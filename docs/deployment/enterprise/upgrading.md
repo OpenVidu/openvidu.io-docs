@@ -60,11 +60,14 @@ Upgrading process for this kind of deployment is exactly the same as [Migrating 
 ### Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation - High Availability deployment)
 <br>
 
-For OpenVidu Enterprise with multiple master nodes, the process of can't be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration. You can access to it from your CloudFormation panel, at the **Resources** section. If you have some recordings in there and you want to preserve for the next version, start from step 1. If not you can go directly to step 3:
+For OpenVidu Enterprise with High Availability, the upgrading process can not be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration and recordings. You can access to it from your CloudFormation panel, at the **Resources** section.
+
+To upgrade you will need to deploy the newer Cloudformation template of the version you want to deploy.
+If you want to keep in your new deployment your configuration and recordings, follow from step **1)** to **5)**, Otherwise just start from step **3)**:
 
 <br>
 
-**1)** Clone your current S3 bucket with all of your data to a new S3 bucket. You don't even need any tool installed on your machine. You can open your `AWS cloudshell` and execute:
+**1)** Clone your current S3 bucket with all of your data to a new S3 bucket. You do not even need any tool installed on your machine. You can open your [AWS cloudshell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html){:target="_blank"} and execute:
 
 ```
 aws s3api create-bucket \
@@ -79,7 +82,7 @@ aws s3 sync s3://<bucket-v2.21.0> s3://<new-bucket-v2.22.0>
 
 **4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.22.0/deployment/enterprise/aws/#check-cluster-after-deploy)
 
-**5)** Check your new S3 bucket (or check the `new-bucket-v2.22.0` you have created if you followed steps 1 and 2, and move your old configuration to the `.env` configuration of the new bucket. You can follow  [this section](https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
+**5)** Check your new S3 bucket (or check the `new-bucket-v2.22.0` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow  [this section](https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
 
 <br>
 
@@ -110,11 +113,14 @@ Upgrading process for this kind of deployment is exactly the same as [Migrating 
 ### Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation - High Availability deployment)
 <br>
 
-For OpenVidu Enterprise with multiple master nodes, the process of can't be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration. You can access to it from your CloudFormation panel, at the **Resources** section. If you have some recordings in there and you want to preserve for the next version, start from step 1. If not you can go directly to step 3:
+For OpenVidu Enterprise with High Availability, the upgrading process can not be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration and recordings. You can access to it from your CloudFormation panel, at the **Resources** section. 
+
+To upgrade you will need to deploy the newer Cloudformation template of the version you want to deploy.
+If you want to keep in your new deployment your configuration and recordings, follow from step **1)** to **5)**, Otherwise just start from step **3)**:
 
 <br>
 
-**1)** Clone your current S3 bucket with all of your data to a new S3 bucket. You don't even need any tool installed on your machine. You can open your `AWS cloudshell` and execute:
+**1)** Clone your current S3 bucket with all of your data to a new S3 bucket. You do not even need any tool installed on your machine. You can open your [AWS cloudshell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html){:target="_blank"} and execute:
 
 ```
 aws s3api create-bucket \
@@ -129,7 +135,7 @@ aws s3 sync s3://<bucket-v2.20.0> s3://<new-bucket-v2.21.0>
 
 **4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/#check-cluster-after-deploy)
 
-**5)** Check your new S3 bucket (or check the `new-bucket-v2.21.0` you have created if you followed steps 1 and 2, and move your old configuration to the `.env` configuration of the new bucket. You can follow  [this section](https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
+**5)** Check your new S3 bucket (or check the `new-bucket-v2.21.0` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow  [this section](https://docs.openvidu.io/en/2.21.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
 
 <br>
 
