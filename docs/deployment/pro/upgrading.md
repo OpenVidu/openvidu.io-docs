@@ -103,7 +103,7 @@ Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, y
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-        To be able to execute the next commands in your aws account you need <strong><a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region</strong>
+        To be able to execute the next commands in your aws account you need  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region. Moreover, you can use <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html" target="_blank">AWS Cloudshell</a> service to execute <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> commands without the need of installing anything in your local machine.
   </div>
 </div>
 
