@@ -18,7 +18,7 @@ This customization is possible thanks to the [**ParticipantsPanelItemElementsDir
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    openvidu-custom-participant-panel-item-element is not production ready videconference app because it's using an insecure communication for requesting the token to OpenVidu Server. We highly recommend do this in the backend side.
+    openvidu-custom-participant-panel-item-element is not a production ready application, as it is requesting participant tokens to OpenVidu Server directly from the client side. This is an insecure process, and it should be done from your application's backend.
   </div>
 </div>
 
