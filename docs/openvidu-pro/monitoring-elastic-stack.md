@@ -315,7 +315,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
   "user": "09847CC560698063",
   "connectionId": "con_Sazh73ER9L",
   "endpoint": "str_CAM_GdhM_con_Sazh73ER9L",
-  "type": "MediaFlowOutStateChange",
+  "type": "MediaFlowOutStateChanged",
   "state": "FLOWING",
   "padName": "default",
   "mediaType": "VIDEO",
