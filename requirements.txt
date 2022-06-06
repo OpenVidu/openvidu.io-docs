@@ -7,3 +7,4 @@
 
 mkdocs==1.2.2
 mkdocs-exclude-search
+jinja2==3.1.2
