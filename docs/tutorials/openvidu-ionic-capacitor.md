@@ -102,19 +102,19 @@ You will need to sign your application in Xcode (opening folder _openvidu-ionic/
 
 <div class="row no-margin ">
 	<div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="img/demos/ov-ionic1.png">
-		<img class="img-responsive" src="img/demos/ov-ionic1.png">
-	</a>
+		<a data-fancybox="gallery2" data-type="image" class="fancybox-img" href="img/demos/ov-ionic1.png">
+      <img class="img-responsive" src="img/demos/ov-ionic1.png">
+    </a>
 	</div>
 	<div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="img/demos/ov-ionic2.png">
-		<img class="img-responsive" src="img/demos/ov-ionic2.png">
-	</a>
+		<a data-fancybox="gallery2" data-type="image" class="fancybox-img" href="img/demos/ov-ionic2.png">
+      <img class="img-responsive" src="img/demos/ov-ionic2.png">
+    </a>
 	</div>
     <div class="col-md-4 col-sm-4">
-		<a data-fancybox="gallery2" href="img/demos/ov-ionic3.png">
-		<img class="img-responsive" src="img/demos/ov-ionic3.png">
-	</a>
+		<a data-fancybox="gallery2" data-type="image" class="fancybox-img" href="img/demos/ov-ionic3.png">
+      <img class="img-responsive" src="img/demos/ov-ionic3.png">
+    </a>
 	</div>
 </div>
 
@@ -152,21 +152,6 @@ private applyIosIonicVideoAttributes() {
 ```
 
 
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
