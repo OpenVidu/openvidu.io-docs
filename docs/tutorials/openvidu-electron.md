@@ -1,58 +1,59 @@
 # openvidu-electron
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-electron" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Electron**. It can be compiled into a native desktop application for **Windows**, **OSX** and **Linux**. It includes [electron-forge](https://www.electronforge.io/){:target="_blank"} as a dependency so the compilation process is as simple as running a single command: `npm run make`
+An OpenVidu application built with **Electron**. It can be compiled into a native desktop application for **Windows**, **OSX** and **Linux**. It includes [electron-forge](https://www.electronforge.io/){:target="_blank"} as a dependency so the compilation process is as simple as running a single command: `npm run make`
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial due to this being an Electron app and being a little more complex for OpenVidu starters.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-electron.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-electron.png"/>
+        </a>
+    </div>
+</div>
 
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-electron.png">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above.
-
-- **openvidu-browser**: JavaScript library for your Electron app. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/Hq_5wmCpDjY?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) You will need **Node** and **NPM**. Check them with the following commands:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-npm -v
-node -v
-```
+#### 1. Run OpenVidu deployment
 
-2) Clone the repo:
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-3) Install dependencies and run the tutorial:
-
-```bash
-cd openvidu-tutorials/openvidu-electron
-npm install
-npm start
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) The app will start automatically as a native desktop application, regardless of the OS you are using. If you are on Windows, it will launch as a Windows app. In OSX as an OSX app, and in Linux as a Linux app.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} to serve the application. Check it with the following command:
+
+```bash
+npm -v
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+
+cd openvidu-tutorials/openvidu-electron
+npm install
+npm start
+```
+
+The app will start automatically as a native desktop application, regardless of the OS you are using. If you are on Windows, it will launch as a Windows app. In OSX as an OSX app, and in Linux as a Linux app.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -327,3 +328,7 @@ function sendScreenSelection() {
   closeWindow();
 }
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

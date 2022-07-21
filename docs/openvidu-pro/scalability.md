@@ -10,7 +10,7 @@
 - **[Set the number of Media Nodes on startup](#set-the-number-of-media-nodes-on-startup)**
 - **[Change the number of Media Nodes on the fly](#change-the-number-of-media-nodes-on-the-fly)**
 - **[OpenVidu Pro cluster events](#openvidu-pro-cluster-events)**
-- **[How many users can an OpenVidu Pro cluster handle](#how-many-users-can-an-openvidu-pro-cluster-handle)**
+- **[How many users an OpenVidu Pro cluster can handle](#how-many-users-an-openvidu-pro-cluster-can-handle)**
 - **[Scalable recording](#scalable-recording)**
 - **[Autoscaling](#autoscaling)**
 - **[Current limitations of OpenVidu Pro scalability](#current-limitations-of-openvidu-pro-scalability)**
@@ -28,7 +28,7 @@ OpenVidu Pro consists of different nodes that work together to offer OpenVidu se
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-pro/openvidu-cluster.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/openvidu-cluster.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-pro/openvidu-cluster.png"/></a>
     </div>
 </div>
 
@@ -153,7 +153,7 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro18.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro18.png"/></a>
     </div>
 </div>
 
@@ -177,7 +177,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 
 OpenVidu Pro provides an specific server-side event that will inform you every time there is a change in the status of the cluster. You can listen to this event by using [OpenVidu Webhook](reference-docs/openvidu-server-webhook) (it will also be registered in [OpenVidu CDR](reference-docs/openvidu-server-cdr)).
 
-This event is **[mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged)**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro Media Node REST API](reference-docs/REST-API/#the-media-node-object) to retrieve or modify the status of a Media Node at any time.
+This event is **[mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged)**. By listening to it you will have a complete record of your OpenVidu Pro cluster behavior in real time. And of course you can always use [OpenVidu Pro Media Node REST API](reference-docs/REST-API/#the-media-node-object) to retrieve or modify the status of a Media Node at any time.
 
 #### Media Node statuses
 
@@ -185,7 +185,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 
 <div class="row">
     <div class="pro-gallery" style="margin-bottom: 25px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
+        <a data-fancybox="gallery-pro3" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
     </div>
 </div>
 
@@ -201,7 +201,7 @@ Here are all the possible statuses of a Media Node within an OpenVidu Pro cluste
 
 ---
 
-## How many users can an OpenVidu Pro cluster handle
+## How many users an OpenVidu Pro cluster can handle
 
 This is probably one of the most important questions when using OpenVidu Pro. The number of Media Nodes you need and the size of each Media Node depends on the answer. Therefore, the price of your OpenVidu Pro cluster also depends on the answer.
 
@@ -266,8 +266,8 @@ OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD=30
 
  - For **any deployment environment different to On Premises**, OpenVidu Pro will automatically manage the complete lifecycle of all Media Nodes, being able to launch and drop instances on its own. In this case the user doesn't need to do anything regarding instance management.<br><br>
  - For **[On Premises](deployment/pro/on-premises/)** deployments, OpenVidu Pro won't be able to launch and drop instances from the cluster on its own. It will only be able to transition Media Node statuses from one status to another. That includes disconnecting Media Nodes from the cluster when required (so that you are no longer charged for them), but you will still be responsible of launching and adding to the cluster new Media Nodes when indicated and terminating the instances of disconnected Media Nodes (if that's what you want). In order to accomplish this you must listen to:
-    - Event [autoscaling](reference-docs/openvidu-server-cdr/#autoscaling): to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](deployment/pro/on-premises/#with-openvidu-pro-rest-api).
-    - Event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged): to know when to terminate the instance of a Media Node, if that's what you want. Wait for `terminated` status to know when you can safely terminate the Media Node instance without losing any data.
+    - Event [autoscaling](reference-docs/openvidu-server-webhook/#autoscaling): to know when to launch and/or add to the cluster new Media Nodes (property `mediaNodes.launch.newNodes`). You must launch the Media Node on your own and then you can add it to the cluster programmatically with [OpenVidu Pro REST API](deployment/pro/on-premises/#with-openvidu-pro-rest-api).
+    - Event [mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged): to know when to terminate the instance of a Media Node, if that's what you want. Wait for `terminated` status to know when you can safely terminate the Media Node instance without losing any data.
 
 ### How does the autoscaling algorithm behave?
 
@@ -277,7 +277,7 @@ OpenVidu Pro will be constantly monitoring the load of each Media Node of the cl
 
 <div class="row">
     <div class="pro-gallery" style="margin-bottom: 25px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/instance-status.png"><img class="img-responsive" style="margin: auto; max-height: 600px" src="img/docs/openvidu-pro/instance-status.png"/></a>
     </div>
 </div>
 
@@ -368,21 +368,7 @@ In the current status of OpenVidu Pro it is still not possible to distribute a s
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <script>
 function changeLangTab(event) {

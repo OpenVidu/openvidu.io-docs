@@ -19,6 +19,8 @@
 16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
 17. [Elastic Search and OpenVidu Pro common problems](#17-elastic-search-and-openvidu-pro-common-problems)
 18. [OpenVidu does not work for clients behind restrictive firewalls](#18-openvidu-does-not-work-for-clients-behind-restrictive-firewalls)
+<!--19. [How to trust a self-signed certificate](#19-how-to-trust-a-self-signed-certificate)-->
+
 
 ---
 
@@ -113,7 +115,7 @@ Then, to let your applications know how to connect to OpenVidu Server:
 
 #### Applications _Client-Side Only_
 
-(For example _[openvidu-hello-world](tutorials/openvidu-hello-world/)_, _[openvidu-insecure-js](tutorials/openvidu-insecure-js/)_, _[openvidu-insecure-angular](tutorials/openvidu-insecure-angular/)_, _[openvidu-getaroom](demos/openvidu-getaroom/)_)
+(For example _[openvidu-hello-world](tutorials/openvidu-hello-world/)_, _[openvidu-js](tutorials/openvidu-js/)_, _[openvidu-angular](tutorials/openvidu-angular/)_, _[openvidu-getaroom](demos/openvidu-getaroom/)_)
 
 When consuming openvidu-server REST API, change `location.hostname` to the IP of the Docker container running openvidu-server (usually `192.168.99.100`). For every one of the insecure tutorials listed above, the url where to send the REST operations ...
 
@@ -126,8 +128,8 @@ When consuming openvidu-server REST API, change `location.hostname` to the IP of
 Change this url in every insecure tutorial right here:
 
 - **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L56){:target="_blank"}
-- **openvidu-insecure-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-js/web/app.js#L194){:target="_blank"}
-- **openvidu-insecure-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-angular/src/app/app.component.ts#L15){:target="_blank"}
+- **openvidu-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-js/web/app.js#L194){:target="_blank"}
+- **openvidu-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-angular/src/app/app.component.ts#L15){:target="_blank"}
 - **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L274){:target="_blank"}
 
 > Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
@@ -177,9 +179,9 @@ First of all, let's differentiate between OpenVidu server-side and your applicat
   - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](deployment/ce/aws/) to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
   - You will generally want your application to have its own server-side. Why?
 
-Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](tutorials/openvidu-hello-world/), [openvidu-insecure-js](tutorials/openvidu-insecure-js/), [openvidu-getaroom](demos/openvidu-getaroom/)
+Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](tutorials/openvidu-hello-world/), [openvidu-js](tutorials/openvidu-js/), [openvidu-getaroom](demos/openvidu-getaroom/)
 
-The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-insecure-js/web/app.js#L184){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L264){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
+The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-js/web/app.js#L184){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L264){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
 
 > **IMPORTANT**: Do NOT include your SECRET in your JavaScript or HTML files in a production environment!
 
@@ -252,7 +254,7 @@ OpenVidu supports a wide range of platforms:
 - Firefox
 - Opera
 - Safari
-- Microsoft Edge >= 80
+- Microsoft Edge
 
 <br>
 ##### Mobile browsers
@@ -278,7 +280,7 @@ Both Android and iOS are supported with hybrid frameworks:
 <br>
 ##### Desktop native applications
 
-- **Windows**, **OSX** and **Linux** are supported since release **2.10.0** through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](tutorials/openvidu-electron/) tutorial and you will have an OpenVidu native desktop application working in minutes.
+- **Windows**, **OSX** and **Linux** are supported through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](tutorials/openvidu-electron/) tutorial and you will have an OpenVidu native desktop application working in minutes.
 
 ---
 
@@ -678,3 +680,19 @@ Elasticsearch may take some minutes to start due to a lot of data saved or low m
 #### 18. OpenVidu does not work for clients behind restrictive firewalls
 
 OpenVidu CE and OpenVidu Pro deploy by default a TURN server (Coturn) at port 3478. Some strict firewalls have restrictions on requests with origin ports other than 80 and 443, consequently denying requests from port 3478. Follow the instructions of section [Allow users behind firewalls](deployment/allow-users-behind-firewalls/) to solve these situations.
+
+<!--
+---
+
+#### 19. How to trust a self-signed certificate
+
+Most browsers will not trust a self-signed certificate, showing a security warning page (or rejecting access altogether, like iOS Safari). However, you can override this by installing your Root CA in the device. Then, the self-signed certificate will be trusted just like if it had been issued by a reputable Authority.
+
+- On **desktop browsers**, installing the Root CA is easy because mkcert does it for you:
+
+        CAROOT="$PWD" mkcert -install
+
+- In **iOS**, you can either email the `rootCA.pem` file to yourself, use AirDrop, or serve it from an HTTP server. Normally, a dialog should pop up asking if you want to install the new certificate; afterwards, you must [enable full trust in it](https://support.apple.com/en-nz/HT204477){:target="_blank"}. When finished, your self-signed certs will be trusted by the system, and iOS Safari will allow accessing pages on the `*.home.arpa` subdomain.
+
+- In **Android**, you’ll have to install the Root CA and then enable user roots in the development build of your app. See [this StackOverflow answer](https://stackoverflow.com/a/22040887/749014){:target="_blank"}.
+-->

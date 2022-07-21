@@ -17,7 +17,7 @@ The main difference between an OpenVidu Enterprise Single Master deployment and 
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture.png"><img class="img-responsive" style="margin: auto; max-height: 480px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-enterprise/enterprise-architecture.png"><img class="img-responsive" style="margin: auto; max-height: 480px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture.png"/></a>
     </div>
 </div>
 
@@ -30,7 +30,7 @@ A more accurate architectural description is available in the image below. As ca
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture-2.png"><img class="img-responsive" style="margin: auto; max-height: 600px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture-2.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-enterprise/enterprise-architecture-2.png"><img class="img-responsive" style="margin: auto; max-height: 600px; image-rendering: -webkit-optimize-contrast;" src="img/docs/openvidu-enterprise/enterprise-architecture-2.png"/></a>
     </div>
 </div>
 
@@ -230,21 +230,7 @@ OpenVidu Enterprise HA is only available in **AWS**. Go to [Deploying OpenVidu E
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <script>
 function changeLangTab(event) {

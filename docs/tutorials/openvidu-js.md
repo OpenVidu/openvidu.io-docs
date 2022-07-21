@@ -1,79 +1,56 @@
-# openvidu-insecure-js
-<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-js" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+# openvidu-js
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with JavaScript, HTML and CSS.
+An OpenVidu application built with plain JavaScript, HTML and CSS.
 
-If it is the first time you use OpenVidu, it is highly recommended to start with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial, as this app is no more than an extension of it with some new features and styles.
-
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeVBWdkFwWEtqNjA">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flows transmission
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	Tutorial's name includes "insecure" word because this application has no backend and therefore it has no control over the users. Typically you don't want such application in production environments. When you feel comfortable with the client-side of OpenVidu, add your own server or follow one of our super simple secure tutorials.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-js.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-js.png"/>
+        </a>
+    </div>
 </div>
-</div>
+
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/-0iOV3CQCk8?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+#### 1. Run OpenVidu deployment
 
-2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-npm install -g http-server
-```
-
-3) Run the tutorial:
-
-```bash
-http-server openvidu-tutorials/openvidu-insecure-js/web
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
+
+```bash
+npm install -g http-server
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+http-server openvidu-tutorials/openvidu-js/web
+```
+
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -81,14 +58,14 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-join.png">
-		<img class="img-responsive" src="img/demos/insecure-join.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-join.png">
+			<img class="img-responsive" src="img/demos/insecure-join.png">
+		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-session.png">
-		<img class="img-responsive" src="img/demos/insecure-session.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-session.png">
+			<img class="img-responsive" src="img/demos/insecure-session.png">
+		</a>
 	</div>
 </div>
 
@@ -225,7 +202,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-js/web/app.js#L192){:target="_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-js/web/app.js#L192){:target="_blank"}.
 
 ---
 
@@ -381,7 +358,7 @@ function initMainVideo(videoElement, userData) {
 }
 ```
 
-## Deploy openvidu-insecure-js
+## Deploy openvidu-js
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
@@ -392,9 +369,9 @@ function initMainVideo(videoElement, userData) {
   </div>
 </div>
 
-Under the root project folder, you can see the `openvidu-insecure-js/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+Under the root project folder, you can see the `openvidu-js/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
 
-First of all, you will need to create the **openvidu-insecure-js** docker image.
+First of all, you will need to create the **openvidu-js** docker image.
 
 **1) Run `create_image.sh` script:**
 
@@ -402,11 +379,11 @@ First of all, you will need to create the **openvidu-insecure-js** docker image.
 ./create_image.sh
 ```
 
-This script will create an image named `openvidu/openvidu-insecure-js-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name here [here](https://github.com/OpenVidu/openvidu-tutorials/blob/b8c8ac37cf541c2681d35ef24cd15b0f44d8c0b8/openvidu-insecure-js/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will be able to deploy it.
+This script will create an image named `openvidu/openvidu-js-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name here [here](https://github.com/OpenVidu/openvidu-tutorials/blob/b8c8ac37cf541c2681d35ef24cd15b0f44d8c0b8/openvidu-js/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will be able to deploy it.
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-insecure-js-demo` on this sample).
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-js-demo` on this sample).
 
 Your `docker-compose.override.yml` should look like this:
 
@@ -415,7 +392,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-insecure-js-demo:2.22.0
+        image: openvidu/openvidu-js-demo:2.22.0
         restart: on-failure
         network_mode: host
         environment:
@@ -425,18 +402,4 @@ services:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

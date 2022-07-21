@@ -652,6 +652,7 @@ A Recording represents the recording process of a Session.
     "recordingLayout": "CUSTOM",
     "customLayout": "",
     "sessionId": "ses_YnDaGYNcd7",
+    "mediaNode": "media_i-po39jr3e10rkjsdfj",
     "createdAt": 1600564785109,
     "size": 303072692,
     "duration": 108000.234,
@@ -673,11 +674,12 @@ A Recording represents the recording process of a Session.
 | recordingLayout | String | The recording layout that is being used. Only defined if `outputMode` is set to `COMPOSED`  or `COMPOSED_QUICK_START` and `hasVideo` to true |
 | customLayout | String | The custom layout that is being used. Only defined if `recordingLayout` is set to `CUSTOM` |
 | sessionId | String | Session associated to the Recording |
+| mediaNode | String |  |
 | createdAt | Number | Time when the Recording started in UTC milliseconds |
 | size | Number | Size in bytes of the video file. Only guaranteed to be greater than `0` if status is `ready` |
 | duration | Number | Duration of the video file in seconds. Only guaranteed to be greater than `0` if status is `ready` |
 | url | String | URL where the Recording file is available.  Only guaranteed to different than `null` if status is `ready`<div style="margin-top:10px"></div>The final URL value follows this format:<div style="margin-top:5px"></div>`https://YOUR_OPENVIDUSERVER_IP/openvidu/recordings/<RECORDING_ID>/<RECORDING_NAME>.<EXTENSION>`<br>This path will be protected with OpenVidu credentials depending on whether [openvidu-server configuration property `OPENVIDU_RECORDING_PUBLIC_ACCESS`](reference-docs/openvidu-config/) is false or true. This format is equals to the AWS S3 URL object property of the uploaded object for OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3) |
-| status | String | Status of the Recording: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>starting</code>: the Recording is being started. This is in a way a special status, because it can only appear if a concurrent REST API call to list recordings is done at the narrow time frame in which the Recording starts. The moment the start operation returns, the Recording status will be <i>started</i>. A Recording in this status cannot be stopped. It does not get triggered in CDR/Webhook [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged).</li><li style="color:inherit;margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="color:inherit;margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="color:inherit;margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3) this status means that the Recording has been successfully stored in the S3 bucket.</li><li style="color:inherit;margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul> The recording status will be `started` after calling the start operation and while the Recording is active. After calling stop operation, the status may be `stopped` or `ready` depending on the type of deployment of OpenVidu. OpenVidu CE will always return `ready` status. OpenVidu Pro will always return `stopped` status and properties `size`, `duration` and `url` will not have their final value defined yet. Listen to [recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged) CDR/Webhook event to know when the Recording has reached `ready` status in this case |
+| status | String | Status of the Recording: <ul><li style="color:inherit;margin-bottom:4px;margin-top:4px"><code>starting</code>: the Recording is being started. This is in a way a special status, because it can only appear if a concurrent REST API call to list recordings is done at the narrow time frame in which the Recording starts. The moment the start operation returns, the Recording status will be <i>started</i>. A Recording in this status cannot be stopped. It does not get triggered in CDR/Webhook [recordingStatusChanged](reference-docs/openvidu-server-webhook/#recordingstatuschanged).</li><li style="color:inherit;margin-bottom:4px"><code>started</code>: the session is being recorded. This means the associated video(s) already exists and its size is greater than 0. NOTE: when using COMPOSED recording with video, this event does not mean there are publisher's streams being actually recorded in the video file. It only ensures the video file exists and its size is greater than 0.</li><li style="color:inherit;margin-bottom:4px"><code>stopped</code>: the recording process has stopped and files are being processed. Depending on the type of OpenVidu deployment and configuration, properties <i>duration</i> and <i>size</i> can be set to 0 and <i>url</i> can be null. If this is the case, wait for status <i>ready</i> to get the final value of these properties.</li><li style="color:inherit;margin-bottom:4px"><code>ready</code>: the recorded file has been successfully processed and is available for download. Properties <i>duration</i>, <i>size</i> and <i>url</i> will always be properly defined at this moment. For OpenVidu Pro deployments configured to [upload recordings to S3](advanced-features/recording/#uploading-recordings-to-aws-s3) this status means that the Recording has been successfully stored in the S3 bucket.</li><li style="color:inherit;margin-bottom:4px"><code>failed</code>: the recording process has failed. The final state of the recorded file cannot be guaranteed to be stable.</li></ul> The recording status will be `started` after calling the start operation and while the Recording is active. After calling stop operation, the status may be `stopped` or `ready` depending on the type of deployment of OpenVidu. OpenVidu CE will always return `ready` status. OpenVidu Pro will always return `stopped` status and properties `size`, `duration` and `url` will not have their final value defined yet. Listen to [recordingStatusChanged](reference-docs/openvidu-server-webhook/#recordingstatuschanged) CDR/Webhook event to know when the Recording has reached `ready` status in this case |
 
 ---
 
@@ -746,7 +748,7 @@ This operation returns a [**Recording object**](#the-recording-object).
 | - ||
 | 200 | The session has started to be recorded. The moment this response is retrieved, it means that the video file is already created and contains proper data, and that the recording can be stopped with guarantees |
 | 400 | Problem with some body parameter |
-| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceed acceptable values (min 0 and max 120), or trying to start a recording with both `hasAudio` and `hasVideo` to false |
+| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceeds acceptable values (min 0 and max 120), `shmSize` exceed acceptable values (min 134217728), or trying to start a recording with both `hasAudio` and `hasVideo` to false |
 | 404 | No session exists for the passed `session` body parameter |
 | 406 | The session has no connected participants |
 | 409 | The session is not configured for using MediaMode `ROUTED` or it is already being recorded |
@@ -1162,7 +1164,7 @@ Example for [AWS deployments](deployment/pro/aws/):
 
 ##### Sample return
 
-This operation returns the created [**Media Node object**](#the-media-node-object). Most of its properties won't be defined until the Media Node reaches `running` status. You can user query param `wait=true` to wait until the Media Node is running before receiving the response, or you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) webhook event.
+This operation returns the created [**Media Node object**](#the-media-node-object). Most of its properties won't be defined until the Media Node reaches `running` status. You can user query param `wait=true` to wait until the Media Node is running before receiving the response, or you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged) webhook event.
 
 ##### HTTP responses
 
@@ -1171,6 +1173,7 @@ This operation returns the created [**Media Node object**](#the-media-node-objec
 | 200 | The Media Node has been successfully added to the cluster |
 | 400 | Problem with some body parameter |
 | 404 | The Media Node is not within reach of OpenVidu Server. This simply means that OpenVidu cannot establish a connection with it. This may be caused by multiple reasons: wrong IP, port or path, a network problem, too strict a proxy configuration... |
+| 405 | For [OpenVidu Enterprise HA](openvidu-enterprise/high-availability/) clusters this method is not allowed |
 | 409 | The Media Node was already registered in OpenVidu Server as part of the cluster |
 | 501 | The cluster is deployed [On Premises](deployment/pro/on-premises/) and no `uri` parameter was passed in the body request |
 | 502 | The process of launching a new Media Node instance failed. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/), where instances require to be previously launched |
@@ -1235,6 +1238,7 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 | 202 | If query parameter `deletion-strategy` is set to `when-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. Media Node status has been set to `waiting-idle-to-terminate` |
 | 204 | The Media Node was successfully removed |
 | 404 | No Media Node exists for the passed `MEDIA_NODE_ID` |
+| 405 | For [OpenVidu Enterprise HA](openvidu-enterprise/high-availability/) clusters this method is not allowed |
 | 409 | If query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all |
 | 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/), where instances require manual shut down |
 
@@ -1303,6 +1307,7 @@ This operation returns the modified [**Media Node object**](#the-media-node-obje
 | 204 | The Media Node has not been modified because its status was the same as the provided through body parameters |
 | 400 | Problem with some body parameter. This means the Media Node cannot transition from its current status to the indicated one in the `status` request body parameter |
 | 404 | No Media Node exists for the passed `MEDIA_NODE_ID` |
+| 405 | For [OpenVidu Enterprise HA](openvidu-enterprise/high-availability/) clusters this method is not allowed |
 
 <br>
 
@@ -1366,8 +1371,7 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 |||
 | - ||
 | 200 | Autodiscovery process has completed |
-
-<!--| 405 | Autodiscovery process is not possible. This may happen if OpenVidu Pro cluster environment is set to `on_premise` and no autodiscover script is available |-->
+| 405 | For [OpenVidu Enterprise HA](openvidu-enterprise/high-availability/) clusters this method is not allowed |
 
 <br>
 

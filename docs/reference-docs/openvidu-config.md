@@ -156,8 +156,8 @@ These configuration parameters apply only to OpenVidu Enterprise.
 | **`KMS_IMAGE`** | Docker image used in media nodes for Kurento in OpenVidu PRO/Enterprise. By default it is the correspondant image of the deployed version. [See](https://docs.openvidu.io/en/stable/releases/) | |
 | **`MEDIASOUP_IMAGE`** | Docker image used in media nodes for Mediasoup in OpenVidu PRO/Enterprise. [See](https://docs.openvidu.io/en/stable/releases/) | |
 | **`KMS_DOCKER_ENV_*`** | You can add any environment variable to Kurento/mediasoup running in the Media Node. If you want to add an environment variable to this container, you must add a variable using this prefix: `KMS_DOCKER_ENV_`, followed by the environment variable you want to setup. For example, if you want to setup `KMS_MIN_PORT` to `50000`, it would be `KMS_DOCKER_ENV_KMS_MIN_PORT=50000`. | |
-| **`AWS_*`** | These parameters are used in [OpenVidu PRO](deployment/pro/aws/) and [OpenVidu Enterprise](deployment/enterprise/aws/#single-master-deployment) for AWS related issues, in AWS deployments of OpenVidu. You should not touch this parameters, as they are automatically initialized on Cloudformation launch. | |
-<!--| **`RM_*`** | These parameters are used in [OpenVidu Enterprise](openvidu-enterprise) to configure service `replication-manager`. You should not touch this parameters, as they are automatically initialized on Cloudformation launch. | |-->
+| **`AWS_*`** | These parameters are used in [OpenVidu PRO](deployment/pro/aws/) and [OpenVidu Enterprise](deployment/enterprise/aws/#single-master-deployment) for AWS related issues, in AWS deployments of OpenVidu. You should not touch these parameters, as they are automatically initialized on Cloudformation launch. | |
+<!--| **`RM_*`** | These parameters are used in [OpenVidu Enterprise](openvidu-enterprise) to configure service `replication-manager`. You should not touch these parameters, as they are automatically initialized on Cloudformation launch. | |-->
 
 ---
 

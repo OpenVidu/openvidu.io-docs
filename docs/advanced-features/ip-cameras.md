@@ -4,13 +4,38 @@
 - **[How to unpublish IP cameras](#how-to-unpublish-ip-cameras)**
 - **[Configuring IP cameras](#configuring-ip-cameras)**
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+For <a href="openvidu-enterprise/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> IP cameras support is only available when using Kurento as media server. Currently mediasoup is not compatible with IP cameras. See <a href="openvidu-enterprise/#kurento-vs-mediasoup">Kurento vs mediasoup</a>.
+</div>
+</div>
+
 <br>
 
 ---
 
 ## How to publish IP cameras
 
-You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol){:target="_blank"}**. You perform this operation from your server by consuming OpenVidu Server REST API.
+You can publish any IP camera sending video over **[RTSP](https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol){:target="_blank"}**. You perform this operation from your server by consuming OpenVidu REST API.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -99,9 +124,9 @@ After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) all participant
 
 #### Events dispatched in the backend
 
-Your backend side will also receive the expected events in the [CDR](reference-docs/openvidu-server-cdr) and [Webhook](reference-docs/openvidu-server-webhook). Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user.
+Your backend side will also receive the expected events in your [Webhook](reference-docs/openvidu-server-webhook). Just as happens for the client-side events, for the backend same events will be dispatched as for any other regular user.
 
-- **[participantJoined](reference-docs/openvidu-server-cdr/#participantjoined)** event fot the new IP camera Connection. `platform` property is set to `"IPCAM"`.
+- **[participantJoined](reference-docs/openvidu-server-webhook/#participantjoined)** event fot the new IP camera Connection. `platform` property is set to `"IPCAM"`.
 ```json
 {
   "participantJoined": {
@@ -115,7 +140,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
   }
 }
 ```
-- **[webrtcConnectionCreated](reference-docs/openvidu-server-cdr/#webrtcconnectioncreated)** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the sake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM` and there are new properties specific to IP cameras.
+- **[webrtcConnectionCreated](reference-docs/openvidu-server-webhook/#webrtcconnectioncreated)** event fot the new IP camera stream. It is actually an RTSP stream and not a WebRTC stream, but for the sake of compatibility the name of the event will remain the same for now. `videoSource` property is set to `IPCAM` and there are new properties specific to IP cameras.
 ```json
 {
   "webrtcConnectionCreated": {
@@ -137,7 +162,7 @@ Your backend side will also receive the expected events in the [CDR](reference-d
 }
 ```
 
-After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-cdr/#webrtcconnectiondestroyed)** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-cdr/#participantleft)** event (only one for the camera's Connection).
+After [unpublishing the IP camera](#how-to-unpublish-ip-cameras) your backend will receive the proper events **[webrtcConnectionDestroyed](reference-docs/openvidu-server-webhook/#webrtcconnectiondestroyed)** (one for the IP camera's stream itself and one for each user that was subscribed to the camera's feed) and **[participantLeft](reference-docs/openvidu-server-webhook/#participantleft)** event (only one for the camera's Connection).
 
 <br>
 

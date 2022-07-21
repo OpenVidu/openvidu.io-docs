@@ -31,6 +31,8 @@ OpenVidu Server can be configured to record sessions. Two modes of recordings ar
 
 For technical information about the media codecs and formats used for recording, check here: [Codecs on OpenVidu Recordings](advanced-features/media-codecs/#recording).
 
+For tutorials implementing recording capabilities, see [openvidu-recording-java](tutorials/openvidu-recording-java/) or [openvidu-recording-node](tutorials/openvidu-recording-node/).
+
 <br>
 
 ---
@@ -1329,7 +1331,7 @@ S3 provides persistance for recording data in OpenVidu Pro clusters. It brings m
 - Launching an OpenVidu Pro cluster configured to use an already populated S3 bucket will make the existing recordings accessible and manageable from the new cluster.
 - You can upload to the same S3 bucket from different OpenVidu Pro clusters.
 
-Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged)** event to know when a recording has been successfully uploaded to S3.
+Bare in mind that the upload process **is not performed in real time** while the recording is active. Recordings must be first stopped before they are automatically uploaded to S3, and terminating a cluster with an active recording will result in losing that entire recording. Listen to **[recordingStatusChanged](reference-docs/openvidu-server-webhook/#recordingstatuschanged)** event to know when a recording has been successfully uploaded to S3.
 
 To enable S3 recording storage configure the following properties in the **`.env`** file at Master Node installation path (default to `/opt/openvidu`)
 

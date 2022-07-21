@@ -5,7 +5,7 @@ OpenVidu Call is the flagship videoconference app integrating many of the capabi
 
 Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
-<p align="center">
+<p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video>
 </p>
 
@@ -13,7 +13,7 @@ Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for 
 
 OpenVidu Call frontend is built using <strong>openvidu-angular</strong> client library. As it's a production ready application, it also provides a backend which is built with <strong>Node</strong> using ExpressJS.
 
-<!-- <p align="center">
+<!-- <p align="center" style="margin-top: 30px">
   <img class="img-responsive" src="img/demos/openvidu-call-architecture.png">
 </p> -->
 
@@ -22,7 +22,7 @@ OpenVidu Call frontend is built using <strong>openvidu-angular</strong> client l
 
 OpenVidu Call is production ready videconference app which OpenVidu includes in every deployment. There are two parts to explain in this tutorial:
 
-* **openvidu-call-backend**: A simple NodeJS backend which uses ExpressJS with the aim of requesting tokens to OpenVidu Server (using [openvidu-node-client](reference-docs/openvidu-node-client/)) and returning back to the frontend side. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-back).
+* **openvidu-call-backend**: A simple Node.js backend which uses ExpressJS with the aim of requesting tokens to OpenVidu Server (using [openvidu-node-client](reference-docs/openvidu-node-client/)) and returning back to the frontend side. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-back).
 
     - `app.ts`: entrypoint of the server.
     - `config.ts`: file which contains the backend environmet variables.
@@ -64,7 +64,7 @@ Now, we can use all components that the openvidu-angular provides.
 1)  Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
 cd openvidu-call
 ```
 
@@ -82,10 +82,10 @@ Please visit <a href="https://nodejs.org/">https://nodejs.org/</a> to install it
 
 > If you are using **Docker Toolbox on Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly execute OpenVidu development container and how to adapt these instructions.
 
-OpenVidu platform must be up and running. The easiest way is running this OpenVidu development container (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+OpenVidu platform must be up and running. The easiest way is running this OpenVidu development container (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0

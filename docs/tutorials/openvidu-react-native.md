@@ -1,36 +1,28 @@
 # openvidu-react-native
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-react-native" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **React Native** framework using React and JavaScript. It can be compiled into a **native Android app**, a **native iOS app** .
-
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial due to this being a native app and being a little more complex for OpenVidu starters.
+An OpenVidu application built with **React Native**. It can be compiled into a **native Android app** and a **native iOS app**.
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it
+    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it.
   </div>
 </div>
 
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-react-native.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-react-native.png"/>
+        </a>
+    </div>
+</div>
 
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-insecure-react.png">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: NPM package for your React Native app. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
 
 ## Running this tutorial
-
-
-</div>
 
 1) You will need **Node 8.3 ** or newer, **NPM**, **React Native CLI** to serve the app. Install them with the following command
 
@@ -43,7 +35,7 @@ sudo npm install -g react-native-cli
 2) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
 ```
 
 3) Install dependencies
@@ -599,9 +591,9 @@ These configurations are already included in this **openvidu-react-native projec
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-12">
-		<a data-fancybox="gallery" href="img/tutorials/xcode1.png">
-		<img class="img-responsive" src="img/tutorials/xcode1.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/tutorials/xcode1.png">
+            <img class="img-responsive" src="img/tutorials/xcode1.png">
+        </a>
 	</div>
 </div>
 
@@ -676,18 +668,4 @@ pod install
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

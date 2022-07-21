@@ -1,0 +1,159 @@
+<div class="lang-tabs-container" style="margin-bottom: 25px">
+
+    <div class="lang-tabs-header">
+        <button class="lang-tabs-btn" data-language="java" onclick="changeLangServerTab(event)" style="background-color: #e8e8e8; color: black">
+            <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials img-server-logo" alt="java" />
+            Java
+        </button>
+        <button class="lang-tabs-btn" data-language="nodejs" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials img-server-logo" alt="nodejs" />
+            Node.js
+        </button>
+        <button class="lang-tabs-btn" data-language="python" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials img-server-logo" alt="python" />
+            Python
+        </button>
+        <button class="lang-tabs-btn" data-language="dotnet" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials img-server-logo" alt="dotnet" />
+            .NET
+        </button>
+        <button class="lang-tabs-btn" data-language="php" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/php.svg" class="img-responsive img-tutorials img-server-logo" alt="php" />
+            PHP
+        </button>
+        <button class="lang-tabs-btn" data-language="ruby" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials img-server-logo" alt="ruby" style="padding: 14px"/>
+            Ruby
+        </button>
+    </div>
+
+    <div id="java" class="lang-tabs-content">
+        <ol>
+            <li>
+                <div style="margin-bottom: 10px">Clone the repository</div>
+                <code class="language-bash hljs">
+                    git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0<br>
+                    cd openvidu-tutorials/openvidu-basic-java
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Run the application</div>
+                <code class="language-bash hljs">
+                    mvn spring-boot:run
+                </code>
+            </li>
+        </ol>
+    </div>
+
+    <div id="nodejs" class="lang-tabs-content" style="display:none">
+        <ol>
+            <li>
+                <div style="margin-bottom: 10px">Clone the repository</div>
+                <code class="language-bash hljs">
+                    git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0<br>
+                    cd openvidu-tutorials/openvidu-basic-node
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Install dependencies</div>
+                <code class="language-bash hljs">
+                    npm install
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Run the application</div>
+                <code class="language-bash hljs">
+                    node index.js
+                </code>
+            </li>
+        </ol>
+    </div>
+
+    <div id="python" class="lang-tabs-content" style="display:none">
+        <ol>
+            <li>
+                <div style="margin-bottom: 10px">Clone the repository</div>
+                <code class="language-bash hljs">
+                    git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0<br>
+                    cd openvidu-tutorials/openvidu-basic-python
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Create a python3 environment and activate it</div>
+                <code class="language-bash hljs">
+                    python3 -m venv venv
+                </code>
+                <code class="language-bash hljs" style="margin-top: 10px">
+                    . venv/bin/activate
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Install dependencies</div>
+                <code class="language-bash hljs">
+                    pip install -r requirements.txt
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Run the application</div>
+                <code class="language-bash hljs">
+                    python3 app.py
+                </code>
+            </li>
+        </ol>
+    </div>
+
+    <div id="dotnet" class="lang-tabs-content" style="display:none">
+        <ol>
+            <li>
+                <div style="margin-bottom: 10px">Clone the repository</div>
+                <code class="language-bash hljs">
+                    git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0<br>
+                    cd openvidu-tutorials/openvidu-basic-dotnet
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Run the application</div>
+                <code class="language-bash hljs">
+                    dotnet run
+                </code>
+            </li>
+        </ol>
+    </div>
+
+    <div id="php" class="lang-tabs-content" style="display:none">
+        Coming soon...
+    </div>
+
+    <div id="ruby" class="lang-tabs-content" style="display:none">
+        Coming soon...
+    </div>
+
+</div>
+
+<script>
+    function changeLangServerTab(event) {
+        var parent = event.target.parentNode.parentNode;
+        var txt = event.target.dataset.language;
+        for (var i = 0; i < parent.children.length; i++) {
+            var child = parent.children[i];
+            // Change appearance of language buttons
+            if (child.classList.contains("lang-tabs-header")) {
+                for (var j = 0; j < child.children.length; j++) {
+                    var btn = child.children[j];
+                    if (btn.classList.contains("lang-tabs-btn")) {
+                        btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
+                        btn.style.color = btn === event.target ? 'black' : '#777';
+                    }
+                }
+            }
+            // Change visibility of language content
+            if (child.classList.contains("lang-tabs-content")) {
+                if (child.id === txt) {
+                    child.style.display = "block";
+                } else {
+                    child.style.display = "none";
+                }
+            }
+        }
+    }
+</script>

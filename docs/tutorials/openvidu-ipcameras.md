@@ -1,52 +1,54 @@
 # openvidu-ipcameras
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-ipcameras" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu application with a Java backend. It makes use of _openvidu-java-client_ to connect to OpenVidu Server. It serves a single HTML page (generated with [Thymeleaf](http://www.thymeleaf.org/)) where users can subscribe and see a collection of IP cameras.
+An OpenVidu application with a Java backend. It makes use of _openvidu-java-client SDK_ to communicate with the OpenVidu deployment. It serves a single HTML page (generated with [Thymeleaf](http://www.thymeleaf.org/)) where users can subscribe and see a collection of IP cameras.
 
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-ipcameras.png">
-</p>
-
-OpenVidu is composed by the modules displayed on the image above.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-java-client**: server SDK for Java. Quick alternative to REST API
-- **openvidu-server**: application to control Kurento Media Server
-- **Kurento Media Server**: handles low level operations of media flow transmissions
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-ipcameras.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-ipcameras.png"/>
+        </a>
+    </div>
+</div>
 
 ## Running this tutorial
 
-1) Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-2) You will need _maven_ to build the project. You can install it with:
+#### 2. Run the server application and the client application
+
+You need [Java](https://www.java.com/en/download/){:target="_blank"} and [Maven](https://maven.apache.org/install.html){:target="_blank"}. Check them with:
+
+```
+java --version
+mvn --version
+```
+
+Clone the repo:
 
 ```bash
-sudo apt-get install maven
+git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
 ```
 
-3) Run the tutorial:
+Run the application:
 
 ```bash
 cd openvidu-tutorials/openvidu-ipcameras
 mvn package exec:java
 ```
 
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
-```
-
-5) Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -74,7 +76,7 @@ The application allows subscribing to the IP cameras collection from the web pag
 
 ---
 
-### 1) Login:
+### 1) Login
 
 At path `/` a login form will be displayed, providing a very simple password authentication:
 
@@ -82,7 +84,7 @@ At path `/` a login form will be displayed, providing a very simple password aut
   <img class="img-responsive" style="padding: 25px 0;" src="img/docs/tutorials/ipcameras_index.png">
 </p>
 
-### 2) Subscribe to the IP cameras:
+### 2) Subscribe to the IP cameras
 
 Clicking on the subscribe button you will subscribe to the IP cameras collection. These cameras are initialized on the [App.java](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ipcameras/src/main/java/io/openvidu/ipcameras/App.java#L33-L35){:target="_blank"} file.
 
@@ -180,3 +182,7 @@ try {
 	token = this.session.createConnection(connectionProperties).getToken();
 } catch ( ... )
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

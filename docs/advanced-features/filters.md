@@ -11,6 +11,31 @@ OpenVidu API offers a simple way of applying filters to video and audio streams 
 
 Check out [openvidu-filters](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-filters){:target="_blank"} tutorial to see OpenVidu filters in action.
 
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+For <a href="openvidu-enterprise/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> voice and video filters are only available when using Kurento as media server. Currently mediasoup is not compatible with voice and video filters. See <a href="openvidu-enterprise/#kurento-vs-mediasoup">Kurento vs mediasoup</a>.
+</div>
+</div>
+
 ---
 
 ## Step by step

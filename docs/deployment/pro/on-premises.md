@@ -753,14 +753,14 @@ In Cluster page you can add and remove Media Nodes from your cluster just by pre
 
 <div class="row">
     <div style="margin: 5px 15px 5px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/pro19.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/pro19.png"/></a>
+        <a data-fancybox="gallery-pro3" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro19.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/pro19.png"/></a>
     </div>
 </div>
 
 > **WARNING**: adding/removing Media Nodes from OpenVidu Inspector in On Premises deployments will not automatically launch/terminate your physical machines:
 >
 > - To add a new Media Node you need to have the new Media Node already up and running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one) and define its URI like stated in the image above.<br><br>
-> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode), if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
+> - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode), if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged) event through OpenVidu Webhook to know when you can safely terminate your instances (listen to `terminated` status).
 
 #### With OpenVidu Pro REST API
 
@@ -774,7 +774,7 @@ You can programmatically add and remove Media Nodes from your cluster by consumi
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode) through parameter `deletion-strategy`.<br><br>
 > - Launching/Dropping Media Nodes in on premises deployments will not automatically start/terminate your physical machines:
 >     - To launch a new Media Node you are required to have the Media Node already running (follow steps in [Media Nodes section](#3-media-nodes) to install and run one). Then you must provide the Media Node's URI when calling [POST /openvidu/api/media-nodes](reference-docs/REST-API/#post-medianode) using **`uri`** query parameter.
->     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode), if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. You can achieve this by setting the [Media Node status](openvidu-pro/scalability/#openvidu-pro-cluster-events) to `waiting-idle-to-terminate`. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) event through OpenVidu Webhook to know when you can safely terminate your instance. The moment will come when `terminated` status is achieved: at that point it is safe to shut down the machine hosting the Media Node.
+>     - To drop an existing Media Node you will have to terminate the physical machine yourself after successfully calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode), if that's what you want. Usually you will want to wait until the last of the sessions hosted in this Media Node is closed before you remove it. You can achieve this by setting the [Media Node status](openvidu-pro/scalability/#openvidu-pro-cluster-events) to `waiting-idle-to-terminate`. Then, you can listen to [mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged) event through OpenVidu Webhook to know when you can safely terminate your instance. The moment will come when `terminated` status is achieved: at that point it is safe to shut down the machine hosting the Media Node.
 
 <br>
 
@@ -1171,21 +1171,7 @@ The report contains information about:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">

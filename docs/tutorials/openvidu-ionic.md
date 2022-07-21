@@ -1,151 +1,95 @@
-# openvidu-ionic
-<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-ionic" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+# openvidu-ionic-cordova
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-ionic-cordova" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Ionic 5** and **Angular 11** frameworks. It can be compiled into a **native Android app**, a **native iOS app** and into a standard **web app**.
+An OpenVidu application built with **Ionic**. It uses **Cordova** as hybrid app runtime and **Angular** as frontend framework. It can be compiled into a **native Android app**, a **native iOS app** and into a standard **web app**.
 
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial due to this being a cordova ionic app and being a little more complex for OpenVidu starters.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-ionic.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-ionic.png"/>
+        </a>
+    </div>
+</div>
 
-## Understanding this tutorial
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
 
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-ionic.png">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: NPM package for your Ionic app. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    This Ionic tutorial is exactly the same than <a href="tutorials/openvidu-ionic/">openvidu-ionic</a> tutorial but using <a href="https://cordova.apache.org/">Cordova</a> instead of Capacitor as hybrid app runtime.
+  </div>
+</div>
 
 ## Running this tutorial
 
-**1)** You will need **Node**, **NPM**, **Ionic** and **Cordova** to serve the app. Install them with the following commands
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-sudo apt-get install -y nodejs
-sudo npm install -g ionic@latest
-sudo npm install -g cordova@latest
-```
-
-**2)** Clone the repo:
-
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-**3)** Install dependencies
-
-```bash
-cd openvidu-tutorials/openvidu-ionic
-npm install
-```
-
-Now depending on the platform you want to run your app...
-
-#### In the browser
-
-**4)** Run the tutorial
-
-```bash
-# In openvidu-tutorials/openvidu-ionic
-ionic serve
-```
-
-**5)** OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"})
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-**6)** Go to _[`http://localhost:8100`](http://localhost:8100){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+#### 2. Run your preferred server application sample
 
-**7)** To show the app with the device appearance, press `F12` button in your keyboard and the browser DevTools will be opened. You can find a button with a device icon at the top of the DevTools. By pressing this button the view will adapt to a mobile device aspect ratio. You can also choose predefined types of devices to see the behavior of your app in different resolutions.
+For more information visit [Application server](application-server/).
 
-<div class="row no-margin row-gallery">
-	<div class="col-md-6">
-		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/ionic-chrome1.png">
-            <img class="img-responsive" src="img/demos/ionic-chrome1.png">
-        </a>
-	</div>
-	<div class="col-md-6">
-		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/ionic-chrome2.png">
-            <img class="img-responsive" src="img/demos/ionic-chrome2.png">
-        </a>
-	</div>
-</div>
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+#### 3. Run the client application tutorial
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"}, [Ionic](https://ionicframework.com/docs/intro/cli){:target="_blank"} and [Cordova](https://cordova.apache.org/docs/en/latest/guide/cli/){:target="_blank"} to run the application. Check them with the following command:
+
+```bash
+npm -v
+ionic -v
+cordova -v
+```
+
+You can install Ionic and Cordova CLIs with NPM like this:
+
+```
+npm install -g @ionic/cli
+npm install -g cordova
+```
+
+Install application dependencies:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+
+cd openvidu-tutorials/openvidu-ionic-cordova
+npm install
+```
+
+Now depending on the platform you want to run your app...
 
 <br>
 
-#### In an Android device with native app
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	This tutorial has been tested on Android 8.1, 9 and 10
-</div>
-</div>
+##### In the browser
 
-To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Follow Ionic's [Android Development guide](https://ionicframework.com/docs/developing/android){:target="_blank"} to configure all the requirements.
+See [how to run in the browser](tutorials/openvidu-ionic/#in-the-browser) section of **openvidu-ionic**.
 
-After we have completed all the steps of the Ionic guide and performed steps 1) , 2) and 3) stated above, we must continue with the following commands:
+##### In an Android device with native app
+
+First follow the same steps as described in openvidu-ionic tutorial, section [How to run in Android device](tutorials/openvidu-ionic/#in-an-android-device-with-native-app).
+
+Then run the tutorial with cordova. The app will be automatically launched in your Android device
+
+        # In openvidu-tutorials/openvidu-ionic-cordova
+        ionic cordova run android
 
 <br>
 
-**4)** Connect the device to the same network as your PC
-
-**5)** Now you need the IP of your PC in your LAN network, which we will use to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`)
-
-```console
-awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
-```
-
-**6)** OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got. In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.22.0
-```
-
-**7)** You must indicate the OpenVidu Server URL to the app. Set it in `OPENVIDU_SERVER_URL` variable [**right here**](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19){:target="_blank"}. The complete URL is `https://DOMAIN_OR_PUBLIC_IP:4443`, being DOMAIN_OR_PUBLIC_IP the IP address configured in your OpenVidu Platform service. In this example, running OpenVidu platform as in step 6), that would be: `https://192.168.1.111:4443`
-
-**8)** Connect the device to the PC. You must enable USB debugging and give permissions (check out [Set up an Android Device](https://ionicframework.com/docs/developing/android#set-up-an-android-device){:target="_blank"} in Ionic docs)
-
-**9)** Run the tutorial. The app will be automatically launched in your Android device
-
-```bash
-# In openvidu-tutorials/openvidu-ionic
-ionic cordova run android
-```
-
-
-#### In an iOS device with native app
+##### In an iOS device with native app
 
 <div style="
     display: table;
@@ -172,7 +116,7 @@ ionic cordova run android
 </div>
 </div>
 
-To deploy the iOS app you will need first to follow Ionic's [iOS Development guide](https://ionicframework.com/docs/developing/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu Server properly deployed with a **valid certificate**.
+To deploy the iOS app you will need first to follow Ionic's [iOS Development guide](https://ionicframework.com/docs/developing/ios){:target="_blank"} to properly configure your development environment. Then, it is crucial to have an OpenVidu deployment properly running with a **valid SSL certificate**.
 
 <div style="
     display: table;
@@ -193,27 +137,21 @@ To deploy the iOS app you will need first to follow Ionic's [iOS Development gui
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;">
-    iOS devices will require OpenVidu Server to be deployed in a valid domain well-protected with a certificate.<br>No iPhone or iPad will allow connections to a non-secure OpenVidu Server from within a native application. To facilitate first steps with OpenVidu and Ionic on iOS devices, if no custom url is defined <a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L19" target="_blank">here in the app</a> then our demos OpenVidu Server will be used. <strong>Note: this is a publicly accessible OpenVidu Server. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
+    iOS devices will require OpenVidu to be deployed in a valid domain well-protected with an SSL certificate.<br>No iPhone or iPad will allow connections to a non-secure OpenVidu deployment from within a native application. To facilitate first steps with OpenVidu and Ionic on iOS devices, if no custom url is defined <a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic-cordova/src/app/app.component.ts#L18" target="_blank">here in the app</a> then our demos OpenVidu deployment will be used. <strong>Note: this is a publicly accessible OpenVidu deployment. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
 </div>
 </div>
 
-After we have completed all the steps of the Ionic guide and performed steps 1), 2) and 3) stated above, we must continue with the following commands:
+After we have completed all the steps of the Ionic guide:
 
-<br>
+1. Add ios platform
 
-**4)** Add ios platform
+        # In openvidu-tutorials/openvidu-ionic-cordova
+        ionic cordova platform add ios
 
-```bash
-# In openvidu-tutorials/openvidu-ionic
-ionic cordova platform add ios
-```
+2. Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
 
-**5)** Run the tutorial. The app will be automatically launched in your iOS device. First execution you'll need to trust your developer account in your device under `Settings -> General -> Device management -> your_apple_developer_account`
-
-```bash
-# In openvidu-tutorials/openvidu-ionic
-ionic cordova run ios
-```
+        # In openvidu-tutorials/openvidu-ionic-cordova
+        ionic cordova run ios
 
 You will need to sign your application in Xcode (opening folder _openvidu-ionic/platforms/ios_) with your developer team to avoid any errors. From Apple [official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca){:target="_blank"}:
 
@@ -382,7 +320,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L302){:target="_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic-cordova/src/app/app.component.ts#L302){:target="_blank"}.
 
 ---
 
@@ -542,55 +480,11 @@ leaveSession() {
 
 ## Android specific requirements
 
-Android apps need to actively ask for permissions in the code to access camera and microphone. By following steps below we have been able to properly set up the permissions your Ionic app will need to work along OpenVidu.
+> The following configurations are already included in this **openvidu-ionic-cordova** project. You don't need to follow below instructions if you are using this tutorial as a starting point.
 
-These configurations are already included in this **openvidu-ionic** project, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with Ionic and OpenVidu**, you should follow these simple steps:
+To handle camera and microphone permissions, we need to use the [Android Permissions](https://ionicframework.com/docs/native/android-permissions){:target="_blank"} plugin. Install it and use it just as indicated by the Ionic documentation.
 
- 1) Install Cordova AndroidPermissions plugin
-
-```bash
-ionic cordova plugin add cordova-plugin-android-permissions
-npm install --save @ionic-native/android-permissions@latest
-```
-
-2) Add this plugin to your app's module ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.module.ts){:target="_blank"})
-
-```javascript
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-@NgModule({
-    providers: [
-        // others providers
-        AndroidPermissions,
-    ],
-)}
-```
-
-3) Add this plugin to your component and use it ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts){:target="_blank"})
-
-```javascript
-import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
-
-export class AppComponent  {
-    constructor(private androidPermissions: AndroidPermissions)
-}
-```
-
-We are finally ready to request permissions to our device. To do so, we need to use `requestPermissions()` and `checkPermission()` methods offered by the plugin.
-
-It is important to call these methods under `platform.ready()`, just because it will tell us whenever the platform is ready and the native functionality can be actually called.
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/app.component.ts#L50){:target="_blank"}.
-
-You should also declare an array of permissions to use as parameter of `requestPermissions()`
-
-```javascript
-ANDROID_PERMISSIONS = [
-    this.androidPermissions.PERMISSION.CAMERA,
-    this.androidPermissions.PERMISSION.RECORD_AUDIO,
-    this.androidPermissions.PERMISSION.MODIFY_AUDIO_SETTINGS
-];
-```
-
-4) Last but not least, in `root` directory you can find file `config.xml`. These permissions must be included inside of `<platform name="android">` ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/config.xml){:target="_blank"})
+We also need to request for media permissions in `config.xml`, found in `root` directory. These permissions must be included inside of `<platform name="android">` ([example](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic-cordova/config.xml){:target="_blank"})
 
 ```xml
 <config-file mode="merge" parent="/*" target="AndroidManifest.xml">
@@ -599,7 +493,9 @@ ANDROID_PERMISSIONS = [
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 </config-file>
 ```
+
 Moreover, you must add `xmlns:android="http://schemas.android.com/apk/res/android"` to the end of the opening `widget` node.
+
 ```xml
 <widget id="io.openvidu.sampleios" version="2.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     ...
@@ -612,25 +508,13 @@ Once these changes are added to our code, the app will be ready to run on our An
 
 ## iOS specific requirements
 
-Unfortunately, Ionic's WebView layer on iOS devices ([WKWebview](https://ionicframework.com/docs/wkwebview/){:target="_blank"}) does not support WebRTC (blame Apple and its politics). So the only way to make WebRTC work on iOS Ionic platform is by using a plugin. The result works just fine, but a little work is needed to make your Ionic app compatible with iOS. OpenVidu makes use of [cordova-plugin-iosrtc](https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc){:target="_blank"} to achieve this.
+After 14.3 release, iOS brings WebRTC support on the [WKWebview](https://ionicframework.com/docs/wkwebview/){:target="_blank"}, which means we can develop our Ionic applications without using any third-party library (in the past it was necessary to use [cordova-plugin-iosrtc](https://github.com/BasqueVoIPMafia/cordova-plugin-iosrtc){:target="_blank"}).
 
-This **openvidu-ionic** project is ready to work on iOS devices, but we will go through every aspect related to iOS compatibility in case your already have an Ionic application in which you want to integrate OpenVidu.
+Knowing this, we still have to configure a number of elements such as media permissions:
 
 ### Configuration requirements
 
-1) Install cordova-plugin-iosrtc and xcode
-
-```bash
-ionic cordova plugin add cordova-plugin-iosrtc
-npm install xcode --save
-```
-
-2) Add the following files to your Ionic app. Consider relative paths under root folder, the one containing your `package.json` file
-
-- `hooks/iosrtc-swift-support.js` ([download file](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/hooks/iosrtc-swift-support.js){:target="_blank"})
-- `src/assets/libs/adapter-4.0.1.js` ([download file](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/assets/libs/adapter-4.0.1.js){:target="_blank"})
-
-3) Add the following lines to `config.xml` file under ios platform:
+1) Add the following lines to `config.xml` file under ios platform:
 
 ```xml
 <platform name="ios">
@@ -649,7 +533,13 @@ npm install xcode --save
 </platform>
 ```
 
-4) Add this optional dependency to your `package.json`. Don't forget to run `npm install` after that to actually install it
+2) Add the following preference to the `config.xml` to allow inline media playback of video elements:
+
+```xml
+<preference name="AllowInlineMediaPlayback" value="true" />
+```
+
+3) Add this optional dependency to your `package.json`. Don't forget to run `npm install` after that to actually install it:
 
 ```json
 "optionalDependencies": {
@@ -657,137 +547,12 @@ npm install xcode --save
 }
 ```
 
-5) Finally remove and reinstall ios platform
+4) Finally remove and reinstall ios platform:
 
-``` bash
+```bash
 ionic cordova platform remove ios
 ionic cordova platform add ios
 ```
-
-### Code requirements
-
-**1)** Add to global styles the following rule. For example, in openvidu-ionic app it is done [right here](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/global.scss#L13-L15){:target="_blank"}. This will allow us to put other HTML elements above the video elements.
-
-One limitation for iOS is the background color of your app: we need it to be transparent to allow plugin videos to be visible behind the Ionic app. So you have 2 choices: you can have one video or many videos to fill all available space in the device's screen (which is in fact the most common layout in video conferencing apps for mobile phones) or you'll have to go with a white background if videos leave visible space in your app's layout.
-
-```scss
-:root {
-    --ion-background-color: transparent;
-}
-```
-
-**2)** Initialize _cordova-plugin-iosrtc_. The easiest way is doing so in `app.component.ts` constructor, using Platform library to identify iOS Ionic context. It is very important to initialize the plugin only for **iOS** devices running a **cordova** app.
-
-```javascript
-// Import declarations...
-declare var cordova;
-
-...
-
-    constructor(private platform: Platform) {
-        if (this.platform.is('ios') && this.platform.is('cordova')) {
-            cordova.plugins.iosrtc.registerGlobals();
-            // load adapter.js (version 4.0.1)
-            const script2 = document.createElement('script');
-            script2.type = 'text/javascript';
-            script2.src = 'assets/libs/adapter-4.0.1.js';
-            script2.async = false;
-            document.head.appendChild(script2);
-        }
-    }
-```
-
-**3)** Every `<video>` element should be managed carefully on cordova iOS. The plugin inserts iOS native video elements whenever it finds an HTMLVideoElement, respecting certain CSS rules. In general, we recommend that at the moment you have video metadata, you apply programmatically the following styles: `object-fit`, `z-index`, `width` and `height`.
-In openvidu-ionic app this is done as follows in file [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}
-
-We check if the platform is iOS with the following method:
-
-```javascript
-private isIos(): boolean {
-    return this.platform.is('ios') && this.platform.is('cordova');
-}
-```
-
-We call the following `updateVideoView` method inside `ngAfterViewInit`, so our video elementRef is properly defined:
-
-```javascript
-private updateVideoView() {
-    this._streamManager.addVideoElement(this.elementRef.nativeElement);
-    if (this.isIos()) {
-        (<HTMLVideoElement>this.elementRef.nativeElement).onloadedmetadata = () => {
-            this.applyIosIonicVideoAttributes();
-        };
-    }
-}
-```
-
-We call `applyIosIonicVideoAttributes` method only after the video element has triggered 'loadedmetadata' event. This way we know that the video has certain computed width and we can calculate the exact height it must have according to its aspect ratio, got from `Stream.videoDimensions`. This is necessary because the plugin needs an exact width and height in order to paint the native iOS video. In this case, every video will have the full width of its container and the height will be obtained from the final computed width and the aspect ratio got from metadata  `Stream.videoDimensions`.
-
-```javascript
-private applyIosIonicVideoAttributes() {
-    const ratio = this._streamManager.stream.videoDimensions.height / this._streamManager.stream.videoDimensions.width;
-    this.elementRef.nativeElement.style.width = '100% !important';
-    this.elementRef.nativeElement.style.objectFit = 'fill';
-    this.elementRef.nativeElement.style.zIndex = '-1';
-    const computedWidth = this.elementRef.nativeElement.offsetWidth;
-    this.elementRef.nativeElement.style.height = computedWidth * ratio + 'px';
-    if (!this._streamManager.remote) {
-        // It is a Publisher video. Custom iosrtc plugin mirror video
-        this.elementRef.nativeElement.style.transform = 'scaleX(-1)';
-    }
-    cordova.plugins.iosrtc.refreshVideos();
-}
-```
-
-Finally we also need to listen to dynamic changes on the videos to refresh the plugin view. This includes 3 things:
-
-- Listen to `streamPropertyChanged` event of StreamManager, and if `videoDimensions` changes update the video element accordingly. In openvidu-ionic app we do so when setting StreamManager property in [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}
-
-```javascript
-@Input()
-set streamManager(streamManager: StreamManager) {
-    this._streamManager = streamManager;
-    if (this.isIos()) {
-        this._streamManager.on('streamPropertyChanged', event => {
-            if ((<StreamPropertyChangedEvent>event).changedProperty === 'videoDimensions') {
-                this.applyIosIonicVideoAttributes();
-            }
-        });
-    }
-}
-```
-
-- **Only if your app supports orientation changes**: you will have to listen to `orientationchange` window event for remote streams to update their video dimensions and adjust them to the new window ratio. openvidu-ionic app does this in method `ngAfterViewInit` in [`ov-video.component.ts`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-ionic/src/app/ov-video.component.ts){:target="_blank"}. The timeout gives the video some time to refresh its properties before updating its view.
-
-```javascript
-ngAfterViewInit() {
-    if (this.isIos() && this._streamManager.remote) {
-        this.rotationFunction = () => {
-            // Give the remote video some time to update its dimensions when rotating the device
-            setTimeout(() => {
-                this.applyIosIonicVideoAttributes();
-            }, 250);
-        };
-        (<any>window).addEventListener('orientationchange', this.rotationFunction);
-    }
-    this.updateVideoView();
-}
-```
-
-- **Only if your app supports scrolling**: if the view where your videos are gonna be displayed supports scrolling, then you will have to do the following: listen to scroll events in the required `<ion-content>` element and call `cordova.plugin.iosrtc.refreshVideos()` method when triggered. If you don't do this, videos will stay fixed in their position, ignoring the scroll behavior.
-
-```html
-<ion-content [scrollEvents]="true" (ionScroll)="refreshVideos()">
-```
-
-```javascript
-refreshVideos() {
-    if (this.platform.is('ios') && this.platform.is('cordova')) {
-        cordova.plugins.iosrtc.refreshVideos();
-    }
-}
-```
-
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

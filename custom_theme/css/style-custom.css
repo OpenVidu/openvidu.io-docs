@@ -552,7 +552,6 @@ video.video-pro {
 .slick-btn i {
     color: #0088aa;
     font-size: 14px;
-    line-height: 30px;
 }
 
 .slick-btn.slick-disabled {
@@ -1276,4 +1275,10 @@ nav.navbar.navbar-small #sign-in-button:hover {
 
 .table-pricing tbody tr:hover {
     background-color: rgb(239 239 239) !important;
+}
+
+.img-server-logo {
+    width: 70px;
+    padding: 10px;
+    pointer-events: none;
 }

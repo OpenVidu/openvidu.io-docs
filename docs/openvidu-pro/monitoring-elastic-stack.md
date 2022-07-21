@@ -59,7 +59,7 @@ This dashboard allows you to monitor the CPU usage of the system over time, pres
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/elastic/cpuvs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cpuvs.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/cpuvs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cpuvs.png"/></a>
     </div>
 </div>
 
@@ -81,7 +81,7 @@ All in all, this information will help you understand better the behavior and pe
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/elastic/sessions-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/sessions-dashboard.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/sessions-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/sessions-dashboard.png"/></a>
     </div>
 </div>
 
@@ -98,7 +98,7 @@ This dashboard presents at a glance the status of your recordings. It includes i
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/elastic/recordings-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/recordings-dashboard.png"/></a>
+        <a data-fancybox="gallery-pro3" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/recordings-dashboard.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/recordings-dashboard.png"/></a>
     </div>
 </div>
 
@@ -115,8 +115,8 @@ Statistics about OpenVidu Server Pro as a web server application. Among others:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/server-application-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats1.png"/></a>
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/elastic/server-application-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats2.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/server-application-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats1.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/server-application-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-application-stats2.png"/></a>
     </div>
 </div>
 
@@ -131,9 +131,9 @@ Statistics about OpenVidu Server Pro as a Spring application. It includes:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"/></a>
-        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"/></a>
-        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"/></a>
+        <a data-fancybox="gallery-pro5" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats1.png"/></a>
+        <a data-fancybox="gallery-pro5" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats2.png"/></a>
+        <a data-fancybox="gallery-pro5" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/server-monitoring-stats3.png"/></a>
     </div>
 </div>
 
@@ -152,8 +152,8 @@ Additionally you can check specific metrics of your nodes by clicking into one o
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"/></a>
-        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"/></a>
+        <a data-fancybox="gallery-pro6" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics1.png"/></a>
+        <a data-fancybox="gallery-pro6" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/cluster-monitoring-metrics2.png"/></a>
     </div>
 </div>
 
@@ -172,8 +172,8 @@ if you access this dashboard without any filter or by accessing the dashboard pa
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"/></a>
-        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"/></a>
+        <a data-fancybox="gallery-pro7" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics1.png"/></a>
+        <a data-fancybox="gallery-pro7" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/node-monitoring-metrics2.png"/></a>
     </div>
 </div>
 
@@ -189,7 +189,7 @@ This dashboard contains metrics about the deployed NGINX proxy which handles all
 
 <div class="row">
     <div class="pro-gallery" style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro8" href="img/docs/openvidu-pro/elastic/nginx-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx-metrics1.png"/></a>
+        <a data-fancybox="gallery-pro8" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/nginx-metrics1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/nginx-metrics1.png"/></a>
     </div>
 </div>
 
@@ -259,13 +259,13 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 
 <div style="margin-right: 5px; margin-top: 15px" markdown="1">
 
-- `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu CDR](reference-docs/openvidu-server-cdr/))
+- `cdr`: event of CDR/Webhook. Can take multiple forms according to the type of event (see [OpenVidu Webhook](reference-docs/openvidu-server-webhook/))
 - `kms`: Kurento Media Server event. These events are always associated to one WebRTC endpoint (a publisher or a subscriber). Can take multiple forms according to the type of event (see [Kurento docs](https://doc-kurento.readthedocs.io/en/latest/features/events.html){:target="_blank"})
 - `webrtcStats`: event of WebRTC statistics for each media endpoint established in Media Nodes
 - `webrtcDebug`: event with further information about the WebRTC negotiation process, such as SDPs, for each media endpoint established in Media Nodes
 - `networkQualityStats`: event of network quality for a specific client. See [Network quality](advanced-features/network-quality/)
 - `sessionSummary`: summary of a session, stored once it is closed
-- `recordingSummary`: summary of a recording, stored once its session is closed. This object does not hold the final values of the recording entity and some properties may not be properly defined. Use _cdr_ event *[recordingStatusChanged](reference-docs/openvidu-server-cdr/#recordingstatuschanged)* with property _status_ set to _ready_ to get the full recording object
+- `recordingSummary`: summary of a recording, stored once its session is closed. This object does not hold the final values of the recording entity and some properties may not be properly defined. Use WebHook event *[recordingStatusChanged](reference-docs/openvidu-server-webhook/#recordingstatuschanged)* with property _status_ set to _ready_ to get the full recording object
 - `userSummary`: summary of a user, stored once its session is closed
 - `connectionSummary`: summary of a connection, stored once its session is closed
 - `publisherSummary`: summary of a publisher, stored once its session is closed
@@ -771,7 +771,7 @@ All events of OpenVidu are stored in the index `openvidu`, which have an `elasti
 > **NOTE 1**: `sessionSummary` contains all the information available in the rest of summary documents, including an array of `recordingSummary` and an array of `userSummary`. In turn `userSummary` contains an array of `connectionSummary`, that finally contains an array of `publisherSummary` and other of `subscriberSummary`.
 > To sum up, this is just a denormalization of the `sessionSummary` document, so Elasticsearch requests and Kibana visualizations are more flexible and easier to accomplish
 > ---
-> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [CDR docs](reference-docs/openvidu-server-cdr/#recordingstatuschanged)). There you will have all properties of the recording well defined
+> **NOTE 2**: `recordingSummary` events may not contain the final information of the actual recordings (specifically properties `size` and `duration`). This is so because `recordingSummary` event is generated just after its session is closed, but since release 2.11.0 recordings may need a post-processing phase before being available for download and having these properties properly defined. To overcome this limitation, you can simply use the `cdr` event of type `recordingStatusChanged` and status `ready` corresponding to this recording (see event in [WebHook docs](reference-docs/openvidu-server-webhook/#recordingstatuschanged)). There you will have all properties of the recording well defined
 
 <br>
 
@@ -789,12 +789,12 @@ You can create powerful visualizations and dashboards by using these documents. 
 
 <div class="row">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro5" data-caption="First thing is navigating to 'Visualize' section in Kibana and clicking on the button to add a new visualization" href="img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
-        <a data-fancybox="gallery-pro5" data-caption="Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice" href="img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
-        <a data-fancybox="gallery-pro5" data-caption="We select 'openvidu' index, because that's the index of every OpenVidu Pro event stored in Elasticsearch" href="img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
-        <a data-fancybox="gallery-pro5" data-caption="The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the 'userSummary' event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field 'elastic_type.keyword' is 'userSummary'" href="img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
-        <a data-fancybox="gallery-pro5" data-caption="Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply 'Count', because there is one 'userSummary' event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using 'timestamp' field of the event" href="img/docs/openvidu-pro/elastic/tutorial5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial5.png"/></a>
-        <a data-fancybox="gallery-pro5" data-caption="To store the new visualization just click on 'Save' button in the upper menu and give it a meaningful name" href="img/docs/openvidu-pro/elastic/tutorial6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial6.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="First thing is navigating to 'Visualize' section in Kibana and clicking on the button to add a new visualization" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial1.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="Then we have to choose a visualization type. In this case a vertical bar graph might be a pretty good choice" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial2.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="We select 'openvidu' index, because that's the index of every OpenVidu Pro event stored in Elasticsearch" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial3.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="The visualization page will be shown. Now we have to filter the desired events. In this case, we just want the 'userSummary' event, as it gathers all the information about the final users connecting to our sessions. So, we make sure that field 'elastic_type.keyword' is 'userSummary'" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial4.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="Finally we have to configure the data passed to our graph. The metric we want (Y-axis) is simply 'Count', because there is one 'userSummary' event for each final user connecting to a session. And as Bucket (X-axis) we configure a Date Histogram by using 'timestamp' field of the event" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial5.png"/></a>
+        <a data-fancybox="gallery-pro5" data-caption="To store the new visualization just click on 'Save' button in the upper menu and give it a meaningful name" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/tutorial6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/tutorial6.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions">
       <div class="caption"><p>First thing is navigating to <strong>Visualize</strong> section in Kibana and clicking on the button to add a new visualization</p></div>
@@ -820,8 +820,8 @@ Many of OpenVidu processes send their logs to Elasticsearch, so you can review t
 
 <div class="row">
     <div class="pro-gallery-steps-logs" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
-        <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="First of all, go to the 'Logs' section of Kibana." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/review-logs-1.png"><img style="max-height: 400px" class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-1.png"/></a>
+        <a data-fancybox="gallery-pro9" data-caption="Enter what you want to search. You can search for literals, attribute values, etc..." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/review-logs-4.png"><img class="img-responsive img-pro" style="max-height: 400px" src="img/docs/openvidu-pro/elastic/review-logs-4.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-logs">
       <div class="caption"><p>First of all, go to the <strong>Logs</strong> section of Kibana.</p></div>
@@ -871,9 +871,9 @@ You just need to:
 
 <div class="row">
     <div class="pro-gallery-steps-elkaws" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro13" data-caption="Go to the history section." href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-1.png"/></a>
-        <a data-fancybox="gallery-pro13" data-caption="Select the session you want to debug." href="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"/></a>
-        <a data-fancybox="gallery-pro13" data-caption="Choose what logs you want to review." href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"/></a>
+        <a data-fancybox="gallery-pro13" data-caption="Go to the history section." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-1.png"/></a>
+        <a data-fancybox="gallery-pro13" data-caption="Select the session you want to debug." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-2.png"/></a>
+        <a data-fancybox="gallery-pro13" data-caption="Choose what logs you want to review." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/review-logs-inspector-3.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-elkaws">
       <div class="caption"><p>Go to the section <strong>History</strong> section of <strong>OpenVidu Inspector</strong>.</p></div>
@@ -933,14 +933,14 @@ In the next section you will see how to configure a Managed Elastic Stack in AWS
 
 <div class="row">
     <div class="pro-gallery-steps-elkaws" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro10" data-caption="First you need to go to the 'Elasticsearch Service' in your AWS Account" href="img/docs/openvidu-pro/elastic/aws_elk_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_1.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select: 'Create new Domain'" href="img/docs/openvidu-pro/elastic/aws_elk_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_2.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Choose the 'Deployment Type' you want" href="img/docs/openvidu-pro/elastic/aws_elk_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_3.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="After that you can configure your ELK as you want until security configuration, which is explained in the next steps" href="img/docs/openvidu-pro/elastic/aws_elk_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_4.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Check 'Enable fine-grained access control' and select 'Create master user'. This user will have super user privileges but you can create after that a user with only necessary privileges." href="img/docs/openvidu-pro/elastic/aws_elk_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_5.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_6.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" href="img/docs/openvidu-pro/elastic/aws_elk_7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_7.png"/></a>
-        <a data-fancybox="gallery-pro10" data-caption="Get the 'Endpoint' and 'Kibana' URLs, which will be used in our OpenVidu Pro configuration" href="img/docs/openvidu-pro/elastic/aws_elk_8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_8.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="First you need to go to the 'Elasticsearch Service' in your AWS Account" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_1.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select: 'Create new Domain'" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_2.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Choose the 'Deployment Type' you want" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_3.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="After that you can configure your ELK as you want until security configuration, which is explained in the next steps" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_4.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Check 'Enable fine-grained access control' and select 'Create master user'. This user will have super user privileges but you can create after that a user with only necessary privileges." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_5.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_6.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Select 'Allow open access to the domain'" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_7.png"/></a>
+        <a data-fancybox="gallery-pro10" data-caption="Get the 'Endpoint' and 'Kibana' URLs, which will be used in our OpenVidu Pro configuration" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/aws_elk_8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/aws_elk_8.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-elkaws">
       <div class="caption"><p>First you need to go to the <strong>Elasticsearch Service</strong> in your AWS Account.</p></div>
@@ -1004,11 +1004,11 @@ In this section you will see how to configure a Managed Elastic Stack in Elastic
 
 <div class="row">
     <div class="pro-gallery-steps-elastic-cloud" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro11" data-caption="First of all, click on 'Create deployment'" href="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Select: 'Elastic Stack'." href="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Configure your Elastic Stack as you want and click 'Create deployment'." href="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="Get the 'Username' and 'Password' generated by Elastic Cloud. This user will have super user privileges but you can create after that a user with only necessary privileges." href="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"/></a>
-        <a data-fancybox="gallery-pro11" data-caption="When the deployment is ready, get the 'Elasticsearch endpoint' and 'Kibana endpoint' to use it for OpenVidu Pro." href="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="First of all, click on 'Create deployment'" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_1.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Select: 'Elastic Stack'." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_2.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Configure your Elastic Stack as you want and click 'Create deployment'." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_3.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="Get the 'Username' and 'Password' generated by Elastic Cloud. This user will have super user privileges but you can create after that a user with only necessary privileges." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_4.png"/></a>
+        <a data-fancybox="gallery-pro11" data-caption="When the deployment is ready, get the 'Elasticsearch endpoint' and 'Kibana endpoint' to use it for OpenVidu Pro." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/elastic_cloud_5.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-elastic-cloud">
       <div class="caption"><p>First of all, click on <strong>Create deployment</strong>.</p></div>
@@ -1049,17 +1049,17 @@ Configuring a user with all the privileges is not secure. To accomplish better s
 
 <div class="row">
     <div class="pro-gallery-steps-fine-grained" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro12" data-caption="First of all, go to the 'Stack Management' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="In the 'Stack Management' section, go to 'Roles'." href="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Add into the role the 'Cluster privileges' and 'Indexes privileges' specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu." href="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Add Space privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Select 'Default' space and 'Custom Privilege'." href="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Select 'All' in 'Saved Objects Management'. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations." href="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." href="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="" href="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="After the role is created, go to 'Users' section." href="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"/></a>
-        <a data-fancybox="gallery-pro12" data-caption="Configure an 'Username' and a 'Password' and the 'Role' created before. Then just click on  'Create User' button" href="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="First of all, go to the 'Stack Management' section." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-1.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="In the 'Stack Management' section, go to 'Roles'." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-2.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-3.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Add into the role the 'Cluster privileges' and 'Indexes privileges' specified in the image. All these privileges are necessary for OpenVidu to send logs, metrics and Events related with OpenVidu." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-4.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Add Space privilege'." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-5.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Select 'Default' space and 'Custom Privilege'." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-6.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Select 'All' in 'Saved Objects Management'. In this way OpenVidu will be able to update, add and remove dashboards and other Kibana configurations." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-7.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Click on 'Create role' button." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-8.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-9.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="After the role is created, go to 'Users' section." data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-10.png"/></a>
+        <a data-fancybox="gallery-pro12" data-caption="Configure an 'Username' and a 'Password' and the 'Role' created before. Then just click on  'Create User' button" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/elastic/fine-grained-user-11.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions-fine-grained">
       <div class="caption"><p>First of all, go to the <strong>Stack Management</strong> section.</p></div>
@@ -1220,21 +1220,7 @@ function changeLangTab(event) {
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">

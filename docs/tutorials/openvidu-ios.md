@@ -9,9 +9,7 @@
   </div>
 </div>
 
-A client-side only **iOS native** application built with **Swift** and using official **Google WebRTC library**.
-
-If it is the first time you use OpenVidu, it is highly recommended to start first with **[openvidu-hello-world](tutorials/openvidu-hello-world/){:target="\_blank"}** tutorial due to this being a native iOS app and being a little more complex for OpenVidu starters.
+An **iOS native** OpenVidu application built with **Swift** using official **Google WebRTC library**.
 
 <div style="
     display: table;
@@ -34,13 +32,21 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
     padding-left: 20px;
     padding-right: 20px;
     ">
-	 OpenVidu does not provide an iOS client SDK yet, so this application directly implements <a href="developing/rpc/">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="reference-docs/openvidu-browser">openvidu-browser</a> library does. Everything about this implementation is explained in section <a href="#using-openvidu-server-rpc-protocol">Using OpenVidu Server RPC protocol</a>
+	 OpenVidu does not provide an iOS client SDK yet, so this application directly implements <a href="developing/rpc/">OpenVidu Server RPC protocol</a>. In other words, it internally implements what <a target="_blank" href="reference-docs/openvidu-browser">openvidu-browser</a> library does
 </div>
 </div>
 
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-iOS.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-iOS.png"/>
+        </a>
+    </div>
+</div>
+
+> If it is the first time you use OpenVidu, it is highly recommended to start first with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial due to this being a native iOS app and being a little more complex for OpenVidu beginners.
 
 ## openvidu-ios features
-
 
 <table class="table table-striped table-pricing" style="background: #e7e7e7">
     <thead>
@@ -80,21 +86,6 @@ If it is the first time you use OpenVidu, it is highly recommended to start firs
         </tr>
     </tbody>
 </table>
-
-
-
-## Understanding this tutorial
-
-
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-iOS.png">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
--   **openvidu-ios**: iOS application built with Swift connected to OpenVidu through websocket
--   **openvidu-server**: Java application that controls Kurento Media Server
--   **Kurento Media Server**: server that handles low level operations of media flow transmissions
 
 ## Running this tutorial
 
@@ -146,10 +137,10 @@ pod install
 awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
 ```
 
-**5)** OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 4). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
+**5)** OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 4). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.22.0
@@ -161,5 +152,8 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP
 
 **8)** Connect the device to the PC. You will need to sign your application in Xcode with your developer team to avoid any errors. From [Apple official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca).
 
-
 **9)** Run the tutorial. In Xcode, click on the Play button after selecting your connected device.
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

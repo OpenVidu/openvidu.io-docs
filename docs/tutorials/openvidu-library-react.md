@@ -5,50 +5,61 @@
 OpenVidu Library React is one of the simplest and quickest tutorials to add videoconference capabilities to your existing web application. This tutorial uses _openvidu-react_ library.
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/ni3FjkVE_0I?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+#### 1. Run OpenVidu deployment
 
-2) Run the tutorial:
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-cd openvidu-tutorials/openvidu-library-react
-npm install
-npm start
-```
-
-3) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-4) Go to _[`http://localhost:3000`](http://localhost:3000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} to serve the application. Check it with the following command:
+
+```bash
+npm -v
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+
+cd openvidu-tutorials/openvidu-library-react
+npm install
+npm start
+```
+
+Go to [`http://localhost:3000`](http://localhost:3000){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
-
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/openvidu-library-react1.png">
-		<img class="img-responsive" src="img/demos/openvidu-library-react1.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-library-react1.png">
+            <img class="img-responsive" src="img/demos/openvidu-library-react1.png">
+        </a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/openvidu-library-react2.png">
-		<img class="img-responsive" src="img/demos/openvidu-library-react2.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-library-react2.png">
+            <img class="img-responsive" src="img/demos/openvidu-library-react2.png">
+        </a>
 	</div>
 </div>
 
@@ -233,20 +244,8 @@ In the example above, **OpvSession** receives the `sessionName`, the `user` and 
   error={this.handlerErrorEvent}
 />
 ```
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

@@ -11,36 +11,10 @@ site_description: OpenVidu documentation pages
 # Documentation layout.
 nav:
     - What is OpenVidu?: index.md
-    - Tutorials:
-          - Intro: tutorials/index.md
-          - openvidu-webcomponent: tutorials/openvidu-webcomponent.md
-          - openvidu-hello-world: tutorials/openvidu-hello-world.md
-          - openvidu-iframe: tutorials/openvidu-iframe.md
-          - openvidu-insecure-js: tutorials/openvidu-insecure-js.md
-          - openvidu-insecure-js-screen-share: tutorials/openvidu-insecure-js-screen-share.md
-          - openvidu-insecure-angular: tutorials/openvidu-insecure-angular.md
-          - openvidu-insecure-react: tutorials/openvidu-insecure-react.md
-          - openvidu-library-react: tutorials/openvidu-library-react.md
-          - openvidu-insecure-vue: tutorials/openvidu-insecure-vue.md
-          - openvidu-ionic: tutorials/openvidu-ionic.md
-          - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
-          - openvidu-react-native: tutorials/openvidu-react-native.md
-          - openvidu-android: tutorials/openvidu-android.md
-          - openvidu-ios: tutorials/openvidu-ios.md
-          - openvidu-electron: tutorials/openvidu-electron.md
-          - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
-          - openvidu-virtual-background: tutorials/openvidu-virtual-background.md
-          - openvidu-js-java: tutorials/openvidu-js-java.md
-          - openvidu-mvc-java: tutorials/openvidu-mvc-java.md
-          - openvidu-js-node: tutorials/openvidu-js-node.md
-          - openvidu-mvc-node: tutorials/openvidu-mvc-node.md
-          - openvidu-recording-java: tutorials/openvidu-recording-java.md
-          - openvidu-recording-node: tutorials/openvidu-recording-node.md
-    - Demos:
-          - openvidu-call-react: demos/openvidu-call-react.md
-          - openvidu-call-ionic: demos/openvidu-call-ionic.md
-          - openvidu-classroom: demos/openvidu-classroom.md
-          - openvidu-getaroom: demos/openvidu-getaroom.md
+    - Getting started: getting-started/index.md
+    - Developing your video app: developing-your-video-app/index.md
+    - Application server: application-server/index.md
+    - Ready-to-use component: ready-to-use-component/index.md
     - OpenVidu Components:
           - Intro: components/index.md
           - Tutorials:
@@ -55,9 +29,37 @@ nav:
               - openvidu-custom-chat-panel: components/openvidu-custom-chat-panel.md
               - openvidu-custom-participants-panel: components/openvidu-custom-participants-panel.md
               - openvidu-custom-participant-panel-item: components/openvidu-custom-participant-panel-item.md
-              - openvidu-custom-participant-panel-item-element: components/openvidu-custom-participant-panel-item-element.md
+              - openvidu-custom-participant-panel-item-elements: components/openvidu-custom-participant-panel-item-elements.md
               - openvidu-toggle-hand: components/openvidu-toggle-hand.md
               - openvidu-call: components/openvidu-call.md
+    - Full control of the UI:
+              - Intro: full-control-ui/index.md
+              - Hello World: tutorials/openvidu-hello-world.md
+              - Basic Tutorials:
+                  - openvidu-js: tutorials/openvidu-js.md
+                  - openvidu-angular: tutorials/openvidu-angular.md
+                  - openvidu-react: tutorials/openvidu-react.md
+                  - openvidu-vue: tutorials/openvidu-vue.md
+                  - openvidu-ionic: tutorials/openvidu-ionic.md
+                  - openvidu-react-native: tutorials/openvidu-react-native.md
+                  - openvidu-electron: tutorials/openvidu-electron.md
+                  - openvidu-android: tutorials/openvidu-android.md
+                  - openvidu-ios: tutorials/openvidu-ios.md
+              - Other Tutorials:
+                  - openvidu-iframe: tutorials/openvidu-iframe.md
+                  - openvidu-js-screen-share: tutorials/openvidu-js-screen-share.md
+                  - openvidu-library-react: tutorials/openvidu-library-react.md
+                  - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
+                  - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
+                  - openvidu-virtual-background: tutorials/openvidu-virtual-background.md
+                  - openvidu-roles-java: tutorials/openvidu-roles-java.md
+                  - openvidu-roles-node: tutorials/openvidu-roles-node.md
+                  - openvidu-recording-java: tutorials/openvidu-recording-java.md
+                  - openvidu-recording-node: tutorials/openvidu-recording-node.md
+              - Demos:
+                  - openvidu-getaroom: demos/openvidu-getaroom.md
+                  - openvidu-classroom: demos/openvidu-classroom.md
+                  - openvidu-call-react: demos/openvidu-call-react.md
     - Cheatsheet:
           - Join a session: cheatsheet/join-session.md
           - Leave a session: cheatsheet/leave-session.md
@@ -85,8 +87,8 @@ nav:
           - openvidu-angular API: reference-docs/openvidu-angular.md
           - REST API: reference-docs/REST-API.md
           - OpenVidu configuration: reference-docs/openvidu-config.md
-          - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
           - OpenVidu Webhook: reference-docs/openvidu-server-webhook.md
+          - OpenVidu CDR: reference-docs/openvidu-server-cdr.md
     - Deployment:
           - Intro: deployment/index.md
           - OpenVidu CE:

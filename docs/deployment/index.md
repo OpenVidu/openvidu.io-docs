@@ -1,7 +1,9 @@
 <h2 id="section-title">Deploying OpenVidu</h2>
-<hr>
 
-- **[OpenVidu Editions](#openvidu-editions)**
+---
+
+<br>
+
 - **[OpenVidu for production on AWS](#openvidu-for-production-on-aws)**
 - **[OpenVidu for production on premises](#openvidu-for-production-on-premises)**
 - **[OpenVidu for development](#openvidu-for-development)**
@@ -9,23 +11,21 @@
 
 ---
 
-## OpenVidu Editions
+<br>
 
-OpenVidu is a platform that you can install on your premises or in any cloud provider. **OpenVidu is not provided as a hosted service**.
+OpenVidu is a platform that you can install on premises in your own servers, or in any cloud provider. **OpenVidu is not provided as a hosted service**.
 
 OpenVidu has different editions:
 
-- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div>: it has an unrestricted Apache 2 open source license. You can deploy it anywhere (in a cloud provider or on premises) and make modifications on your own to adapt the software to your needs. It is COMPLETELY FREE.<div style="margin-bottom: 5px"></div>
-- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div>: it is the middle-range commercial version of OpenVidu with advanced features like scalability, elasticity, monitoring and much more. You can build an application using OpenVidu CE and, if you need it, you can purchase an OpenVidu Pro license and start using it without any change in your code. Its pricing model is described in the [pricing page](https://openvidu.io/pricing){:target="_blank"}. You can get a license with 15-days free trial creating an account. Find more information about PRO edition in its [documentation section](openvidu-pro/).<div style="margin-bottom: 5px"></div>
-- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div>: it is the higher-end commercial version of OpenVidu, bringing the best performance, improved media quality and better scalability for high-demand environments. Any application built for OpenVidu CE or OpenVidu Pro is compatible with OpenVidu Enterprise. Find more information about ENTERPRISE edition in its [documentation section](openvidu-enterprise/).
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; margin-bottom: 5px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div>
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; margin-bottom: 5px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div>
+- <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; margin-bottom: 5px; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</div>
 
-<br>
-
----
+To learn the differences between them visit section <b><a href="getting-started/#openvidu-editions">OpenVidu Editions</a></b>.
 
 ## OpenVidu for production on AWS
 
-OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [CloudFormation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
+OpenVidu can be deployed very easily in Amazon Web Services thanks to [CloudFormation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
 
 - <a href="deployment/ce/aws">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on AWS</a><div style="margin-bottom: 5px"></div>
 - <a href="deployment/pro/aws">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on AWS</a><div style="margin-bottom: 5px"></div>
@@ -37,7 +37,7 @@ OpenVidu Platform can be deployed very easily in Amazon Web Services thanks to [
 
 ## OpenVidu for production on premises
 
-OpenVidu platform can be deployed in any modern linux distribution on premises or in any cloud provider. Deployment is based on docker, allowing a better administration. Depending on the edition you want to deploy, instructions are different:
+OpenVidu can be deployed in any modern linux distribution on premises or in any cloud provider. Deployment is based on docker, allowing a better administration. Depending on the edition you want to deploy, instructions are different:
 
 - <a href="deployment/ce/on-premises">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on premises</a><div style="margin-bottom: 5px"></div>
 - <a href="deployment/pro/on-premises">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on premises</a><div style="margin-bottom: 5px"></div>
@@ -58,13 +58,13 @@ OpenVidu platform can be deployed in any modern linux distribution on premises o
 
 To develop OpenVidu CE based applications you can execute a simple-to-use docker image that includes OpenVidu server and Kurento Media Server. This image is the recommended way to try OpenVidu and works in any operating system (Linux, Windows or Mac).
 
-Can be executed with the following command (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+Can be executed with the following command (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-And the OpenVidu platform for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"}
+OpenVidu for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"}
 
 If you want to develop using OpenVidu PRO specific features, then you should use a production deployment.
 
@@ -77,9 +77,9 @@ If you want to develop using OpenVidu PRO specific features, then you should use
 
 ## Deploy OpenVidu based applications
 
-When deploying OpenVidu platform for production the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_blank"} application is automatically deployed.
+When deploying OpenVidu in production environments, the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_blank"} application is also automatically deployed.
 
-You can remove OpenVidu Call application from the OpenVidu platform.
+You can remove OpenVidu Call application from your OpenVidu deployment.
 
 You can deploy other OpenVidu based application in the server you have deployed OpenVidu or in any other server.
 

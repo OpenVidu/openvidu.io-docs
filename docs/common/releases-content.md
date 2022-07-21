@@ -1619,7 +1619,7 @@ Now Safari users can share their screen as long as they are using Safari ≥ 13.
 
 ##### Vue.js tutorial
 
-OpenVidu tutorials have a new member in their family. Thanks to [@Ninjak](https://github.com/Ninjak){:target="_blank"} now you have available a simple [Vue.js tutorial](https://docs.openvidu.io/en/2.15.0/tutorials/openvidu-insecure-vue/).
+OpenVidu tutorials have a new member in their family. Thanks to [@Ninjak](https://github.com/Ninjak){:target="_blank"} now you have available a simple [Vue.js tutorial](https://docs.openvidu.io/en/2.15.0/tutorials/openvidu-vue/).
 
 <br>
 
@@ -2168,13 +2168,13 @@ You can now use custom recording layouts deployed outside of OpenVidu Server hos
 
 ##### New CDR/Webhook event `filterEventDispatched`
 
-You can now register [filterEventDispatched](reference-docs/openvidu-server-cdr/#filtereventdispatched) events in OpenVidu CDR and OpenVidu Webhook services. This way you can know when a [voice or video filter](advanced-features/filters/) has emitted an event from your application’s server side (once you add an event listener to a filter).
+You can now register [filterEventDispatched](reference-docs/openvidu-server-webhook/#filtereventdispatched) events in OpenVidu CDR and OpenVidu Webhook services. This way you can know when a [voice or video filter](advanced-features/filters/) has emitted an event from your application’s server side (once you add an event listener to a filter).
 
 <br>
 
 ##### New data in CDR/Webhook event `participantJoined` and `participantLeft`
 
-Both [participantJoined](reference-docs/openvidu-server-cdr/#participantjoined) and [participantLeft](reference-docs/openvidu-server-cdr/#participantleft) CDR/Webhook events include now `clientData` and `serverData` properties. This allows you to better identify your users from your application’s server side.
+Both [participantJoined](reference-docs/openvidu-server-webhook/#participantjoined) and [participantLeft](reference-docs/openvidu-server-webhook/#participantleft) CDR/Webhook events include now `clientData` and `serverData` properties. This allows you to better identify your users from your application’s server side.
 
 <br>
 
@@ -2413,7 +2413,7 @@ Although this is not a visible feature for OpenVidu final users, we would like t
 
 #### BREAKING CHANGES
 
-OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated in favour of `recordingStatusChanged` event. Check this new event [here](reference-docs/openvidu-server-cdr). Besides, event `recordingStopped` now won't provide the final values of the recording (specifically its `duration` and `size` properties, that will be 0). You will have to listen to `recordingStatusChanged` with status `ready` to get them.
+OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated in favour of `recordingStatusChanged` event. Check this new event [here](reference-docs/openvidu-server-webhook). Besides, event `recordingStopped` now won't provide the final values of the recording (specifically its `duration` and `size` properties, that will be 0). You will have to listen to `recordingStatusChanged` with status `ready` to get them.
 
 <br>
 
@@ -3311,7 +3311,7 @@ You can set custom bandwidths by using **REST API**, **openvidu-java-client** or
 
 We introduced OpenVidu Web Component in release [2.3.0](#230). Now we offer native libraries for both Angular and React (latest versions) to insert the same powerful component in your applications by making use of each framework capabilities. You can check a tutorial for OpenVidu Angular ([openvidu-library-angular](tutorials/openvidu-library-angular/)) and  for OpenVidu React ([openvidu-library-react](tutorials/openvidu-library-react/)) right now.
 
-Of course you can keep using OpenVidu Browser library instead of these components in any frontend framework. These tutorials show a basic use of OpenVidu Browser in an Angular app ([openvidu-insecure-angular](tutorials/openvidu-insecure-angular/)) and in a React app ([openvidu-insecure-react](tutorials/openvidu-insecure-react/)).
+Of course you can keep using OpenVidu Browser library instead of these components in any frontend framework. These tutorials show a basic use of OpenVidu Browser in an Angular app ([openvidu-angular](tutorials/openvidu-angular/)) and in a React app ([openvidu-react](tutorials/openvidu-react/)).
 
 #### BUG FIXES
 
@@ -3795,7 +3795,7 @@ We have implemented a new class in OpenVidu Browser aimed to better support decl
 
 Now Publisher and Subscriber objects both inherit from [StreamManager](api/openvidu-browser/classes/streammanager.html), which provides 2 different methods to tell OpenVidu what DOM video players should display each specific stream (`addVideoElement` and `createVideoElement`). This allows us to let OpenVidu take control of the video elements (even if our framework dynamically creates them) and do not worry about its internals. This is all explained in detail in [Manage video players](cheatsheet/manage-videos) section.
 
-If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](tutorials/openvidu-insecure-angular/).<br><br>
+If you want to check out a real example of this behavior, explore our renovated [OpenVidu Angular tutorial](tutorials/openvidu-angular/).<br><br>
 
 <br>
 

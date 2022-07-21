@@ -43,7 +43,7 @@
                         <img src="img/assets/javascript.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-insecure-js"
+                                <li><a href="tutorials/openvidu-js"
                                         class="cbp-singlePage"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -62,7 +62,7 @@
                         <img src="img/assets/angular.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-insecure-angular"><i
+                                <li><a href="tutorials/openvidu-angular"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -81,7 +81,7 @@
                         <img src="img/assets/react.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-insecure-react/"><i
+                                <li><a href="tutorials/openvidu-react/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -100,7 +100,7 @@
                         <img src="img/assets/vuejs.png" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-insecure-vue/"><i
+                                <li><a href="tutorials/openvidu-vue/"><i
                                             class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
@@ -211,7 +211,7 @@
                         <img src="img/assets/js_java.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-js-java"><i class="icon ion-edit"></i></a></li>
+                                <li><a href="tutorials/openvidu-roles-java"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>
@@ -253,7 +253,7 @@
                         <img src="img/assets/js_node.jpg" class="img-responsive img-tutorials" alt="" />
                         <div class="overlay">
                             <ul class="expand">
-                                <li><a href="tutorials/openvidu-js-node"><i class="icon ion-edit"></i></a></li>
+                                <li><a href="tutorials/openvidu-roles-node"><i class="icon ion-edit"></i></a></li>
                             </ul>
                             <a class="close-overlay hidden">x</a>
                         </div>

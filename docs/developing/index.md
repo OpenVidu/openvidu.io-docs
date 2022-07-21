@@ -162,7 +162,7 @@ If you want to test your OpenVidu WebComponent changes, you can clone openvidu-t
 
 ```bash
 # Same path as "git clone https://github.com/OpenVidu/openvidu-call.git"
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone git@github.com:OpenVidu/openvidu-tutorials.git
 # Serve the tutorial. Build command of the webcomponent will update its files
 http-server openvidu-tutorials/openvidu-webcomponent/web
 ```

@@ -59,6 +59,6 @@ Every Publisher and Subscriber object can display a media stream in as many vide
 > This way of managing the video players is very useful when developing your application with some frontend declarative framework such as **Angular**,
 > **React** or **Vue.js**. It allows you to add to the proper `Publisher` or `Subscriber` any video element managed by the framework. Besides, it is possible to
 > treat both Publishers and Subscribers the same way regarding their rendering in the page, as they both inherit from the parent class `StreamManager`. If you are
-> interested in these concepts, you can check out our super simple [Angular tutorial](tutorials/openvidu-insecure-angular/).
+> interested in these concepts, you can check out our super simple [Angular tutorial](tutorials/openvidu-angular/).
 
 <br>

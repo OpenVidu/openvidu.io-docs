@@ -39,7 +39,7 @@ OpenVidu Enterprise offers two different deployment models:
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-enterprise/enterprise-architecture-models.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-enterprise/enterprise-architecture-models.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-enterprise/enterprise-architecture-models.png"><img class="img-responsive" style="margin: auto; max-height: 480px" src="img/docs/openvidu-enterprise/enterprise-architecture-models.png"/></a>
     </div>
 </div>
 
@@ -132,7 +132,7 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-1" href="img/docs/deployment/multimaster_parameters_1.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_1.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-1" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_parameters_1.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_1.png"/></a>
     </div>
 </div>
 
@@ -196,7 +196,7 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-2" href="img/docs/deployment/multimaster_parameters_2.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_2.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-2" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_parameters_2.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_2.png"/></a>
     </div>
 </div>
 
@@ -238,7 +238,7 @@ All of these parameters will create two AutoScaling groups with its correspondan
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-3" href="img/docs/deployment/multimaster_parameters_3.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_3.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-3" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_parameters_3.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_3.png"/></a>
     </div>
 </div>
 
@@ -325,7 +325,7 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-4" href="img/docs/deployment/multimaster_parameters_4.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_4.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-4" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_parameters_4.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_4.png"/></a>
     </div>
 </div>
 
@@ -345,7 +345,7 @@ This is the **SSH key** that you want to use for your EC2 instances for both, **
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-5" href="img/docs/deployment/multimaster_parameters_5.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_5.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-5" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_parameters_5.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_parameters_5.png"/></a>
     </div>
 </div>
 
@@ -377,7 +377,7 @@ When everything is deployed, you should see this in the _Outputs section_ of Clo
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-6" href="img/docs/deployment/multimaster_end_1.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_1.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-6" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_1.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_1.png"/></a>
     </div>
 </div>
 
@@ -398,7 +398,7 @@ If you want to check that everything is set up correctly in AWS after deploying 
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-7" href="img/docs/deployment/multimaster_end_2.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_2.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-7" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_2.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_2.png"/></a>
     </div>
 </div>
 
@@ -406,7 +406,7 @@ If you want to check that everything is set up correctly in AWS after deploying 
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-8" href="img/docs/deployment/multimaster_end_3.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_3.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-8" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_3.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_3.png"/></a>
     </div>
 </div>
 
@@ -434,7 +434,7 @@ As media nodes are not attached to any Load Balancer, the health of these nodes 
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-9" href="img/docs/deployment/multimaster_end_4.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_4.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-9" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_4.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_4.png"/></a>
     </div>
 </div>
 
@@ -442,7 +442,7 @@ As media nodes are not attached to any Load Balancer, the health of these nodes 
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-10" href="img/docs/deployment/multimaster_end_5.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_5.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-10" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_5.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_5.png"/></a>
     </div>
 </div>
 
@@ -530,9 +530,9 @@ To change those parameters you just need to go to ** AWS Cloudformation Panel ðŸ
 
 <div class="row">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
-        <a data-fancybox="gallery-pro1" data-caption="First, go to the 'Cloudformation panel' and Select your Stack. Then click in the 'Update' button." href="img/docs/deployment/multimaster_asg_config_1.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_1.png"/></a>
-        <a data-fancybox="gallery-pro1" data-caption="Select 'Use current template' and click in the 'Next' button." href="img/docs/deployment/multimaster_asg_config_2.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_2.png"/></a>
-        <a data-fancybox="gallery-pro1" data-caption="Only these parameters can be changed through Cloudformation" href="img/docs/deployment/multimaster_asg_config_3.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_3.png"/></a>
+        <a data-fancybox="gallery-pro2" data-caption="First, go to the 'Cloudformation panel' and Select your Stack. Then click in the 'Update' button." data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_asg_config_1.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_1.png"/></a>
+        <a data-fancybox="gallery-pro2" data-caption="Select 'Use current template' and click in the 'Next' button." data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_asg_config_2.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_2.png"/></a>
+        <a data-fancybox="gallery-pro2" data-caption="Only these parameters can be changed through Cloudformation" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_asg_config_3.png"><img class="img-responsive img-pro" src="img/docs/deployment/multimaster_asg_config_3.png"/></a>
     </div>
     <div class="slick-captions-text slick-captions">
       <div class="caption"><p>First, go to the <strong>Cloudformation Panel</strong> and Select your Stack. Then click in the <strong>Update</strong> button.</p></div>
@@ -563,7 +563,7 @@ Take into account that not all parameters can be changed via API Rest, so in cas
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-11" href="img/docs/deployment/multimaster_end_6.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_6.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-11" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_6.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_6.png"/></a>
     </div>
 </div>
 
@@ -571,7 +571,7 @@ Take into account that not all parameters can be changed via API Rest, so in cas
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-multimaster-12" href="img/docs/deployment/multimaster_end_7.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_7.png"/></a>
+        <a data-fancybox="gallery-example-multimaster-12" data-type="image" class="fancybox-img" href="img/docs/deployment/multimaster_end_7.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/multimaster_end_7.png"/></a>
     </div>
 </div>
 <br>
@@ -613,21 +613,7 @@ If you want to see and example of an application that automatically reconnects u
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">

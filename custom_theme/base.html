@@ -124,7 +124,6 @@
 				<ul class="nav navbar-nav  navbar-right">
 					<li class="to-section"><a href="https://openvidu.io/index">Home</a></li>
 					<li class="to-section"><a href="https://openvidu.io/demos">Demos</a></li>
-					<li class="to-section"><a href="https://openvidu.io/tutorials">Tutorials</a></li>
 					<li class="to-section"><a href="https://openvidu.io/openvidu-call">OpenVidu Call</a></li>
 					<li class="to-section"><a href="https://openvidu.io/support">Support</a></li>
 					<li class="to-section"><a href="https://openvidu.io/pricing">Pricing</a></li>
@@ -240,10 +239,10 @@
 		});
 		// Add click listener to menu items
 		$('li.subnav_drop div').click(function (i, e) {
-			let submenu = $(this).parent().find('ul.subnav');
+			let submenu = $(this).parent().find('> ul.subnav');
 			submenu.toggle();
-			submenu.parent().find('span.arrow-up').toggle();
-			submenu.parent().find('span.arrow-down').toggle();
+			submenu.siblings().find('span.arrow-up').toggle();
+			submenu.siblings().find('span.arrow-down').toggle();
 			if (ps) ps.update();
 		});
 

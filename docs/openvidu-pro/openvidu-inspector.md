@@ -10,10 +10,10 @@ Review each client connected to a video session and the media streams each one i
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro2.png"/></a>
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro3.png"/></a>
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro4.gif"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro4.gif"/></a>
-        <a data-fancybox="gallery-pro1" href="img/docs/openvidu-pro/pro8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro8.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro2.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro2.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro3.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro3.png"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro4.gif"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro4.gif"/></a>
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro8.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro8.png"/></a>
     </div>
 </div>
 
@@ -24,9 +24,9 @@ Through OpenVidu Inspector you are able to administrate your video sessions just
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro5.png"/></a>
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro6.png"/></a>
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/pro7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro7.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro5.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro5.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro6.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro6.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro7.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro7.png"/></a>
     </div>
 </div>
 
@@ -37,7 +37,7 @@ OpenVidu Inspector allows you to review all your recordings in a simple way. Pre
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro9.png"/></a>
+        <a data-fancybox="gallery-pro3" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro9.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro9.png"/></a>
     </div>
 </div>
 
@@ -50,10 +50,10 @@ OpenVidu inspector provides a very intuitive way to see all our sessions info in
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro14.png"/></a>
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro15.png"/></a>
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro16.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16.png"/></a>
-        <a data-fancybox="gallery-pro4" href="img/docs/openvidu-pro/pro16_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16_1.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro14.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro14.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro15.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro15.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro16.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16.png"/></a>
+        <a data-fancybox="gallery-pro4" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro16_1.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro16_1.png"/></a>
     </div>
 </div>
 
@@ -64,8 +64,8 @@ OpenVidu Pro provides clustering features for scalable video sessions. You can m
 
 <div class="row">
     <div class="pro-gallery" style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/pro17.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro17.png"/></a>
-        <a data-fancybox="gallery-pro7" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro18.png"/></a>
+        <a data-fancybox="gallery-pro7" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro17.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro17.png"/></a>
+        <a data-fancybox="gallery-pro7" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/pro18.png"/></a>
     </div>
 </div>
 
@@ -76,7 +76,7 @@ OpenVidu Pro is able to locate your clients by city and country to make easier t
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro5" href="img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="img/docs/openvidu-pro/pro12.png"/></a>
+        <a data-fancybox="gallery-pro5" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro12.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee" src="img/docs/openvidu-pro/pro12.png"/></a>
     </div>
 </div>
 
@@ -92,27 +92,13 @@ You may also restart OpenVidu Server Pro directly in OpenVidu Inspector:<br><br>
 
 <div class="row">
     <div style="margin: 25px 15px 15px 15px">
-        <a data-fancybox="gallery-pro6" href="img/docs/openvidu-pro/pro13.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee; max-height: 650px" src="img/docs/openvidu-pro/pro13.png"/></a>
+        <a data-fancybox="gallery-pro6" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro13.png"><img class="img-responsive img-pro" style="border: 2px solid #eeeeee; max-height: 650px" src="img/docs/openvidu-pro/pro13.png"/></a>
     </div>
 </div>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">

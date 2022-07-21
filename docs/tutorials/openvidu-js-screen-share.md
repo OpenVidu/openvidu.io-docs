@@ -1,82 +1,56 @@
-# openvidu-insecure-js-screen-share
-<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-js-screen-share" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+# openvidu-js-screen-share
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-screen-share" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This tutorial is a modification of **[openvidu-insecure-js](tutorials/openvidu-insecure-js/)** which includes the posibility to share the screen with other users in the same session. For more information about OpenVidu screen share capabilities, check: **[Scren Share section](advanced-features/screen-share)**.
+This tutorial is a modification of **[openvidu-js](tutorials/openvidu-js/)** which includes the posibility to share the screen with other users in the same session. For more information about OpenVidu screen sharing capabilities, check section **[Screen share](advanced-features/screen-share)**.
 
-If it is the first time you use OpenVidu, it is highly recommended starting with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial, as this app is no more than an extension of it with some new features and styles.
-
-## Understanding this tutorial
-
-The tutorial we are going to see is a simple client-side application built with **JavaScript**, **HTML** and **CSS**, using OpenVidu. Take a look at the diagram
-below:
-
-<p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeVBWdkFwWEtqNjA">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flows transmission
-
-We will be working in the _**"You will be here"**_ box, by building a simple client-side application using **openvidu-browser** to communicate with **openvidu-server** and
-create step by step a videoconference web application with screensharing capabilities.
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	Tutorial's name includes "insecure" word because this application has no backend, and therefore it has no control over the users. Typically, you don't want such application in production environments. When you feel comfortable with the client-side of OpenVidu, add your own server or follow one of our super simple secure tutorials.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-js-screen-share.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-js-screen-share.png"/>
+        </a>
+    </div>
 </div>
-</div>
+
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
 
 ## Running this tutorial
 
-1) Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-2) You will need a http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
-
-```bash
-npm install -g http-server
-```
-
-3) Run the tutorial:
-
-```bash
-http-server openvidu-tutorials/openvidu-insecure-js-screen-share/web
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container, which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
+
+```bash
+npm install -g http-server
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+http-server openvidu-tutorials/openvidu-js-screen-share/web
+```
+
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -84,14 +58,14 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-join.png">
-		<img class="img-responsive" src="img/demos/insecure-join.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-join.png">
+            <img class="img-responsive" src="img/demos/insecure-join.png">
+        </a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-session-screenshare.png">
-		<img class="img-responsive" src="img/demos/insecure-session-screenshare.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-session-screenshare.png">
+            <img class="img-responsive" src="img/demos/insecure-session-screenshare.png">
+        </a>
 	</div>
 </div>
 
@@ -281,7 +255,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/1ddfa8e4b967e297acf4827c81010a209ba9a549/openvidu-insecure-js-screen-share/web/app.js#L249){:target="_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/1ddfa8e4b967e297acf4827c81010a209ba9a549/openvidu-js-screen-share/web/app.js#L249){:target="_blank"}.
 
 On the other hand, you can see in the code above that we are creating two tokens to the same id (`mySessionId`). You will see why in the next section...
 
@@ -497,7 +471,7 @@ function initMainVideo(videoElement, userData) {
 }
 ```
 
-## Deploy openvidu-insecure-js
+## Deploy openvidu-js-screen-share
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
@@ -508,9 +482,9 @@ function initMainVideo(videoElement, userData) {
   </div>
 </div>
 
-Under the root project folder, you can see the `openvidu-insecure-js-screen-share/docker/` directory. Here it is included all the required files to make it possible the deployment with OpenVidu.
+Under the root project folder, you can see the `openvidu-js-screen-share/docker/` directory. Here it is included all the required files to make it possible the deployment with OpenVidu.
 
-First, you will need to create the **openvidu-insecure-js-screen-share** docker image.
+First, you will need to create the **openvidu-js-screen-share** docker image.
 
 **1) Run `create_image.sh` script:**
 
@@ -518,11 +492,11 @@ First, you will need to create the **openvidu-insecure-js-screen-share** docker 
 ./create_image.sh
 ```
 
-This script will create an image named `openvidu/openvidu-insecure-js-screen-share-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/c1b9fc1/openvidu-insecure-js/docker/create_image.sh#L5-L6). Once the openvidu-insecure-js-screen-share image has been created, you will be able to deploy it.
+This script will create an image named `openvidu/openvidu-js-screen-share-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/c1b9fc1/openvidu-js/docker/create_image.sh#L5-L6). Once the openvidu-js-screen-share image has been created, you will be able to deploy it.
 
 **2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment, and you have to take account to change the image name by your custom name (`openvidu/openvidu-insecure-js-screen-share-demo` on this sample).
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment, and you have to take account to change the image name by your custom name (`openvidu/openvidu-js-screen-share-demo` on this sample).
 
 Your `docker-compose.override.yml` should look like this:
 
@@ -531,7 +505,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-insecure-js-screen-share-demo:2.22.0
+        image: openvidu/openvidu-js-screen-share-demo:2.22.0
         restart: on-failure
         network_mode: host
         environment:
@@ -541,18 +515,4 @@ services:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

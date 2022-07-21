@@ -1,11 +1,25 @@
 <h2 id="section-title">openvidu-java-client API</h2>
 <hr>
 
-_This is a Java library wrapping [OpenVidu Server REST API](reference-docs/REST-API/)_
-
-<h3>Check <a href="api/openvidu-java-client">JavaDoc documentation</a></h3>
+_This is a Java library wrapping [OpenVidu REST API](reference-docs/REST-API/)_
 
 <hr>
+
+## Installation
+
+See dependency at [Maven Central](https://search.maven.org/artifact/io.openvidu/openvidu-java-client){:target="_blank"}.
+
+<br>
+
+---
+
+## Documentation
+
+<h4><a href="api/openvidu-java-client">JavaDoc documentation</a></h4>
+
+<br>
+
+---
 
 ## Code samples
 

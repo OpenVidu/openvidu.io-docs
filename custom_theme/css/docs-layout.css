@@ -318,6 +318,19 @@ ul#menu-list {
     margin-bottom: 10px;
 }
 
+#doc-container div.application-client-options-table ~ table td {
+    color: #7a7a7a;
+    text-align: start;
+}
+
+#doc-container div.application-client-options-table ~ table td:first-child {
+    color: #000;
+}
+
+#doc-container div.application-client-options-table ~ table td ul {
+    padding-left: 10px;
+}
+
 #doc-container .index-list > ul > li {
     margin-top: 7px;
 }
@@ -541,4 +554,8 @@ div.toc > ul > li li {
 
 .language-typescript .hljs-comment {
     color: #88ad8a !important;
+}
+
+.fancybox-iframe {
+    background: none !important;
 }

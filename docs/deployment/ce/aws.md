@@ -245,7 +245,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-1" href="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"/></a>
+        <a data-fancybox="gallery-example-1" data-type="image" href="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"><img width="650px" class="img-responsive img-deploy-example fancybox-img" src="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"/></a>
     </div>
 </div>
 
@@ -267,19 +267,19 @@ For this specific scenario you will need to:
 1. Go to your EC2 AWS section, and click here:
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-1" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
+        <a data-fancybox="gallery-example-lets-1" data-type="image" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example fancybox-img" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
     </div>
 </div>
 2. Click on **Allocate Elastic IP address**
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-2" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
+        <a data-fancybox="gallery-example-lets-2" data-type="image" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example fancybox-img" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
     </div>
 </div>
 3. This will generate an Elastic IP that you will be able to use for your OpenVidu deployment with letsencrypt
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-3" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
+        <a data-fancybox="gallery-example-lets-3" data-type="image" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example fancybox-img" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
     </div>
 </div>
 
@@ -293,7 +293,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-4" href="img/docs/deployment/aws-examples-letsencrypt-4.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-4.png"/></a>
+        <a data-fancybox="gallery-example-lets-4"  data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-letsencrypt-4.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-4.png"/></a>
     </div>
 </div>
 
@@ -447,7 +447,7 @@ If that is not the problem, then follow these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro13" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
+        <a data-fancybox="gallery-pro13" data-type="image" class="fancybox-img" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
     </div>
 </div>
 
@@ -455,7 +455,7 @@ If that is not the problem, then follow these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro14" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
+        <a data-fancybox="gallery-pro14" data-type="image" class="fancybox-img" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
     </div>
 </div>
 
@@ -500,21 +500,7 @@ Replace `AWS_SSH_KEY` with the path to the SSH key of the EC2 instance and `OPEN
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" type="text/css" href="css/downloads/slick-1.6.0.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>

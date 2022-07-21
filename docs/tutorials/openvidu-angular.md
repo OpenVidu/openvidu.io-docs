@@ -1,85 +1,62 @@
-# openvidu-insecure-angular
-<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-insecure-angular" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+# openvidu-angular
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-angular" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with **Angular** framework.
+An OpenVidu application built with **Angular**.
 
-If it is the first time you use OpenVidu, it is highly recommended to start with **[openvidu-hello-world](tutorials/openvidu-hello-world/)** tutorial, as this app is no more than an extension of it with some new features and styles.
-
-This is the Angular version of [openvidu-insecure-js](tutorials/openvidu-insecure-js/). Try it if you plan to use Angular framework for your frontend.
-
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSbmtwcXNnXy1ZSkU">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: NPM package for your Angular app. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flow transmissions
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	Tutorial's name includes "insecure" word because this application has no backend and therefore it has no control over the users. Typically you don't want such application in production environments. When you feel comfortable with the client-side of OpenVidu, add your own server or follow one of our super simple secure tutorials.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-angular.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-angular.png"/>
+        </a>
+    </div>
 </div>
-</div>
+
+> If it is the first time you use OpenVidu, it is highly recommended to start with [openvidu-hello-world](tutorials/openvidu-hello-world/) tutorial, as this app is no more than an extension of it with some new features and styles.
+
+> openvidu-angular app is to all intents and purposes the same as [openvidu-js](tutorials/openvidu-js/) app, but using Angular framework instead of plain web technologies. Try openvidu-angular if you plan to use Angular framework in your frontend.
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/-C0BTCZz11E?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can check it with the following command:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
+
+```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+```
+
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [Angular CLI](https://angular.io/cli){:target="_blank"} to serve the application. Check them with the following command:
 
 ```bash
 npm -v
 ng v
 ```
 
-2) Clone the repo:
+To serve the tutorial:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+# Using the same repository openvidu-tutorials from step 2
 
-3) Run the tutorial:
-
-```bash
-cd openvidu-tutorials/openvidu-insecure-angular
+cd openvidu-tutorials/openvidu-angular
 npm install
 ng serve
 ```
 
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
-```
-
-5) Go to _[`http://localhost:4200`](http://localhost:4200){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -87,20 +64,20 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-join.png">
-		<img class="img-responsive" src="img/demos/insecure-join.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-join.png">
+            <img class="img-responsive" src="img/demos/insecure-join.png">
+        </a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/insecure-session.png">
-		<img class="img-responsive" src="img/demos/insecure-session.png">
-	</a>
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/insecure-session.png">
+            <img class="img-responsive" src="img/demos/insecure-session.png">
+        </a>
 	</div>
 </div>
 
 ## Understanding the code
 
-This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
+This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
 - `app.component.ts`: defines *AppComponent*, main component of the app. It contains the functionalities for joining a video-call and for handling the video-calls themselves.
 - `app.component.html`: HTML for AppComponent.
@@ -241,7 +218,7 @@ Now we need a token from OpenVidu Server. In a production environment we would p
   - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
   - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-insecure-angular/src/app/app.component.ts#L161){:target="_blank"}.
+You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-angular/src/app/app.component.ts#L161){:target="_blank"}.
 
 ---
 
@@ -382,18 +359,4 @@ Whenever we want a user to leave the session, we just need to call `session.disc
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

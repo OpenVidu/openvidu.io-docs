@@ -1,48 +1,78 @@
 # openvidu-virtual-background
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-virtual-background" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A client-side only application built with JavaScript, HTML and CSS, demonstrating OpenVidu Virtual Background capabilities. It is highly recommended to read [Virtual Background](advanced-features/virtual-background/) documentation before running the tutorial.
+An OpenVidu application built with plain JavaScript, HTML and CSS, demonstrating OpenVidu Virtual Background capabilities. It is highly recommended to read [Virtual Background](advanced-features/virtual-background/) documentation before running the tutorial.
 
-## Understanding this tutorial
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+Virtual Background is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+</div>
+</div>
 
-<p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSeVBWdkFwWEtqNjA">
-</p>
-
-OpenVidu is composed by the three modules displayed on the image above in its insecure version.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-server**: Java application that controls Kurento Media Server
-- **Kurento Media Server**: server that handles low level operations of media flows transmission
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-virtual-background.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-virtual-background.png"/>
+        </a>
+    </div>
+</div>
 
 ## Running this tutorial
 
-1) Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+#### 1. Run OpenVidu deployment
 
-2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
+You will need an **OpenVidu Pro** or **OpenVidu Enterprise** deployment to test Virtual Background capabilities. See [Deployment documentation](deployment/).
+
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
 
 ```bash
 npm install -g http-server
 ```
 
-3) You will need an **OpenVidu Pro** or **OpenVidu Enterprise** deployment to test Virtual Background capabilities. Modify the OpenVidu URL and secret in the `app.js` file **[here](https://github.com/OpenVidu/openvidu-tutorials/blob/627d636f18d766a24d92f1f9aee4b02dda8a27cd/openvidu-virtual-background/web/app.js#L296-L297){:target="_blank"}** to point to your deployment.
+Modify the OpenVidu URL and secret in the `app.js` file **[here](https://github.com/OpenVidu/openvidu-tutorials/blob/627d636f18d766a24d92f1f9aee4b02dda8a27cd/openvidu-virtual-background/web/app.js#L296-L297){:target="_blank"}** to point to your OpenVidu deployment. Use the same repository *openvidu-tutorials* from [step 2](#2-run-your-preferred-server-application-sample).
 
-4) Run the tutorial:
+Once you have done that, you can serve the tutorial like this:
 
 ```bash
+# Using the same repository openvidu-tutorials from step 2
 http-server openvidu-tutorials/openvidu-virtual-background/web
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running.
-
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
 
 ## Understanding the code
 
-This tutorial is exactly the same as [openvidu-insecure-js](tutorials/openvidu-insecure-js/), but adding Virtual Background capabilities.
+This tutorial is exactly the same as [openvidu-js](tutorials/openvidu-js/), but adding Virtual Background capabilities.
 Let's focus on the usage of this feature.
 
 In `web/app.js` file there is a section containing all methods making use of Virtual Background.
@@ -122,3 +152,7 @@ async function removeVirtualBackground() {
   noVirtualBackgroundButtons();
 }
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

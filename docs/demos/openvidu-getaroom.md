@@ -1,7 +1,7 @@
 # openvidu-getaroom
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](tutorials/openvidu-insecure-js/) does.
+OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-js](tutorials/openvidu-js/) does.
 
 <p align="center">
   <img  class="img-responsive" src="img/tutorials/openvidu-getaroom.png">
@@ -18,7 +18,7 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 1) Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
+git clone git@github.com:OpenVidu/openvidu-tutorials.git
 ```
 
 2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
@@ -33,10 +33,10 @@ npm install -g http-server
 http-server openvidu-tutorials/openvidu-getaroom/web
 ```
 
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
@@ -50,24 +50,24 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-index.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-index.png">
 			<img class="img-responsive" src="img/demos/getaroom-index.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-1.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-1.png">
 			<img class="img-responsive" src="img/demos/getaroom-session-1.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-6.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-6.png">
 			<img class="img-responsive" src="img/demos/getaroom-session-6.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-6-mob.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-6-mob.png">
 			<img id="img-mob" class="img-responsive" src="img/demos/getaroom-session-6-mob.png">
 		</a>
 	</div>
@@ -294,18 +294,4 @@ services:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

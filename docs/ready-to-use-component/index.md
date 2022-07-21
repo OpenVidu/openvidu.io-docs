@@ -1,55 +1,97 @@
-# openvidu-webcomponent
+<h2 id="section-title">Ready-to-use component</h2>
+<hr>
+
+OpenVidu provides a **Web Component** that is the fastest and least impactful way to incorporate video conferencing capabilities to your application. It is extremely easy to add, although its customization is somewhat limited.
+
+The Web Component is built directly from our flagship application [OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"}, so all of its advanced features are available when using the Web Component.
+
+> The _ready-to-use component_ is only one of the three strategies available to integrate OpenVidu in your application's client. You can take a look to sections [OpenVidu Components](components/) or [Full control of the UI](full-control-ui/) to explore the other alternatives.
+
+The use of the OpenVidu Web Component is as simple as this:
+
+```html
+<html>
+    <head>
+        <script src='openvidu-webcomponent-{VERSION}.js'></script>
+        <link rel="stylesheet" href="openvidu-webcomponent-{VERSION}.css">
+    </head>
+    <body>
+        <openvidu-webcomponent></openvidu-webcomponent>
+    </body>
+</html>
+```
+
+The Web Component will not be visible at this point, as it needs a token to connect to a session. You can do that with JavaScript like this:
+
+```javascript
+window.onload = () => {
+    var webComponent = document.querySelector('openvidu-webcomponent');
+    webComponent.tokens = 'AN_OPENVIDU_TOKEN';
+}
+```
+
+You can download the OpenVidu Web Component from the [GitHub Releases page](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}, asset `openvidu-webcomponent-VERSION.zip`.
+
+This is just a very simplified snippet on how to add OpenVidu Web Component to your application. Check out the tutorial below to see a real example and all the customizations offered by the Web Component.
+
+<br>
+
+---
+
+## Tutorial
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-webcomponent" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Web Component is the simplest and quickest way to add videoconference capabilities to your existing web application. It brings many of the features of OpenVidu platform, making it very powerful.
-With just a few lines of code you will have your first video call working!
+### Running this tutorial
 
-## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/t8RhZUOraCQ?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-1) Clone the repo:
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-2) You will need an http web server installed in your development computer to execute the tutorial. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
-
-```bash
-npm install -g http-server
-```
-
-3) Run the tutorial:
-
-```bash
-http-server openvidu-tutorials/openvidu-webcomponent/web
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a session.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
+
+```bash
+npm install -g http-server
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+http-server openvidu-tutorials/openvidu-webcomponent/web
+```
+
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you run the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent2.png">
-		<img class="img-responsive" src="img/demos/ov-webcomponent2.png">
-	</a>
+		<a data-fancybox="gallery1" data-type="image" href="img/demos/ov-webcomponent2.png" class="fancybox-img">
+            <img class="img-responsive" src="img/demos/ov-webcomponent2.png">
+        </a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent1.png">
-		<img class="img-responsive" src="img/demos/ov-webcomponent1.png">
-	</a>
+		<a data-fancybox="gallery1" data-type="image" href="img/demos/ov-webcomponent1.png" class="fancybox-img">
+            <img class="img-responsive" src="img/demos/ov-webcomponent1.png">
+        </a>
 	</div>
 </div>
 
@@ -57,7 +99,7 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
-## Understanding the code
+### Understanding the code
 
 This application is very simple. It has only 4 files:
 
@@ -191,7 +233,8 @@ async function joinSession() {
     var participantName = document.getElementById('user').value;
 
     // Requesting tokens
-    var tokens = {webcam: await getToken(sessionName), screen: await getToken(sessionName)};
+    var promiseResults = await Promise.all([getToken(sessionName), getToken(sessionName)]);
+    var tokens = {webcam: promiseResults[0], screen: promiseResults[1]};
 
     //Getting the webcomponent element
     var webComponent = document.querySelector('openvidu-webcomponent');
@@ -259,7 +302,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 <hr>
 
 
-## Close the session dynamically
+### Close the session dynamically
 
 You can also disconnect the user from the session dynamically calling to **disconnect** method which the OpenVidu Webcomponent provides:
 
@@ -267,19 +310,19 @@ You can also disconnect the user from the session dynamically calling to **disco
 webComponent.disconnect();
 ```
 
-## OpenVidu Web Component Customization
+### OpenVidu Web Component Customization
 
 #### UI Customization
 
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent5.png">
+		<a data-fancybox="gallery2" data-type="image" class="fancybox-img" href="img/demos/ov-webcomponent5.png">
 		    <img class="img-responsive" src="img/demos/ov-webcomponent5.png">
 	    </a>
 	</div>
     <div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent4.png">
+		<a data-fancybox="gallery2" data-type="image" class="fancybox-img" href="img/demos/ov-webcomponent4.png">
 		    <img class="img-responsive" src="img/demos/ov-webcomponent4.png">
 	    </a>
 	</div>
@@ -348,12 +391,12 @@ The OpenVidu Web Component also allows you to **customize the styles** to your l
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent7.png">
+		<a data-fancybox="gallery3" data-type="image" class="fancybox-img" href="img/demos/ov-webcomponent7.png">
 		    <img class="img-responsive" src="img/demos/ov-webcomponent7.png">
 	    </a>
 	</div>
     <div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/ov-webcomponent6.png">
+		<a data-fancybox="gallery3" data-type="image" class="fancybox-img" href="img/demos/ov-webcomponent6.png">
 		    <img class="img-responsive" src="img/demos/ov-webcomponent6.png">
 	    </a>
 	</div>
@@ -385,23 +428,9 @@ You can update the css styles which you can find [here](https://github.com/OpenV
 
 #### Change the OpenVidu logo
 
-With OpenVidu Web Component you will also be able to replace the OpenVidu branding logo with yours. You only have to go to `web/assets/images/` and add your custom logo file with the `logo.png` name.
+With OpenVidu Web Component you can also replace the OpenVidu branding logo with your custom onw. You just have to add into folder `web/assets/images/` your custom logo file with name `logo.png`.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

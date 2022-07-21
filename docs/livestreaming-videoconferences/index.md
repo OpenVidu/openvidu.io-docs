@@ -650,7 +650,7 @@ Your needs may be met simply by using a third-party application as a non-integra
 <hr>
 
 <div class="docs-gallery">
-  <a data-fancybox="gallery-wellcome" href="img/docs/technologies/flowchartTech.jpg"><img class="img-responsive img-wellcome" src="img/docs/technologies/flowchartTech.jpg"/></a>
+  <a data-fancybox="gallery-wellcome" data-type="image" class="fancybox-img" href="img/docs/technologies/flowchartTech.jpg"><img class="img-responsive img-wellcome" src="img/docs/technologies/flowchartTech.jpg"/></a>
 </div>
 
 <h4>OpenVidu</h4>
@@ -662,21 +662,6 @@ However, OpenVidu Team have developed [OpenVidu PRO](openvidu-pro/) which consis
 And secondly, OpenVidu offers **as a service external app videoconference** ([call.openvidu.io](https://call.openvidu.io)) and **on premises external app videoconference** ([OpenVidu Call](https://github.com/OpenVidu/openvidu-call/releases)).
 
 
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery-wellcome"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

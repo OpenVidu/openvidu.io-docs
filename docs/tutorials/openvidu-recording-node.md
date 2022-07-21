@@ -2,51 +2,26 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-recording-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A simple Node application that uses [openvidu-node-client](reference-docs/openvidu-node-client/) to demonstrate OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/) documentation before diving into the tutorial.
-## Understanding this tutorial
+An OpenVidu application with a Node.js backend and a plain JS/HTML/CSS frontend. It makes use of [openvidu-node-client SDK](reference-docs/openvidu-node-client/) to communicate with the OpenVidu deployment. This application demonstrates OpenVidu recording capabilities. It is highly recommended to have read [Recording](advanced-features/recording/) documentation before diving into the tutorial.
 
-<p align="center">
-  <img class="img-responsive" src="img/tutorials/openvidu-recording-node.png">
-</p>
-
-OpenVidu is composed by the modules displayed on the image above.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-node-client**: server SDK for Node. Quick alternative to REST API
-- **openvidu-server**: application to control Kurento Media Server
-- **Kurento Media Server**: handles low level operations of media flow transmissions
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-recording-node.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-recording-node.png"/>
+        </a>
+    </div>
+</div>
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/MzfysRkkq0Q?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) You will need node and NPM execute the app. You can check them with in ubuntu with the following commands:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-node -v
-npm -v
-```
-Plase visit [https://nodejs.org/](https://nodejs.org/){:target="_blank"} to install it on other platforms.
+#### 1. Run OpenVidu deployment
 
-2) Clone the repo:
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-3) Run the tutorial:
-
-```bash
-cd openvidu-tutorials/openvidu-recording-node
-npm install
-node server.js https://localhost:4443 MY_SECRET
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}). Bare in mind the additional configuration properties and volumes you must set for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm \
@@ -58,7 +33,32 @@ docker run -p 4443:4443 --rm \
 openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+> Check out the additional configuration properties and volumes you must set in the `docker run` command for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
+
+#### 2. Run the server application and the client application
+
+You need [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"}. Check them with:
+
+```
+node --version
+npm --version
+```
+
+Clone the repo:
+
+```bash
+git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
+```
+
+Run the application:
+
+```bash
+cd openvidu-tutorials/openvidu-recording-node
+npm install
+node server.js https://localhost:4443 MY_SECRET
+```
+
+Go to [`https://localhost:5000`](https://localhost:5000){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time. To test two different users in the same computer, use a standard window and an incognito window.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -67,11 +67,11 @@ openvidu/openvidu-server-kms:2.22.0
 
 ## Understanding the code
 
-This is an advanced tutorial application with a JS/HTML/CSS frontend and a straightforward NodeJS backend that serves HTML files.
+This is an application with a JS/HTML/CSS frontend and a straightforward Node.js backend that serves HTML files.
 
-This application provides the
+This application provides the:
 
-- **Backend**: NodeJS app with the following classes
+- **Backend**: Node.js app with the following classes
 	- `server.js` : entrypoint for the app and controller for managing the token to enter the OpenVidu Session<br><br>
 
 - **Frontend templates**: Plain JS/HTML/CSS files served by the backend (`public/`)
@@ -152,3 +152,7 @@ app.delete('/recording-node/api/recording/delete', function (req, res) {
         .catch(error => res.status(400).send(error.message));
 });
 ```
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

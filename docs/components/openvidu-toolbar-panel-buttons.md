@@ -1,12 +1,12 @@
 # openvidu-toolbar-panel-buttons
 
-<a href="#" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-components/openvidu-toolbar-panel-buttons" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-The openvidu-toolbar-panel-buttons tutorial shows how to add new additional panel buttons to the default toolbar, so custom panels may be toggled from it.
+The openvidu-toolbar-panel-buttons tutorial demonstrates how to add new additional panel buttons to the default toolbar, so custom panels may be toggled from it.
 
-This customization is possible thanks to the [**ToolbarAdditionalPanelButtonsDirective**](/api/openvidu-angular/directives/ToolbarAdditionalPanelButtonsDirective.html), which provides us a simple way to customizing the [**ToolbarComponent**](/api/openvidu-angular/components/ToolbarComponent.html).
+This customization is possible thanks to the [**ToolbarAdditionalPanelButtonsDirective**](/api/openvidu-angular/directives/ToolbarAdditionalPanelButtonsDirective.html), which provides us a simple way to customize the [**ToolbarComponent**](/api/openvidu-angular/components/ToolbarComponent.html).
 
-<p align="center">
+<p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/toolbar-panel-buttons.png">
 </p>
 
@@ -21,11 +21,12 @@ This customization is possible thanks to the [**ToolbarAdditionalPanelButtonsDir
   </div>
 </div>
 
-This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
+This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
-- `app.module.ts`: Define the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
-- `app.component.ts`: defines *AppComponent*, main component of the app. It contains the functionalities for requesting the OpenVidu token for setting them up to the videoconference component and start the session.
+- `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
+- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
 - `app.component.html`: HTML for AppComponent.
+
 ---
 
 #### Configure openvidu-angular
@@ -34,7 +35,7 @@ First, we need to install the openvidu-angular library. You can check how to do 
 
 ---
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens for connecting to the session. We will requesting them when the users clicks on the _joinButton_ so we call to `onJoinButtonClicked` method when this is happening. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens to connect to the session. We will request them when the users clicks on the _joinButton_, so we call to `onJoinButtonClicked` method when this happens. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
 
 
 ```html
@@ -46,43 +47,51 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 
 Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovToolbarAdditionalPanelButtons`__. You can see how the __`ToolbarAdditionalPanelButtonsDirective`__ works [here](/api/openvidu-angular/directives/ToolbarAdditionalPanelButtonsDirective.html).
 
+<br><hr>
 
 ## Running this tutorial
 
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-1) You will need angular-cli (and of course NPM) to serve the Angular frontend. You can check it with the following command:
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
+
+```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+```
+
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [Angular CLI](https://angular.io/cli){:target="_blank"} to serve the application. Check them with the following command:
 
 ```bash
 npm -v
 ng v
 ```
 
-2) Clone the repo:
+To serve the tutorial:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+# Using the same repository openvidu-tutorials from step 2
 
-3) Run the tutorial:
-
-```bash
-cd openvidu-tutorials/openvidu-components/openvidu-toolbar-panel-button
+cd openvidu-tutorials/openvidu-components/openvidu-toolbar-panel-buttons
 npm install
 ng serve
 ```
 
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
-```
-
-5) Go to _[`http://localhost:4200`](http://localhost:4200){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
 > To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
-

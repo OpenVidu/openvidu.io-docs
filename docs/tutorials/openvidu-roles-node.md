@@ -1,56 +1,55 @@
-# openvidu-js-node
-<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-js-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+# openvidu-roles-node
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-roles-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-A secure OpenVidu sample app with a Node backend and a SPA frontend. It makes use of _openvidu-node-client_ to connect to OpenVidu Server. With regard to the use of OpenVidu, it is identical to [openvidu-mvc-node](tutorials/openvidu-mvc-node). This tutorial is intended for developers who feel more comfortable with a SPA (Single Page Application) architecture for their frontends.
+An OpenVidu application with a Node.js backend and a SPA frontend built with plain JS, HTML and CSS. It makes use of [openvidu-node-client SDK](reference-docs/openvidu-node-client/) to communicate with the OpenVidu deployment. It grants different permissions to different users depending on their role.
 
-## Understanding this tutorial
-
-<p align="center">
-  <img class="img-responsive" src="https://docs.google.com/uc?id=0B61cQ4sbhmWSVkNVZ2s3cmk2aHM">
-</p>
-
-OpenVidu is composed by the modules displayed on the image above.
-
-- **openvidu-browser**: JavaScript library for the browser. It allows you to manage your video-calls straight away from your clients
-- **openvidu-node-client**: server SDK for Node. Quick alternative to REST API
-- **openvidu-server**: application to control Kurento Media Server
-- **Kurento Media Server**: handles low level operations of media flow transmissions
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/tutorials/openvidu-roles-node.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/tutorials/openvidu-roles-node.png"/>
+        </a>
+    </div>
+</div>
 
 ## Running this tutorial
-<br>
-<iframe style="display:block; margin: auto;" width="560" height="315" src="https://www.youtube.com/embed/0Fth4f98xTM?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<br>
 
-1) You will need _node_ to execute the app. You can check them with:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-node -v
-```
+#### 1. Run OpenVidu deployment
 
-2) Clone the repo:
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
-
-3) Run the tutorial with the following commands. They will install the NPM dependencies and will execute `server.js` server passing two arguments: "localhost:4443" as the URL where _openvidu-server_ will be listening and "MY_SECRET" as the secret share with it:
-
-```bash
-cd openvidu-tutorials/openvidu-js-node
-npm install
-node server.js https://localhost:4443 MY_SECRET
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
 ```
 
-5) Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call. To test two users in the same computer, use a standard window and an incognito window.
+#### 2. Run the server application and the client application
+
+You need [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"}. Check them with:
+
+```
+node --version
+npm --version
+```
+
+Clone the repo:
+
+```bash
+git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
+```
+
+Run the application:
+
+```bash
+cd openvidu-tutorials/openvidu-roles-node
+npm install
+node server.js https://localhost:4443 MY_SECRET
+```
+
+Go to [`https://localhost:5000`](https://localhost:5000){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time. To test two different users in the same computer, use a standard window and an incognito window.
 
 > If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
 
@@ -58,24 +57,24 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/secure-login.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/secure-login.png">
 			<img class="img-responsive" src="img/demos/secure-login.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/secure-join.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/secure-join.png">
 			<img class="img-responsive" src="img/demos/secure-join.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/secure-session-1.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/secure-session-1.png">
 			<img class="img-responsive" src="img/demos/secure-session-1.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/secure-session-2.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/secure-session-2.png">
 			<img class="img-responsive" src="img/demos/secure-session-2.png">
 		</a>
 	</div>
@@ -104,7 +103,7 @@ Let's describe the code following this scenario: a user logs into the app and co
 
 ### 1) User logs in
 
-We have implemented a method for making HTTP POST requests to the backend, as we will need to make at least three of them: one for logging in, one for getting a token from openvidu-server and one for letting know our backend when any user leaves the video-call. The header of the method looks like this:
+We have implemented a method for making HTTP POST requests to the backend, as we will need to make at least three of them: one for logging in, one for getting a token from openvidu-server, and one for letting our backend know when any user leaves the video-call. The header of the method looks like this:
 
 ```javascript
 function httpPostRequest(url, body, errorMsg, callback)
@@ -162,7 +161,7 @@ app.post('/api-login/login', function (req, res) {
 
 ### 2) User connects to "TUTORIAL" video-call
 
-HTML will display now the user has logged a different form, asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field and press "Join!" button:
+Now the user has logged in, the HTML will display a different form, asking for the video-call to connect and the nickname the user wants to have in it. So our 'publisher1' user would write TUTORIAL in "Session" field and press "Join!" button:
 
 <p align="center">
   <img class="img-responsive join-form-img" style="padding: 25px 0;" src="img/docs/tutorials/join-form.png">
@@ -475,25 +474,10 @@ When the last user leaves the session `delete mapSessions[sessionName]` will be 
 
 ---
 
-> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your frontend and your backend as you want**.
+> At this point we have covered all the important code from the tutorial. With this scenario we have seen the most common use-case, but you can modify whatever you want to suit your needs. And remember that this is just one of the many possible approaches: **you can implement your client application and your server application as you want**.
 >
-> The only actual requirements are getting a valid ***token*** from  ***openvidu-server*** (by using [openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/) or the [REST API](reference-docs/REST-API/)) and use it in ***openvidu-browser*** to connect your clients to the sessions with `Session.connect(token)`
-
+> The only actual requirements are getting a valid **Token** from the **OpenVidu deployment** (by using [openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/) or the [REST API](reference-docs/REST-API/) in your **server application**) and use it in your **client application** to connect participants to session by calling method `Session.connect(token)` of [openvidu-browser.js](reference-docs/openvidu-browser/) library.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

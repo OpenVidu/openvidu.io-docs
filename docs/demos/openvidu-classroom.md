@@ -29,10 +29,10 @@ sudo npm install -g @angular/cli
 docker run --rm -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=openvidu_sample_app mysql
 ```
 
-4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) *openvidu-server* and **Kurento Media Server** must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
@@ -62,17 +62,17 @@ Go to _[`https://localhost:5000`](https://localhost:5000){:target="_blank"}_ to 
 
 <div class="row no-margin row-gallery">
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="img/demos/openvidu-classroom.png">
+    <a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-classroom.png">
       <img class="img-responsive" src="img/demos/openvidu-classroom.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="img/demos/openvidu-classroom-dashboard.png">
+    <a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-classroom-dashboard.png">
       <img class="img-responsive" src="img/demos/openvidu-classroom-dashboard.png">
     </a>
   </div>
   <div class="col-md-4">
-    <a data-fancybox="gallery" href="img/demos/openvidu-classroom-video.png">
+    <a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-classroom-video.png">
       <img class="img-responsive" src="img/demos/openvidu-classroom-video.png">
     </a>
   </div>
@@ -143,18 +143,4 @@ services:
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

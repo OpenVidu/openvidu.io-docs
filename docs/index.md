@@ -175,77 +175,25 @@ Some use cases
 ===
 
 <br>
-Some interesting use cases you can implement with OpenVidu:
+Some interesting and real-world use cases that you can implement with OpenVidu:
 
-- An integrated 1-to-1 video-call center to attend your customers face to face
-- A videoclassroom platform where one or more teachers publish their webcams or desktops and many students receive them
-- Audio-only rooms where users can also interact through a chat
-- A conference service that allows the presenter to apply audio or video filters in real-time and record the lecture in a video file
-- A security platform where you can receive video from security cameras/webcams. You could even receive a notification when some movement is detected in a region of the video
-- An application to receive video from drones equipped with an IP camera
+- An integrated 1-to-1 video-call center to attend your customers face to face.
+- An e-health app where doctors can see their patients directly from it, in a private and secure manner.
+- A banking application where the customer may sign a contract, live and recording the call as proof of it.
+- A videoclassroom platform where one or more teachers publish their webcams or desktops and many students receive them.
+- A conference service that allows the presenter to apply audio or video filters in real-time.
+- A security platform where you can receive video from security cameras. You could even receive a notification when some movement is detected in a region of the video.
+- A mobile app to receive video from drones equipped with an IP camera.
 
 The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
 
 <div class="docs-gallery">
-  <a><video class="img-responsive img-wellcome" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video></a>
-  <a data-fancybox="gallery-wellcome" href="img/demos/insecure-session.png"><img class="img-responsive img-wellcome" src="img/demos/insecure-session.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="img/demos/getaroom-session-6-mob.png"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6-mob.png"/></a>
-  <a data-fancybox="gallery-wellcome" href="img/demos/openvidu-classroom-video.png"><img class="img-responsive img-wellcome" src="img/demos/openvidu-classroom-video.png"/></a>
+  <a data-fancybox="gallery-wellcome" data-type="iframe" href="video/components/ov-call-greetings.mp4" class="fancybox-img"><video class="img-responsive img-wellcome" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video></a>
+  <a data-fancybox="gallery-wellcome" data-type="image" href="img/demos/insecure-session.png" class="fancybox-img"><img class="img-responsive img-wellcome" src="img/demos/insecure-session.png"/></a>
+  <a data-fancybox="gallery-wellcome" data-type="image" href="img/demos/getaroom-session-6.png" class="fancybox-img"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6.png"/></a>
+  <a data-fancybox="gallery-wellcome" data-type="image" href="img/demos/getaroom-session-6-mob.png" class="fancybox-img"><img class="img-responsive img-wellcome" src="img/demos/getaroom-session-6-mob.png"/></a>
+  <a data-fancybox="gallery-wellcome" data-type="image" href="img/demos/openvidu-classroom-video.png" class="fancybox-img"><img class="img-responsive img-wellcome" src="img/demos/openvidu-classroom-video.png"/></a>
 </div>
-
-----------
-
-OpenVidu Architecture
-===
-
-<p align="center" style="margin-top: 50px; margin-bottom: 50px">
-  <img class="img-responsive" style="max-height: 550px;" src="img/docs/home/openvidu-new-architecture.png">
-</p>
-
-OpenVidu is divided into two parts:
-
-  - **OpenVidu Browser**: it is a library to use in your client side (available for JavaScript and TypeScript). It allows you to create video-calls, join users to them, send and receive video and audio, etc... All the actions available with OpenVidu are managed via OpenVidu Browser.
-  - **OpenVidu Server**: it is an application that handles the server-side stuff. It receives the operations from OpenVidu Browser and do whatever is necessary to establish and manage your video-calls. You will never have to explicitly use it: just to run it and know its IP address.
-
-----------
-
-Get started
-===
-
-These are the recommended steps for getting started with OpenVidu:
-
-1. The best way to get your first app working in a few minutes is following our **[OpenVidu Hello World Tutorial](tutorials/openvidu-hello-world/)**.
-
-2. After that, you can try any of our **[Client-Side-Only](tutorials/#client-side-only)** tutorials, or maybe go straight to step 3 if you think that you already handle OpenVidu reasonably well.
-
-3. Try now any of our **[Client-Side + Server-Side](tutorials/#client-side-server-side)** tutorials, where you can see how a complete web application works with OpenVidu. Choose your preferred framework, since all 4 applications are exactly the same regarding their look and functionality.
-
-4. Finally you can **deploy your first app** and see it working in the real world. You can follow our tutorial, where you can deploy our Demos in your own Amazon machine in a few minutes (**[Deploying OpenVidu Demos on AWS](deployment/ce/aws/)**). Then you can deploy your own app following these steps (**[Deploying OpenVidu Server](deployment/ce/aws/)** and **[Deploying your app on AWS](deployment/deploying-app/)**).
-
-----------
-
-How does OpenVidu work?
-===
-
-**[WebRTC](https://webrtc.org/){:target="_blank"}** is the ultimate responsible for all media transmission at the very heart of OpenVidu. WebRTC is a modern, cross-platform framework that democratizes media transmission over the Internet. It is promoted by Google, Mozilla, Opera and others.
-
-**[Kurento](http://www.kurento.org/){:target="_blank"}** is the WebRTC framework on which OpenVidu is built. Openvidu was forked from [KurentoRoom project](https://github.com/Kurento/kurento-room){:target="_blank"}.
-
-<div class="row no margin" style="margin-top: 2em; margin-bottom: 2em">
-  <div class="col-sm-6">
-    <img class="img-responsive" style="max-height: 110px; margin: auto" src="img/assets/webrtc2.png">
-  </div>
-  <div class="col-sm-6">
-    <img class="img-responsive" style="max-height: 130px; margin: auto" src="img/assets/kurento.png">
-  </div>
-</div>
-
-What are the differences between Kurento and OpenVidu?
-
-OpenVidu wraps and hides all the low-level operations. The main goal we pursue is to provide a simple, effective, easy-to-use API so you can forget about WebRTC, ICE candidates and media server tricky stuff. We internally use Kurento to generate, connect, modify and destroy media-pipelines, but OpenVidu simplifies as far as possible the process, focusing on the use-case of video-call sessions (one-to-one, one-to-many, many-to-many, users with different roles).
-
-**Ultimately, developers can create video-calls with just a few lines of code, all from their client-side**.
 
 ----------
 
@@ -261,21 +209,7 @@ OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery-wellcome"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" type="text/css" href="css/downloads/slick-1.6.0.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>

@@ -4,9 +4,11 @@
 
 OpenVidu Components is a new frontend framework built for making videoconferencing applications for OpenVidu in the simplest possible way. It is an **npm library** (currently available for **Angular**) that provides the developer **powerful and complete videoconferencing components**. These components can be adapted, extended and replaced very easily to suit your application's needs.
 
-<p align="center" style="margin: 40px 0px">
-  <img class="img-responsive" style="max-width: 70%" src="img/components/toggle-hand.gif">
-</p>
+> _OpenVidu Components_ is only one of the three strategies available to integrate OpenVidu in your application's client. You can take a look to sections [Ready-to-use component](ready-to-use-component/) or [Full control of the UI](full-control-ui/) to explore the other alternatives.
+
+<div class="pro-gallery" style="margin: 40px 40px 60px 40px">
+  <a data-fancybox="gallery" data-type="iframe" href="video/components/toggle-hand.mp4" class="fancybox-img"><video class="img-responsive img-wellcome" src="video/components/toggle-hand.mp4" muted async loop autoplay playsinline></video></a>
+</div>
 
 The main goal always pursued by the OpenVidu team is to reduce to a minimum the developer's effort when creating videoconferencing applications. OpenVidu Components can greatly assist in this goal for the following reasons:
 
@@ -40,3 +42,7 @@ There are also multiple tutorials available that show the benefits of OpenVidu C
 ## What about other frontend frameworks
 
 Supporting the most popular frontend frameworks is in our roadmap, but for the moment OpenVidu Components is only available for **Angular applications**.
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

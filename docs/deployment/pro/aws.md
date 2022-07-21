@@ -320,7 +320,7 @@ To connect to **OpenVidu Inspector** and the **Kibana dashboard**, simply access
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro12" href="img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
+        <a data-fancybox="gallery-pro12" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/marketplace/marketOutputs.png"><img class="img-responsive img-pro" src="img/docs/openvidu-pro/marketplace/marketOutputs.png"/></a>
     </div>
 </div>
 
@@ -381,7 +381,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-1" href="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"/></a>
+        <a data-fancybox="gallery-example-1" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"><img width="650px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-selfsigned-no-fqdn.png"/></a>
     </div>
 </div>
 
@@ -403,19 +403,19 @@ For this specific scenario you will need to:
 1. Go to your EC2 AWS section, and click here:
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-1" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
+        <a data-fancybox="gallery-example-lets-1" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-letsencrypt-1.png"><img width="200px" class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-1.png"/></a>
     </div>
 </div>
 2. Click on **Allocate Elastic IP address**
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-2" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
+        <a data-fancybox="gallery-example-lets-1" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-letsencrypt-2.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-2.png"/></a>
     </div>
 </div>
 3. This will generate an Elastic IP that you will be able to use for your OpenVidu Pro deployment with letsencrypt
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-3" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
+        <a data-fancybox="gallery-example-lets-1" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-letsencrypt-3.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-3.png"/></a>
     </div>
 </div>
 
@@ -429,7 +429,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-lets-4" href="img/docs/deployment/aws-examples-letsencrypt-4.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-4.png"/></a>
+        <a data-fancybox="gallery-example-lets-4" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-letsencrypt-4.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-letsencrypt-4.png"/></a>
     </div>
 </div>
 
@@ -520,7 +520,7 @@ Let's see an example of this scenario for the Cloudformation parameters section:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-example-own-1" href="img/docs/deployment/aws-examples-owncert-1.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-owncert-1.png"/></a>
+        <a data-fancybox="gallery-example-own-1" data-type="image" class="fancybox-img" href="img/docs/deployment/aws-examples-owncert-1.png"><img class="img-responsive img-deploy-example" src="img/docs/deployment/aws-examples-owncert-1.png"/></a>
     </div>
 </div>
 
@@ -552,7 +552,7 @@ When filling the CloudFormation form, simply set the desired number in section [
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketClusteringOptions.png"/></a>
     </div>
 </div>
 
@@ -560,7 +560,7 @@ In section [EC2 Instance configuration](#ec2-instance-configuration) you can cho
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro2" href="img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
+        <a data-fancybox="gallery-pro2" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/marketplace/marketOthers.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/marketplace/marketOthers.png"/></a>
     </div>
 </div>
 
@@ -574,7 +574,7 @@ In Cluster page you can launch and drop Media Nodes just by pressing buttons.
 
 <div class="row">
     <div style="margin: 5px 15px 35px 15px">
-        <a data-fancybox="gallery-pro3" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/pro18.png"/></a>
+        <a data-fancybox="gallery-pro3" data-type="image" class="fancybox-img" href="img/docs/openvidu-pro/pro18.png"><img class="img-responsive img-pro img-pro-small" src="img/docs/openvidu-pro/pro18.png"/></a>
     </div>
 </div>
 
@@ -588,7 +588,7 @@ You can programmatically launch and drop Media Nodes from your application by co
 > **WARNING**: there are some important aspects to keep in mind when launching and dropping Media Nodes in AWS deployments, especially through OpenVidu Pro REST API (OpenVidu Inspector UI is quite self-descriptive):
 >
 > - Trying to drop a Media Node which is currently hosting an OpenVidu Session will fail by default. You can manage the drop policy when calling [DELETE /openvidu/api/media-nodes](reference-docs/REST-API/#delete-medianode) through parameter `deletion-strategy`.<br><br>
-> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](reference-docs/openvidu-server-cdr/#medianodestatuschanged) is triggered with value `terminated`.
+> - Launching/Dropping Media Nodes in AWS OpenVidu Pro deployments will automatically start/terminate EC2 instances. The termination of an EC2 instance that was hosting a removed Media Node will be done only when it is safe. This moment is reached when OpenVidu Webhook event [mediaNodeStatusChanged](reference-docs/openvidu-server-webhook/#medianodestatuschanged) is triggered with value `terminated`.
 
 <br>
 
@@ -672,7 +672,7 @@ If that is not the problem, then follow these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro13" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
+        <a data-fancybox="gallery-pro13" data-type="image" class="fancybox-img" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_1_troubleshooting_rollback.png"/></a>
     </div>
 </div>
 
@@ -680,7 +680,7 @@ If that is not the problem, then follow these steps:
 
 <div class="row">
     <div style="margin: 25px 15px 25px 15px">
-        <a data-fancybox="gallery-pro14" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
+        <a data-fancybox="gallery-pro13" data-type="image" class="fancybox-img" href="img/docs/deployment/CF_1_troubleshooting_rollback.png"><img class="img-responsive img-pro" src="img/docs/deployment/CF_2_troubleshooting_parameters.png"/></a>
     </div>
 </div>
 
@@ -725,21 +725,7 @@ Replace `AWS_SSH_KEY` with the path to the SSH key of your Media Node EC2 instan
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/brands.css" integrity="sha384-Px1uYmw7+bCkOsNAiAV5nxGKJ0Ixn5nChyW8lCK1Li1ic9nbO5pC/iXaq27X5ENt" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/fontawesome.css" integrity="sha384-BzCy2fixOYd0HObpx3GMefNqdbA7Qjcc91RgYeDjrHTIEXqiF00jKvgQG0+zY/7I" crossorigin="anonymous">
