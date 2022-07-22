@@ -19,7 +19,6 @@
 16. [How can I customize deployed Nginx?](#16-how-can-i-customize-deployed-nginx)
 17. [Elastic Search and OpenVidu Pro common problems](#17-elastic-search-and-openvidu-pro-common-problems)
 18. [OpenVidu does not work for clients behind restrictive firewalls](#18-openvidu-does-not-work-for-clients-behind-restrictive-firewalls)
-
 19. [While deploying in Cloudformation (AWS), the Image ID (AMI) does not exist](#19-while-deploying-in-cloudformation-aws-the-image-id-ami-does-not-exist)
 
 <!--19. [How to trust a self-signed certificate](#19-how-to-trust-a-self-signed-certificate)-->
