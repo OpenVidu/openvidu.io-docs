@@ -20,6 +20,9 @@
 17. [Elastic Search and OpenVidu Pro common problems](#17-elastic-search-and-openvidu-pro-common-problems)
 18. [OpenVidu does not work for clients behind restrictive firewalls](#18-openvidu-does-not-work-for-clients-behind-restrictive-firewalls)
 
+19. [While deploying in Cloudformation (AWS), the Image ID (AMI) does not exist](#19-while-deploying-in-cloudformation-aws-the-image-id-ami-does-not-exist)
+
+<!--19. [How to trust a self-signed certificate](#19-how-to-trust-a-self-signed-certificate)-->
 ---
 
 ### 1. Everything looks alright, but I cannot see any remote video
@@ -678,3 +681,177 @@ Elasticsearch may take some minutes to start due to a lot of data saved or low m
 #### 18. OpenVidu does not work for clients behind restrictive firewalls
 
 OpenVidu CE and OpenVidu Pro deploy by default a TURN server (Coturn) at port 3478. Some strict firewalls have restrictions on requests with origin ports other than 80 and 443, consequently denying requests from port 3478. Follow the instructions of section [Allow users behind firewalls](deployment/allow-users-behind-firewalls/) to solve these situations.
+
+#### 19. While deploying in Cloudformation (AWS), the Image ID (AMI) does not exist
+
+If the AMI of the Cloudformation you are trying to deploy does not exist in your specific region, you will see this error message in the Cloudformation panel:
+
+<div class="row" style="margin-bottom: 50px">
+  <div class="col-md-12 col-sm-12 col-xs-12" >
+    <img class="img-responsive img-more-info" src="img/docs/troubleshooting/ami_id_not_found.png">
+  </div>
+</div>
+
+This probably means that the version you are trying to deploy is too old, and it is no longer supported by OpenVidu in that region. But if you need to deploy that Cloudformation, you can copy a legacy AMI present in `eu-west-1` of that unsupported version to your region, and replace it in the Clouformation template.
+
+For each OpenVidu Edition, the steps are a bit different:
+
+---
+
+##### Copy AMIs of OpenVidu CE
+
+**1)** In **AWS**, go to the region you want to deploy.
+
+**2)** Go to the [AWS CloudShell](https://aws.amazon.com/cloudshell/) to use `aws-cli`.
+
+**3)** Copy the OpenVidu CE AMI of the version you want to use into the region you want to deploy:
+
+```bash
+# OpenVidu legacy version to deploy
+OPENVIDU_VERSION=<OPENVIDU_LEGACY_VERSION>
+# Region where OpenVidu is deployed
+REGION=<YOUR_REGION>
+
+ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cf_eu_west_1_ov_ce_ami_id.sh |
+  bash -s "${OPENVIDU_VERSION}")
+
+# Copy AMI and get AMI Id
+NEW_IMAGE_ID=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu CE - ${OPENVIDU_VERSION}" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
+
+# Wait for the AMI to be available
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
+
+# Print AMI Id
+echo "${NEW_IMAGE_ID}"
+```
+
+Where `<OPENVIDU_LEGACY_VERSION>` is the legacy version of OpenVidu, and `<YOUR_REGION>` is where the Cloudformation will be deployed.
+
+**4)** Download the cloudformation you want to deploy, get the printed `NEW_IMAGE_ID` from step **3)** and paste it in the section of the Cloudformation: `Mappings.OVAMIMAP.<YOUR_REGION>`.
+
+**5)** Deploy that Cloudformation with the new AMI configured.
+
+---
+
+##### Copy AMIs of OpenVidu PRO
+
+**1)** In **AWS**, go to the region you want to deploy.
+
+**2)** Go to the [AWS CloudShell](https://aws.amazon.com/cloudshell/) to use `aws-cli`.
+
+**3)** Copy the Master Node and Media Node AMIs of the version you want to use into the region you want to deploy:
+
+```bash
+# OpenVidu legacy version to deploy
+OPENVIDU_VERSION=<OPENVIDU_LEGACY_VERSION>
+# Region where OpenVidu is deployed
+REGION=<YOUR_REGION>
+
+# Get Original AMI of Master Node
+ORIGINAL_OV_AMI_ID=$(curl \
+  https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cf_eu_west_1_ov_pro_ami_id.sh |
+  bash -s "${OPENVIDU_VERSION}")
+
+# Copy AMI and get new AMI Id of Master Node
+NEW_IMAGE_ID_OV=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu PRO ${OPENVIDU_VERSION} - Master Node" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_OV_AMI_ID}" --output text)
+
+# Get Original AMI of Media Node
+ORIGINAL_MNODE_AMI_ID=$(curl \
+  https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cf_eu_west_1_ov_pro_media_node_ami_id.sh |
+  bash -s "${OPENVIDU_VERSION}")
+
+# Copy AMI and get AMI Id of Media Node
+NEW_IMAGE_ID_MNODE=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu PRO ${OPENVIDU_VERSION} - Media Node" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_MNODE_AMI_ID}" --output text)
+
+# Wait for both AMIs to be available
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID_OV}"
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID_MNODE}"
+
+# Print AMI Ids
+echo "Master Node AMI Id: ${NEW_IMAGE_ID_OV}"
+echo "Media Node AMI Id: ${NEW_IMAGE_ID_MNODE}"
+```
+
+Where `<OPENVIDU_LEGACY_VERSION>` is the legacy version of OpenVidu, and `<YOUR_REGION>` is where the Cloudformation will be deployed.
+
+**4)** Download the cloudformation you want to deploy, get the printed Master Node AMI Id and Media Node Id from step **3)** and:
+  - Paste the Master Node AMI Id at `Mappings.OVAMIMAP.<YOUR_REGION>`
+  - Paste the Media Node AMI Id at `Mappings.KMSAMIMAP.<YOUR_REGION>.`
+
+**5)** Deploy that Cloudformation with the new AMI configured.
+
+---
+
+##### Copy AMIs of OpenVidu Enteprise
+
+**1)** In **AWS**, go to the region you want to deploy.
+
+**2)** Go to the [AWS CloudShell](https://aws.amazon.com/cloudshell/) to use `aws-cli`.
+
+**3)** Copy the Master Node and Media Node AMIs of the version you want to use into the region you want to deploy:
+
+```bash
+# OpenVidu legacy version to deploy
+OPENVIDU_VERSION=<OPENVIDU_LEGACY_VERSION>
+# Region where OpenVidu is deployed
+REGION=<YOUR_REGION>
+
+# Get Original AMI of Master Node
+ORIGINAL_OV_AMI_ID=$(curl \
+  https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cf_eu_west_1_ov_enterprise_ami_id.sh |
+  bash -s "${OPENVIDU_VERSION}")
+
+# Copy AMI and get new AMI Id of Master Node
+NEW_IMAGE_ID_OV=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu ENTERPRISE ${OPENVIDU_VERSION} - Master Node" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_OV_AMI_ID}" --output text)
+
+# Get Original AMI of Media Node
+ORIGINAL_MNODE_AMI_ID=$(curl \
+  https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/cf_eu_west_1_ov_enterprise_media_node_ami_id.sh |
+  bash -s "${OPENVIDU_VERSION}")
+
+# Copy AMI and get AMI Id of Media Node
+NEW_IMAGE_ID_MNODE=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu ENTERPRISE ${OPENVIDU_VERSION} - Media Node" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_MNODE_AMI_ID}" --output text)
+
+# Wait for both AMIs to be available
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID_OV}"
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID_MNODE}"
+
+# Print AMI Ids
+echo "Master Node AMI Id: ${NEW_IMAGE_ID_OV}"
+echo "Media Node AMI Id: ${NEW_IMAGE_ID_MNODE}"
+```
+
+Where `<OPENVIDU_LEGACY_VERSION>` is the legacy version of OpenVidu, and `<YOUR_REGION>` is where the Cloudformation will be deployed.
+
+**4)** Download the cloudformation you want to deploy, get the printed Master Node AMI Id and Media Node Id from step **3)** and:
+  - Paste the Master Node AMI Id at `Mappings.OVAMIMAP.<YOUR_REGION>`
+  - Paste the Media Node AMI Id at `Mappings.KMSAMIMAP.<YOUR_REGION>.`
+
+**5)** Deploy that Cloudformation with the new AMI configured.
+
+
+<!--
+---
+
+#### 20. How to trust a self-signed certificate
+
+Most browsers will not trust a self-signed certificate, showing a security warning page (or rejecting access altogether, like iOS Safari). However, you can override this by installing your Root CA in the device. Then, the self-signed certificate will be trusted just like if it had been issued by a reputable Authority.
+
+- On **desktop browsers**, installing the Root CA is easy because mkcert does it for you:
+
+        CAROOT="$PWD" mkcert -install
+
+- In **iOS**, you can either email the `rootCA.pem` file to yourself, use AirDrop, or serve it from an HTTP server. Normally, a dialog should pop up asking if you want to install the new certificate; afterwards, you must [enable full trust in it](https://support.apple.com/en-nz/HT204477){:target="_blank"}. When finished, your self-signed certs will be trusted by the system, and iOS Safari will allow accessing pages on the `*.home.arpa` subdomain.
+
+- In **Android**, you’ll have to install the Root CA and then enable user roots in the development build of your app. See [this StackOverflow answer](https://stackoverflow.com/a/22040887/749014){:target="_blank"}.
+-->
