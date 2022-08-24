@@ -12,42 +12,67 @@ This customization is possible thanks to the [**ParticipantsPanelItemDirective**
 
 ## Understanding the code
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    openvidu-custom-participant-panel-item is not a production ready application, as it is requesting participant tokens to OpenVidu Server directly from the client side. This is an insecure process, and it should be done from your application's backend.
-  </div>
-</div>
-
 This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
 - `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
 - `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
-- `app.component.html`: HTML for AppComponent.
 
 ---
-
-#### Configure openvidu-angular
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
----
-
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens to connect to the session. We will request them when the users clicks on the _joinButton_, so we call to `onJoinButtonClicked` method when this happens. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
-
+The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
-<ov-videoconference (onJoinButtonClicked)="onJoinButtonClicked()" [tokens]="tokens">
-  ...
+<ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
+  <div *ovParticipantPanelItem="let participant" style="display: flex">
+    <p>{{ participant.nickname }}</p>
+    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Button 1</button>
+      <button mat-menu-item>Button 2</button>
+    </mat-menu>
+  </div>
 </ov-videoconference>
 ```
 
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantPanelItem` directive. You can see how the `ParticipantPanelItemDirective` works [here](/api/openvidu-angular/directives/ParticipantPanelItemDirective.html).
 
-Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovParticipantPanelItem`__. You can see how the __`ParticipantPanelItemDirective`__ works [here](/api/openvidu-angular/directives/ParticipantPanelItemDirective.html).
+In this case, we simply add to each participant a button that will show a dropdown menu with two dummy buttons.
 
-<br><hr>
+`app.component.ts` declares the following properties and methods:
+
+```javascript
+APPLICATION_SERVER_URL = window.location.protocol + '//' + window.location.hostname + ':5000/';
+
+sessionId = 'participants-panel-directive-example';
+tokens!: TokenModel;
+
+constructor(private httpClient: HttpClient) { }
+
+async ngOnInit() {
+  this.tokens = {
+    webcam: await this.getToken(),
+    screen: await this.getToken()
+  };
+}
+
+getToken() {
+  // Requesting tokens to the server application
+}
+```
+
+Where:
+
+- `APPLICATION_SERVER_URL`: URL to commicate the client application with the server application to request OpenVidu tokens.
+- `sessionId`: OpenVidu Session identifier. This is the session where the VideoconferenceComponent will connect to.
+- `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
+- `constructor` method with dependency injection.
+- `ngOnInit` method where OpenVidu Tokens are requested.
+
+<br>
+
+---
 
 ## Running this tutorial
 
@@ -61,7 +86,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -90,8 +115,6 @@ npm install
 ng serve
 ```
 
-Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**

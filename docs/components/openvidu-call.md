@@ -13,30 +13,26 @@ Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for 
 
 OpenVidu Call frontend is built using <strong>openvidu-angular</strong> client library. As it's a production ready application, it also provides a backend which is built with <strong>Node</strong> using ExpressJS.
 
-<!-- <p align="center" style="margin-top: 30px">
-  <img class="img-responsive" src="img/demos/openvidu-call-architecture.png">
-</p> -->
-
-
 ## Understanding the code
 
-OpenVidu Call is production ready videconference app which OpenVidu includes in every deployment. There are two parts to explain in this tutorial:
+OpenVidu Call is production ready videconference app included by default in any OpenVidu deployment. OpenVidu Call consists of:
 
-* **openvidu-call-backend**: A simple Node.js backend which uses ExpressJS with the aim of requesting tokens to OpenVidu Server (using [openvidu-node-client](reference-docs/openvidu-node-client/)) and returning back to the frontend side. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-back).
+* **openvidu-call-backend**: a simple Node.js backend which uses ExpressJS to request tokens from the OpenVidu deployment (using [openvidu-node-client](reference-docs/openvidu-node-client/)) and return them back to the frontend. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-back).
 
     - `app.ts`: entrypoint of the server.
     - `config.ts`: file which contains the backend environmet variables.
     - `CallController.ts`: controller for allowing to get the token through REST API.
     - `OpenViduService.ts`: service capable to connect with OpenVidu Server using *openvidu-node-client*.
 
+<br>
 
-* **openvidu-call-front**: A simple Angular frontend using [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-front).
+* **openvidu-call-front**: a simple Angular app built with [openvidu-angular](api/openvidu-angular/) library. See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-call/openvidu-call-front).
 
-    - `services/rest.service.ts`: services for requesting token to backend.
-    - `components/home`: component which contains the home screen where the user can define the session name and join to the session.
-    - `components/call`: component which contains all the videoconferece logic.
+    - `services/rest.service.ts`: services for requesting OpenVidu tokens to the backend.
+    - `components/home`: component which contains the home screen where the user can define the session name and join it.
+    - `components/call`: component which contains all the videoconference logic.
 
-Focusing on the [_call component template_](https://github.com/OpenVidu/openvidu-tutorials/blob/484418d6d143b89ab0896dee22c66ba17d65afb0/openvidu-call/openvidu-call-front/src/app/components/call/call.component.html#L1-L5), we discover we can have  a videoconference application **in no more than 5 lines**, which is awesome:
+Let's focus on the [call component template](https://github.com/OpenVidu/openvidu-tutorials/blob/484418d6d143b89ab0896dee22c66ba17d65afb0/openvidu-call/openvidu-call-front/src/app/components/call/call.component.html#L1-L5). We can have a videoconference app **in no more than 5 lines**:
 
 ```html
 <ov-videoconference
@@ -45,90 +41,87 @@ Focusing on the [_call component template_](https://github.com/OpenVidu/openvidu
 	[tokens]="tokens"
 ></ov-videoconference>
 ```
-We need request the tokens to our backend  and set them to the `ov-videoconference` component (see [_VideoconferenceComponent reference_](/api/openvidu-angular/components/VideoconferenceComponent.html)) for making the videoconference works.
-Those five lines of code allows having an OpenVidu videoconference application and listening events for customize the application logic.
 
-We are also listening the `onJoinButtonClicked` and `onLeaveButtonClicked` events for customizing our application logic, going back the home screen when the videconference leaveButton has been clicked. You can see all videoconference events [here](api/openvidu-angular/components/VideoconferenceComponent.html#outputs).
+We need to request the OpenVidu tokens to our backend and set them in the `ov-videoconference` component in its `tokens` input property (see [VideoconferenceComponent reference](/api/openvidu-angular/components/VideoconferenceComponent.html)). Once `tokens` is defined, the component will automatically join the session.
 
-
-#### Configure openvidu-angular
-
-First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
-
-Now, we can use all components that the openvidu-angular provides.
+We are also listening to the `onJoinButtonClicked` and `onToolbarLeaveButtonClicked` events to customize our application's logic. You can see all the events offered by `VideoconferenceComponent` component [here](api/openvidu-angular/components/VideoconferenceComponent.html#outputs).
 
 ---
 
 ## Get and execute the code
 
-1)  Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
-cd openvidu-call
-```
+#### 1. Run OpenVidu deployment
 
-2) You will need Node and NPM to run the app. You can install them in Linux with the following commands:
-
-```bash
-sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-sudo apt-get install -y nodejs
-```
-
-Please visit <a href="https://nodejs.org/">https://nodejs.org/</a> to install it on other platforms.
-
-3) Execute OpenVidu:
-
-> If you are using **Docker Toolbox on Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly execute OpenVidu development container and how to adapt these instructions.
-
-OpenVidu platform must be up and running. The easiest way is running this OpenVidu development container (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
-4) Install dependencies of OpenVidu Call backend (Node):
+#### 2. Run the server application and the client application
+
+You need [Node and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"}. Check them with:
 
 ```
+node --version
+npm --version
+```
+
+Now to run the application...
+
+1) Clone the repo:
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+```
+
+2) Install dependencies of OpenVidu Call backend:
+
+```bash
+# Path openvidu-tutorials/openvidu-call
 npm install --prefix openvidu-call-back
 ```
 
-5) Start OpenVidu Call backend. To configure this command you can check the section below.
+3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
 
-```
+```bash
+# Path openvidu-tutorials/openvidu-call
 npm run --prefix openvidu-call-back start
 ```
 
-6) Install dependencies of OpenVidu Call frontend (Angular). **Open another terminal** to run the following command:
+4) Install dependencies of OpenVidu Call frontend. Run the following command in a different terminal:
 
-```
+```bash
+# Path openvidu-tutorials/openvidu-call
 npm install --prefix openvidu-call-front
 ```
 
-7) Finally, serve OpenVidu Call frontend
+5) Run the client application, which in this case is the OpenVidu Call frontend.
 
-```
+```bash
+# Path openvidu-tutorials/openvidu-call
 cd openvidu-call-front
 npx ng serve --open
 ```
 
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
 
-## Configuration parameters for OpenVidu Call
 
-| Parameter                     | Description   					       | Default value   |
-| ----------------------------- | ---------------------------------------- | --------------- |
-| **`SERVER_PORT`**             | Port where http server will be listen    | 5000            |
-| **`OPENVIDU_URL`**            | URL where connect to OpenVidu platform   | http://localhost:4443 |
-| **`OPENVIDU_SECRET`**         | Secret for the OpenVidu platform         | MY_SECRET       |
+## Configuration parameters for OpenVidu Call backend
 
-This configuration parameters can be set as environment variables. For example, to execute the application against an OpenVidu platform deployed for production you should use the command:
+| Parameter                     | Description   					                    | Default value         |
+| ----------------------------- | ------------------------------------------- | --------------------- |
+| **`SERVER_PORT`**             | Port where the Node HTTP server will listen | 5000                  |
+| **`OPENVIDU_URL`**            | URL of the OpenVidu deployment              | http://localhost:4443 |
+| **`OPENVIDU_SECRET`**         | Secret of the OpenVidu deployment           | MY_SECRET             |
 
-```
+These configuration parameters can be set as environment variables. For example, to execute the application against an OpenVidu depoyment with a domain name such us `openvidu.server.com`:
+
+```bash
 $ npx cross-env OPENVIDU_URL=https://openvidu.server.com OPENVIDU_SECRET=PASSWORD nodemon src/app.ts
 ```
 

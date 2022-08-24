@@ -6,47 +6,102 @@ The openvidu-custom-chat-panel tutorial demonstrates how to replace the default 
 
 This customization is possible thanks to the [**ChatPanelDirective**](/api/openvidu-angular/directives/ChatPanelDirective.html), which provides us a simple way to customize the [**ChatPanelComponent**](/api/openvidu-angular/components/ChatPanelComponent.html).
 
-
 <p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/chat-panel.png">
 </p>
 
 ## Understanding the code
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    openvidu-custom-chat-panel is not a production ready application, as it is requesting participant tokens to OpenVidu Server directly from the client side. This is an insecure process, and it should be done from your application's backend.
-  </div>
-</div>
-
 This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
 - `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
 - `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
-- `app.component.html`: HTML for AppComponent.
 
 ---
-
-#### Configure openvidu-angular
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
----
-
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the tokens to connect to the session. We will request them when the users clicks on the _joinButton_, so we call to `onJoinButtonClicked` method when this happens. After requesting the token, the VideoconferenceComponent will use them for connecting to the session.
+The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
-<ov-videoconference (onJoinButtonClicked)="onJoinButtonClicked()" [tokens]="tokens">
-  ...
+<ov-videoconference
+  (onSessionCreated)="onSessionCreated($event)"
+  [tokens]="tokens"
+  [toolbarDisplaySessionName]="false">
+  <div *ovChatPanel id="my-panel">
+    <h3>Chat</h3>
+    <div>
+      <ul>
+        <li *ngFor="let msg of messages">{{ msg }}</li>
+      </ul>
+    </div>
+    <input value="Hello" #input />
+    <button (click)="send(input.value)">Send</button>
+  </div>
 </ov-videoconference>
 ```
 
-Inside of the __ov-videoconference__ component, we will add the custom template tagged with the __`*ovChatPanel`__. You can see how the __`ChatPanelDirective`__ works [here](/api/openvidu-angular/directives/ChatPanelDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovChatPanel` directive. You can see how the `ChatPanelDirective` works [here](/api/openvidu-angular/directives/ChatPanelDirective.html).
 
-<br><hr>
+In this case we replace the default chat panel with a very simple custom one. Messages are displayed in a `ul` list, and the user can send the content of an `input` element as a new message by pressing the `Send` button.
+
+`app.component.ts` declares the following properties and methods:
+
+```javascript
+APPLICATION_SERVER_URL = window.location.protocol + '//' + window.location.hostname + ':5000/';
+
+sessionId = "chat-panel-directive-example";
+tokens!: TokenModel;
+
+session!: Session;
+messages: string[] = [];
+
+constructor(private httpClient: HttpClient) { }
+
+async ngOnInit() {
+  this.tokens = {
+    webcam: await this.getToken(),
+    screen: await this.getToken(),
+  };
+}
+
+onSessionCreated(session: Session) {
+  this.session = session;
+  this.session.on(`signal:${Signal.CHAT}`, (event: any) => {
+    const msg = JSON.parse(event.data).message;
+    this.messages.push(msg);
+  });
+}
+
+send(message: string): void {
+  const signalOptions: SignalOptions = {
+    data: JSON.stringify({ message }),
+    type: Signal.CHAT,
+    to: undefined,
+  };
+  this.session.signal(signalOptions);
+}
+
+getToken() {
+  // Requesting tokens to the server application
+}
+```
+
+Where:
+
+- `APPLICATION_SERVER_URL`: URL to commicate the client application with the server application to request OpenVidu tokens.
+- `sessionId`: OpenVidu Session identifier. This is the session where the VideoconferenceComponent will connect to.
+- `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
+- `session`: OpenVidu Session object. We need this object to subscribe to `signal` event and send signals, so we are able to receive and send chat messages.
+- `messages`: collection of chat messages that will be displayed in our custom chat panel.
+- `constructor` method with dependency injection.
+- `ngOnInit` method where OpenVidu Tokens are requested.
+- `onSessionCreated` method to get the Session object from `ov-videoconference` component and subscribe to `signal` event.
+- `send` method to call [`Session.signal`](api/openvidu-browser/classes/Session.html#signal) method to send a chat message to the OpenVidu Session.
+
+<br>
+
+---
 
 ## Running this tutorial
 
@@ -60,7 +115,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -89,8 +144,6 @@ npm install
 ng serve
 ```
 
-Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
