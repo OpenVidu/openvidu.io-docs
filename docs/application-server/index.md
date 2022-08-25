@@ -244,19 +244,21 @@ These are all basic server applications that provide a good starting point for y
 - All of them are configured to allow **CORS** from any origin. In production environments your application server may be configured to allow only calls from specific client origins.
 - None of them offer any kind of **user control**. In production environments generally your application server should know who is trying to initialize Sessions and create Connections. User control is a topic outside the scope of OpenVidu, and will depend on the chosen technology.
 
-The two endpoints offered by all sample applications are documented below. Note that by default all sample applications listen on `https://localhost:5000` when serving them using the official instructions:
+### REST endpoints
+
+The two endpoints offered by all server application samples are documented below. Note that by default all applications listen on `https://localhost:5000` when serving them using the official instructions:
 
 | 1. Initialize a Session ||
 | - ||
 | **HTTP METHOD**  | POST |
-| **URL**          | https://localhost:5000/sessions |
+| **URL**          | https://localhost:5000/api/sessions |
 | **REQUEST BODY** | Same request body as the REST API operation [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session) |
 | **200 OK RETURN VALUE** | A string with the Session identifier.<br>For example: `"ses_JM9v0nfD1l"` |
 
 | 2. Create a Connection ||
 | - ||
 | **HTTP METHOD**  | POST |
-| **URL**          | https://localhost:5000/sessions/`SESSION_ID`/connections |
+| **URL**          | https://localhost:5000/api/sessions/`SESSION_ID`/connections |
 | **REQUEST BODY** | Same request body as the REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection) |
 | **200 OK RETURN VALUE** | A string with the Connection's token.<br>For example: `"wss://localhost:4443?sessionId=ses_JM9v0nfD1l&token=tok_MIYGGzuDQb8Xf1Qd"` |
 
