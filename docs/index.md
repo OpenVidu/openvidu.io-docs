@@ -159,6 +159,26 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
   <hr>
   <div class="row feature-row">
     <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
+      <img class="icon-img" src="img/docs/home/feature20.svg"/>
+    </div>
+    <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
+      <h3 style="text-align: right">Streaming to YouTube/Twitch</h3>
+      <span class="feature-text">OpenVidu offers a special module to export your sessions to RTMP, so that you can easily broadcast them to live-streaming platforms such as YouTube or Twitch. Check it out <a href="advanced-features/streaming/">here</a>.</span>
+    </div>
+  </div>
+  <hr>
+    <div class="row feature-row">
+    <div class="col-sm-6 col-xs-12 feature-img-col">
+      <img class="feature-img icon-img" style="max-height: 120px" src="img/docs/home/feature21.svg"/>
+    </div>
+    <div class="col-sm-6 col-xs-12 feature-text-col">
+      <h3 style="text-align: left">Phone call integration</h3>
+      <span class="feature-text">You can add phone call participants to your OpenVidu sessions making use of OpenVidu SIP bridge module. Check it out <a href="advanced-features/sip/">here</a>.</span>
+    </div>
+  </div>
+  <hr>
+  <div class="row feature-row">
+    <div class="col-sm-6 col-xs-12 col-sm-push-6 feature-img-col">
       <img class="feature-img icon-img" src="img/docs/home/feature15.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
