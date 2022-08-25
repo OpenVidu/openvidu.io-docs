@@ -33,6 +33,7 @@ There are also multiple tutorials available that show the benefits of OpenVidu C
 * [**openvidu-custom-panels**](components/openvidu-custom-panels): learn how to replace the default panels with your own.
 * [**openvidu-additional-panel**](components/openvidu-additional-panels): learn how to add a new extra panel besides the default ones.
 * [**openvidu-custom-chat-panel**](components/openvidu-custom-chat-panel): learn how to replace the default chat panel with your own.
+* [**openvidu-custom-activities-panel**](components/openvidu-custom-activities-panel): learn how to replace the default activities panel with your own.
 * [**openvidu-custom-participants-panel**](components/openvidu-custom-participants-panel): learn how to replace the default participants panel with your own.
 * [**openvidu-custom-participant-panel-item**](components/openvidu-custom-participant-panel-item): learn how to replace the default participant panel item with your own.
 * [**openvidu-custom-participant-panel-item-element**](components/openvidu-custom-participant-panel-item-element): learn how to replace the default participant panel item element with your own.
