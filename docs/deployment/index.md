@@ -61,19 +61,12 @@ To develop OpenVidu CE based applications you can execute a simple-to-use docker
 Can be executed with the following command (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 OpenVidu for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"}
 
 If you want to develop using OpenVidu PRO specific features, then you should use a production deployment.
-
-<div class="warn">
-  <div class="div-icon"><i class="icon ion-android-alert"></i></div>
-  <div class="text">
-	  If you are using <b>Docker Toolbox on Windows</b>, read this <b><a href="troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know">FAQ</a></b> to properly execute OpenVidu development container and how to adapt these instructions.
-  </div>
-</div>
 
 ## Deploy OpenVidu based applications
 

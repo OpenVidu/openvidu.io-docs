@@ -54,7 +54,7 @@ OPENVIDU_RECORDING=true
 
 #### For OpenVidu development docker container
 
-If your are using the official [openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"} docker container in your development environment and want to enable the recording module, then run it like this:
+If your are using the official [openvidu/openvidu-dev](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"} docker container in your development environment and want to enable the recording module, then run it like this:
 
 ```shell
 docker run -p 4443:4443 --rm \
@@ -62,7 +62,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /PATH/TO/VIDEO/FILES:/PATH/TO/VIDEO/FILES \
-openvidu/openvidu-server-kms:2.22.0
+openvidu/openvidu-dev:2.22.0
 ```
 
 The two configuration properties that must be set are:
@@ -935,7 +935,7 @@ OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT
 ```
 
 <br>
-**[OpenVidu development docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}** **_(development environment)_**
+**[OpenVidu development docker container](https://hub.docker.com/r/openvidu/openvidu-dev/){:target="_blank"}** **_(development environment)_**
 
 ```console
 docker run -p 4443:4443 --rm \
@@ -945,7 +945,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING=true \
     -e OPENVIDU_RECORDING_PATH=/PATH/TO/VIDEO/FILES \
     -e OPENVIDU_RECORDING_CUSTOM_LAYOUT=/PATH/TO/INDEX/CUSTOM/LAYOUT \
-openvidu/openvidu-server-kms:2.22.0
+openvidu/openvidu-dev:2.22.0
 ```
 
 > **WARNING**: remember to add the `-v` option mounting the path defined with `OPENVIDU_RECORDING_CUSTOM_LAYOUT`
@@ -1195,7 +1195,7 @@ Then, by using your OpenVidu application, start a session and as many publishers
 Being:
 
 - `SECRET`: parameter `OPENVIDU_SECRET` configured when launching openvidu-server
-- `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-server-kms docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
+- `OPENVIDU_IP`: the IP where openvidu-server is accessible in your development machine. You will be probably using [openvidu-dev docker container](https://hub.docker.com/r/openvidu/openvidu-dev/){:target="_blank"} in your development environment, so this parameter is `localhost` if you are in Mac or Linux, and the docker IP of the container if you are in Windows (see this [FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank})
 - `OPENVIDU_PORT`: port where openvidu-server is listening. In OpenVidu production deployments this is by default `443` and if using the development container it is by default `4443`.
 - `SESSION_ID`: the session ID you have initialized for the debugging process. Here's a little tip: you can initialize the session in openvidu-server ([REST API](reference-docs/REST-API/#post-session), [openvidu-java-client](reference-docs/openvidu-java-client/#create-a-session), [openvidu-node-client](reference-docs/openvidu-node-client/#create-a-session)) configuring parameter `customSessionId` to fix this session ID and avoid having to change it every time you restart your session.
 

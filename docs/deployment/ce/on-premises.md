@@ -39,7 +39,7 @@ This procedure installs the following services:
 
 > **NOTE 1** : Docker basic knowledge is not required, but recommended. If you are completely new to Docker and containers, take a few minutes to read the official [Docker _Get started_](https://docs.docker.com/get-started/){:target="_blank"} documentation.
 
-> **NOTE 2** : instructions below are intended for production environments. For development environments it is recommended to use this simple Docker image that wraps everything necessary to work inside your network in just a single container: [openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"}
+> **NOTE 2** : instructions below are intended for production environments. For development environments it is recommended to use this simple Docker image that wraps everything necessary to work inside your network in just a single container: [openvidu/openvidu-dev](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"}
 
 ### 1) Prerequisites
 
