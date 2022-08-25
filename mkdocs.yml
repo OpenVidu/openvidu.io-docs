@@ -27,6 +27,7 @@ nav:
               - openvidu-custom-panels: components/openvidu-custom-panels.md
               - openvidu-additional-panels: components/openvidu-additional-panels.md
               - openvidu-custom-chat-panel: components/openvidu-custom-chat-panel.md
+              - openvidu-custom-activities-panel: components/openvidu-custom-activities-panel.md
               - openvidu-custom-participants-panel: components/openvidu-custom-participants-panel.md
               - openvidu-custom-participant-panel-item: components/openvidu-custom-participant-panel-item.md
               - openvidu-custom-participant-panel-item-elements: components/openvidu-custom-participant-panel-item-elements.md
@@ -49,8 +50,9 @@ nav:
                   - openvidu-iframe: tutorials/openvidu-iframe.md
                   - openvidu-js-screen-share: tutorials/openvidu-js-screen-share.md
                   - openvidu-library-react: tutorials/openvidu-library-react.md
-                  - openvidu-ionic-capacitor: tutorials/openvidu-ionic-capacitor.md
+                  - openvidu-ionic-cordova: tutorials/openvidu-ionic-cordova.md
                   - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
+                  - openvidu-filters: tutorials/openvidu-filters.md
                   - openvidu-virtual-background: tutorials/openvidu-virtual-background.md
                   - openvidu-roles-java: tutorials/openvidu-roles-java.md
                   - openvidu-roles-node: tutorials/openvidu-roles-node.md
@@ -80,6 +82,8 @@ nav:
           - Automatic reconnection: advanced-features/automatic-reconnection.md
           - Network quality: advanced-features/network-quality.md
           - Virtual Background: advanced-features/virtual-background.md
+          - Streaming to YouTube/Twitch: advanced-features/streaming.md
+          - Phone calls integration: advanced-features/sip.md
     - Reference Documentation:
           - openvidu-browser API: reference-docs/openvidu-browser.md
           - openvidu-java-client API: reference-docs/openvidu-java-client.md
