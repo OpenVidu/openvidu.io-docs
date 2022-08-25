@@ -6,15 +6,17 @@ var USE_CURRENT_VERSION = loadBooleanVariable('data-useCurrentVersion');
 
 function runAjax(pathToFile, elementId, runAnchorScript, elementIdToRemove, useCurrentVersion) {
 
-    // PROD
-    var url = "https://docs.openvidu.io/en/stable/common/" + pathToFile;
-    if (useCurrentVersion) {
-        // "https://docs.openvidu.io" + "/en/VERSION" + "/common/" + pathToFile
-        url = window.location.origin + window.location.pathname.split('/').slice(0, 3).join('/') + '/common/' + pathToFile;
+    let url;
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
+        url = window.location.origin + "/common/" + pathToFile;
+    } else {
+        url = "https://docs.openvidu.io/en/stable/common/" + pathToFile;
+        if (useCurrentVersion) {
+            // "https://docs.openvidu.io" + "/en/VERSION" + "/common/" + pathToFile
+            url = window.location.origin + window.location.pathname.split('/').slice(0, 3).join('/') + '/common/' + pathToFile;
+        }
     }
-
-    // DEV
-    // var url = "http://localhost:8000/common/" + pathToFile;
 
     $.ajax({
         url,
