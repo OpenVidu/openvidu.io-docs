@@ -3,7 +3,7 @@
 
 1. [Everything looks alright, but I cannot see any remote video](#1-everything-looks-alright-but-i-cannot-see-any-remote-video)
 2. [Any tips to make easier the development of my app with OpenVidu?](#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)
-3. [I am using Windows to run the tutorials / develop my app. Anything I should know?](#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)
+3. [Test applications in my network with multiple devices](#3-test-applications-in-my-network-with-multiple-devices)
 4. [Does my app need a server-side?](#4-does-my-app-need-a-server-side)
 5. [The CloudFormation Stack is a nice option for Amazon, but I don't like it. I want more control](#5-the-cloudformation-stack-is-a-nice-option-for-amazon-but-i-dont-like-it-i-want-more-control)
 6. [What are STUN and TURN servers and why do I need them?](#6-what-are-stun-and-turn-servers-and-why-do-i-need-them)
@@ -48,12 +48,14 @@ You can do some things to improve your efficiency while using OpenVidu:
 
 <br>
 ##### Multiple tabs to test the video transmission
+
 You can use multiple tabs in the same browser to test your video streams.
 
 **WARNING**: you may have trouble for testing with tabs from different browsers at the same time, as they compete for the camera access.
 
 <br>
 ##### Be very aware of the browser's console
+
 There you can find logs reporting important stuff. Error messages can help you to solve many issues.
 
 <div class="row" style="margin-bottom: 10px">
@@ -80,133 +82,134 @@ There you can find logs reporting important stuff. Error messages can help you t
 
 <br>
 ##### Remember the browser's cache
+
 If you have changed your HTML, JavaScript or CSS code, refreshed the page and cannot see the changes on the browser, probably the cache is still serving the old files. To perform a hard reload of your page on the browser, press `Ctrl + Shift + R`
 
 <br>
 ##### Share your app through your network to test with multiple devices
-Making your app accessible to any device connected to your LAN network is very useful for quickly testing your app with different devices at the same time. To achieve this, you just have to indicate OpenVidu Server to use your dev machine LAN IP address as public url. For example, let's say that your machine has assigned ip `192.168.0.107` in your network:
 
-`docker run -p 4443:4443 -e DOMAIN_OR_PUBLIC_IP=192.168.0.107 openvidu/openvidu-server-kms:2.22.0`
-
-Then you just have to configure your app (REST API address / OpenVidu Java Client / OpenVidu Node Client) to connect to OpenVidu through `https://192.168.0.107:4443/`. Any user connecting to your app through in your LAN network will be able to send and receive video through this OpenVidu Server.
+Making your app accessible to any device connected to your LAN network is very useful for quickly testing your app with different devices at the same time.
+Check out the [next FAQ](#3-test-applications-in-my-network-with-multiple-devices) to learn how to do this with any OpenVidu tutorial.
 
 ---
 
-### 3. I am using Windows to run the tutorials / develop my app. Anything I should know?
+### 3. Test applications in my network with multiple devices
 
-Depending on how you are running Docker in your Windows system you may or may not require to do some changes. If you are using the modern and recommended [Docker for Windows](https://docs.docker.com/docker-for-windows/){:target="_blank"}, everything should work fine out-of-the-box just as explained in tutorials. No changes required.
+Every tutorial available in OpenVidu documentation shares a similar **"Running this tutorial"** set of instructions (for example, [these](tutorials/openvidu-hello-world/#running-this-tutorial) are the ones for the Hello World tutorial). These instructions all explain how to launch the setup in localhost using plain HTTP. But for any other domain that is not localhost, WebRTC needs a secure connection to work, and therefore a valid SSL certificate.
 
-But if you are running Docker in Windows with the legacy [Docker Toolbox](https://docs.docker.com/toolbox/toolbox_install_windows/){:target="_blank"}, some little changes are needed just because you won't be able to use `localhost` as IP to connect to OpenVidu Server. You will have to use the specific IP allocated to your container. You can get it by running command `docker-machine ip default` (will output something similar to `192.168.99.100`, but the IP can vary).
+To serve any application through your network and to be able to test it with different devices, we must serve all components of the OpenVidu setup through the same IP, with HTTPS and using an SSL certificate. To do so, we must slightly reconfigure the components of the basic development setup and we must add a fourth component: a proxy to route all requests. The diagram below depicts this new setup: 
 
-First of all, you must launch the developing Docker container of OpenVidu Server ([openvidu/openvidu-server-kms](https://hub.docker.com/r/openvidu/openvidu-server-kms/){:target="_blank"}) setting parameter `DOMAIN_OR_PUBLIC_IP` to the IP allocated for Docker in your Windows machine.
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0 15px 0">
+        <a data-fancybox="gallery-pro1" data-type="image" class="fancybox-img" href="img/docs/troubleshooting/proxy-dev-deployment.png">
+          <img class="img-responsive" style="margin: auto; max-height: 500px" src="img/docs/troubleshooting/proxy-dev-deployment.png"/>
+        </a>
+    </div>
+</div>
 
-What in Linux/Mac is...
+So, after properly running the basic steps to serve any of the OpenVidu tutorials (for example, [these ones](tutorials/openvidu-hello-world/#running-this-tutorial)) continue with these extra steps:
+
+#### 1. Set the OpenVidu deployment to use your local IP and other configurations
+
+Get the local IP address of your workstation:
+
+- On Linux: `ip -4 -oneline route get 1.0.0.0 | grep -Po 'src \K\S+'`
+- On MacOS: `ipconfig getifaddr "$(route -n get 1.0.0.0 | grep 'interface' | awk '{print $2}')"`
+- On Windows: use `ipconfig` command on a cmd terminal. Look for the wireless LAN IPv4 address.
+
+Stop any active OpenVidu deployment container.
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker rm -f $(docker ps -a | grep openvidu-dev | awk '{print $1}')
 ```
 
-...in Windows with Docker Toolbox may be...
+Run the OpenVidu deployment container with extra configuration, which includes configuration properties `DOMAIN_OR_PUBLIC_IP`, `SERVER_PORT`, `HTTPS_PORT` and `DEV_CONTAINER`. Make sure to replace `X.X.X.X` with the local IP of your workstation.
+
+```
+# Run OpenVidu deployment container with new env variable
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+docker run -p 4443:4443 --rm \
+  -e OPENVIDU_SECRET=MY_SECRET \
+  -e DOMAIN_OR_PUBLIC_IP=X.X.X.X \
+  -e SERVER_PORT=4443 \
+  -e HTTPS_PORT=443 \
+  -e DEV_CONTAINER=false \
+openvidu/openvidu-dev:2.22.0
+```
+
+#### 2. Modify the `APPLICATION_SERVER_URL` of the client application
+
+It is necessary to change the URL the client application will use to communicate with the server application.
+
+If this was the original line:
+
+```javascript
+var APPLICATION_SERVER_URL = "http://localhost:5000/";
+```
+
+Now it should be:
+
+```javascript
+var APPLICATION_SERVER_URL = "https://X.X.X.X/";
+```
+
+Being `X.X.X.X` the local IP of your workstation. That is the same IP used in the previous step on property `DOMAIN_OR_PUBLIC_IP=X.X.X.X`. Be careful and make sure to change the **protocol from `http` to `https`**!
+
+> If the client technology does not support live-reload upon code changes, make sure to stop and start back up the client application after modifying `APPLICATION_SERVER_URL`.
+
+#### 3. Run a proxy to manage the SSL certificate
+
+The proxy will route all requests of the application client using the same IP address, port and SSL certificate. It decides where to route each request based on the path. To do so we use the official NGINX docker container and a `nginx.conf` file specific for each tutorial.
+
+The command below launches the NGINX contanier. It provides the configuration file specific for each tutorial, and it also indicates the location of the SSL certificates. Make sure to run this command at the **root path of the tutorial**.
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=192.168.99.100 openvidu/openvidu-server-kms:2.22.0
+# At the root path of the tutorial
+# For example: /home/user/openvidu-tutorials/openvidu-hello-world
+docker run --rm -p 443:443 \
+  --add-host=host.docker.internal:host-gateway \
+  -v $PWD/nginx.conf:/etc/nginx/nginx.conf:ro \
+  -v $PWD/../certs:/etc/nginx/certs:ro \
+nginx
 ```
 
-Then, to let your applications know how to connect to OpenVidu Server:
+You are ready to test the application with any device connected to your network. Connect to **`https://X.X.X.X/`** to see the application's landing page. First time you will have to accept the self-signed certificate.
 
-#### Applications _Client-Side Only_
+#### _EXTRA_. Only if you are testing tutorials Ionic or React Native in a real device
 
-(For example _[openvidu-hello-world](tutorials/openvidu-hello-world/)_, _[openvidu-js](tutorials/openvidu-js/)_, _[openvidu-angular](tutorials/openvidu-angular/)_, _[openvidu-getaroom](demos/openvidu-getaroom/)_)
+For Ionic and React Native platforms, you will need to create your own development SSL certificate and install it in your mobile device.
 
-When consuming openvidu-server REST API, change `location.hostname` to the IP of the Docker container running openvidu-server (usually `192.168.99.100`). For every one of the insecure tutorials listed above, the url where to send the REST operations ...
+1. Use [`mkcert`](https://github.com/FiloSottile/mkcert#installation){:target="_blank"} to create your own certificate using the local IP address of your workstation. Make sure to modify `X.X.X.X` for the actual IP.
 
-    "https://" + location.hostname + ":4443/openvidu/api/<OPERATION>"
+        CAROOT="$PWD" mkcert -cert-file cert.pem -key-file key.pem "X.X.X.X"
 
-... in Windows is ...
+2. Replace the content of folder `openvidu-tutorials/certs` with the new certificate files.
 
-    "https://192.168.99.100:4443/openvidu/api/<OPERATION>"
+3. Install the new certificate in your mobile device. This varies from Android to iOS and can be a different process for different devices. But in general terms it will consist of copying `rootCA.pem` file to your device and install it from the security settings section, inside an option similar to "Install CA certificate".
 
-Change this url in every insecure tutorial right here:
+4. Restart the nginx proxy container launched at [step 3](#3-run-a-proxy-to-manage-the-ssl-certificate) so the new SSL certificates under folder `openvidu-tutorials/certs` are used:
 
-- **openvidu-hello-world**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L56){:target="_blank"}
-- **openvidu-js**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-js/web/app.js#L194){:target="_blank"}
-- **openvidu-angular**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-angular/src/app/app.component.ts#L15){:target="_blank"}
-- **openvidu-getaroom**: [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L274){:target="_blank"}
+        docker restart $(docker ps -a | grep nginx | awk '{print $1}')
 
-> Also you will need to serve your apps over **https**. Browsers only accept camera usage on http when the address is _localhost_, and here it will be `192.168.99.100` or the one that Docker picks up for you. To serve over https with `http-server`, generate a self-signed certificate and run with `-S` flag on the root path of your app:
->
-> _Generate a selfsigned certificate (run in your Docker console)_
->
->  `openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '//CN=www.mydom.com\O=My Company LTD.\C=US' -keyout key.pem -out cert.pem`
->
-> _Run with SSL flag_
->
->  `http-server -S`
+At this point the certificate valid for your local IP address will be properly installed in your mobile device, and will be in use by the nginx proxy.
+The mobile app should be able to connect to your local OpenVidu deployment without a problem. Remember that you will have to repeat these extra steps if the local IP address of your workstation changes.
 
-#### Applications _Client-Side + Server-Side_
-
-(Tutorials _[openvidu-js-java](tutorials/openvidu-js-java/)_, _[openvidu-mvc-java](tutorials/openvidu-mvc-java/)_, _[openvidu-js-node](tutorials/openvidu-js-node/)_, _[openvidu-mvc-node](tutorials/openvidu-mvc-node/)_ and demo _[openvidu-call](demos/openvidu-call)_).
-
-You must let know your app/tutorial how to initialize _openvidu-java-client_ or _openvidu-node-client_ (or where to send your REST API operations in case you are not using any of these clients). For example:
-
-  - **Java tutorials** (tutorials _[openvidu-js-java](tutorials/openvidu-js-java/)_, _[openvidu-mvc-java](tutorials/openvidu-mvc-java/)_): override the default value of the property `openvidu.url`:
-
-        mvn package exec:java
-
-    in Windows is...
-
-        mvn -Dopenvidu.url=https://192.168.99.100:4443/ package exec:java
-
-    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-java-client** will receive in [its constructor](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#OpenVidu-java.lang.String-java.lang.String-). This change is something related to these specific applications.
-
-  - **Node tutorials** (tutorials _[openvidu-js-node](tutorials/openvidu-js-node/)_, _[openvidu-mvc-node](tutorials/openvidu-mvc-node/)_): change the URL param passed on launch:
-
-        node server.js https://localhost:4443/ MY_SECRET
-
-    in Windows is...
-
-        node server.js https://192.168.99.100:4443/ MY_SECRET
-
-    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](api/openvidu-node-client/classes/openvidu.html#constructor). This change is something related to these specific applications.
-
-    > With this change we are simply changing the param `urlOpenViduServer` that our OpenVidu object from **openvidu-node-client** will receive in [its constructor](api/openvidu-node-client/classes/openvidu.html#constructor). This change is something related to these specific applications.
+<br>
 
 ---
 
 ### 4. Does my app need a server-side?
 
-First of all, let's differentiate between OpenVidu server-side and your application's server-side.
+Yes, any OpenVidu application needs a client-side and a server-side. It should follow the following general architecture:
 
-  - You will always need OpenVidu Server deployed at some place on the Internet (check the [Deployment section](deployment/ce/aws/) to learn how to do it in 5 minutes). For now, OpenVidu doesn't support p2p direct connections between two users, so all the traffic must flow to OpenVidu Server or from OpenVidu Server.
-  - You will generally want your application to have its own server-side. Why?
-
-Well, it is really not necessary. You can have a pure client-side application if you want. Just check any of these tutorials:<br>[openvidu-hello-world](tutorials/openvidu-hello-world/), [openvidu-js](tutorials/openvidu-js/), [openvidu-getaroom](demos/openvidu-getaroom/)
-
-The problem here is pretty evident: if you don't have any kind of server side to control your users, anyone can use your app. In fact, you can respectively see [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-hello-world/web/app.js#L46){:target="_blank"}, [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-js/web/app.js#L184){:target="_blank"} and [here](https://github.com/OpenVidu/openvidu-tutorials/blob/v2.21.0/openvidu-getaroom/web/app.js#L264){:target="_blank"} a comment warning about this matter in every insecure tutorial. Due to the lack of a server-side in these tutorials, we have no choice but to embed the REST API consumption methods in our JavaScript code, which includes hardcoding our secret in the JS client code.
-
-> **IMPORTANT**: Do NOT include your SECRET in your JavaScript or HTML files in a production environment!
-
-<div class="row" style="margin-bottom: 50px">
-  <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 40px">
-    <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture-client.png">
-  </div>
-  <div class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 40px">
-    <img class="img-responsive img-more-info" src="img/docs/home/openvidu-new-architecture.png">
-  </div>
-  <div class="col-md-4 col-sm-12 col-xs-12" style="margin-top: 40px">
-    <p style="text-align: justify; font-size: 13px">
-      <em>First an OpenVidu app Client-Side Only.</em>
-    </p>
-    <div class="hidden-sm hidden-xs"><br></div>
-    <p style="text-align: justify; font-size: 13px">
-      <em>Second an OpenVidu app Client-Side + Server-Side.</em>
-    </p>
-    <div class="hidden-sm hidden-xs"><br></div>
-    <p style="text-align: justify; font-size: 13px">
-      <em>In production you will usually want the second option to avoid unwanted users.</em>
-    </p>
-  </div>
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0">
+        <a data-fancybox="gallery" data-type="image" href="img/docs/home/openvidu-app-architecture.png" class="fancybox-img"><img class="img-responsive" style="margin: auto; max-height: 400px" src="img/docs/home/openvidu-app-architecture.png"/></a>
+    </div>
 </div>
+
+You can learn more about the development of an OpenVidu application at [Developing your video app](developing-your-video-app/).
 
 ---
 
@@ -281,19 +284,29 @@ Both Android and iOS are supported with hybrid frameworks:
 <br>
 ##### Desktop native applications
 
-- **Windows**, **OSX** and **Linux** are supported through **[Electron](https://electronjs.org/){:target="_blank"}**. You can try [openvidu-electron](tutorials/openvidu-electron/) tutorial and you will have an OpenVidu native desktop application working in minutes.
+Native **Windows**, **macOS** and **Linux** applications are supported through:
+
+- [**Electron**](https://electronjs.org/){:target="_blank"}. You can try [openvidu-electron](tutorials/openvidu-electron/) tutorial and you will have an OpenVidu native desktop application working in minutes.
+
+- [**Ionic**](https://ionicframework.com/){:target="_blank"}. With the proper integration with Electron, you can use the same Ionic source code to compile your app into a native desktop app (as well as a native mobile app, a PWA and a standard web app). Try [openvidu-ionic](tutorials/openvidu-ionic/) tutorial.
 
 ---
 
 ### 9. Which is the current status of OpenVidu regarding performance, scalability and fault tolerance?
 
-In terms of **performance**, OpenVidu load testing process is described in detail in this [Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"}. Results are the following for 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until CPU reaches 100% use.
+In terms of **performance**, OpenVidu load testing process is described in detail in this [Medium post](https://medium.com/@openvidu/openvidu-load-testing-a-systematic-study-of-openvidu-platform-performance-b1aa3c475ba9){:target="_blank"}. Results are the following for 7-to-7 sessions where every participant sends one audio-video stream (540x360, 30 fps) and receives 6 remote streams (same video). The table states the maximum number of entities that can be established until CPU reaches 100% use. This data is valid for OpenVidu CE.
 
 <div class="row" style="margin-bottom: 10px; text-align: center; text-align: -webkit-center">
   <img class="img-responsive" src="img/docs/troubleshooting/load_test_results.png">
 </div>
 
-About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-pro/scalability/). With OpenVidu Pro you can deploy an OpenVidu cluster to make your application scalable and automatically scale-in and scale-out the number of Media Nodes depending on the workload of your application.
+OpenVidu Pro and OpenVidu Enterprise provide further capabilitites in terms of scalability and fault tolerance. There is detail documentation about these topics here:
+
+- [OpenVidu Pro scalability](openvidu-pro/scalability/)
+- [OpenVidu Pro fault tolerance](openvidu-pro/fault-tolerance/)
+- [OpenVidu Enterprise: Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup)
+- [OpenVidu Enteprise scalability](openvidu-enterprise/high-availability/#scalability-in-openvidu-enterprise-ha)
+- [OpenVidu Enteprise fault tolerance](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha)
 
 ---
 
@@ -303,15 +316,7 @@ About **scalability**, you can try [OpenVidu Pro scalability features](openvidu-
 
   This means that when deploying your app on production, you **MUST** use an SSL certificate and serve your app over `https`.
 
-  This also means that when developing your app in local, if for any reason you want to locally serve your app on a custom URL different than localhost, the only solution is to serve it over `https` with a certificate. If you are making use of the web server we have strongly suggested over the documentation (`npm install -g http-server`), you can do this with the following commands on your application's root path:
-
-  - Generate a selfsigned certificate with _openssl_
-
-        openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -subj '/CN=www.mydom.com/O=My Company LTD./C=US' -keyout key.pem -out cert.pem
-
-  - Run _http-server_ with SSL flag
-
-        http-server -S
+  This also means that when developing your app in your workstation, in order to test it on your local network with different devices, you will need to serve it through HTTPS with SSL certificates. The OpenVidu deployment must also be prepared to work with SSL. You can check out [this FAQ](#3-test-applications-in-my-network-with-multiple-devices) to see how to run any of the OpenVidu tutorials with this kind of setup.
 
 ---
 
@@ -855,3 +860,7 @@ Most browsers will not trust a self-signed certificate, showing a security warni
 
 - In **Android**, you’ll have to install the Root CA and then enable user roots in the development build of your app. See [this StackOverflow answer](https://stackoverflow.com/a/22040887/749014){:target="_blank"}.
 -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
