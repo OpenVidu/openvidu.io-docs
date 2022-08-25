@@ -35,7 +35,7 @@ sudo npm install -g react-native-cli
 2) Clone the repo:
 
 ```bash
-git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
 ```
 
 3) Install dependencies
@@ -250,11 +250,10 @@ Then we subscribe to the Session events that interest us.
 ```javascript
 // --- 3) Specify the actions when events take place in the session ---
 
-
-var mySession = this.state.session;
+const mySession = this.state.session;
 
 // On every new Stream received...
- mySession.on('streamCreated', async (event) => {
+mySession.on('streamCreated', async (event) => {
     // Subscribe to the Stream to receive it. Second parameter is undefined
     // so OpenVidu doesn't create an HTML video by its own
     const subscriber = await mySession.subscribeAsync(event.stream, undefined);
@@ -266,91 +265,91 @@ var mySession = this.state.session;
     });
 });
 
-    // On every Stream destroyed...
+// On every Stream destroyed...
 mySession.on('streamDestroyed', (event) => {
     event.preventDefault();
-
     // Remove the stream from 'subscribers' array
-    this.deleteSubscriber(event.stream.streamManager);
+    this.deleteSubscriber(event.stream);
 });
 
 // On every asynchronous exception...
 mySession.on('exception', (exception) => {
-	console.warn(exception);
+    console.warn(exception);
 });
 
-// See next step
+// On reconnection events
+mySession.on('reconnecting', () => {
+    console.warn('Oops! Trying to reconnect to the session');
+    this.setState({ isReconnecting: true });
+});
+
+mySession.on('reconnected', () => {
+    console.log('Hurray! You successfully reconnected to the session');
+    setTimeout(() => {
+        // Force re-render view updating state avoiding frozen streams
+        this.setState({ isReconnecting: false });
+    }, 2000);
+});
+
+mySession.on('sessionDisconnected', (event) => {
+    if (event.reason === 'networkDisconnect') {
+        console.warn('Dang-it... You lost your connection to the session');
+        this.leaveSession();
+    } else {
+        // Disconnected from the session for other reason than a network drop
+    }
+});
 ```
 Here we subscribe to the Session events that interest us. As we are using React Native framework, a good approach for managing the remote media streams is to loop across an array of them, feeding a common component with each `Subscriber` object and let it manage its video. This component will be *RTCView* and is provided from ***react-native-webrtc*** library. To do this, we need to store each new Subscriber we received in array `subscribers`, and we must remove from it every deleted subscriber whenever it is necessary. To achieve this, we use the following events:
 
 - `streamCreated`: for each new Stream received by the Session object, we subscribe to it and store the returned Subscriber object in our `subscribers` array. Method `session.subscribe` has *undefined* as second parameter so OpenVidu doesn't insert and HTML video element in the DOM due to,  as it is a native application, the DOM does not exist.  The render method of *App.js* will show the new video, as it contains a .map js function, declaring a *RTCView* for each subscriber. We assign the *MediaStream* URL to the *streamURL* RTCView property.
 
-- `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
-
-```
-{this.state.subscribers.map((item, index) => {
-    return(
-        <View key={index}>
-            <Text>{this.getNicknameTag(item.stream)}</Text>
-            <RTCView
-                accessibilityLabel="remoteVideo"
-                zOrder={0}
-                objectFit="cover"
-                style={styles.remoteView}
-                streamURL={item.stream.getMediaStream().toURL()}
-            />
-        </View>
-    );
-})}
-```
-
 - `streamDestroyed`: for each Stream that has been destroyed from the Session object (which means a user has left the video-call), we remove the associated Subscriber from `subscribers` array, so React will automatically delete the required *RTCView* component.
+
+- `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side.
+
+- `reconnecting`: event triggered by Session object when the client has lost its connection to the Session.
+
+- `reconnected`: event triggered by Session object when the client successfully reconnected to the Session after a disconnection.
+
+- `sessionDisconnected`: event triggered by Session object when the user has left the Session.
+
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
 
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the Angular front itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
 
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
-
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
-this.getToken().then((token) => {
-	// See next point to see how to connect to the session using 'token'
-});
+// Get a token from the OpenVidu deployment
+const token = await this.getToken();
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `fetch` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `axios` library to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-  - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+async getToken() {
+    const sessionId = await this.createSession(this.state.mySessionId);
+    return await this.createToken(sessionId);
+}
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-react-native/App.js#L390){:target="_blank"}.
+async createSession(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions', { customSessionId: sessionId }, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The sessionId
+}
+
+async createToken(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections', {}, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The token
+}
+```
 
 ---
 
@@ -358,80 +357,58 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
+// Get a token from the OpenVidu deployment
+const token = await this.getToken();
+// First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
+// 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
+await mySession.connect(token, { clientData: this.state.myUserName });
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
-this.getToken().then((token) => {
-    // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
-    // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
-    mySession.connect(token, { clientData: this.state.myUserName })
-        .then(async () => {
-            if (Platform.OS == 'android') {
-                this.checkAndroidPermissions();
-            }
-
-            // --- 5) Get your own camera stream ---
-            if (this.state.role !== 'SUBSCRIBER') {
-                // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
-                // element: we will manage it on our own) and with the desired properties
-                let publisher = await this.OV.initPublisherAsync(undefined, {
-                    audioSource: undefined, // The source of audio. If undefined default microphone
-                    videoSource: undefined, // The source of video. If undefined default webcam
-                    publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
-                    publishVideo: true, // Whether you want to start publishing with your video enabled or not
-                    resolution: '640x480', // The resolution of your video
-                    frameRate: 30, // The frame rate of your video
-                    insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
-                });
-
-                // --- 6) Publish your stream ---
-
-                // Set the main video in the page to display our webcam and store our Publisher
-                this.setState({
-                    mainStreamManager: publisher
-                });
-                mySession.publish(publisher);
-            }
-
-        })
-        .catch((error) => {
-            console.log('There was an error connecting to the session:', error.code, error.message);
-        });
-    })
-    .catch((error) => console.log('Error', error));
+if (Platform.OS === 'android') {
+    await this.checkAndroidPermissions();
+}
 ```
 
 In `session.connect` method first param is the recently retrieved user token. Second param is the value every user will receive in `event.stream.connection.data` property on `streamCreated` event. (this value will be used to show the user's nickname to the his video).
 
-If the method succeeds we will call to `checkAndroidPermissions()` method. This method requests and checks the device permissions that our app currently has in the device. Once the permissions have been resolved, the `OV.initPublisher()` method will be called. For iOS  and web platforms, permissions will be handled automatically when camera and microphone access are requested. No need for extra steps in these cases, so we directly initialize our Publisher object.
+If the method succeeds and this is an Android app, we will call to `checkAndroidPermissions()` method. This method requests and checks the device permissions that our app currently has in the device. Once the permissions have been resolved, the `OV.initPublisherAsync()` method will be called. For iOS  and web platforms, permissions will be handled automatically when camera and microphone access are requested. No need for extra steps in these cases, so we directly initialize our Publisher object.
 
 We do further talk about Android permissions under section [Android specific requirements](#android-specific-requirements).
 
-#### Finally publish your webcam calling `OV.initPublisher()` method:
+#### Finally publish your webcam calling `OV.initPublisherAsync()` method:
 
 ```javascript
-let publisher = await this.OV.initPublisherAsync(undefined, {
-    audioSource: undefined, // The source of audio. If undefined default microphone
-    videoSource: undefined, // The source of video. If undefined default webcam
-    publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
-    publishVideo: true, // Whether you want to start publishing with your video enabled or not
-    resolution: '640x480', // The resolution of your video
-    frameRate: 30, // The frame rate of your video
-    insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
-});
+// --- 5) Get your own camera stream ---
+if (this.state.role !== 'SUBSCRIBER') {
 
-// --- 6) Publish your stream ---
+    // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
+    // element: we will manage it on our own) and with the desired properties
 
-// Set the main video in the page to display our webcam and store our Publisher
-this.setState({
-    mainStreamManager: publisher
-});
-mySession.publish(publisher);
+    const publisher = await this.OV.initPublisherAsync(undefined, {
+        audioSource: undefined, // The source of audio. If undefined default microphone
+        videoSource: undefined, // The source of video. If undefined default webcam
+        publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+        publishVideo: true, // Whether you want to start publishing with your video enabled or not
+        resolution: '640x480', // The resolution of your video
+        frameRate: 30, // The frame rate of your video
+        insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
+    });
+
+    // --- 6) Publish your stream ---
+
+    // Set the main video in the page to display our webcam and store our Publisher
+    this.setState({
+        mainStreamManager: publisher,
+        videoSource: !properties.videoSource ? '1' : properties.videoSource, // 0: back camera | 1: user camera |
+    }, () => {
+        mySession.publish(publisher);
+    });
+}
+this.setState({ connected: true });
 ```
 
-We now proceed to publish our webcam to the session. To do so we get a `Publisher` object with the desired properties and publish it to the Session through `Session.publish()` method. The rest of users will receive our Stream object and will execute their `streamCreated` event.
+If the user does not have role `SUBSCRIBER`, we proceed to publish the camera to the session. To do so we get a `Publisher` object with the desired properties and publish it to the Session through `Session.publish()` method. The rest of users will receive our Stream object and will execute their `streamCreated` event.
 
-Also we store the Publisher object under `this.state.mainStreamManager` variable. This way our webcam will be appended along all remote subscribers, in exactly the same way they are shown.
+Also we store the Publisher object under `this.state.mainStreamManager` variable. This way our webcam will be appended along all remote subscribers, in exactly the same way they are shown. We also store in `this.state.videoSource` property the current camera in use, so we can switch between front and back cameras on the fly.
 
 ```
 <View style={styles.container}>
@@ -463,14 +440,18 @@ leaveSession() {
     }
 
     // Empty all properties...
-    this.OV = null;
-    this.setState({
-        session: undefined,
-        subscribers: [],
-        mySessionId: 'SessionReactNative',
-        myUserName: 'Participant' + Math.floor(Math.random() * 100),
-        mainStreamManager: undefined,
-        publisher: undefined,
+    setTimeout(() => {
+        this.OV = null;
+        this.setState({
+            session: undefined,
+            subscribers: [],
+            mySessionId: 'testReact',
+            myUserName: 'Participant' + Math.floor(Math.random() * 100),
+            mainStreamManager: undefined,
+            publisher: undefined,
+            joinBtnEnabled: true,
+            connected: false,
+        });
     });
 }
 ```

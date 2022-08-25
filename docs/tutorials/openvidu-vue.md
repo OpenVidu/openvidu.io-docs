@@ -27,7 +27,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -55,11 +55,9 @@ npm install
 npm run serve
 ```
 
-Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -100,19 +98,16 @@ import { OpenVidu } from 'openvidu-browser';
 // OpenVidu objects
 OV: undefined,
 session: undefined,
-publisher: undefined, // Local
-subscribers: [], // Remotes
+mainStreamManager: undefined,
+publisher: undefined,
+subscribers: [],
 
 // Join form
-mySessionId: 'SessionA',
-myUserName: 'Participant' + Math.floor(Math.random() * 100),
-
-// Main video of the page, will be 'publisher' or one of the 'subscribers',
-// updated by click event in UserVideoComponent children
-mainStreamManager: undefined,
+mySessionId: "SessionA",
+myUserName: "Participant" + Math.floor(Math.random() * 100),
 ```
 
-`OpenVidu` object will allow us to get a `Session` object, which is declared just after it. `publisher` StreamManager object will be our own local webcam stream and `subscribers` StreamManager array will store the active streams of other users in the video-call. Finally, `mySessionId` and `myUserName` params simply represent the video-call and your participant's nickname, as you will see in a moment.
+`OV` object will allow us to get a `session` object, which is declared just after it. `mainStreamManager` is the main video of the page, which will display the publisher or one of the subscribers. `publisher` StreamManager object will be our own local webcam stream and `subscribers` StreamManager array will store the active streams of other users in the video-call. Finally, `mySessionId` and `myUserName` params simply represent the video-call and your participant's nickname, as you will see in a moment.
 
 ---
 
@@ -124,11 +119,9 @@ We first get an OpenVidu object and initialize a Session object with it.
 
 ```javascript
 // --- 1) Get an OpenVidu object ---
-
 this.OV = new OpenVidu();
 
 // --- 2) Init a session ---
-
 this.session = this.OV.initSession();
 ```
 
@@ -175,92 +168,86 @@ As we are using Vue framework, a good approach for managing the remote media str
 
 - `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
+
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the Vue front itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
 
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
-this.getToken().then(token => {
-	// See next point to see how to connect to the session using 'token'
-});
+// Get a token from the OpenVidu deployment
+this.getToken(this.mySessionId).then((token) => {
+    // See next point to see how to connect to the session using 'token'
+}
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `axios` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `axios` library to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-  - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+async getToken(mySessionId) {
+    const sessionId = await this.createSession(mySessionId);
+    return await this.createToken(sessionId);
+},
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/8920cf2c4aa953a23688ae3e26d370165a955a35/openvidu-vue/src/App.vue#L155){:target="_blank"}.
+async createSession(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions', { customSessionId: sessionId }, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The sessionId
+},
+
+async createToken(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections', {}, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The token
+},
+```
 
 ---
 
 #### Finally connect to the session and publish your webcam:
 
 ```javascript
- // --- 4) Connect to the session with a valid user token ---
+// --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
-this.getToken().then(token => {
+// Get a token from the OpenVidu deployment
+this.getToken(this.mySessionId).then((token) => {
 
-    // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
+    // First param is the token. Second param can be retrieved by every user on event
     // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
     this.session.connect(token, { clientData: this.myUserName })
         .then(() => {
 
-            // --- 5) Get your own camera stream ---
+            // --- 5) Get your own camera stream with the desired properties ---
 
             // Init a publisher passing undefined as targetElement (we don't want OpenVidu to insert a video
             // element: we will manage it on our own) and with the desired properties
-            this.publisher = this.OV.initPublisher(undefined, {
-                audioSource: undefined, // The source of audio. If undefined default microphone
-                videoSource: undefined, // The source of video. If undefined default webcam
-                publishAudio: true,     // Whether you want to start publishing with your audio unmuted or not
-                publishVideo: true,     // Whether you want to start publishing with your video enabled or not
-                resolution: '640x480',  // The resolution of your video
-                frameRate: 30,          // The frame rate of your video
-                insertMode: 'APPEND',   // How the video is inserted in the target element 'video-container'
-                mirror: false           // Whether to mirror your local video or not
+            let publisher = this.OV.initPublisher(undefined, {
+              audioSource: undefined, // The source of audio. If undefined default microphone
+              videoSource: undefined, // The source of video. If undefined default webcam
+              publishAudio: true, // Whether you want to start publishing with your audio unmuted or not
+              publishVideo: true, // Whether you want to start publishing with your video enabled or not
+              resolution: "640x480", // The resolution of your video
+              frameRate: 30, // The frame rate of your video
+              insertMode: "APPEND", // How the video is inserted in the target element 'video-container'
+              mirror: false, // Whether to mirror your local video or not
             });
+
+            // Set the main video in the page to display our webcam and store our Publisher
+            this.mainStreamManager = publisher;
+            this.publisher = publisher;
 
             // --- 6) Publish your stream ---
 
             this.session.publish(publisher);
-
-            // Set the main video in the page to display our webcam and store our Publisher
-            this.mainStreamManager = publisher;
         })
-        .catch(error => {
-            console.log('There was an error connecting to the session:', error.code, error.message);
+        .catch((error) => {
+            console.log("There was an error connecting to the session:", error.code, error.message);
         });
 });
 ```
@@ -351,18 +338,20 @@ export default {
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method in `App.vue`:
 
 ```javascript
-  leaveSession() {
-
+leaveSession() {
     // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
-
-    if (this.session) { this.session.disconnect(); };
+    if (this.session) this.session.disconnect();
 
     // Empty all properties...
+    this.session = undefined;
+    this.mainStreamManager = undefined;
+    this.publisher = undefined;
     this.subscribers = [];
-    delete this.publisher;
-    delete this.session;
-    delete this.OV;
-  }
+    this.OV = undefined;
+
+    // Remove beforeunload listener
+    window.removeEventListener("beforeunload", this.leaveSession);
+}
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

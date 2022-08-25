@@ -25,7 +25,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -55,36 +55,32 @@ npm start
 
 The app will start automatically as a native desktop application, regardless of the OS you are using. If you are on Windows, it will launch as a Windows app. In OSX as an OSX app, and in Linux as a Linux app.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 ## Understanding the code
 
-As an Electron app, the project has a `main.js` file that serves as entry point. It has not been modified at all, so it remains the same as it is by default in the [electron-quick-start](https://github.com/electron/electron-quick-start){:target="_blank"} example. Most important files are the following ones:
+As an Electron app, the project has a `main.js` file that serves as entry point. It has been barely modified at all, so it remains basically the same as it is by default in the [electron-quick-start](https://github.com/electron/electron-quick-start){:target="_blank"} example. Most important files are the following ones:
 
-- `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file.
-- `axios.min.js`: library for making HTTP requests from the app. You don't have to manipulate this file.
-- `modal.html`: this is the dialog for selecting the screen to share if the user wants to do so.
-- `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_.
+- `main.js`: Electron entrypoint JavaScript file.
+- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. It links to `index.js` and `style.css` files.
+- `index.js`: sample application main JavaScript file, which makes use of _openvidu-browser.js_ SDK.
 - `style.css`: some CSS classes to style the app.
-- `index.html`: HTML code for the form to connect to a video-call and for the video-call itself. It has links to 3 JavaScript files:
-
-<pre class="html-scripts">
-  <code>&lt;script src="openvidu-browser-VERSION.js"&gt;&lt;/script&gt;
-&lt;script src="axios.min.js"&gt;&lt;/script&gt;
-&lt;script src="app.js"&gt;&lt;/script&gt;</code>
-</pre>
+- `modal.html`: this is the dialog for selecting the screen to share if the user wants to do so.
 
 We have implemented screen-sharing capabilities in this application because the process is slightly different from the rest of platforms that support it. Electron does not provide a default screen selector dialog, so we must implement it ourselves (that is the purpose of `modal.html` file). You can check out this feature in the last section [Screen sharing](#screen-sharing).
 
-Let's see first how `app.js` uses `openvidu-browser-VERSION.js`:
+Let's see first how `index.js` uses `openvidu-browser.js` SDK:
 
 ---
 
-#### First lines declare the variables that will be needed in different points along the code
+#### First lines make the necessary imports and declare global variables
 
 ```javascript
 const ipcRenderer = require('electron').ipcRenderer;
-const BrowserWindow = require('electron').remote.BrowserWindow;
+const { BrowserWindow } = require('@electron/remote');
+
+const { OpenVidu } = require('openvidu-browser');
+const axios = require('axios');
 
 var openvidu;
 var session;
@@ -124,7 +120,7 @@ If you want to see how to initialize a screen sharing Publisher instead of the w
 #### Initialize the session
 
 ```javascript
-function joinSession() {
+async function joinSession() {
 
     session = openvidu.initSession();
     session.on("streamCreated", function (event) {
@@ -134,70 +130,60 @@ function joinSession() {
 
 Once we have our Publisher properly initialized, we continue by creating a Session object. We do so with `openvidu.initSession` method. We then have to configure our session to listen to `streamCreated` events, so we are able to subscribe to other user media streams when they publish.
 
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
+
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-We are ready to join the session. But we still need an OpenVidu token, so we must ask for it to openvidu-server. We use `axios.min.js` library to do so.
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
+
+Variable `mySessionId` is the OpenVidu Session we want a token from.
 
 ```javascript
-getToken(mySessionId).then(token => {
-  // See next point to see how to connect to the session using 'token'
-});
+mySessionId = document.getElementById("sessionId").value;
+
+const token = await getToken(mySessionId);
 ```
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `axios` library to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+```javascript
+var APPLICATION_SERVER_URL = 'http://localhost:5000/';
 
-  - First HTTP request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+async function getToken(mySessionId) {
+    const sessionId = await createSession(mySessionId);
+    return await createToken(sessionId);
+}
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-electron/src/app.js#L102){:target="_blank"}.
+async function createSession(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions', { customSessionId: sessionId }, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The sessionId
+}
+
+async function createToken(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections', {}, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The token
+}
+```
 
 ---
 
 #### Connect to the session using the token
 
 ```javascript
-getToken(mySessionId).then(token => {
-  session.connect(token)
-    .then(() => {
-        showSession();
-        session.publish(publisher);
-    })
-    .catch(error => {
-        console.log("There was an error connecting to the session:", error.code, error.message);
-    });
-});
+await session.connect(token, { clientData: 'OpenVidu Electron' });
+showSession();
+session.publish(publisher);
 ```
 
-We simply need to call `session.connect` passing the recently retrieved token from OpenVidu Server. This method returns a Promise to which you can subscribe to.
+We simply need to call `session.connect` passing the recently retrieved OpenVidu Token. In this case we wait for the method to successfully complete before performing the last two actions: setting the view to the active video session and publishing our previously created Publisher by calling `session.publish`.
 
-In case of success we first set the view to the active video session. Then we proceed to publish our previously created Publisher by calling `session.publish`. At this point the rest of users connected to this session will trigger their own `streamCreated` event and can start watching our media stream.
+At this point the rest of users connected to this session will trigger their own `streamCreated` event and will be able to subscribe to our media stream.
 
 ---
 
@@ -216,7 +202,7 @@ Whenever we want a user to leave the session, we just need to call `session.disc
 
 #### Screen sharing
 
-The process to screen-share is slightly different from the rest of platforms that support it. Electron does not provide a default screen selector dialog as browsers do, so we must implement it ourselves (that is the purpose of `modal.html` file). We need a screen unique identifier to initialize our Publisher object like this:
+The process to screen-share is slightly different from the rest of platforms that support it. Electron does not provide a default screen selector dialog as browsers do, so we must implement it ourselves (that is the purpose of `modal.html` file). We need a screen unique identifier to initialize our publisher object like this:
 
 ```javascript
 OpenVidu.initPublisher({videoSource: "screen:" + SCREEN_ID});
@@ -229,11 +215,7 @@ First of all, we must be able to communicate different windows of the applicatio
 In `main.js` we import `ipcMain` from Electron and configure it to listen to `screen-share-selected` event. Upon this event it will notify our app with other event (`screen-share-ready`), passing the same message received from the sender.
 
 ```javascript
-const {
-  app,
-  BrowserWindow,
-  ipcMain
-} = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron')
 
 // ...
 
@@ -242,33 +224,39 @@ ipcMain.on('screen-share-selected', (event, message) => {
 });
 ```
 
-In `app.js` file, where all our logic lies, we import `ipcRenderer` and configure it to listen to `screen-share-ready` event, sent from our `main.js` file as shown above. At this point we have the necessary parameter to initialize our Publisher:
+In `index.js` file (where all our logic is found) we import `ipcRenderer` and configure it to listen to `screen-share-ready` event, sent from our `main.js` file as shown above. At this point we would have the necessary parameter to initialize our publisher and join the session.
 
 ```javascript
 ipcRenderer.on('screen-share-ready', (event, message) => {
-  // User has chosen a screen to share. screenId is message parameter
-  showSession();
-  publisher = openvidu.initPublisher("publisher", {
-    videoSource: "screen:" + message
-  });
-  joinSession();
+  if (!!message) {
+      // User has chosen a screen to share. screenId is message parameter
+      showSession();
+      publisher = openvidu.initPublisher("publisher", {
+          videoSource: "screen:" + message
+      });
+      joinSession();
+  }
 });
 ```
 
-So, where's the code that initiates this whole event process? That is `modal.html` file. This HTML view will be launched by `app.js` file in method `initPublisher` if the user has checked the screen-sharing checkbox. Method `openScreenShareModal` will be called then:
+So, where's the code that initiates this whole event process? That is `modal.html` file. This HTML view will be launched by `index.js` file in method `initPublisher` if the user has checked the screen-sharing checkbox. Method `openScreenShareModal` launches `modal.html` template in a child window:
 
 ```javascript
 function openScreenShareModal() {
     let win = new BrowserWindow({
-        parent: require('electron').remote.getCurrentWindow(),
+        parent: require('@electron/remote').getCurrentWindow(),
         modal: true,
         minimizable: false,
         maximizable: false,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false
         },
         resizable: false
-    })
+    });
+    require("@electron/remote").require("@electron/remote/main").enable(win.webContents);
+
     win.setMenu(null);
     // win.webContents.openDevTools();
 
@@ -277,22 +265,19 @@ function openScreenShareModal() {
 }
 ```
 
-This code will launch `modal.html` template in a child window. In this file we use Electron API `desktopCapturer` to list and present all available screens. The user is able to select any of them and by clicking button "Share" the selected screen id will be sent as an event `screen-share-selected` just before closing this child window, by making use of the same `ipcRenderer` object as `app.js` do.
+In `modal.html` file we use Electron API `desktopCapturer` to list and present all available screens. The user is able to select any of them and by clicking button "Share" the selected screen id will be sent as an event `screen-share-selected` just before closing this child window, by making use of the same `ipcRenderer` API.
 
 ```javascript
 var availableScreens = [];
 var htmlElements = [];
 var selectedElement;
 
-const {
-  desktopCapturer
-} = require('electron')
-
+const desktopCapturer = require('@electron/remote').desktopCapturer;
 const ipcRenderer = require('electron').ipcRenderer;
 
 // Call Electron API to list all available screens
 desktopCapturer.getSources({
-    types: ['window', 'screen']
+  types: ['window', 'screen']
 }).then(async sources => {
   const list = document.getElementById("list-of-screens");
   sources.forEach(source => {

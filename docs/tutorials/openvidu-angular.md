@@ -27,7 +27,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -56,11 +56,9 @@ npm install
 ng serve
 ```
 
-Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -174,61 +172,56 @@ As we are using Angular framework, a good approach for managing the remote media
 
 - `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
+
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the Angular front itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
 
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// Get a token from the OpenVidu deployment
 this.getToken().then(token => {
-	// See next point to see how to connect to the session using 'token'
+    // See next point to see how to connect to the session using 'token'
 });
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token, using `@angular/http` library. Without going into too much detail, this method performs two POST requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the server application. The tutorial uses Angular [HttpClient](https://angular.io/api/common/http/HttpClient){:target="_blank"} to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-  - First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+async getToken(): Promise<string> {
+    const sessionId = await this.createSession(this.mySessionId);
+    return await this.createToken(sessionId);
+}
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-angular/src/app/app.component.ts#L161){:target="_blank"}.
+createSession(sessionId) {
+    return this.httpClient.post(
+        this.APPLICATION_SERVER_URL + 'api/sessions',
+        { customSessionId: sessionId },
+        { headers: { 'Content-Type': 'application/json' }, responseType: 'text' }
+    ).toPromise();
+}
+
+createToken(sessionId) {
+    return this.httpClient.post(
+        this.APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections',
+        {},
+        { headers: { 'Content-Type': 'application/json' }, responseType: 'text' }
+    ).toPromise();
+}
+```
 
 ---
 
 #### Finally connect to the session and publish your webcam:
 
 ```javascript
- // --- 4) Connect to the session with a valid user token ---
+// --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// Get a token from the OpenVidu deployment
 this.getToken().then(token => {
 
     // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
@@ -355,6 +348,21 @@ Whenever we want a user to leave the session, we just need to call `session.disc
     delete this.OV;
     this.generateParticipantInfo();
   }
+```
+
+We also configure the component to call `session.disconnect` method before unloading the page or destroying the component:
+
+```javascript
+@HostListener('window:beforeunload')
+beforeunloadHandler() {
+  // On window closed leave session
+  this.leaveSession();
+}
+
+ngOnDestroy() {
+  // On component destroyed leave session
+  this.leaveSession();
+}
 ```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

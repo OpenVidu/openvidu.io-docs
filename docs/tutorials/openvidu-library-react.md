@@ -16,7 +16,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -44,11 +44,9 @@ npm install
 npm start
 ```
 
-Go to [`http://localhost:3000`](http://localhost:3000){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:3000`](http://localhost:3000){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -75,22 +73,23 @@ This is a basic React project generated with `npx create-react-app`, and therefo
 #### We must include _openvidu-react_ and _axios_ in our app:
 
 1) First of all, you need to install **_openvidu-react_** :
+
 ```bash
 npm install openvidu-react --save
 ```
 
-After that, you must include **OpvSession** in `App.js` file:
+After that, include **OpenViduSession** in `App.js` file:
 
 ```javascript
-import OpvSession from 'openvidu-react';
+import OpenViduSession from 'openvidu-react';
 ```
 
-2) Secondly, you need to install **_axios_** that allows you to do HTTP requests:
+2) Secondly, you need to install **_axios_** to perform HTTP requests.
 
 ```bash
 npm install axios --save
 ```
-And include it in `Àpp.js`:
+And include it in `App.js`:
 
 ```javascript
 import axios from 'axios';
@@ -102,60 +101,49 @@ import axios from 'axios';
 
 ##### App.js
 
-As you can see here, you can use `<OpvSession></OpvSession>` component to embed openvidu session in your application in a very easy way. Our component will start hidden:
+The template for this component is divided into two parts: a form to set the information of the participant and session to connect to, and the OpenViduSession component itself. If there is no session defined yet, the form will be shown. The moment there is a session object defined, the OpenViduSession component will replace the form.
+
+This is the form:
 
 ```html
-<div>
-    {this.state.session === undefined ? (
-        <div id="join">
-            <div id="join-dialog">
-                <h1> Join a video session </h1>
-                <form onSubmit={this.joinSession}>
-                    <p>
-                        <label>Participant: </label>
-                        <input
-                            type="text"
-                            id="userName"
-                            value={myUserName}
-                            onChange={this.handleChangeUserName}
-                            required
-                        />
-                    </p>
-                    <p>
-                        <label> Session: </label>
-                        <input
-                            type="text"
-                            id="sessionId"
-                            value={mySessionId}
-                            onChange={this.handleChangeSessionId}
-                            required
-                        />
-                    </p>
-                    <p>
-                        <input name="commit" type="submit" value="JOIN" />
-                    </p>
-                </form>
-            </div>
-        </div>
-    ) : (
-        <div id="session">
-            <OpvSession/>
-        </div>
-    )}
+<div id="join">
+    <div id="join-dialog">
+        <h1> Join a video session </h1>
+        <form onSubmit={this.joinSession}>
+            <p>
+                <label>Participant: </label>
+                <input
+                    type="text"
+                    id="userName"
+                    value={myUserName}
+                    onChange={this.handleChangeUserName}
+                    required
+                />
+            </p>
+            <p>
+                <label> Session: </label>
+                <input
+                    type="text"
+                    id="sessionId"
+                    value={mySessionId}
+                    onChange={this.handleChangeSessionId}
+                    required
+                />
+            </p>
+            <p>
+                <input name="commit" type="submit" value="JOIN" />
+            </p>
+        </form>
+    </div>
 </div>
 ```
 
-Method `joinSession()` gets the token which we provide to our component to connect to the session.
+Method `joinSession()` triggered from the form is in charge of initializing the session and getting a token for it.
 
-You can configure the OpvSession with these parameters:
-
--   `sessionName`: the session name that will be displayed inside the component
--   `user`: the nickname that the user will have in the session
--   `token`: the retrieved token from OpenVidu Server
-
+This is the OpenViduSession component:
 
 ```javascript
-<OpvSession
+<OpenViduSession
     id="opv-session"
     sessionName={mySessionId}
     user={myUserName}
@@ -166,85 +154,73 @@ You can configure the OpvSession with these parameters:
 />
 ```
 
-Moreover, OpvSession emits events `leaveSession`, `joinSession` and `error`, we can handle them with the next code in `app.component.ts` file:
+You can configure the OpenViduSession component with these parameters:
+
+-   `sessionName`: the session name that will be displayed inside the component.
+-   `user`: the nickname that the user will have in the session.
+-   `token`: the retrieved OpenVidu token.
+
+Moreover, OpenViduSession emits events `leaveSession`, `joinSession` and `error`. We handle them in these functions:
 
 ```javascript
 handlerJoinSessionEvent(event) {
     // Do something
-  }
+}
 
-  handlerLeaveSessionEvent(event) {
+handlerLeaveSessionEvent(event) {
     // Do something
-  }
+}
 
-  handlerErrorEvent(event) {
+handlerErrorEvent(event) {
     // Do something
-  }
+}
 ```
 
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This makes this tutorial an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
+
+In `App.js` file method `joinSession` will trigger the request for a token whenever the user clicks on the "JOIN" button. After a successful token retrieval we store it in the application's state.
 
 ```javascript
-this.getToken().then((token) => {
-    // Update the state with the token
-});
+async joinSession(event) {
+    event.preventDefault();
+    if (this.state.mySessionId && this.state.myUserName) {
+        const token = await this.getToken();
+        this.setState({
+            token: token,
+            session: true,
+        });
+    }
+}
 ```
 
-In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
-
--   First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `sessionName` value retrieved from HTML input)
--   Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
-
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-webcomponent/web/app.js#L44){:target="_blank"}.
-
-<hr>
-
-## Extra features of OpenVidu React
-
-#### Alternatives to connect to OpenVidu React
-
-In the example above, **OpvSession** receives the `sessionName`, the `user` and the `token` parameters. If you want to let the OpvSession get the token for you, you can just dispense with the token and provide two more attributes to it. This is only meant for developing purposes, as you need to hardcode the secret of your OpenVidu Server in the JavaScript code:
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `axios` library to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
 ```javascript
-<OpvSession
-  id="opv-session"
-  sessionName={mySessionId}
-  user={myUserName}
-  openviduServerUrl={'https://localhost:4443'}
-  openviduSecret={'MY_SECRET'}
-  joinSession={this.handlerJoinSessionEvent}
-  leaveSession={this.handlerLeaveSessionEvent}
-  error={this.handlerErrorEvent}
-/>
+async getToken() {
+    const sessionId = await this.createSession(this.state.mySessionId);
+    return await this.createToken(sessionId);
+}
+
+async createSession(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions', { customSessionId: sessionId }, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The sessionId
+}
+
+async createToken(sessionId) {
+    const response = await axios.post(APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections', {}, {
+        headers: { 'Content-Type': 'application/json', },
+    });
+    return response.data; // The token
+}
 ```
 
+The moment the application's state has the `token` property defined and the `session` property set to true, the OpenViduSession component will be rendered and the user will connect to the Session.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

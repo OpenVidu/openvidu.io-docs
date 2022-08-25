@@ -23,7 +23,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run the server application and the client application
@@ -38,7 +38,7 @@ npm --version
 Clone the repo:
 
 ```bash
-git clone git@github.com:OpenVidu/openvidu-tutorials.git -b v2.22.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
 ```
 
 Run the application:
@@ -46,14 +46,12 @@ Run the application:
 ```bash
 cd openvidu-tutorials/openvidu-roles-node
 npm install
-node server.js https://localhost:4443 MY_SECRET
+node server.js http://localhost:4443 MY_SECRET
 ```
 
-Go to [`https://localhost:5000`](https://localhost:5000){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time. To test two different users in the same computer, use a standard window and an incognito window.
+Go to [`https://localhost:5000`](https://localhost:5000){:target="_blank"} to test the app once the server is running. To test two different users in the same computer, use a standard window and an incognito window.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Ignore [step 2](troubleshooting/#2-modify-the-application_server_url-of-the-client-application), as the application already includes a backend and the frontend doesn't need to communicate with a different application server.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

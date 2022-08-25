@@ -79,24 +79,14 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=X.X.X.X openvidu/openvidu-dev:2.22.0
 ```
 
 Set property `DOMAIN_OR_PUBLIC_IP` to the IP address of your workstation in the local network (LAN). You can get it:
 
-On Linux:
-
-```shell
-ip -4 -oneline route get 1.0.0.0 | grep -Po 'src \K\S+'
-```
-
-On MacOS:
-
-```shell
-ipconfig getifaddr "$(route -n get 1.0.0.0 | grep 'interface' | awk '{print $2}')"
-```
-
-The result will typically look like `192.168.1.2`, but it depends a lot on your LAN network.
+- On Linux: `ip -4 -oneline route get 1.0.0.0 | grep -Po 'src \K\S+'`
+- On MacOS: `ipconfig getifaddr "$(route -n get 1.0.0.0 | grep 'interface' | awk '{print $2}')"`
+- On Windows: use `ipconfig` command on a cmd terminal. Look for the wireless LAN IPv4 address.
 
 #### 2. Run your preferred server application sample
 
@@ -109,15 +99,9 @@ For more information visit [Application server](application-server/).
 
 1. First open **Android Studio** and import the project **openvidu-tutorials/openvidu-android**. Use the same repository openvidu-tutorials previously cloned on [step 2](#2-run-your-preferred-server-application-sample).
 
-2. You must configure the application server URL to the Android app, using the LAN network IP of your workstation. To do that, on the *Project Files* view, open the file `app/src/main/res/values/strings.xml`. The value of `default_openvidu_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/1439f20bce6cee1f3d4b6495c9f2c05d672d4b65/openvidu-android/app/src/main/res/values/strings.xml#L10){:target="\_blank"}) must be the URL of your application server. The default URL is `https://DOMAIN_OR_PUBLIC_IP:5000/`, where DOMAIN_OR_PUBLIC_IP must be the IP address of your workstation. In these instructions, this IP is the same as the one you configured in [step 1](#1-run-openvidu-deployment) for your OpenVidu deployment containter, as we are running both OpenVidu deployment and the application server in the same workstation.
+2. You must configure the application server URL to the Android app, using the LAN network IP of your workstation. To do that, on the *Project Files* view, open the file `app/src/main/res/values/strings.xml`. The value of `application_server_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/7f313bc86b1b2d60ca336746967ba9d1e361edc3/openvidu-android/app/src/main/res/values/strings.xml#L2){:target="\_blank"}) must be the URL of your application server. The default URL is `http://APPLICATION_SERVER_IP:5000/`, where APPLICATION_SERVER_IP must be the IP address of your workstation. In these instructions, this IP is the same as the one you configured in [step 1](#1-run-openvidu-deployment) for your OpenVidu deployment containter, as we are running both OpenVidu deployment and the application server in the same workstation.
 
-3. Run the application in your Android device from Android Studio. Check out [official Android docs](https://developer.android.com/studio/run/device){:target="_blank"}.
-
-<p align="center">
-  <img class="img-responsive" style="padding: 25px 0" src="img/demos/openvidu-android-devices.png">
-</p>
-
-<br>
+3. Run the application in your Android device from Android Studio. For Android >= 11 pairing devices via WiFi is the quickest solution. Check out [official Android docs](https://developer.android.com/studio/run/device){:target="_blank"}.
 
 <div class="row no-margin ">
 	<div class="col-md-6 col-sm-6">
@@ -140,22 +124,21 @@ To access the camera and microphone, Android apps need to ask for explicit permi
 
 You have a complete guide here: [Request app permissions](https://developer.android.com/training/permissions/requesting){:target="_blank"}.
 
-These configurations are already included in this project, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project**, you should follow these simple steps:
+These configurations are already included in this project, so if you start from here no further configurations are needed. Otherwise, if you want to start a new project or integrate OpenVidu in your existing Android app, you should follow these simple steps:
 
 1. Add required permissions to your manifest file.
 
         <manifest xmlns:android="http://schemas.android.com/apk/res/android"
             package="io.openvidu.openvidu_android">
 
-            <application>
-                ...
-            </application>
-
             <uses-permission android:name="android.permission.CAMERA" />
             <uses-permission android:name="android.permission.RECORD_AUDIO" />
             <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
             <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
             <uses-permission android:name="android.permission.INTERNET" />
+
+                ...
+
         </manifest>
 
 2. Check if your application has already the necessary permissions. To do so, call the `ContextCompat.checkSelfPermission()` method. For example:
@@ -207,15 +190,15 @@ This is an Android project generated with Android Studio, and therefore you will
 
 ---
 
-#### WebSocket address, session name and participant name
+#### Application server URL, session name and participant name
 
-As stated above in [Running this tutorial](#running-this-tutorial), you have to modify the value of `default_openvidu_url` with the URL to your OpenVidu deployment in `app/src/main/res/values/strings.xml`. For example:
+As stated above in [Running this tutorial](#running-this-tutorial), you have to modify the value of `application_server_url` with the URL to your applisation server in `app/src/main/res/values/strings.xml`. For example:
 
 ```xml
-<string name="default_openvidu_url">https://my.example.com</string>
+<string name="application_server_url">http://192.168.1.19:5000/</string>
 ```
 
-Besides, you can change the default values for the local participant name (`default_participant_name`) and session name (`default_session_name`). These will appear as default values in the form to connect to a session.
+Besides, you can change the default values for the session name (`default_session_name`) and the local participant name (`default_participant_name`). These will appear as default values in the form to connect to a session.
 
 ```xml
 <string name="default_session_name">SessionA</string>
@@ -226,50 +209,23 @@ Besides, you can change the default values for the local participant name (`defa
 
 ---
 
-#### Get a *Token* from OpenVidu
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the Angular front itself will perform the POST operations to OpenVidu
-</div>
-</div>
+We need to ask for an OpenVidu token to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
+
+Variable `sessionId` is the OpenVidu Session we want a token from.
 
 <p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px; word-break: break-word"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java" target="_blank">src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java</a></p>
 
 ```java
 private void getToken(String sessionId) {
-    // See next point to see how to connect to the session using 'token'
+    // First perform a petition to initialize a Session
+    // Then perform a petition to get a Token
     ...
 }
 ```
 
-Now we need a token from OpenVidu. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/){:target="\_blank"}_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/){:target="\_blank"}_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/){:target="\_blank"}_. Here we have implemented the POST requests to OpenVidu in a method `getToken()`. Without going into too much detail, this method performs two _POST_ requests to OpenVidu, passing OpenVidu secret to authenticate them. We use an http-client we have wrapped in class [`CustomHttpClient`](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/utils/CustomHttpClient.java){:target="_blank"}.
-
-- First request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to force the id of the session to be the value retrieved from the view's form. This way we don't need a server side to connect multiple users to the same session)
-- Second request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
-
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/activities/SessionActivity.java#L136){:target="\_blank"}.
-
-<br>
+The tutorial uses a custom HttpClient (class `CustomHttpClient.java`) that is a simple wrapper around [okhttp3.OkHttpClient](https://square.github.io/okhttp/){:target="_blank"} to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
 ---
 
@@ -281,7 +237,7 @@ Once we have the Token, we create a **Session**, a **LocalParticipant**, and **c
 
 ```java
 private void getTokenSuccess(String token, String sessionId) {
-    // Initialize our session object
+    // Initialize our session
     session = new Session(sessionId, token, views_container, this);
 
     // Initialize our local participant and start local camera
@@ -294,7 +250,7 @@ private void getTokenSuccess(String token, String sessionId) {
         main_participant.setPadding(20, 3, 20, 3);
     });
 
-    // Initialize and connect the WebSocket to OpenVidu
+    // Initialize and connect the websocket to OpenVidu Server
     startWebSocket();
 }
 ```
@@ -304,14 +260,14 @@ To configure the **session**, we are going to initialize and build the `PeerConn
 <p style="text-align: center; font-weight: bold; margin-bottom: -9px; margin-top: 13px; font-size: 12px; word-break: break-word"><a href="https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-android/app/src/main/java/io/openvidu/openvidu_android/openvidu/Session.java" target="_blank">src/main/java/io/openvidu/openvidu_android/openvidu/Session.java</a></p>
 
 ```Java
-//Creating a new PeerConnectionFactory instance
+// Creating a new PeerConnectionFactory instance
 PeerConnectionFactory.InitializationOptions.Builder optionsBuilder = PeerConnectionFactory.InitializationOptions.builder(activity.getApplicationContext());
 optionsBuilder.setEnableInternalTracer(true);
 PeerConnectionFactory.InitializationOptions opt = optionsBuilder.createInitializationOptions();
 PeerConnectionFactory.initialize(opt);
 PeerConnectionFactory.Options options = new PeerConnectionFactory.Options();
 
-// Using software encoder and decoder.
+// Using software encoder and decoder
 final VideoEncoderFactory encoderFactory;
 final VideoDecoderFactory decoderFactory;
 encoderFactory = new SoftwareVideoEncoderFactory();
@@ -565,3 +521,7 @@ public void leaveRoom() {
 ```
 
 <br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

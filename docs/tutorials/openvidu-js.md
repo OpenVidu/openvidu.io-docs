@@ -25,7 +25,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -50,11 +50,9 @@ To serve the tutorial:
 http-server openvidu-tutorials/openvidu-js/web
 ```
 
-Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -94,7 +92,7 @@ var OV;
 var session;
 ```
 
-`OV` will be our OpenVidu object (entrypoint to the library). `session` will be the video-call we will connect to. As first sentences in the join method, we initialize the two parameters whose value is retrieved from the HTML inputs.
+`OV` will be our OpenVidu object (entrypoint to the library). `session` will be the video-call we will connect to. As first sentences in the `joinSession` method, we initialize the two parameters whose value is retrieved from the HTML inputs.
 
 ```javascript
 var mySessionId = document.getElementById("sessionId").value; 	// Session the user will join
@@ -103,7 +101,7 @@ var myUserName = document.getElementById("userName").value;		// Nickname of the 
 
 ---
 
-#### Let's initialize a new session and configure our events:
+#### Initialize a new session and configure our events
 
 ```javascript
 // --- 1) Get an OpenVidu object ---
@@ -157,52 +155,62 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 - `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
+
 > Check [Application specific methods](#application-specific-methods) section to see all the auxiliary methods used in this app
 
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need a token to get access to it, so we ask for it to the [server application](application-server/). The server application will in turn request a token to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
+
+Variable `mySessionId` is the OpenVidu Session we want a token from.
 
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// Get a token from the OpenVidu deployment
 getToken(mySessionId).then(token => {
 	// See next point to see how to connect to the session using 'token'
-});
+}
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `jQuery.ajax()` method to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-  - First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+var APPLICATION_SERVER_URL = "http://localhost:5000/";
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-js/web/app.js#L192){:target="_blank"}.
+function getToken(mySessionId) {
+	return createSession(mySessionId).then(sessionId => createToken(sessionId));
+}
+
+function createSession(sessionId) {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			type: "POST",
+			url: APPLICATION_SERVER_URL + "api/sessions",
+			data: JSON.stringify({ customSessionId: sessionId }),
+			headers: { "Content-Type": "application/json" },
+			success: response => resolve(response), // The sessionId
+			error: (error) => reject(error)
+		});
+	});
+}
+
+function createToken(sessionId) {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			type: 'POST',
+			url: APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections',
+			data: JSON.stringify({}),
+			headers: { "Content-Type": "application/json" },
+			success: (response) => resolve(response), // The token
+			error: (error) => reject(error)
+		});
+	});
+}
+```
 
 ---
 
@@ -211,8 +219,7 @@ You can inspect this method in detail in the [GitHub repo](https://github.com/Op
 ```javascript
 // --- 4) Connect to the session with a valid user token ---
 
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// Get a token from the OpenVidu deployment
 getToken(mySessionId).then(token => {
 
 	// First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
@@ -269,7 +276,7 @@ Finally we just have to publish `publisher` object through `Session.publish` met
 
 #### Leaving the session
 
-Whenever we want a user to leave the session, we just need to call `session.disconnect` method:
+Whenever we want a user to leave the session, we just need to call `session.disconnect` method. We also make sure to call the method before the page is unloaded using event `window.onbeforeunload`.
 
 ```javascript
 function leaveSession() {
@@ -286,6 +293,10 @@ function leaveSession() {
 	document.getElementById('join').style.display = 'block';
 	document.getElementById('session').style.display = 'none';
 }
+
+window.onbeforeunload = function () {
+	if (session) session.disconnect();
+};
 ```
 
 ---
@@ -300,10 +311,6 @@ Here you have all the auxiliary methods used in this app, which are not directly
 window.addEventListener('load', function () {
 	generateParticipantInfo();
 });
-
-window.onbeforeunload = function () {
-	if (session) session.disconnect();
-};
 
 function generateParticipantInfo() {
 	document.getElementById("sessionId").value = "SessionA";

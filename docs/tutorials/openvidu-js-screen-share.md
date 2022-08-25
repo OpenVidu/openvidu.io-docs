@@ -25,7 +25,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -50,11 +50,9 @@ To serve the tutorial:
 http-server openvidu-tutorials/openvidu-js-screen-share/web
 ```
 
-Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
@@ -106,14 +104,14 @@ To handle in a better way **Camera videos** and **Screen Videos**, we declare tw
 
 **OpenVidu variables**:
 
-- `OVCamera` and `OVScreen`: These two variables will be our OpenVidu object (entrypoint to the library). We will use `OVCamera` to init `sessionCamera` object, and `OVScreen` to init `sessionScreen` object.
-- `sessionCamera` and `sessionScreen`: These two objects will represent the video-call we will connect. Both **will be associated to the same session id**, but with `sessionCamera` we will handle webcam events and with `sessionScreen` we will handle screen events.
+- `OVCamera` and `OVScreen`: these two variables will be our OpenVidu object (entrypoint to the library). We will use `OVCamera` to init `sessionCamera` object, and `OVScreen` to init `sessionScreen` object.
+- `sessionCamera` and `sessionScreen`: these two objects will represent the video-call we will connect. Both **will be associated to the same session id**, but with `sessionCamera` we will handle webcam events and with `sessionScreen` we will handle screen events.
 
 **Global State variables**
 
-- `mySessionId`: This represents the session id which the session have, entered in the initial form.
-- `myUserName`: This represents the username entered in the initial form.
-- `screensharing`: Boolean state which represents if the user is screensharing or not to display a button.
+- `myUserName`: the username provided in the initial form.
+- `mySessionId`: the session identifiers provided in the initial form. This is the video-call we will connect to.
+- `screensharing`: boolean state which represents if the user is screensharing or not to display a button.
 
 When the **join** button is clicked, `mySessionId` and `myUserName` will be loaded from the initial form:
 
@@ -147,7 +145,8 @@ As you can see in the code, the process is very simple: get an OpenVidu object a
 ```javascript
 // --- 3) Specify the actions when events of type 'streamCreated' take
 // --- place in the session. The reason why we're using two different objects
-// --- is to handle subscribers differently when it is of 'CAMERA' type, or 'SCREEN' type ---
+// --- is to handle diferently the subscribers when it is of 'CAMERA' type, or 'SCREEN' type ---
+
 // ------- 3.1) Handle subscribers of 'CAMERA' type
 sessionCamera.on('streamCreated', event => {
     if (event.stream.typeOfVideo == "CAMERA") {
@@ -198,80 +197,79 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 - `exception`: event triggered by Session object when an asynchronous unexpected error takes place on the server-side
 
+> You can take a look at all the events in the [Reference Documentation](api/openvidu-browser/classes/Event.html)
+
 > Check [Application specific methods](#application-specific-methods) section to see all the auxiliary methods used in this app
 
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This is why this tutorial is an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We are ready to join the session. But we still need two tokens to get access to it: one token for the camera participant and other for the screen participant. So we ask for them to the [server application](application-server/). The server application will in turn request two tokens to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
+
+Variable `mySessionId` is the OpenVidu Session we want a token from.
 
 ```javascript
-// --- 4) Connect to the session with a valid user token. ---
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// --- 4) Connect to the session with two different tokens: one for the camera and other for the screen ---
 
 // -------4.1 Get the token for the 'sessionCamera' object
 getToken(mySessionId).then(token => {
-    sessionCamera.connect(token, { clientData: myUserName }).then(() => {
-        // ...
-        // See next point to see how to connect to the session using 'token'
-    });
-});
+    // See next point to see how to connect to the session using 'token'
+}
 
-// -------4.2 Get the token for the 'sessionScreen' object
+// -------4.1 Get the token for the 'sessionScreen' object
 getToken(mySessionId).then((tokenScreen) => {
-    sessionScreen.connect(tokenScreen, { clientData: myUserName }).then(() => {
-        // ...
-        // See next point to see how to connect to the session using 'token'
-    });
-});
+    // See next point to see how to connect to the session using 'token'
+}
 ```
 
-Now we need a token from OpenVidu Server. In a production environment we would perform these operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the application server. The tutorial uses `jQuery.ajax()` method to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
-  - First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `mySessionId` value retrieved from HTML input)
-  - Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+var APPLICATION_SERVER_URL = "http://localhost:5000/";
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/1ddfa8e4b967e297acf4827c81010a209ba9a549/openvidu-js-screen-share/web/app.js#L249){:target="_blank"}.
+function getToken(mySessionId) {
+	return createSession(mySessionId).then(sessionId => createToken(sessionId));
+}
 
-On the other hand, you can see in the code above that we are creating two tokens to the same id (`mySessionId`). You will see why in the next section...
+function createSession(sessionId) {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			type: "POST",
+			url: APPLICATION_SERVER_URL + "api/sessions",
+			data: JSON.stringify({ customSessionId: sessionId }),
+			headers: { "Content-Type": "application/json" },
+			success: response => resolve(response), // The sessionId
+			error: (error) => reject(error)
+		});
+	});
+}
+
+function createToken(sessionId) {
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			type: 'POST',
+			url: APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections',
+			data: JSON.stringify({}),
+			headers: { "Content-Type": "application/json" },
+			success: (response) => resolve(response), // The token
+			error: (error) => reject(error)
+		});
+	});
+}
+```
 
 ---
 
-#### Finally, connect to the session using the token and publish your webcam:
+#### Finally, connect to the session using the tokens and publish your webcam:
 
 ```javascript
-// --- 4) Connect to the session with a valid user token. ---
-// 'getToken' method is simulating what your server-side should do.
-// 'token' parameter should be retrieved and returned by your own backend
+// --- 4) Connect to the session with two different tokens: one for the camera and other for the screen ---
 
-// -------4.1 Get the token for the 'sessionCamera' object
+// --- 4.1) Get the token for the 'sessionCamera' object
 getToken(mySessionId).then(token => {
 
-    // First param is the token got from OpenVidu Server. Second param can be retrieved by every user on event
+    // First param is the token got from the OpenVidu deployment. Second param can be retrieved by every user on event
     // 'streamCreated' (property Stream.connection.data), and will be appended to DOM as the user's nickname
     sessionCamera.connect(token, { clientData: myUserName })
         .then(() => {
@@ -313,7 +311,7 @@ getToken(mySessionId).then(token => {
         });
 });
 
-// -------4.2 Get the token for the 'sessionScreen' object
+// --- 4.2) Get the token for the 'sessionScreen' object
 getToken(mySessionId).then((tokenScreen) => {
     // Create a token for screen share
     sessionScreen.connect(tokenScreen, { clientData: myUserName }).then(() => {
@@ -331,21 +329,21 @@ If the method succeeds, we first change our view to the active call (5) and then
 
 Finally we just have to publish `publisher` object through `Session.publish` method (8), and the rest of users will begin receiving our webcam (`'streamCreated'` event will be fired for them).
 
-But, you will notice that we're not doing the same with `sessionScreen.connect` (4.2). Well, that is because until the user don't click the _**"Screen Share"**_ button, we will not publish anything from the screen. So, for the `sessionScreen`, we only initialize the connection with the `tokenScreen`. When the `sessionScreen` connection is established, the button to share the screen is enabled.
+But, you will notice that we're not doing the same with `sessionScreen.connect` (4.2). Well, that is because until the user doesn't click the _**"Screen Share"**_ button, we will not publish anything from the screen. So, for the `sessionScreen`, we only initialize the connection with the `tokenScreen`. When the `sessionScreen` connection is established, the button to share the screen is enabled.
 
-So, what happens when the user clicks the _**"Screen Share"**_ button? This function is executed:
+So, what happens when the user clicks the _**"Screen Share"**_ button? At that point this function is executed:
 
 ```javascript
-// --- 9). Create a function to be called when the 'Screen share' button is clicked.
+// --- 9) Function to be called when the 'Screen share' button is clicked
 function publishScreenShare() {
-	// --- 9.1) To create a publisherScreen it is very important that the property 'videoSource' is set to 'screen'
+	// --- 9.1) To create a publisherScreen set the property 'videoSource' to 'screen'
 	var publisherScreen = OVScreen.initPublisher("container-screens", { videoSource: "screen" });
 
-	// --- 9.2) If the user grants access to the screen share function, publish the screen stream
+	// --- 9.2) Publish the screen share stream only after the user grants permission to the browser
 	publisherScreen.once('accessAllowed', (event) => {
 		document.getElementById('buttonScreenShare').style.visibility = 'hidden';
 		screensharing = true;
-		// It is very important to define what to do when the stream ends.
+		// If the user closes the shared window or stops sharing it, unpublish the stream
 		publisherScreen.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => {
 			console.log('User pressed the "Stop sharing" button');
 			sessionScreen.unpublish(publisherScreen);
@@ -366,16 +364,17 @@ function publishScreenShare() {
 }
 ```
 
-When the user clicks the _**"Screen Share"**_ button, a new publisher is created, and initialized to render all of its videos in `'container-screens'` HTML Element (9.1). The important parameter of the `publisherScreen` is: `videoSource: "screen"`. You need to use this property to create a publisher to share the screen.
-After the user allows sharing its own screen (9.2), the _**"Screen Share"**_ button is disabled and the screen is published into the session by calling `sessionScreen.publish(publisherScreen)`. When the user stop screensharing, the element will be deleted automatically from the div and the button will appear again for the user to share the screen again.
+When the user clicks the _**"Screen Share"**_ button, a new publisher is initialized and configured to render all of its videos in `'container-screens'` HTMLElement (9.1). When initializing a Publisher object, just set property `videoSource: "screen"` to share the screen instead of using a webcam.
 
-We also define some events as `videoElementCreated` to append the username information into the video element. If the user denied the access to the screen share, the event `accessDenied` will be received. We just handle it to output an error though the console.
+After the user grants the device permission to capture the screen (9.2), the _**"Screen Share"**_ button is disabled and the screen is published to the session by calling `sessionScreen.publish(publisherScreen)`. When the user stop screen sharing, the element will be deleted automatically from the div and the button will appear again for the userrepeat the process again.
+
+We also define some events such as `videoElementCreated` to append the username information into the video element. If the user denies access to capture the screen, event `accessDenied` will be received. We just handle it to output an error though the console.
 
 ---
 
 #### Leaving the session
 
-Whenever we want a user to leave the session, we just need to call `sessionCamera.disconnect` and `sessionScreen.disconnect` method:
+Whenever we want a user to leave the session, we just need to call `sessionCamera.disconnect` and `sessionScreen.disconnect` method. We also make sure to disconnect both users before the page is unloaded using event `window.onbeforeunload`.
 
 ```javascript
 function leaveSession() {
@@ -394,6 +393,11 @@ function leaveSession() {
 	// Restore default screensharing value to false
 	screensharing = false;
 }
+
+window.onbeforeunload = function () {
+	if (sessionCamera) sessionCamera.disconnect();
+	if (sessionScreen) sessionScreen.disconnect();
+};
 ```
 
 ---
@@ -409,13 +413,8 @@ window.addEventListener('load', function () {
 	generateParticipantInfo();
 });
 
-window.onbeforeunload = function () {
-	if (sessionCamera) sessionCamera.disconnect();
-	if (sessionScreen) sessionScreen.disconnect();
-};
-
 function generateParticipantInfo() {
-	document.getElementById("sessionId").value = "SessionA";
+	document.getElementById("sessionId").value = "SessionScreenA";
 	document.getElementById("userName").value = "Participant" + Math.floor(Math.random() * 100);
 }
 

@@ -23,7 +23,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -54,7 +54,9 @@ Now open a different terminal and run the _openvidu-iframe_ tutorial:
 http-server openvidu-tutorials/openvidu-iframe/web
 ```
 
-Finally go to [`http://localhost:8081`](http://localhost:8080){:target="_blank"} to test the *openvidu-iframe* application. You will see the *openvidu-hello-world* app embedded in an iframe.
+Finally go to [`http://localhost:8081`](http://localhost:8081){:target="_blank"} to test the *openvidu-iframe* application. You will see the *openvidu-hello-world* app embedded in an iframe.
+
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. In this case, make sure you change `src` property of the `<iframe>` element in [index.html](https://github.com/OpenVidu/openvidu-tutorials/blob/12c21df5b0f8781bed1f1810f668555d734a3c71/openvidu-iframe/web/index.html#L39){:target="_blank"} file to this value: `src="https://X.X.X.X/hello-world"` (being `X.X.X.X` the local IP of your workstation). In this way the inner application will be properly loaded by the iframe application through the proxy.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

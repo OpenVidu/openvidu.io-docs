@@ -48,6 +48,8 @@ You will need an **OpenVidu Pro** or **OpenVidu Enterprise** deployment to test 
 
 For more information visit [Application server](application-server/).
 
+> **IMPORTANT**: No matter what server application you choose, make sure to update configuration variables **`OPENVIDU_URL`** and **`OPENVIDU_SECRET`** to the values of your OpenVidu Pro/Enterprise deployment.
+
 <div id="application-server-wrapper"></div>
 <script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
 
@@ -59,9 +61,7 @@ You will need some kind of http web server installed in your development compute
 npm install -g http-server
 ```
 
-Modify the OpenVidu URL and secret in the `app.js` file **[here](https://github.com/OpenVidu/openvidu-tutorials/blob/627d636f18d766a24d92f1f9aee4b02dda8a27cd/openvidu-virtual-background/web/app.js#L296-L297){:target="_blank"}** to point to your OpenVidu deployment. Use the same repository *openvidu-tutorials* from [step 2](#2-run-your-preferred-server-application-sample).
-
-Once you have done that, you can serve the tutorial like this:
+To serve the tutorial:
 
 ```bash
 # Using the same repository openvidu-tutorials from step 2
@@ -69,6 +69,8 @@ http-server openvidu-tutorials/openvidu-virtual-background/web
 ```
 
 Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
+
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Skip step 1, as you already need a real OpenVidu deployment to use Virtual Background.
 
 ## Understanding the code
 
