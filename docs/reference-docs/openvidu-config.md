@@ -6,7 +6,7 @@ This page lists all available configuration properties for OpenVidu Server, as w
 These properties may be set:
 
 - In any official production deployment of OpenVidu CE or OpenVidu Pro: in the **`.env`** config file at OpenVidu installation path, default to `/opt/openvidu`
-- In the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"}: passing them as environment variables with flag **`-e PROPERTY=value`**
+- In the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"}: passing them as environment variables with flag **`-e PROPERTY=value`**
 
 ---
 
@@ -163,7 +163,7 @@ These configuration parameters apply only to OpenVidu Enterprise.
 
 ### Special conditions of OpenVidu development container
 
-When using the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-server-kms){:target="_blank"} to develop your app in your LAN network, there are some properties that you can't make use of. In the development container **these configuration properties won't have effect, or may have unwanted side effects** if declared. Avoid declaring them:
+When using the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"} to develop your app in your LAN network, there are some properties that you can't make use of. In the development container **these configuration properties won't have effect, or may have unwanted side effects** if declared. Avoid declaring them:
 
 - `HTTP_PORT`: in LAN networks redirects or Let's Encrypt don't make sense.
 - `CERTIFICATE_TYPE`: in LAN networks certificates don't make sense.
@@ -188,7 +188,7 @@ docker run -p 4443:4443 --rm \
     -v /home/openvidu/cdr:/home/openvidu/cdr \
     -e OPENVIDU_WEBHOOK=true \
     -e OPENVIDU_WEBHOOK_ENDPOINT=https://localhost:7777/my-endpoint \
-openvidu/openvidu-server-kms:latest
+openvidu/openvidu-dev:latest
 ```
 
 <br>
