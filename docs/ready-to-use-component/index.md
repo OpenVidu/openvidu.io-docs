@@ -54,7 +54,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -95,9 +95,7 @@ Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test
 	</div>
 </div>
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know)** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu)**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 ### Understanding the code
 
@@ -256,51 +254,61 @@ You will be able to see the videconference working and every participant who con
 
 ---
 
-#### Get a _token_ from OpenVidu Server
+#### Get an OpenVidu token
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	<strong>WARNING</strong>: This makes this tutorial an insecure application. We need to ask OpenVidu Server for a user token in order to connect to our session. <strong>This process should entirely take place in our server-side</strong>, not in our client-side. But due to the lack of an application backend in this tutorial, the JavaScript code itself will perform the POST operations to OpenVidu Server
-</div>
-</div>
+We ask for the tokens to the [server application](application-server/). The server application will in turn request tokens to the OpenVidu deployment. If you have any doubts about this process, review the [Basic Concepts](developing-your-video-app/#basic-concepts).
 
-_The token must has inside of an array. If you want that the app allows the screen sharing you must include two differents tokens in the array. If you only add one, the app doesn't allow the screen sharing funcionality._
-
+Variable `sessionName` is the OpenVidu Session we want a token from.
 
 ```javascript
-getToken(sessionName).then((token) => {
-    // Send the 'token' to OpenVidu web component
-});
+// Requesting tokens
+var promiseResults = await Promise.all([getToken(sessionName), getToken(sessionName)]);
+var tokens = { webcam: promiseResults[0], screen: promiseResults[1] };
 ```
 
-In a production environment we would perform this operations in our application backend, by making use of the _[REST API](reference-docs/REST-API/)_, _[OpenVidu Java Client](reference-docs/openvidu-java-client/)_ or _[OpenVidu Node Client](reference-docs/openvidu-node-client/)_. Here we have implemented the POST requests to OpenVidu Server in a method `getToken()` that returns a Promise with the token. Without going into too much detail, this method performs two _ajax_ requests to OpenVidu Server, passing OpenVidu Server secret to authenticate them:
+This is the piece of code in charge of finally retrieving a token from the server application. The tutorial uses `jQuery.ajax()` method to perform the necessary [HTTP requests](application-server/#rest-endpoints).
 
--   First ajax request performs a POST to `/openvidu/api/sessions` (we send a `customSessionId` field to name the session with our `sessionName` value retrieved from HTML input)
--   Second ajax request performs a POST to `/openvidu/api/sessions/<sessionId>/connection` (the path requires the `sessionId` to assign the token to this same session)
+```javascript
+var APPLICATION_SERVER_URL = "http://localhost:5000/";
 
-You can inspect this method in detail in the [GitHub repo](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-webcomponent/web/app.js#L44){:target="_blank"}.
+function getToken(mySessionId) {
+    return createSession(mySessionId).then(sessionId => createToken(sessionId));
+}
 
-<hr>
+function createSession(sessionId) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            type: "POST",
+            url: APPLICATION_SERVER_URL + "api/sessions",
+            data: JSON.stringify({ customSessionId: sessionId }),
+            headers: { "Content-Type": "application/json" },
+            success: response => resolve(response), // The sessionId
+            error: (error) => reject(error)
+        });
+    });
+}
 
+function createToken(sessionId) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            type: 'POST',
+            url: APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections',
+            data: JSON.stringify({}),
+            headers: { "Content-Type": "application/json" },
+            success: (response) => resolve(response), // The token
+            error: (error) => reject(error)
+        });
+    });
+}
+```
+
+> As you can see in the code snippet, the tokens must be placed in an object like this: `{ webcam: TOKEN1, screen: TOKEN2 }`
+
+> If you don't include a second token in property `screen`, the app won't allow screen sharing for that user. If you want to allow streaming both the webcam and the screen, you will need to get two different tokens for the user (this is the default behavior of the tutorial).
+
+<br>
+
+---
 
 ### Close the session dynamically
 
