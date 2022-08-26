@@ -123,7 +123,7 @@ Stop any active OpenVidu deployment container.
 docker rm -f $(docker ps -a | grep openvidu-dev | awk '{print $1}')
 ```
 
-Run the OpenVidu deployment container with extra configuration, which includes configuration properties `DOMAIN_OR_PUBLIC_IP`, `SERVER_PORT`, `HTTPS_PORT` and `DEV_CONTAINER`. Make sure to replace `X.X.X.X` with the local IP of your workstation.
+Run the OpenVidu deployment container with extra configuration, which includes configuration properties `DOMAIN_OR_PUBLIC_IP`, `SERVER_PORT`, `HTTPS_PORT` and `FORCE_PLAIN_HTTP`. Make sure to replace `X.X.X.X` with the local IP of your workstation.
 
 ```
 # Run OpenVidu deployment container with new env variable
@@ -134,7 +134,7 @@ docker run -p 4443:4443 --rm \
   -e DOMAIN_OR_PUBLIC_IP=X.X.X.X \
   -e SERVER_PORT=4443 \
   -e HTTPS_PORT=443 \
-  -e DEV_CONTAINER=false \
+  -e FORCE_PLAIN_HTTP=false \
 openvidu/openvidu-dev:2.22.0
 ```
 
