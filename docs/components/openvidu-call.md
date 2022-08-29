@@ -31,7 +31,7 @@ Both of them are fully functional applications serve using the its corresponding
 <div id="node" class="lang-tabs-content" markdown="1">
 
 - `app.ts`: entrypoint of the server.
-- `config.ts`: contains the contains the [backend environment variables](#configuration-parameters-for-openvidu-call).
+- `config.ts`: contains the contains the [backend environment variables](#configuration-parameters-for-openvidu-call-backend).
 - `AdminController.ts`: controller for doing login/logout and access to admin dashboard.
 - `SessionController.ts`: controller for allowing to get the token from OpenVidu.
 - `RecordingController.ts`: controller for accessing to the all recording features which OpenVidu provides.
@@ -46,7 +46,7 @@ See code [here](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openv
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
 - `app.java`: entrypoint of the server.
-- `application.properties`: contains the [backend environment variables](#configuration-parameters-for-openvidu-call).
+- `application.properties`: contains the [backend environment variables](#configuration-parameters-for-openvidu-call-backend).
 - `AdminController.java`: controller for doing login/logout and access to admin dashboard.
 - `SessionController.java`: controller for allowing to get the token from OpenVidu.
 - `RecordingController.java`: controller for accessing to the all recording features which OpenVidu provides.
