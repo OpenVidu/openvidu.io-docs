@@ -110,7 +110,7 @@ An **iOS native** OpenVidu application built with **Swift** using official **Goo
     padding-left: 20px;
     padding-right: 20px;
     ">
-	 This tutorial has been tested using Xcode 12, iPhone 7 and 7 Plus devices (iOS 14).
+	 This tutorial has been tested using Xcode 12, iPhone 7 and 7 Plus devices (from iOS 12).
 </div>
 </div>
 
