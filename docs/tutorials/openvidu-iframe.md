@@ -38,7 +38,7 @@ For more information visit [Application server](application-server/).
 You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
 
 ```bash
-npm install -g http-server
+npm install --location=global http-server
 ```
 
 Run an OpenVidu tutorial to be embedded inside the iframe. We will use [openvidu-hello-world](tutorials/openvidu-hello-world/):

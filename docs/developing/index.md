@@ -45,7 +45,7 @@ mvn clean compile package # Will output the JAR file in folder ./target
 **1)** You need Angular to compile OpenVidu Server dashboard:
 
 ```bash
-sudo npm install -g @angular/cli
+sudo npm install --location=global @angular/cli
 ```
 
 **2)** Enter the Angular project and install NPM dependencies. **This is only necessary the first time you compile openvidu-server dashboard**
@@ -232,7 +232,7 @@ docker run -d --name kms -p 8888:8888 kurento/kurento-media-server-dev:latest
 
 ## Example: setup for development
 
-Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install -g @angular/cli`.
+Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install --location=global @angular/cli`.
 
 **1)** Run [Kurento Media Server](#running-kms)
 

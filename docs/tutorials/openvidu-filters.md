@@ -40,7 +40,7 @@ For more information visit [Application server](application-server/).
 You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
 
 ```bash
-npm install -g http-server
+npm install --location=global http-server
 ```
 
 To serve the tutorial:
@@ -185,7 +185,7 @@ Here we subscribe to the events that interest us. In this case, we want to recei
 
 - `streamPlaying`: event triggered by Subscriber object. This allows us to remove the CSS load spinner that is added on `videoElementCreated` event handler.
 
-- `streamPropertyChanged`: event triggered by Subscriber object. This allows us to modify the filter buttons whenever the [`filter`](api/openvidu-browser/classes/Stream.html#filter) property of the [`Subscriber.stream`](api/openvidu-browser/classes/Subscriber.html#stream) object changes. 
+- `streamPropertyChanged`: event triggered by Subscriber object. This allows us to modify the filter buttons whenever the [`filter`](api/openvidu-browser/classes/Stream.html#filter) property of the [`Subscriber.stream`](api/openvidu-browser/classes/Subscriber.html#stream) object changes.
 
 - `streamDestroyed`: for each Stream that has been destroyed (which means a user has left the video-call), we remove the element with the user's nickname that we added in the previous event with the auxiliary method `removeUserData` (`appendUserData` method created the element with an _id_ containing `event.stream.connection.connectionId` unique value, so we can now identify the right element to be removed). OpenVidu automatically deletes the proper video element by default, so we don't need to do anything else.
 

@@ -20,7 +20,7 @@ git clone https://github.com/OpenVidu/classroom-demo.git
 sudo apt-get update
 sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 sudo apt-get install -y nodejs
-sudo npm install -g @angular/cli
+sudo npm install --location=global @angular/cli
 ```
 
 3) This demo needs a MySQL database to store the info. We will run it with the official MySQL Docker container:

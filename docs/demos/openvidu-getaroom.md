@@ -24,7 +24,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
 
 ```bash
-npm install -g http-server
+npm install --location=global http-server
 ```
 
 3) Run the tutorial:
