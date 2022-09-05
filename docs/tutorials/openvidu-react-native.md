@@ -24,39 +24,51 @@ An OpenVidu application built with **React Native**. It can be compiled into a *
 
 ## Running this tutorial
 
-1) You will need **Node 8.3 ** or newer, **NPM**, **React Native CLI** to serve the app. Install them with the following command
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
-sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-sudo apt-get install -y nodejs
-sudo npm install -g react-native-cli
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
 ```
 
-2) Clone the repo:
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [React Native CLI](https://reactnative.dev/docs/environment-setup){:target="_blank"} to run the application. Check the official documentation for setting up the React Native environment.
+
+Install application dependencies:
+
+> A said below, React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it.
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
-```
+# Using the same repository openvidu-tutorials from step 2
 
-3) Install dependencies
-
-```bash
 cd openvidu-tutorials/openvidu-react-native
 npm install
 ```
 
-4) Install openvidu-react-native-adapter which include openvidu-browser **with React Native support**:
-Add the artifact in the root project
-
-```bash
-npm install openvidu-react-native-adapter-Y.Y.Z.tgz
-```
-
-4) Start Metro Bundler :
+Start Metro Bundler:
 
 ```bash
 npm start
 ```
+
+
+> To test the application with real devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
@@ -153,7 +165,7 @@ react-native run-android
     padding-left: 20px;
     padding-right: 20px;
     ">
-	This tutorial has been tested with Xcode (10.2.1) and iPhone 7 (iOS 12.2), iPhone 7 Plus (iOS 12.1) and iPad Air (iOS 12.1.1)
+	This tutorial has been tested from Xcode 10.2.1 and iOS 12.1
 </div>
 </div>
 
@@ -173,7 +185,7 @@ pod update
 
 8) Build and Run your app
 
-To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device) to properly configure your development environment.
+To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"} to properly configure your development environment.
 
 ## Understanding the code
 
@@ -460,190 +472,16 @@ leaveSession() {
 
 ## Android specific requirements
 
-Android apps need to actively ask for permissions in the code to access camera and microphone using *[react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"}* plugin. By following steps below we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu.
+> The following configurations are already included in this **openvidu-react-native** project. You don't need to follow below instructions if you are using this tutorial as a starting point.
 
-These configurations are already included in this **openvidu-react-native** project, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with React Native and OpenVidu**, you should follow these simple steps:
+Android apps need to actively ask for permissions in the code to access camera and microphone using *[react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"}* plugin. By following the official guide we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu. You can check it [here](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md){:target="_blank"}.
 
- 1) In `android/app/src/main/AndroidManifest.xml` add these permissions
-
-```xml
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-feature android:name="android.hardware.camera" />
-<uses-feature android:name="android.hardware.camera.autofocus"/>
-
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
-<uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-```
-
-2) In `android/settings.gradle`, include WebRTCModule
-
-```javascript
-include ':WebRTCModule', ':app'
-project(':WebRTCModule').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-webrtc/android')
-```
-
-3) In `android/app/build.gradle`, add WebRTCModule to dependencies
-
-```javascript
-dependencies {
-    implementation project(':WebRTCModule')
-    ...
-}
-```
-
-
-4) In `android/app/src/main/java/com/xxx/MainApplication.java` import and add **WebRTCModulePackage**:
-
-If you are using a version prior to 0.60.0:
-
-```java
-import com.oney.WebRTCModule.WebRTCModulePackage;
-
-...
-
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new WebRTCModulePackage() // <-- Add this line
-    );
-}
-```
-
-If you are using a version above to 0.60.0:
-
-```java
-import com.oney.WebRTCModule.WebRTCModulePackage;
-
-....
-
-@Override
-    protected List<ReactPackage> getPackages() {
-      @SuppressWarnings("UnnecessaryLocalVariable")
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      // Packages that cannot be autolinked yet can be added manually here, for example:
-      // packages.add(new MyReactNativePackage());
-      packages.add(new WebRTCModulePackage()); // <-- Add this line
-      return packages;
-    }
-```
-
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>INFO: </strong>react-native-webrtc provide us more information about these requeriments <a target="_blank" href="https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md">here</a>
-</div>
-</div>
-<br>
 
 ## iOS specific requirements
 
-iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by following the steps bellow.
+> The following configurations are already included in this **openvidu-react-native** project. You don't need to follow below instructions if you are using this tutorial as a starting point.
 
-These configurations are already included in this **openvidu-react-native project**, so if you start from here no further configurations are needed. Otherwise, if you want to **start a new project with React Native and OpenVidu**, you should follow these simple steps:
-
-1) Add these files into your project
-
-* in Xcode: Right click on `Libraries` and  `Add Files to {project}`
-* Go to `node_modules/react-native-webrtc/ios/RCTWebRTC.xcodeproj` and click on `Add`
-* Also add `node_modules/react-native-webrtc/ios/WebRTC.framework` to `Frameworks` folder
-
-<div class="row no-margin row-gallery">
-	<div class="col-md-12">
-		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/tutorials/xcode1.png">
-            <img class="img-responsive" src="img/tutorials/xcode1.png">
-        </a>
-	</div>
-</div>
-
-
-2) iOS Podfile
-
-You can use the included podspec in your podfile to take care of all dependencies instead of manually adding files to the project. If you prefer to add it manually, you should check the [official tutorial](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/iOSInstallation.md){:target="_blank"}.
-
-Include in the Podfile in your react-native iOS directory:
-
-```js
-pod 'react-native-webrtc', :path => '../node_modules/react-native-webrtc'
-```
-
-You may have to change the ```platform``` field in your Podfile, as **react-native-webrtc** doesn't support iOS 9 - set it to '10.0' or above (otherwise you get an error when doing ```pod install```):
-
-```js
-platform :ios, '10.0'
-```
-
-3) Set up parameters
-
-Under **Build setting** set **Dead Code Stripping** to `No` also under **Build Options** set **Enable Bitcode** to `No` as well
-
-4) Add Permissions
-* Navigate to `<ProjectFolder>/ios/<ProjectName>/`
-* Edit **Info.plist** and add the following lines
-
-```xml
-<key>NSCameraUsageDescription</key>
-<string>Camera Permission</string>
-<key>NSMicrophoneUsageDescription</key>
-<string>Microphone Permission</string>
-```
-
-5) Install pod
-
-You will install the Podfile that we have set up in step 2:
-
-```bash
-cd ios
-pod install
-```
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-<strong>INFO: </strong>react-native-webrtc provide us more information about these requeriments <a target="_blank" href="https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/iOSInstallation.md">here</a>
-</div>
-</div>
-<br>
+iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by following the official *react-native-webrtc* guide. You can check it [here](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md){:target="_blank"}.
 
 
 
