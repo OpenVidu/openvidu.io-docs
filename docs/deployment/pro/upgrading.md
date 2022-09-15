@@ -1,6 +1,7 @@
 <h2 id="section-title">Upgrading OpenVidu Pro</h2>
 <hr>
 
+- **[Migrating from 2.22.0 to 2.23.0](#migrating-from-2220-to-2230)**
 - **[Migrating from 2.21.0 to 2.22.0](#migrating-from-2210-to-2220)**
 - **[Migrating from 2.20.0 to 2.21.0](#migrating-from-2200-to-2210)**
 - **[Migrating from 2.19.0 to 2.20.0](#migrating-from-2190-to-2200)**
@@ -45,31 +46,31 @@
 </div>
 </div>
 
-## Migrating from 2.21.0 to 2.22.0
+## Migrating from 2.22.0 to 2.23.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
-- **[Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)](#migrating-from-2210-to-2220-aws-cloudformation)**
-- **[Migrating from 2.21.0 to 2.22.0 (On premises)](#migrating-from-2200-to-2210-on-premises)**
+- **[Migrating from 2.22.0 to 2.23.0 (AWS Cloudformation)](#migrating-from-2220-to-2230-aws-cloudformation)**
+- **[Migrating from 2.22.0 to 2.23.0 (On premises)](#migrating-from-2220-to-2230-on-premises)**
 
-### Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)
+### Migrating from 2.22.0 to 2.23.0 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.22.0
+#### Option 1 (recommended): Deploy a new Cloudformation for 2.23.0
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.22.0](https://docs.openvidu.io/en/2.22.0/deployment/pro/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.23.0](https://docs.openvidu.io/en/2.23.0/deployment/pro/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment, and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.22.0](#option-2-update-current-deployment-to-2220) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.23.0](#option-2-update-current-deployment-to-2220), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
-#### Option 2: Update current deployment to 2.22.0:
+#### Option 2: Update current deployment to 2.23.0
 
 **1)** SSH into your OpenVidu Server Master Node.
 
@@ -87,25 +88,231 @@ cd /opt/openvidu
 ```bash
 ./openvidu stop
 ```
+
 **5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
 
 **6)** As OpenVidu uses an AMI to deploy and provision media nodes, we need to get and copy the media node AMI of the version we want to deploy. To get the Id of our official AMI you just need to execute:
 
 ```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.22.0)
+ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.23.0)
 ```
-But `ORIGINAL_AMI_ID` should not be used in your deployment, you need to copy this AMI to your accouint and region where you have OpenVidu deployed.
-Now that you have `ORIGINAL_AMI_ID` with the the value of the official AMI Id, you can copy the AMI to your account and region with these commands:
 
+The obtained `ORIGINAL_AMI_ID` must not be used in your deployment, you need to copy this AMI to your account and region where you have OpenVidu deployed. To copy this AMI to your account, execute these commands:
+
+```bash
+# Region where OpenVidu is deployed
+REGION=<YOUR_REGION>
+
+# Copy AMI and get AMI Id
+NEW_IMAGE_ID=$(aws ec2 copy-image \
+    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.23.0" \
+    --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
+
+# Wait for the AMI to be available
+aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
+
+# Print AMI Id
+echo "${NEW_IMAGE_ID}"
+```
+
+Where `<YOUR_REGION>` is the region your OpenVidu is deployed.
+
+The command `echo "${NEW_IMAGE_ID}"` will print your new AMI ID to be used in OpenVidu. Now you just need to execute the upgrade script with the new AMI ID as an argument:
+
+```console
+curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.23.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
+```
+
+
+The installation steps will output their progress as they run. If everything goes well you should see:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.23.0
+================================================
+```
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-        To be able to execute the next commands in your aws account you need  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region. Moreover, you can use <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html" target="_blank">AWS Cloudshell</a> service to execute <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> commands without the need of installing anything in your local machine.
+        To be able to execute the previous commands in your aws account, you need  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region. Additionaly, you can use <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html" target="_blank">AWS Cloudshell</a> service to execute <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> commands without the need of installing anything in your local machine.
   </div>
 </div>
+
+
+**7)** After executing the previous command you will end up with two environment files:
+
+  - `.env-2.23.0`: Empty configuration file of the 2.23.0 version.
+  - `.env`: Previous configuration which remains intact.
+
+
+Transfer any configuration you want to keep in the upgraded version from `.env` to `.env-2.23.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
+
+**8)** When you have the file `.env-2.23.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.23.0` to `.env`.
+
+
+**9)** Start Openvidu.
+
+```
+./openvidu start
+```
+<br>
+
+### Migrating from 2.22.0 to 2.23.0 (On Premises)
+
+#### 1) Upgrading Media Node
+
+> Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
+> After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
+
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+
+```bash
+sudo -s
+cd /opt/kms # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.23.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.23.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.23.0 services
+
+2. This new version 2.23.0 does not need any .env file. Everything is configured from OpenVidu Pro
+
+3. Start new version of Media Node
+$ ./media_node start
+
+4. This will run a service at port 3000 which OpenVidu will use to deploy necessary containers.
+Add the private ip of this media node in "KMS_URIS=[]" in OpenVidu Pro machine
+in file located at "/opt/openvidu/.env" with this format:
+    ...
+    KMS_URIS=["ws://<MEDIA_NODE_PRIVATE_IP>:8888/kurento"]
+    ...
+You can also add Media Nodes from inspector
+
+5. Start or restart OpenVidu Pro and all containers will be provisioned
+automatically to all the media nodes configured in "KMS_URIS"
+```
+
+<div></div>
+
+> **Check out the [notes when upgrading Media Nodes](#notes-when-upgrading-media-nodes)**
+
+<br>
+
+#### 2) Upgrading Master Node
+
+After all of your media nodes are updated, you just need to connect to the Master Node instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.23.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu successfully upgraded to version 2.23.0
+================================================
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.23.0 services
+
+2. The previous file '.env' remains intact, but a new file '.env-2.23.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.23.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.23.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
+However, if you were using your own application, a file called 'docker-compose.override.yml-2.23.0'
+has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
+
+4. Start new version of Openvidu
+$ ./openvidu start
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.22.0'
+```
+
+Make sure that you have all of your needed properties at your .env file and start OpenVidu with:
+
+```
+./openvidu start
+```
+
+<br>
+
+## Migrating from 2.21.0 to 2.22.0
+
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
+
+- **[Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)](#migrating-from-2210-to-2220-aws-cloudformation)**
+- **[Migrating from 2.21.0 to 2.22.0 (On premises)](#migrating-from-2210-to-2220-on-premises)**
+
+### Migrating from 2.21.0 to 2.22.0 (AWS Cloudformation)
+
+#### Option 1 (recommended): Deploy a new Cloudformation for 2.22.0
+
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.22.0](https://docs.openvidu.io/en/2.22.0/deployment/pro/aws/){target="_blank"}**.
+
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+
+To do it, you just need to:
+
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
+- If you have your app deployed next to OpenVidu, move your app to your new deployment.
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.22.0](#option-2-update-current-deployment-to-2220), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+
+#### Option 2: Update current deployment to 2.22.0
+
+**1)** SSH into your OpenVidu Server Master Node.
+
+**2)** Change to the root user:
+```bash
+sudo -s
+```
+
+**3)** Go to the OpenVidu installation directory:
+```bash
+cd /opt/openvidu
+```
+
+**4)** Stop OpenVidu Server:
+```bash
+./openvidu stop
+```
+
+**5)** Terminate all Media nodes instances from your __EC2 Instances panel__.
+
+**6)** As OpenVidu uses an AMI to deploy and provision media nodes, we need to get and copy the media node AMI of the version we want to deploy. To get the AMI ID of our official AMI you just need to execute:
+
+```bash
+ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.22.0)
+```
+
+`ORIGINAL_AMI_ID` must not be used in your deployment, you need to copy this AMI to your account and region where you have OpenVidu deployed. To copy this AMI to your account, execute these commands:
 
 ```bash
 # Region where OpenVidu is deployed
@@ -123,16 +330,13 @@ aws ec2 wait image-available --region "${REGION}" --image-ids "${NEW_IMAGE_ID}"
 echo "${NEW_IMAGE_ID}"
 ```
 
-
-
 Where `<YOUR_REGION>` is the region your OpenVidu is deployed.
 
-The command `echo "${NEW_IMAGE_ID}"` will print your new AMI to be used in OpenVidu. Now you just need to execute the upgrade script with the new image id as an argument:
+The command `echo "${NEW_IMAGE_ID}"` will print your new AMI ID to be used in OpenVidu. Now you just need to execute the upgrade script with the new AMI ID as an argument:
 
 ```console
 curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.22.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
 ```
-
 
 The installation steps will output their progress as they run. If everything goes well you should see:
 
@@ -142,13 +346,22 @@ Openvidu successfully upgraded to version 2.22.0
 ================================================
 ```
 
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+        To be able to execute the previous commands in your aws account, you need  <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> installed and configured with root credentials to be able to copy the AMI to your account and region. Additionaly, you can use <a href="https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html" target="_blank">AWS Cloudshell</a> service to execute <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html" target="_blank">aws-cli</a> commands without the need of installing anything in your local machine.
+  </div>
+</div>
+
 **7)** After executing the previous command you will end up with two environment files:
 
   - `.env-2.22.0`: Empty configuration file of the 2.22.0 version.
   - `.env`: Previous configuration which remains intact.
 
 
-Transfer any configuration you wish to keep in the upgraded version from `.env` to `.env-2.22.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
+Transfer any configuration you want to keep in the upgraded version from `.env` to `.env-2.22.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
 
 **8)** When you have the file `.env-2.22.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.22.0` to `.env`.
 
@@ -171,7 +384,7 @@ From version 2.22.0 it is now possible to deploy our default TURN/STUN service (
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -276,25 +489,25 @@ From version 2.22.0 it is now possible to deploy Coturn in Media nodes. To do th
 
 ## Migrating from 2.20.0 to 2.21.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)](#migrating-from-2200-to-2210-aws-cloudformation)**
 - **[Migrating from 2.20.0 to 2.21.0 (On premises)](#migrating-from-2200-to-2210-on-premises)**
 
 ### Migrating from 2.20.0 to 2.21.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.21.0](https://docs.openvidu.io/en/2.21.0/deployment/pro/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.21.0](https://docs.openvidu.io/en/2.21.0/deployment/pro/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.20.0 to 2.21.0 (On Premises)](#migrating-from-2200-to-2210-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.20.0 to 2.21.0 (On Premises)](#migrating-from-2200-to-2210-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.20.0 to 2.21.0 (On Premises)
 
@@ -303,7 +516,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -404,25 +617,25 @@ Make sure that you have all of your needed properties at your .env file and star
 
 ## Migrating from 2.19.0 to 2.20.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.19.0 to 2.20.0 (AWS Cloudformation)](#migrating-from-2190-to-2200-aws-cloudformation)**
 - **[Migrating from 2.19.0 to 2.20.0 (On premises)](#migrating-from-2190-to-2200-on-premises)**
 
 ### Migrating from 2.19.0 to 2.20.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.20.0](https://docs.openvidu.io/en/2.20.0/deployment/pro/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.20.0](https://docs.openvidu.io/en/2.20.0/deployment/pro/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.19.0 to 2.20.0 (On Premises)](#migrating-from-2190-to-2200-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.19.0 to 2.20.0 (On Premises)](#migrating-from-2190-to-2200-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.19.0 to 2.20.0 (On premises)
 
@@ -431,7 +644,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -524,25 +737,25 @@ If you want to rollback, all the files from the previous installation have been 
 ---
 ## Migrating from 2.18.0 to 2.19.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.18.0 to 2.19.0 (AWS Cloudformation)](#migrating-from-2180-to-2190-aws-cloudformation)**
 - **[Migrating from 2.18.0 to 2.19.0 (On premises)](#migrating-from-2180-to-2190-on-premises)**
 
 ### Migrating from 2.18.0 to 2.19.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.19.0](https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend to update by deploying a new [OpenVidu Cloudformation template of 2.19.0](https://docs.openvidu.io/en/2.19.0/deployment/pro-enterprise/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.18.0 to 2.19.0 (On Premises)](#migrating-from-2180-to-2190-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.18.0 to 2.19.0 (On Premises)](#migrating-from-2180-to-2190-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.18.0 to 2.19.0 (On Premises)
 
@@ -551,7 +764,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -645,25 +858,25 @@ If you want to rollback, all the files from the previous installation have been 
 
 ## Migrating from 2.17.0 to 2.18.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.17.0 to 2.18.0 (AWS Cloudformation)](#migrating-from-2170-to-2180-aws-cloudformation)**
 - **[Migrating from 2.17.0 to 2.18.0 (On premises)](#migrating-from-2170-to-2180-on-premises)**
 
 ### Migrating from 2.17.0 to 2.18.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.18.0](https://docs.openvidu.io/en/2.18.0/openvidu-pro/deployment/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.18.0](https://docs.openvidu.io/en/2.18.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.17.0 to 2.18.0 (On Premises)](#migrating-from-2170-to-2180-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.17.0 to 2.18.0 (On Premises)](#migrating-from-2170-to-2180-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.17.0 to 2.18.0 (On Premises)
 
@@ -672,7 +885,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -766,7 +979,7 @@ If you want to rollback, all the files from the previous installation have been 
 
 ## Migrating from 2.16.0 to 2.17.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.16.0 to 2.17.0 (AWS Cloudformation)](#migrating-from-2160-to-2170-aws-cloudformation)**
 - **[Migrating from 2.16.0 to 2.17.0 (On premises)](#migrating-from-2160-to-2170-on-premises)**
@@ -774,18 +987,18 @@ Depending of of the type of deployment you have (_AWS_ or _On Premises_) you sho
 
 ### Migrating from 2.16.0 to 2.17.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.17.0](https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.17.0](https://docs.openvidu.io/en/2.17.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.16.0 to 2.17.0 (On Premises)](#migrating-from-2160-to-2170-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.16.0 to 2.17.0 (On Premises)](#migrating-from-2160-to-2170-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.16.0 to 2.17.0 (On Premises)
 
@@ -794,7 +1007,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -890,25 +1103,25 @@ If you want to rollback, all the files from the previous installation have been 
 
 ## Migrating from 2.15.1 to 2.16.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.15.1 to 2.16.0 (AWS Cloudformation)](#migrating-from-2151-to-2160-aws-cloudformation)**
 - **[Migrating from 2.15.1 to 2.16.0 (On premises)](#migrating-from-2151-to-2160-on-premises)**
 
 ### Migrating from 2.15.1 to 2.16.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.16.0](https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.16.0](https://docs.openvidu.io/en/2.16.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.15.1 to 2.16.0 (On Premises)](#migrating-from-2151-to-2160-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.15.1 to 2.16.0 (On Premises)](#migrating-from-2151-to-2160-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.15.1 to 2.16.0 (On Premises)
 
@@ -917,7 +1130,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -1015,25 +1228,25 @@ If you want to rollback, all the files from the previous installation have been 
 
 ## Migrating from 2.14.0 to 2.15.1
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.14.0 to 2.15.1 (AWS Cloudformation)](#migrating-from-2140-to-2151-aws-cloudformation)**
 - **[Migrating from 2.14.0 to 2.15.1 (On premises)](#migrating-from-2140-to-2151-on-premises)**
 
 ### Migrating from 2.14.0 to 2.15.1 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.15.1](https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.15.1](https://docs.openvidu.io/en/2.15.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.14.0 to 2.15.1 (On Premises)](#migrating-from-2140-to-2151-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.14.0 to 2.15.1 (On Premises)](#migrating-from-2140-to-2151-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.14.0 to 2.15.1 (On Premises)
 
@@ -1088,8 +1301,7 @@ For more information, check readme.md
 
 #### 2) Upgrading Master Node
 
-After all of your media nodes are updated, open ports **5044 TCP** and **9200 TCP** so **Media Nodes** can use them. These ports are necessary for OpenVidu Server Pro and ElasticSearch
-to receive metrics from Media Nodes and receive logs.
+After all of your media nodes are updated, open ports **5044 TCP** and **9200 TCP** in a way that **Media Nodes** can use them. These ports are necessary for OpenVidu Server Pro and ElasticSearch to receive metrics from Media Nodes and receive logs.
 
 > **WARNING**: It is very important to not open publicly ports **5044 TCP** and **9200 TCP**. Only open these ports to be used by Media Nodes.
 
@@ -1140,25 +1352,25 @@ For further information, check readme.md
 
 ## Migrating from 2.13.0 to 2.14.0
 
-Depending of of the type of deployment you have (_AWS_ or _On Premises_) you should follow one of the sections described below:
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
 - **[Migrating from 2.13.0 to 2.14.0 (AWS Cloudformation)](#migrating-from-2130-to-2140-aws-cloudformation)**
 - **[Migrating from 2.13.0 to 2.14.0 (On premises)](#migrating-from-2130-to-2140-on-premises)**
 
 ### Migrating from 2.13.0 to 2.14.0 (AWS Cloudformation)
 
-If you have deployed using Cloudformation **we strongly recommend to update by deploying a brandly new [OpenVidu Cloudformation template of 2.14.0](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.14.0](https://docs.openvidu.io/en/2.14.0/openvidu-pro/deployment/aws/){target="_blank"}**.
 
-By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
+By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment and, you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
 To do it, you just need to:
 
-- Deploy the OpenVidu Cloudformation template of the version you want to deploy.
-- If you have recordings stored in the master node, move the recording at `/opt/openvidu/recordings` to the new deployment.
+- Deploy the OpenVidu Cloudformation template of the version you want.
+- If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters wich starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.13.0 to 2.14.0 (On Premises)](#migrating-from-2130-to-2140-on-premises) in this section if you wish, but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.13.0 to 2.14.0 (On Premises)](#migrating-from-2130-to-2140-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
 ### Migrating from 2.13.0 to 2.14.0 (On Premises)
 
@@ -1167,7 +1379,7 @@ However, if you don't want to deploy a new Cloudformation, you can follow the in
 > Take into account that, if you have deployed using Cloudformation, you don't need to update media nodes. Just terminate all media nodes from the AWS EC2 Panel and Upgrade only the master node.
 > After upgrading your master node, new media nodes will be created automatically or using [Inspector and Rest API](openvidu-pro/scalability/#change-the-number-of-media-nodes-on-the-fly){target="_blank"}.
 
-At first you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
+At first, you need to update all of your media nodes. Connect to each of your Media Nodes through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/kms`
 
 ```bash
 sudo -s
@@ -1266,11 +1478,11 @@ Only if you have used the [recording](advanced-features/recording/) feature you 
 
 ### Backup Elasticsearch data
 
-If you want to keep your [Elasticsearch data](openvidu-pro/monitoring-elastic-stack/), then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
+If you want to keep your [Elasticsearch data](openvidu-pro/monitoring-elastic-stack/), then you have to copy the Elasticsearch database from your old deployment to your new 2.13.0 deployment. Of course, you have to do so **before wiping out your old OpenVidu Server Pro instance**. The following steps indicate how to automate all of this process with some simple commands:
 
 #### 1) Copy existing Elasticsearch data from your old ≤2.12.0 Master Node to your new 2.13.0 Master Node
 
-First compress the Elasticsearch database in your old Master Node and then download the file. You can do it like this (a standard ubuntu installation of Elasticsearch is presumed at `/var/lib/elasticsearch`. This path is the default one for ≤2.12.0 OpenVidu deployments on AWS and is also the default path where Elasticsearch stores its data in Linux systems).
+First compress the Elasticsearch database in your old Master Node and then download the file. You can do it like this (a standard Ubuntu installation of Elasticsearch is presumed at `/var/lib/elasticsearch`. This path is the default one for ≤2.12.0 OpenVidu deployments on AWS and is also the default path where Elasticsearch stores its data in Linux systems).
 
 ```bash
 ssh -i SSH_KEY ubuntu@OLD_OPENVIDU_PRO_IP "sudo tar zcvfP /tmp/elasticsearch.tar.gz -C /var/lib/elasticsearch nodes"
@@ -1313,7 +1525,7 @@ chown -R 1000:1000 elasticsearch
 rm /tmp/elasticsearch.tar.gz
 ```
 
-Restart all services and you will have your Elasticsearch data available in your brand new OpenVidu Pro 2.13.0!
+Restart all services. You will have your Elasticsearch data available in your brand new OpenVidu Pro 2.13.0!
 
 ```
 ./openvidu start
@@ -1341,7 +1553,7 @@ Restart all services and you will have your Elasticsearch data available in your
 
 - The upgrade process will restart all OpenVidu services. That means that **any ongoing sessions hosted by this Media Node will be terminated**. Take this into account when upgrading your OpenVidu Pro cluster. If you have more than one Media Node, you can upgrade them one by one while others remain available to maintain your service.
 - Old Docker images will take up valuable disk space of your machine. If you don't plan to reuse them again, delete them to reclaim your GBs. [docker system prune](https://docs.docker.com/engine/reference/commandline/system_prune/){:target="_blank"} command is very useful for doing so.
-- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the Master Node and all of the Media Nodes to the same version number.
+- You must perform the upgrading steps in all of your Media Nodes. Be sure to upgrade the Master Node and all the Media Nodes to the same version number.
 
 <br><br>
 
