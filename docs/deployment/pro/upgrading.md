@@ -66,7 +66,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.23.0](#option-2-update-current-deployment-to-2220), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -281,7 +281,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.22.0](#option-2-update-current-deployment-to-2220), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -505,7 +505,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.20.0 to 2.21.0 (On Premises)](#migrating-from-2200-to-2210-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -633,7 +633,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.19.0 to 2.20.0 (On Premises)](#migrating-from-2190-to-2200-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -753,7 +753,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.18.0 to 2.19.0 (On Premises)](#migrating-from-2180-to-2190-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -874,7 +874,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.17.0 to 2.18.0 (On Premises)](#migrating-from-2170-to-2180-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -996,7 +996,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.16.0 to 2.17.0 (On Premises)](#migrating-from-2160-to-2170-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -1119,7 +1119,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.15.1 to 2.16.0 (On Premises)](#migrating-from-2151-to-2160-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -1244,7 +1244,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.14.0 to 2.15.1 (On Premises)](#migrating-from-2140-to-2151-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
@@ -1368,7 +1368,7 @@ To do it, you just need to:
 - Deploy the OpenVidu Cloudformation template of the version you want.
 - If you have recordings stored in the master node, move recordings at`/opt/openvidu/recordings` to the new deployment.
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
-- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which starts with `AWS_`)
+- Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
 However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Migrating from 2.13.0 to 2.14.0 (On Premises)](#migrating-from-2130-to-2140-on-premises), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
