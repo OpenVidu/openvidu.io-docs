@@ -89,70 +89,35 @@ An **iOS native** OpenVidu application built with **Swift** using official **Goo
 
 ## Running this tutorial
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	 This tutorial has been tested using Xcode 12, iPhone 7 and 7 Plus devices (from iOS 12).
-</div>
-</div>
+To run the iOS app you need a **Mac device** with **Xcode** installed and an **iOS device**. You can download Xcode [here](https://developer.apple.com/xcode/){:target="_blank"}.
 
-To run the iOS app you need **Xcode** and an **iOS device**.
-You can download Xcode [here](https://developer.apple.com/xcode/){:target="_blank"}.
+After we have set Xcode up, we need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. To facilitate the first execution of the tutorial, it is configured by default to use the official OpenVidu demos ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so both the OpenVidu deployment and the server application are provided. We just need to run the client application (i.e., openvidu-ios app):
 
-After we have set up Xcode we must continue with the following commands:
+1. Install dependencies under `./openvidu-ios/openvidu-ios`
 
-**1)** Install dependencies under `./openvidu-ios/openvidu-ios`
+        pod update
+        pod install
 
-```bash
-pod update
-pod install
-```
+2. Open Xcode and import the project _(openvidu-ios.xcworkspace)_
 
-**2)** Open **Xcode** and import the project _(openvidu-ios.xcworkspace)_
+3. Run the application in your device. Check out [official Xcode docs](https://developer.apple.com/documentation/xcode/running-your-app-in-simulator-or-on-a-device){:target="_blank"}.
 
-**3)** By default, this app is pointing to our demo server _(https://demos.openvidu.io)_. You can change the **OPENVIDU_URL** value in `openvidu-ios/openvidu-ios/constants/JSONConstants.swift`. If you want to set and launch OpenVidu locally, continue with point 4. If you don't, go to point 8.
+> **WARNING**: the OpenVidu demos deployment is not secure and is only intended for a first quick test. Anyone could access to your video sessions. To run the tutorial in your own network, see [Running this tutorial in your network](#running-this-tutorial-in-your-network)
 
-**4)** Now you need the IP of your PC in your LAN network, which we will use in points 5) and 6) to configure OpenVidu Server and your app. In Linux/OSX you can simply get it by running the following command on your shell (will probably output something like `192.168.1.111`)
+### Running this tutorial in your network
 
+Real Android and iOS devices will require a valid SSL certificate in your OpenVidu deployment to work. By default openvidu-ios tutorial uses the official demos OpenVidu deployment ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so you can quickly test the app without having to worry about this.
 
-```console
-awk '/inet / && $2 != "127.0.0.1"{print $2}' <(ifconfig)
-```
+But this OpenVidu deployment is not secure and anyone could access your video sessions. At some point you will need one of two things to securely develop your application:
 
-**5)** OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}). Set property `DOMAIN_OR_PUBLIC_IP` to the IP we just got in point 4). In the example below that would be replacing `-e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP` to `-e DOMAIN_OR_PUBLIC_IP=192.168.1.111`
+1. A real OpenVidu deployment with a valid domin name and SSL certificate.
+2. A local OpenVidu deployment available in your LAN network with a valid self-signed SSL certificate.
 
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
+Option 1 just requires to follow the official [deployment instructions](deployment/). For option 2, follow the instructions explained in this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. In that way we will have the OpenVidu deployment and our server application accessible through our LAN network using a single IP, port and SSL certificate.
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=YOUR_OPENVIDU_IP openvidu/openvidu-dev:2.22.0
-```
+Either way, remember to configure your new application server URL in the Android app. You can do that on file `openvidu-ios/openvidu-ios/constants/JSONConstants.swift`. The value of `APPLICATION_SERVER_URL` must be the URL of your application server.
 
-**6)** In Xcode Studio, you must also indicate the OpenVidu Server URL to the app. Check the point 3.
-
-**7)** Connect the device to the same network as your PC.
-
-**8)** Connect the device to the PC. You will need to sign your application in Xcode with your developer team to avoid any errors. From [Apple official documentation](https://help.apple.com/xcode/mac/current/#/dev5a825a1ca).
-
-**9)** Run the tutorial. In Xcode, click on the Play button after selecting your connected device.
+<br>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

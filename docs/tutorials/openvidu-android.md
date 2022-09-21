@@ -41,67 +41,20 @@ An **Android native** OpenVidu application built with **Java** using the officia
 
 ## Running this tutorial
 
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	This tutorial has been tested using Android >= 5.0 (API level >= 21)
-</div>
-</div>
-
 To deploy the Android APK you need to have **Android Studio**, an **Android device** (recommended) or an **Android emulator** and **Android SDK** installed.
 You can download Android Studio [here](https://developer.android.com/studio/index.html){:target="_blank"}. You also can check the [official Android Studio guide](https://developer.android.com/studio/intro){:target="_blank"}.
 
-After we have set Android Studio up, we need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+After we have set Android Studio up, we need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. To facilitate the first execution of the tutorial, it is configured by default to use the official OpenVidu demos ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so both the OpenVidu deployment and the server application are provided. We just need to run the client application (i.e., openvidu-android app):
 
-#### 1. Run OpenVidu deployment
+1. Clone the tutorials repository
 
-Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET -e DOMAIN_OR_PUBLIC_IP=X.X.X.X openvidu/openvidu-dev:2.22.0
-```
-
-Set property `DOMAIN_OR_PUBLIC_IP` to the IP address of your workstation in the local network (LAN). You can get it:
-
-- On Linux: `ip -4 -oneline route get 1.0.0.0 | grep -Po 'src \K\S+'`
-- On MacOS: `ipconfig getifaddr "$(route -n get 1.0.0.0 | grep 'interface' | awk '{print $2}')"`
-- On Windows: use `ipconfig` command on a cmd terminal. Look for the wireless LAN IPv4 address.
-
-#### 2. Run your preferred server application sample
-
-For more information visit [Application server](application-server/).
-
-<div id="application-server-wrapper"></div>
-<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
-
-#### 3. Run the client application tutorial
-
-1. First open **Android Studio** and import the project **openvidu-tutorials/openvidu-android**. Use the same repository openvidu-tutorials previously cloned on [step 2](#2-run-your-preferred-server-application-sample).
-
-2. You must configure the application server URL to the Android app, using the LAN network IP of your workstation. To do that, on the *Project Files* view, open the file `app/src/main/res/values/strings.xml`. The value of `application_server_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/7f313bc86b1b2d60ca336746967ba9d1e361edc3/openvidu-android/app/src/main/res/values/strings.xml#L2){:target="\_blank"}) must be the URL of your application server. The default URL is `http://APPLICATION_SERVER_IP:5000/`, where APPLICATION_SERVER_IP must be the IP address of your workstation. In these instructions, this IP is the same as the one you configured in [step 1](#1-run-openvidu-deployment) for your OpenVidu deployment containter, as we are running both OpenVidu deployment and the application server in the same workstation.
+        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+ 
+2. Open **Android Studio** and import the project **openvidu-tutorials/openvidu-android**
 
 3. Run the application in your Android device from Android Studio. For Android >= 11 pairing devices via WiFi is the quickest solution. Check out [official Android docs](https://developer.android.com/studio/run/device){:target="_blank"}.
+
+> **WARNING**: the OpenVidu demos deployment is not secure and is only intended for a first quick test. Anyone could access to your video sessions. To run the tutorial in your own network, see [Running this tutorial in your network](#running-this-tutorial-in-your-network)
 
 <div class="row no-margin ">
 	<div class="col-md-6 col-sm-6">
@@ -115,6 +68,19 @@ For more information visit [Application server](application-server/).
         </a>
 	</div>
 </div>
+
+### Running this tutorial in your network
+
+Real Android and iOS devices will require a valid SSL certificate in your OpenVidu deployment to work. By default openvidu-android tutorial uses the official demos OpenVidu deployment ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so you can quickly test the app without having to worry about this.
+
+But this OpenVidu deployment is not secure and anyone could access your video sessions. At some point you will need one of two things to securely develop your application:
+
+1. A real OpenVidu deployment with a valid domin name and SSL certificate.
+2. A local OpenVidu deployment available in your LAN network with a valid self-signed SSL certificate.
+
+Option 1 just requires to follow the official [deployment instructions](deployment/). For option 2, follow the instructions explained in this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. In that way we will have the OpenVidu deployment and our server application accessible through our LAN network using a single IP, port and SSL certificate.
+
+Either way, remember to configure your new application server URL in the Android app. You can do that on file `app/src/main/res/values/strings.xml`. The value of `application_server_url` (that's [**here**](https://github.com/OpenVidu/openvidu-tutorials/blob/f2c459086ec26554d4024f74ab81bf6ecf0f5100/openvidu-android/app/src/main/res/values/strings.xml#L2){:target="\_blank"}) must be the URL of your application server.
 
 ---
 

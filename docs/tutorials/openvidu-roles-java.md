@@ -50,7 +50,7 @@ mvn package exec:java
 
 Go to [`https://localhost:5000`](https://localhost:5000){:target="_blank"} to test the app once the server is running. To test two different users in the same computer, use a standard window and an incognito window.
 
-> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Ignore [step 2](troubleshooting/#2-modify-the-application_server_url-of-the-client-application), as the application already includes a backend and the frontend doesn't need to communicate with a different application server.
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Ignore [step 2](troubleshooting/#2-run-your-preferred-server-application-sample) and [step 3](#3-run-the-client-application-tutorial-changing-the-application_server_url), as the application already includes a backend and the frontend doesn't need to communicate with a different application server.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">

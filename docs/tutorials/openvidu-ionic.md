@@ -7,7 +7,7 @@ An OpenVidu application built with **Ionic**. It uses **Capacitor** as hybrid ru
 - A **native iOS app**
 - A **native desktop app** (using **Electron**)
 - A standard **web app**
-- A **Progressive Web App** (check out [Ionic docs]((https://ionicframework.com/docs/deployment/progressive-web-app){:target="_blank"}))
+- A **Progressive Web App** (check out [Ionic docs](https://ionicframework.com/docs/deployment/progressive-web-app){:target="_blank"}))
 
 <div class="row">
     <div class="pro-gallery" style="margin: 20px 0 15px 0">
@@ -101,7 +101,7 @@ To show the app with a mobile device appearance, open the dev tools in your brow
 
 Real Android and iOS devices will require a valid SSL certificate in your OpenVidu deployment to work. By default openvidu-ionic tutorial uses the official demos OpenVidu deployment ([demos.openvidu.io](https://demos.openvidu.io)), so you can quickly test the app without having to worry about this.
 
-But this OpenVidu deployment is not secure and anyone could access your video sessions. At some point you will need one of two things to securely develop your Ionic application:
+But this OpenVidu deployment is not secure and anyone could access your video sessions. At some point you will need one of two things to securely develop your application:
 
 1. A real OpenVidu deployment with a valid domin name and SSL certificate.
 2. A local OpenVidu deployment available in your LAN network with a valid self-signed SSL certificate.

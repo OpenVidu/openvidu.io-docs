@@ -107,9 +107,7 @@ To serve any application through your network and to be able to test it with dif
     </div>
 </div>
 
-So, after properly running the basic steps to serve any of the OpenVidu tutorials (for example, [these ones](tutorials/openvidu-hello-world/#running-this-tutorial)) continue with these extra steps:
-
-#### 1. Set the OpenVidu deployment to use your local IP and other configurations
+#### 1. Run the OpenVidu deployment with your local IP and other configurations
 
 Get the local IP address of your workstation:
 
@@ -138,7 +136,14 @@ docker run -p 4443:4443 --rm \
 openvidu/openvidu-dev:2.22.0
 ```
 
-#### 2. Modify the `APPLICATION_SERVER_URL` of the client application
+#### 2. Run your preferred server application sample
+
+If you have no server application sample running in your workstation yet, choose your favorite one and run it as explained below. For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial, changing the `APPLICATION_SERVER_URL`
 
 It is necessary to change the URL the client application will use to communicate with the server application.
 
@@ -154,13 +159,13 @@ Now it should be:
 var APPLICATION_SERVER_URL = "https://X.X.X.X/";
 ```
 
-Being `X.X.X.X` the local IP of your workstation. That is the same IP used in the previous step on property `DOMAIN_OR_PUBLIC_IP=X.X.X.X`. Be careful and make sure to change the **protocol from `http` to `https`**!
+Being `X.X.X.X` the local IP of your workstation. That is the same IP used in step 1 on property `DOMAIN_OR_PUBLIC_IP=X.X.X.X`. Be careful and make sure to change the **protocol from `http` to `https`**!
 
-> If the client technology does not support live-reload upon code changes, make sure to stop and start back up the client application after modifying `APPLICATION_SERVER_URL`.
+Then run the client application as stated in its tutorial documentation.
 
-#### 3. Run a proxy to manage the SSL certificate
+#### 4. Run a proxy to manage the SSL certificate
 
-The proxy will route all requests of the application client using the same IP address, port and SSL certificate. It decides where to route each request based on the path. To do so we use the official NGINX docker container and a `nginx.conf` file specific for each tutorial.
+The proxy will route all requests of the client application using the same IP address, port and SSL certificate. It decides where to route each request based on the path. To do so we use the official NGINX docker container and a `nginx.conf` file specific for each tutorial.
 
 The command below launches the NGINX contanier. It provides the configuration file specific for each tutorial, and it also indicates the location of the SSL certificates. Make sure to run this command at the **root path of the tutorial**.
 
@@ -176,9 +181,9 @@ nginx
 
 You are ready to test the application with any device connected to your network. Connect to **`https://X.X.X.X/`** to see the application's landing page. First time you will have to accept the self-signed certificate.
 
-#### _EXTRA_. Only if you are testing tutorials Ionic or React Native in a real device
+#### _EXTRA_. Only if you are testing native applications in real mobile devices
 
-For Ionic and React Native platforms, you will need to create your own development SSL certificate and install it in your mobile device.
+To test mobile apps in real Android/iOS devices, you will need to create your own development SSL certificate and install it in your mobile device. This affects the following tutorials: [openvidu-ionic](tutorials/openvidu-ionic/), [openvidu-react-native](tutorials/openvidu-react-native/), [openvidu-android](tutorials/openvidu-android/), [openvidu-ios](tutorials/openvidu-ios/)
 
 1. Use [`mkcert`](https://github.com/FiloSottile/mkcert#installation){:target="_blank"} to create your own certificate using the local IP address of your workstation. Make sure to modify `X.X.X.X` for the actual IP.
 
@@ -188,7 +193,7 @@ For Ionic and React Native platforms, you will need to create your own developme
 
 3. Install the new certificate in your mobile device. This varies from Android to iOS and can be a different process for different devices. But in general terms it will consist of copying `rootCA.pem` file to your device and install it from the security settings section, inside an option similar to "Install CA certificate".
 
-4. Restart the nginx proxy container launched at [step 3](#3-run-a-proxy-to-manage-the-ssl-certificate) so the new SSL certificates under folder `openvidu-tutorials/certs` are used:
+4. Restart the nginx proxy container launched at [step 4](#4-run-a-proxy-to-manage-the-ssl-certificate) so the new SSL certificates under folder `openvidu-tutorials/certs` are used:
 
         docker restart $(docker ps -a | grep nginx | awk '{print $1}')
 

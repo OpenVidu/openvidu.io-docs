@@ -24,168 +24,37 @@ An OpenVidu application built with **React Native**. It can be compiled into a *
 
 ## Running this tutorial
 
-To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+We need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. To facilitate the first execution of the tutorial, it is configured by default to use the official OpenVidu demos ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so both the OpenVidu deployment and the server application are provided. We just need to run the client application (i.e., openvidu-react-native app):
 
-#### 1. Run OpenVidu deployment
+1. Clone the tutorials repository
 
-Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
+        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+        cd openvidu-tutorials/openvidu-react-native
 
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
+2. Install dependencies. This step will fail if you have not purchased the special library that OpenVidu requires for React Native to work. You must place it in the tutorial's root path
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
-```
+        npm install
 
-#### 2. Run your preferred server application sample
+3. Start Metro Bundler
 
-For more information visit [Application server](application-server/).
+        npx react-native start
 
-<div id="application-server-wrapper"></div>
-<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+4. Run the application on your device. Follow the [official React Native instructions](https://reactnative.dev/docs/running-on-device){:target="_blank"}.
 
-#### 3. Run the client application tutorial
+> **WARNING!** The OpenVidu demos deployment is not secure and is only intended for a first quick test. Anyone could access to your video sessions. To run the tutorial in your own network, see [Running this tutorial in your network](#running-this-tutorial-in-your-network)
 
-You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [React Native CLI](https://reactnative.dev/docs/environment-setup){:target="_blank"} to run the application. Check the official documentation for setting up the React Native environment.
+### Running this tutorial in your network
 
-Install application dependencies:
+Real Android and iOS devices will require a valid SSL certificate in your OpenVidu deployment to work. By default openvidu-react-native tutorial uses the official demos OpenVidu deployment ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so you can quickly test the app without having to worry about this.
 
-> A said below, React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it.
+But this OpenVidu deployment is not secure and anyone could access your video sessions. At some point you will need one of two things to securely develop your application:
 
-```bash
-# Using the same repository openvidu-tutorials from step 2
+1. A real OpenVidu deployment with a valid domin name and SSL certificate.
+2. A local OpenVidu deployment available in your LAN network with a valid self-signed SSL certificate.
 
-cd openvidu-tutorials/openvidu-react-native
-npm install
-```
+Option 1 just requires to follow the official [deployment instructions](deployment/). For option 2, follow the instructions explained in this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. In that way we will have the OpenVidu deployment and our server application accessible through our LAN network using a single IP, port and SSL certificate.
 
-Start Metro Bundler:
-
-```bash
-npm start
-```
-
-
-> To test the application with real devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
-
-
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    React Native will require OpenVidu Server to be deployed in a valid domain well-protected with a certificate. To facilitate first steps with OpenVidu our demos OpenVidu Server will be used. <strong>Note: this is a publicly accessible OpenVidu Server. Anyone could access your sessions. Use it only for an initial test and under your own responsibility</strong>
-  </div>
-</div>
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    Some problems have been encountered while streaming with iOS devices in some networks with complex restrictions. With mobile networks (4G) these problems have not taken place. Make sure there is no problem with the network you are using in your development environment before posting issues about it
-  </div>
-</div>
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    After deploying on your device and trying to join the session, you may get an error saying "OpenVidu Server (X.Y.Z) and OpenVidu Browser versions do NOT match". This error is not significant so just click on the dismiss button.
-  </div>
-</div>
-
-Now depending on the platform you want to run your app...
-
-
-#### In an Android device
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	This tutorial has been tested from Android 5.1 to Android 10
-</div>
-</div>
-
-
-To deploy the Android APK not only you need to have **Java JDK8**, **Android Studio** and **Android SDK** installed but also you have to set up the specific **environment variables**. Fortunately, React Native provide us a [great guide](https://facebook.github.io/react-native/docs/getting-started){:target="_blank"} to allows us to configure step by step all the requirements. This tutorial is made with **React Native CLI Quickstart** so you should select and check the **React Native CLI** requirements inside of React guide website.
-
-After we have completed all the steps of the React Native CLI guide and performed steps 1) , 2), 3) and 4) stated above, we must continue with the following commands:
-
-5) Connect the device to the PC. You must enable USB debugging and give permissions (check out [first section here in React Native docs](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"})
-
-6) Run the tutorial. The app will be automatically launched in your Android device
-
-```bash
-# In openvidu-tutorials/openvidu-react-native
-react-native run-android
-```
-
-#### In an iOS device
-
-
-<div style="
-    display: table;
-    border: 2px solid #0088aa9e;
-    border-radius: 5px;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 25px;
-    padding: 5px 0 5px 0;
-    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle;">
-    <i class="icon ion-android-alert" style="
-    font-size: 50px;
-    color: #0088aa;
-    display: inline-block;
-    padding-left: 25%;
-"></i></div>
-<div style="
-    vertical-align: middle;
-    display: table-cell;
-    padding-left: 20px;
-    padding-right: 20px;
-    ">
-	This tutorial has been tested from Xcode 10.2.1 and iOS 12.1
-</div>
-</div>
-
-
-After we have completed all the steps of the performed steps 1), 2) and 3) stated above, we must continue with the following commands:
-
-5) Install pod dependencies
-
-```bash
-cd ios
-pod update
-```
-
-6) Plug in your device via USB
-
-7) Configure code signing
-
-8) Build and Run your app
-
-To deploy the iOS app React has [this guide](https://facebook.github.io/react-native/docs/running-on-device){:target="_blank"} to properly configure your development environment.
+> **WARNING!** For the self-signed SSL certificate to properly work in Android, apart from installing it on the device as explained [here](troubleshooting/#extra-only-if-you-are-testing-native-applications-in-real-mobile-devices), you must also modify file [**network_security_config.xml**](https://github.com/OpenVidu/openvidu-tutorials/blob/98b3eb8728cb3cf295490cb42104fb5fde26c640/openvidu-react-native/android/app/src/main/res/xml/network_security_config.xml#L6){:target="_blank"} replacing `X.X.X.X` for the local IP of your workstation. In iOS this is not necessary. 
 
 ## Understanding the code
 
@@ -474,16 +343,14 @@ leaveSession() {
 
 > The following configurations are already included in this **openvidu-react-native** project. You don't need to follow below instructions if you are using this tutorial as a starting point.
 
-Android apps need to actively ask for permissions in the code to access camera and microphone using *[react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"}* plugin. By following the official guide we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu. You can check it [here](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md){:target="_blank"}.
+Android apps need to actively ask for permissions in the code to access camera and microphone using [react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"} plugin. By following the official guide we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu. You can check it [**here**](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md){:target="_blank"}.
 
 
 ## iOS specific requirements
 
 > The following configurations are already included in this **openvidu-react-native** project. You don't need to follow below instructions if you are using this tutorial as a starting point.
 
-iOS apps need to include the WebRTC modules from react-native-webrtc plugin. We will do it by following the official *react-native-webrtc* guide. You can check it [here](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/AndroidInstallation.md){:target="_blank"}.
-
-
+iOS apps need to include the WebRTC modules from [react-native-webrtc](https://github.com/react-native-webrtc/react-native-webrtc){:target="_blank"} plugin and need to declare camera permissions. By following the official guide we have been able to properly set up the optimal configuration your React Native app will need to work along OpenVidu. You can check it [**here**](https://github.com/react-native-webrtc/react-native-webrtc/blob/master/Documentation/iOSInstallation.md){:target="_blank"}.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

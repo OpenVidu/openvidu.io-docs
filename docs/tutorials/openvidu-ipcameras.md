@@ -50,7 +50,7 @@ mvn package exec:java
 
 Go to _[`https://localhost:8080`](https://localhost:8080){:target="_blank"}_ to test the app once the server is running.
 
-> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Ignore [step 2](troubleshooting/#2-modify-the-application_server_url-of-the-client-application), as the application already includes a backend and the frontend doesn't need to communicate with a different application server.
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. Ignore [step 2](troubleshooting/#2-run-your-preferred-server-application-sample) and [step 3](#3-run-the-client-application-tutorial-changing-the-application_server_url), as the application already includes a backend and the frontend doesn't need to communicate with a different application server.
 
 
 ## Understanding the code
