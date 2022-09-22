@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.23.0](#2230)
 - [2.22.0](#2220)
 - [2.21.0](#2210)
 - [2.20.0](#2200)
@@ -25,6 +26,204 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.23.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.23.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.23.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.23.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.23.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.23.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.18.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.10.3</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Renewed documentation and tutorials
+
+We have made a complete revision of our documentation to make it clearer, more precise and easier to use. We have also updated all our tutorials to use a more production-ready approach than before. These are the main improvements of the new documentation:
+
+- There is now an introductory section explaining the basic concepts of OpenVidu and how it fits in your application's stack: [**Developing your video app**](https://docs.openvidu.io/en/2.23.0/developing-your-video-app/).
+
+- There are now basic application server samples for multiple languages. These applications are minimal functional backends ready to work against OpenVidu. Every tutorial is now prepared to work with any of these application servers. You can take any of them as a starting point of your backend. Check out new section [**Application Server**](https://docs.openvidu.io/en/2.23.0/application-server/).
+
+- For the **Application Client** of your OpenVidu app, we have divided the documentation into three different sections, from the most straightforward to the most customizable: [Ready-to-use component](https://docs.openvidu.io/en/2.23.0/ready-to-use-component/), [OpenVidu Components](https://docs.openvidu.io/en/2.23.0/components/) and [Full control of the UI](https://docs.openvidu.io/en/2.23.0/full-control-ui/). Everyone of them with their own guided tutorials. And all of them are prepared to work against any of the application servers mentioned in the previous point.
+
+<br>
+
+##### New features in OpenVidu Call
+
+Our flagship application OpenVidu Call continues to improve with the addition of some new useful features:
+
+- **Change your camera and microphone on the fly**: now you can change your input devices during the call. Before, the device selection was restricted to the pre-join page.
+- **Languages support**: OpenVidu Call now supports a wide range of languages. Just select the desired language and all the text elements of the interface will adapt accordingly.
+
+<br>
+
+##### Advanced TURN support in native Android/iOS apps
+
+We have updated the native applications for [Android](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-android/) and [iOS](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-ios/) to support the different TURN configurations offered by OpenVidu. This means unifying the operation of these applications with respect to those using the _openvidu-browser.js_ SDK: now they are able to use the OpenVidu TURN server or an external TURN server. Connecting your users from secure networks will be easier with the new versions of these mobile apps.
+
+<br>
+
+##### OpenVidu Ionic now supports native desktop applications with Electron integration
+
+[OpenVidu Ionic](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-ionic/) has always been a good option to build your OpenVidu mobile application. And now you can use it also to build native desktop applications for Windows, MacOS and Linux using the same source code. Visit [this section](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-ionic/#in-a-desktop-device-as-a-native-application) of the documentation to learn how.
+
+<br>
+
+##### RTMP and SIP support
+
+We have included in the renewed documentation two new sections offering commercial support for **RTMP streaming** (you can stream OpenVidu sessions to services such as YouTube or Twitch) and **SIP integration** (add phone calls as participants in an OpenVidu session). Both services are offered as external modules that to be acquired will require contact with OpenVidu team through _commercial@openvidu.io_.
+
+You can read the official documentation about these new features here:
+
+- [Streaming to YouTube/Twitch](https://docs.openvidu.io/en/2.23.0/advanced-features/streaming/)
+- [Phone calls integration](https://docs.openvidu.io/en/2.23.0/advanced-features/sip/)
+
+<br>
+
+#### BUG FIXES
+
+- _OpenVidu Pro/Enterprise_: there was a race condition when manually launching multiple Media Nodes at the same time that could end with some of them not being properly added to the cluster. This is now fixed.
+- _OpenVidu Enterprise HA_: fixed HTTP status on some REST API endpoints that were overriding the real status with 500.
+- _openvidu-browser_: method [`Publisher.replaceTrack`](https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/classes/Publisher.html#replaceTrack) produced an echo effect when replacing the audio track. Now this is fixed with commit [17ff910](https://github.com/OpenVidu/openvidu/commit/17ff9105aaf05f435f6247c7fa4d7eaa39daf812). Related issues [642](https://github.com/OpenVidu/openvidu/issues/642) and PR [700](https://github.com/OpenVidu/openvidu/pull/700).
+- _openvidu-browser_: when calling method [`Publisher.replaceTrack`](https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/classes/Publisher.html#replaceTrack) with an audio track, that was deactivating events [`publisherStartSpeaking`](https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/interfaces/PublisherEventMap.html#publisherStartSpeaking), [`publisherStopSpeaking`](https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/interfaces/PublisherEventMap.html#publisherStopSpeaking) and [`streamAudioVolumeChange`](https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/interfaces/PublisherEventMap.html#streamAudioVolumeChange). This is fixed now.
+- _openvidu-browser_: the `recordingStarted` event wasn't being fired for new participants of a session, if they joined it after the recording was started. Now the event is always triggered for new users if the session is being recorded.
+- _openvidu-components_: device labels were not shown in iOS. Now they are.
+
+#### BREAKING CHANGES
+
+- Configuration property `OPENVIDU_DOMAIN_OR_PUBLIC_IP` has been finally removed. More than two years ago OpenVidu 2.14.0 deprecated it in favor of `DOMAIN_OR_PUBLIC_IP` [https://docs.openvidu.io/en/2.14.0/reference-docs/openvidu-config/](https://docs.openvidu.io/en/2.14.0/reference-docs/openvidu-config/).
+- Configuration property `SUPPORT_DEPRECATED_API` is now `false` by default. It still exists, so you can turn it back to `true` if necessary. But it is absolutely advisable to migrate to the new API endpoints (introduced in OpenVidu 2.16.0, Nov 2020). See [2.16.0 release notes](https://docs.openvidu.io/en/2.23.0/releases/#2160). An upcoming release will completely remove support for old API endpoints.
+- Although this is not really a breaking change, the Ionic tutorial of OpenVidu now uses Capacitor by default as hybrid runtime, instead of using Cordova. The reasoning behind this change is pretty obvious: for quite some time now the Ionic team has considered Capacitor their primary choice over Cordova, even if they still support both of them. The Capacitor-based tutorial can now be found at [openvidu-ionic](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-ionic/), and you can still check out the Cordova-based tutorial at [openvidu-ionic-cordova](https://docs.openvidu.io/en/2.23.0/tutorials/openvidu-ionic-cordova/).
+
+<br>
 
 ---
 
@@ -150,7 +349,7 @@
   <tr>
     <td>mediasoup</td>
     <td>NPM package</td>
-    <td>3.9.7</td>
+    <td>3.9.6</td>
     <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
@@ -162,10 +361,10 @@
 #### NEW FEATURES
 
 <br>
+#### BREAKING CHANGES
 
-##### Virtual Background
-
-Virtual Background allows you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Check out the [documentation](https://docs.openvidu.io/en/2.22.0/advanced-features/virtual-background/) for further information.
+There is a small breaking change affecting recording IDs. These IDs (and recording default names) are different for consecutive recordings of the same session. Before, they where built with the session ID, plus a hyphen (`-`) and a number. For example, for three consecutive recordings of session `ses_ABCD`, the recording IDs would be: `ses_ABCD`, `ses_ABCD-1`, `ses_ABCD-2`. Now the hyphen has been replaced by a tilde (`~`) due to new restrictions that have arisen. Now the recording IDs would be: `ses_ABCD`, `ses_ABCD~1`, `ses_ABCD~2`. This should not really affect your application, unless you are explicitly assuming the existence of a hyphen in your own logic.
+ws you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Check out the [documentation](https://docs.openvidu.io/en/2.22.0/advanced-features/virtual-background/) for further information.
 
 <br>
 
@@ -343,7 +542,7 @@ Hosting TURN server in Media Nodes is considered an experimental feature, so rig
   <tr>
     <td>mediasoup</td>
     <td>NPM package</td>
-    <td>3.9.7</td>
+    <td>3.9.6</td>
     <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
@@ -381,9 +580,9 @@ You can now publish IP cameras with `rtsps` protocol. See [documentation](https:
 
 <br>
 
-##### More flexible ICE configuration
+##### More flexible ICE c#### BREAKING CHANGES
 
-Now it is very easy to configure external TURN servers in the client-side. You can:
+There is a small breaking change affecting recording IDs. These IDs (and recording default names) are different for consecutive recordings of the same session. Before, they where built with the session ID, plus a hyphen (`-`) and a number. For example, for three consecutive recordings of session `ses_ABCD`, the recording IDs would be: `ses_ABCD`, `ses_ABCD-1`, `ses_ABCD-2`. Now the hyphen has been replaced by a tilde (`~`) due to new restrictions that have arisen. Now the recording IDs would be: `ses_ABCD`, `ses_ABCD~1`, `ses_ABCD~2`. This should not really affect your application, unless you are explicitly assuming the existence of a hyphen in your own logic.
 
 - Configure globally any TURN server. See [configuration property `OPENVIDU_WEBRTC_ICE_SERVERS`](https://docs.openvidu.io/en/2.21.0/reference-docs/openvidu-config/).
 - Set TURN credentials user by user from you application's server. See parameter `customIceServers` when [creating a Connection](https://docs.openvidu.io/en/2.21.0/reference-docs/REST-API/#post-connection).
