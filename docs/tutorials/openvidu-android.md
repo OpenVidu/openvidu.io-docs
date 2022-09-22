@@ -48,7 +48,7 @@ After we have set Android Studio up, we need the three components stated in [Ope
 
 1. Clone the tutorials repository
 
-        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
  
 2. Open **Android Studio** and import the project **openvidu-tutorials/openvidu-android**
 

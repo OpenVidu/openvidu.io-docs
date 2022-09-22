@@ -62,31 +62,36 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The *<strong>ovPanel</strong> directive allows to replace the default panels with your own. This directive also allows us insert elements
+                <p>The *<strong>ovPanel</strong> directive allows to replace the default panels with your own custom panels. This directive also allows to insert elements
 tagged with the <a href="../directives/ChatPanelDirective.html">ChatPanelDirective</a>, <a href="../directives/ParticipantsPanelDirective.html">ParticipantsPanelDirective</a> and <a href="../directives/AdditionalPanelsDirective.html">AdditionalPanelsDirective</a>.</p>
-<p>In this example we&#39;re going to replace the entire <a href="../components/PanelComponent.html">PanelComponent</a> using the *<strong>ovPanel</strong> directive. Inside of it, we&#39;re customizing
-the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelComponent</a> and <a href="ChatPanelcomponent">ChatPanelcomponent</a> using theirs directives.</p>
-<p>You can run the sample <a href="https://docs.openvidu.io/en/2.22.0/components/openvidu-custom-panels#run-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference (onJoinButtonClicked)=&quot;onJoinButtonClicked()&quot; [tokens]=&quot;tokens&quot;&gt;
+<p>In the example below we replace the entire <a href="../components/PanelComponent.html">PanelComponent</a> using the *<strong>ovPanel</strong> directive. Inside of it, we customize
+the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelComponent</a> and <a href="ChatPanelcomponent">ChatPanelcomponent</a> using their own directives.</p>
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.23.0/components/openvidu-custom-panels#running-this-tutorial">here</a>.</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot;&gt;
     &lt;ov-panel *ovPanel&gt;
-     &lt;div *ovChatPanel&gt;This is my custom chat panel&lt;/div&gt;
-     &lt;div *ovParticipantsPanel id=&quot;my-participants-panel&quot;&gt;This is my custom participants panel&lt;/div&gt;
+        &lt;div *ovChatPanel id=&quot;my-chat-panel&quot;&gt;This is my custom chat panel&lt;/div&gt;
+        &lt;div *ovParticipantsPanel id=&quot;my-participants-panel&quot;&gt;
+            This is my custom participants panel
+        &lt;/div&gt;
     &lt;/ov-panel&gt;
 &lt;/ov-videoconference&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class PanelDirectiveComponent {
-    tokens: TokenModel;
-    sessionId = &#39;panel-directive-example&#39;;
 
-    OPENVIDU_URL = &#39;https://localhost:4443&#39;;
-    OPENVIDU_SECRET = &#39;MY_SECRET&#39;;
+    sessionId = &quot;panel-directive-example&quot;;
+    tokens!: TokenModel;
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
 
-    async onJoinButtonClicked() {
+    async ngOnInit() {
         this.tokens = {
             webcam: await this.getToken(),
-            screen: await this.getToken()
+            screen: await this.getToken(),
         };
     }
+
+    async getToken(): Promise&lt;string&gt; {
+        // Returns an OpeVidu token
+    }
+
 }</code></pre></div>
             </p>
 

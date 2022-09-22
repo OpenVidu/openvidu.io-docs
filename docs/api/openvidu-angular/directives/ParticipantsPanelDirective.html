@@ -62,38 +62,39 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The *<strong>ovParticipantsPanel</strong> directive allows to replace the default participants panel template injecting your own component.
-Here we&#39;re going to redefine the participants template in a few code lines.</p>
-<p>You can run the sample <a href="https://docs.openvidu.io/en/2.22.0/components/openvidu-custom-participants-panel#run-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference (onJoinButtonClicked)=&quot;onJoinButtonClicked()&quot; [tokens]=&quot;tokens&quot;&gt;
+                <p>The *<strong>ovParticipantsPanel</strong> directive allows to replace the default participants panel template with a custom one.
+In the example below we replace the participants template in a few lines of code.</p>
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.23.0/components/openvidu-custom-participants-panel#running-this-tutorial">here</a>.</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot; [toolbarDisplaySessionName]=&quot;false&quot; (onSessionCreated)=&quot;subscribeToParticipants()&quot;&gt;
     &lt;div *ovParticipantsPanel id=&quot;my-panel&quot;&gt;
         &lt;ul id=&quot;local&quot;&gt;
             &lt;li&gt;{{localParticipant.nickname}}&lt;/li&gt;
         &lt;/ul&gt;
-
         &lt;ul id=&quot;remote&quot;&gt;
             &lt;li *ngFor=&quot;let p of remoteParticipants&quot;&gt;{{p.nickname}}&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/div&gt;
-&lt;/ov-videoconference&gt;</code></pre></div><p>As we need to get the participants in our session, we are subscribing to them using the <a href="../injectables/ParticipantService.html">ParticipantService</a>. We&#39;ll get the local participant
-and the remote participants and we will be able to update the participants panel on every update.</p>
+&lt;/ov-videoconference&gt;</code></pre></div><br/>
+
+<p>We need to get the participants in our Session, so we use the <a href="../injectables/ParticipantService.html">ParticipantService</a> to subscribe to the required Observables.
+We&#39;ll get the local participant and the remote participants to update our custom participants panel on any change.</p>
 <div><pre class="line-numbers"><code class="language-javascript">export class ParticipantsPanelDirectiveComponent implements OnInit, OnDestroy {
-    tokens: TokenModel;
+
     sessionId = &#39;participants-panel-directive-example&#39;;
-    OPENVIDU_URL = &#39;https://localhost:4443&#39;;
-    OPENVIDU_SECRET = &#39;MY_SECRET&#39;;
-    localParticipant: ParticipantAbstractModel;
-    remoteParticipants: ParticipantAbstractModel[];
-    localParticipantSubs: Subscription;
-    remoteParticipantsSubs: Subscription;
+    tokens!: TokenModel;
 
-    constructor(
-        private httpClient: HttpClient,
-        private participantService: ParticipantService
-    ) {}
+    localParticipant!: ParticipantAbstractModel;
+    remoteParticipants!: ParticipantAbstractModel[];
+    localParticipantSubs!: Subscription;
+    remoteParticipantsSubs!: Subscription;
 
-    ngOnInit(): void {
-        this.subscribeToParticipants();
+    constructor(private httpClient: HttpClient, private participantService: ParticipantService) { }
+
+    async ngOnInit() {
+        this.tokens = {
+            webcam: await this.getToken(),
+            screen: await this.getToken()
+        };
     }
 
     ngOnDestroy() {
@@ -101,23 +102,20 @@ and the remote participants and we will be able to update the participants panel
         this.remoteParticipantsSubs.unsubscribe();
     }
 
-    async onJoinButtonClicked() {
-        this.tokens = {
-            webcam: await this.getToken(),
-            screen: await this.getToken()
-        };
-    }
     subscribeToParticipants() {
         this.localParticipantSubs = this.participantService.localParticipantObs.subscribe((p) =&gt; {
             this.localParticipant = p;
         });
-
         this.remoteParticipantsSubs = this.participantService.remoteParticipantsObs.subscribe((participants) =&gt; {
             this.remoteParticipants = participants;
         });
     }
-}
-</code></pre></div>
+
+    async getToken(): Promise&lt;string&gt; {
+        // Returns an OpeVidu token
+    }
+
+}</code></pre></div>
             </p>
 
 

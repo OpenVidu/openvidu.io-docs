@@ -93,6 +93,12 @@
                                 <a href="#closePanel" >closePanel</a>
                             </li>
                             <li>
+                                <a href="#isActivitiesPanelOpened" >isActivitiesPanelOpened</a>
+                            </li>
+                            <li>
+                                <a href="#isBackgroundEffectsPanelOpened" >isBackgroundEffectsPanelOpened</a>
+                            </li>
+                            <li>
                                 <a href="#isChatPanelOpened" >isChatPanelOpened</a>
                             </li>
                             <li>
@@ -100,6 +106,9 @@
                             </li>
                             <li>
                                 <a href="#isParticipantsPanelOpened" >isParticipantsPanelOpened</a>
+                            </li>
+                            <li>
+                                <a href="#isSettingsPanelOpened" >isSettingsPanelOpened</a>
                             </li>
                             <li>
                                 <a href="#togglePanel" >togglePanel</a>
@@ -149,6 +158,72 @@
 
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isActivitiesPanelOpened"></a>
+                    <span class="name">
+                        <span ><b>isActivitiesPanelOpened</b></span>
+                        <a href="#isActivitiesPanelOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isActivitiesPanelOpened()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the activities panel is opened or not.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isBackgroundEffectsPanelOpened"></a>
+                    <span class="name">
+                        <span ><b>isBackgroundEffectsPanelOpened</b></span>
+                        <a href="#isBackgroundEffectsPanelOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isBackgroundEffectsPanelOpened()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the background effects panel is opened or not.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                 </td>
@@ -256,6 +331,39 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="isSettingsPanelOpened"></a>
+                    <span class="name">
+                        <span ><b>isSettingsPanelOpened</b></span>
+                        <a href="#isSettingsPanelOpened"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSettingsPanelOpened()</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Whether the settings panel is opened or not.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="togglePanel"></a>
                     <span class="name">
                         <span ><b>togglePanel</b></span>
@@ -265,7 +373,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>togglePanel(type: <a href="../undefineds/PanelType.html" target="_self">PanelType | string</a>)</code>
+<code>togglePanel(type: <a href="../undefineds/PanelType.html" target="_self">PanelType | string</a>, expand?: <a href="../undefineds/PanelSettingsOptions.html" target="_self">PanelSettingsOptions | string</a>)</code>
                 </td>
             </tr>
 
@@ -298,6 +406,18 @@ If the type is differente, it will switch to the properly panel.</p>
 
                                     <td>
                                         No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>expand</td>
+                                    <td>
+                                                <code><a href="../miscellaneous/enumerations.html#PanelSettingsOptions" target="_self" >PanelSettingsOptions | string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
                                     </td>
 
 
@@ -337,7 +457,7 @@ If the type is differente, it will switch to the properly panel.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>    <code>Observable&lt;literal type&gt;</code>
+                        <i>Type : </i>        <code><a href="../interfaces/PanelEvent.html" target="_self" >Observable&lt;PanelEvent&gt;</a></code>
 
                     </td>
                 </tr>

@@ -144,7 +144,7 @@
     <td>Kurento Media Server</td>
     <td>Ubuntu package</td>
     <td>6.18.0</td>
-    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.16.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.18.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -180,6 +180,7 @@ We have made a complete revision of our documentation to make it clearer, more p
 
 Our flagship application OpenVidu Call continues to improve with the addition of some new useful features:
 
+- **Recording**: from now on it will be very easy to record your video meetings in OpenVidu Call. Just open the "Recording" side panel to manage the recording of your session. The first user connecting to the session will be considered its administrator and will be granted permission to manage the recording process.
 - **Change your camera and microphone on the fly**: now you can change your input devices during the call. Before, the device selection was restricted to the pre-join page.
 - **Languages support**: OpenVidu Call now supports a wide range of languages. Just select the desired language and all the text elements of the interface will adapt accordingly.
 
@@ -361,10 +362,10 @@ You can read the official documentation about these new features here:
 #### NEW FEATURES
 
 <br>
-#### BREAKING CHANGES
 
-There is a small breaking change affecting recording IDs. These IDs (and recording default names) are different for consecutive recordings of the same session. Before, they where built with the session ID, plus a hyphen (`-`) and a number. For example, for three consecutive recordings of session `ses_ABCD`, the recording IDs would be: `ses_ABCD`, `ses_ABCD-1`, `ses_ABCD-2`. Now the hyphen has been replaced by a tilde (`~`) due to new restrictions that have arisen. Now the recording IDs would be: `ses_ABCD`, `ses_ABCD~1`, `ses_ABCD~2`. This should not really affect your application, unless you are explicitly assuming the existence of a hyphen in your own logic.
-ws you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Check out the [documentation](https://docs.openvidu.io/en/2.22.0/advanced-features/virtual-background/) for further information.
+##### Virtual Background
+
+Virtual Background allows you to apply a filter to a video stream, such as a blurring effect or a background image. In this way you may cut out the person from the background, giving a more professional look to your video calls. Check out the [documentation](https://docs.openvidu.io/en/2.22.0/advanced-features/virtual-background/) for further information.
 
 <br>
 
@@ -580,9 +581,9 @@ You can now publish IP cameras with `rtsps` protocol. See [documentation](https:
 
 <br>
 
-##### More flexible ICE c#### BREAKING CHANGES
+##### More flexible ICE configuration
 
-There is a small breaking change affecting recording IDs. These IDs (and recording default names) are different for consecutive recordings of the same session. Before, they where built with the session ID, plus a hyphen (`-`) and a number. For example, for three consecutive recordings of session `ses_ABCD`, the recording IDs would be: `ses_ABCD`, `ses_ABCD-1`, `ses_ABCD-2`. Now the hyphen has been replaced by a tilde (`~`) due to new restrictions that have arisen. Now the recording IDs would be: `ses_ABCD`, `ses_ABCD~1`, `ses_ABCD~2`. This should not really affect your application, unless you are explicitly assuming the existence of a hyphen in your own logic.
+Now it is very easy to configure external TURN servers in the client-side. You can:
 
 - Configure globally any TURN server. See [configuration property `OPENVIDU_WEBRTC_ICE_SERVERS`](https://docs.openvidu.io/en/2.21.0/reference-docs/openvidu-config/).
 - Set TURN credentials user by user from you application's server. See parameter `customIceServers` when [creating a Connection](https://docs.openvidu.io/en/2.21.0/reference-docs/REST-API/#post-connection).

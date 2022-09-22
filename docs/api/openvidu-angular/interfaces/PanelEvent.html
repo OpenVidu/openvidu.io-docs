@@ -47,7 +47,7 @@
   <li>Interfaces</li>
   <li
   >
-  BackgroundEffect</li>
+  PanelEvent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -62,7 +62,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/models/background-effect.model.ts</code>
+            <code>src/lib/services/panel/panel.service.ts</code>
         </p>
 
 
@@ -82,31 +82,26 @@
                             <ul class="index-list">
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#description" 
+                                        <a href="#expand" 
 >
-                                            description
-                                        </a>
-                                </li>
-                                <li>
-                                        <a href="#id" 
->
-                                            id
+                                            expand
                                         </a>
                                 </li>
                                 <li>
                                             <span class="modifier">Optional</span>
-                                        <a href="#src" 
+                                        <a href="#oldType" 
 >
-                                            src
+                                            oldType
                                         </a>
                                 </li>
                                 <li>
-                                        <a href="#thumbnail" 
+                                        <a href="#opened" 
 >
-                                            thumbnail
+                                            opened
                                         </a>
                                 </li>
                                 <li>
+                                            <span class="modifier">Optional</span>
                                         <a href="#type" 
 >
                                             type
@@ -127,9 +122,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="description"></a>
-                                        <span class="name "><b>description</b>
-                                            <a href="#description">
+                                        <a name="expand"></a>
+                                        <span class="name "><b>expand</b>
+                                            <a href="#expand">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -137,7 +132,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>description:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>expand:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -165,9 +160,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="id"></a>
-                                        <span class="name "><b>id</b>
-                                            <a href="#id">
+                                        <a name="oldType"></a>
+                                        <span class="name "><b>oldType</b>
+                                            <a href="#oldType">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -175,7 +170,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>oldType:         <code><a href="../miscellaneous/enumerations.html#PanelType" target="_self" >PanelType | string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -183,40 +178,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                                        </td>
-                                    </tr>
-
-
-
-
-
-                        </tbody>
-                    </table>
-                    <table class="table table-sm table-bordered">
-                        <tbody>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <a name="src"></a>
-                                        <span class="name "><b>src</b>
-                                            <a href="#src">
-                                                <span class="icon ion-ios-link"></span>
-                                            </a>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="col-md-4">
-                                        <code>src:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-</code>
-                                    </td>
-                                </tr>
-
-
-                                    <tr>
-                                        <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#PanelType" target="_self" >PanelType | string</a></code>
 
                                         </td>
                                     </tr>
@@ -236,9 +198,9 @@
                         <tbody>
                                 <tr>
                                     <td class="col-md-4">
-                                        <a name="thumbnail"></a>
-                                        <span class="name "><b>thumbnail</b>
-                                            <a href="#thumbnail">
+                                        <a name="opened"></a>
+                                        <span class="name "><b>opened</b>
+                                            <a href="#opened">
                                                 <span class="icon ion-ios-link"></span>
                                             </a>
                                         </span>
@@ -246,7 +208,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>thumbnail:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <code>opened:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -254,7 +216,7 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                                         </td>
                                     </tr>
@@ -279,7 +241,7 @@
                                 </tr>
                                 <tr>
                                     <td class="col-md-4">
-                                        <code>type:         <code><a href="../miscellaneous/enumerations.html#EffectType" target="_self" >EffectType</a></code>
+                                        <code>type:         <code><a href="../miscellaneous/enumerations.html#PanelType" target="_self" >PanelType | string</a></code>
 </code>
                                     </td>
                                 </tr>
@@ -287,11 +249,16 @@
 
                                     <tr>
                                         <td class="col-md-4">
-                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#EffectType" target="_self" >EffectType</a></code>
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#PanelType" target="_self" >PanelType | string</a></code>
 
                                         </td>
                                     </tr>
 
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
 
 
 
@@ -337,7 +304,7 @@
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
-            var COMPODOC_CURRENT_PAGE_URL = 'BackgroundEffect.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PanelEvent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TokenOptions | OpenVidu Node Client - v2.22.0</title>
-	<meta name="description" content="Documentation for OpenVidu Node Client - v2.22.0">
+	<title>TokenOptions | OpenVidu Node Client - v2.23.0</title>
+	<meta name="description" content="Documentation for OpenVidu Node Client - v2.23.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">OpenVidu Node Client - v2.22.0</a>
+					<a href="../index.html" class="title">OpenVidu Node Client - v2.23.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -102,7 +102,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/a64ccb03/openvidu-node-client/src/TokenOptions.ts#L38">TokenOptions.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/5acd93ec/openvidu-node-client/src/TokenOptions.ts#L38">TokenOptions.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,7 +122,7 @@
 					<div class="tsd-signature tsd-kind-icon">kurento<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>allowedFilters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>videoMaxRecvBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMaxSendBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMinRecvBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>videoMinSendBandwidth<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/a64ccb03/openvidu-node-client/src/TokenOptions.ts#L61">TokenOptions.ts:61</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/5acd93ec/openvidu-node-client/src/TokenOptions.ts#L61">TokenOptions.ts:61</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -133,20 +133,20 @@
 						You can adjust:</p>
 						<ul>
 							<li><code>videoMaxRecvBandwidth</code>: maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.22.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.23.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 								(parameter <code>OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH</code>) for every incoming stream of the user owning the token.
 							<em><strong>WARNING</strong>: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the stream</em></li>
 							<li><code>videoMinRecvBandwidth</code>: minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.22.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.23.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 							(parameter <code>OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH</code>) for every incoming stream of the user owning the token</li>
 							<li><code>videoMaxSendBandwidth</code>: maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.22.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.23.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 								(parameter <code>OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH</code>) for every outgoing stream of the user owning the token.
 							<em><strong>WARNING</strong>: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream</em></li>
 							<li><code>videoMinSendBandwidth</code>: minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override
-								the global configuration set in <a href="/en/2.22.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
+								the global configuration set in <a href="/en/2.23.0/reference-docs/openvidu-config/">OpenVidu Server configuration</a>
 							(parameter <code>OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH</code>) for every outgoing stream of the user owning the token</li>
-							<li><code>allowedFilters</code>: names of the filters the user owning the token will be able to apply. See <a href="/en/2.22.0/advanced-features/filters/">Voice and video filters</a></li>
+							<li><code>allowedFilters</code>: names of the filters the user owning the token will be able to apply. See <a href="/en/2.23.0/advanced-features/filters/">Voice and video filters</a></li>
 						</ul>
 					</div>
 					<div class="tsd-type-declaration">
@@ -176,7 +176,7 @@
 					<div class="tsd-signature tsd-kind-icon">role<span class="tsd-signature-symbol">:</span> <a href="../enums/openvidurole.html" class="tsd-signature-type">OpenViduRole</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/a64ccb03/openvidu-node-client/src/TokenOptions.ts#L30">TokenOptions.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/OpenVidu/openvidu/blob/5acd93ec/openvidu-node-client/src/TokenOptions.ts#L30">TokenOptions.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

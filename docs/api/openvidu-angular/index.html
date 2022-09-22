@@ -33,21 +33,25 @@
 
 <h1 id="openvidu-angular">openvidu-angular</h1>
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache2-orange.svg" alt="License badge" class="img-responsive"></a>
+<a href="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-ce-test.yml"><img src="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-ce-test.yml/badge.svg" alt="OpenVidu Tests" class="img-responsive"></a>
+<a href="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-components-angular-E2E.yml"><img src="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-components-angular-E2E.yml/badge.svg" alt="OpenVidu Tests" class="img-responsive"></a>
 <a href="https://npmjs.org/package/openvidu-angular"><img src="https://img.shields.io/npm/v/openvidu-angular?label=npm-version" alt="Npm version" class="img-responsive"></a>
 <a href="https://npmjs.org/package/openvidu-angular"><img src="https://img.shields.io/npm/dw/openvidu-angular?label=npm2-downloads" alt="Npm downloads" class="img-responsive"></a></p>
 <p><strong>The easier way to build powerful OpenVidu videoconference frontend applications.</strong></p>
 <h2 id="requirements">Requirements:</h2>
-<p>You will need angular-cli (and of course NPM) to serve the Angular frontend. You can check it with the following command:</p>
+<p>You will need NPM and Angular CLI to serve the Angular app. Check your installation with the following command:</p>
 <div><pre class="line-numbers"><code class="language-bash">npm -v
 ng v</code></pre></div><h2 id="how-to-install-it">How to install it</h2>
 <ol>
 <li>You need to install the openvidu-angular library in your Angular application:</li>
 </ol>
-<div><pre class="line-numbers"><code class="language-none">npm install openvidu-angular</code></pre></div><ol start="2">
-<li>Also you need Angular Material:</li>
+<div><pre class="line-numbers"><code class="language-none">npm install openvidu-angular</code></pre></div><br>
+
+<ol start="2">
+<li>Also you need Angular Material. Check the <a href="https://material.angular.io/guide/getting-started">Angular Material documentation</a> for installing it.</li>
 </ol>
-<div><pre class="line-numbers"><code class="language-none">ng add &#64;angular/material</code></pre></div><h2 id="configure-it">Configure it</h2>
-<p>You need import the openvidu-angular module in your <code>app.module.ts</code>:</p>
+<h2 id="configure-it">Configure it</h2>
+<p>You need to import the openvidu-angular module in your <code>app.module.ts</code>:</p>
 <div><pre class="line-numbers"><code class="language-typescript">import { OpenViduAngularConfig, OpenViduAngularModule } from &#39;openvidu-angular&#39;;
 import { environment } from &#39;src/environments/environment&#39;;
 
@@ -60,7 +64,7 @@ const config: OpenViduAngularConfig = {
         ...
         OpenViduAngularModule.forRoot(config)
     ]
-})</code></pre></div><p>You also can add the default styles in your <code>styles.scss</code> file:</p>
+})</code></pre></div><p>You can also add the default styles in your <code>styles.scss</code> file:</p>
 <div><pre class="line-numbers"><code class="language-css">:root {
   --ov-primary-color: #303030;
   --ov-secondary-color: #3e3f3f;

@@ -61,13 +61,16 @@
                 <td class="col-md-4">
                     <ul class="index-list">
                         <li>
-                            <a href="#EffectType" title="src/lib/models/background-effect.model.ts" ><b>EffectType</b>&nbsp;&nbsp;&nbsp;(src/.../background-effect.model.ts)</a>
+                            <a href="#LayoutAlignment" title="src/lib/models/layout.model.ts" ><b>LayoutAlignment</b>&nbsp;&nbsp;&nbsp;(src/.../layout.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#OpenViduEdition" title="src/lib/services/openvidu/openvidu.service.ts" ><b>OpenViduEdition</b>&nbsp;&nbsp;&nbsp;(src/.../openvidu.service.ts)</a>
+                            <a href="#PanelSettingsOptions" title="src/lib/models/panel.model.ts" ><b>PanelSettingsOptions</b>&nbsp;&nbsp;&nbsp;(src/.../panel.model.ts)</a>
                         </li>
                         <li>
                             <a href="#PanelType" title="src/lib/models/panel.model.ts" ><b>PanelType</b>&nbsp;&nbsp;&nbsp;(src/.../panel.model.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#RecordingStatus" title="src/lib/models/recording.model.ts" ><b>RecordingStatus</b>&nbsp;&nbsp;&nbsp;(src/.../recording.model.ts)</a>
                         </li>
                         <li>
                             <a href="#VideoType" title="src/lib/models/video-type.model.ts" ><b>VideoType</b>&nbsp;&nbsp;&nbsp;(src/.../video-type.model.ts)</a>
@@ -79,87 +82,44 @@
     </table>
 </section>
 
-    <h3>src/lib/models/background-effect.model.ts</h3>
+    <h3>src/lib/models/layout.model.ts</h3>
     <section>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="EffectType"></a>
-                        <span class="name "><b>EffectType</b><a href="#EffectType"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="LayoutAlignment"></a>
+                        <span class="name "><b>LayoutAlignment</b><a href="#LayoutAlignment"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;NONE
+                                &nbsp;START
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>NONE</code>
+                                <i>Value : </i><code>start</code>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;BLUR
+                                &nbsp;CENTER
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>BLUR</code>
+                                <i>Value : </i><code>center</code>
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                &nbsp;IMAGE
+                                &nbsp;END
                             </td>
                         </tr>
                         <tr>
                             <td class="col-md-4">
-                                <i>Value : </i><code>IMAGE</code>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-    <h3>src/lib/services/openvidu/openvidu.service.ts</h3>
-    <section>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="OpenViduEdition"></a>
-                        <span class="name "><b>OpenViduEdition</b><a href="#OpenViduEdition"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;CE
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>CE</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;PRO
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>PRO</code>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                &nbsp;ENTERPRISE
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <i>Value : </i><code>ENTERPRISE</code>
+                                <i>Value : </i><code>end</code>
                             </td>
                         </tr>
             </tbody>
@@ -167,6 +127,56 @@
 </section>
     <h3>src/lib/models/panel.model.ts</h3>
     <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PanelSettingsOptions"></a>
+                        <span class="name "><b>PanelSettingsOptions</b><a href="#PanelSettingsOptions"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;GENERAL
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>general</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;AUDIO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>audio</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;VIDEO
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>video</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SUBTITLES
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>subtitles</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -213,6 +223,89 @@
                         <tr>
                             <td class="col-md-4">
                                 <i>Value : </i><code>activities</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;SETTINGS
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>settings</code>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <h3>src/lib/models/recording.model.ts</h3>
+    <section>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="RecordingStatus"></a>
+                        <span class="name "><b>RecordingStatus</b><a href="#RecordingStatus"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;STARTING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>starting</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;STARTED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>started</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;STOPPING
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>stopping</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;STOPPED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>stopped</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;FAILED
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>failed</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                &nbsp;READY
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <i>Value : </i><code>ready</code>
                             </td>
                         </tr>
             </tbody>

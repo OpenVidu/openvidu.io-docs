@@ -35,7 +35,7 @@ docker run --rm -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABASE=op
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
 ```
 
 5) Install NPM dependencies of frontend:
@@ -98,7 +98,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom:2.22.0
+        image: openvidu/openvidu-classroom:2.23.0
         restart: on-failure
         network_mode: host
         environment:
@@ -131,7 +131,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-classroom-demo:2.22.0
+        image: openvidu/openvidu-classroom-demo:2.23.0
         restart: on-failure
         network_mode: host
         environment:

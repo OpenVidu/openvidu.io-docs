@@ -62,15 +62,19 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The *<strong>ovAdditionalPanels</strong> directive allows to add more extra panels to the <a href="../components/PanelComponent.html">PanelComponent</a>. In this example we&#39;ve added a new
-panel besides the defaults.</p>
-<p>As we want to toggle this new panel as the others, we need to add a new button in the <a href="../components/ToolbarComponent.html">ToolbarComponent</a>
+                <p>The *<strong>ovAdditionalPanels</strong> directive allows to add more extra panels to the <a href="../components/PanelComponent.html">PanelComponent</a>. In this example we add a new
+panel alongside the default ones.</p>
+<p>To mimic the toggling behavior of the default panels, we need to add a new button in the <a href="../components/ToolbarComponent.html">ToolbarComponent</a>
 using the <a href="../directives/ToolbarAdditionalPanelButtonsDirective.html">ToolbarAdditionalPanelButtonsDirective</a>.</p>
-<p>You can run the sample <a href="https://docs.openvidu.io/en/2.22.0/components/openvidu-additional-panels#run-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference (onJoinButtonClicked)=&quot;onJoinButtonClicked()&quot; [tokens]=&quot;tokens&quot;&gt;
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.23.0/components/openvidu-additional-panels#running-this-tutorial">here</a>.</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot; [toolbarDisplaySessionName]=&quot;false&quot;&gt;
     &lt;div *ovToolbarAdditionalPanelButtons style=&quot;text-align: center;&quot;&gt;
-        &lt;button (click)=&quot;toggleMyPanel(&#39;my-panel&#39;)&quot;&gt;MY PANEL&lt;/button&gt;
-        &lt;button (click)=&quot;toggleMyPanel(&#39;my-panel2&#39;)&quot;&gt;OTHER PANEL&lt;/button&gt;
+        &lt;button mat-icon-button (click)=&quot;toggleMyPanel(&#39;my-panel&#39;)&quot;&gt;
+            &lt;mat-icon&gt;360&lt;/mat-icon&gt;
+        &lt;/button&gt;
+        &lt;button mat-icon-button (click)=&quot;toggleMyPanel(&#39;my-panel2&#39;)&quot;&gt;
+            &lt;mat-icon&gt;star&lt;/mat-icon&gt;
+        &lt;/button&gt;
     &lt;/div&gt;
     &lt;div *ovAdditionalPanels id=&quot;my-panels&quot;&gt;
         &lt;div id=&quot;my-panel1&quot; *ngIf=&quot;showExternalPanel&quot;&gt;
@@ -84,35 +88,46 @@ using the <a href="../directives/ToolbarAdditionalPanelButtonsDirective.html">To
     &lt;/div&gt;
 &lt;/ov-videoconference&gt;</code></pre></div><br/>
 
-<p>We need to subscribe to the <a href="../injectables/PanelService.html#panelOpenedObs">panelOpenedObs</a> Observable for listening the panel status and update our boolean variables
-(<code>showExternalPanel</code> and <code>showExternalPanel2</code>) for show and hide our panels.</p>
+<p>We need to subscribe to the <a href="../injectables/PanelService.html#panelOpenedObs">panelOpenedObs</a> Observable to listen to the panel status and update our boolean variables
+(<code>showExternalPanel</code> and <code>showExternalPanel2</code>) in charge of showing or hiding them.</p>
 <div><pre class="line-numbers"><code class="language-javascript">export class AdditionalPanelsDirectiveComponent implements OnInit {
-    tokens: TokenModel;
-    sessionId = &#39;chat-panel-directive-example&#39;;
-    OPENVIDU_URL = &#39;https://localhost:4443&#39;;
-    OPENVIDU_SECRET = &#39;MY_SECRET&#39;;
+
+    sessionId = &quot;toolbar-additionalbtn-directive-example&quot;;
+    tokens!: TokenModel;
+
     showExternalPanel: boolean = false;
     showExternalPanel2: boolean = false;
-    constructor(private httpClient: HttpClient, private panelService: PanelService) {}
 
-    ngOnInit() {
+    constructor(
+        private httpClient: HttpClient,
+        private panelService: PanelService
+    ) { }
+
+    async ngOnInit() {
         this.subscribeToPanelToggling();
-    }
-    subscribeToPanelToggling() {
-        this.panelService.panelOpenedObs.subscribe((ev: { opened: boolean; type?: PanelType | string }) =&gt; {
-            this.showExternalPanel = ev.opened &amp;&amp; ev.type === &#39;my-panel&#39;;
-            this.showExternalPanel2 = ev.opened &amp;&amp; ev.type === &#39;my-panel2&#39;;
-        });
-    }
-    async onJoinButtonClicked() {
         this.tokens = {
             webcam: await this.getToken(),
-            screen: await this.getToken()
+            screen: await this.getToken(),
         };
     }
+
+    subscribeToPanelToggling() {
+        this.panelService.panelOpenedObs.subscribe(
+            (ev: { opened: boolean; type?: PanelType | string }) =&gt; {
+                this.showExternalPanel = ev.opened &amp;&amp; ev.type === &quot;my-panel&quot;;
+                this.showExternalPanel2 = ev.opened &amp;&amp; ev.type === &quot;my-panel2&quot;;
+            }
+        );
+    }
+
     toggleMyPanel(type: string) {
         this.panelService.togglePanel(type);
     }
+
+    async getToken(): Promise&lt;string&gt; {
+        // Returns an OpeVidu token
+    }
+
 }</code></pre></div>
             </p>
 

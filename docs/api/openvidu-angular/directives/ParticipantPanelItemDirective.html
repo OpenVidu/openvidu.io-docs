@@ -62,12 +62,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The *<strong>ovParticipantPanelItem</strong> directive allows to replace the default participant panel item template in the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelComponent</a> injecting your own component.</p>
-<p>With *<strong>ovParticipantPanelItem</strong> directive we can access to the participant object from its context using
-the <code>let</code> keyword and referencing to the <code>participant</code> variable: <code>*ovParticipantPanelItem=&quot;let participant&quot;</code>.
- Now we can access to the <a href="../classes/ParticipantAbstractModel.html">ParticipantAbstractModel</a> object.</p>
-<p>You can run the sample <a href="https://docs.openvidu.io/en/2.22.0/components/openvidu-custom-participant-panel-item#run-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference (onJoinButtonClicked)=&quot;onJoinButtonClicked()&quot; [tokens]=&quot;tokens&quot;&gt;
+                <p>The *<strong>ovParticipantPanelItem</strong> directive allows to replace the default participant panel item template in the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelComponent</a> with a custom one.</p>
+<p>With *<strong>ovParticipantPanelItem</strong> directive we can access the participant object from its context using the <code>let</code> keyword and referencing the <code>participant</code>
+variable: <code>*ovParticipantPanelItem=&quot;let participant&quot;</code>. Now we can access the <a href="../classes/ParticipantAbstractModel.html">ParticipantAbstractModel</a> object.</p>
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.23.0/components/openvidu-custom-participant-panel-item#running-this-tutorial">here</a>.</p>
+<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot; [toolbarDisplaySessionName]=&quot;false&quot;&gt;
     &lt;div *ovParticipantPanelItem=&quot;let participant&quot; style=&quot;display: flex&quot;&gt;
         &lt;p&gt;{{ participant.nickname }}&lt;/p&gt;
         &lt;button mat-icon-button [matMenuTriggerFor]=&quot;menu&quot;&gt;&lt;mat-icon&gt;more_vert&lt;/mat-icon&gt;&lt;/button&gt;
@@ -77,21 +76,24 @@ the <code>let</code> keyword and referencing to the <code>participant</code> var
         &lt;/mat-menu&gt;
     &lt;/div&gt;
 &lt;/ov-videoconference&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class ParticipantPanelItemDirectiveComponent {
-    tokens: TokenModel;
+
     sessionId = &#39;participants-panel-directive-example&#39;;
-    OPENVIDU_URL = &#39;https://localhost:4443&#39;;
-    OPENVIDU_SECRET = &#39;MY_SECRET&#39;;
+    tokens!: TokenModel;
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient) { }
 
-    async onJoinButtonClicked() {
-     this.tokens = {
-      webcam: await this.getToken(),
-      screen: await this.getToken()
-     };
+    async ngOnInit() {
+        this.tokens = {
+            webcam: await this.getToken(),
+            screen: await this.getToken()
+        };
     }
-}
-</code></pre></div>
+
+    async getToken(): Promise&lt;string&gt; {
+        // Returns an OpeVidu token
+    }
+
+}</code></pre></div>
             </p>
 
 

@@ -218,13 +218,7 @@ All data sent by **Filebeat** and **Metricbeat** follows a common format named *
 | OpenVidu Pro version | Metricbeat / Filebeat Version | ECS version - (More information about ECS [here](https://www.elastic.co/guide/en/beats/metricbeat/current/exported-fields-ecs.html){:target="_blank"}) |
 |------------------|-------------------------|-------------------------|
 | ≤ 2.15.0         | -                       | -                       |
-| 2.16.0           | 7.8.0                   | 1.5.0                   |
-| 2.17.0           | 7.8.0                   | 1.5.0                   |
-| 2.18.0           | 7.8.0                   | 1.5.0                   |
-| 2.19.0           | 7.8.0                   | 1.5.0                   |
-| 2.20.0           | 7.8.0                   | 1.5.0                   |
-| 2.21.0           | 7.8.0                   | 1.5.0                   |
-| 2.22.0           | 7.8.0                   | 1.5.0                   |
+| ≥ 2.16.0         | 7.8.0                   | 1.5.0                   |
 
 ### Logs and metrics
 
@@ -894,12 +888,7 @@ An external Elastic Stack can be configured with and without security. The table
 |------------------|---------------------------|----------------|---------------------------|
 | ≤ 2.15.0         | -                         | -              | -                         |
 | 2.16.0           | ≥ 7.3.0                   | ≥ 7.3.0        | ≥ 7.3.0                   |
-| 2.17.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
-| 2.18.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
-| 2.19.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
-| 2.20.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
-| 2.21.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
-| 2.22.0           | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
+| ≥ 2.17.0         | ≥ 7.8.0                   | ≥ 7.8.0        | ≥ 7.8.0                   |
 
 ### OpenVidu Pro Configuration for external Elastic Stack
 

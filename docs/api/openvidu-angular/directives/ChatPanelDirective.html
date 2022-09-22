@@ -62,14 +62,13 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The *<strong>ovChatPanel</strong> directive allows to replace the default chat panel template injecting your own component.
-Here we&#39;re going to redefine the chat template in a few code lines.</p>
-<p>You can run the sample <a href="https://docs.openvidu.io/en/2.22.0/components/openvidu-custom-chat-panel#run-this-tutorial">here</a>.</p>
+                <p>The *<strong>ovChatPanel</strong> directive allows to replace the default chat panel template with a custom one.
+In the example below we replace the chat template in a few lines of code.</p>
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.23.0/components/openvidu-custom-chat-panel#running-this-tutorial">here</a>.</p>
 <div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference
-    (onJoinButtonClicked)=&quot;onJoinButtonClicked()&quot;
     (onSessionCreated)=&quot;onSessionCreated($event)&quot;
     [tokens]=&quot;tokens&quot;
-&gt;
+    [toolbarDisplaySessionName]=&quot;false&quot;&gt;
     &lt;div *ovChatPanel id=&quot;my-panel&quot;&gt;
         &lt;h3&gt;Chat&lt;/h3&gt;
         &lt;div&gt;
@@ -82,24 +81,25 @@ Here we&#39;re going to redefine the chat template in a few code lines.</p>
     &lt;/div&gt;
 &lt;/ov-videoconference&gt;</code></pre></div><br/>
 
-<p>As we need to get the <strong>openvidu-browser <a href="https://docs.openvidu.io/en/2.22.0/api/openvidu-browser/classes/Session.html">Session</a></strong>
-for sending messages to others, we can get it from the <code>onSessionCreated</code> event fired by the <a href="../components/VideoconferenceComponent.html">VideoconferenceComponent</a>
+<p>As we need to get the openvidu-browser <strong><a href="https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/classes/Session.html">Session</a></strong>
+object for sending messages to others, we can get it from the <code>onSessionCreated</code> event fired by the <a href="../components/VideoconferenceComponent.html">VideoconferenceComponent</a>
 when the session has been created.</p>
 <p>Once we have the session created, we can use the
-<a href="https://docs.openvidu.io/en/2.22.0/api/openvidu-browser/classes/Session.html#signal">signal</a> method for sending our messages.</p>
+<a href="https://docs.openvidu.io/en/2.23.0/api/openvidu-browser/classes/Session.html#signal">signal</a> method to send our messages.</p>
 <div><pre class="line-numbers"><code class="language-javascript">export class ChatPanelDirectiveComponent {
-    tokens: TokenModel;
-    sessionId = &#39;chat-panel-directive-example&#39;;
-    OPENVIDU_URL = &#39;https://localhost:4443&#39;;
-    OPENVIDU_SECRET = &#39;MY_SECRET&#39;;
-    session: Session;
-    messages: string[] = [];
-    constructor(private httpClient: HttpClient) {}
 
-    async onJoinButtonClicked() {
+    sessionId = &quot;chat-panel-directive-example&quot;;
+    tokens!: TokenModel;
+
+    session!: Session;
+    messages: string[] = [];
+
+    constructor(private httpClient: HttpClient) { }
+
+    async ngOnInit() {
         this.tokens = {
             webcam: await this.getToken(),
-            screen: await this.getToken()
+            screen: await this.getToken(),
         };
     }
 
@@ -115,10 +115,15 @@ when the session has been created.</p>
         const signalOptions: SignalOptions = {
             data: JSON.stringify({ message }),
             type: Signal.CHAT,
-            to: undefined
+            to: undefined,
         };
         this.session.signal(signalOptions);
     }
+
+    async getToken(): Promise&lt;string&gt; {
+        // Returns an OpeVidu token
+    }
+
 }</code></pre></div>
             </p>
 

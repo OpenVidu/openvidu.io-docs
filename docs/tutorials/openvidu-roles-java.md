@@ -23,7 +23,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.22.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
 ```
 
 #### 2. Run the server application and the client application
@@ -38,7 +38,7 @@ mvn --version
 Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.22.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
 ```
 
 Run the application:
@@ -499,7 +499,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-basic-webinar:2.22.0
+        image: openvidu/openvidu-basic-webinar:2.23.0
         restart: on-failure
         network_mode: host
         environment:
@@ -532,7 +532,7 @@ version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-basic-webinar-demo:2.22.0
+        image: openvidu/openvidu-basic-webinar-demo:2.23.0
         restart: on-failure
         network_mode: host
         environment:
