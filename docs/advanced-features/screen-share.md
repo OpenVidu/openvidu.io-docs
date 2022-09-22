@@ -147,7 +147,6 @@ publisher.once('accessAllowed', () => {
         console.error('Error applying constraints: ', error);
     }
 });
-
 ```
 
 <br>

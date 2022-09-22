@@ -7,7 +7,7 @@ An OpenVidu application built with **Ionic**. It uses **Capacitor** as hybrid ru
 - A **native iOS app**
 - A **native desktop app** (using **Electron**)
 - A standard **web app**
-- A **Progressive Web App** (check out [Ionic docs](https://ionicframework.com/docs/deployment/progressive-web-app){:target="_blank"}))
+- A **Progressive Web App** (check out [Ionic docs](https://ionicframework.com/docs/deployment/progressive-web-app){:target="_blank"})
 
 <div class="row">
     <div class="pro-gallery" style="margin: 20px 0 15px 0">

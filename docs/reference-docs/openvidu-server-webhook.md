@@ -3,8 +3,6 @@
 
 OpenVidu offers a WebHook service to receive events in your application server.
 
-<br>
-
 - **[Enable Webhook service](#enable-webhook-service)**
 - **[How your WebHook endpoint should be](#how-your-webhook-endpoint-should-be)**
 - **[Format of the WebHook events](#format-of-the-webhook-events)**

@@ -115,7 +115,7 @@ But this OpenVidu deployment is not secure and anyone could access your video se
 
 Option 1 just requires to follow the official [deployment instructions](deployment/). For option 2, follow the instructions explained in this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**. In that way we will have the OpenVidu deployment and our server application accessible through our LAN network using a single IP, port and SSL certificate.
 
-Either way, remember to configure your new application server URL in the Android app. You can do that on file `openvidu-ios/openvidu-ios/constants/JSONConstants.swift`. The value of `APPLICATION_SERVER_URL` must be the URL of your application server.
+Either way, remember to configure your new application server URL in the iOS app. You can do that on file `openvidu-ios/openvidu-ios/constants/JSONConstants.swift`. The value of `APPLICATION_SERVER_URL` must be the URL of your application server.
 
 <br>
 
