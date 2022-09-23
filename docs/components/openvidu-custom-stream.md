@@ -21,7 +21,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference [tokens]="tokens">
@@ -32,7 +32,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component, we will add the custom template tagged with the `*ovStream` directive. You can see how the `StreamDirective` works [here](/api/openvidu-angular/directives/StreamDirective.html).
+Inside of the `ov-videoconference` component, we will add the custom template tagged with the `*ovStream` directive. You can see how the `StreamDirective` works [here](api/openvidu-angular/directives/StreamDirective.html).
 
 In this case we simply add the participant's nickname in a `p` element below its video stream.
 

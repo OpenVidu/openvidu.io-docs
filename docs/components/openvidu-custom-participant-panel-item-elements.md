@@ -4,7 +4,7 @@
 
 The openvidu-custom-participant-panel-item-elements tutorial demonstrates how to replace the default **participants panel item elements** with custom ones.
 
-This customization is possible thanks to the [**ParticipantsPanelItemElementsDirective**](api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html), which provides us a simple way to customize the [**ParticipantsPanelItemComponent**](/api/openvidu-angular/components/ParticipantPanelItemComponent.html).
+This customization is possible thanks to the [**ParticipantsPanelItemElementsDirective**](api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html), which provides us a simple way to customize the [**ParticipantsPanelItemComponent**](api/openvidu-angular/components/ParticipantPanelItemComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/participant-panel-item-element.mp4" muted async loop autoplay playsinline></video>
@@ -21,7 +21,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference
@@ -37,7 +37,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 <div *ngIf="!connected" style="text-align: center;">Session disconnected</div>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantPanelItemElements` directive. You can see how the `ParticipantPanelItemElementsDirective` works [here](/api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantPanelItemElements` directive. You can see how the `ParticipantPanelItemElementsDirective` works [here](api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html).
 
 In this case, we simply add a custom button to the local participant item element that allows us to leave the session. We don't change the behavior of the remote participant item elements.
 

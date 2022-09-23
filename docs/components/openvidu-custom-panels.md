@@ -23,7 +23,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference [tokens]="tokens">
@@ -36,7 +36,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovPanel` directive. You can see how the `PanelDirective` works [here](/api/openvidu-angular/directives/PanelDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovPanel` directive. You can see how the `PanelDirective` works [here](api/openvidu-angular/directives/PanelDirective.html).
 
 In this case, we customize the chat panel and the participants panel with our own by using directives `*ovChatPanel` and `*ovParticipantsPanel` in two different `div` elements. Note the hierarchy of the HTML elements: the `ov-videoconference` element contains the `ov-panel` element, which in turn contains the `div` elements tagged with the chat and participants panel directives.
 

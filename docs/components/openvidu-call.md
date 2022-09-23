@@ -98,7 +98,7 @@ Let's focus on the [call component template](https://github.com/OpenVidu/openvid
 ></ov-videoconference>
 ```
 
-We need request the OpenVidu tokens to the backend and set them in the `ov-videoconference` component in its tokens input property (see [VideoconferenceComponent reference](/api/openvidu-angular/components/VideoconferenceComponent.html)). Once tokens is defined, the component will automatically join the session.
+We need request the OpenVidu tokens to the backend and set them in the `ov-videoconference` component in its tokens input property (see [VideoconferenceComponent reference](api/openvidu-angular/components/VideoconferenceComponent.html)). Once tokens is defined, the component will automatically join the session.
 
 We are also listening every recording event with the aim of having a properly behaviour of this feature and events such as `onLeaveButtonClicked` for customizing our application's logic. You can see all the events offered by `VideoconferenceComponent` [here](api/openvidu-angular/components/VideoconferenceComponent.html#outputs).
 

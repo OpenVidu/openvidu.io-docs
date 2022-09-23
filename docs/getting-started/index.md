@@ -336,6 +336,6 @@ Visit our **[Support](https://openvidu.io/support){:target="_blank"}** page to l
 
 ## Developing your OpenVidu application
 
-Visit **[Developing your video app](/developing-your-video-app)** section to learn the basic concepts of OpenVidu and how to use it in your new application or integrate it in your existing product.
+Visit **[Developing your video app](developing-your-video-app/)** section to learn the basic concepts of OpenVidu and how to use it in your new application or integrate it in your existing product.
 
 <br>

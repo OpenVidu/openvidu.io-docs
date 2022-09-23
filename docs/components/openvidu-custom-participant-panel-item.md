@@ -4,7 +4,7 @@
 
 The openvidu-custom-participant-panel-item tutorial demonstrates how to replace the default **participants panel item** with a custom one.
 
-This customization is possible thanks to the [**ParticipantsPanelItemDirective**](api/openvidu-angular/directives/ParticipantPanelItemDirective.html), which provides us a simple way to customize the [**ParticipantsPanelItemComponent**](/api/openvidu-angular/components/ParticipantPanelItemComponent.html).
+This customization is possible thanks to the [**ParticipantsPanelItemDirective**](api/openvidu-angular/directives/ParticipantPanelItemDirective.html), which provides us a simple way to customize the [**ParticipantsPanelItemComponent**](api/openvidu-angular/components/ParticipantPanelItemComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/participant-panel-item.mp4" muted async loop autoplay playsinline></video>
@@ -21,7 +21,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
@@ -36,7 +36,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantPanelItem` directive. You can see how the `ParticipantPanelItemDirective` works [here](/api/openvidu-angular/directives/ParticipantPanelItemDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantPanelItem` directive. You can see how the `ParticipantPanelItemDirective` works [here](api/openvidu-angular/directives/ParticipantPanelItemDirective.html).
 
 In this case, we simply add to each participant a button that will show a dropdown menu with two dummy buttons.
 

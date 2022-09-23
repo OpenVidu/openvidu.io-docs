@@ -223,7 +223,7 @@ async function joinSession() {
 }
 ```
 
-That's it. Once you configure the tokens into the webcomponent, it will automatically join the proper session ([onSessionCreated](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#onSessionCreated) event will be dispatched so you can update your webapp).
+That's it. Once you configure the tokens into the webcomponent, it will automatically join the proper session ([onSessionCreated](api/openvidu-angular/components/OpenviduWebComponentComponent.html#onSessionCreated) event will be dispatched so you can update your webapp).
 
 You will be able to see the videconference working and every participant who connects to the same session will be displayed on it.
 
@@ -316,7 +316,7 @@ In the tutorial above, **OpenVidu Web Component** receives the `participantName`
 ```javascript
 webComponent.participantName = participantName;
 ```
-In addition to this parameter, OpenVidu Web Component offers several other parameters for **customizing the UI** as you wish. You can see all the UI parameters [here](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#inputs).
+In addition to this parameter, OpenVidu Web Component offers several other parameters for **customizing the UI** as you wish. You can see all the UI parameters [here](api/openvidu-angular/components/OpenviduWebComponentComponent.html#inputs).
 
 Here are some **examples**:
 

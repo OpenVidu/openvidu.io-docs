@@ -4,7 +4,7 @@
 
 The openvidu-custom-participants-panel tutorial demonstrates how to replace the default **participants panel**, injecting our own with the aim of adapting the app to our needs.
 
-This customization is possible thanks to the [**ParticipantsPanelDirective**](api/openvidu-angular/directives/ParticipantsPanelDirective.html), which provides us a simple way to customize the [**ParticipantsPanelComponent**](/api/openvidu-angular/components/ParticipantsPanelComponent.html).
+This customization is possible thanks to the [**ParticipantsPanelDirective**](api/openvidu-angular/directives/ParticipantsPanelDirective.html), which provides us a simple way to customize the [**ParticipantsPanelComponent**](api/openvidu-angular/components/ParticipantsPanelComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/participants-panel.png">
@@ -21,7 +21,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false" (onSessionCreated)="subscribeToParticipants()">
@@ -36,7 +36,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantsPanel`. You can see how the `ParticipantsPanelDirective` works [here](/api/openvidu-angular/directives/ParticipantsPanelDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovParticipantsPanel`. You can see how the `ParticipantsPanelDirective` works [here](api/openvidu-angular/directives/ParticipantsPanelDirective.html).
 
 In this case we replace the default participants panel with a very simple custom one. Nicknames of local and remote participants will be displayed in simple `ul` elements.
 
