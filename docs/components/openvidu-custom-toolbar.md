@@ -4,7 +4,7 @@
 
 The openvidu-custom-toolbar tutorial demonstrates how to replace the default toolbar with a custom one.
 
-This customization is possible thanks to the [**ToolbarDirective**](/api/openvidu-angular/directives/ToolbarDirective.html), which provides us a simple way to replace and adapt the [**ToolbarComponent**](/api/openvidu-angular/components/ToolbarComponent.html).
+This customization is possible thanks to the [**ToolbarDirective**](api/openvidu-angular/directives/ToolbarDirective.html), which provides us a simple way to replace and adapt the [**ToolbarComponent**](api/openvidu-angular/components/ToolbarComponent.html).
 
 
 <p align="center" style="margin-top: 30px">
@@ -22,7 +22,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 
 ```html
@@ -34,7 +34,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovToolbar` directive. You can see how the `ToolbarDirective` works [here](/api/openvidu-angular/directives/ToolbarDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovToolbar` directive. You can see how the `ToolbarDirective` works [here](api/openvidu-angular/directives/ToolbarDirective.html).
 
 `app.component.ts` declares the following properties and methods:
 

@@ -4,7 +4,7 @@
 
 The openvidu-custom-layout tutorial demonstrates how to replace the default layout with a custom one.
 
-This customization is possible thanks to the [**LayoutDirective**](/api/openvidu-angular/directives/LayoutDirective.html), which provides us a simple way to customize the [**LayoutComponent**](/api/openvidu-angular/components/LayoutComponent.html).
+This customization is possible thanks to the [**LayoutDirective**](api/openvidu-angular/directives/LayoutDirective.html), which provides us a simple way to customize the [**LayoutComponent**](api/openvidu-angular/components/LayoutComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/custom-layout.png">
@@ -23,7 +23,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference	[tokens]="tokens" (onSessionCreated)="subscribeToParticipants()">
@@ -40,7 +40,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovLayout` directive. You can see how the `LayoutDirective` works [here](/api/openvidu-angular/directives/LayoutDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovLayout` directive. You can see how the `LayoutDirective` works [here](api/openvidu-angular/directives/LayoutDirective.html).
 
 In this case we customize the layout in two different `div` elements, one for displaying the local participant and other for displaying remote participants.
 

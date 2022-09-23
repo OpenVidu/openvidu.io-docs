@@ -4,7 +4,7 @@
 
 The openvidu-custom-chat-panel tutorial demonstrates how to replace the default **chat panel** with a custom one.
 
-This customization is possible thanks to the [**ChatPanelDirective**](/api/openvidu-angular/directives/ChatPanelDirective.html), which provides us a simple way to customize the [**ChatPanelComponent**](/api/openvidu-angular/components/ChatPanelComponent.html).
+This customization is possible thanks to the [**ChatPanelDirective**](api/openvidu-angular/directives/ChatPanelDirective.html), which provides us a simple way to customize the [**ChatPanelComponent**](api/openvidu-angular/components/ChatPanelComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/chat-panel.png">
@@ -21,7 +21,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference
@@ -41,7 +41,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovChatPanel` directive. You can see how the `ChatPanelDirective` works [here](/api/openvidu-angular/directives/ChatPanelDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovChatPanel` directive. You can see how the `ChatPanelDirective` works [here](api/openvidu-angular/directives/ChatPanelDirective.html).
 
 In this case we replace the default chat panel with a very simple custom one. Messages are displayed in a `ul` list, and the user can send the content of an `input` element as a new message by pressing the `Send` button.
 

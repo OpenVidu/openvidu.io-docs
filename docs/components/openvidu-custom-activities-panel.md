@@ -4,7 +4,7 @@
 
 The openvidu-custom-activities-panel tutorial shows how to replace the default **activities panel** with a custom one.
 
-This customization is possible thanks to the [**ActivitiesPanelDirective**](/api/openvidu-angular/directives/ActivitiesPanelDirective.html), which provides us a simple way to customize the [**ActivitiesPanelComponent**](/api/openvidu-angular/components/ActivitiesPanelComponent.html).
+This customization is possible thanks to the [**ActivitiesPanelDirective**](api/openvidu-angular/directives/ActivitiesPanelDirective.html), which provides us a simple way to customize the [**ActivitiesPanelComponent**](api/openvidu-angular/components/ActivitiesPanelComponent.html).
 
 <p align="center" style="margin-top: 30px">
   <img class="img-responsive" style="max-width: 80%" src="img/components/activities-panel.png">
@@ -21,7 +21,7 @@ This is an Angular project generated with angular-cli tool, and therefore you wi
 
 First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
 
-The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
 
 ```html
 <ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
@@ -46,7 +46,7 @@ The [VideoconferenceComponent](/api/openvidu-angular/components/VideoconferenceC
 </ov-videoconference>
 ```
 
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovActivitiesPanel` directive. You can see how the `ActivitiesPanelDirective` works [here](/api/openvidu-angular/directives/ActivitiesPanelDirective.html).
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovActivitiesPanel` directive. You can see how the `ActivitiesPanelDirective` works [here](api/openvidu-angular/directives/ActivitiesPanelDirective.html).
 
 ## Running this tutorial
 

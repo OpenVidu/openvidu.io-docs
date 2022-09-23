@@ -2415,15 +2415,15 @@ OpenVidu 2.12.0 is now using the latest 6.13.0 version of [Kurento](https://doc-
 
 ##### New payment method
 
-This is possibly the biggest change for this release. The number of customers of our OpenVidu Pro tier has increased considerably in recent times, and we needed to facilitate the process of subscribing to OpenVidu Pro. We have introduced a new **license key** system for deploying OpenVidu Pro. Now anyone can create an [OpenVidu account](/account), and in just a few clicks you will be able to purchase an OpenVidu Pro license to launch as many OpenVidu Pro clusters as you want.
+This is possibly the biggest change for this release. The number of customers of our OpenVidu Pro tier has increased considerably in recent times, and we needed to facilitate the process of subscribing to OpenVidu Pro. We have introduced a new **license key** system for deploying OpenVidu Pro. Now anyone can create an [OpenVidu account](https://openvidu.io/account), and in just a few clicks you will be able to purchase an OpenVidu Pro license to launch as many OpenVidu Pro clusters as you want.
 
-> Visit [Pricing](/pricing) section to learn more about the new OpenVidu Pro subscription model. You have a **15-day free trial period** when registering as an OpenVidu user!
+> Visit [Pricing](https://openvidu.io/pricing) section to learn more about the new OpenVidu Pro subscription model. You have a **15-day free trial period** when registering as an OpenVidu user!
 
 <br>
 
 ##### Simplified pricing
 
-Related to previous point, we have now removed the minimum 10$ per month fee and users receive a 15-day free trial period when they [register as OpenVidu users](/account). Check it out now for free!
+Related to previous point, we have now removed the minimum 10$ per month fee and users receive a 15-day free trial period when they [register as OpenVidu users](https:/openvidu.io/account). Check it out now for free!
 
 <br>
 

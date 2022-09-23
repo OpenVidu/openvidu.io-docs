@@ -120,7 +120,7 @@ We also need to customize the [StreamComponent](api/openvidu-angular/components/
 
 Now, using the [StreamDirective](api/openvidu-angular/directives/StreamDirective.html) (`*ovStream`) we can customize the StreamComponent and we can add whatever we want to it. In this case we simply add an icon button indicating the participant has raised their hand.
 
-We also add the hand notification to the participants panel. We handle this using the [ParticipantPanelItemElementsDirective](/api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html) (`*ovParticipantPanelItemElements`). In this case we simply add an icon button indicating the participant has raised their hand.
+We also add the hand notification to the participants panel. We handle this using the [ParticipantPanelItemElementsDirective](api/openvidu-angular/directives/ParticipantPanelItemElementsDirective.html) (`*ovParticipantPanelItemElements`). In this case we simply add an icon button indicating the participant has raised their hand.
 
 ```html
 <ov-videoconference (onSessionCreated)="onSessionCreated($event)" [tokens]="tokens" [prejoin]="true">
