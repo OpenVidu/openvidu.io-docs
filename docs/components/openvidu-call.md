@@ -10,6 +10,98 @@ Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for 
   <video class="img-responsive" style="max-width: 80%" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video>
 </p>
 
+## Running the application
+
+To run OpenVidu Call you need the three components started in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}:
+
+```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
+```
+
+#### 2. Run your preferred server application
+
+Let's run the server application. Choose one of the backends offered in OpenVidu Call:
+
+<div class="lang-tabs-container" markdown="1">
+
+<div class="lang-tabs-header">
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+</div>
+
+<div id="node" class="lang-tabs-content" markdown="1">
+
+You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="\_blank"}.
+
+1) Clone the repository
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
+```
+
+2) Install dependencies
+
+```bash
+cd openvidu-call-back
+npm install
+```
+
+3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
+
+```bash
+npm run start
+```
+
+</div>
+
+<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
+
+You need [Java](https://www.java.com/en/download/manual.jsp){:target="\_blank"} and [Maven](https://maven.apache.org/){:target="\_blank"} to run the app.
+
+1) Clone the repository
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
+```
+
+2) Install dependencies
+
+```bash
+cd openvidu-call-back-java
+mvn install
+```
+
+3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
+
+```bash
+mvn spring-boot:run
+```
+
+</div>
+</div>
+
+<br>
+
+#### 3. Run the client application
+
+Install frontend dependencies in path `openvidu-tutorials/openvidu-call/openvidu-call-front`:
+
+```bash
+npm install
+```
+
+Run the client application:
+
+```bash
+npx ng serve --open
+```
+
 ## Understanding the code
 
 OpenVidu Call is the production ready videconference app included by default in any OpenVidu deployment. OpenVidu Call consists of:
@@ -102,98 +194,6 @@ We are also listening to some events such as `onLeaveButtonClicked` to customize
 <br>
 
 ---
-
-## Running the application
-
-To run OpenVidu Call you need the three components started in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
-
-#### 1. Run OpenVidu deployment
-
-Using [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}:
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
-```
-
-#### 2. Run your preferred server application
-
-Let's run the server application. Choose one of the backends offered in OpenVidu Call:
-
-<div class="lang-tabs-container" markdown="1">
-
-<div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Node</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
-</div>
-
-<div id="node" class="lang-tabs-content" markdown="1">
-
-You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="\_blank"}.
-
-1) Clone the repository
-
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
-```
-
-2) Install dependencies
-
-```bash
-cd openvidu-call-back
-npm install
-```
-
-3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
-
-```bash
-npm run start
-```
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
-
-You need [Java](https://www.java.com/en/download/manual.jsp){:target="\_blank"} and [Maven](https://maven.apache.org/){:target="\_blank"} to run the app.
-
-1) Clone the repository
-
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
-```
-
-2) Install dependencies
-
-```bash
-cd openvidu-call-back-java
-mvn install
-```
-
-3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
-
-```bash
-mvn spring-boot:run
-```
-
-</div>
-</div>
-
-<br>
-
-#### 3. Run the client application
-
-Install frontend dependencies in path `openvidu-tutorials/openvidu-call/openvidu-call-front`:
-
-```bash
-npm install
-```
-
-Run the client application:
-
-```bash
-npx ng serve --open
-```
 
 ## Configuration parameters for OpenVidu Call backend
 
