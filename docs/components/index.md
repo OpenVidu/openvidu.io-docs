@@ -7,20 +7,20 @@ OpenVidu Components is a new frontend framework built for making videoconferenci
 > _OpenVidu Components_ is only one of the three strategies available to integrate OpenVidu in your application's client. You can take a look to sections [Ready-to-use component](ready-to-use-component/) or [Full control of the UI](full-control-ui/) to explore the other alternatives.
 
 <div class="pro-gallery" style="margin: 40px 40px 60px 40px">
-    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="/video/components/ov-call.mp4">
-        <video class="img-responsive img-wellcome" src="/video/components/ov-call.mp4" muted playsinline autoplay loop async></video>
+    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/ov-call.mp4">
+        <video class="img-responsive img-wellcome" src="video/components/ov-call.mp4" muted playsinline autoplay loop async></video>
     </a>
-    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="/video/components/custom-panels.mp4">
-        <video class="img-responsive img-wellcome" src="/video/components/custom-panels.mp4" muted playsinline autoplay loop async></video>
+    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/custom-panels.mp4">
+        <video class="img-responsive img-wellcome" src="video/components/custom-panels.mp4" muted playsinline autoplay loop async></video>
     </a>
-    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="/video/components/additional-panels.mp4">
-        <video class="img-responsive img-wellcome" src="/video/components/additional-panels.mp4" muted playsinline autoplay loop async></video>
+    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/additional-panels.mp4">
+        <video class="img-responsive img-wellcome" src="video/components/additional-panels.mp4" muted playsinline autoplay loop async></video>
     </a>
-    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="/video/components/participant-panel-item-element.mp4">
-        <video class="img-responsive img-wellcome" src="/video/components/participant-panel-item-element.mp4" muted playsinline autoplay loop async></video>
+    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/participant-panel-item-element.mp4">
+        <video class="img-responsive img-wellcome" src="video/components/participant-panel-item-element.mp4" muted playsinline autoplay loop async></video>
     </a>
-    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="/video/components/participant-panel-item.mp4">
-        <video class="img-responsive img-wellcome" src="/video/components/participant-panel-item.mp4" muted playsinline autoplay loop async></video>
+    <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/participant-panel-item.mp4">
+        <video class="img-responsive img-wellcome" src="video/components/participant-panel-item.mp4" muted playsinline autoplay loop async></video>
     </a>
     <a data-fancybox="gallery" data-type="iframe" class="fancybox-img" href="video/components/toggle-hand.mp4">
         <video class="img-responsive img-wellcome" src="video/components/toggle-hand.mp4" muted async loop autoplay playsinline></video>
