@@ -79,8 +79,7 @@ To serve the tutorial:
 http-server openvidu-tutorials/openvidu-webcomponent/web
 ```
 
-Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you run the OpenVidu deployment docker container, an alert message will suggest you accept the self-signed certificate when joining an OpenVidu session for the first time.
-
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
