@@ -9,9 +9,59 @@ openvidu-toggle-hand is an Angular app developed with openvidu-angular library a
   <video class="img-responsive" style="max-width: 80%" src="video/components/toggle-hand.mp4" muted async loop autoplay playsinline></video>
 </p>
 
+<br>
+
+
+## Running this tutorial
+
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
+
+```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
+```
+
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [Angular CLI](https://angular.io/cli){:target="_blank"} to serve the application. Check them with the following command:
+
+```bash
+npm -v
+ng v
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+
+cd openvidu-tutorials/openvidu-components/openvidu-toggle-hand
+npm install
+ng serve
+```
+
+Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
+
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+---
+
 ## Understanding the code
 
-This application is a simple Angular app using [openvidu-angular](api/openvidu-angular/) library. It uses prebuilt components to 
+This application is a simple Angular app using [openvidu-angular](api/openvidu-angular/) library. It uses prebuilt components to
 
 The files we are going to focus on are the following ones:
 
@@ -164,52 +214,3 @@ const config: OpenViduAngularConfig = {
 ```
 
 Now we can get our custom `hasHandRaised` participant property in the **ParticipantsPanelComponent** and in the **StreamComponent**.
-
-<br>
-
----
-
-## Running this tutorial
-
-To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
-
-#### 1. Run OpenVidu deployment
-
-Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
-```
-
-#### 2. Run your preferred server application sample
-
-For more information visit [Application server](application-server/).
-
-<div id="application-server-wrapper"></div>
-<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
-
-#### 3. Run the client application tutorial
-
-You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [Angular CLI](https://angular.io/cli){:target="_blank"} to serve the application. Check them with the following command:
-
-```bash
-npm -v
-ng v
-```
-
-To serve the tutorial:
-
-```bash
-# Using the same repository openvidu-tutorials from step 2
-
-cd openvidu-tutorials/openvidu-components/openvidu-toggle-hand
-npm install
-ng serve
-```
-
-Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
-
-> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
