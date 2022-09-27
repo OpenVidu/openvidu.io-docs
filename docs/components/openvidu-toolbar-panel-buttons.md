@@ -114,7 +114,7 @@ getToken() {
 
 Where:
 
-- `APPLICATION_SERVER_URL`: URL to commicate the client application with the server application to request OpenVidu tokens.
+- `APPLICATION_SERVER_URL`: URL to communicate the client application with the server application to request OpenVidu tokens.
 - `sessionId`: OpenVidu Session identifier. This is the session where the VideoconferenceComponent will connect to.
 - `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
 - `constructor` method with dependency injection.
