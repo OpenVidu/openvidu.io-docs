@@ -10,12 +10,61 @@ This customization is possible thanks to the [**ParticipantsPanelItemDirective**
   <video class="img-responsive" style="max-width: 80%" src="video/components/participant-panel-item.mp4" muted async loop autoplay playsinline></video>
 </p>
 
+<br>
+
+## Running this tutorial
+
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
+
+#### 1. Run OpenVidu deployment
+
+Using [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}:
+
+```bash
+# WARNING: this container is not suitable for production deployments of OpenVidu
+# Visit https://docs.openvidu.io/en/stable/deployment
+
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
+```
+
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="\_blank"} and [Angular CLI](https://angular.io/cli){:target="\_blank"} to serve the application. Check them with the following command:
+
+```bash
+npm -v
+ng v
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+
+cd openvidu-tutorials/openvidu-components/openvidu-custom-participant-panel-item
+npm install
+ng serve
+```
+
+Go to [`http://localhost:4200`](http://localhost:4200){:target="\_blank"} to test the app once the server is running.
+
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+---
+
 ## Understanding the code
 
 This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
 - `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
-- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
+- `app.component.ts`: defines _AppComponent_, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
 
 ---
 
@@ -25,14 +74,16 @@ The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceCo
 
 ```html
 <ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
-  <div *ovParticipantPanelItem="let participant" style="display: flex">
-    <p>{{ participant.nickname }}</p>
-    <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Button 1</button>
-      <button mat-menu-item>Button 2</button>
-    </mat-menu>
-  </div>
+	<div *ovParticipantPanelItem="let participant" style="display: flex">
+		<p>{{ participant.nickname }}</p>
+		<button mat-icon-button [matMenuTriggerFor]="menu">
+			<mat-icon>more_vert</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu">
+			<button mat-menu-item>Button 1</button>
+			<button mat-menu-item>Button 2</button>
+		</mat-menu>
+	</div>
 </ov-videoconference>
 ```
 
@@ -43,7 +94,7 @@ In this case, we simply add to each participant a button that will show a dropdo
 `app.component.ts` declares the following properties and methods:
 
 ```javascript
-APPLICATION_SERVER_URL = window.location.protocol + '//' + window.location.hostname + ':5000/';
+APPLICATION_SERVER_URL = 'http://localhost:5000/';
 
 sessionId = 'participants-panel-directive-example';
 tokens!: TokenModel;
@@ -69,52 +120,3 @@ Where:
 - `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
 - `constructor` method with dependency injection.
 - `ngOnInit` method where OpenVidu Tokens are requested.
-
-<br>
-
----
-
-## Running this tutorial
-
-To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
-
-#### 1. Run OpenVidu deployment
-
-Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
-
-```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu
-# Visit https://docs.openvidu.io/en/stable/deployment
-
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
-```
-
-#### 2. Run your preferred server application sample
-
-For more information visit [Application server](application-server/).
-
-<div id="application-server-wrapper"></div>
-<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
-
-#### 3. Run the client application tutorial
-
-You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} and [Angular CLI](https://angular.io/cli){:target="_blank"} to serve the application. Check them with the following command:
-
-```bash
-npm -v
-ng v
-```
-
-To serve the tutorial:
-
-```bash
-# Using the same repository openvidu-tutorials from step 2
-
-cd openvidu-tutorials/openvidu-components/openvidu-custom-participant-panel-item
-npm install
-ng serve
-```
-
-Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
-
-> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**

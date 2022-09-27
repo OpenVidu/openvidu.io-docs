@@ -10,85 +10,8 @@ This customization is possible thanks to the [**ToolbarAdditionalButtonsDirectiv
   <img class="img-responsive" style="max-width: 80%" src="img/components/toolbar-buttons.png">
 </p>
 
-## Understanding the code
-
-This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
-
-- `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
-- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
-
----
-
-First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
-
-The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
-
-```html
-<ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
-  <div *ovToolbarAdditionalButtons style="text-align: center;">
-    <button mat-icon-button (click)="toggleVideo()">
-      <mat-icon>videocam</mat-icon>
-    </button>
-    <button mat-icon-button (click)="toggleAudio()">
-      <mat-icon>mic</mat-icon>
-    </button>
-  </div>
-</ov-videoconference>
-```
-
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovToolbarAdditionalButtons` directive. You can see how the `ToolbarAdditionalButtonsDirective` works [here](api/openvidu-angular/directives/ToolbarAdditionalButtonsDirective.html).
-
-In this case, we simply add two extra buttons that allow toggling video and audio streams.
-
-`app.component.ts` declares the following properties and methods:
-
-```javascript
-APPLICATION_SERVER_URL = window.location.protocol + '//' + window.location.hostname + ':5000/';
-
-sessionId = 'toolbar-additionalbtn-directive-example';
-tokens!: TokenModel;
-
-constructor(
-  private httpClient: HttpClient,
-  private openviduService: OpenViduService,
-  private participantService: ParticipantService
-) { }
-
-async ngOnInit() {
-  this.tokens = {
-    webcam: await this.getToken(),
-    screen: await this.getToken()
-  };
-}
-
-toggleVideo() {
-  const publishVideo = !this.participantService.isMyVideoActive();
-  this.openviduService.publishVideo(publishVideo);
-}
-
-toggleAudio() {
-  const publishAudio = !this.participantService.isMyAudioActive();
-  this.openviduService.publishAudio(publishAudio);
-}
-
-getToken() {
-  // Requesting tokens to the server application
-}
-```
-
-Where:
-
-- `APPLICATION_SERVER_URL`: URL to commicate the client application with the server application to request OpenVidu tokens.
-- `sessionId`: OpenVidu Session identifier. This is the session where the VideoconferenceComponent will connect to.
-- `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
-- `publishAudio`, `publishVideo`: boolean properties to control the publishing of video and audio.
-- `constructor` method with dependency injection.
-- `ngOnInit` method where OpenVidu Tokens are requested.
-- `toggleVideo`, `toggleAudio` methods that allow muting and unmuting the user's video and audio streams.
-
 <br>
 
----
 
 ## Running this tutorial
 
@@ -134,3 +57,81 @@ ng serve
 Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
 
 > To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+---
+
+## Understanding the code
+
+This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
+
+- `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
+- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
+
+---
+
+First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
+
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+
+```html
+<ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
+  <div *ovToolbarAdditionalButtons style="text-align: center;">
+    <button mat-icon-button (click)="toggleVideo()">
+      <mat-icon>videocam</mat-icon>
+    </button>
+    <button mat-icon-button (click)="toggleAudio()">
+      <mat-icon>mic</mat-icon>
+    </button>
+  </div>
+</ov-videoconference>
+```
+
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovToolbarAdditionalButtons` directive. You can see how the `ToolbarAdditionalButtonsDirective` works [here](api/openvidu-angular/directives/ToolbarAdditionalButtonsDirective.html).
+
+In this case, we simply add two extra buttons that allow toggling video and audio streams.
+
+`app.component.ts` declares the following properties and methods:
+
+```javascript
+APPLICATION_SERVER_URL = 'http://localhost:5000/';
+
+sessionId = 'toolbar-additionalbtn-directive-example';
+tokens!: TokenModel;
+
+constructor(
+  private httpClient: HttpClient,
+  private openviduService: OpenViduService,
+  private participantService: ParticipantService
+) { }
+
+async ngOnInit() {
+  this.tokens = {
+    webcam: await this.getToken(),
+    screen: await this.getToken()
+  };
+}
+
+toggleVideo() {
+  const publishVideo = !this.participantService.isMyVideoActive();
+  this.openviduService.publishVideo(publishVideo);
+}
+
+toggleAudio() {
+  const publishAudio = !this.participantService.isMyAudioActive();
+  this.openviduService.publishAudio(publishAudio);
+}
+
+getToken() {
+  // Requesting tokens to the server application
+}
+```
+
+Where:
+
+- `APPLICATION_SERVER_URL`: URL to commicate the client application with the server application to request OpenVidu tokens.
+- `sessionId`: OpenVidu Session identifier. This is the session where the VideoconferenceComponent will connect to.
+- `tokens`: object where OpenVidu Tokens are stored. The VideoconferenceComponent uses this object to connect to the session.
+- `publishAudio`, `publishVideo`: boolean properties to control the publishing of video and audio.
+- `constructor` method with dependency injection.
+- `ngOnInit` method where OpenVidu Tokens are requested.
+- `toggleVideo`, `toggleAudio` methods that allow muting and unmuting the user's video and audio streams.

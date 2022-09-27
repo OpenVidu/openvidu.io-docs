@@ -10,44 +10,6 @@ This customization is possible thanks to the [**ActivitiesPanelDirective**](api/
   <img class="img-responsive" style="max-width: 80%" src="img/components/activities-panel.png">
 </p>
 
-## Understanding the code
-
-This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
-
-- `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
-- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
-
----
-
-First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
-
-The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
-
-```html
-<ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
-    <div *ovToolbarAdditionalPanelButtons style="text-align: center;">
-        <button mat-icon-button (click)="toggleMyPanel('my-panel')">
-            <mat-icon>360</mat-icon>
-        </button>
-        <button mat-icon-button (click)="toggleMyPanel('my-panel2')">
-            <mat-icon>star</mat-icon>
-        </button>
-    </div>
-    <div *ovAdditionalPanels id="my-panels">
-        <div id="my-panel1" *ngIf="showExternalPanel">
-            <h2>NEW PANEL</h2>
-            <p>This is my new additional panel</p>
-        </div>
-        <div id="my-panel2" *ngIf="showExternalPanel2">
-            <h2>NEW PANEL 2</h2>
-            <p>This is other new panel</p>
-        </div>
-    </div>
-</ov-videoconference>
-```
-
-Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovActivitiesPanel` directive. You can see how the `ActivitiesPanelDirective` works [here](api/openvidu-angular/directives/ActivitiesPanelDirective.html).
-
 ## Running this tutorial
 
 To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
@@ -92,3 +54,43 @@ ng serve
 Go to [`http://localhost:4200`](http://localhost:4200){:target="_blank"} to test the app once the server is running.
 
 > To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+---
+
+## Understanding the code
+
+This is an Angular project generated with angular-cli tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
+
+- `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
+- `app.component.ts`: defines *AppComponent*, main component of the app. It handles the request of OpenVidu tokens to pass them to the videoconference component, so it is able to connect to the OpenVidu session.
+
+---
+
+First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
+
+The [VideoconferenceComponent](api/openvidu-angular/components/VideoconferenceComponent.html) needs the OpenVidu tokens to connect to the session. We request them on `ngOnInit` method. The VideoconferenceComponent will automatically use them to connect to the session when available.
+
+```html
+<ov-videoconference [tokens]="tokens" [toolbarDisplaySessionName]="false">
+    <div *ovToolbarAdditionalPanelButtons style="text-align: center;">
+        <button mat-icon-button (click)="toggleMyPanel('my-panel')">
+            <mat-icon>360</mat-icon>
+        </button>
+        <button mat-icon-button (click)="toggleMyPanel('my-panel2')">
+            <mat-icon>star</mat-icon>
+        </button>
+    </div>
+    <div *ovAdditionalPanels id="my-panels">
+        <div id="my-panel1" *ngIf="showExternalPanel">
+            <h2>NEW PANEL</h2>
+            <p>This is my new additional panel</p>
+        </div>
+        <div id="my-panel2" *ngIf="showExternalPanel2">
+            <h2>NEW PANEL 2</h2>
+            <p>This is other new panel</p>
+        </div>
+    </div>
+</ov-videoconference>
+```
+
+Inside of the `ov-videoconference` component we add the custom template tagged with the `*ovActivitiesPanel` directive. You can see how the `ActivitiesPanelDirective` works [here](api/openvidu-angular/directives/ActivitiesPanelDirective.html).
