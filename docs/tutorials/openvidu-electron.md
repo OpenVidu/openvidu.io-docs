@@ -57,6 +57,19 @@ The app will start automatically as a native desktop application, regardless of 
 
 > To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
+<div class="row no-margin row-gallery">
+	<div class="col-md-6">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-electron.png">
+            <img class="img-responsive" src="img/demos/openvidu-electron.png">
+        </a>
+	</div>
+	<div class="col-md-6">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu-electron2.png">
+            <img class="img-responsive" src="img/demos/openvidu-electron2.png">
+        </a>
+	</div>
+</div>
+
 ## Understanding the code
 
 As an Electron app, the project has a `main.js` file that serves as entry point. It has been barely modified at all, so it remains basically the same as it is by default in the [electron-quick-start](https://github.com/electron/electron-quick-start){:target="_blank"} example. Most important files are the following ones:
