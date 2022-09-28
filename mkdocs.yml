@@ -32,6 +32,7 @@ nav:
               - openvidu-custom-participant-panel-item: components/openvidu-custom-participant-panel-item.md
               - openvidu-custom-participant-panel-item-elements: components/openvidu-custom-participant-panel-item-elements.md
               - openvidu-toggle-hand: components/openvidu-toggle-hand.md
+              - openvidu-admin-dashboard: components/openvidu-admin-dashboard.md
           - OpenVidu Call: components/openvidu-call.md
     - Full control of the UI:
               - Intro: full-control-ui/index.md
