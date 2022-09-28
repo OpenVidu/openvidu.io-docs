@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-components/openvidu-admin-dashboard" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-openvidu-admin-dashboard tutorial shows how easily you can integrate a admin dashboard of your **openvidu-angular** based application.
+The openvidu-admin-dashboard tutorial demonstrates how to integrate an administration dashboard to your **OpenVidu Components** based application. In this case, our custom component will display a list to manage the recordings of your OpenVidu deployment: search, order by, play, download, delete.
 
 <p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/admin-dashboard.mp4" muted async loop autoplay playsinline></video>
@@ -69,17 +69,17 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    We are using a basic server application which it does not include any recording and authentication logic.
+    We are using a very basic server application which does not include any recording and authentication logic.
 	<br>
-	As <i>AdminLoginComponent</i> and <i>AdminDashboardComponent</i> need an application server with user control and recording support respectively, we have simulating the admin authentication for educational purposes. <strong>You must include, in addition to the recording, authentication logic in your application server for having a secure admin dashboard.</strong>
+	As <i>AdminLoginComponent</i> and <i>AdminDashboardComponent</i> need an application server with user control and recording support respectively, we have simulated the admin authentication for educational purposes. <strong>You must include authentication logic in your server application to have a properly secured admin dashboard.</strong>
   </div>
 </div>
 
 ---
 
-First, we need to install the openvidu-angular library. You can check how to do that [here](api/openvidu-angular/).
+First, we need to install the **openvidu-angular** library. You can check how to do that [here](api/openvidu-angular/).
 
-The [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.html) emits an event when a login button is clicked. Listen to `onLoginButtonClicked` event we will be able to authenticate for accessing to the admin dashboard. As said above, we have simulated this authentication for teaching purposes.
+The [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.html) emits an event when the login button is clicked. Listening to `onLoginButtonClicked` event we will be able to authenticate to gain access to the admin dashboard. As said above, we have simulated this authentication for educational purposes.
 
 ```html
 <ov-admin-login
@@ -88,9 +88,9 @@ The [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.h
 ></ov-admin-login>
 ```
 
-Once you are logged as admin, you can show the [AdminDashboardComponent](/api/openvidu-angular/components/AdminDashboardComponent.html). This component needs a recording list with the aim of provide to you recording management allowing you to review all your recordings, preview them, download them or delete those you don't need anymore. Just with a couple of clicks.
+Once you are logged as an admin user, we can show the [AdminDashboardComponent](/api/openvidu-angular/components/AdminDashboardComponent.html). This component needs a recording list so the administrator can review all the recordings, preview them, download them or delete them. Just with a couple of clicks.
 
-In this tutorial, the `recordingsList` will be empty because there is not recording support in the basic server application. Also, the _AdminDashboardComponent_ provides multiple events for the recording magemente as `onRefreshRecordingsClicked` or `onDeleteRecordingClicked` and it also provides a way to listen when you click the logout button with the `onLogoutClicked` event.
+In this tutorial, the `recordingsList` will be empty because there is not recording support in the basic server application. Also, the _AdminDashboardComponent_ provides multiple events for the recording management as `onRefreshRecordingsClicked` or `onDeleteRecordingClicked` and it also provides a way to listen when you click the logout button with the `onLogoutClicked` event.
 
 ```html
 <ov-admin-dashboard
@@ -140,8 +140,8 @@ onDeleteRecordingClicked(recordingId: string) {
 Where:
 
 - `logged`: boolean variable where auth state is stored.
-- `constructor` method with dependency injection.
-- `onLoginClicked` method which is invoked when _AdminLoginComponent_ fires the `onLoginClicked` events.
-- `onLogoutClicked` method which is invoked when _AdminDashboardComponent_ fires the `onLogoutClicked` events.
-- `onRefreshRecordingsClicked` method which is invoked when _AdminDashboardComponent_ fires the `onRefreshRecordingsClicked` events.
-- `onDeleteRecordingClicked` method which is invoked when _AdminDashboardComponent_ fires the `onDeleteRecordingClicked` events.
+- `constructor`: method with dependency injection.
+- `onLoginClicked`: method invoked when _AdminLoginComponent_ fires the `onLoginClicked` event.
+- `onLogoutClicked`: method invoked when _AdminDashboardComponent_ fires the `onLogoutClicked` event.
+- `onRefreshRecordingsClicked`: method invoked when _AdminDashboardComponent_ fires the `onRefreshRecordingsClicked` event.
+- `onDeleteRecordingClicked`: method invoked when _AdminDashboardComponent_ fires the `onDeleteRecordingClicked` event.
