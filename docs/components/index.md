@@ -55,6 +55,7 @@ There are also multiple tutorials available that show the benefits of OpenVidu C
 - [**openvidu-custom-participant-panel-item**](components/openvidu-custom-participant-panel-item): learn how to replace the default participant panel item with your own.
 - [**openvidu-custom-participant-panel-item-element**](components/openvidu-custom-participant-panel-item-element): learn how to replace the default participant panel item element with your own.
 - [**openvidu-toggle-hand**](components/openvidu-toggle-hand): learn how to add extra features to the videoconference.
+- [**openvidu-admin-dashboard**](components/openvidu-admin-dashboard): learn how to add an admin dashboard to the videoconference.
 
 
 On the other hand, you can use the production-ready application which makes the most of all the features offered by OpenVidu Components library:
