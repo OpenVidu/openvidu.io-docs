@@ -127,113 +127,129 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
 
 <div class="row" style="margin-top: 50px">
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials" alt="" />
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-java">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>Java</h4>
-            <p>Built with <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a><br>Uses <a href="reference-docs/openvidu-java-client/">openvidu-java-client SDK</a></p>
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials" alt="" />
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-java" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>Java</h4>
+        <ul style="margin: 0; padding-left: 17px;">
+            <li>Link to <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-java" target="_blank">GitHub repository</a></li>
+            <li>Built with <a href="https://spring.io/projects/spring-boot" target="_blank">Spring Boot</a></li>
+            <li>Uses <a href="reference-docs/openvidu-java-client/">openvidu-java-client SDK</a></li>
+        </ul>
+    </div>
+</div>
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials" alt="" />
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>NodeJS</h4>
-            <p>Built with <a href="https://expressjs.com" target="_blank">Express</a><br>Uses <a href="reference-docs/openvidu-node-client/">openvidu-node-client SDK</a></p>
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials" alt="" />
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>NodeJS</h4>
+        <ul style="margin: 0; padding-left: 17px;">
+            <li>Link to <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node" target="_blank">GitHub repository</a></li>
+            <li>Built with <a href="https://expressjs.com" target="_blank">Express</a></li>
+            <li>Uses <a href="reference-docs/openvidu-node-client/">openvidu-node-client SDK</a></li>
+        </ul>
+    </div>
+</div>
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials" alt="" />
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>Python</h4>
-            <p>Built with <a href="https://flask.palletsprojects.com" target="_blank">Flask</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p>
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials" alt="" />
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>Python</h4>
+        <ul style="margin: 0; padding-left: 17px;">
+            <li>Link to <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python" target="_blank">GitHub repository</a></li>
+            <li>Built with <a href="https://flask.palletsprojects.com" target="_blank">Flask</a></li>
+            <li>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></li>
+        </ul>
+    </div>
+</div>
 
 </div>
 
 <div class="row" style="margin-bottom: 50px">
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials" alt="" />
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>.NET</h4>
-            <p>Built with <a href="https://docs.microsoft.com/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio" target="_blank">ASP.NET Core Minimal APIs</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p>
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials" alt="" />
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>.NET</h4>
+        <ul style="margin: 0; padding-left: 17px;">
+            <li>Link to <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet" target="_blank">GitHub repository</a></li>
+            <li>Built with <a href="https://docs.microsoft.com/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio" target="_blank">ASP.NET Core Minimal APIs</a></li>
+            <li>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></li>
+        </ul>
+    </div>
+</div>
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/php.svg" class="img-responsive img-tutorials" alt="" />
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-php">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>PHP</h4>
-            <p>Coming soon...</p>
-            <!-- <p>Built with <a href="https://laravel.com" target="_blank">Laravel</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/php.svg" class="img-responsive img-tutorials" alt="" />
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-php" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>PHP</h4>
+        <p>Coming soon...</p>
+        <!-- <p>Built with <a href="https://laravel.com" target="_blank">Laravel</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
+    </div>
+</div>
 
-    <div class="col-md-4 col-sm-4 team-member">
-        <div class="effect effects wow">
-            <div class="img">
-                <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials" alt="" style="padding: 15px"/>
-                <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby">
-                    <div class="overlay">
-                        <ul class="expand"></ul>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="member-info wow">
-            <h4>Ruby</h4>
-            <p>Coming soon...</p>
-            <!-- <p>Built with <a href="https://rubyonrails.org" target="_blank">Ruby on Rails</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
+            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials" alt="" style="padding: 15px"/>
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
         </div>
     </div>
+    <div class="member-info wow">
+        <h4>Ruby</h4>
+        <p>Coming soon...</p>
+        <!-- <p>Built with <a href="https://rubyonrails.org" target="_blank">Ruby on Rails</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
+    </div>
+</div>
 
 </div>
 
