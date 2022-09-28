@@ -57,7 +57,7 @@ There are also multiple tutorials available that show the benefits of OpenVidu C
 - [**openvidu-toggle-hand**](components/openvidu-toggle-hand): learn how to add extra features to the videoconference.
 
 
-On the other hand, you can use the produciton-ready application which makes the most of all that OpenVidu Components provide to us:
+On the other hand, you can use the production-ready application which makes the most of all the features offered by OpenVidu Components library:
 
 - [**openvidu-call**](components/openvidu-call): OpenVidu's production-ready flagship application.
 
