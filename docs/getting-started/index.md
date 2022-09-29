@@ -114,7 +114,7 @@ Any application built for OpenVidu CE or OpenVidu Pro is compatible with OpenVid
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
-            <th scope="row">Clients: JS, Angular, React, Vue.js, Ionic, Electron, React Native</th>
+            <th scope="row">Clients: JS, Angular, React, Vue, Ionic, Electron, React Native, Android</th>
             <td scope="row"><a href="tutorials/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
