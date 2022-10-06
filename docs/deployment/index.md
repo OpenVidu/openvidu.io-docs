@@ -25,7 +25,7 @@ To learn the differences between them visit section <b><a href="getting-started/
 
 ## OpenVidu for production on AWS
 
-OpenVidu can be deployed very easily in Amazon Web Services thanks to [CloudFormation](https://aws.amazon.com/cloudformation/){:target="_blank"}. Depending on the edition you want to deploy, instructions are different:
+OpenVidu can be deployed very easily in Amazon Web Services thanks to [CloudFormation](https://aws.amazon.com/cloudformation/){:target="\_blank"}. Depending on the edition you want to deploy, instructions are different:
 
 - <a href="deployment/ce/aws">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: #06d362; color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">CE</div> on AWS</a><div style="margin-bottom: 5px"></div>
 - <a href="deployment/pro/aws">Deploy <span style="font-family: Montserrat, sans-serif; font-weight: 700;">OpenVidu </span><div id="openvidu-pro-tag" style="pointer-events: none; display: inline-block; margin-right: 4px; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</div> on AWS</a><div style="margin-bottom: 5px"></div>
@@ -58,19 +58,19 @@ OpenVidu can be deployed in any modern linux distribution on premises or in any 
 
 To develop OpenVidu CE based applications you can execute a simple-to-use docker image that includes OpenVidu server and Kurento Media Server. This image is the recommended way to try OpenVidu and works in any operating system (Linux, Windows or Mac).
 
-Can be executed with the following command (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
+Can be executed with the following command (you will need [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}):
 
 ```bash
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
 ```
 
-OpenVidu for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="_blank"}
+OpenVidu for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="\_blank"}
 
 If you want to develop using OpenVidu PRO specific features, then you should use a production deployment.
 
 ## Deploy OpenVidu based applications
 
-When deploying OpenVidu in production environments, the [OpenVidu Call](https://openvidu.io/openvidu-call/){:target="_blank"} application is also automatically deployed.
+When deploying OpenVidu in production environments, the [OpenVidu Call](components/openvidu-call/){:target="\_blank"} application is also automatically deployed.
 
 You can remove OpenVidu Call application from your OpenVidu deployment.
 

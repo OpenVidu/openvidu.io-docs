@@ -130,7 +130,7 @@ OpenVidu Call offers two different flavors of the same backend (Java and Node), 
 
 _(Used by default with OpenVidu deployment)_
 
-See code [here](https://github.com/OpenVidu/openvidu-call/openvidu-call-back){:target="\_blank"}
+See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-back){:target="\_blank"}
 
 </div>
 
@@ -144,7 +144,7 @@ See code [here](https://github.com/OpenVidu/openvidu-call/openvidu-call-back){:t
 - `OpenViduService.ts`: service using _openvidu-java-client_ to communicate with the OpenVidu deployment.
 - `ProxyService.java`: service for redirecting requests from the frontend to the OpenVidu deployment.
 
-See code [here](https://github.com/OpenVidu/openvidu-call/openvidu-call-back-java){:target="\_blank"}
+See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-back-java){:target="\_blank"}
 
 </div>
 </div>
@@ -170,7 +170,7 @@ In addition, the server allows logging in and out of the admin dashboard. This d
 
 #### **openvidu-call-front**
 
-A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/openvidu-call-front).
+A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-front).
 
 - `services/rest.service.ts`: services for requesting OpenVidu Tokens to the application's backend.
 - `components/home`: component with the home screen, where the user can define the session name and join it.
