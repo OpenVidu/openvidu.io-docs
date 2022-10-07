@@ -238,6 +238,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/ParticipantsPanelComponent.html" data-type="entity-link" >ParticipantsPanelComponent</a>
                             </li>
                             <li class="link">
+                                <a href="components/RecordingActivityComponent.html" data-type="entity-link" >RecordingActivityComponent</a>
+                            </li>
+                            <li class="link">
                                 <a href="components/StreamComponent.html" data-type="entity-link" >StreamComponent</a>
                             </li>
                             <li class="link">
@@ -296,6 +299,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/ParticipantProperties.html" data-type="entity-link" >ParticipantProperties</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/RecordingInfo.html" data-type="entity-link" >RecordingInfo</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/StreamModel.html" data-type="entity-link" >StreamModel</a>

@@ -33,7 +33,7 @@ SessionProperties properties = new SessionProperties.Builder().build();
 Session session = openVidu.createSession(properties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#createSession()){:target="_blank"}
+See [JavaDoc](<api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#createSession()>){:target="\_blank"}
 
 </div>
 
@@ -45,7 +45,7 @@ var properties = {};
 var session = await openVidu.createSession(properties);
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession){:target="\_blank"}
 
 </div>
 
@@ -87,7 +87,7 @@ Connection connection = session.createConnection(connectionProperties);
 String token = connection.getToken(); // Send this string to the client side
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection()){:target="_blank"}
+See [JavaDoc](<api/openvidu-java-client/io/openvidu/java/client/Session.html#createConnection()>){:target="\_blank"}
 
 </div>
 
@@ -95,14 +95,14 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#crea
 
 ```javascript
 var connectionProperties = {
-    role: "PUBLISHER",
-    data: "Alice"
+	role: "PUBLISHER",
+	data: "Alice",
 };
 var connection = await session.createConnection(connectionProperties);
 var token = connection.token; // Send this string to the client side
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="\_blank"}
 
 </div>
 
@@ -266,19 +266,21 @@ The two endpoints offered by all server application samples are documented below
 
 | 1. Initialize a Session ||
 | - ||
-| **HTTP METHOD**  | POST |
-| **URL**          | https://localhost:5000/api/sessions |
+| **HTTP METHOD** | POST |
+| **URL** | https://localhost:5000/api/sessions |
 | **REQUEST BODY** | Same request body as the REST API operation [POST /openvidu/api/sessions](reference-docs/REST-API/#post-session) |
 | **200 OK RETURN VALUE** | A string with the Session identifier.<br>For example: `"ses_JM9v0nfD1l"` |
 
 | 2. Create a Connection ||
 | - ||
-| **HTTP METHOD**  | POST |
-| **URL**          | https://localhost:5000/api/sessions/`SESSION_ID`/connections |
+| **HTTP METHOD** | POST |
+| **URL** | https://localhost:5000/api/sessions/`SESSION_ID`/connections |
 | **REQUEST BODY** | Same request body as the REST API operation [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API/#post-connection) |
 | **200 OK RETURN VALUE** | A string with the Connection's token.<br>For example: `"wss://localhost:4443?sessionId=ses_JM9v0nfD1l&token=tok_MIYGGzuDQb8Xf1Qd"` |
 
 <br>
+
+### User management
 
 <script>
 function changeLangTab(event) {

@@ -2,9 +2,11 @@
 
 <a href="https://github.com/OpenVidu/openvidu-call" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call is the flagship videoconference app based on [OpenVidu Components](/components). It includes many of the capabilities offered by OpenVidu platform. It brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on.
+OpenVidu Call is the flagship videoconference app based on [OpenVidu Components](/components). It includes many of the capabilities offered by OpenVidu platform and brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on.
 
-Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information. OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
+OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
+
+Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information.
 
 <p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video>
@@ -39,20 +41,20 @@ Let's run the server application. Choose one of the backends offered in OpenVidu
 
 You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="\_blank"}.
 
-1) Clone the repository
+1. Clone the repository
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
 ```
 
-2) Install dependencies
+2. Install dependencies
 
 ```bash
 cd openvidu-call-back
 npm install
 ```
 
-3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
+3. Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
 
 ```bash
 npm run start
@@ -64,20 +66,20 @@ npm run start
 
 You need [Java](https://www.java.com/en/download/manual.jsp){:target="\_blank"} and [Maven](https://maven.apache.org/){:target="\_blank"} to run the app.
 
-1) Clone the repository
+1. Clone the repository
 
 ```bash
 git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
 ```
 
-2) Install dependencies
+2. Install dependencies
 
 ```bash
 cd openvidu-call-back-java
 mvn install
 ```
 
-3) Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
+3. Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
 
 ```bash
 mvn spring-boot:run
@@ -104,11 +106,9 @@ npx ng serve --open
 
 ## Understanding the code
 
-OpenVidu Call is the production ready videconference app included by default in any OpenVidu deployment. OpenVidu Call consists of:
+OpenVidu Call is the production ready videconference app included by default in any [OpenVidu deployment](deployment). OpenVidu Call consists of:
 
 #### **openvidu-call-back**
-
-The OpenVidu Call backend provides the necessary logic for a secure management of your OpenVidu Sessions. It also includes other features such as recording capabilities and user authentication. It is the perfect starting point for you own custom backend.
 
 OpenVidu Call offers two different flavors of the same backend (Java and Node), so that you can choose the one that is most convenient for you. Both of them are fully functional applications using its corresponding SDK ([openvidu-java-client](reference-docs/openvidu-java-client/) or [openvidu-node-client](reference-docs/openvidu-node-client/)) and exposing the same [REST API](#backend-rest-api).
 
@@ -123,10 +123,12 @@ OpenVidu Call offers two different flavors of the same backend (Java and Node), 
 
 - `app.ts`: entrypoint of the server.
 - `config.ts`: contains the [backend environment variables](#configuration-parameters-for-openvidu-call-backend).
-- `AdminController.ts`: controller for login/logout and access to admin dashboard.
+- `AuthController.ts`: controller for login to the OpenVidu Session and do login/logout to the admin dashboard.
 - `SessionController.ts`: controller for requesting OpenVidu Tokens (see [basic concepts](developing-your-video-app/#basic-concepts)).
+- `CallController.ts`: controller for requesting OpenVidu Call environment information.
 - `RecordingController.ts`: controller for recording features.
 - `OpenViduService.ts`: service using _openvidu-node-client_ to communicate with the OpenVidu deployment.
+- `AuthService.ts`: service which includes the auth logic.
 
 _(Used by default with OpenVidu deployment)_
 
@@ -138,11 +140,13 @@ See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-c
 
 - `app.java`: entrypoint of the server.
 - `application.properties`: contains the [backend environment variables](#configuration-parameters-for-openvidu-call-backend).
-- `AdminController.java`: controller for login/logout and access to admin dashboard.
+- `AuthController.java`: controller for login to the OpenVidu Session and do login/logout to the admin dashboard.
 - `SessionController.java`: controller for requesting OpenVidu Tokens (see [basic concepts](developing-your-video-app/#basic-concepts)).
+- `CallController.java`: controller for requesting OpenVidu Call environment information.
 - `RecordingController.java`: controller for recording features.
 - `OpenViduService.ts`: service using _openvidu-java-client_ to communicate with the OpenVidu deployment.
 - `ProxyService.java`: service for redirecting requests from the frontend to the OpenVidu deployment.
+- `SecurityConfig.java`: config file for basic authentication.
 
 See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-back-java){:target="\_blank"}
 
@@ -151,22 +155,47 @@ See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-c
 
 <br>
 
-The application server allows us to list the recordings of a session, start and stop a recording and delete a specific recording. It also allows starting the playback of a video in the client device.
+##### Session control
 
-> For enabling the video playback, the backend acts as proxy between the browser and the OpenVidu deployment, which is the most optimal way to download the video.
+The OpenVidu Call backend provides a basic authentication system to control the access to the OpenVidu Session. The authentication system is based on a single user with a fixed username and password. The default username and password are represented by variables `CALL_USER` and `CALL_SECRET`respectively.
 
-To identify who is able to manage a session recording, the server will generate and save (in-memory) a cookie with a token and it will be sent to the **session creator** (that is the first user connecting to the OpenVidu session). This user will have the necessary permissions to manage the session's recording.
+> Note that the authentication system can be disabled by setting the variable `CALL_PRIVATE_ACCESS` to `DISABLED`.
+
+You can check and change these values in the [configuration parameters](#configuration-parameters-for-openvidu-call-backend).
+
+> If you want to know more about what type of authentication you can use with OpenVidu, you can check [this section](application-server#user-management).
+
+##### Recording management
+
+For OpenVidu Call backend exists two types of users:
+
+- **Session creator user**: user with full recording privileges. This user who create the session can start, stop and delete the recordings of the OpenVidu Call sessions plus all the privileges of the **Normal user**.
+
+- **Normal user**: user without recording privileges. This user who joins to the created session can only see the recordings available to the OpenVidu Call sessions as well as play, pause, stop and download the recording.
+
+> Note that the playback and download of the recordings is done by the OpenVidu Call frontend. Here the backend acts as a proxy between the frontend and the OpenVidu Server, which is the most optimal way to do it.
+
+To identify who is able to have recording privileges, the OpenVidu Call backend will generate and save (in-memory) a cookie with a token that will be used to identify the user.
+
+This token will be generated when the **session creator user** (that is the first user connecting to the session) creates the session. The token will be sent to the frontend and will be used to identify the user in the backend.
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    This authentication and authorization system is very basic and limited. <strong>It will not be suitable for most production environments</strong>. We highly recommend <strong>IMPLEMENTING YOUR OWN USER MANAGEMENT SYSTEM</strong> with real persistence for a properly secured recording process.
+    This authentication and authorization recording system is very basic and limited. <strong>It will not be suitable for most production environments</strong>. We highly recommend <strong>IMPLEMENTING YOUR OWN USER MANAGEMENT SYSTEM</strong> with real persistence for a properly secured recording process.
   </div>
 </div>
 
-In addition, the server allows logging in and out of the admin dashboard. This dashboard provides a list of all recordings availables in our deployment, allows the playback of the videos and their deletion.
+> Note that the recording features can be disabled by setting the variable `CALL_RECORDING` to `DISABLED`.
+
+##### Admin dashboard
+
+In addition, the backend also provides two endpoints for login and logout to the [admin dashboard](components/openvidu-admin-dashboard).
+This dashboard allows you to see the recordings of the all OpenVidu Call sessions and manage them.
+
+The authentication system for this dashboard is based on a single user with a fixed password. The default password is represented by variable `CALL_ADMIN_SECRET`.
 
 #### **openvidu-call-front**
 
@@ -177,19 +206,34 @@ A simple Angular app built with [openvidu-angular](api/openvidu-angular/) librar
 - `components/call`: component with the videoconference screen.
 - `components/admin-dashboard`: component with the admin dashboard.
 
-Let's focus on the [call component template](https://github.com/OpenVidu/openvidu-tutorials/blob/master/openvidu-call/openvidu-call-front/src/app/components/call/call.component.html). We can have a videoconference app **with a few lines of code**:
+Let's focus on the [CallComponent template](https://github.com/OpenVidu/openvidu-call/blob/master/openvidu-call-front/src/app/components/call/call.component.html){:target="\_blank"}. We can have a videoconference app **with a few lines of code**:
 
 ```html
 <ov-videoconference
-	(onJoinButtonClicked)="onJoinButtonClicked()"
-	(onToolbarLeaveButtonClicked)="onLeaveButtonClicked()"
 	[tokens]="tokens"
-></ov-videoconference>
+	[recordingActivityRecordingsList]="recordingList"
+	[recordingActivityRecordingError]="recordingError"
+	[activitiesPanelRecordingActivity]="recordingEnabled"
+	[toolbarRecordingButton]="recordingEnabled"
+	(onToolbarLeaveButtonClicked)="onLeaveButtonClicked()"
+	(onToolbarStartRecordingClicked)="onStartRecordingClicked()"
+	(onActivitiesPanelStartRecordingClicked)="onStartRecordingClicked()"
+	(onToolbarStopRecordingClicked)="onStopRecordingClicked()"
+	(onActivitiesPanelStopRecordingClicked)="onStopRecordingClicked()"
+	(onActivitiesPanelDeleteRecordingClicked)="onDeleteRecordingClicked($event)"
+>
+</ov-videoconference>
 ```
 
-We need to request OpenVidu Tokens to the backend and set them in the `ov-videoconference` component, specifically in its `tokens` input property (see [VideoconferenceComponent reference](api/openvidu-angular/components/VideoconferenceComponent.html)). Once tthe okens are defined, the component will automatically join the session.
+You will need to request for OpenVidu Tokens to the backend and pass them to the `ov-videoconference` component. You can also pass the recording list and the recording error to the component if the recording features are enabled
 
-We are also listening to some events such as `onLeaveButtonClicked` to customize our application's logic. You can see all the events offered by `VideoconferenceComponent` [here](api/openvidu-angular/components/VideoconferenceComponent.html#outputs).
+> You can see all the inputs offered by `VideoconferenceComponent` [here](api/openvidu-angular/components/VideoconferenceComponent.html)
+
+Once the tokens are passed to the component, the videoconference will be automatically created and the users will be able to join the session.
+
+You also have the possibility to customize the application listening to the events emitted by the `ov-videoconference` component. <br> For example, you can listen to the `onToolbarLeaveButtonClicked` event to know when the user has clicked on the leave button and do something else.
+
+> You can see all the events offered by `VideoconferenceComponent` [here](api/openvidu-angular/components/VideoconferenceComponent.html#outputs).
 
 <br>
 
@@ -197,13 +241,16 @@ We are also listening to some events such as `onLeaveButtonClicked` to customize
 
 ## Configuration parameters for OpenVidu Call backend
 
-| Parameter             | Description                                  | Default value         |
-| --------------------- | -------------------------------------------- | --------------------- |
-| **`SERVER_PORT`**     | Number that indicates the port where http server will listen  | `5000`                  |
-| **`OPENVIDU_URL`**    | String that indicates the URL to connect to the OpenVidu deployment | `"http://localhost:4443"` |
-| **`OPENVIDU_SECRET`** | String with the secret of the OpenVidu deployment | `"MY_SECRET"`             |
-| **`ADMIN_SECRET`**    | String with the secret of the OpenVidu Call admin dashboard | _Same as `OPENVIDU_SECRET`_ |
-| **`RECORDING`**       | If recording features are ENABLED or not | `"ENABLED"`               |
+| Parameter                 | Description                                                                                                               | Default value               |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| **`SERVER_PORT`**         | Number that indicates the port where http server will listen                                                              | `5000`                      |
+| **`OPENVIDU_URL`**        | The URL where OpenVidu Server will be reachable.                                                                          | `"http://localhost:4443"`   |
+| **`OPENVIDU_SECRET`**     | Secret used to connect to OpenVidu Server. deployment                                                                     | `"MY_SECRET"`               |
+| **`CALL_PRIVATE_ACCESS`** | Whether to enable the authentication feature or not.                                                                      | `"ENABLED"`                 |
+| **`CALL_USER`**           | Username used for login to the OpenVidu Call session. This property has effect only if is `CALL_PRIVATE_ACCESS='ENABLED'` | `"admin"`                   |
+| **`CALL_SECRET`**         | Secret used for login to the OpenVidu Call session. This property has effect only if is `CALL_PRIVATE_ACCESS='ENABLED'`   | _Same as `OPENVIDU_SECRET`_ |
+| **`CALL_ADMIN_SECRET`**   | Secret used for login to the OpenVidu Call admin dashboard.                                                               | _Same as `OPENVIDU_SECRET`_ |
+| **`CALL_RECORDING`**      | Whether to enable the recording features or not.                                                                          | `"ENABLED"`                 |
 
 These configuration parameters can be set as environment variables. For example, to execute the application against an OpenVidu deployment with a domain name such us `my.openvidu.deployment.com` that is configured with secret `PASSWORD`:
 
@@ -237,18 +284,21 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DOPENVIDU_URL=https://my.op
 | - ||
 | **HTTP METHOD** | POST |
 | **URL** | https://localhost:5000/sessions |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **REQUEST BODY** | `{"sessionId":"session_id", "nickname":"openvidu_name"}` |
 | **200 OK RETURN VALUE** | A JSON object with the Connection tokens and recording information.<br>For example: `{"cameraToken": "wss://localhost:4443?sessionId=ses_JM9v0nfD1l&token=tok_MIYGGzuDQb8Xf1Qd", "screenToken": "wss://localhost:4443?sessionId=ses_JM2v0nfD1l&token=tok_MIYGGduDQb8Xf1Qd", "recordings": [], "recordingEnabled": true}` |
 
 | 2. List all recordings ||
 | - ||
 | **HTTP METHOD** | GET |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings |
 | **200 OK RETURN VALUE** | The list of all [Recording](reference-docs/REST-API/#the-recording-object) objects associated to the session |
 
 | 3. Start recording ||
 | - ||
 | **HTTP METHOD** | POST |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/start |
 | **REQUEST BODY** | `{"sessionId": "session_name"}` |
 | **200 OK RETURN VALUE** | The [Recording](reference-docs/REST-API/#the-recording-object) object |
@@ -256,6 +306,7 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DOPENVIDU_URL=https://my.op
 | 4. Stop recording ||
 | - ||
 | **HTTP METHOD** | POST |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/stop |
 | **REQUEST BODY** | `{"sessionId": "session_name"}` |
 | **200 OK RETURN VALUE** | The list of all [Recording](reference-docs/REST-API/#the-recording-object) objects associated to the session |
@@ -263,23 +314,32 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DOPENVIDU_URL=https://my.op
 | 5. Delete a recording ||
 | - ||
 | **HTTP METHOD** | DELETE |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/delete/`RECORDING_ID` |
 | **200 OK RETURN VALUE** | The list of all [Recording](reference-docs/REST-API/#the-recording-object) objects associated to the session |
 
 | 6. Get a recording ||
 | - ||
 | **HTTP METHOD** | GET |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/`RECORDING_ID` |
 | **206 Partial Content RETURN VALUE** | Byterange used to allow large files to be downloaded or requested progressively |
 
-| 7. Admin login ||
+| 7. Call login ||
+| - ||
+| **HTTP METHOD** | POST |
+| **URL** | https://localhost:5000/login |
+| **REQUEST BODY** | Username and password for doing login in OpenVidu session `{"username":"user", "password": "xxx"}` |
+| **200 OK RETURN VALUE** | |
+
+| 8. Admin login ||
 | - ||
 | **HTTP METHOD** | POST |
 | **URL** | https://localhost:5000/admin/login |
 | **REQUEST BODY** | Password for doing login in Admin dashboard `{"password": "xxx"}` |
 | **200 OK RETURN VALUE** | A list of all [Recording](reference-docs/REST-API/#the-recording-object) objects available in the entire OpenVidu deployment |
 
-| 8. Admin logout ||
+| 9. Admin logout ||
 | - ||
 | **HTTP METHOD** | POST |
 | **URL** | https://localhost:5000/admin/logout |
@@ -312,7 +372,7 @@ The process to build a Docker image of OpenVidu call is really easy. Take into a
 
 <div id="node" class="lang-tabs-content" markdown="1">
 
-1) In directory `openvidu-call/.`, execute:
+1. In directory `openvidu-call/.`, execute:
 
 ```bash
 docker build -f docker/Dockerfile.node -t <your-tag-name> .
@@ -322,7 +382,7 @@ docker build -f docker/Dockerfile.node -t <your-tag-name> .
 
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
-1) In directory `openvidu-call/.`, execute:
+1. In directory `openvidu-call/.`, execute:
 
 ```bash
 docker build -f docker/Dockerfile.java -t <your-image-name> .
@@ -333,13 +393,13 @@ docker build -f docker/Dockerfile.java -t <your-image-name> .
 
 <br>
 
-2) After that, you can run the Docker container:
+2. After that, you can run the Docker container:
 
 ```
 docker run -p <your-port>:5000 -e OPENVIDU_URL=<your-openvidu-url> -e OPENVIDU_SECRET=<your-secret> <your-image-name>
 ```
 
-3) Go to `http://localhost:your-port` to test the app
+3. Go to `http://localhost:your-port` to test the app
 
 #### Configuration parameters when building OpenVidu Call Docker image
 
@@ -360,21 +420,21 @@ You can also build OpenVidu Call **without Docker** and serve it directly using 
 
 <div id="node" class="lang-tabs-content" markdown="1">
 
-1) Build OpenVidu Call frontend. Set as `BASE_HREF` the desired value depending on the path your application will be accessible:
+1. Build OpenVidu Call frontend. Set as `BASE_HREF` the desired value depending on the path your application will be accessible:
 
 ```bash
 cd openvidu-call-front
 npm run prod:build BASE_HREF
 ```
 
-2) Build OpenVidu Call backend:
+2. Build OpenVidu Call backend:
 
 ```bash
 cd ../openvidu-call-back
 npm run build
 ```
 
-3) You will find the app built in `dist` directory. You can use Node to launch it:
+3. You will find the app built in `dist` directory. You can use Node to launch it:
 
 ```bash
 cd dist/
@@ -385,21 +445,21 @@ node openvidu-call-server.js
 
 <div id="java" class="lang-tabs-content" style="display:none" markdown="1">
 
-1) Build OpenVidu Call frontend. Set as `BASE_HREF` the desired value depending on the path your application will be accessible.
+1. Build OpenVidu Call frontend. Set as `BASE_HREF` the desired value depending on the path your application will be accessible.
 
 ```bash
 cd openvidu-call-front
 npm run prod:build-java BASE_HREF
 ```
 
-2) Build OpenVidu Call backend:
+2. Build OpenVidu Call backend:
 
 ```bash
 cd ../openvidu-call-back-java
 mvn clean package
 ```
 
-3) You will find the app built in `openvidu-call/openvidu-call-back-java/target/` directory. You can use Java to launch it:
+3. You will find the app built in `openvidu-call/openvidu-call-back-java/target/` directory. You can use Java to launch it:
 
 ```bash
 cd target/
