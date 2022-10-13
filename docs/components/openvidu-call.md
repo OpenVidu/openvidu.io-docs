@@ -157,15 +157,27 @@ See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-c
 
 ##### Session control
 
-The OpenVidu Call backend provides a basic authentication system to control the access to the OpenVidu Session. The authentication system is based on a single user with a fixed username and password. The default username and password are represented by variables `CALL_USER` and `CALL_SECRET`respectively.
-
-> Note that the authentication system can be disabled by setting the variable `CALL_PRIVATE_ACCESS` to `DISABLED`.
+The OpenVidu Call backend provides a **basic authentication system** to control the access to the OpenVidu Session. The authentication system is based on a single user with a fixed username and password. The default username and password are represented by variables `CALL_USER` and `CALL_SECRET`respectively.
 
 You can check and change these values in the [configuration parameters](#configuration-parameters-for-openvidu-call-backend).
 
-> If you want to know more about what type of authentication you can use with OpenVidu, you can check [this section](application-server#user-management).
+> Note that the authentication system can be disabled by setting the variable `CALL_PRIVATE_ACCESS` to `DISABLED`.
+
+If you want to know more about what type of authentication you can use with OpenVidu, you can check the [user authentication section](application-server#user-authentication).
+
+<br>
 
 ##### Recording management
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    This authentication and authorization recording system is very basic and limited. <strong>It will not be suitable for most production environments</strong>. We highly recommend <strong>IMPLEMENTING YOUR OWN USER MANAGEMENT SYSTEM</strong> with real persistence for a properly secured recording process. <br>
+    You can check the <a href="docs/application-server/#user-authentication">user authentication section</a> for more information.
+  </div>
+</div>
 
 For OpenVidu Call backend exists two types of users:
 
@@ -175,20 +187,14 @@ For OpenVidu Call backend exists two types of users:
 
 > Note that the playback and download of the recordings is done by the OpenVidu Call frontend. Here the backend acts as a proxy between the frontend and the OpenVidu Server, which is the most optimal way to do it.
 
-To identify who is able to have recording privileges, the OpenVidu Call backend will generate and save (in-memory) a cookie with a token that will be used to identify the user.
+To identify who is able to have recording privileges, the OpenVidu Call backend implements a cookie-based session system.
+It will generate and store (in-memory) a cookie with an unique `ID` that will be used to identify the user.
 
-This token will be generated when the **session creator user** (that is the first user connecting to the session) creates the session. The token will be sent to the frontend and will be used to identify the user in the backend.
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    This authentication and authorization recording system is very basic and limited. <strong>It will not be suitable for most production environments</strong>. We highly recommend <strong>IMPLEMENTING YOUR OWN USER MANAGEMENT SYSTEM</strong> with real persistence for a properly secured recording process.
-  </div>
-</div>
+This `ID` will be generated when the **session creator user** (that is the first user connecting to the session) creates the session. The token will be sent to the frontend and will be used to identify the user in the backend.
 
 > Note that the recording features can be disabled by setting the variable `CALL_RECORDING` to `DISABLED`.
+
+<br>
 
 ##### Admin dashboard
 
@@ -201,7 +207,12 @@ The authentication system for this dashboard is based on a single user with a fi
 
 A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-front).
 
+- `services/guards/navigator-guard.service.ts`: service in charge of checking if the navigation to an specific route is allowed verifying the user authentication.
+- `services/
+- `services/call.service.ts`: service in charge of the OpenVidu Call environment information.
+- `services/auth.service.ts`: service in charge of the authentication process.
 - `services/rest.service.ts`: services for requesting OpenVidu Tokens to the application's backend.
+- `services/http-interceptor.service.ts`: service for adding the authentication token to the HTTP requests.
 - `components/home`: component with the home screen, where the user can define the session name and join it.
 - `components/call`: component with the videoconference screen.
 - `components/admin-dashboard`: component with the admin dashboard.
