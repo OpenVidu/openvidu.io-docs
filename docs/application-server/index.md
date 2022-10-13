@@ -281,7 +281,10 @@ The two endpoints offered by all server application samples are documented below
 ### User Authentication
 
 Authentication is a common topic in web applications so we will explain you the different alternatives for including it in your OpenVidu server application.
-If you are thinking about adding authentication to your OpenVidu server application, you should keep reading.
+
+If your app has already implemented user authentication, you can check the user's credentials in the server application and use them to create the Session and Connection objects. You will be able to verify that the user has the permissions to create a Session and to generate a Connection token.
+
+However, if your app does not have any user authentication and you are thinking about adding it to your application server, you should keep reading.
 
 As said above, there are serverals options to implement user management in your application. The most common ones are:
 
