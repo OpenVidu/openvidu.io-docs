@@ -89,9 +89,9 @@ Clicking on the subscribe button you will subscribe to the IP cameras collection
 ```java
 static Map<String, String> IP_CAMERAS = new HashMap<String, String>() {
 	{
-		put("Russian building", "rtsp://195.46.114.132/live/ch00_0");
-		put("Wickenburg, Arizona", "rtsp://98.163.61.242/live/ch00_0");
-		put("City", "rtsp://91.191.213.49:554/live_mpeg4.sdp");
+		put("Amsterdam", "http://92.110.185.114:8080/mjpg/video.mjpg");
+		put("Czech Republic", "http://185.137.146.14:80/mjpg/video.mjpg");
+		put("Japan bridge", "http://211.132.61.124:80/mjpg/video.mjpg");
 	}
 };
 ```
