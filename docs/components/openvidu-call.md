@@ -44,7 +44,7 @@ You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-j
 1. Clone the repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.23.0
+git clone https://github.com/OpenVidu/openvidu-call.git -b v2.23.0
 ```
 
 2. Install dependencies
@@ -92,7 +92,7 @@ mvn spring-boot:run
 
 #### 3. Run the client application
 
-Install frontend dependencies in path `openvidu-tutorials/openvidu-call/openvidu-call-front`:
+Install frontend dependencies in path `openvidu-call/openvidu-call-front`:
 
 ```bash
 npm install
