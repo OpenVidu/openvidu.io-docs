@@ -33,7 +33,9 @@ nav:
               - openvidu-custom-participant-panel-item-elements: components/openvidu-custom-participant-panel-item-elements.md
               - openvidu-toggle-hand: components/openvidu-toggle-hand.md
               - openvidu-admin-dashboard: components/openvidu-admin-dashboard.md
+              - openvidu-call-ionic: components/openvidu-call-ionic.md
           - OpenVidu Call: components/openvidu-call.md
+
     - Full control of the UI:
               - Intro: full-control-ui/index.md
               - Hello World: tutorials/openvidu-hello-world.md
@@ -55,6 +57,7 @@ nav:
                   - openvidu-ipcameras: tutorials/openvidu-ipcameras.md
                   - openvidu-filters: tutorials/openvidu-filters.md
                   - openvidu-virtual-background: tutorials/openvidu-virtual-background.md
+                  - openvidu-speech-to-text: tutorials/openvidu-speech-to-text.md
                   - openvidu-roles-java: tutorials/openvidu-roles-java.md
                   - openvidu-roles-node: tutorials/openvidu-roles-node.md
                   - openvidu-recording-java: tutorials/openvidu-recording-java.md
