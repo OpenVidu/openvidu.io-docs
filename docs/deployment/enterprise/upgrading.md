@@ -1,4 +1,4 @@
-<h2 id="section-title">Upgrading OpenVidu Pro</h2>
+<h2 id="section-title">Upgrading OpenVidu Enterprise</h2>
 <hr>
 
 - **[Migrating from 2.22.0 to 2.23.0](#migrating-from-2220-to-2230)**

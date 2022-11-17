@@ -62,7 +62,7 @@ Go to [`http://localhost:4200`](http://localhost:4200){:target="\_blank"} to tes
 This is an Angular project generated with Angular CLI tool, and therefore you will see lots of configuration files and other stuff that doesn't really matter to us. We will focus on the following files under `src/app/` folder:
 
 - `app.module.ts`: defines the AppComponent module where we import and configure the [openvidu-angular](api/openvidu-angular/) library.
-- `app.component.ts`: defines _AppComponent_, main component of the app. It uses the [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.html) and [AdminDashboardComponent](/api/openvidu-angular/components/AdminDashboardComponent.html).
+- `app.component.ts`: defines _AppComponent_, main component of the app. It uses the [AdminLoginComponent](api/openvidu-angular/components/AdminLoginComponent.html) and [AdminDashboardComponent](api/openvidu-angular/components/AdminDashboardComponent.html).
 
 <div class="warningBoxContent">
   <div style="display: table-cell; vertical-align: middle;">
@@ -79,7 +79,7 @@ This is an Angular project generated with Angular CLI tool, and therefore you wi
 
 First, we need to install the **openvidu-angular** library. You can check how to do that [here](api/openvidu-angular/).
 
-The [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.html) emits an event when the login button is clicked. Listening to `onLoginButtonClicked` event we will be able to authenticate to gain access to the admin dashboard. As said above, we have simulated this authentication for educational purposes.
+The [AdminLoginComponent](api/openvidu-angular/components/AdminLoginComponent.html) emits an event when the login button is clicked. Listening to `onLoginButtonClicked` event we will be able to authenticate to gain access to the admin dashboard. As said above, we have simulated this authentication for educational purposes.
 
 ```html
 <ov-admin-login
@@ -88,7 +88,7 @@ The [AdminLoginComponent](/api/openvidu-angular/components/AdminLoginComponent.h
 ></ov-admin-login>
 ```
 
-Once you are logged as an admin user, we can show the [AdminDashboardComponent](/api/openvidu-angular/components/AdminDashboardComponent.html). This component needs a recording list so the administrator can review all the recordings, preview them, download them or delete them. Just with a couple of clicks.
+Once you are logged as an admin user, we can show the [AdminDashboardComponent](api/openvidu-angular/components/AdminDashboardComponent.html). This component needs a recording list so the administrator can review all the recordings, preview them, download them or delete them. Just with a couple of clicks.
 
 In this tutorial, the `recordingsList` will be empty because there is not recording support in the basic server application. Also, the _AdminDashboardComponent_ provides multiple events for the recording management as `onRefreshRecordingsClicked` or `onDeleteRecordingClicked` and it also provides a way to listen when you click the logout button with the `onLogoutClicked` event.
 

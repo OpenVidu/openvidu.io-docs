@@ -2,7 +2,7 @@
 
 <a href="https://github.com/OpenVidu/openvidu-call" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu Call is the flagship videoconference app based on [OpenVidu Components](/components). It includes many of the capabilities offered by OpenVidu platform and brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on.
+OpenVidu Call is the flagship videoconference app based on [OpenVidu Components](components). It includes many of the capabilities offered by OpenVidu platform and brings a great number of essential features: **screensharing**, **chat service**, **intelligent layout**, **speech detection**, **switch cameras**, and so on.
 
 OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 

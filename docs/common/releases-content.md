@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.24.0](#2240)
 - [2.23.0](#2230)
 - [2.22.0](#2220)
 - [2.21.0](#2210)
@@ -26,6 +27,187 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.24.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.24.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.24.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.24.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.24.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.24.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.18.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.18.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.10.3</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Speech to Text
+
+The new Speech to Text service allows transcribing in real time the audio tracks of an OpenVidu Session. It makes very easy to include captions in your video calls, no matter what language your users speak!
+
+This feature, available in OpenVidu Pro and Enterprise editions, is designed to support different transcription engines in the background. For now we have released Speech to Text with **Azure** support, but others are coming very soon (including a self-hosted open source alternative for no extra cost). You can read the Speech to Text documentation [here](https://docs.openvidu.io/en/2.24.0/advanced-features/speech-to-text/).
+
+<br>
+
+##### Support for HTTP IP cameras
+
+[IP cameras API](https://docs.openvidu.io/en/2.24.0/advanced-features/ip-cameras/) is now compatible with cameras publishing to `http` and `https` URIs (these are generally in `.mjpeg` format). These are without a doubt the most common IP cameras URIs, so this support opens up new possibilities of use.
+
+<br>
+
+##### OpenVidu Components features
+
+- In case of a node crash in your OpenVidu Deployment, [OpenVidu Components](https://docs.openvidu.io/en/2.24.0/components/) emits a new event [`onNodeCrashed`](https://docs.openvidu.io/en/2.24.0/api/openvidu-angular/components/VideoconferenceComponent.html#onNodeCrashed). This allows the application to implement fault tolerance in case of a node crash. See [Fault Tolerance](https://docs.openvidu.io/en/2.24.0/openvidu-pro/fault-tolerance/).
+- Update to Angular 14.
+
+<br>
+
+##### OpenVidu Call features
+
+- Speech to Text integration. Enable live captions in your OpenVidu Call sessions.
+- Added Basic Auth to securize the access to the application. Now by default there is a login page requesting for credentials before accessing a session (this can be disabled). New [env vars](https://docs.openvidu.io/en/2.24.0/components/openvidu-call/#configuration-parameters-for-openvidu-call-backend): `CALL_PRIVATE_ACCESS`, `CALL_USER`, `CALL_SECRET`
+- Adds support for fault tolerance and automatic reconnection to the session without user intervention in case of a node crash. See [Fault Tolerance](https://docs.openvidu.io/en/2.24.0/openvidu-pro/fault-tolerance/).
+- Minor UI improvements.
+
+<br>
+
+#### BUG FIXES
+
+- _OpenVidu Call_ : users with no webcam or microphone were shown a blank screen when loading OpenVidu Call landing page. OpenVidu Call now allows connecting users with no input devices available.
+- _IP cameras_ : if option `onlyPlayWithSubscribers` was enabled, there was a bug preventing the camera feed to automatically reactivate once a new Subscriber requested the camera's Stream. Hence, the camera's feed appeared frozen and the only way to fix it was unpublishing and publishing the IP camera again. Now this is fixed.
+- _Recording_ : COMPOSED recordings now use some new internal configurations that should help reducing the launch time of the recording module.
+- _S3 recording_ : when using non-AWS S3 buckets, there could be access denied errors if the S3 endpoint was a domain name and not an IP. Now configuration property `OPENVIDU_PRO_AWS_S3_WITH_PATH_STYLE_ACCESS` allows forcing [path style requests](https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#path-style-access) in the internal S3 client, which gets rid of this problem.
+- _openvidu-browser_ : calling `Publisher.replaceTrack` was triggering a wrong  `StreamPropertyChanged` event, which resulted in a wrong modification of `audioActive` or `videoActive` Stream properties. Now new `StreamPropertyChangedEvent.changedProperty` values have been added: `videoTrack` and `audioTrack`. You can use these new values to know when a remote user has called `replaceTrack` on its Publisher object.
+
+#### BREAKING CHANGES
+
+- Only if using [OpenVidu Call](https://docs.openvidu.io/en/2.24.0/components/openvidu-call/) application: [environment variables](https://docs.openvidu.io/en/2.24.0/components/openvidu-call/#configuration-parameters-for-openvidu-call-backend) `ADMIN_SECRET` and `RECORDING` have changed their name to `CALL_ADMIN_SECRET` and `CALL_RECORDING` respectively.
+
+<br>
 
 ---
 
