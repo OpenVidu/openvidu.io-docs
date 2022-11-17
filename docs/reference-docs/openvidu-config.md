@@ -2,10 +2,10 @@
 <div id="openvidu-configuration-properties"></div>
 <hr>
 
-This page lists all available configuration properties for OpenVidu Server, as well as their possible values and the default ones.<br>
+This page lists all available configuration properties for an OpenVidu deployment, as well as their possible values and the default ones.<br>
 These properties may be set:
 
-- In any official production deployment of OpenVidu CE or OpenVidu Pro: in the **`.env`** config file at OpenVidu installation path, default to `/opt/openvidu`
+- In any official production deployment of OpenVidu CE, Pro or Enterprise: in the **`.env`** config file at OpenVidu installation path, default to `/opt/openvidu`
 - In the official [development OpenVidu docker container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"}: passing them as environment variables with flag **`-e PROPERTY=value`**
 
 ---

@@ -37,7 +37,7 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
     padding-left: 20px;
     padding-right: 20px;
     ">
-	OpenVidu Pro and OpenVidu Enterprise users will also have priority when contacting OpenVidu team with doubts about the platform.<br>Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>
+	OpenVidu Pro and OpenVidu Enterprise users will also have priority when contacting OpenVidu team with doubts about the platform. Remember we also offer <a href="https://openvidu.io/support#commercial" target="_blank">custom professional support</a>.
 </div>
 </div>
 
@@ -215,6 +215,16 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Apply a blur effect or background images to video streams"></a></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
+            <th scope="row">Speech To Text</th>
+            <td scope="row"><a href="advanced-features/speech-to-text/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Transcribe the conversations of your video sessions in multiple languages, even in real time"></a></td>
             <td><i class="icon ion-close pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>

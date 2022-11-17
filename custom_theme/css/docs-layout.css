@@ -368,7 +368,6 @@ ul#menu-list > li > ul.top-ul.current {
 
 ul.subnav > li.current {
     background-color: #e9e9e9;
-    padding: 8px;
     border-radius: 2px;
 }
 

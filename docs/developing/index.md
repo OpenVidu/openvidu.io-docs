@@ -74,12 +74,12 @@ Once you have the openvidu-server JAR, copy it to folder `openvidu/openvidu-serv
 
 
 ```bash
-# Run this located at folder openvidu/openvidu-server/docker/openvidu-server
+# Navigate to path openvidu/openvidu-server/docker/openvidu-server and run this command
 # It will copy at this path the content of "utils" folder
 cp ../utils/* .
 ```
 
-Now we can build the docker container (of course [Docker](https://store.docker.com/search?type=edition&offering=community){:target="_blank"} must be installed)
+Now we can build the Docker container (of course [Docker](https://store.docker.com/search?type=edition&offering=community){:target="_blank"} must be installed)
 
 ```bash
 # Set whatever TAG you want
@@ -112,7 +112,7 @@ npm run build
 sudo npm link
 
 # You can link this local dependency to any project that has openvidu-browser as
-# dependency in its package.json, by calling "sudo npm link openvidu-browser"
+# dependency in its package.json, by calling "npm link openvidu-browser"
 ```
 
 **4)** To obtain static JavaScript files
@@ -121,7 +121,7 @@ sudo npm link
 VERSION=2.0.0 npm run browserify # Regular JS version
 VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
-# Static files will be built in path ./static/js/
+# Static files will be available in path ./static/js/
 ```
 
 <br>

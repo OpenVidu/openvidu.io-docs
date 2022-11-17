@@ -3,9 +3,9 @@
 - **[How to record sessions](#how-to-record-sessions)**
 - **[Composed recording](#composed-recording)**
     - [Composed quick start recording](#composed-quick-start-recording)
-    - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Scalable composed recording](#scalable-composed-recording)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Individual stream recording](#individual-recording)**
-    - [Selecting streams to be recorded](#individual-recording-selection)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Selecting streams to be recorded](#individual-recording-selection)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Audio-only and video-only recordings](#audio-only-and-video-only-recordings)**
 - **[Automatic stop of recordings](#automatic-stop-of-recordings)**
 - **[Custom recording layouts](#custom-recording-layouts)**
@@ -13,7 +13,7 @@
     - [Using an external custom layout](#using-an-external-custom-layout)
     - [Debugging your custom layouts](#debugging-your-custom-layouts)
     - [Sample custom layout](#sample-custom-layout)
-- **[Uploading recordings to S3](#uploading-recordings-to-s3)**<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- **[Uploading recordings to S3](#uploading-recordings-to-s3)**<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - **[Local recording in the browser](#local-recording-in-the-browser)**
 - **[Troubleshooting](#troubleshooting)**
 
@@ -395,7 +395,7 @@ Then you can initialize your recording as usual:
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 
@@ -610,7 +610,7 @@ These are the properties in the JSON file
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 
@@ -1319,7 +1319,7 @@ You also can use an additional layout library for improving the layout and get a
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 

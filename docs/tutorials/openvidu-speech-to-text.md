@@ -1,7 +1,7 @@
 # openvidu-speech-to-text
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-speech-to-text" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-An OpenVidu application built with plain JavaScript, HTML and CSS, demonstrating OpenVidu Speech to Text capabilities. It is highly recommended to read [Speech To Text](advanced-features/speech-to-text/) documentation before running the tutorial.
+An OpenVidu application built with plain JavaScript, HTML and CSS, demonstrating OpenVidu Speech to Text capabilities. It is highly recommended to read [Speech to Text](advanced-features/speech-to-text/) documentation before running the tutorial.
 
 <div style="
     display: table;
@@ -24,7 +24,7 @@ An OpenVidu application built with plain JavaScript, HTML and CSS, demonstrating
     padding-left: 20px;
     padding-right: 20px;
     ">
-Speech to Text is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+Speech to Text is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 

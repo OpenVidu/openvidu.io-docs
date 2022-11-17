@@ -196,6 +196,16 @@
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">Speech To Text</th>
+            <td scope="row"><a href="advanced-features/speech-to-text/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Transcribe the conversations of your video sessions in multiple languages, even in real time"></a></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
             <th scope="row">Fault Tolerance</th>
             <td scope="row"><a href="openvidu-pro/fault-tolerance/"><i
                     class="icon ion-information-circled pricing-table-icon-info"

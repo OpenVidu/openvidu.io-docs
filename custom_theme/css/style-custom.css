@@ -801,6 +801,10 @@ img.img-more-info {
         margin-right: -46px;
     }
 
+    #openvidu-pro-small-tag {
+        line-height: 22px !important;
+    }
+
     #openvidu-pro-tag {
         line-height: 32px !important;
     }

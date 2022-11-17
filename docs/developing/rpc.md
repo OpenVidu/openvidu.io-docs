@@ -17,8 +17,8 @@ Table of Contents:
     - [ping](#ping)
     - [joinRoom](#joinroom)
     - [publishVideo](#publishvideo)
-    - [videoData](#videodata) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [prepareReceiveVideoFrom](#preparereceivevideofrom) <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
+    - [videoData](#videodata) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [prepareReceiveVideoFrom](#preparereceivevideofrom) <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
     - [receiveVideoFrom](#receivevideofrom)
     - [onIceCandidate](#onicecandidate)
     - [unpublishVideo](#unpublishvideo)
@@ -34,6 +34,8 @@ Table of Contents:
     - [removeFilterEventListener](#removefiltereventlistener)
     - [connect](#connect)
     - [reconnectStream](#reconnectstream)
+    - [subscribeToSpeechToText](#subscribetospeechtotext) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [unsubscribeFromSpeechToText](#unsubscribefromspeechtotext) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 <br>
 
@@ -46,12 +48,14 @@ Table of Contents:
     - [participantPublished](#participantpublished)
     - [participantUnpublished](#participantunpublished)
     - [streamPropertyChanged](#streampropertychanged)
-    - [connectionPropertyChanged](#connectionpropertychanged) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [connectionPropertyChanged](#connectionpropertychanged) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [recordingStarted](#recordingstarted)
     - [recordingStopped](#recordingstopped)
-    - [networkQualityLevelChanged](#networkqualitylevelchanged) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [filterEventDispatched](#filtereventdispatched)
-    - [forciblyReconnectSubscriber](#forciblyreconnectsubscriber) <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
+    - [networkQualityLevelChanged](#networkqualitylevelchanged) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [speechToTextMessage](#speechtotextmessage) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [speechToTextDisconnected](#speechtotextdisconnected) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [forciblyReconnectSubscriber](#forciblyreconnectsubscriber) <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 3px; margin-left: 4px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
 
 ---
 
@@ -100,11 +104,11 @@ Ping message for the ping-pong mechanism. This is necessary to make OpenVidu Ser
 
 ```json
 {
-   "id": 0,
-   "jsonrpc":"2.0",
-   "result":{
-      "value":"pong"
-   }
+    "id": 0,
+    "jsonrpc": "2.0",
+    "result": {
+        "value": "pong"
+    }
 }
 ```
 
@@ -196,17 +200,17 @@ Start publishing a stream to the session. The equivalent method in OpenVidu Brow
     "params": {
         "audioActive": true,
         "doLoopback": false,
+        "filter": {
+            "options": "{\"command\":\"videobalance saturation=0.0\"}",
+            "type": "GStreamerFilter"
+        },
         "frameRate": 30,
         "hasAudio": true,
         "hasVideo": true,
         "sdpOffer": "v=0\r\no=- 9136980301272336337 2 IN IP4 [...] 0c97ae838dfa\r\n",
         "typeOfVideo": "CAMERA",
         "videoActive": true,
-        "videoDimensions": "{\"width\":640,\"height\":480}",
-        "filter": {
-            "options": "{\"command\":\"videobalance saturation=0.0\"}",
-            "type": "GStreamerFilter"
-        }
+        "videoDimensions": "{\"width\":640,\"height\":480}"
     }
 }
 ```
@@ -251,7 +255,7 @@ Start publishing a stream to the session. The equivalent method in OpenVidu Brow
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 
@@ -261,7 +265,7 @@ Informs the server about the properties of the video being sent by the user. Thi
 
 ```json
 {
-    "id": 19,
+    "id": 3,
     "jsonrpc": "2.0",
     "method": "videoData",
     "params": {
@@ -277,7 +281,7 @@ Informs the server about the properties of the video being sent by the user. Thi
 
 ```json
 {
-    "id": 19,
+    "id": 3,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -310,7 +314,7 @@ Informs the server about the properties of the video being sent by the user. Thi
     padding-left: 20px;
     padding-right: 20px;
     ">
-This method is part of <a href="openvidu-enterprise/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> edition.
 </div>
 </div>
 
@@ -324,7 +328,7 @@ When using [mediasoup](openvidu-enterprise/#kurento-vs-mediasoup) as media serve
 
 ```json
 {
-    "id": 3,
+    "id": 4,
     "jsonrpc": "2.0",
     "method": "prepareReceiveVideoFrom",
     "params": {
@@ -338,7 +342,7 @@ When using [mediasoup](openvidu-enterprise/#kurento-vs-mediasoup) as media serve
 
 ```json
 {
-    "id": 3,
+    "id": 4,
     "jsonrpc": "2.0",
     "result": {
         "sdpOffer": "v=0\r\no=mediasoup-client 10000 [...] a=rtcp-rsize\r\n",
@@ -386,7 +390,7 @@ The content of the operation and the response is different when using <a href="o
 
 ```json
 {
-    "id": 4,
+    "id": 5,
     "jsonrpc": "2.0",
     "method": "receiveVideoFrom",
     "params": {
@@ -400,7 +404,7 @@ The content of the operation and the response is different when using <a href="o
 
 ```json
 {
-    "id": 4,
+    "id": 5,
     "jsonrpc": "2.0",
     "result": {
         "sdpAnswer": "v=0 ... :FD:66:54:68:B4:47:25:EF:B6:04:74:AF:7B:08:66:09:F2:7C\r\n",
@@ -417,7 +421,7 @@ The content of the operation and the response is different when using <a href="o
 
 ```json
 {
-    "id": 4,
+    "id": 5,
     "jsonrpc": "2.0",
     "method": "receiveVideoFrom",
     "params": {
@@ -431,7 +435,7 @@ The content of the operation and the response is different when using <a href="o
 
 ```json
 {
-    "id": 4,
+    "id": 5,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -449,7 +453,7 @@ Send an ICE candidate to the server.
 
 ```json
 {
-    "id": 5,
+    "id": 6,
     "jsonrpc": "2.0",
     "method": "onIceCandidate",
     "params": {
@@ -465,7 +469,7 @@ Send an ICE candidate to the server.
 
 ```json
 {
-    "id": 5,
+    "id": 6,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -483,7 +487,7 @@ Stop publishing a stream to the session. The equivalent method in OpenVidu Brows
 
 ```json
 {
-    "id": 6,
+    "id": 7,
     "jsonrpc": "2.0",
     "method": "unpublishVideo",
     "params": {}
@@ -494,7 +498,7 @@ Stop publishing a stream to the session. The equivalent method in OpenVidu Brows
 
 ```json
 {
-    "id": 6,
+    "id": 7,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -512,7 +516,7 @@ Stop the subscription from a stream to which the user is currently subscribed. T
 
 ```json
 {
-    "id": 7,
+    "id": 8,
     "jsonrpc": "2.0",
     "method": "unsubscribeFromVideo",
     "params": {
@@ -525,7 +529,7 @@ Stop the subscription from a stream to which the user is currently subscribed. T
 
 ```json
 {
-    "id": 7,
+    "id": 8,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -543,7 +547,7 @@ Disconnect a client from a session. The equivalent method in OpenVidu Browser is
 
 ```json
 {
-    "id": 8,
+    "id": 9,
     "jsonrpc": "2.0",
     "method": "leaveRoom",
     "params": {}
@@ -554,7 +558,7 @@ Disconnect a client from a session. The equivalent method in OpenVidu Browser is
 
 ```json
 {
-    "id": 576,
+    "id": 9,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -572,7 +576,7 @@ Send a signal to the session. The equivalent method in OpenVidu Browser is [Sess
 
 ```json
 {
-    "id": 9,
+    "id": 10,
     "jsonrpc": "2.0",
     "method": "sendMessage",
     "params": {
@@ -585,7 +589,7 @@ Send a signal to the session. The equivalent method in OpenVidu Browser is [Sess
 
 ```json
 {
-    "id": 9,
+    "id": 10,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -603,7 +607,7 @@ Force another client to unpublish its stream from the session. Only possible for
 
 ```json
 {
-    "id": 10,
+    "id": 11,
     "jsonrpc": "2.0",
     "method": "forceUnpublish",
     "params": {
@@ -616,7 +620,7 @@ Force another client to unpublish its stream from the session. Only possible for
 
 ```json
 {
-    "id": 10,
+    "id": 11,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -634,7 +638,7 @@ Force another client to disconnect from the session. Only possible for clients w
 
 ```json
 {
-    "id": 11,
+    "id": 12,
     "jsonrpc": "2.0",
     "method": "forceDisconnect",
     "params": {
@@ -647,7 +651,7 @@ Force another client to disconnect from the session. Only possible for clients w
 
 ```json
 {
-    "id": 11,
+    "id": 12,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -665,7 +669,7 @@ Apply a filter to a published stream. The equivalent method in OpenVidu Browser 
 
 ```json
 {
-    "id": 12,
+    "id": 13,
     "jsonrpc": "2.0",
     "method": "applyFilter",
     "params": {
@@ -680,7 +684,7 @@ Apply a filter to a published stream. The equivalent method in OpenVidu Browser 
 
 ```json
 {
-    "id": 12,
+    "id": 13,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -698,7 +702,7 @@ Removed an applied filter from a stream. The equivalent method in OpenVidu Brows
 
 ```json
 {
-    "id": 13,
+    "id": 14,
     "jsonrpc": "2.0",
     "method": "removeFilter",
     "params": {
@@ -711,7 +715,7 @@ Removed an applied filter from a stream. The equivalent method in OpenVidu Brows
 
 ```json
 {
-    "id": 13,
+    "id": 14,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -729,7 +733,7 @@ Execute a method offered by an applied filter. The equivalent method in OpenVidu
 
 ```json
 {
-    "id": 14,
+    "id": 15,
     "jsonrpc": "2.0",
     "method": "execFilterMethod",
     "params": {
@@ -744,7 +748,7 @@ Execute a method offered by an applied filter. The equivalent method in OpenVidu
 
 ```json
 {
-    "id": 14,
+    "id": 15,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -762,7 +766,7 @@ Add a listener to an applied filter. The equivalent method in OpenVidu Browser i
 
 ```json
 {
-    "id": 15,
+    "id": 16,
     "jsonrpc": "2.0",
     "method": "addFilterEventListener",
     "params": {
@@ -776,7 +780,7 @@ Add a listener to an applied filter. The equivalent method in OpenVidu Browser i
 
 ```json
 {
-    "id": 15,
+    "id": 16,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -794,7 +798,7 @@ Remove a listener from an applied filter. The equivalent method in OpenVidu Brow
 
 ```json
 {
-    "id": 16,
+    "id": 17,
     "jsonrpc": "2.0",
     "method": "removeFilterEventListener",
     "params": {
@@ -808,7 +812,7 @@ Remove a listener from an applied filter. The equivalent method in OpenVidu Brow
 
 ```json
 {
-    "id": 16,
+    "id": 17,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80"
@@ -826,7 +830,7 @@ After a network loss and a WebSocket reconnection, this is the first method that
 
 ```json
 {
-    "id": 17,
+    "id": 18,
     "jsonrpc": "2.0",
     "method": "connect",
     "params": {
@@ -842,7 +846,7 @@ If the server did not evict the user:
 
 ```json
 {
-    "id": 17,
+    "id": 18,
     "jsonrpc": "2.0",
     "result": {
         "sessionId": "4aktv8cfkhe2ooksplqg0c8v80",
@@ -855,7 +859,7 @@ If the server evicted the user:
 
 ```json
 {
-    "id": 17,
+    "id": 18,
     "jsonrpc": "2.0",
     "error": {
         "code": 40007,
@@ -901,7 +905,7 @@ Required params are the stream identifier to reconnect and the new SDP offer gen
 
 ```json
 {
-    "id": 18,
+    "id": 19,
     "jsonrpc": "2.0",
     "method": "reconnectStream",
     "params": {
@@ -915,7 +919,7 @@ Required params are the stream identifier to reconnect and the new SDP offer gen
 
 ```json
 {
-    "id": 18,
+    "id": 19,
     "jsonrpc": "2.0",
     "result": {
         "createdAt": 1646826648338,
@@ -934,7 +938,7 @@ Before sending method [reconnectStream](#reconnectstream) it is necessary to fir
 
 ```json
 {
-    "id": 18,
+    "id": 19,
     "jsonrpc": "2.0",
     "method": "prepareReceiveVideoFrom",
     "params": {
@@ -948,7 +952,7 @@ Before sending method [reconnectStream](#reconnectstream) it is necessary to fir
 
 ```json
 {
-    "id": 18,
+    "id": 19,
     "jsonrpc": "2.0",
     "result": {
         "sdpOffer": "v=0\r\no=mediasoup-client 10000 [...] a=rtcp-rsize\r\n",
@@ -958,6 +962,119 @@ Before sending method [reconnectStream](#reconnectstream) it is necessary to fir
 ```
 
 Use the resulting `sdpOffer` to generate an SDP answer, that must now be passed as parameter `sdpString` of method [reconnectStream](#reconnectstream).
+
+---
+
+#### subscribeToSpeechToText
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+Subscribe to the Speech to Text events for a specific Connection with identifier `connectionId` in a particular language with parameter `lang`. The equivalent method in OpenVidu Browser is [Session#subscribeToSpeechToText](api/openvidu-browser/classes/Session.html#subscribeToSpeechToText).
+
+**Method sent by client**
+
+```json
+{
+    "id": 20,
+    "jsonrpc": "2.0",
+    "method": "subscribeToSpeechToText",
+    "params": {
+        "connectionId": "con_Nk15EinQ7P",
+        "lang": "en-US"
+    }
+}
+```
+
+**Response from OpenVidu Server**
+
+```json
+{
+    "id": 20,
+    "jsonrpc": "2.0",
+    "result": {
+        "sessionId": "snmb4t2u5n0urqoa78uiud4bv5"
+    }
+}
+```
+
+---
+
+#### unsubscribeFromSpeechToText
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+Unsubscribe from the Speech to Text events for a specific Connection with identifier `connectionId`. The equivalent method in OpenVidu Browser is [Session#unsubscribeFromSpeechToText](api/openvidu-browser/classes/Session.html#unsubscribeFromSpeechToText).
+
+**Method sent by client**
+
+```json
+{
+    "id": 21,
+    "jsonrpc": "2.0",
+    "method": "unsubscribeFromSpeechToText",
+    "params": {
+        "connectionId": "con_Nk15EinQ7P"
+    }
+}
+```
+
+**Response from OpenVidu Server**
+
+```json
+{
+    "id": 21,
+    "jsonrpc": "2.0",
+    "result": {
+        "sessionId": "snmb4t2u5n0urqoa78uiud4bv5"
+    }
+}
+```
 
 <br>
 
@@ -1155,7 +1272,7 @@ Some client has changed a property of a stream. See [StreamPropertyChangedEvent]
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 
@@ -1209,6 +1326,26 @@ The recording of a session has stopped.
 
 ---
 
+#### filterEventDispatched
+
+A filter applied to a stream by this client has dispatched an event. This can only happen if the client has previously called methods `applyFilter` and `addFilterEventListener`
+
+```json
+{
+  "method": "filterEventDispatched",
+  "params": {
+    "connectionId": "con_PLHxdBQ6EG",
+    "streamId": "str_CAM_PBjN_con_PLHxdBQ6EG",
+    "filterType": "ZBarFilter",
+    "eventType": "CodeFound",
+    "data": "{timestampMillis=1568204832456, codeType=EAN-13, source=3972c92d-a489-47ae-92f8-13ea6d0e72eb_kurento.MediaPipeline/fdb2f5-19a4-47c2-a27a-705fb277_kurento.ZBarFilter, type=CodeFound, value=0092000001927}"
+  },
+  "jsonrpc": "2.0"
+}
+```
+
+---
+
 #### networkQualityLevelChanged
 
 <div style="
@@ -1232,7 +1369,7 @@ The recording of a session has stopped.
     padding-left: 20px;
     padding-right: 20px;
     ">
-This feature is part of <a href="openvidu-pro/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
 </div>
 
@@ -1252,21 +1389,89 @@ The network quality level of a client has changed. See [Network quality](advance
 
 ---
 
-#### filterEventDispatched
+#### speechToTextMessage
 
-A filter applied to a stream by this client has dispatched an event. This can only happen if the client has previously called methods `applyFilter` and `addFilterEventListener`
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+A [Speech to Text](advanced-features/speech-to-text/) event has been fired in the Session identified with `sessionId` for the Stream owned by the user identified with `connectionId`. See [SpeechToTextEvent](api/openvidu-browser/classes/SpeechToTextEvent.html).
 
 ```json
 {
-  "method": "filterEventDispatched",
-  "params": {
-    "connectionId": "con_PLHxdBQ6EG",
-    "streamId": "str_CAM_PBjN_con_PLHxdBQ6EG",
-    "filterType": "ZBarFilter",
-    "eventType": "CodeFound",
-    "data": "{timestampMillis=1568204832456, codeType=EAN-13, source=3972c92d-a489-47ae-92f8-13ea6d0e72eb_kurento.MediaPipeline/fdb2f5-19a4-47c2-a27a-705fb277_kurento.ZBarFilter, type=CodeFound, value=0092000001927}"
-  },
-  "jsonrpc": "2.0"
+    "jsonrpc": "2.0",
+    "method": "speechToTextMessage",
+    "params": {
+        "connectionId": "con_OB6p3kqjoC",
+        "lang": "en-US",
+        "raw": "{\"privResultId\":\"91B01E80ADDF4EFF8C436A4CE72755EB\",\"privReason\":3,\"privText\":\"Hello this is a test.\",\"privDuration\":19100000,\"privOffset\":21800000,\"privJson\":\"{\\\"Id\\\":\\\"66c4949bafc24e69888b2cd2bc9d7d8a\\\",\\\"RecognitionStatus\\\":\\\"Success\\\",\\\"DisplayText\\\":\\\"Hello this is a test.\\\",\\\"Offset\\\":21800000,\\\"Duration\\\":19100000,\\\"Channel\\\":0}\",\"privProperties\":{\"privKeys\":[\"SpeechServiceResponse_JsonResult\"],\"privValues\":[\"{\\\"Id\\\":\\\"66c4949bafc24e69888b2cd2bc9d7d8a\\\",\\\"RecognitionStatus\\\":\\\"Success\\\",\\\"DisplayText\\\":\\\"Hello this is a test.\\\",\\\"Offset\\\":21800000,\\\"Duration\\\":19100000,\\\"Channel\\\":0}\"]}}",
+        "reason": "RECOGNIZED",
+        "sessionId": "TestSession",
+        "text": "Hello this is a test.",
+        "timestamp": 1668622044632
+    }
+}
+```
+
+---
+
+#### speechToTextDisconnected
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+The Speech to Text module has experienced a crash. This event may be used to re-establish transcription subscriptions once the module is back again. See [Reconnecting to Speech to Text module in the case of a crash](advanced-features/speech-to-text/#reconnecting-to-speech-to-text-module-in-the-case-of-a-crash).
+
+```json
+{
+    "jsonrpc": "2.0",
+    "method": "speechToTextDisconnected",
+    "params": {
+        "message": "Network closed for unknown reason"
+    }
 }
 ```
 
@@ -1295,7 +1500,7 @@ A filter applied to a stream by this client has dispatched an event. This can on
     padding-left: 20px;
     padding-right: 20px;
     ">
-This method is part of <a href="openvidu-enterprise/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> tier.
+This feature is part of OpenVidu <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> edition.
 </div>
 </div>
 
