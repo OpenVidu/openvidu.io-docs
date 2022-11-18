@@ -146,8 +146,8 @@ Integrate OpenVidu from scratch in your web, mobile or desktop application with 
         </a>
 	</div>
     <div class="col-md-6">
-		<a data-fancybox="gallery4" data-type="image" class="fancybox-img" href="img/demos/ov-call-ionic3.png">
-            <img class="img-responsive" style="margin: auto; max-height: 300px; border: none" src="img/demos/ov-call-ionic3.png"/>
+		<a data-fancybox="gallery4" data-type="image" class="fancybox-img" href="img/demos/ov-ionic3.png">
+            <img class="img-responsive" style="margin: auto; max-height: 300px; border: none" src="img/demos/ov-ionic3.png"/>
         </a>
 	</div>
 </div>
