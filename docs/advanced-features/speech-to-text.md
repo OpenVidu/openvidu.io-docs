@@ -31,6 +31,31 @@ This feature is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-
 
 <div style="
     display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+    Speech To Text module <strong>needs port 4000/TCP</strong>, so you need to open this port in Media Nodes to allow Master Nodes to communicate with them.
+</div>
+</div>
+
+<div style="
+    display: table;
     border: 2px solid #ffb600;
     border-radius: 5px;
     width: 100%;
