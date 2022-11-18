@@ -118,6 +118,7 @@ Once you have your instances ready, be sure to meet the following criteria in th
         - **40000 - 65535 TCP+UDP**: used by Kurento Media Server to establish media connections.
         - **8888 TCP**: Kurento Media Server handler listens on port 8888. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.
         - **3000 TCP**: All _Media Nodes_ offer a REST API endpoint to provision their services. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.<br><br>
+        - **4000 TCP (Optional)** : This port is only needed if you want to use the <a href="/advanced-features/speech-to-text/" target="_blank">Speech to text</a> functionality. <strong style="color: #990000">WARNING!!</strong> This port must be closed to the Internet and **must only be accessible for your Master Node**, or anyone could spy your sessions.<br><br>
 
     - **Close all other ports**: this is VERY important to avoid external attacks to OpenVidu internal services. Check Media Node troubleshooting section [Close ports to avoid external attacks](#close-ports-to-avoid-external-attacks_1) to learn more about this.
 
@@ -1056,6 +1057,8 @@ If your only choice is to manually configure a firewall, you can for example ins
 ufw allow ssh
 ufw allow 40000:65535/tcp
 ufw allow 40000:65535/udp
+ufw allow 3000/tcp from <OPENVIDU_SERVER_PRO_IP>
+ufw allow 4000/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw allow 8888/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw allow 80/tcp from <OPENVIDU_SERVER_PRO_IP>
 ufw enable

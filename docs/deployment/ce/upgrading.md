@@ -82,7 +82,7 @@ sudo -s
 cd /opt/openvidu # Recommended and default installation path
 ```
 
-Then you can run the upgrade script with the following command. Change the desired version in the URL: instead of <code>install_openvidu_<strong>VERSION</strong>.sh</code> use for example <code>install_openvidu_<strong>2.14.0</strong>.sh</code>
+Then you can run the upgrade script with the following command. Change the desired version in the URL: instead of <code>install_openvidu_<strong>VERSION</strong>.sh</code> use for example <code>install_openvidu_<strong>2.24.0</strong>.sh</code>
 
 <p style="text-align: start">
 <code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_VERSION.sh | bash -s upgrade</strong></code>
@@ -111,7 +111,7 @@ If you don't plan to use it you can delete it.
 4. Start new version of Openvidu
 $ ./openvidu start
 
-If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.13.0'
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.23.0'
 
 For further information, check readme.md
 ```
