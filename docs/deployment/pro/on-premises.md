@@ -176,7 +176,7 @@ https://docs.openvidu.io/en/2.16.0/deployment/pro/on-premises/#deployment-instru
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.23.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_<strong>2.24.0</strong>.sh | bash</code>
 
 ---
 
@@ -431,7 +431,7 @@ automatically to all the media nodes configured in "KMS_URIS"
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>
-> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.23.0</strong>.sh | bash</code>
+> For example: <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_<strong>2.24.0</strong>.sh | bash</code>
 
 <br>
 

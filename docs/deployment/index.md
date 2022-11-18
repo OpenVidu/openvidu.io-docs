@@ -61,7 +61,7 @@ To develop OpenVidu CE based applications you can execute a simple-to-use docker
 Can be executed with the following command (you will need [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}):
 
 ```bash
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.23.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.24.0
 ```
 
 OpenVidu for development will be available in [`https://localhost:4443/`](https://localhost:4443/){:target="\_blank"}
