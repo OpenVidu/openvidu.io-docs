@@ -52,7 +52,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/lib/components/videoconference/videoconference.component.ts</code>
+    <code>projects/openvidu-angular/src/lib/components/videoconference/videoconference.component.ts</code>
 </p>
 
 
@@ -440,6 +440,14 @@ in the elements added as children.</p>
                     <td class="col-md-4">
                         <i>Type : </i>        <code><a href="../interfaces/TokenModel.html" target="_self" >TokenModel</a></code>
 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Tokens parameter is required to grant a participant access to a Session.
+This OpenVidu token will be use by each participant when connecting to a Session.</p>
+<p>This input accepts a <a href="../interfaces/TokenModel.html">TokenModel</a> object type.</p>
+</div>
                     </td>
                 </tr>
             </tbody>
@@ -877,7 +885,9 @@ See <a href="https://docs.openvidu.io/en/2.24.0/api/openvidu-browser/classes/Ses
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p> Both of them are <code>string</code> type. See <a href="../interfaces/TokenModel.html">TokenModel</a></p>
+                                <div class="io-description"><p>Tokens parameter is required to grant a participant access to a Session.
+This OpenVidu token will be use by each participant when connecting to a Session.</p>
+<p>This input accepts a <a href="../interfaces/TokenModel.html">TokenModel</a> object type.</p>
 </div>
 
                                 <div class="io-description">
@@ -904,8 +914,7 @@ See <a href="https://docs.openvidu.io/en/2.24.0/api/openvidu-browser/classes/Ses
                                                         </td>
                                                         
                                                             <td>
-                                                                    <p>The tokens parameter must be an object with <code>webcam</code> and <code>screen</code> fields.
-Both of them are <code>string</code> type. See <a href="../interfaces/TokenModel.html">TokenModel</a></p>
+                                                                    <p>The tokens parameter must be a <a href="../interfaces/TokenModel.html">TokenModel</a> object.</p>
 
                                                             </td>
                                                     </tr>

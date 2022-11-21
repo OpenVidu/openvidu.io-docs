@@ -33,6 +33,11 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <span class="icon ion-ios-paper"></span>README
                             </a>
                         </li>
+                        <li class="link">
+                            <a href="license.html"  data-type="chapter-link">
+                                <span class="icon ion-ios-paper"></span>LICENSE
+                            </a>
+                        </li>
                                 <li class="link">
                                     <a href="properties.html" data-type="chapter-link">
                                         <span class="icon ion-ios-apps"></span>Properties
@@ -196,13 +201,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/OpenviduWebComponentModule.html" data-type="entity-link" >OpenviduWebComponentModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-OpenviduWebComponentModule-ac9e7054ae7851bd277a9070f71648873f8bf068f51559ab7741dc82e8bb6c47b121ea1a44c7461646d59c39b65b20c5f2726d71d0f34cf41a2ba68c3fccbadf"' : 'data-target="#xs-components-links-module-OpenviduWebComponentModule-ac9e7054ae7851bd277a9070f71648873f8bf068f51559ab7741dc82e8bb6c47b121ea1a44c7461646d59c39b65b20c5f2726d71d0f34cf41a2ba68c3fccbadf"' }>
+                                            'data-target="#components-links-module-OpenviduWebComponentModule-7b07143ffcc77d50da85931a79838d8fd4f649bcb99cc6b8a6945f2b82b43925e5cf3e86fae5ee589a07c99b9a838a7041d527f80e402531544def6699ee1db4"' : 'data-target="#xs-components-links-module-OpenviduWebComponentModule-7b07143ffcc77d50da85931a79838d8fd4f649bcb99cc6b8a6945f2b82b43925e5cf3e86fae5ee589a07c99b9a838a7041d527f80e402531544def6699ee1db4"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OpenviduWebComponentModule-ac9e7054ae7851bd277a9070f71648873f8bf068f51559ab7741dc82e8bb6c47b121ea1a44c7461646d59c39b65b20c5f2726d71d0f34cf41a2ba68c3fccbadf"' :
-                                            'id="xs-components-links-module-OpenviduWebComponentModule-ac9e7054ae7851bd277a9070f71648873f8bf068f51559ab7741dc82e8bb6c47b121ea1a44c7461646d59c39b65b20c5f2726d71d0f34cf41a2ba68c3fccbadf"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-OpenviduWebComponentModule-7b07143ffcc77d50da85931a79838d8fd4f649bcb99cc6b8a6945f2b82b43925e5cf3e86fae5ee589a07c99b9a838a7041d527f80e402531544def6699ee1db4"' :
+                                            'id="xs-components-links-module-OpenviduWebComponentModule-7b07143ffcc77d50da85931a79838d8fd4f649bcb99cc6b8a6945f2b82b43925e5cf3e86fae5ee589a07c99b9a838a7041d527f80e402531544def6699ee1db4"' }>
                                             <li class="link">
                                                 <a href="components/OpenviduWebComponentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OpenviduWebComponentComponent</a>
                                             </li>
