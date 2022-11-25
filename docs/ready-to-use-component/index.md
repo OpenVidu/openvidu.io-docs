@@ -412,6 +412,10 @@ You can update the css styles which you can find [here](https://github.com/OpenV
 
 With OpenVidu Web Component you can also replace the OpenVidu branding logo with your custom onw. You just have to add into folder `web/assets/images/` your custom logo file with name `logo.png`.
 
+#### Change the virtual backgrounds
+
+With OpenVidu Web Component you can also replace the virtual backgrounds with your custom ones. You just have to add into folder `web/assets/backgrounds/` your custom backgrounds files with name `bg-1.png`, `bg-2.png`, `bg-3.png` etc. You can add up to 19 backgrounds.
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
