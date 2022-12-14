@@ -208,7 +208,6 @@ The authentication system for this dashboard is based on a single user with a fi
 A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-front).
 
 - `services/guards/navigator-guard.service.ts`: service in charge of checking if the navigation to an specific route is allowed verifying the user authentication.
-- `services/
 - `services/call.service.ts`: service in charge of the OpenVidu Call environment information.
 - `services/auth.service.ts`: service in charge of the authentication process.
 - `services/rest.service.ts`: services for requesting OpenVidu Tokens to the application's backend.
