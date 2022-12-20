@@ -147,12 +147,43 @@ The default list includes:
 | Chinese    | `zh-CN` |
 | Hindi      | `hi-IN` |
 
-#### Using custom language models
+#### Adding new languages
 
-Vosk models are available [here](https://alphacephei.com/vosk/models){:target="_blank"}. The default ones offered by OpenVidu are the small versions of the models for each language, which all have Apache 2.0 license. But you can set your own custom model by changing [configuration property](reference-docs/openvidu-config/) `OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE`
+Vosk models are available [here](https://alphacephei.com/vosk/models){:target="_blank"}. The default ones offered by OpenVidu are the small versions of the models for each language, which all have Apache 2.0 license.
 
-```properties
-OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE=your_docker_image:your_docker_tag
+To create an image with more language models, you just need to create a Docker image based on the default one and copy your model to the path `/dist/app/vosk-models`. You can follow these steps:
+
+**1)** Go to an empty directory and create a file called `Dockerfile` with the following content:
+
+```text
+FROM openvidu/speech-to-text-service-base:2.25.0
+
+COPY custom-model/ /dist/app/vosk-models
+```
+
+The image `openvidu/speech-to-text-service-base` does not have any previous model. If you want to preserve the default models, you can use `openvidu/speech-to-text-service` instead.
+
+**2)** Download the model you want [here](https://alphacephei.com/vosk/models){:target="_blank"} and unzip it.
+
+**3)** Rename the unzipped folder to `custom-model` (or the name you want).
+
+**4)** Copy the `custom-model` folder to the same directory where the `Dockerfile` is and build the image:
+
+```text
+docker build . -t <your-registry>/<image-name>:<tag>
+```
+
+**5)** Push the image to your Docker registry.
+
+```text
+docker push <your-registry>/<image-name>:<tag>
+```
+
+**6)** Configure the new image and registry credentials (if needed) in the **`.env`** configuration file of OpenVidu:
+
+```
+OPENVIDU_PRO_DOCKER_REGISTRIES=["serveraddress=<your-registry>,username=<your-username>,password=<your-password>"]
+OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE=<your-registry>/<image-name>:<tag>
 ```
 
 <br>
@@ -178,6 +209,17 @@ Then you just need to subscribe to the desired Stream transcription using method
 ```javascript
 await session.subscribeToSpeechToText(stream, "en-US");
 ```
+
+In case you are using vosk and a custom model, you need to specify the name of the model you have added in the docker image. For example, if your custom model is located in `/dist/app/vosk-models/custom-model` you need to pass `custom-model` as the second parameter of the method. For example:
+
+```javascript
+await session.subscribeToSpeechToText(stream, "custom-model");
+```
+
+For [OpenVidu WebComponent](/ready-to-use-component/){:target="_blank"} and [OpenVidu Angular Components](/components/){:target="_blank"}, you need to add the custom model name as a new value at:
+
+- [OpenVidu Webcomponent (`captionsLangOptions`)](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#captionsLangOptions){:target="_blank"}
+- [OpenVidu Angular (`captionsLangOptions`)](/api/openvidu-angular/directives/CaptionsLangOptionsDirective.html){:target="_blank"}
 
 Check out tutorial [openvidu-speech-to-text](tutorials/openvidu-speech-to-text/) to test a real sample application.
 
