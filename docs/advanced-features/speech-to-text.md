@@ -117,10 +117,6 @@ Coming soon...
 
 ### Vosk
 
-Coming soon...
-
-<!--
-
 See [Vosk web](https://alphacephei.com/vosk/){:target="_blank"}.
 
 This is the open source alternative with no extra cost for the service: you will not have to pay an external cloud provider for the service. But you must take into account that it may affect the average accuracy of the transcription and the amount of resources consumed in your OpenVidu cluster (as the engine needs to run in your [Media Nodes](openvidu-pro/scalability/#openvidu-pro-architecture)).
@@ -137,24 +133,27 @@ OPENVIDU_PRO_SPEECH_TO_TEXT=vosk
 
 The default list includes:
 
-- English
-- Spanish
-- French
-- German
-- Portuguese
-- Italian
-- Catalan
-- Japanese
-- Chinese
-- Hindi
+| Language   | Code |
+| - ||
+| English    | `en-US` |
+| Spanish    | `es-ES` |
+| French     | `fr-FR` |
+| German     | `de-DE` |
+| Portuguese | `pt-PT` |
+| Italian    | `it-IT` |
+| Dutch      | `nl-NL` |
+| Catalan    | `ca-ES` |
+| Japanese   | `ja-JP` |
+| Chinese    | `zh-CN` |
+| Hindi      | `hi-IN` |
+
+#### Using custom language models
 
 Vosk models are available [here](https://alphacephei.com/vosk/models){:target="_blank"}. The default ones offered by OpenVidu are the small versions of the models for each language, which all have Apache 2.0 license. But you can set your own custom model by changing [configuration property](reference-docs/openvidu-config/) `OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE`
 
 ```properties
 OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE=your_docker_image:your_docker_tag
 ```
-
--->
 
 <br>
 
