@@ -878,6 +878,10 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
     **1) Your layout must connect to the session using a _token_ like this:**
 
         'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
+        
+    <div style="margin-top: -20px"></div>
+
+    > **WARNING!** Use `ws://` as protocol instead of `wss://` if you are using the [OpenVidu dev container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"} through localhost
 
     Being `SESSION_ID` and `SECRET` two parameters that will be url-encoded under ids `sessionId` and `secret` respectively. So, for example:
 
@@ -887,6 +891,10 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
         var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
         var session = OV.initSession();
         session.connect(TOKEN);
+
+    <div style="margin-top: -20px"></div>
+
+    > **WARNING!** Use `ws://` as protocol instead of `wss://` if you are using the [OpenVidu dev container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"} through localhost
 
     **2) You will need to subscribe to, at least, one event:** `streamCreated` of Session object. That way you can subscribe your recorder to every stream when any user starts publishing (by default, the video element will be automatically removed on every `streamDestroyed` event). To sum up, this would be the simplest code you need to properly start your recorder participant:
 
@@ -903,6 +911,10 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
         });
 
         session.connect(TOKEN);
+
+    <div style="margin-top: -20px"></div>
+
+    > **WARNING!** Use `ws://` as protocol instead of `wss://` if you are using the [OpenVidu dev container](https://hub.docker.com/r/openvidu/openvidu-dev){:target="_blank"} through localhost
 
 <br>
 
@@ -1222,6 +1234,8 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
     var url = new URL(window.location.href);
     var SESSION_ID = url.searchParams.get("sessionId");
     var SECRET = url.searchParams.get("secret");
+    // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
+    // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
     var TOKEN = 'wss://' + location.host + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
 
     var OV = new OpenVidu();
@@ -1271,6 +1285,8 @@ You also can use an additional layout library for improving the layout and get a
     var url = new URL(window.location.href);
     var SESSION_ID = url.searchParams.get("sessionId");
     var SECRET = url.searchParams.get("secret");
+    // WARNING! Use "ws://" as protocol instead of "wss://" if you are using
+    // the OpenVidu dev container (openvidu/openvidu-dev) through localhost
     var TOKEN = 'wss://localhost:4443' + '?sessionId=' + SESSION_ID + '&secret=' + SECRET + '&recorder=true';
 
     var OV = new OpenVidu();
