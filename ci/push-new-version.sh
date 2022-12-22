@@ -7,7 +7,9 @@ fi
 
 echo "Building docs for version ${VERSION}" 1>&2
 
-git clone git@github.com:OpenVidu/openvidu.git
+git clone git@github.com:OpenVidu/openvidu.io-docs.git
 cd openvidu.io-docs
 git branch $VERSION
 git push origin $VERSION
+cd ..
+rm -rf openvidu.io-docs
