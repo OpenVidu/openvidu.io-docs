@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.25.0](#2250)
 - [2.24.0](#2240)
 - [2.23.0](#2230)
 - [2.22.0](#2220)
@@ -27,6 +28,180 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.25.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.25.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.25.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.25.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.25.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.25.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.18.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.18.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.10.3</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Speech to Text support for AWS and Vosk
+
+The Speech to Text service introduced in release 2.24.0 has been extended with support for more engines. Now you can use:
+
+- **Azure**: available since OpenVidu 2.24.0, it uses [Speech to Text](https://azure.microsoft.com/en-us/products/cognitive-services/speech-to-text/){:target="_blank"} service from Azure stack.
+- **AWS**: using [Amazon Transcribe](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html){:target="_blank"} service from AWS stack.
+- **Vosk**: using [Vosk engine](https://alphacephei.com/vosk/){:target="_blank"}, the open source alternative with no extra cost from cloud providers.
+
+Check out [Speech to Text](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/) documentation to learn more about all of these alternatives.
+
+<br>
+
+##### Native support for private Docker registries
+
+New [configuration property `OPENVIDU_PRO_DOCKER_REGISTRIES`](https://docs.openvidu.io/en/2.25.0/reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) allows you to configure private Docker registries to be used in your Media Nodes. Your custom images of OpenVidu services can now be private but easily accessible by your nodes at the same time. The actual services that can take advantage of this feature are [`kurento-media-server`](https://hub.docker.com/r/kurento/kurento-media-server){:target="_blank"} (configured with property `KMS_IMAGE`) and [`speech-to-text-service`](https://hub.docker.com/r/openvidu/speech-to-text-service-base){:target="_blank"} (configured with property `OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE`).
+
+<br>
+
+#### OpenVidu Components new Speech to Text features
+
+- Speech to Text capabilities of OpenVidu Components now includes automatice reconnection to the service in case of failure. See [Reconnecting to Speech to Text module in the case of a crash](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/#reconnecting-to-speech-to-text-module-in-the-case-of-a-crash).
+- A new directive `captionsLangOptions` has been addded, which allows overriding the default Speech to Text language options. This allows you configuring your own [custom languages](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/#using-custom-languages) in the case you are using Vosk as Speech to Text engine.
+
+<br>
+
+#### BUG FIXES
+
+- _OpenVidu Components_ : Fixed typo with [`recordingActivity`](https://docs.openvidu.io/en/2.25.0/api/openvidu-angular/directives/ActivitiesPanelRecordingActivityDirective.html) directive that prevented it from working as expected.
+
+<br>
+
+#### BREAKING CHANGES
+
+- [**openvidu-java-client**](https://docs.openvidu.io/en/2.25.0/reference-docs/openvidu-java-client/) requires minimum Java 11.
+
+<br>
 
 ---
 
