@@ -109,11 +109,26 @@ OPENVIDU_PRO_SPEECH_TO_TEXT_AZURE_REGION=<AzureRegion>  ## e.g. westeurope
 
 #### Available languages
 
-There are dozens of different languages supported by Azure. You have the complete list in [this link](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt-tts){:target="_blank"}.
+There are dozens of different languages supported by Azure. You have the complete list in [this link](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt-tts){:target="_blank"}. Use the language code in the table's column `Speech-to-text` when [subscribing to Speech to Text events](#receiving-speech-to-text-events).
 
 ### AWS
 
-Coming soon...
+See [AWS web](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html){:target="_blank"}.
+
+AWS provides a service called Amazon Transcribe that transcribes spoken audio to text. OpenVidu seamlessly integrates the audio streams of OpenVidu Sessions with this AWS service. The only thing needed is a set of AWS credentials with access to Amazon Transcribe.
+
+#### Enabling Speech To Text module
+
+```properties
+OPENVIDU_PRO_SPEECH_TO_TEXT=aws
+OPENVIDU_PRO_AWS_ACCESS_KEY=<AWS_ACCESS_KEY_ID>      ## e.g. AKIAIOSFODNN7EXAMPLE
+OPENVIDU_PRO_AWS_SECRET_KEY=<AWS_SECRET_ACCESS_KEY>  ## e.g. wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+OPENVIDU_PRO_AWS_REGION=<AWS_DEFAULT_REGION>         ## e.g. eu-west-1
+```
+
+#### Available languages
+
+There are multiple languages supported by AWS. You have the complete list in [this link](https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html){:target="_blank"} (compatible languages are the ones with option `streaming` in their `Data input` table's column). Use the language code in the table's column `Language Code` when [subscribing to Speech to Text events](#receiving-speech-to-text-events).
 
 ### Vosk
 
@@ -131,7 +146,7 @@ OPENVIDU_PRO_SPEECH_TO_TEXT=vosk
 
 #### Available languages
 
-The default list includes:
+The default languages offered by OpenVidu are the small versions of the [Vosk models](https://alphacephei.com/vosk/models){:target="_blank"} for each one of the languages in the table below (all have Apache 2.0 license). Note that these models are lightweight, originally intended for low-resource devices, and transcription accuracy may be affected. You can configure your own [custom models](#using-custom-languages) for better results.
 
 | Language   | Code |
 | - ||
@@ -147,11 +162,11 @@ The default list includes:
 | Chinese    | `zh-CN` |
 | Hindi      | `hi-IN` |
 
-#### Adding new languages
+#### Using custom languages
 
 Vosk models are available [here](https://alphacephei.com/vosk/models){:target="_blank"}. The default ones offered by OpenVidu are the small versions of the models for each language, which all have Apache 2.0 license.
 
-To create an image with more language models, you just need to create a Docker image based on the default one and copy your model to the path `/dist/app/vosk-models`. You can follow these steps:
+To use a custom language model, you need to override the Speech to Text module to use a custom one. It is very easy: you just need to create a Docker image based on the default one `openvidu/speech-to-text-service-base`. The only thing to do in your custom image is copying your language model to path `/dist/app/vosk-models`. Let's go step by step, considering that we want to add a new language called **`custom-model`**:
 
 **1)** Go to an empty directory and create a file called `Dockerfile` with the following content:
 
@@ -161,13 +176,13 @@ FROM openvidu/speech-to-text-service-base:2.25.0
 COPY custom-model/ /dist/app/vosk-models
 ```
 
-The image `openvidu/speech-to-text-service-base` does not have any previous model. If you want to preserve the default models, you can use `openvidu/speech-to-text-service` instead.
+The Docker image `openvidu/speech-to-text-service-base` does not have any default language model in it. If you want to preserve the default language models, you can use `openvidu/speech-to-text-service` as base image instead.
 
-**2)** Download the model you want [here](https://alphacephei.com/vosk/models){:target="_blank"} and unzip it.
+**2)** [Download](https://alphacephei.com/vosk/models){:target="_blank"} the desired language model and unzip it.
 
-**3)** Rename the unzipped folder to `custom-model` (or the name you want).
+**3)** Rename the unzipped folder to `custom-model`. You can use any other name, but in these steps we will use this one. Just replace `custom-model` with your own name in the next steps if you want.
 
-**4)** Copy the `custom-model` folder to the same directory where the `Dockerfile` is and build the image:
+**4)** Copy the `custom-model` folder to the same directory where the `Dockerfile` is and build the Docker image:
 
 ```text
 docker build . -t <your-registry>/<image-name>:<tag>
@@ -179,12 +194,28 @@ docker build . -t <your-registry>/<image-name>:<tag>
 docker push <your-registry>/<image-name>:<tag>
 ```
 
-**6)** Configure the new image and registry credentials (if needed) in the **`.env`** configuration file of OpenVidu:
+**6)** Configure the new image in the **`.env`** configuration file of OpenVidu (by default located at `/opt/openvidu/.env`). You can also configure the Docker registry credentials if needed. If you are using Dockerhub as Docker registry this is not necessary.
 
 ```
-OPENVIDU_PRO_DOCKER_REGISTRIES=["serveraddress=<your-registry>,username=<your-username>,password=<your-password>"]
 OPENVIDU_PRO_SPEECH_TO_TEXT_IMAGE=<your-registry>/<image-name>:<tag>
+OPENVIDU_PRO_DOCKER_REGISTRIES=["serveraddress=<your-registry>,username=<your-username>,password=<your-password>"]
 ```
+
+> - When subscribing to Speech to Text events in your application's client, just configure your new language (that would be `custom-model` in the steps above) as second parameter of the method. Check out section [Receiving Speech To Text events](#receiving-speech-to-text-events).
+> - You can add as many custom language models as you want in the same Docker image. Just store them in path `/dist/app/vosk-models` as stated in step 1)
+
+#### Managing language models in Media Nodes
+
+Vosk language models are large files that must be loaded and unloaded from memory inside the [Media Nodes](openvidu-pro/scalability/#openvidu-pro-architecture). [Configuration property **`OPENVIDU_PRO_SPEECH_TO_TEXT_VOSK_MODEL_LOAD_STRATEGY`**](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) dictates the strategy that OpenVidu will follow to load/unload language models in Media Nodes:
+
+- If `OPENVIDU_PRO_SPEECH_TO_TEXT_VOSK_MODEL_LOAD_STRATEGY=on_demand`: OpenVidu by default will dynamically load the required language model in the Media Node when it is first needed. That is: when a user has requested a Speech to Text transcription for that specific language and there is no other previous transcriptions using that language in that Media Node. Besides this, OpenVidu will dynamically unload the language model from the Media Node when it is no longer needed. That is: when the last subscriptions to a Speech to Text transcription for a specific language in a particular Media Node is terminated.<br><br>
+- If `OPENVIDU_PRO_SPEECH_TO_TEXT_VOSK_MODEL_LOAD_STRATEGY=manual`: OpenVidu won't load or unload language models dynamically in Media Nodes. You must call the REST API methods to manually [load](reference-docs/REST-API/#post-speech-to-text) and [unload](reference-docs/REST-API/#delete-speech-to-text) a language model in a specific Media Node when necessary. If a user tries to subscribe to a Speech to Text transcription and the requested language model is not available in the required Media Node, an error will be returned.
+
+Why do these two options exist? Ideally, option `on_demand` is the most convenient from an administration perspective: OpenVidu just takes care of it whenever it is necessary. But the reality is somewhat more complicated: since the Vosk language models are large files, it is very inefficient to dynamically load and unload them in the Media Nodes, especially if the application's use case involves many different activations and deactivations of Speech To Text transcriptions.
+
+On top of that, the default language models provided by OpenVidu are small in size and in general will work just fine with `on_demand` option, but when using [custom language models](#using-custom-languages) that are bigger in size, the amount of time required to load the model in memory can dramatically increase. Clients calling the Speech to Text subscription operation may have to wait up to 10 seconds for the operation to return, and that is not acceptable (timeout errors may even occur). So in this case, it is highly recommended (if not almost mandatory) to use `manual` option to control the loading and unloading process of the language models in your Media Nodes. So when a user requests a Speech to Text subscription, the model is already available and ready in the required Media Node.
+
+Check out the REST API operations to manually **[load](reference-docs/REST-API/#post-speech-to-text)** and to **[unload](reference-docs/REST-API/#delete-speech-to-text)** a Vosk language model in a Media Node.
 
 <br>
 
@@ -204,13 +235,13 @@ session.on("subscribeToSpeechToText", event => {
 });
 ```
 
-Then you just need to subscribe to the desired Stream transcription using method [`Session.subscribeToSpeechToText`](api/openvidu-browser/classes/Session.html#subscribeToSpeechToText). Pass the desired [Stream](api/openvidu-browser/classes/Stream.html) object for which you want to receive Speech To Text events:
+Then you just need to subscribe to the desired Stream transcription using method [`Session.subscribeToSpeechToText`](api/openvidu-browser/classes/Session.html#subscribeToSpeechToText). Pass the desired [Stream](api/openvidu-browser/classes/Stream.html) object for which you want to receive Speech To Text events, and the language:
 
 ```javascript
 await session.subscribeToSpeechToText(stream, "en-US");
 ```
 
-In case you are using vosk and a custom model, you need to specify the name of the model you have added in the docker image. For example, if your custom model is located in `/dist/app/vosk-models/custom-model` you need to pass `custom-model` as the second parameter of the method. For example:
+In case you are using vosk and a [custom model](#using-custom-languages), you need to specify the name of the model you have added in the Docker image as the second parameter of the method. For example, if your custom model is located in `/dist/app/vosk-models/custom-model` inside your custom Speech to Text Docker image, you need to pass `custom-model`. For example:
 
 ```javascript
 await session.subscribeToSpeechToText(stream, "custom-model");
@@ -221,7 +252,7 @@ For [OpenVidu WebComponent](/ready-to-use-component/){:target="_blank"} and [Ope
 - [OpenVidu Webcomponent (`captionsLangOptions`)](/api/openvidu-angular/components/OpenviduWebComponentComponent.html#captionsLangOptions){:target="_blank"}
 - [OpenVidu Angular (`captionsLangOptions`)](/api/openvidu-angular/directives/CaptionsLangOptionsDirective.html){:target="_blank"}
 
-Check out tutorial [openvidu-speech-to-text](tutorials/openvidu-speech-to-text/) to test a real sample application.
+> Check out tutorial [openvidu-speech-to-text](tutorials/openvidu-speech-to-text/) to test a real sample application.
 
 <br>
 
