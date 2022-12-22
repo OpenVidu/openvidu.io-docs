@@ -37,7 +37,7 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Retrieve recording info](#get-recording)
     - [Retrieve all recording info](#get-all-recordings)
     - [Delete a recording](#delete-recording)
-- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [Retrieve Media Node info](#get-medianode)
     - [Retrieve all Media Nodes info](#get-all-medianodes)
     - [Add Media Node](#post-medianode)
@@ -49,8 +49,10 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Unpublish a stream from a connection](#delete-stream)
     - [Send a signal to a session](#post-signal)
     - [Get OpenVidu active configuration](#get-config)
-    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Load Speech To Text language model](#post-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Unload Speech To Text language model](#delete-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 </div>
 
@@ -1803,39 +1805,31 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 }
 ```
 
-> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/) and [OpenVidu Pro configuration properties](reference-docs/openvidu-config). All of them are optional. Not all properties can be modified this way. Others require a manual update. The complete list of available properties to be modified with this method is listed below. Visit the configuration docs for a detailed description of each one of them.
+> The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-ce), [OpenVidu Pro configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) and [OpenVidu Enterprise configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-enterprise). All of them are optional. Not all properties can be modified this way. Others require a manual update.
+> 
+> The list of properties that **MAY NOT BE MODIFIED** through this method is available below. All other properties are modifiable. Visit the configuration docs for a detailed description of each one of them.
 >
 > ---
 >
-> - **OPENVIDU_CDR** _(optional Boolean)_
-> - **OPENVIDU_RECORDING** _(optional Boolean)_
-> - **OPENVIDU_RECORDING_PATH** _(optional String)_
-> - **OPENVIDU_RECORDING_PUBLIC_ACCESS** _(optional Boolean)_
-> - **OPENVIDU_RECORDING_NOTIFICATION** _(optional String)_
-> - **OPENVIDU_RECORDING_CUSTOM_LAYOUT** _(optional String)_
-> - **OPENVIDU_RECORDING_AUTOSTOP_TIMEOUT** _(optional Number)_
-> - **OPENVIDU_WEBHOOK** _(optional Boolean)_
-> - **OPENVIDU_WEBHOOK_ENDPOINT** _(optional String)_
-> - **OPENVIDU_WEBHOOK_HEADERS**: _(optional Array of Strings)_
-> - **OPENVIDU_WEBHOOK_EVENTS** _(optional Array of Strings)_
-> - **OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH** _(optional Number)_
-> - **OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH** _(optional Number)_
-> - **OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH** _(optional Number)_
-> - **OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH** _(optional Number)_
-> - **OPENVIDU_SESSIONS_GARBAGE_INTERVAL** _(optional Number)_
-> - **OPENVIDU_SESSIONS_GARBAGE_THRESHOLD** _(optional Number)_
-> - **OPENVIDU_PRO_CLUSTER_ID** _(optional String)_
-> - **OPENVIDU_PRO_CLUSTER_MEDIA_NODES** _(optional Number)_
-> - **OPENVIDU_PRO_CLUSTER_PATH** _(optional String)_
-> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING** _(optional Boolean)_
-> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_NODES** _(optional Number)_
-> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_NODES** _(optional Number)_
-> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MAX_LOAD** _(optional Number)_
-> - **OPENVIDU_PRO_CLUSTER_AUTOSCALING_MIN_LOAD** _(optional Number)_
-> - **OPENVIDU_PRO_NETWORK_QUALITY** _(optional Boolean)_
-> - **OPENVIDU_PRO_NETWORK_QUALITY_INTERVAL** _(optional Number)_
-> - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL** _(optional Number)_
-> - **OPENVIDU_PRO_STATS_WEBRTC_INTERVAL** _(optional Number)_
+> - **DOMAIN_OR_PUBLIC_IP**
+> - **CERTIFICATE_TYPE**
+> - **HTTP_PORT**
+> - **HTTPS_PORT**
+> - **OPENVIDU_SECRET**
+> - **OPENVIDU_PRO_LICENSE**
+> - **OPENVIDU_PRO_STATS_MONITORING_INTERVAL**
+> - **OPENVIDU_PRO_CLUSTER_TEST**
+> - **ELASTICSEARCH_USERNAME**
+> - **ELASTICSEARCH_PASSWORD**
+> - **KMS_IMAGE**
+> - **MEDIASOUP_IMAGE**
+> - **OPENVIDU_EDITION**
+> - **OPENVIDU_ENTERPRISE_MEDIA_SERVER**
+> - **OPENVIDU_PRO_ELASTICSEARCH_HOST**
+> - **OPENVIDU_PRO_KIBANA_HOST**
+> - **COTURN_IP**
+> - **COTURN_PORT**
+> - **COTURN_INTERNAL_RELAY**
 
 ##### HTTP responses
 
@@ -1848,6 +1842,153 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 
 > **NOTES**
 >
-> This method will restart OpenVidu Server Pro with the new provided configuration parameters. For those parameters for which no value has been provided, the previous existing will be used. The new applied values **will be stored in disk** in your configuration file, so you will be able to restart the host without losing your new configuration.
+> This method will restart OpenVidu Server Pro with the new provided configuration parameters. For those parameters for which no value has been provided, the previous existing value will be used. The changed properties are persistent: the new applied values **will be stored in disk** in your configuration file, so you will be able to restart the host without losing the changed configuration.
+
+<br>
+
+---
+
+### POST `/openvidu/api/speech-to-text/load` {:id=post-speech-to-text}
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+Speech to Text API is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+##### Description
+
+Load a Speech to Text language model in a Media Node. This operation is available when [Speech to Text](advanced-features/speech-to-text) is enabled.
+The following [environment variables](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) impact the behavior of this operation:
+
+- **`OPENVIDU_PRO_SPEECH_TO_TEXT`**: it must be set to `vosk` for the operation to be available. Other Speech to Text engines do not require language model management.<br><br>
+- **`OPENVIDU_PRO_SPEECH_TO_TEXT_VOSK_MODEL_LOAD_STRATEGY`**:
+    - If set to `manual`: the operation is mandatory. Language models must be manually loaded into Media Nodes before clients may enable Speech to Text transcriptions. An error will be return to the client if the required language model is not loaded in the required Media Node when calling [Session.subscribeToSpeechToText](api/openvidu-browser/classes/Session.html#subscribeToSpeechToText) method.
+    - If set to `on_demand`: the operation is possible but not mandatory. You can still decide when to load a language model in a Media Node, but if a client enables Speech to Text transcriptions and the required Media Node does not have the required language model available in memory, it will automatically load it.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/speech-to-text/load |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "lang": "en-US",
+    "mediaNode": {
+        "id": "media_i-0c58bcdd26l11d0sd"
+    }
+}
+```
+
+> - **lang** _(mandatory String)_ : The language model to load.<br><br>
+> - **mediaNode** _(mandatory Object)_: An object with the Media Node selector to where to load the language model. Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The language model has been successfully loaded into the specified Media Node |
+| 400 | There is some problem with a body parameter. The error message will provide further details |
+| 404 | The language model cannot be found in the Media Node |
+| 409 | The language model is already loaded in the specified Media Node |
+| 501 | Speech to Text module is disabled or configured with an engine that does not support language model management. Configuration property `OPENVIDU_PRO_SPEECH_TO_TEXT` must be set to `vosk` |
+
+<br>
+
+---
+
+### POST `/openvidu/api/speech-to-text/unload` {:id=delete-speech-to-text}
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+Speech to Text API is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
+</div>
+</div>
+
+##### Description
+
+Unload a Speech to Text language model from a Media Node. This operation is available when [Speech to Text](advanced-features/speech-to-text) is enabled.
+The following [environment variables](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) impact the behavior of this operation:
+
+- **`OPENVIDU_PRO_SPEECH_TO_TEXT`**: it must be set to `vosk` for the operation to be available. Other Speech to Text engines do not require language model management.<br><br>
+- **`OPENVIDU_PRO_SPEECH_TO_TEXT_VOSK_MODEL_LOAD_STRATEGY`**:
+    - If set to `manual`: the operation is not mandatory but recommended. Unloading unused language models from Media Nodes is advisable, as depending on the model a good amount of the server's memory could be occupied by it.
+    - If set to `on_demand`: the operation is possible, but the only case in which it could make sense is to unload a language model that is not going to be finally used. As soon as a model is required, the automatic unload of the model is guaranteed once it is no longer needed. If the model is being used, a `405` HTTP status will be returned when calling this operation.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/speech-to-text/unload |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "lang": "en-US",
+    "mediaNode": {
+        "id": "media_i-0c58bcdd26l11d0sd"
+    }
+}
+```
+
+> - **lang** _(mandatory String)_ : The language model to load.<br><br>
+> - **mediaNode** _(mandatory Object)_: An object with the Media Node selector to where to load the language model. Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object).
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | The language model has been successfully unloaded from the specified Media Node |
+| 400 | There is some problem with a body parameter. The error message will provide further details |
+| 404 | The language model cannot be found in the Media Node |
+| 405 | The language model cannot be unloaded as it is currently in use in the Media Node |
+| 409 | The language model is not loaded in the specified Media Node |
+| 501 | Speech to Text module is disabled or configured with an engine that does not support language model management. Configuration property `OPENVIDU_PRO_SPEECH_TO_TEXT` must be set to `vosk` |
 
 <br>
