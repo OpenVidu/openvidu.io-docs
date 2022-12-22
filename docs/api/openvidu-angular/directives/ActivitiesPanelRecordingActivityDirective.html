@@ -54,7 +54,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/lib/directives/api/activities-panel.directive.ts</code>
+            <code>projects/openvidu-angular/src/lib/directives/api/activities-panel.directive.ts</code>
         </p>
 
 
@@ -62,11 +62,11 @@
                 <h3>Description</h3>
             </p>
             <p class="comment">
-                <p>The <strong>recordingActivity</strong> directive allows show/hide the recording activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a> activity panel component.</p>
+                <p>The <strong>recordingActivity</strong> directive allows show/hide the recording activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
 <p>Default: <code>true</code></p>
 <p>It can be used in the parent element <a href="../components/VideoconferenceComponent.html">VideoconferenceComponent</a> specifying the name of the <code>activitiesPanel</code> component:</p>
 <div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [activitiesPanelRecordingActivity]=&quot;false&quot;&gt;&lt;/ov-videoconference&gt;</code></pre></div><p><br>And it also can be used in the <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-activities-panel [recordingActivity]=&quot;false&quot;&gt;&lt;/ov-activities-panel&gt;</code></pre></div>
+<div><pre class="line-numbers"><code class="language-html">&lt;ov-activities-panel *ovActivitiesPanel [recordingActivity]=&quot;false&quot;&gt;&lt;/ov-activities-panel&gt;</code></pre></div>
             </p>
 
 
@@ -146,7 +146,7 @@
                                 <a href="#activitiesPanelRecordingActivity" >activitiesPanelRecordingActivity</a>
                             </li>
                             <li>
-                                <a href="#recordingList" >recordingList</a>
+                                <a href="#recordingActivity" >recordingActivity</a>
                             </li>
                         </ul>
                     </td>
@@ -167,7 +167,7 @@
                                     <a href="#activitiesPanelRecordingActivity" >activitiesPanelRecordingActivity</a>
                                 </li>
                                 <li>
-                                    <a href="#recordingList" >recordingList</a>
+                                    <a href="#recordingActivity" >recordingActivity</a>
                                 </li>
                             </ul>
                         </td>
@@ -254,8 +254,8 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="recordingList"></a>
-                        <b>recordingList</b>
+                        <a name="recordingActivity"></a>
+                        <b>recordingActivity</b>
                     </td>
                 </tr>
                 <tr>
@@ -487,15 +487,15 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="recordingList"></a>
-                        <span class="name"><b>recordingList</b><a href="#recordingList"><span class="icon ion-ios-link"></span></a></span>
+                        <a name="recordingActivity"></a>
+                        <span class="name"><b>recordingActivity</b><a href="#recordingActivity"><span class="icon ion-ios-link"></span></a></span>
                     </td>
                 </tr>
 
 
                 <tr>
                     <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>recordingList(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
+                        <span class="accessor"><b>set</b><code>recordingActivity(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code></span>
                     </td>
                 </tr>
                     <tr>
