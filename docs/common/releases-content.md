@@ -172,7 +172,7 @@ The Speech to Text service introduced in release 2.24.0 has been extended with s
 
 - **Azure**: available since OpenVidu 2.24.0, it uses [Speech to Text](https://azure.microsoft.com/en-us/products/cognitive-services/speech-to-text/){:target="_blank"} service from Azure stack.
 - **AWS**: using [Amazon Transcribe](https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html){:target="_blank"} service from AWS stack.
-- **Vosk**: using [Vosk engine](https://alphacephei.com/vosk/){:target="_blank"}, the open source alternative with no extra cost from cloud providers.
+- **Vosk**: using [Vosk engine](https://alphacephei.com/vosk/){:target="_blank"}, the open source alternative with no extra cost compared to cloud providers.
 
 Check out [Speech to Text](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/) documentation to learn more about all of these alternatives.
 
@@ -186,7 +186,7 @@ New [configuration property `OPENVIDU_PRO_DOCKER_REGISTRIES`](https://docs.openv
 
 #### OpenVidu Components new Speech to Text features
 
-- Speech to Text capabilities of OpenVidu Components now includes automatice reconnection to the service in case of failure. See [Reconnecting to Speech to Text module in the case of a crash](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/#reconnecting-to-speech-to-text-module-in-the-case-of-a-crash).
+- Speech to Text capabilities of OpenVidu Components now includes automatic reconnection to the service in case of failure. See [Reconnecting to Speech to Text module in the case of a crash](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/#reconnecting-to-speech-to-text-module-in-the-case-of-a-crash).
 - A new directive `captionsLangOptions` has been addded, which allows overriding the default Speech to Text language options. This allows you configuring your own [custom languages](https://docs.openvidu.io/en/2.25.0/advanced-features/speech-to-text/#using-custom-languages) in the case you are using Vosk as Speech to Text engine.
 
 <br>
