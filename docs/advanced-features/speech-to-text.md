@@ -173,7 +173,7 @@ To use a custom language model, you need to override the Speech to Text module t
 ```text
 FROM openvidu/speech-to-text-service-base:2.25.0
 
-COPY custom-model/ /dist/app/vosk-models
+COPY custom-model /dist/app/vosk-models/custom-model
 ```
 
 The Docker image `openvidu/speech-to-text-service-base` does not have any default language model in it. If you want to preserve the default language models, you can use `openvidu/speech-to-text-service` as base image instead.
