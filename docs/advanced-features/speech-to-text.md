@@ -166,14 +166,14 @@ The default languages offered by OpenVidu are the small versions of the [Vosk mo
 
 Vosk models are available [here](https://alphacephei.com/vosk/models){:target="_blank"}. The default ones offered by OpenVidu are the small versions of the models for each language, which all have Apache 2.0 license.
 
-To use a custom language model, you need to override the Speech to Text module to use a custom one. It is very easy: you just need to create a Docker image based on the default one `openvidu/speech-to-text-service-base`. The only thing to do in your custom image is copying your language model to path `/dist/app/vosk-models`. Let's go step by step, considering that we want to add a new language called **`custom-model`**:
+To use a custom language model, you need to override the Speech to Text module to use a custom one. It is very easy: you just need to create a Docker image based on the default one `openvidu/speech-to-text-service-base`. The only thing to do in your custom image is copying your language model to path `/app/dist/vosk-models`. Let's go step by step, considering that we want to add a new language called **`custom-model`**:
 
 **1)** Go to an empty directory and create a file called `Dockerfile` with the following content:
 
 ```text
 FROM openvidu/speech-to-text-service-base:2.25.0
 
-COPY custom-model /dist/app/vosk-models/custom-model
+COPY custom-model /app/dist/vosk-models/custom-model
 ```
 
 The Docker image `openvidu/speech-to-text-service-base` does not have any default language model in it. If you want to preserve the default language models, you can use `openvidu/speech-to-text-service` as base image instead.
@@ -202,7 +202,7 @@ OPENVIDU_PRO_DOCKER_REGISTRIES=["serveraddress=<your-registry>,username=<your-us
 ```
 
 > - When subscribing to Speech to Text events in your application's client, just configure your new language (that would be `custom-model` in the steps above) as second parameter of the method. Check out section [Receiving Speech To Text events](#receiving-speech-to-text-events).
-> - You can add as many custom language models as you want in the same Docker image. Just store them in path `/dist/app/vosk-models` as stated in step 1)
+> - You can add as many custom language models as you want in the same Docker image. Just store them in path `/app/dist/vosk-models` as stated in step 1)
 
 #### Managing language models in Media Nodes
 
@@ -241,7 +241,7 @@ Then you just need to subscribe to the desired Stream transcription using method
 await session.subscribeToSpeechToText(stream, "en-US");
 ```
 
-In case you are using vosk and a [custom model](#using-custom-languages), you need to specify the name of the model you have added in the Docker image as the second parameter of the method. For example, if your custom model is located in `/dist/app/vosk-models/custom-model` inside your custom Speech to Text Docker image, you need to pass `custom-model`. For example:
+In case you are using vosk and a [custom model](#using-custom-languages), you need to specify the name of the model you have added in the Docker image as the second parameter of the method. For example, if your custom model is located in `/app/dist/vosk-models/custom-model` inside your custom Speech to Text Docker image, you need to pass `custom-model`. For example:
 
 ```javascript
 await session.subscribeToSpeechToText(stream, "custom-model");
