@@ -104,6 +104,15 @@ After we have set Xcode up, we need the three components stated in [OpenVidu app
 
 > **WARNING**: the OpenVidu demos deployment is not secure and is only intended for a first quick test. Anyone could access to your video sessions. To run the tutorial in your own network, see [Running this tutorial in your network](#running-this-tutorial-in-your-network)
 
+
+<div class="row no-margin row-gallery">
+	<div class="col-md-12">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/ov-ios.png">
+            <img class="img-responsive" src="img/demos/ov-ios.png">
+        </a>
+	</div>
+</div>
+
 ### Running this tutorial in your network
 
 Real Android and iOS devices will require a valid SSL certificate in your OpenVidu deployment to work. By default openvidu-ios tutorial uses the official demos OpenVidu deployment ([demos.openvidu.io](https://demos.openvidu.io){:target="_blank"}), so you can quickly test the app without having to worry about this.
