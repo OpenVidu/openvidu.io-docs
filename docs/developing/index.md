@@ -6,12 +6,12 @@
     - [Compiling OpenVidu Server dashboard](#compiling-openvidu-server-dashboard)
 - **[Building OpenVidu Server Docker container](#building-openvidu-server-docker-container)**
 - **[Compiling OpenVidu Browser](#compiling-openvidu-browser)**
-- **[Compiling OpenVidu Call](#compiling-openvidu-call)**
-- **[Compiling OpenVidu WebComponent](#compiling-openvidu-webcomponent)**
-- **[Compiling OpenVidu Angular Library](#compiling-openvidu-angular-library)**
 - **[Running KMS](#running-kms)**
 - **[Example: setup for development](#example-setup-for-development)**
 - **[Example: setup for advanced development](#example-setup-for-advanced-development-share-the-app-through-your-network)**
+<!--- **[Compiling OpenVidu Call](#compiling-openvidu-call)**
+- **[Compiling OpenVidu WebComponent](#compiling-openvidu-webcomponent)**
+- **[Compiling OpenVidu Angular Library](#compiling-openvidu-angular-library)**-->
 
 ---
 
@@ -19,9 +19,9 @@
 
 | Dependency    | Check version   | Install                                 |
 | ------------- | --------------- |---------------------------------------- |
-| Java 8 JDK    | `java -version` | `sudo apt-get install -y openjdk-8-jdk` |
+| Java 11 JDK    | `java -version` | `sudo apt-get install -y openjdk-11-jdk` |
 | Maven         | `mvn -v`        | `sudo apt-get install -y maven`         |
-| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
 
 ## Compiling OpenVidu Server
 
@@ -45,7 +45,7 @@ mvn clean compile package # Will output the JAR file in folder ./target
 **1)** You need Angular to compile OpenVidu Server dashboard:
 
 ```bash
-sudo npm install -g @angular/cli
+sudo npm install --location=global @angular/cli
 ```
 
 **2)** Enter the Angular project and install NPM dependencies. **This is only necessary the first time you compile openvidu-server dashboard**
@@ -74,12 +74,12 @@ Once you have the openvidu-server JAR, copy it to folder `openvidu/openvidu-serv
 
 
 ```bash
-# Run this located at folder openvidu/openvidu-server/docker/openvidu-server
+# Navigate to path openvidu/openvidu-server/docker/openvidu-server and run this command
 # It will copy at this path the content of "utils" folder
 cp ../utils/* .
 ```
 
-Now we can build the docker container (of course [Docker](https://store.docker.com/search?type=edition&offering=community){:target="_blank"} must be installed)
+Now we can build the Docker container (of course [Docker](https://store.docker.com/search?type=edition&offering=community){:target="_blank"} must be installed)
 
 ```bash
 # Set whatever TAG you want
@@ -112,7 +112,7 @@ npm run build
 sudo npm link
 
 # You can link this local dependency to any project that has openvidu-browser as
-# dependency in its package.json, by calling "sudo npm link openvidu-browser"
+# dependency in its package.json, by calling "npm link openvidu-browser"
 ```
 
 **4)** To obtain static JavaScript files
@@ -121,31 +121,22 @@ sudo npm link
 VERSION=2.0.0 npm run browserify # Regular JS version
 VERSION=2.0.0 npm run browserify-prod # Minified JS version
 
-# Static files will be built in path ./static/js/
+# Static files will be available in path ./static/js/
 ```
 
 <br>
 
 ---
 
-## Compiling OpenVidu Call
+<!--## Compiling OpenVidu Call
 
-Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-to-build-openvidu-call){:target="_blank"}.
+Just follow instructions at [openvidu-call demo page](demos/openvidu-call/#how-to-build-openvidu-call).
 
 <br>
 
 ---
 
 ## Compiling OpenVidu WebComponent
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-        The following commands work fine in Unix systems. Some changes will be necessary to make them work in Windows.
-  </div>
-</div>
 
 **1)** Clone OpenVidu Call repository (openvidu-webcomponent is compiled from it) and install dependencies
 
@@ -155,13 +146,19 @@ cd openvidu-call/openvidu-call-front
 npm install
 ```
 
-**2)** Build openvidu-webcomponent
+**2)** Build openvidu-webcomponent **(Unix systems)**
 
 ```bash
 npm run build:openvidu-webcomponent
 ```
 
-If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/){:target="_blank"}. Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
+**2)** Build openvidu-webcomponent **(Windows)**
+
+```bash
+npm run build-win:openvidu-webcomponent
+```
+
+If you want to test your OpenVidu WebComponent changes, you can clone openvidu-tutorials repository in the same path as openvidu-call repository, and the command `npm run build:openvidu-webcomponent` will automatically update the webcomponent files of [openvidu-webcomponent tutorial](tutorials/openvidu-webcomponent/). Make sure the version of webcomponent static files is the same as the imported ones in the HTML of the tutorial.
 
 ```bash
 # Same path as "git clone https://github.com/OpenVidu/openvidu-call.git"
@@ -176,15 +173,6 @@ http-server openvidu-tutorials/openvidu-webcomponent/web
 
 ## Compiling OpenVidu Angular Library
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-        The following commands work fine in Unix systems. Some changes will be necessary to make them work in Windows.
-  </div>
-</div>
-
 
 These steps build **[openvidu-angular NPM library](https://www.npmjs.com/package/openvidu-angular){:target="_blank"}** from the source code.
 
@@ -196,12 +184,17 @@ cd openvidu-call/openvidu-call-front
 npm install
 ```
 
-**2)** Build openvidu-angular library
+**2)** Build openvidu-angular library **(Unix systems)**
 
 ```bash
 npm run build:openvidu-angular
 ```
 
+**2)** Build openvidu-angular library **(Windows)**
+
+```bash
+npm run build-win:openvidu-angular
+```
 This will build openvidu-angular library into folder `openvidu-call/openvidu-call-front/dist/openvidu-angular`, being `openvidu-call/` the folder where the repository was cloned. You can pack your compilation to install it as a local NPM dependency in any application. Just run the pack command in the output path:
 
 ```bash
@@ -209,12 +202,13 @@ cd dist/openvidu-angular
 npm pack
 ```
 
-This will generate in that same folder a file `openvidu-angular-{VERSION}.tgz`. You can install that file in any NPM project simply by running `npm install openvidu-angular-{VERSION}.tgz`. For example, tutorial [openvidu-library-angular](tutorials/openvidu-library-angular/){:target="_blank"} uses openvidu-angular dependency, and you can install your compilation in it to see your changes.
+This will generate in that same folder a file `openvidu-angular-{VERSION}.tgz`. You can install that file in any NPM project simply by running `npm install openvidu-angular-{VERSION}.tgz`. For example, tutorial [openvidu-library-angular](tutorials/openvidu-library-angular/) uses openvidu-angular dependency, and you can install your compilation in it to see your changes.
 
 
 <br>
 
 ---
+-->
 
 ## Running KMS
 
@@ -238,7 +232,7 @@ docker run -d --name kms -p 8888:8888 kurento/kurento-media-server-dev:latest
 
 ## Example: setup for development
 
-Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install -g @angular/cli`.
+Here we show how to develop an Angular app (_openvidu-testapp_) with ***openvidu-browser*** and ***openvidu-server*** as local dependencies, waiting to be modified as you want. You can install Angular with `sudo npm install --location=global @angular/cli`.
 
 **1)** Run [Kurento Media Server](#running-kms)
 
@@ -310,7 +304,7 @@ Run exactly the same commands as in the previous section, but:
 
 1. On step **5)** extend `ng serve` command with:
 
-        ng serve --host 0.0.0.0 --ssl true
+        ng serve --host 0.0.0.0 --ssl
 
 2. On step **6)** extend `mvn exec:java` command with:
 

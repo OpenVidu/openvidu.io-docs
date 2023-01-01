@@ -16,16 +16,27 @@
 
   {% if config.copyright %}
   <hr/>
+
   <div role="contentinfo">
     <!-- Copyright etc -->
       <p>{{ config.copyright }}</p>
   </div>
   {% endif %}
-  <div id="edit-github">
-  {% if page %}
-	  <a href="{{ config.repo_url }}/blob/master/docs/{{ page.input_path }}"><i class="icon ion-social-github"></i> Edit Documentation on GitHub</a>
-  {% else %}
-	  <a href="{{ config.repo_url }}"><i class="icon ion-social-github"></i> Edit Documentation on GitHub</a>
-  {% endif %}
-  </div>
+
+  {%- block repo %}
+    {%- if page and page.edit_url %}
+      <div id="edit-github">
+        <a href="{{ page.edit_url }}" class="nav-link">
+          <i class="icon ion-social-github"></i> Edit Documentation on GitHub
+        </a>
+      </div>
+    {%- elif config.repo_url %}
+      <div id="edit-github">
+        <a href="{{ config.repo_url }}" class="nav-link">
+          <i class="icon ion-social-github"></i> Edit Documentation on GitHub
+        </a>
+      </div>
+    {%- endif %}
+  {%- endblock %}
+
 </footer>

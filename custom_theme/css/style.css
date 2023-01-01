@@ -81,7 +81,7 @@ a:focus, a:active, button::-moz-focus-inner, input[type="reset"]::-moz-focus-inn
     .container {
         max-width: 1425px;
         width: 100%;
-        padding: 0 90px;
+        padding: 0 70px;
     }
 }
 @media (min-width: 768px) and (max-width: 991px)) {
@@ -244,42 +244,6 @@ p {
 .size-3x { font-size:3em }
 .size-2x { font-size:2.5em }
 .size-1x { font-size:1em }
-
-/*----- Backgrounds ------*/
-
-#home-parallax-fullscreen {
-    /*background-image: url(../img/backgrounds/bg-home-fullscreen.jpg);*/
-}
-#home-parallax-fullwidth {
-    /*background-image: url(../img/backgrounds/bg-home-fullscreen.jpg);*/
-}
-#home-landing {
-    /*background-image: url(../img/backgrounds/bg-home-fullscreen.jpg);*/
-}
-/*.parallax-section-1 {
-    background-image: url(../img/backgrounds/bg-1.jpg);
-}
-.parallax-section-2 {
-    background-image: url(../img/backgrounds/bg-2.jpg);
-}
-.parallax-section-3 {
-    background-image: url(../img/backgrounds/bg-3.jpg);
-}
-.parallax-section-4 {
-    background-image: url(../img/backgrounds/bg-4.jpg);
-}
-.parallax-section-5 {
-    background-image: url(../img/backgrounds/bg-5.jpg);
-}
-.parallax-section-6 {
-    background-image: url(../img/backgrounds/bg-6.jpg);
-}
-.parallax-section-7 {
-    background-image: url(../img/backgrounds/bg-7.jpg);
-}
-.parallax-section-8 {
-    background-image: url(../img/backgrounds/bg-8.jpg);
-}*/
 
 /*----- Home Sections -----*/
 #home-parallax-fullscreen,

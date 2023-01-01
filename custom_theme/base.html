@@ -1,16 +1,73 @@
-<!-- Exclude all templates under ./common folder -->
+{# Exclude all templates under ./common folder #}
 {% if page.title != 'Releases content' %}
 
+
+
+<!DOCTYPE html>
+<html lang="{{ config.theme.locale|default('en') }}">
 <head>
-	<base href="/">
-	<title>OpenVidu Docs</title>
-	<meta charset="utf-8">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="viewport"
-		content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="keywords" content="OpenVidu, openvidu, WebRTC, Video, mobile" />
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	{%- block site_meta %}
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="keywords" content="OpenVidu, openvidu, WebRTC, Video, mobile" />
+		{% if page and page.is_homepage %}<meta name="description" content="{{ config['site_description'] }}">{% endif %}
+		{% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
+
+		{#
+		FIXME: MkDocs requires that `site_url` is set to the complete URL of the docs,
+		including any subdirectories. But RTD doesn't yet provide any
+		way to configure `site_url` with the correct directory path!
+		This means that `page.canonical_url` ends up pointing to an nonexistent URL.
+		Related: https://github.com/readthedocs/readthedocs.org/issues/8260
+		#}
+		{# {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %} #}
+		{# The canonical URL is set below, when the domain "docs.openvidu.io" is detected #}
+
+		{% if config.site_favicon %}<link rel="shortcut icon" href="{{ config.site_favicon|url }}">
+		{% else %}<link rel="shortcut icon" href="img/favicon.ico">{% endif %}
+	{%- endblock %}
+
+	{%- block htmltitle %}
+		<title>{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+	{%- endblock %}
+
+	{#
+	Create a `<base>` element that matches the current RTD version.
+	There are 2 parts of the URL slug we need to get:
+	* Language.
+	* Version name. Something like "latest", "stable", "2.20.0", etc.
+	#}
+	{%- if config.extra.READTHEDOCS %}
+	<base href="/{{ config.extra.READTHEDOCS_LANGUAGE }}/{{ config.extra.READTHEDOCS_VERSION }}/" />
+	{%- elif "docs.openvidu.io" in config.site_url %}
+	{#
+	The MkDocs implementation in RTD is too limited and they still don't
+	have env vars working: https://github.com/readthedocs/readthedocs.org/issues/8529
+
+	So let's go with an Ugly Hack:
+	* Language: Obtained from the theme's locale config.
+	* Version name: RTD checks out the repo into a directory named like the
+	version that is being built. So we get the version name from there.
+
+	Sample `docs_dir` string for a build of the `latest` version:
+	"/home/docs/checkouts/readthedocs.org/user_builds/openvidu/checkouts/latest/docs".
+
+	Actual values:
+	config.theme.locale.language: {{ config.theme.locale.language }}
+	config.docs_dir: {{ config.docs_dir }}
+	#}
+	{% if page %}<link rel="canonical" href="{{ config.site_url }}{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/{{ page.url }}">{% endif %}
+	<base href="/{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/" />
+	{%- else %}
+	{#
+	When not deploying in the public subdomain, default to root.
+	This is the case when using `mkdocs serve` for local authoring.
+	#}
+	<base href="/" />
+	{%- endif %}
+
 	<!-- Stlylesheet -->
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link href="css/style-custom.css" rel="stylesheet" type="text/css" />
@@ -21,8 +78,34 @@
 	<link rel="stylesheet" type="text/css" href="css/downloads/cookieconsent-3.0.3.css" />
 	<script src="js/plugins/jquery.min.js"></script>
 	<script src="js/anchor-links.js"></script>
+
+	{%- block analytics %}
+		{%- if config.theme.analytics.gtag %}
+		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config.theme.analytics.gtag }}"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', '{{ config.theme.analytics.gtag }}');
+		</script>
+		{%- elif config.google_analytics %}
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+			ga('create', '{{ config.google_analytics[0] }}', '{{ config.google_analytics[1] }}');
+			ga('send', 'pageview');
+		</script>
+		{%- endif %}
+	{%- endblock %}
+
+	{%- block extrahead %} {% endblock %}
 </head>
 
+<body{% if page and page.is_homepage %} class="homepage"{% endif %}>
 <header>
 	<nav class="navbar navbar-default navbar-alt navbar-small">
 		<div class="container">
@@ -41,14 +124,13 @@
 				<ul class="nav navbar-nav  navbar-right">
 					<li class="to-section"><a href="https://openvidu.io/index">Home</a></li>
 					<li class="to-section"><a href="https://openvidu.io/demos">Demos</a></li>
-					<li class="to-section"><a href="https://openvidu.io/tutorials">Tutorials</a></li>
 					<li class="to-section"><a href="https://openvidu.io/openvidu-call">OpenVidu Call</a></li>
 					<li class="to-section"><a href="https://openvidu.io/support">Support</a></li>
 					<li class="to-section"><a href="https://openvidu.io/pricing">Pricing</a></li>
 					<li class="active to-section"><a href="https://docs.openvidu.io">Docs</a></li>
-					<li><a class="social-icon" target="_blank" href="https://twitter.com/openvidu"
+					<li><a target="_blank" href="https://twitter.com/openvidu"
 							style="padding-left: 12px"><i class="icon ion-social-twitter"></i></a></li>
-					<li><a class="social-icon" target="_blank" href="https://github.com/OpenVidu/openvidu"><i
+					<li><a target="_blank" href="https://github.com/OpenVidu/openvidu"><i
 								class="icon ion-social-github"></i></a></li>
 					<li class="to-section" style="display: flex; padding-left: 18px" id="account-menu-btn">
 						<div id="login-loader" class="lds-ripple">
@@ -62,15 +144,14 @@
 	</nav>
 
 	<!-- We need this component here to check if user is logged in in ay page -->
-	<script type="text/javascript" src="https://openvidu.io/openvidu-register/openvidu-register.js"></script>
-
+	<script async type="text/javascript" src="https://openvidu.io/openvidu-register/openvidu-register.js"></script>
 </header>
 
 <!-- We need this component here to check if user is logged in in ay page -->
 <openvidu-register></openvidu-register>
 
 <link rel="stylesheet" href="css/syntax.css" />
-<script src="js/highlight.pack.js"></script>
+<script src="js/highlight.min.js"></script>
 <script>
 	hljs.initHighlightingOnLoad();
 </script>
@@ -89,12 +170,21 @@
 						<h3 style="margin: 0">Explore docs</h3>
 						{% include "version-button.html" %}
 					</div>
-					<hr>
 				</div>
+				{%- block search_button %}
+					{%- if 'search' in config['plugins'] %}
+					<h4>
+						<a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+							<i class="icon ion-search"></i> Search
+						</a>
+					</h4>
+					{%- endif %}
+				{%- endblock %}
+				<hr>
 				<ul id="menu-list">
 					{% for nav_item in nav %}
 					<li>
-						<ul class="top-ul {% if nav_item.active%}current{%endif%}">{% include "toc.html" %}</ul>
+						<ul class="top-ul {% if nav_item.active %}current{% endif %}">{% include "toc.html" %}</ul>
 					</li>
 					{% endfor %}
 				</ul>
@@ -149,10 +239,10 @@
 		});
 		// Add click listener to menu items
 		$('li.subnav_drop div').click(function (i, e) {
-			let submenu = $(this).parent().find('ul.subnav');
+			let submenu = $(this).parent().find('> ul.subnav');
 			submenu.toggle();
-			submenu.parent().find('span.arrow-up').toggle();
-			submenu.parent().find('span.arrow-down').toggle();
+			submenu.siblings().find('span.arrow-up').toggle();
+			submenu.siblings().find('span.arrow-down').toggle();
 			if (ps) ps.update();
 		});
 
@@ -177,61 +267,85 @@
 <script src="js/plugins/counterup.min.js"></script>
 <script src="js/scripts.js"></script>
 
-<script>
-	(function (i, s, o, g, r, a, m) {
-		i['GoogleAnalyticsObject'] = r;
-		i[r] = i[r] || function () {
-			(i[r].q = i[r].q || []).push(arguments)
-		}, i[r].l = 1 * new Date();
-		a = s.createElement(o),
-			m = s.getElementsByTagName(o)[0];
-		a.async = 1;
-		a.src = g;
-		m.parentNode.insertBefore(a, m)
-	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-	ga('create', 'UA-101392924-1', 'auto');
-	ga('send', 'pageview');
-</script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 <script>
 	window.addEventListener("load", function () {
-		window.cookieconsent.initialise({
-			"palette": {
-				"popup": {
-					"background": "#000"
+		if (typeof window.cookieconsent !== "undefined") {
+			window.cookieconsent.initialise({
+				palette: {
+					popup: {
+						background: "#000",
+					},
+					button: {
+						background: "#0088aa",
+						color: "#fff",
+						padding: "9px 22px",
+						"box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-moz-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-webkit-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						"-o-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
+						margin: "0 7px 0 7px",
+						"text-transform": "uppercase",
+						"text-decoration": "none",
+						color: "#ff7302",
+						"text-shadow": "none",
+						"-webkit-transition": "all .2s ease-out",
+						"-moz-transition": "all .2s ease-out",
+						"-o-transition": "all .2s ease-out",
+						"-ms-transition": "all .2s ease-out",
+					},
 				},
-				"button": {
-					"background": "#0088aa",
-					"color": "#fff",
-					"padding": "9px 22px",
-					"box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-moz-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-webkit-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"-o-box-shadow": "0 -3px rgba(0, 0, 0, 0.3) inset",
-					"margin": "0 7px 0 7px",
-					"text-transform": "uppercase",
-					"text-decoration": "none",
-					"color": "#ff7302",
-					"text-shadow": "none",
-					"-webkit-transition": "all .2s ease-out",
-					"-moz-transition": "all .2s ease-out",
-					"-o-transition": "all .2s ease-out",
-					"-ms-transition": "all .2s ease-out"
-				}
-			},
-			"theme": "classic",
-			"position": "bottom-right",
-			"content": {
-				"href": "https://openvidu.io/conditions/cookie-policy",
-				"policy": 'Cookie Policy',
-			}
-		})
+				theme: "classic",
+				position: "bottom-right",
+				content: {
+					href: "https://openvidu.io/conditions/cookie-policy",
+					policy: "Cookie Policy",
+				},
+			});
+		}
 	});
 </script>
-{%else%}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+{%- block scripts %}
+	<script>
+		var base_url = ".";
+		var shortcuts = {{ config.theme.shortcuts | tojson }};
+	</script>
+	<script src="js/base.js" defer></script>
+	{#
+	The original mkdocs theme includes here all scripts from `config.extra_javascript`:
+	* readthedocs-data.js
+	* https://assets.readthedocs.org/static/core/js/readthedocs-doc-embed.js
+	* https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js
+	However in RTD this injects the advertisement and version selection footer,
+	which is not styled, so it appears as an ugly section below the page. Instead,
+	just manually include the scripts that allow for search to work.
+
+	{%- for path in config.extra_javascript %}
+	<script src="{{ path }}" defer></script>
+	{%- endfor %}
+	#}
+	<script src="search/main.js" defer></script>
+{%- endblock %}
+
+{% if 'search' in config['plugins'] %}{%- include "search-modal.html" %}{% endif %}
+{%- include "keyboard-modal.html" %}
+
+</body>
+</html>
+
+{% if page and page.is_homepage %}
+<!--
+MkDocs version : {{ mkdocs_version }}
+Build Date UTC : {{ build_date_utc }}
+-->
+{% endif %}
+
+
+
+{% else %} {# if page.title == 'Releases content' #}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 {{ page.content }}
-{%endif%}
+
+{% endif %} {# if page.title == 'Releases content' #}

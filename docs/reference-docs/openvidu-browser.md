@@ -1,6 +1,24 @@
 <h2 id="section-title">openvidu-browser API</h2>
 <hr>
 
-<h3>Check <a href="api/openvidu-browser" target="blank">TypeDoc documentation</a></h3>
+## Installation
+
+#### NPM
+
+```bash
+npm i -S openvidu-browser
+```
+
+#### JS file
+
+[Download from GitHub](https://github.com/OpenVidu/openvidu/releases){:target="_blank"}
+
+<br>
+
+---
+
+## Documentation
+
+<h4><a href="api/openvidu-browser">TypeDoc documentation</a></h4>
 
 <br>

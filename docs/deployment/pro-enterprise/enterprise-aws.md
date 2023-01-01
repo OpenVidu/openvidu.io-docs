@@ -1,0 +1,1 @@
+<script src="js/redirect-to-path.js" data-pathToRedirect="/deployment/enterprise/aws"></script>

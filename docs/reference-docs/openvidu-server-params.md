@@ -1,1 +1,1 @@
-<script>window.onload = function() { window.location.pathname = "/en/stable/reference-docs/openvidu-config/"; }</script>
+<script src="js/redirect-to-path.js" data-pathToRedirect="/reference-docs/openvidu-config"></script>

@@ -18,15 +18,15 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 		<p>This is the main component of <strong>OpenVidu-Call-React</strong>. It allows you to establish a connection with your video roommates. This component allows the user to mute the microphone, unpublish the webcam, share the screen, open the chat and leave the session.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/openvidu_call_react1.png">
-			<img class="img-responsive" src="img/demos/openvidu_call_react1.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu_call_react1.png">
+			<img class="img-responsive" data-type="image" class="fancybox-img" src="img/demos/openvidu_call_react1.png">
 		</a>
 	</div>
 </div>
 <hr>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/openvidu_call_react_chat.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu_call_react_chat.png">
 			<img class="img-responsive" src="img/demos/openvidu_call_react_chat.png">
 		</a>
 	</div>
@@ -43,7 +43,7 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 		<p> With OpenVidu Layout, this component is the responsible of displaying the video stream of each user in a nice way. On the right, we can see four streams displayed in the same videoconference.</p>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/openvidu_call_react2.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/openvidu_call_react2.png">
 			<img class="img-responsive" src="img/demos/openvidu_call_react2.png">
 		</a>
 	</div>
@@ -66,20 +66,20 @@ git clone https://github.com/OpenVidu/openvidu-call-react.git
 
 ```bash
 sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_12.x | sudo bash -
+sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 sudo apt-get install -y nodejs
 ```
 
-3)  OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+3)  OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.15.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.25.0
 ```
 
-4)  Install NPM dependencies of Angular app:
+4)  Install NPM dependencies of React app:
 
 ```
 cd openvidu-call-react/openvidu-call-react
@@ -92,26 +92,9 @@ npm install
 npm start
 ```
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
-
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

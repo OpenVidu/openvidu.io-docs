@@ -1,7 +1,7 @@
 # openvidu-getaroom
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-getaroom" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-insecure-js](tutorials/openvidu-insecure-js/){:target="_blank"} does.
+OpenVidu-Getaroom demo, <strong>built with Vanilla JS, </strong> allows users to connect to a room and share the link with others, so they can connect to it straight away just by visiting that link. It is a frontend-only application and it makes use of OpenVidu the same way [openvidu-js](tutorials/openvidu-js/) does.
 
 <p align="center">
   <img  class="img-responsive" src="img/tutorials/openvidu-getaroom.png">
@@ -24,7 +24,7 @@ git clone https://github.com/OpenVidu/openvidu-tutorials.git
 2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
 
 ```bash
-npm install -g http-server
+npm install --location=global http-server
 ```
 
 3) Run the tutorial:
@@ -33,41 +33,39 @@ npm install -g http-server
 http-server openvidu-tutorials/openvidu-getaroom/web
 ```
 
-4) OpenVidu Platform service must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker CE](https://store.docker.com/search?type=edition&offering=community){:target="_blank"}):
+4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
 
 ```bash
-# WARNING: this container is not suitable for production deployments of OpenVidu Platform
+# WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-server-kms:2.15.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.25.0
 ```
 
-5) Go to [`localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running. The first time you use the docker container, an alert message will suggest you accept the self-signed certificate of _openvidu-server_ when you first try to join a video-call.
+5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running.
 
-> If you are using **Windows**, read this **[FAQ](troubleshooting/#3-i-am-using-windows-to-run-the-tutorials-develop-my-app-anything-i-should-know){:target="_blank"}** to properly run the tutorial
-
-> To learn **some tips** to develop with OpenVidu, check this **[FAQ](troubleshooting/#2-any-tips-to-make-easier-the-development-of-my-app-with-openvidu){:target="_blank"}**
+> To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-index.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-index.png">
 			<img class="img-responsive" src="img/demos/getaroom-index.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-1.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-1.png">
 			<img class="img-responsive" src="img/demos/getaroom-session-1.png">
 		</a>
 	</div>
 </div>
 <div class="row no-margin row-gallery">
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-6.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-6.png">
 			<img class="img-responsive" src="img/demos/getaroom-session-6.png">
 		</a>
 	</div>
 	<div class="col-md-6">
-		<a data-fancybox="gallery" href="img/demos/getaroom-session-6-mob.png">
+		<a data-fancybox="gallery" data-type="image" class="fancybox-img" href="img/demos/getaroom-session-6-mob.png">
 			<img id="img-mob" class="img-responsive" src="img/demos/getaroom-session-6-mob.png">
 		</a>
 	</div>
@@ -78,9 +76,9 @@ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-serv
 
 This application is very simple. It has only 4 files:
 
-  - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file. 
+  - `openvidu-browser-VERSION.js`: openvidu-browser library. You don't have to manipulate this file.
   - `app.js`: sample application main JavaScript file, which makes use of _openvidu-browser-VERSION.js_. You can manipulate this file to suit your needs.
-  - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files: 
+  - `index.html`: HTML code for the welcome page to join a new room and for the room itself. You can manipulate this file to suit your needs. It has two links to both JavaScript files:
 
         <script src="openvidu-browser-VERSION.js.js"></script>
         <script src="app.js"></script>
@@ -173,6 +171,11 @@ function joinRoom() {
 		updateLayout();
 	});
 
+	// On every asynchronous exception...
+	session.on('exception', (exception) => {
+		console.warn(exception);
+	});
+
 
 	// --- 4) Connect to the session with a valid user token ---
 
@@ -236,7 +239,7 @@ function joinRoom() {
 function leaveRoom() {
 
 	// --- 9) Leave the session by calling 'disconnect' method over the Session object ---
-	
+
 	session.disconnect();
 
 	// Back to welcome page
@@ -244,20 +247,49 @@ function leaveRoom() {
 }
 ```
 
+## Deploy openvidu-getaroom
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    This application <strong>must not be deployed in a production environment</strong>, as it is insecure (it has not backend).
+  </div>
+</div>
+
+Under the root project folder, you can see the `openvidu-getaroom/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-getaroom** docker image.
+
+**1) Run `create_image.sh` script:**
+
+```bash
+./create_image.sh
+```
+
+This script will create an image named `openvidu/openvidu-getaroom-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/83ad2c0832362f94e94d88ca77df7ff0c572a2eb/openvidu-getaroom/docker/create_image.sh#L4-L5).
+
+Once the openvidu-classrom image has been created, you will can deploy it.
+
+**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+
+Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment and you have to take account change the image name by your custom name (`openvidu/openvidu-getaroom-demo` on this sample).
+
+Your `docker-compose.override.yml` should look like this:
+```
+version: '3.1'
+
+services:
+    app:
+        image: openvidu/openvidu-getaroom-demo:2.25.0
+        restart: on-failure
+        network_mode: host
+        environment:
+            - OPENVIDU_URL=https://${DOMAIN_OR_PUBLIC_IP:-}:${HTTPS_PORT:-443}
+            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
+```
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-<script>
-  $().fancybox({
-    selector : '[data-fancybox="gallery"]',
-    infobar : true,
-    arrows : false,
-    loop: true,
-    protect: true,
-    transitionEffect: 'slide',
-    buttons : [
-        'close'
-    ],
-    clickOutside : 'close',
-    clickSlide   : 'close',
-  });
-</script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>

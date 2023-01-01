@@ -1,0 +1,290 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>OpenVidu Angular Documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  ActivitiesPanelComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>projects/openvidu-angular/src/lib/components/panel/activities-panel/activities-panel.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>ov-activities-panel</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>../panel.component.css,<br>./activities-panel.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./activities-panel.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onDeleteRecordingClicked"></a>
+                        <b>onDeleteRecordingClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when delete recording button has been clicked.
+The recording should be deleted using the OpenVidu REST API.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onStartRecordingClicked"></a>
+                        <b>onStartRecordingClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when start recording button has been clicked.
+The recording should be stated using the OpenVidu REST API.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="onStopRecordingClicked"></a>
+                        <b>onStopRecordingClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when stop recording button has been clicked.
+The recording should be stopped using the OpenVidu REST API.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+</div>
+
+
+
+
+
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="panel-container" id="activities-container" fxLayout="column" fxLayoutAlign="space-evenly none">	<div class="panel-header-container" fxFlex="55px" fxLayoutAlign="start center">		<h3 class="panel-title">Activities</h3>		<button class="panel-close-button" mat-icon-button matTooltip="{{ \'PANEL.CLOSE\' | translate }}" (click)="close()">			<mat-icon>close</mat-icon>		</button>	</div>	<div class="activities-body-container" fxFlex="75%" fxLayoutAlign="space-evenly none">		<mat-accordion>			<ov-recording-activity				*ngIf="showRecordingActivity"				id="recording-activity"				[expanded]="expandedPanel === \'recording\'"				(onStartRecordingClicked)="_onStartRecordingClicked()"				(onStopRecordingClicked)="_onStopRecordingClicked()"				(onDeleteRecordingClicked)="_onDeleteRecordingClicked($event)"			></ov-recording-activity>		</mat-accordion>	</div></div></div>'
+    var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'AdminDashboardComponent', 'selector': 'ov-admin-dashboard'},{'name': 'AdminLoginComponent', 'selector': 'ov-admin-login'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
+    var DIRECTIVES = [{'name': 'ActivitiesPanelDirective', 'selector': '[ovActivitiesPanel]'},{'name': 'ActivitiesPanelRecordingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelRecordingActivity], ov-activities-panel[recordingActivity]'},{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AdminLoginDirective', 'selector': 'ov-admin-login[error]'},{'name': 'AdminRecordingsListDirective', 'selector': 'ov-admin-dashboard[recordingsList]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'CaptionsLangDirective', 'selector': 'ov-videoconference[captionsLang]'},{'name': 'CaptionsLangOptionsDirective', 'selector': 'ov-videoconference[captionsLangOptions]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LangDirective', 'selector': 'ov-videoconference[lang]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'RecordingActivityRecordingErrorDirective', 'selector': 'ov-videoconference[recordingActivityRecordingError], ov-recording-activity[recordingError]'},{'name': 'RecordingActivityRecordingsListDirective', 'selector': 'ov-videoconference[recordingActivityRecordingsList], ov-recording-activity[recordingsList]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarCaptionsButtonDirective', 'selector': 'ov-videoconference[toolbarCaptionsButton], ov-toolbar[captionsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'ToolbarSettingsButtonDirective', 'selector': 'ov-videoconference[toolbarSettingsButton], ov-toolbar[settingsButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
+    var ACTUAL_COMPONENT = {'name': 'ActivitiesPanelComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ActivitiesPanelComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

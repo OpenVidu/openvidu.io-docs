@@ -272,7 +272,7 @@ a.try-now-btn {
 
 .last-table-col i {
     font-size: 18px;
-    color: #0088aa;
+    color: #4d4d4d;
 }
 
 ul.top-ul > li.subnav_drop > div > span {
@@ -454,6 +454,12 @@ img.img-deploy-example {
     border: 3px solid #dddddd;
 }
 
+video.video-pro {
+    margin: auto;
+    border: 2px solid #eeeeee;
+}
+
+
 @font-face {
     font-family: 'Arciform';
     src: url('/fonts/Arciform.eot');
@@ -546,7 +552,6 @@ img.img-deploy-example {
 .slick-btn i {
     color: #0088aa;
     font-size: 14px;
-    line-height: 30px;
 }
 
 .slick-btn.slick-disabled {
@@ -561,18 +566,18 @@ img.img-deploy-example {
     background-color: transparent;
 }
 
-.slick-captions {
+.slick-captions-text {
     margin-top: 43px;
 }
 
-.slick-captions .caption {
+.slick-captions-text .caption {
     display: flex !important;
     justify-content: center;
     align-items: center;
     outline: none;
 }
 
-.slick-captions .caption p {
+.slick-captions-text .caption p {
     color: #4c4c4c;
 }
 
@@ -796,7 +801,15 @@ img.img-more-info {
         margin-right: -46px;
     }
 
+    #openvidu-pro-small-tag {
+        line-height: 22px !important;
+    }
+
     #openvidu-pro-tag {
+        line-height: 32px !important;
+    }
+
+    #openvidu-enterprise-tag {
         line-height: 32px !important;
     }
 
@@ -891,6 +904,10 @@ div.lang-tabs-container {
     margin-top: 25px;
 }
 
+div.lang-tabs-container.kibana-user-post {
+    margin-top: 0px;
+}
+
 div.lang-tabs-container div.lang-tabs-header {
     width: 100%;
     display: flex;
@@ -905,6 +922,7 @@ div.lang-tabs-container div.lang-tabs-header .lang-tabs-btn {
     font-family: arciform;
     font-size: 18px;
     border-top: 2px solid #e8e8e8;
+    color: #777;
 }
 
 div.lang-tabs-container div.lang-tabs-header .lang-tabs-btn:hover {
@@ -946,7 +964,7 @@ div.lang-tabs-container.elastic-events div.lang-tabs-header {
 div.lang-tabs-container.elastic-events div.lang-tabs-header .lang-tabs-btn {
     width: unset !important;
     font-size: 11.8px !important;
-    font-weight: bold !important;
+    color: black !important;
     padding: 6px 5px 6px 5px !important;
     font-family: inherit;
 }
@@ -1020,7 +1038,7 @@ div.lang-tabs-container.elastic-events div.lang-tabs-content pre {
 
 table.table-pricing {
     display: table !important;
-    text-align: center !important;
+    text-align: center;
 }
 
 #doc-container table.table-pricing {
@@ -1035,6 +1053,10 @@ table.table-pricing {
     vertical-align: middle !important;
 }
 
+.table-info th {
+    vertical-align: middle !important;
+}
+
 .table-pricing td {
     vertical-align: middle !important;
     padding: 6px !important;
@@ -1042,6 +1064,10 @@ table.table-pricing {
 
 .table-pricing thead th {
     font-family: Montserrat;
+}
+
+.table-pricing tbody th {
+    text-align: initial;
 }
 
 .pricing-table-icon {
@@ -1055,6 +1081,14 @@ table.table-pricing {
     margin-left: 8px;
 }
 
+a .pricing-table-icon-info {
+    color: #007492;
+}
+
+.icon-info-right {
+    float: right;
+}
+
 .pricing-table-icon.ion-checkmark {
     color: #049145;
 }
@@ -1064,7 +1098,7 @@ table.table-pricing {
 }
 
 .pricing-table-icon.ion-hammer {
-    color: #005f76;
+    color: #2a88aa;
     transform: rotate(45deg);
 }
 
@@ -1241,4 +1275,14 @@ nav.navbar.navbar-small #sign-in-button:hover {
     vertical-align: middle;
     display: table-cell;
     padding: 10px 20px;
+}
+
+.table-pricing tbody tr:hover {
+    background-color: rgb(239 239 239) !important;
+}
+
+.img-server-logo {
+    width: 70px;
+    padding: 10px;
+    pointer-events: none;
 }

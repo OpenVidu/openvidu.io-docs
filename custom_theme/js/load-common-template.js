@@ -1,11 +1,25 @@
 var PATH_TO_FILE = document.currentScript.getAttribute('data-pathToFile');
 var ELEMENT_ID = document.currentScript.getAttribute('data-elementId');
-var RUN_ANCHOR_SCRIPT = document.currentScript.getAttribute('data-runAnchorScript').toLowerCase() === "true";
+var ELEMENT_ID_TO_REMOVE = document.currentScript.getAttribute('data-elementIdToRemove');
+var RUN_ANCHOR_SCRIPT = loadBooleanVariable('data-runAnchorScript');
+var USE_CURRENT_VERSION = loadBooleanVariable('data-useCurrentVersion');
 
-function runAjax(pathToFile, elementId, runAnchorScript) {
+function runAjax(pathToFile, elementId, runAnchorScript, elementIdToRemove, useCurrentVersion) {
+
+    let url;
+    const hostname = window.location.hostname;
+    if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
+        url = window.location.origin + "/common/" + pathToFile;
+    } else {
+        url = "https://docs.openvidu.io/en/stable/common/" + pathToFile;
+        if (useCurrentVersion) {
+            // "https://docs.openvidu.io" + "/en/VERSION" + "/common/" + pathToFile
+            url = window.location.origin + window.location.pathname.split('/').slice(0, 3).join('/') + '/common/' + pathToFile;
+        }
+    }
+
     $.ajax({
-        url: "https://docs.openvidu.io/en/stable/common/" + pathToFile,
-        // url: "http://127.0.0.1:8000/common/" + pathToFile,
+        url,
         context: document.body,
         dataType: "html",
         success: response => {
@@ -18,8 +32,22 @@ function runAjax(pathToFile, elementId, runAnchorScript) {
                     setTimeout(() => $(document.body).scrollTop($(window.location.hash).offset().top), 1);
                 }
             }
+            if (elementIdToRemove != null) {
+                // Remove element
+                $('#' + elementIdToRemove).remove();
+            }
         }
     });
 }
 
-runAjax(PATH_TO_FILE, ELEMENT_ID, RUN_ANCHOR_SCRIPT);
+function loadBooleanVariable(variableName) {
+    var BOOLEAN_VAR = document.currentScript.getAttribute(variableName);
+    if (typeof BOOLEAN_VAR === 'undefined' || BOOLEAN_VAR === null) {
+        BOOLEAN_VAR = false;
+    } else {
+        BOOLEAN_VAR = BOOLEAN_VAR.toLowerCase() === "true";
+    }
+    return BOOLEAN_VAR;
+}
+
+runAjax(PATH_TO_FILE, ELEMENT_ID, RUN_ANCHOR_SCRIPT, ELEMENT_ID_TO_REMOVE, USE_CURRENT_VERSION);

@@ -2,77 +2,114 @@
 
 OpenVidu API offers a simple way of applying filters to video and audio streams in the server side by making use of Kurento Media Server capabilities. This is the current status of filter support in OpenVidu:
 
+- Real time filters are only available for **Kurento Media Server**. OpenVidu Enterprise edition supports mediasoup as media server, and audio and video filters are not compatible with it.
 - You can apply **one filter at a time to a published Stream**. Every user subscribed to it will receive the modified stream.
 - You can **remove an applied filter**.
 - You can **call any remote method** offered by an applied filter
 - You can **add and remove event listeners** to any event dispatched by an applied filter.
-- You must configure in the participant token the allowed filters the user can apply.
+- You must configure the allowed filters the user will be able to apply when **creating the Connection**.
+
+Check out [openvidu-filters](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-filters){:target="_blank"} tutorial to see OpenVidu filters in action.
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+For <a href="openvidu-enterprise/"><strong>OpenVidu</strong><span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> voice and video filters are only available when using Kurento as media server. Currently mediasoup is not compatible with voice and video filters. See <a href="openvidu-enterprise/#kurento-vs-mediasoup">Kurento vs mediasoup</a>.
+</div>
+</div>
 
 ---
 
 ## Step by step
 
 <br>
-##### 1) Generate a token with the filters the user will be able to apply
+##### 1) Generate a Connection with the filters the user will be able to apply
 
 This is a simple way of securing the ability of applying filters from OpenVidu Browser, so that not every user is able to apply any filter at any time.
 
 <div class="lang-tabs-container" markdown="1">
 
 <div class="lang-tabs-header">
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; font-weight: bold">REST API</button>
-  <button class="lang-tabs-btn" onclick="changeLangTab(event)">Java</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)" style="background-color: #e8e8e8; color: black">Java</button>
   <button class="lang-tabs-btn" onclick="changeLangTab(event)">Node</button>
+  <button class="lang-tabs-btn" onclick="changeLangTab(event)">cURL</button>
 </div>
 
-<div id="rest-api" class="lang-tabs-content" markdown="1">
+<div id="java" class="lang-tabs-content" markdown="1">
 
-When generating a token with operation [POST /api/tokens](reference-docs/REST-API#post-apitokens){:target="_blank"} include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
-
-```json  
-{
-    "session": "6fpivlanw91qjy6n",
-    "data": "user_data",
-    "role": "PUBLISHER",
-    "kurentoOptions": {
-        "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
-    }
-}
-```
-
-</div>
-
-<div id="java" class="lang-tabs-content" style="display:none" markdown="1">
-
-When generating a token, call `TokenOptions.Builder#kurentoOptions(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
+When creating a Connection, call `ConnectionProperties.Builder#connectionProperties(KurentoOptions)` to set `allowedFilters` value with method `KurentoOptions.Builder#allowedFilters(String[])`. This method receives a string array containing the name of the filters the user will be able to apply
 
 ```java
-TokenOptions tokenOptions = new TokenOptions.Builder()
-    .role(OpenViduRole.PUBLISHER)
+ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
+    .type(ConnectionType.WEBRTC)
     .data("user_data")
+    .role(OpenViduRole.PUBLISHER)
     .kurentoOptions(
         new KurentoOptions.Builder()
             .allowedFilters(new String[]{"GStreamerFilter", "FaceOverlayFilter"})
             .build())
     .build();
-String token = session.generateToken(tokenOptions);
+Connection connection = session.createConnection(connectionProperties);
+String token = connection.getToken(); // Send this string to the client side
 ```
 
 </div>
 
 <div id="node" class="lang-tabs-content" style="display:none" markdown="1">
 
-When generating a token, include in [TokenOptions](api/openvidu-node-client/interfaces/tokenoptions.html){:target="_blank"} parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
+When creating a Connection, include in [ConnectionProperties](api/openvidu-node-client/interfaces/connectionproperties.html) parameter a `kurentoOptions` object with `allowedFiters` property: a string array containing the name of the filters the user will be able to apply
 
 ```javascript
-var tokenOptions = {
+var connectionProperties = {
     role: "PUBLISHER",
     data: "user_data",
     kurentoOptions: {
         allowedFilters: ["GStreamerFilter", "FaceOverlayFilter"]
     }
 };
-session.generateToken(tokenOptions).then(token => { ... });
+session.createConnection(connectionProperties).then(connection => {
+    var token = connection.token; // Send this string to the client side
+});
+```
+
+</div>
+
+<div id="curl" class="lang-tabs-content" style="display:none" markdown="1">
+
+When creating a Connection with method **[POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference-docs/REST-API#post-connection)** include in the JSON body a parameter `kurentoOptions` with a property `allowedFilters`: a string array containing the name of the filters the user will be able to apply
+
+```sh
+curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/sessions/<SESSION_ID>/connection \
+     -u OPENVIDUAPP:<YOUR_SECRET> \
+     -H "Content-Type: application/json" \
+     --data-binary @- <<BODY
+     {
+       "type": "WEBRTC",
+       "data": "user_data",
+       "role": "PUBLISHER",
+       "kurentoOptions": {
+         "allowedFilters": ["GStreamerFilter", "FaceOverlayFilter"]
+       }
+     }
+BODY
 ```
 
 </div>
@@ -82,7 +119,7 @@ session.generateToken(tokenOptions).then(token => { ... });
 <br>
 ##### 2.A) Initialize a Publisher object configured for using a filter from the beginning of the publishing ...
 
-Use [PublisherProperties](api/openvidu-browser/interfaces/publisherproperties.html){:target="_blank"}, specifically property [filter](api/openvidu-browser/interfaces/publisherproperties.html#filter){:target="_blank"}:
+Use [PublisherProperties](api/openvidu-browser/interfaces/PublisherProperties.html), specifically property [filter](api/openvidu-browser/interfaces/PublisherProperties.html#filter):
 
 ```javascript
 var OV = new OpenVidu();
@@ -96,7 +133,7 @@ var publisher = OV.initPublisher(
     }
 );
 
-// ... user already connected to "session" with the appropriate token
+// ... user already connected to "session" with the appropriate token of the created Connection
 session.publish(publisher);
 ```
 
@@ -104,7 +141,7 @@ session.publish(publisher);
 ##### 2.B) ... or apply the filter dynamically after publishing the stream, whenever you want
 
 ```javascript
-// ... user already connected to the session with the appropriate token
+// ... user already connected to the session with the appropriate token of the created Connection
 // and successfully publishing the Publisher object
 
 publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=vertical-flip" })
@@ -120,7 +157,7 @@ publisher.stream.applyFilter("GStreamerFilter", { command: "videoflip method=ver
 ##### 3) You can execute any method offered by the filter
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.filter.execMethod("setElementProperty", {"propertyName":"method","propertyValue":"horizontal-flip"})
@@ -136,7 +173,7 @@ publisher.stream.filter.execMethod("setElementProperty", {"propertyName":"method
 ##### 4) You can also subscribe to any filter event (if it dispatches any), and later unsubscribe from it
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.filter.addEventListener("FooFilterEvent", filterEvent => {
@@ -152,7 +189,7 @@ publisher.stream.filter.removeEventListener("FooFilterEvent");
 ##### 4) To remove the filter
 
 ```javascript
-// ... user already connected to the session with the appropriate token,
+// ... user already connected to the session with the appropriate token of the created Connection,
 // successfully publishing the Publisher object and a filter being applied to its stream
 
 publisher.stream.removeFilter()
@@ -164,7 +201,7 @@ publisher.stream.removeFilter()
     });
 ```
 
-> Moderators are not only able to call all of these methods over their `Publisher.stream` object, but also over any `Subscriber.stream` object. Also, they don't need any special token permission to apply filters and can bypass any token restriction set to other user tokens
+> Moderators are not only able to call all of these methods over their `Publisher.stream` object, but also over any `Subscriber.stream` object. Also, they don't need any special Connection permissions to apply filters (no need of `kurentoOptions` configuration in their Connection) and can bypass any restriction set to other Connections in this regard.
 
 <br>
 
@@ -280,7 +317,7 @@ function changeLangTab(event) {
             var btn = child.children[j];
             if (btn.classList.contains("lang-tabs-btn")) {
                 btn.style.backgroundColor = btn === event.target ? '#e8e8e8' : '#f9f9f9';
-                btn.style.fontWeight = btn === event.target ? 'bold' : 'normal';
+                btn.style.color = btn === event.target ? 'black' : '#777';
             }
         }
     }
