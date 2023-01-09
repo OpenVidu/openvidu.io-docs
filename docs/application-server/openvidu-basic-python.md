@@ -1,0 +1,137 @@
+# openvidu-basic-python
+
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+
+This is a minimal OpenVidu server application sample built for Python with [Flask](https://flask.palletsprojects.com/).
+It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
+
+
+## Running this application
+
+#### Prerequisites
+To run this application you will need **Python 3** installed on your system:
+
+- [Python 3](https://www.python.org/downloads/)
+
+#### Download repository
+
+```bash
+git clone git@github.com:OpenVidu/openvidu-tutorials.git
+cd openvidu-tutorials/openvidu-basic-python
+```
+
+#### Create a python3 environment and activate it
+
+
+```bash
+python3 -m venv venv
+. venv/bin/activate
+```
+
+#### Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Run application
+
+```bash
+python3 app.py
+```
+
+## Understanding the code
+
+The application is a simple Flask application with a single controller file `app.py` that exports two endpoints:
+
+- `/api/sessions` : Initialize a session.
+- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+
+> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
+
+
+Let's see the code of the controller:
+
+```python
+app = Flask(__name__)
+# Enable CORS support
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
+# Load env variables
+OPENVIDU_URL = os.environ.get("OPENVIDU_URL")
+OPENVIDU_SECRET = os.environ.get("OPENVIDU_SECRET")
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0")
+
+...
+
+```
+
+Starting by the top, the `app.py` file has the following fields:
+
+- `app` : Flask application.
+- `cors` : CORS support for Flask application.
+- `OPENVIDU_URL` : URL of the OpenVidu Server.
+- `OPENVIDU_SECRET` : Secret of the OpenVidu Server.
+
+
+<br>
+
+#### Initialize session endpoint
+
+The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+
+```python
+...
+
+@app.route("/api/sessions", methods=['POST'])
+def initializeSession():
+    try:
+        body = request.json if request.data else {}
+        response = requests.post(
+            OPENVIDU_URL + "openvidu/api/sessions",
+            verify=False,
+            auth=("OPENVIDUAPP", OPENVIDU_SECRET),
+            headers={'Content-type': 'application/json'},
+            json=body
+        )
+        response.raise_for_status()
+        return response.json()["sessionId"]
+    except requests.exceptions.HTTPError as err:
+        if (err.response.status_code == 409):
+            # Session already exists in OpenVidu
+            return request.json["customSessionId"]
+        else:
+            return err
+
+```
+
+The endpoint receives a POST request with a JSON body containing the `customSessionId` of the session to be created. If the session already exists in OpenVidu, the endpoint returns the `customSessionId` received in the request body. Otherwise, it creates a new session, using the
+[OpenVidu REST API](reference-docs/REST-API/) and returns the `sessionId` of the new session.
+
+
+<br>
+
+#### Create conneciton endpoint
+
+The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+
+```python
+...
+
+@app.route("/api/sessions/<sessionId>/connections", methods=['POST'])
+def createConnection(sessionId):
+    body = request.json if request.data else {}
+    return requests.post(
+        OPENVIDU_URL + "openvidu/api/sessions/" + sessionId + "/connection",
+        verify=False,
+        auth=("OPENVIDUAPP", OPENVIDU_SECRET),
+        headers={'Content-type': 'application/json'},
+        json=body
+    ).json()["token"]
+
+```
+The endpoint creates a new Connection using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `token` of the new connection.
+

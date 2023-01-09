@@ -1,0 +1,126 @@
+# openvidu-basic-node
+
+<a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
+
+This is a minimal OpenVidu server application sample built for Node with Express.
+It internally uses [openvidu-node-client SDK](https://docs.openvidu.io/en/stable/reference-docs/openvidu-node-client/).
+
+## Running this application
+
+#### Prerequisites
+To run this application you will need **Node** installed on your system:
+
+- [Node](https://nodejs.org/es/download/)
+
+#### Download repository
+
+```bash
+git clone git@github.com:OpenVidu/openvidu-tutorials.git
+cd openvidu-tutorials/openvidu-basic-node
+```
+
+#### Install dependencies
+
+```bash
+npm install
+```
+
+#### Run application
+
+```bash
+node index.js
+```
+
+## Understanding the code
+
+The application is a simple Express application with a single controller file `index.js` that exports two endpoints:
+
+- `/api/sessions` : Initialize a session.
+- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+
+> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
+
+
+Let's see the code of the controller:
+
+```javascript
+var cors = require("cors");
+var app = express();
+
+// Enable CORS support
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+var server = http.createServer(app);
+
+var openvidu = new OpenVidu(
+  process.env.OPENVIDU_URL,
+  process.env.OPENVIDU_SECRET
+);
+
+// Serve application
+server.listen(5000, () => {
+  console.log("Application started");
+});
+
+...
+
+```
+
+Starting by the top, the `index.js` file has the following fields:
+
+- `cors`: Allows the application to be accessed from any domain.
+- `app`: The Express application.
+- `server`: The HTTP server.
+- `openvidu`: The `OpenVidu` object that will be used to interact with the OpenVidu Server. It is initialized with the `OPENVIDU_URL` and `OPENVIDU_SECRET` environment variables.
+
+<br>
+
+#### Initialize session endpoint
+
+The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+
+```javascript
+...
+
+app.post("/api/sessions", async (req, res) => {
+  var session = await openvidu.createSession(req.body);
+  res.send(session.sessionId);
+});
+
+```
+
+We build the `Session` object using the `OpenVidu` object and the parameters received from the request body.
+Finally, the `Session ID` is returned in the response body.
+
+<br>
+
+#### Create conneciton endpoint
+
+The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+
+```javascript
+...
+
+app.post("/api/sessions/:sessionId/connections", async (req, res) => {
+  var session = openvidu.activeSessions.find(
+    (s) => s.sessionId === req.params.sessionId
+  );
+  if (!session) {
+    res.status(404).send();
+  } else {
+    var connection = await session.createConnection(req.body);
+    res.send(connection.token);
+  }
+});
+
+```
+After checking if OpenVidu Session exists, the `Connection` object is built using the `Session` object and the parameters received from the request body.
+
+Finally, the `Token` associated to the `Connection` is returned in the response body.
+
+
+
+

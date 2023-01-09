@@ -13,7 +13,15 @@ nav:
     - What is OpenVidu?: index.md
     - Getting started: getting-started/index.md
     - Developing your video app: developing-your-video-app/index.md
-    - Application server: application-server/index.md
+    - Application server:
+          - Intro: application-server/index.md
+          - Samples:
+              - openvidu-basic-java: application-server/openvidu-basic-java.md
+              - openvidu-basic-node: application-server/openvidu-basic-node.md
+              - openvidu-basic-python: application-server/openvidu-basic-python.md
+              - openvidu-basic-dotnet: application-server/openvidu-basic-dotnet.md
+          - User Authentication: application-server/user-authentication.md
+
     - Ready-to-use component: ready-to-use-component/index.md
     - OpenVidu Components:
           - Intro: components/index.md
