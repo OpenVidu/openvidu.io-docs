@@ -84,61 +84,27 @@ Without going into greater detail, the backend has [one controller](https://gith
 
 
 
-## Deploy openvidu-classroom
+## Deploying openvidu-classroom
 
-#### Using the OpenVidu Dockerhub image
+> This tutorial image is **officially released for OpenVidu** under the name `openvidu/openvidu-classroom-demo:X.Y.Z` so you do not need to build it by yourself. However, if you want to deploy a custom version of openvidu-classroom, you will need to build a new one. You can keep reading for more information.
 
-**1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+#### 1) Build the docker image
 
-As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu Classroom `docker-compose-override.yml`.
+Under the root project folder, you can see the `openvidu-classroom/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
 
-This is how your `docker-compose-override.yml` should be with your own modifications:
-```
-version: '3.1'
+First of all, you will need to create the **openvidu-classroom** docker image. Under `openvidu-classroom/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the openvidu-classroom server and the static files.
 
-services:
-    app:
-        image: openvidu/openvidu-classroom:2.25.0
-        restart: on-failure
-        network_mode: host
-        environment:
-            - SERVER_PORT=5442
-            - OPENVIDU_URL=http://localhost:5443
-            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
-```
-
-#### Creating my own docker image
-
-Under the root project folder, you can see the `docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
-
-First of all, you will need to create the **openvidu-classroom** docker image.
-
-**1) Run `create_image.sh` script:**
 
 ```bash
-./create_image.sh
+./create_image.sh openvidu/my-openvidu-classroom-demo:X.Y.Z
 ```
 
-This script will create an image named `openvidu/openvidu-classroom-demo:X.Y.Z`. If you want to create a image with another different name, you can do it change the name [here](https://github.com/OpenVidu/classroom-demo/blob/2a931237dc232743fbdb847bc70b93dd0c014d18/docker/create_image.sh#L5-L6). Once the openvidu-classrom image has been created, you will can deploy it.
+This script will create an image named `openvidu/my-openvidu-classroom-demo:X.Y.Z`. This name will be used in the next step.
 
-**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
 
-The steps are exactly the same as those described above but you have to take account of changing the image name by your custom name (`openvidu/openvidu-classroom-demo` on this sample).
+#### 2) Deploy the docker image
 
-Your `docker-compose.override.yml` should look like this:
-```
-version: '3.1'
-
-services:
-    app:
-        image: openvidu/openvidu-classroom-demo:2.25.0
-        restart: on-failure
-        network_mode: host
-        environment:
-            - SERVER_PORT=5442
-            - OPENVIDU_URL=http://localhost:5443
-            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
-```
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

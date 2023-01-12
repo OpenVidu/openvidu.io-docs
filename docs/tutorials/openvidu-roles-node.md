@@ -476,6 +476,26 @@ When the last user leaves the session `delete mapSessions[sessionName]` will be 
 >
 > The only actual requirements are getting a valid **Token** from the **OpenVidu deployment** (by using [openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/) or the [REST API](reference-docs/REST-API/) in your **server application**) and use it in your **client application** to connect participants to session by calling method `Session.connect(token)` of [openvidu-browser.js](reference-docs/openvidu-browser/) library.
 
+## Deploying openvidu-roles-node
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-roles-node/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-roles-node** docker image. Under `openvidu-roles-node/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the openvidu-roles-node server and the static files.
+
+
+```bash
+./create_image.sh openvidu/openvidu-roles-node-demo:X.Y.Z
+```
+
+This script will create an image named `openvidu/openvidu-roles-node-demo:X.Y.Z`. This name will be used in the next step.
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script type='text/javascript' src='js/fancybox-setup.js'></script>

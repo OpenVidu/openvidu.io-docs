@@ -198,6 +198,25 @@ window.onbeforeunload = function () {
 
 Whenever we want a user to leave the session, we just need to call `session.disconnect` method. Here it will be called inside _leaveSession_ function, triggered when the user clicks on "LEAVE" button. This function also returns the page to the "Join session" view. And we also make sure that the method is called before the page is unloaded using event `window.onbeforeunload`.
 
+## Deploying openvidu-hello-world
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-hello-world/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-hello-world** docker image. Under `openvidu-hello-world/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the [openvidu-basic-node](application-server/openvidu-basic-node/) as application server and the static files.
+
+```bash
+./create_image.sh openvidu/openvidu-hello-world-demo:X.Y.Z
+```
+
+This script will create an image named `openvidu/openvidu-hello-world-demo:X.Y.Z`. This name will be used in the next step.
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script type='text/javascript' src='js/fancybox-setup.js'></script>

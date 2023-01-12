@@ -151,6 +151,27 @@ app.delete('/recording-node/api/recording/delete', function (req, res) {
 });
 ```
 
+## Deploying openvidu-recording-node
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-recording-node/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-recording-node** docker image. Under `openvidu-recording-node/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the openvidu-recording-node server and the static files.
+
+
+```bash
+./create_image.sh openvidu/my-openvidu-recording-node-demo:X.Y.Z
+```
+
+This script will create an image named `openvidu/my-openvidu-recording-node-demo:X.Y.Z`. This name will be used in the next step.
+
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script type='text/javascript' src='js/fancybox-setup.js'></script>

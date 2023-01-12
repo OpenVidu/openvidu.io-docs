@@ -470,47 +470,27 @@ function initMainVideo(videoElement, userData) {
 }
 ```
 
-## Deploy openvidu-js-screen-share
+## Deploying openvidu-js-screen-share
 
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    This application <strong>must not be deployed in a production environment</strong> as it is insecure (it has not backend).
-  </div>
-</div>
+> This tutorial image is **officially released for OpenVidu** under the name `openvidu/openvidu-js-screen-share-demo:X.Y.Z` so you do not need to build it by yourself. However, if you want to deploy a custom version of openvidu-js-screen-share, you will need to build a new one. You can keep reading for more information.
 
-Under the root project folder, you can see the `openvidu-js-screen-share/docker/` directory. Here it is included all the required files to make it possible the deployment with OpenVidu.
+#### 1) Build the docker image
 
-First, you will need to create the **openvidu-js-screen-share** docker image.
 
-**1) Run `create_image.sh` script:**
+Under the root project folder, you can see the `openvidu-js-screen-share/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-js-screen-share** docker image. Under `openvidu-js-screen-share/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the [openvidu-basic-node](application-server/openvidu-basic-node/) as application server and the static files.
 
 ```bash
-./create_image.sh
+./create_image.sh openvidu/openvidu-js-screen-share-demo:X.Y.Z
 ```
 
-This script will create an image named `openvidu/openvidu-js-screen-share-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/c1b9fc1/openvidu-js/docker/create_image.sh#L5-L6). Once the openvidu-js-screen-share image has been created, you will be able to deploy it.
+This script will create an image named `openvidu/openvidu-js-screen-share-demo:X.Y.Z`. This name will be used in the next step.
 
-**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+#### 2) Deploy the docker image
 
-Now you will have to redefine the `/opt/openvidu/docker-compose.override.yml` in your OpenVidu deployment, and you have to take account to change the image name by your custom name (`openvidu/openvidu-js-screen-share-demo` on this sample).
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
 
-Your `docker-compose.override.yml` should look like this:
-
-```
-version: '3.1'
-
-services:
-    app:
-        image: openvidu/openvidu-js-screen-share-demo:2.25.0
-        restart: on-failure
-        network_mode: host
-        environment:
-            - OPENVIDU_URL=https://${DOMAIN_OR_PUBLIC_IP:-}:${HTTPS_PORT:-443}
-            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
-```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

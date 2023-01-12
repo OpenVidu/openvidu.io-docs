@@ -484,62 +484,27 @@ When the last user leaves the session `this.mapSessions.remove(sessionName);` wi
 >
 > The only actual requirements are getting a valid **Token** from the **OpenVidu deployment** (by using [openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/) or the [REST API](reference-docs/REST-API/) in your **server application**) and use it in your **client application** to connect participants to session by calling method `Session.connect(token)` of [openvidu-browser.js](reference-docs/openvidu-browser/) library.
 
+## Deploying openvidu-roles-java
 
-## Deploy openvidu-roles-java
+> This tutorial image is **officially released for OpenVidu** under the name `openvidu/openvidu-roles-java-demo:X.Y.Z` so you do not need to build it by yourself. However, if you want to deploy a custom version of openvidu-roles-java, you will need to build a new one. You can keep reading for more information.
 
-#### Using the OpenVidu Dockerhub image
-
-**1) Redefine the `/opt/openvidu/docker-compose.override.yml`**
-
-As the [deployment docs says](deployment/deploying-openvidu-apps/#with-docker), to make it works with OpenVidu stack, you will need redefine the `/opt/openvidu/docker-compose.override.yml` by the OpenVidu js-java `docker-compose-override.yml`.
-
-Your `docker-compose.override.yml` should look like this:
-```
-version: '3.1'
-
-services:
-    app:
-        image: openvidu/openvidu-basic-webinar:2.25.0
-        restart: on-failure
-        network_mode: host
-        environment:
-            - SERVER_PORT=5442
-            - OPENVIDU_URL=http://localhost:5443
-            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
-```
-
-#### Creating my own docker image
+#### 1) Build the docker image
 
 Under the root project folder, you can see the `openvidu-roles-java/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
 
-First of all, you will need to create the **openvidu-roles-java** docker image.
+First of all, you will need to create the **openvidu-roles-java** docker image. Under `openvidu-roles-java/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the openvidu-roles-java server and the static files.
 
-**1) Run `create_image.sh` script:**
 
 ```bash
-./create_image.sh
+./create_image.sh openvidu/my-openvidu-roles-java-demo:X.Y.Z
 ```
 
-This script will create an image named `openvidu/openvidu-basic-webinar-demo:X.Y.Z`. If you want to create an image with a different name, you can change its name [here](https://github.com/OpenVidu/openvidu-tutorials/blob/0ac894d4daf2d501b0196da0fbc596d8e333f1b9/openvidu-roles-java/docker/create_image.sh#L5-L6). Once the openvidu-roles-java image has been created, you will be able to deploy it.
+This script will create an image named `openvidu/my-openvidu-roles-java-demo:X.Y.Z`. This name will be used in the next step.
 
-**2) Redefine the `/opt/openvidu/docker-compose.override.yml`**
+#### 2) Deploy the docker image
 
-The steps are exactly the same as those described above but you have to take account change the image name by your custom name (`openvidu/openvidu-basic-webinar-demo` on this sample).
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
 
-Your `docker-compose.override.yml` should look like this:
-```
-version: '3.1'
-
-services:
-    app:
-        image: openvidu/openvidu-basic-webinar-demo:2.25.0
-        restart: on-failure
-        network_mode: host
-        environment:
-            - SERVER_PORT=5442
-            - OPENVIDU_URL=http://localhost:5443
-            - OPENVIDU_SECRET=${OPENVIDU_SECRET}
-```
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>

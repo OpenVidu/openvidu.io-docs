@@ -181,6 +181,26 @@ try {
 } catch ( ... )
 ```
 
+## Deploying openvidu-ipcameras
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-ipcameras/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-ipcameras** docker image. Under `openvidu-ipcameras/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the openvidu-ipcameras server and the static files.
+
+
+```bash
+./create_image.sh openvidu/my-openvidu-ipcameras-demo:X.Y.Z
+```
+
+This script will create an image named `openvidu/my-openvidu-ipcameras-demo:X.Y.Z`. This name will be used in the next step.
+
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 <script type='text/javascript' src='js/fancybox-setup.js'></script>
