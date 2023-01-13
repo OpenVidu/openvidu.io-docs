@@ -12,7 +12,7 @@ It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
 #### Prerequisites
 To run this application you will need **.NET** installed on your system:
 
-- [.NET 6.0](https://dotnet.microsoft.com/en-us/download)
+- [.NET 6.0](https://dotnet.microsoft.com/en-us/download){:target="_blank"}
 
 #### Download repository
 
@@ -42,9 +42,17 @@ Let's see the code of the controller:
 
 ```cs
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
-
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+IConfiguration config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables().Build();
+
+// Load env variables
+var SERVER_PORT = config.GetValue<int>("SERVER_PORT");
+var OPENVIDU_URL = config.GetValue<string>("OPENVIDU_URL");
+var OPENVIDU_SECRET = config.GetValue<string>("OPENVIDU_SECRET");
 
 // Enable CORS support
 builder.Services.AddCors(options =>
@@ -56,17 +64,14 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.WebHost.UseKestrel(serverOptions => {
+    serverOptions.ListenAnyIP(SERVER_PORT);
+});
+
+var app = builder.Build();
 app.UseCors(MyAllowSpecificOrigins);
 
 
-IConfiguration config = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables().Build();
-
-// Load env variables
-var OPENVIDU_URL = config.GetValue<string>("OPENVIDU_URL");
-var OPENVIDU_SECRET = config.GetValue<string>("OPENVIDU_SECRET");
 // Allow for insecure certificate in OpenVidu deployment
 var handler = new HttpClientHandler
 {
@@ -74,18 +79,20 @@ var handler = new HttpClientHandler
 };
 HttpClient client = new HttpClient(handler);
 client.BaseAddress = new System.Uri(OPENVIDU_URL);
-
 ...
 
 ```
 
 Starting by the top, the `Program.cs` file has the followinf fields:
 
-- `OPENVIDU_URL`: The URL of your OpenVidu deployment.
-- `OPENVIDU_SECRET`: The secret of your OpenVidu deployment.
+- `builder`: A `WebApplicationBuilder` instance to build the application.
+- `config`: A `IConfiguration` instance to load the configuration from the `appsettings.json` file.
 - `client`: A `HttpClient` instance to make HTTP requests to the OpenVidu REST API.
 - `MyAllowSpecificOrigins`: The name of the CORS policy to be used in the application.
 - `app`: The `WebApplication` instance.
+- `SERVER_PORT`: The port where the application will be listening.
+- `OPENVIDU_URL`: The URL of your OpenVidu deployment.
+- `OPENVIDU_SECRET`: The secret of your OpenVidu deployment.
 
 The first thing the application does is to configure CORS support.  This is needed to allow the browser to make requests to the application server. The CORS policy is configured to allow requests from any origin and any header.
 

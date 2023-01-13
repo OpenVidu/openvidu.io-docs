@@ -11,7 +11,7 @@ It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
 #### Prerequisites
 To run this application you will need **Python 3** installed on your system:
 
-- [Python 3](https://www.python.org/downloads/)
+- [Python 3](https://www.python.org/downloads/){:target="_blank"}
 
 #### Download repository
 
@@ -58,12 +58,13 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Load env variables
+SERVER_PORT = os.environ.get("SERVER_PORT")
 OPENVIDU_URL = os.environ.get("OPENVIDU_URL")
 OPENVIDU_SECRET = os.environ.get("OPENVIDU_SECRET")
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=SERVER_PORT)
 
 ...
 
@@ -73,6 +74,7 @@ Starting by the top, the `app.py` file has the following fields:
 
 - `app` : Flask application.
 - `cors` : CORS support for Flask application.
+- `SERVER_PORT` : Port of the application server.
 - `OPENVIDU_URL` : URL of the OpenVidu Server.
 - `OPENVIDU_SECRET` : Secret of the OpenVidu Server.
 

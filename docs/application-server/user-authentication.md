@@ -57,9 +57,9 @@ SAML (Security Assertion Markup Language) uses the same Identity provider used b
 
 Some SAML providers that can be found in the industry are:
 
-- [Okta](https://www.okta.com/)
-- [OneLogin](https://www.onelogin.com/)
-- [Auth0](https://auth0.com/)
-- [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/)
-- [Google Cloud Identity](https://cloud.google.com/identity-platform/)
-- [AWS Cognito](https://aws.amazon.com/cognito/)
+- [Okta](https://www.okta.com/){:target="_blank"}
+- [OneLogin](https://www.onelogin.com/){:target="_blank"}
+- [Auth0](https://auth0.com/){:target="_blank"}
+- [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/){:target="_blank"}
+- [Google Cloud Identity](https://cloud.google.com/identity-platform/){:target="_blank"}
+- [AWS Cognito](https://aws.amazon.com/cognito/){:target="_blank"}

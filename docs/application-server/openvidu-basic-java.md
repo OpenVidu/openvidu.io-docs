@@ -11,8 +11,8 @@ It internally uses [openvidu-java-client SDK](reference-docs/openvidu-java-clien
 #### Prerequisites
 To run this application you will need **Java** and **Maven** installed on your system:
 
-- [Java (>=11)](https://www.java.com/en/download/manual.jsp)
-- [Maven](https://maven.apache.org)
+- [Java (>=11)](https://www.java.com/en/download/manual.jsp){:target="_blank"}
+- [Maven](https://maven.apache.org){:target="_blank"}
 
 #### Download repository
 

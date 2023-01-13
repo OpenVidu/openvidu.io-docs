@@ -10,7 +10,7 @@ It internally uses [openvidu-node-client SDK](https://docs.openvidu.io/en/stable
 #### Prerequisites
 To run this application you will need **Node** installed on your system:
 
-- [Node](https://nodejs.org/es/download/)
+- [Node](https://nodejs.org/es/download/){:target="_blank"}
 
 #### Download repository
 
@@ -47,22 +47,27 @@ Let's see the code of the controller:
 var cors = require("cors");
 var app = express();
 
+// Environment variable: PORT where the node server is listening
+var SERVER_PORT = process.env.SERVER_PORT || 5000;
+// Environment variable: URL where our OpenVidu server is listening
+var OPENVIDU_URL = process.env.OPENVIDU_URL || 'http://localhost:4443';
+// Environment variable: secret shared with our OpenVidu server
+var OPENVIDU_SECRET = process.env.OPENVIDU_SECRET || 'MY_SECRET';
+
 // Enable CORS support
 app.use(
   cors({
     origin: "*",
   })
 );
-var server = http.createServer(app);
 
-var openvidu = new OpenVidu(
-  process.env.OPENVIDU_URL,
-  process.env.OPENVIDU_SECRET
-);
+var server = http.createServer(app);
+var openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 
 // Serve application
-server.listen(5000, () => {
-  console.log("Application started");
+server.listen(SERVER_PORT, () => {
+  console.log("Application started on port: ", SERVER_PORT);
+  console.warn('Application server connecting to OpenVidu at ' + OPENVIDU_URL);
 });
 
 ...
@@ -75,6 +80,9 @@ Starting by the top, the `index.js` file has the following fields:
 - `app`: The Express application.
 - `server`: The HTTP server.
 - `openvidu`: The `OpenVidu` object that will be used to interact with the OpenVidu Server. It is initialized with the `OPENVIDU_URL` and `OPENVIDU_SECRET` environment variables.
+- `SERVER_PORT`: The port where the application will be listening.
+- `OPENVIDU_URL`: The URL where the OpenVidu Server is listening.
+- `OPENVIDU_SECRET`: The secret shared with the OpenVidu Server.
 
 <br>
 
