@@ -51,26 +51,14 @@ OpenVidu-Call-React is composed by the five React components displayed in the im
 
 ---
 
-## Get and execute the code
-
-#### Cloning GitHub Repository
+## Running this demo
 
 
-1)  Clone the repo:
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-```bash
-git clone https://github.com/OpenVidu/openvidu-call-react.git
-```
+#### 1. Run OpenVidu deployment
 
-2) You will need node, NPM and to execute the app. You can install them with:
-
-```bash
-sudo apt-get update
-sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
-sudo apt-get install -y nodejs
-```
-
-3)  OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu
@@ -79,20 +67,66 @@ sudo apt-get install -y nodejs
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.25.0
 ```
 
-4)  Install NPM dependencies of React app:
+#### 2. Run your preferred server application sample
 
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+
+You need [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){:target="_blank"} to serve the application. Check it with the following command:
+
+```bash
+npm -v
 ```
+
+Cloning the repo:
+
+```bash
+git clone https://github.com/OpenVidu/openvidu-call-react.git
+```
+
+To serve the tutorial:
+
+```bash
 cd openvidu-call-react/openvidu-call-react
 npm install
-```
-
-5)  Launch the server:
-
-```
 npm start
 ```
 
+Go to [`http://localhost:3000`](http://localhost:3000){:target="_blank"} to test the app once the server is running.
+
 > To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
+
+## Deploying openvidu-call-react
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-call-react/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-call-react** docker image. Under `openvidu-call-react/docker/` directory you will find the `create_image.sh` script.
+
+This script will create the docker image with the [openvidu-basic-node](application-server/openvidu-basic-node/) as application server and the static files. So you will need to clone the `openvidu-tutorials` repository at the same level of the `openvidu-call-react` repository.
+
+```bash
+# Clone the openvidu-tutorials repository at the same level of the openvidu-call-react repository
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.25.0
+```
+
+Then, you can create the docker image with the following command:
+
+```bash
+./create_image.sh openvidu/openvidu-react-demo:X.Y.Z
+```
+
+This script will create an image named `openvidu/openvidu-call-react-demo:X.Y.Z`. This name will be used in the next step.
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />

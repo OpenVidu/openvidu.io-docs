@@ -13,27 +13,14 @@ OpenVidu is composed by the three modules displayed on the image above in its in
 - **openvidu-server**: Java application that controls Kurento Media Server
 - **Kurento Media Server**: server that handles low level operations of media flows transmission
 
-## Get and execute the code
 
-1) Clone the repo:
+## Running this demo
 
-```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git
-```
+To run the tutorial you need the three components stated in [OpenVidu application architecture](developing-your-video-app/#openvidu-application-architecture): an OpenVidu deployment, your server application and your client application. In this order:
 
-2) You will need an http web server installed in your development computer to execute the sample application. If you have _node.js_ installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"} to serve application files. It can be installed with:
+#### 1. Run OpenVidu deployment
 
-```bash
-npm install --location=global http-server
-```
-
-3) Run the tutorial:
-
-```bash
-http-server openvidu-tutorials/openvidu-getaroom/web
-```
-
-4) OpenVidu Server must be up and running in your development machine. The easiest way is running this Docker container which wraps both of them (you will need [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}):
+Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu
@@ -42,7 +29,30 @@ http-server openvidu-tutorials/openvidu-getaroom/web
 docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.25.0
 ```
 
-5) Go to _[`http://localhost:8080`](http://localhost:8080){:target="_blank"}_ to test the app once the server is running.
+#### 2. Run your preferred server application sample
+
+For more information visit [Application server](application-server/).
+
+<div id="application-server-wrapper"></div>
+<script src="js/load-common-template.js" data-pathToFile="server-application-samples.html" data-elementId="application-server-wrapper" data-runAnchorScript="false" data-useCurrentVersion="true"></script>
+
+#### 3. Run the client application tutorial
+
+You will need some kind of http web server installed in your development computer to serve the tutorial. If you have Node.js installed, you can use [http-server](https://github.com/indexzero/http-server){:target="_blank"}. It can be installed with:
+
+```bash
+npm install --location=global http-server
+```
+
+To serve the tutorial:
+
+```bash
+# Using the same repository openvidu-tutorials from step 2
+http-server openvidu-tutorials/openvidu-getaroom/web
+```
+
+Go to [`http://localhost:8080`](http://localhost:8080){:target="_blank"} to test the app once the server is running.
+
 
 > To test the application with other devices in your network, visit this **[FAQ](troubleshooting/#3-test-applications-in-my-network-with-multiple-devices)**
 
