@@ -148,3 +148,26 @@ Where:
 - `onSessionCreated` method to get the Session object from `ov-videoconference` component and subscribe to `signal` event.
 - `send` method to call [`Session.signal`](api/openvidu-browser/classes/Session.html#signal) method to send a chat message to the OpenVidu Session.
 
+## Deploying openvidu-custom-chat-panel
+
+#### 1) Build the docker image
+
+Under the root project folder, you can see the `openvidu-components/docker/` directory. Here it is included all the required files yo make it possible the deployment with OpenVidu.
+
+First of all, you will need to create the **openvidu-custom-chat-panel** docker image. Under `openvidu-components/docker/` directory you will find the `create_image.sh` script. This script will create the docker image with the [openvidu-basic-node](application-server/openvidu-basic-node/) as application server and the static files.
+
+```bash
+./create_image.sh openvidu/openvidu-custom-chat-panel-demo:X.Y.Z openvidu-custom-chat-panel
+```
+
+The script needs two parameters:
+
+1. The name of the docker image to create.
+2. The name of the tutorial folder.
+
+This script will create an image named `openvidu/openvidu-custom-chat-panel-demo:X.Y.Z`. This name will be used in the next step.
+
+#### 2) Deploy the docker image
+
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+
