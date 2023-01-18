@@ -63,28 +63,28 @@ You can deploy your own application dockerized or installed natively.
 
 #### With Docker
 
-> **You will need have a docker image of your application**. If you want to deploy an OpenVidu tutorial application, you can find the instructions to dockerize it in the section **"Deploying application"** of each tutorial.
+> **You will need a docker image of your application**. If you want to deploy an OpenVidu tutorial application, you can find the instructions to dockerize it in the section **"Deploying application"** of each tutorial.
 
 
 Once the application docker image has been built, it can be defined in the file `/opt/openvidu/docker-compose.override.yml` and the lifecycle of the application will be linked to the lifecycle of OpenVidu platform (start, stop, etc..).
 
 The following requirements must be followed:
 
-- Image must be based on **your own application image name**.
+- `Image` must be based on **your own application image name**.
 - Application has to use `network_mode: host`
-- Application must be server in plain http, without https.
+- Application **must be server in plain http**, without https.
 - `SERVER_PORT` must be `5442`. This port is used by the NGINX included in OpenVidu Platform.
 - `OPENVIDU_URL` has to be configured to `http://localhost:5443`
 - `OPENVIDU_SECRET` is available in the env variable ${OPENVIDU_SECRET}
 
 Here it is the `docker-compose.override.yml` used by OpenVidu Call application. You can based on it the configuration of your own app.
 
-```
+```bash
 version: '3.1'
 
 services:
     app:
-        image: openvidu/openvidu-call:2.25.0
+        image: your-image-name:X.Y.Z
         restart: on-failure
         network_mode: host
         environment:
