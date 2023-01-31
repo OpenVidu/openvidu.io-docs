@@ -219,11 +219,12 @@ The possibilities are endless. You can check our **[Demos](https://openvidu.io/d
 
 Acknowledgments
 ===============
-OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research.
+OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research. This work has also been supported by the Regional Government of Madrid (Spain) (CM) through project EDGEDATA-CM (P2018/TCS-4499) cofunded by FSE & FEDER.
 
 <p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
   <img class="img-acknowledgments" width="400px" src="img/sponsors/footer-ministerio-economia-400-optimized.png">
   <img class="img-acknowledgments" width="400px" src="img/sponsors/footer-european-union-400-optimized.png">
+  <img class="img-acknowledgments" width="100px" src="img/sponsors/comunidaddemadrid.png">
 </p>
 
 
