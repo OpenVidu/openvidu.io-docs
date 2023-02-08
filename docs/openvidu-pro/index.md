@@ -245,9 +245,9 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Supported Media Servers"></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a> / <a href="https://mediasoup.org/" target="_blank"><strong>mediasoup</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a> / <a href="https://mediasoup.org/" target="_blank"><strong>mediasoup</strong></a></td>
         </tr>
         <tr>
             <th scope="row">Streams per core</th>

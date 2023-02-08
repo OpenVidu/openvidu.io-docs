@@ -221,9 +221,9 @@
                     class="icon ion-information-circled pricing-table-icon-info"
                     data-toggle="tooltip" data-placement="right"
                     title="Supported Media Servers"></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a></td>
-            <td><a href="https://www.kurento.org/" target="_blank"><strong>Kurento</strong></a> / <a href="https://mediasoup.org/" target="_blank"><strong>mediasoup</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a></td>
+            <td><a href="https://kurento.openvidu.io/" target="_blank"><strong>Kurento</strong></a> / <a href="https://mediasoup.org/" target="_blank"><strong>mediasoup</strong></a></td>
         </tr>
         <tr>
             <th scope="row">Streams per core</th>
@@ -326,7 +326,7 @@
 
 OpenVidu Enterprise offers the best performance, improved media quality and better scalability for high-demand environments.
 
-The key feature of OpenVidu Enterprise is that it supports using **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server instead of **[Kurento](https://www.kurento.org/){:target="_blank"}**. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
+The key feature of OpenVidu Enterprise is that it supports using **[mediasoup](https://mediasoup.org/){:target="_blank"}** as Media Server instead of **[Kurento](https://kurento.openvidu.io/){:target="_blank"}**. mediasoup brings a lot of benefits for videoconferencing apps built with OpenVidu:
 
 #### 5x more media streams
 

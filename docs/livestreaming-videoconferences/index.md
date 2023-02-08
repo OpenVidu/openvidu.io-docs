@@ -427,7 +427,7 @@ Your needs may be met simply by using a third-party application as a non-integra
                 <img src="img/docs/technologies/kurento.jpg" class="img-responsive img-tutorials" alt="" />
                 <div class="overlay">
                     <ul class="expand">
-                        <li><a href="http://www.kurento.org/" target="_blank" class="cbp-singlePage">Kurento</a></li>
+                        <li><a href="http://kurento.openvidu.io/" target="_blank" class="cbp-singlePage">Kurento</a></li>
                     </ul>
                 </div>
             </div>

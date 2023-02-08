@@ -4,7 +4,7 @@
 
 OpenVidu is able to handle WebRTC media streams by using different media servers in the backend, depending on its configuration:
 
-* [Kurento](https://www.kurento.org/){:target="_blank"}
+* [Kurento](https://kurento.openvidu.io/){:target="_blank"}
 
 * [mediasoup](https://mediasoup.org/){:target="_blank"} <span id="openvidu-pro-tag" style="display: inline-block; background-color: #9c27b0; color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span>
 
