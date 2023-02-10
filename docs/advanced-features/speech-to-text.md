@@ -226,7 +226,7 @@ Check out the REST API operations to manually **[load](reference-docs/REST-API/#
 To receive Speech To Text events in your application's client side you just need to setup listener [`speechToTextMessage`](api/openvidu-browser/interfaces/SessionEventMap.html#speechToTextMessage) in the [`Session`](api/openvidu-browser/classes/Session.html) object. The listener will handle [SpeechToTextEvent](api/openvidu-browser/classes/SpeechToTextEvent.html) objects when the targetted participant speaks. You can differentiate between sentences under construction or final sentences using the event property `reason`:
 
 ```javascript
-session.on("subscribeToSpeechToText", event => {
+session.on("speechToTextMessage", event => {
     if (event.reason === "recognizing") {
         console.log("User " + event.connection.connectionId + " is speaking: " + event.text);
     } else if (event.reason === "recognized") {
