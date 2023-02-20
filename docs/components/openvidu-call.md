@@ -12,7 +12,7 @@ OpenVidu Call is the flagship videoconference app based on [OpenVidu Components]
 - [**Automatic reconnection**](advanced-features/automatic-reconnection/)
 - [**Virtual background**](advanced-features/virtual-background/)
 - [**Recording**](advanced-features/recording/)
-- [**Streaming**](advanced-features/streaming/)
+- [**Broadcast**](advanced-features/boadcast/)
 
 Moreover, OpenVidu Call contains an **intelligent layout** algorithm that adapts the video layout to the number of participants in the session.
 OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
@@ -138,7 +138,7 @@ OpenVidu Call offers two different flavors of the same backend (Java and Node), 
 - `SessionController.ts`: controller for requesting OpenVidu Tokens (see [basic concepts](developing-your-video-app/#basic-concepts)).
 - `CallController.ts`: controller for requesting OpenVidu Call environment information.
 - `RecordingController.ts`: controller for recording features.
-- `StreamingController.ts`: controller for streaming features.
+- `BroadcastController.ts`: controller for broadcast features.
 - `OpenViduService.ts`: service using _openvidu-node-client_ to communicate with the OpenVidu deployment.
 - `AuthService.ts`: service which includes the auth logic.
 
@@ -156,7 +156,7 @@ See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-c
 - `SessionController.java`: controller for requesting OpenVidu Tokens (see [basic concepts](developing-your-video-app/#basic-concepts)).
 - `CallController.java`: controller for requesting OpenVidu Call environment information.
 - `RecordingController.java`: controller for recording features.
-- `StreamingController.java`: controller for streaming features.
+- `BroadcastController.java`: controller for broadcast features.
 - `OpenViduService.ts`: service using _openvidu-java-client_ to communicate with the OpenVidu deployment.
 - `ProxyService.java`: service for redirecting requests from the frontend to the OpenVidu deployment.
 - `AuthService.java`: service which includes the auth logic.
@@ -217,14 +217,14 @@ This dashboard allows you to see the recordings of the all OpenVidu Call session
 
 The **authentication system** for this dashboard is based on a single user with a fixed password. The default password is represented by variable `CALL_ADMIN_SECRET`.
 
-##### Streaming management
+##### Broadcast management
 
-The OpenVidu Call backend also provides the **streaming features**. The features allow you to stream the video of the OpenVidu Call sessions to a RTMP server (check the official RTMP documentation [here](advanced-features/streaming)).
+The OpenVidu Call backend also provides the **broadcast features**. This feature allows to you stream the OpenVidu Call videoconferences to Youtube, Twitch or any other boadcast platform that supports RTMP protocol (check the official documentation section [here](advanced-features/boadcast)).
 
-As identical to the recording features, the streaming features are also based on a cookie-based session system and the **session creator user** is the only one who can start and stop the streaming of the OpenVidu Call sessions.
+As identical to the recording features, the broadcast features are also based on a cookie-based session system and the **session creator user** is the only one who can start and stop the broadcast of the OpenVidu Call sessions.
 
 
-> Note that the streaming features can be disabled by setting the variable `CALL_STREAMING` to `DISABLED`.
+> Note that the broadcast features can be disabled by setting the variable `CALL_BROADCAST` to `DISABLED`.
 
 
 #### **openvidu-call-front**
@@ -247,21 +247,20 @@ Let's focus on the [CallComponent template](https://github.com/OpenVidu/openvidu
 	[tokens]="tokens"
 	[recordingActivityRecordingsList]="recordingList"
 	[recordingActivityRecordingError]="recordingError"
-	[streamingActivityStreamingError]="streamingError"
-	[streamingActivityStreamingInfo]="streamingInfo"
+	[broadcastingActivityBroadcastingError]="broadcastingError"
 	[activitiesPanelRecordingActivity]="recordingEnabled"
 	[toolbarRecordingButton]="recordingEnabled"
-	[activitiesPanelStreamingActivity]="streamingEnabled"
-	[toolbarStreamingButton]="streamingEnabled"
+	[activitiesPanelBroadcastingActivity]="broadcastingEnabled"
+	[toolbarBroadcastingButton]="broadcastingEnabled"
 	(onToolbarLeaveButtonClicked)="onLeaveButtonClicked()"
 	(onToolbarStartRecordingClicked)="onStartRecordingClicked()"
 	(onActivitiesPanelStartRecordingClicked)="onStartRecordingClicked()"
 	(onToolbarStopRecordingClicked)="onStopRecordingClicked()"
 	(onActivitiesPanelStopRecordingClicked)="onStopRecordingClicked()"
 	(onActivitiesPanelDeleteRecordingClicked)="onDeleteRecordingClicked($event)"
-	(onActivitiesPanelStartStreamingClicked)="onStartStreamingClicked($event)"
-	(onActivitiesPanelStopStreamingClicked)="onStopStreamingClicked()"
-	(onToolbarStopStreamingClicked)="onStopStreamingClicked()"
+	(onActivitiesPanelStartBroadcastingClicked)="onStartBroadcastingClicked($event)"
+	(onActivitiesPanelStopBroadcastingClicked)="onStopBroadcastingClicked()"
+	(onToolbarStopBroadcastingClicked)="onStopBroadcastingClicked()"
 	(onNodeCrashed)="onNodeCrashed()"
 >
 </ov-videoconference>
@@ -288,14 +287,12 @@ You also have the possibility to customize the application listening to the even
 | **`SERVER_PORT`**         | Number that indicates the port where http server will listen                                                              | `5000`                      |
 | **`OPENVIDU_URL`**        | The URL where OpenVidu Server will be reachable.                                                                          | `"http://localhost:4443"`   |
 | **`OPENVIDU_SECRET`**     | Secret used to connect to OpenVidu Server.                                                                                | `"MY_SECRET"`               |
-| **`RTMP_EXPORTER_URL`** | The URL where RTMP service will be reachable.                                                                               | `"MY_SECRET"`               |
-| **`RTMP_EXPORTER_CREDENTIALS`**| Secret used to connect to OpenVidu Server.                                                                           | `"admin:password"`          |
 | **`CALL_PRIVATE_ACCESS`** | Whether to enable the authentication feature or not.                                                                      | `"ENABLED"`                 |
 | **`CALL_USER`**           | Username used for login to the OpenVidu Call session. This property has effect only if is `CALL_PRIVATE_ACCESS='ENABLED'` | `"admin"`                   |
 | **`CALL_SECRET`**         | Secret used for login to the OpenVidu Call session. This property has effect only if is `CALL_PRIVATE_ACCESS='ENABLED'`   | _Same as `OPENVIDU_SECRET`_ |
 | **`CALL_ADMIN_SECRET`**   | Secret used for login to the OpenVidu Call admin dashboard.                                                               | _Same as `OPENVIDU_SECRET`_ |
 | **`CALL_RECORDING`**      | Whether to enable the recording features or not.                                                                          | `"ENABLED"`                 |
-| **`CALL_STREAMING`**      | Whether to enable the streaming features or not.                                                                          | `"ENABLED"`               |
+| **`CALL_BROADCAST`**      | Whether to enable the broadcast features or not.                                                                          | `"ENABLED"`               |
 
 These configuration parameters can be set as environment variables. For example, to execute the application against an OpenVidu deployment with a domain name such us `my.openvidu.deployment.com` that is configured with secret `PASSWORD`:
 
@@ -356,35 +353,36 @@ mvn spring-boot:run -Dspring-boot.run.jvmArguments="-DOPENVIDU_URL=https://my.op
 | **REQUEST BODY** | `{"sessionId": "session_name"}` |
 | **200 OK RETURN VALUE** | The list of all [Recording](reference-docs/REST-API/#the-recording-object) objects associated to the session |
 
-| 5. Start streaming ||
-| - ||
-| **HTTP METHOD** | POST |
-| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
-| **URL** | https://localhost:5000/streamings/start |
-| **REQUEST BODY** | `{"rtmpUrl": "your_rtmp_url" }` |
-| **200 OK RETURN VALUE** | `{"id": "streaming_id", "status": "STARTED", "rtmpAvailable": true  }` |
-
-| 6. Stop streaming ||
-| - ||
-| **HTTP METHOD** | DELETE |
-| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
-| **URL** | https://localhost:5000/streamings/stop |
-| **200 OK RETURN VALUE** | `{"id": "streaming_id", "status": "STOPPED", "rtmpAvailable": true  }` |
-
-
-| 7. Delete a recording ||
+| 5. Delete a recording ||
 | - ||
 | **HTTP METHOD** | DELETE |
 | **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/delete/`RECORDING_ID` |
 | **200 OK RETURN VALUE** | The list of all [Recording](reference-docs/REST-API/#the-recording-object) objects associated to the session |
 
-| 8. Get a recording ||
+| 6. Get a recording ||
 | - ||
 | **HTTP METHOD** | GET |
 | **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
 | **URL** | https://localhost:5000/recordings/`RECORDING_ID` |
 | **206 Partial Content RETURN VALUE** | Byterange used to allow large files to be downloaded or requested progressively |
+
+
+| 7. Start broadcast ||
+| - ||
+| **HTTP METHOD** | POST |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
+| **URL** | https://localhost:5000/broadcasts/start |
+| **REQUEST BODY** | `{"broadcastUrl": "your_broadcast_url" }` |
+| **200 OK RETURN VALUE** | `{"id": "broadcast_id", "status": "STARTED", "broadcastAvailable": true  }` |
+
+| 8. Stop broadcast ||
+| - ||
+| **HTTP METHOD** | DELETE |
+| **HEADERS** | Authorization: Basic `EncodeBase64(CALL_USER:<CALL_SECRET>)`. Only if is `CALL_PRIVATE_ACCESS='ENABLED'` |
+| **URL** | https://localhost:5000/broadcasts/stop |
+| **200 OK RETURN VALUE** | `{"id": "broadcast_id", "status": "STOPPED", "broadcastAvailable": true  }` |
+
 
 | 9. Call login ||
 | - ||
