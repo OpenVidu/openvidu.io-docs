@@ -162,8 +162,8 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
       <img class="icon-img" src="img/docs/home/feature20.svg"/>
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
-      <h3 style="text-align: right">Streaming to YouTube/Twitch</h3>
-      <span class="feature-text">OpenVidu offers a special module to export your sessions to RTMP, so that you can easily broadcast them to live-streaming platforms such as YouTube or Twitch. Check it out <a href="advanced-features/streaming/">here</a>.</span>
+      <h3 style="text-align: right">Broadcasting to YouTube/Twitch</h3>
+      <span class="feature-text">OpenVidu allows you to easily broadcast your sessions to live-streaming platforms such as YouTube or Twitch. Check it out <a href="advanced-features/broadcast/">here</a>.</span>
     </div>
   </div>
   <hr>

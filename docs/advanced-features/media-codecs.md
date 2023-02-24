@@ -121,10 +121,10 @@ OpenVidu openvidu = new OpenVidu(OPENVIDU_URL, OPENVIDU_SECRET);
 SessionProperties sessionProperties = new SessionProperties.Builder()
     .forcedVideoCodec(VideoCodec.VP8)
     .build();
-Session session = openVidu.createSession(sessionProperties);
+Session session = openvidu.createSession(sessionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html#forcedVideoCodec(io.openvidu.java.client.VideoCodec)).
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/SessionProperties.Builder.html#forcedVideoCodec(io.openvidu.java.client.VideoCodec)){:target="_blank"}
 
 </div>
 
@@ -136,7 +136,7 @@ const sessionProperties = { forcedVideoCodec: VideoCodec.VP8 };
 const session = openvidu.createSession(sessionProperties);
 ```
 
-See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec).
+See [TypeDoc](api/openvidu-node-client/interfaces/sessionproperties.html#forcedvideocodec){:target="_blank"}
 
 </div>
 

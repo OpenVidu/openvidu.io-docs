@@ -123,7 +123,7 @@ Recorded when a session has finished.
 | `sessionId` | Session for which the event was triggered | A String with the session's unique identifier                                           |
 | `startTime` | Time when the session started             | A Number (UTC milliseconds)                                                                      |
 | `duration`  | Total duration of the session             | A Number with the duration in seconds                                                                               |
-| `reason`    | Why the session was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})   | A String with one of these possible values <ul class="cdr-list"><li>`"lastParticipantLeft"`</li><li>`"sessionClosedByServer"`</li><li>`"mediaServerDisconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li></ul> |
+| `reason`    | Why the session was destroyed ([complete description](https://github.com/OpenVidu/openvidu/blob/master/openvidu-server/src/main/java/io/openvidu/server/core/EndReason.java){:target="_blank"})   | A String with one of these possible values <ul class="cdr-list"><li>`"lastParticipantLeft"`</li><li>`"sessionClosedByServer"`</li><li>`"mediaServerDisconnect"`</li><li>`"nodeCrashed"`</li><li>`"openviduServerStopped"`</li><li>`"automaticStop"`</li></ul> |
 
 <br>
 
@@ -454,6 +454,7 @@ Check out [Media Node reconnection configuration](openvidu-pro/fault-tolerance/#
     "nodeRole": "medianode",
     "sessionIds": ["ses_Jd8tUyvhXO","ses_6rttUnoF2w"],
     "recordingIds": ["ses_Jd8tUyvhXO"],
+    "broadcasts": ["ses_6rttUnoF2w"],
     "clusterId": "MY_CLUSTER"
 }
 ```
@@ -470,6 +471,7 @@ Check out [Media Node reconnection configuration](openvidu-pro/fault-tolerance/#
 | `nodeRole`       | Role of the crashed node | A String with the node's role. It can be:<ul class="cdr-list"><li><code>medianode</code> : if a Media Node has crashed. See [OpenVidu Pro Fault Tolerance](openvidu-pro/fault-tolerance/)</li><li><code>masternode</code> : if a Master Node has crashed. See [Fault tolerance in OpenVidu Enterprise HA](openvidu-enterprise/high-availability/#fault-tolerance-in-openvidu-enterprise-ha) </li></ul> |
 | `sessionIds`     | The collection of session identifiers of all the sessions that were located in the crashed node. This way you can immediately know which sessions have been destroyed by the crash | An Array of Strings |
 | `recordingIds`    | The collection of recording identifiers of all the recordings that were located in the crashed node. This way you can immediately know which recordings have been affected by the crash | An Array of Strings |
+| `broadcasts`    | The collection of session identifiers of all the sessions that were being broadcasted and which broadcast was located in the crashed node. This way you can immediately know which broadcasts have been affected by the crash. See [Broadcast to YouTube/Twitch](advanced-features/broadcast/) | An Array of Strings |
 | `timeOfDisconnection` | Time when the connection with the Media Node was lost. It will be smaller than `timestamp`: the difference between both values is the time OpenVidu tried to reconnect to it | A Number (UTC milliseconds) |
 
 <br>

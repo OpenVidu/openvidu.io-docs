@@ -86,7 +86,7 @@ openVidu.createSession(sessionProperties)
     .catch(error => console.error(error));
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession)
+See [TypeDoc](api/openvidu-node-client/classes/openvidu.html#createsession){:target="_blank"}
 
 </div>
 

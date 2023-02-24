@@ -79,7 +79,7 @@ session.createConnection(connectionProperties)
     .catch(error => console.error(error));
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
 
 </div>
 
@@ -198,7 +198,7 @@ See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/Session.html#forc
 session.forceDisconnect(connection);
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect)
+See [TypeDoc](api/openvidu-node-client/classes/session.html#forcedisconnect){:target="_blank"}
 
 </div>
 

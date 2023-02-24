@@ -274,7 +274,7 @@ ConnectionProperties connectionProperties = new ConnectionProperties.Builder()
 session.createConnection(connectionProperties);
 ```
 
-See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/IceServerProperties.html)
+See [JavaDoc](api/openvidu-java-client/io/openvidu/java/client/IceServerProperties.html){:target="_blank"}
 
 </div>
 
@@ -293,7 +293,7 @@ let connection = await session.createConnection({
 });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
 
 </div>
 

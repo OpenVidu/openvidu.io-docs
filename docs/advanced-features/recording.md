@@ -651,7 +651,7 @@ session.createConnection(connectionProperties).then(connection => {
 });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection)
+See [TypeDoc](api/openvidu-node-client/classes/session.html#createconnection){:target="_blank"}
 
 </div>
 
@@ -704,7 +704,7 @@ var connectionProperties = {
 session.updateConnection(connectionId, connectionProperties).then(connection => { ... });
 ```
 
-See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection)
+See [TypeDoc](api/openvidu-node-client/classes/session.html#updateconnection){:target="_blank"}
 
 </div>
 

@@ -29,7 +29,7 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Initialize a connection](#post-connection)
     - [Retrieve connection info](#get-connection)
     - [Retrieve all connections info](#get-all-connections)
-    - [Modify a connection](#patch-connection)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Modify a connection](#patch-connection)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [Close a connection](#delete-connection)
 - [The Recording object](#the-recording-object)
     - [Start the recording of a session](#post-recording-start)
@@ -37,22 +37,25 @@ For example, with a secret "*MY_SECRET*" the HTTP header would be:
     - [Retrieve recording info](#get-recording)
     - [Retrieve all recording info](#get-all-recordings)
     - [Delete a recording](#delete-recording)
-- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [The Media Node object](#the-media-node-object)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
     - [Retrieve Media Node info](#get-medianode)
     - [Retrieve all Media Nodes info](#get-all-medianodes)
     - [Add Media Node](#post-medianode)
     - [Remove Media Node](#delete-medianode)
     - [Modify Media Node](#patch-medianode)
     - [Autodiscover Media Nodes](#put-medianode)
+- [Broadcasting](#broadcasting)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Start broadcast](#start-broadcast)
+    - [Stop broadcast](#stop-broadcast)
+- [Administration](#administration)
+    - [Get OpenVidu active configuration](#get-config)
+    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [Others](#others)
-    - [Generate a token](#post-token) **(DEPRECATED. Use [Initialize a connection](#post-connection))**
     - [Unpublish a stream from a connection](#delete-stream)
     - [Send a signal to a session](#post-signal)
-    - [Get OpenVidu active configuration](#get-config)
-    - [Check OpenVidu health](#get-health)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Restart OpenVidu](#post-restart)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Load Speech To Text language model](#post-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
-    - [Unload Speech To Text language model](#delete-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Load Speech To Text language model](#post-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
+    - [Unload Speech To Text language model](#delete-speech-to-text)<a href="openvidu-pro/"><span id="openvidu-pro-small-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 3px; margin-left: 5px; border-radius: 3px; font-size: 11px; line-height:18px; font-family: Montserrat, sans-serif;">PRO</span></a>
 
 </div>
 
@@ -90,6 +93,7 @@ A Session is a conference room where users can send/receive media streams to/fro
         "content": []
     },
     "recording": false,
+    "broadcasting": false,
     "forcedVideoCodec": "VP8",
     "allowTranscoding": false,
     "mediaNodeId": "media_i-po39jr3e10rkjsdfj"
@@ -107,6 +111,7 @@ A Session is a conference room where users can send/receive media streams to/fro
 | customSessionId | String | Custom session identifier. Only defined if the session was initialized passing a `customSessionId` field in method [**POST /openvidu/api/sessions**](#post-session) |
 | connections | Object | Collection of active connections in the session. This object is defined by a `numberOfElements` property counting the total number of active connections and a `content` array with the actual active connections. Active connections are those with `status` property set to `active`. See [**Connection object**](#the-connection-object) |
 | recording | Boolean | Whether the session is being recorded or not at this moment |
+| broadcasting | Boolean | Whether the session is being broadcasted or not at this moment |
 | forcedVideoCodec | String | Enforce a specific video codec to be used by all clients, to avoid compatibility issues:<ul><li>`MEDIA_SERVER_PREFERRED`<br>A recommended choice is done for you</li><li>`NONE`<br>Let each client use their preferred codec</li><li>`VP8`</li><li>`VP9`</li><li>`H264`</li></ul>[More details](advanced-features/media-codecs/#forced-video-codec). |
 | allowTranscoding | Boolean | Allow the media server to perform live transcoding of video streams, ensuring that all codecs match in the session (**Kurento only**).<br>[More details](advanced-features/media-codecs/#allow-transcoding). |
 | mediaNodeId <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> | String | Identifier of the Media Node hosting this session. It is the `id` property of a [Media Node object](#the-media-node-object). Only defined after the session has actually been allocated inside the Media Node, which only happens after the first user connects to the session. See [Manual distribution](openvidu-pro/scalability/#how-openvidu-pro-sessions-are-distributed) of OpenVidu Pro sessions |
@@ -930,6 +935,7 @@ The Media Node API is part of OpenVidu <a href="openvidu-pro/"><span id="openvid
     "status": "running",
     "sessions": [],
     "recordingIds": [],
+    "broadcasts": [],
     "kurentoInfo": {}
 }
 ```
@@ -949,6 +955,7 @@ The Media Node API is part of OpenVidu <a href="openvidu-pro/"><span id="openvid
 | status | String | Status of the Media Node. See [**Media Node statuses**](openvidu-pro/scalability/#media-node-statuses) |
 | sessions | Array of Objects | Collection of sessions initialized in this Media Node. See [**Session object**](reference-docs/REST-API/#the-session-object)<div style="margin-top:10px"></div>Property only retrievable when providing query param `sessions=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 | recordingIds | Array of Strings | Collection of recordings initialized in this Media Node. Each string is the id of a [**Recording object**](reference-docs/REST-API/#the-recording-object). See [**Scalable composed recording**](advanced-features/recording/#scalable-composed-recording) <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
+| broadcasts | Array of Strings | Collection of broadcasts initialized in this Media Node. Each string is the id of a [**Session object**](reference-docs/REST-API/#the-session-object), for which a broadcast has been started. See [**Broadcasting**](#broadcasting). <div style="margin-top:10px"></div>Property only retrievable when providing query param `recordings=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 | kurentoInfo | Object | Object with extra advanced information about the Kurento Media Server internal process of this Media Node (version, modules, memory usage...). This is a property aimed at advanced users, subject to change.<div style="margin-top:10px"></div>Property only retrievable when providing query param `extra-info=true` in methods:<ul style="margin-top:10px"><li style="color: inherit"><a href="#get-medianode"><strong>GET /openvidu/api/media-nodes/&lt;MEDIA_NODE_ID&gt;</strong></a></li><li style="color: inherit"><a href="#get-all-medianodes"><strong>GET /openvidu/api/media-nodes</strong></a></li></ul> |
 
 ---
@@ -1237,11 +1244,12 @@ Remove a Media Node from the cluster. If there are ongoing Sessions currently ho
 
 |||
 | - ||
-| 202 | If query parameter `deletion-strategy` is set to `when-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. Media Node status has been set to `waiting-idle-to-terminate` |
-| 204 | The Media Node was successfully removed |
+| 202 | If query parameter `deletion-strategy` is set to `when-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions (or recordings or broadcasts) inside of it. Media Node status has been set to `waiting-idle-to-terminate` |
+| 200 | The Media Node can be removed and the removal process has successfully started (query parameter `wait` is set to `false`) |
+| 204 | The Media Node was successfully removed (query parameter `wait` is set to `true`) |
 | 404 | No Media Node exists for the passed `MEDIA_NODE_ID` |
 | 405 | For [OpenVidu Enterprise HA](openvidu-enterprise/high-availability/) clusters this method is not allowed |
-| 409 | If query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions inside of it. No Media Node deletion will take place at all |
+| 409 | If query parameter `deletion-strategy` is set to `if-no-sessions`, then it means that the Media Node to be deleted has ongoing sessions (or recordings or broadcasts) inside of it. No Media Node deletion will take place at all |
 | 502 | Error while terminating the Media Node instance. This won't ever happen for [On Premises deployments](deployment/pro/on-premises/), where instances require manual shut down |
 
 <br>
@@ -1379,181 +1387,133 @@ Autodiscover Media Nodes. This method makes OpenVidu Server search for reachable
 
 ---
 
-## Others
+## Broadcasting
 
-### POST `/openvidu/api/tokens` {:id=post-token}
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    The Token API is deprecated. Use the Connection API: instead of generating a Token with <a href="#post-token"><strong>POST /openvidu/api/tokens</strong></a>, create a Connection with <a href="#post-connection"><strong>POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection</strong></a>
-  </div>
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+Broadcast API is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> and <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> editions.
 </div>
+</div>
+
+See [Broadcast to YouTube/Twitch](/advanced-features/broadcast).
+
+### POST `/openvidu/api/broadcast/start` {:id=start-broadcast}
 
 ##### Description
 
-Generate a token for a Session. This token must be sent to the client side to be used in openvidu-browser library to connect to the Session.
+Start broadcasting the OpenVidu Session to a live-streaming endpoint. This is usually an RTMP endpoint, such as the ones offered by YouTube Live or Twitch.
 
 ##### Operation
 
 |   ||
 | - ||
 | **METHOD**  | POST |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/tokens |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/broadcast/start |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 
 ##### Body
 
 ```json
 {
-  "session": "SESSION_ID",
-  "role": "PUBLISHER",
-  "data": "DATA",
-  "kurentoOptions": {
-      "videoMaxRecvBandwidth": 1000,
-      "videoMinRecvBandwidth": 300,
-      "videoMaxSendBandwidth": 1000,
-      "videoMinSendBandwidth": 300,
-      "allowedFilters": [ "GStreamerFilter", "ZBarFilter" ]
-  }
-}
-```
-
-> - **session** _(mandatory String)_ : the sessionId for which the token should be associated.<br><br>
-> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description)_
->     - `SUBSCRIBER`
->     - `PUBLISHER` _(default)_
->     - `MODERATOR`<br><br>
-> - **data** _(optional String)_ : metadata associated to this token. Usually participant's information.<br><br>
-> - **kurentoOptions** _(optional Object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
->     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
->     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.<br><br>
->     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
->     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.<br><br>
->     - **allowedFilters** _(optional array of strings)_ : names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/)).
-
-##### Returns
-
-This operation returns a Token object:
-
-```json
-{
-    "id": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
-    "token": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
-    "connectionId": "con_Xnxg19tonh",
-    "createdAt": 1538481996024,
     "session": "ses_YnDaGYNcd7",
-    "role": "PUBLISHER",
-    "data": "MY_SERVER_DATA",
-    "record": true,
-    "kurentoOptions": {
-        "videoMaxRecvBandwidth": 1000,
-        "videoMinRecvBandwidth": 300,
-        "videoMaxSendBandwidth": 1000,
-        "videoMinSendBandwidth": 300,
-        "allowedFilters": [
-            "GStreamerFilter",
-            "ZBarFilter"
-        ]
+    "broadcastUrl": "rtmp://live.twitch.tv/app/live_123456789_Syb4r5prq45by5iye1onudzzim5vu6",
+    "hasAudio": true,
+    "recordingLayout": "BEST_FIT",
+    "resolution": "1280x720",
+    "frameRate": 18,
+    "shmSize": 536870912,
+    "mediaNode": {
+        "id": "media_i-0c58bcdd26l11d0sd"
     }
 }
 ```
 
-| Parameter | Type | Description |
-| --------- | ---- | ----------- |
-| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/Session.html#connect) |
-| token | String | Same value as `id` |
-| connectionId | String | Connection identifier that will be assigned to the user consuming this token |
-| createdAt | Number | Time when the token was created in UTC milliseconds |
-| session | String | Identifier of the session for which this token is valid |
-| role | String | Role of the token. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description |
-| data | String | Metadata associated to this token. Usually participant's information |
-| record | Boolean | Whether the streams published by the participant owning this token will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
-| kurentoOptions | Object | Configuration properties for the participant owning this token regarding Kurento. See a complete description of them in the body of [POST /openvidu/api/tokens](#body_1) |
+> - **session** _(mandatory String)_ : the sessionId of the session you want to start broadcasting.<br><br>
+> - **broadcastUrl** _(mandatory String)_ : the URL where to broadcast.<br><br>
+> - **hasAudio** _(optional Boolean)_ : whether to broadcast the audio or not. Default to `true`<br><br>
+> - **recordingLayout** _(optional String)_ : the layout to be used in this broadcast.
+>     - `BEST_FIT`_(default)_ : a grid layout where all the videos are evenly distributed.
+>     - `CUSTOM`: use your own custom layout. The functioning is exactly the same as in [Custom recording layouts](advanced-features/recording/#custom-recording-layouts).<br><br>
+> - **customLayout** _(optional String. Only applies if `recordingLayout` is set to `CUSTOM`)_ : a relative path indicating the custom layout to be used in the broadcast if more than one is available. Default to empty string (if so custom layout expected under path set with [openvidu-server configuration property](reference-docs/openvidu-config/) `OPENVIDU_RECORDING_CUSTOM_LAYOUT`).<br><br>
+> - **resolution** _(optional String)_ : the resolution of the broadcast. It is a string indicating the width and height in pixels like this: `"1280x720"`. Values for both width and height must be between 100 and 1999. Default to `"1280x720"`.<br><br>
+> - **frameRate** _(optional Number)_ : the frame rate of the broadcast. Minimum 1 and maximum 120. Default to 25.<br><br>
+> - **shmSize** _(optional Number)_ : the amount of memory dedicated to the broadcasting module in charge of this specific broadcast, in bytes. The default value is usually fine, but you can adjust it to your needs. Default to 536870912 (512 MB).<br><br>
+> - **mediaNode** _(optional Object)_ : an object with the Media Node selector to force the Media Node allocation of this broadcasting. Right now it may only have a single property `id` with a Media Node identifier. That is the `id` property of a [Media Node object](#the-media-node-object). If not set, by default the broadcasting will be allocated in the same Media Node as the one hosting the recorded session, which is the best option in terms of network traffic.
 
 ##### HTTP responses
 
 |||
 | - ||
-| 200 | Token successfully created and ready to be used by one client to connect to the associated session |
-| 400 | Problem with some body parameter |
-| 404 | Provided value for `session` parameter was not found in OpenVidu Server. You must first call [**POST /openvidu/api/sessions**](#post-session) to get a session id |
+| 200 | The broadcast has successfully started. This means that the broadcasting module seems to be sending data to `broadcastUrl` properly |
+| 400 | There is some problem with a body parameter. The error message will provide further details |
+| 404 | No session exists for the passed `session` body parameter |
+| 406 | The session has no connected participants |
+| 409 | The session is not configured for using MediaMode `ROUTED` or it is already being broadcasted |
+| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceeds acceptable values (min 0 and max 120), `shmSize` exceed acceptable values (min 134217728) |
+| 500 | Unexpected error when starting the broadast. See the error message for further information |
 
 <br>
 
 ---
 
-### DELETE `/openvidu/api/sessions/<SESSION_ID>/stream/<STREAM_ID>` {:id=delete-stream}
+### POST `/openvidu/api/broadcast/stop` {:id=stop-broadcast}
 
 ##### Description
 
-Force the unpublishing of a media stream from a Session. The stream belongs to a specific [Connection obejct](#the-connection-object). All subscribers receiving this stream will also be destroyed.
-
-##### Operation
-
-|   ||
-| - ||
-| **METHOD**  | DELETE |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/sessions/`SESSION_ID`/stream/`STREAM_ID` |
-| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
-
-##### HTTP responses
-
-|||
-| - ||
-| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html) event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
-| 400 | No session exists for the passed `SESSION_ID` |
-| 404 | No stream exists for the passed `STREAM_ID` |
-| 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-connection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-connection) |
-
-<br>
-
----
-
-### POST `/openvidu/api/signal` {:id=post-signal}
-
-##### Description
-
-Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/Session.html#signal).
+Stop broadcasting an OpenVidu Session.
 
 ##### Operation
 
 |   ||
 | - ||
 | **METHOD**  | POST |
-| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/signal |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/broadcast/stop |
 | **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
 
 ##### Body
 
 ```json
 {
-    "session":"ses_YnDaGYNcd7",
-    "to": ["con_Xnxg19tonh", "con_TNVdbuQCJF"],
-    "type":"MY_TYPE",
-    "data":"This is my signal data"
+    "session": "ses_YnDaGYNcd7"
 }
 ```
 
-> - **session** _(mandatory String)_ : the sessionId of the session you want to send the signal to.<br><br>
-> - **to** _(optional Array of String)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session.<br><br>
-> - **type** _(optional String)_ : type of the signal. In the body example above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type.<br><br>
-> - **data** _(optional String)_ : actual data of the signal.
+> - **session** _(mandatory String)_ : the sessionId of the session you want to stop broadcasting.
 
 ##### HTTP responses
 
 |||
 | - ||
-| 200 | Signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal |
-| 400 | There is a problem with some body parameter |
+| 200 | The broadcast has successfully stopped |
+| 400 | There is some problem with a body parameter. The error message will provide further details |
 | 404 | No session exists for the passed `session` body parameter |
-| 406 | No connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct) |
+| 409 | The session is not being broadcasted |
+| 500 | Unexpected error when stopping the broadast. See the error message for further information |
 
 <br>
 
 ---
+
+## Administration
 
 ### GET `/openvidu/api/config` {:id=get-config}
 
@@ -1848,6 +1808,78 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 
 ---
 
+## Others
+
+### DELETE `/openvidu/api/sessions/<SESSION_ID>/stream/<STREAM_ID>` {:id=delete-stream}
+
+##### Description
+
+Force the unpublishing of a media stream from a Session. The stream belongs to a specific [Connection obejct](#the-connection-object). All subscribers receiving this stream will also be destroyed.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | DELETE |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/sessions/`SESSION_ID`/stream/`STREAM_ID` |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)` |
+
+##### HTTP responses
+
+|||
+| - ||
+| 204 | The stream has been successfully unpublished. Every participant will have received the proper [**streamDestroyed**](api/openvidu-browser/classes/StreamEvent.html) event in OpenVidu Browser with "reason" property set to "forceUnpublishByServer" |
+| 400 | No session exists for the passed `SESSION_ID` |
+| 404 | No stream exists for the passed `STREAM_ID` |
+| 405 | You cannot directly delete the stream of an IPCAM participant (any participant created with method [**POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection**](#post-connection)). Instead you must delete the connection object with [**DELETE /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection/&lt;CONNECTION_ID&gt;**](#delete-connection) |
+
+<br>
+
+---
+
+### POST `/openvidu/api/signal` {:id=post-signal}
+
+##### Description
+
+Send a signal to a Session, to specific [Connections](#the-connection-object) or as a broadcast message to all Connections. This is the server-side implementation of the client operation [**Session.signal**](api/openvidu-browser/classes/Session.html#signal).
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/signal |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+    "session":"ses_YnDaGYNcd7",
+    "to": ["con_Xnxg19tonh", "con_TNVdbuQCJF"],
+    "type":"MY_TYPE",
+    "data":"This is my signal data"
+}
+```
+
+> - **session** _(mandatory String)_ : the sessionId of the session you want to send the signal to.<br><br>
+> - **to** _(optional Array of String)_ : list of connection identifiers to which you want to send the signal. If this property is not included or is an empty array, the signal will be sent to all participants of the session.<br><br>
+> - **type** _(optional String)_ : type of the signal. In the body example above, only users subscribed to `Session.on('signal:MY_TYPE')` will trigger that signal. Users subscribed to `Session.on('signal')` will trigger signals of any type.<br><br>
+> - **data** _(optional String)_ : actual data of the signal.
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Signal successfully sent. This doesn't necessary mean that all the intended recipients will have received it correctly. If any user has lost its connection to OpenVidu Server during this process, it may not receive the signal |
+| 400 | There is a problem with some body parameter |
+| 404 | No session exists for the passed `session` body parameter |
+| 406 | No connection exists for the passed `to` array. This error may be triggered if the session has no connected participants or if you provide some string value that does not correspond to a valid connectionId of the session (even though others may be correct) |
+
+<br>
+
+---
+
 ### POST `/openvidu/api/speech-to-text/load` {:id=post-speech-to-text}
 
 <div style="
@@ -1990,5 +2022,109 @@ The following [environment variables](reference-docs/openvidu-config/#configurat
 | 405 | The language model cannot be unloaded as it is currently in use in the Media Node |
 | 409 | The language model is not loaded in the specified Media Node |
 | 501 | Speech to Text module is disabled or configured with an engine that does not support language model management. Configuration property `OPENVIDU_PRO_SPEECH_TO_TEXT` must be set to `vosk` |
+
+<br>
+
+---
+
+### POST `/openvidu/api/tokens` _(DEPRECATED)_ {:id=post-token}
+
+<div class="warningBoxContent">
+  <div style="display: table-cell; vertical-align: middle;">
+      <i class="icon ion-android-alert warningIcon"></i>
+  </div>
+  <div class="warningBoxText">
+    The Token API is deprecated. Use the Connection API: instead of generating a Token with <a href="#post-token"><strong>POST /openvidu/api/tokens</strong></a>, create a Connection with <a href="#post-connection"><strong>POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection</strong></a>
+  </div>
+</div>
+
+##### Description
+
+Generate a token for a Session. This token must be sent to the client side to be used in openvidu-browser library to connect to the Session.
+
+##### Operation
+
+|   ||
+| - ||
+| **METHOD**  | POST |
+| **URL**     | https://`YOUR_OPENVIDUSERVER_IP`/openvidu/api/tokens |
+| **HEADERS** | Authorization: Basic `EncodeBase64(OPENVIDUAPP:<YOUR_SECRET>)`<br/>Content-Type: application/json |
+
+##### Body
+
+```json
+{
+  "session": "SESSION_ID",
+  "role": "PUBLISHER",
+  "data": "DATA",
+  "kurentoOptions": {
+      "videoMaxRecvBandwidth": 1000,
+      "videoMinRecvBandwidth": 300,
+      "videoMaxSendBandwidth": 1000,
+      "videoMinSendBandwidth": 300,
+      "allowedFilters": [ "GStreamerFilter", "ZBarFilter" ]
+  }
+}
+```
+
+> - **session** _(mandatory String)_ : the sessionId for which the token should be associated.<br><br>
+> - **role** _(optional String. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description)_
+>     - `SUBSCRIBER`
+>     - `PUBLISHER` _(default)_
+>     - `MODERATOR`<br><br>
+> - **data** _(optional String)_ : metadata associated to this token. Usually participant's information.<br><br>
+> - **kurentoOptions** _(optional Object)_ : you can set some configuration properties for the participant owning this token regarding Kurento. This is a JSON object with the following optional properties:<br><br>
+>     - **videoMaxRecvBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_RECV_BANDWIDTH`) for every incoming stream of the user owning the token. _**WARNING**: the lower value set to this property limits every other bandwidth of the WebRTC pipeline this server-to-client stream belongs to. This includes the user publishing the stream and every other user subscribed to the same stream._<br><br>
+>     - **videoMinRecvBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to receive from Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_RECV_BANDWIDTH`) for every incoming stream of the user owning the token.<br><br>
+>     - **videoMaxSendBandwidth** _(optional Number)_ : maximum number of Kbps that the client owning the token will be able to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MAX_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token. _**WARNING**: this value limits every other bandwidth of the WebRTC pipeline this client-to-server stream belongs to. This includes every other user subscribed to the stream._<br><br>
+>     - **videoMinSendBandwidth** _(optional Number)_ : minimum number of Kbps that the client owning the token will try to send to Kurento Media Server. 0 means unconstrained. Giving a value to this property will override the global configuration set in _[OpenVidu configuration](reference-docs/openvidu-config)_ (parameter `OPENVIDU_STREAMS_VIDEO_MIN_SEND_BANDWIDTH`) for every outgoing stream of the user owning the token.<br><br>
+>     - **allowedFilters** _(optional array of strings)_ : names of the filters the user owning the token will be able to apply (see [Voice and video filters](advanced-features/filters/)).
+
+##### Returns
+
+This operation returns a Token object:
+
+```json
+{
+    "id": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
+    "token": "wss://localhost:4443?sessionId=ses_YnDaGYNcd7&token=tok_HCGhiWHWX6hC9el4&role=PUBLISHER&version=2.16.0&coturnIp=localhost&turnUsername=C4LVAW&turnCredential=3hbpdz&webrtcStatsInterval=0",
+    "connectionId": "con_Xnxg19tonh",
+    "createdAt": 1538481996024,
+    "session": "ses_YnDaGYNcd7",
+    "role": "PUBLISHER",
+    "data": "MY_SERVER_DATA",
+    "record": true,
+    "kurentoOptions": {
+        "videoMaxRecvBandwidth": 1000,
+        "videoMinRecvBandwidth": 300,
+        "videoMaxSendBandwidth": 1000,
+        "videoMinSendBandwidth": 300,
+        "allowedFilters": [
+            "GStreamerFilter",
+            "ZBarFilter"
+        ]
+    }
+}
+```
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| id | String | Token value. Send it to one client to pass it as parameter in openvidu-browser method [Session.connect](api/openvidu-browser/classes/Session.html#connect) |
+| token | String | Same value as `id` |
+| connectionId | String | Connection identifier that will be assigned to the user consuming this token |
+| createdAt | Number | Time when the token was created in UTC milliseconds |
+| session | String | Identifier of the session for which this token is valid |
+| role | String | Role of the token. Check [OpenViduRole](api/openvidu-node-client/enums/openvidurole.html) section of OpenVidu Node Client for a complete description |
+| data | String | Metadata associated to this token. Usually participant's information |
+| record | Boolean | Whether the streams published by the participant owning this token will be recorded or not. This only affects [INDIVIDUAL recording](advanced-features/recording/#individual-recording-selection) <a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a> |
+| kurentoOptions | Object | Configuration properties for the participant owning this token regarding Kurento. See a complete description of them in the body of [POST /openvidu/api/tokens](#body_1) |
+
+##### HTTP responses
+
+|||
+| - ||
+| 200 | Token successfully created and ready to be used by one client to connect to the associated session |
+| 400 | Problem with some body parameter |
+| 404 | Provided value for `session` parameter was not found in OpenVidu Server. You must first call [**POST /openvidu/api/sessions**](#post-session) to get a session id |
 
 <br>
