@@ -4,6 +4,7 @@
 - **[Customize your broadcast](#customize-your-broadcast)**
     - [Custom broadcast layouts](#custom-broadcast-layouts)
 - **[Scalable braodcasting](#scalable-broadcasting)**
+- **[Use your own RTMP server](#use-your-own-rtmp-server)**
 
 <br>
 
@@ -44,7 +45,7 @@ You can easily broadcast your OpenVidu sessions to **YouTube Live**, **Twitch** 
 
 ## How does broadcasting work
 
-To start the broadcast of your OpenVidu session you just need to call the appropriate method passing the identifier of the session to broadcast and the URL of the ingestion service. These URLs usually start with `rtmp://` or `rtmps://` protocols.
+To start the broadcast of your OpenVidu session you just need to call the appropriate method passing the identifier of the session to broadcast and the URL of the ingestion service. These URLs usually start with `rtmp://` or `rtmps://`.
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -153,7 +154,7 @@ curl -X POST https://<DOMAIN_OR_PUBLIC_IP>/openvidu/api/broadcast/stop \
 
 <br>
 
-The broadcast service uses the same underlaying module than the [COMPOSED recording](advanced-features/recording/#composed-recording) service. This means that you can use the same properties to customize the broadcast as you would do with a COMPOSED recording:
+The broadcast service uses the same underlying module than the [COMPOSED recording](advanced-features/recording/#composed-recording) service. This means that you can use the same properties to customize the broadcast as you would do with a COMPOSED recording:
 
 <div class="lang-tabs-container" markdown="1">
 
@@ -308,6 +309,14 @@ BODY
 <br>
 
 If the provided Media Node does not exist or its status is not valid for starting a broadcast, then a `400 BAD_REQUEST` response is returned. The active broadcasts that are hosted by a Media Node at any given time are available in the [Media Node object](reference-docs/REST-API/#the-media-node-object) of the REST API, in attribute `broadcasts`.
+
+<br>
+
+---
+
+## Use your own RTMP server
+
+OpenVidu broadcasting API allows you to live-stream your OpenVidu sessions to any kind of RTMP ingestion service. This includes not only popular services such as YouTube or Twitch, but also custom RTMP servers. For example, NGINX offers an RTMP module that easily allows setting up a live-streaming server for your OpenVidu sessions to be consumed by thousands of users: **[NGINX RTMP](https://www.nginx.com/products/nginx/modules/rtmp-media-streaming/)**.
 
 <br>
 

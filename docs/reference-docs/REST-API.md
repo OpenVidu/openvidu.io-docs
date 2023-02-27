@@ -1,12 +1,12 @@
 <h2 id="section-title">REST API</h2>
 <hr>
 
-You have full control over OpenVidu Server through its REST API. All of the REST API operations exposed by OpenVidu Server:
+You have full control over your OpenVidu deployment through its REST API. All of the REST API operations exposed by OpenVidu:
 
-* Share the same base path: `/openvidu/api/`.
-* Share the same Authorization header.
+* Share the same base path: `/openvidu/api/`
+* Share the same Authorization header
 
-The Authorization header is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "*OPENVIDUAPP*") and the password (the `OPENVIDU_SECRET` [configuration property](reference-docs/openvidu-config/)).
+The Authorization header is implemented via Basic Auth, and it is as simple as applying Base64 encoding to the username (always "*OPENVIDUAPP*") and the password (the [`OPENVIDU_SECRET` configuration property](reference-docs/openvidu-config/)).
 
 All REST API operations return HTTP status `401` if the Authorization header is wrong or not provided.
 
