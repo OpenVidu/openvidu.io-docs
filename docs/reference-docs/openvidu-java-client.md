@@ -9,6 +9,8 @@ _This is a Java library wrapping [OpenVidu REST API](reference-docs/REST-API/)_
 
 See dependency at [Maven Central](https://search.maven.org/artifact/io.openvidu/openvidu-java-client){:target="_blank"}.
 
+> openvidu-java-client SDK requires **Java 11** or higher
+
 <br>
 
 ---

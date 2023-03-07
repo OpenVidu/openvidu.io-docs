@@ -12,7 +12,7 @@ OpenVidu Call is the flagship videoconference app based on [OpenVidu Components]
 - [**Automatic reconnection**](advanced-features/automatic-reconnection/)
 - [**Virtual background**](advanced-features/virtual-background/)
 - [**Recording**](advanced-features/recording/)
-- [**Broadcast**](advanced-features/boadcast/)
+- [**Broadcast**](advanced-features/broadcast/)
 
 Moreover, OpenVidu Call contains an **intelligent layout** algorithm that adapts the video layout to the number of participants in the session.
 OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
@@ -219,7 +219,7 @@ The **authentication system** for this dashboard is based on a single user with 
 
 ##### Broadcast management
 
-The OpenVidu Call backend also provides the **broadcast features**. This feature allows to you stream the OpenVidu Call videoconferences to Youtube, Twitch or any other boadcast platform that supports RTMP protocol (check the official documentation section [here](advanced-features/boadcast)).
+The OpenVidu Call backend also provides **broadcasting features**. This feature allows to you stream any OpenVidu Call videoconference to Youtube, Twitch or any other broadcast platform that supports RTMP protocol (check the official documentation section [here](advanced-features/broadcast)).
 
 As identical to the recording features, the broadcast features are also based on a cookie-based session system and the **session creator user** is the only one who can start and stop the broadcast of the OpenVidu Call sessions.
 

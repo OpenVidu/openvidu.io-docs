@@ -173,7 +173,7 @@ $ ./openvidu start
 CAUTION: The folder 'openvidu/elasticsearch' use user and group 1000 permissions.
 This folder is necessary for store elasticsearch data.
 For more information, check:
-https://docs.openvidu.io/en/2.16.0/deployment/pro/on-premises/#deployment-instructions
+https://docs.openvidu.io/en/2.26.0/deployment/pro/on-premises/#deployment-instructions
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number.<br>

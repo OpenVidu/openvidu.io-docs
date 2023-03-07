@@ -50,8 +50,6 @@ getToken().then((token) => {
 
 ```
 
-> This code requires relatively modern versions of browsers (from the beginning of 2019). After so much time we can assume that an overwhelming majority of users will not have a version of these browsers from years ago. But if for any reason you want to support Chrome and Firefox from before 2019, please visit and [old version](https://docs.openvidu.io/en/2.16.0/advanced-features/screen-share/) of this same documentation to see how.
-
 ### Desktop Electron apps
 
 Electron allows screen-sharing, but there's no default screen selector built in the framework. For the rest of supported platforms, a native dialog will be shown when calling `OpenVidu.initPublisher` with `{ videoSource: "screen" }`, so the user can pick up the screen or application window to share.
