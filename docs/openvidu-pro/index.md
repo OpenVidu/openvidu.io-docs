@@ -230,6 +230,16 @@ OpenVidu Pro consists of different modules working on top of OpenVidu Community 
             <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
         </tr>
         <tr>
+            <th scope="row">Broadcasting</th>
+            <td scope="row"><a href="advanced-features/broadcast/"><i
+                    class="icon ion-information-circled pricing-table-icon-info"
+                    data-toggle="tooltip" data-placement="right"
+                    title="Broadcast your OpenVidu Sessions to YouTube, Twitch or any other RTMP ingestion service"></a></td>
+            <td><i class="icon ion-close pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+            <td><i class="icon ion-checkmark pricing-table-icon"></i></td>
+        </tr>
+        <tr>
             <th scope="row">Fault Tolerance</th>
             <td scope="row"><a href="openvidu-pro/fault-tolerance/"><i
                     class="icon ion-information-circled pricing-table-icon-info"
