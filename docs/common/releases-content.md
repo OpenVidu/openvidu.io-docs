@@ -114,7 +114,7 @@
   <tr>
     <td>openvidu-node-client</td>
     <td>NPM package</td>
-    <td>2.26.0</td>
+    <td>2.26.2</td>
     <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
