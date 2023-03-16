@@ -64,7 +64,7 @@
             <p class="comment">
                 <p>The *<strong>ovChatPanel</strong> directive allows to replace the default chat panel template with a custom one.
 In the example below we replace the chat template in a few lines of code.</p>
-<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.25.0/components/openvidu-custom-chat-panel#running-this-tutorial">here</a>.</p>
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.26.0/components/openvidu-custom-chat-panel#running-this-tutorial">here</a>.</p>
 <div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference
     (onSessionCreated)=&quot;onSessionCreated($event)&quot;
     [tokens]=&quot;tokens&quot;
@@ -81,11 +81,11 @@ In the example below we replace the chat template in a few lines of code.</p>
     &lt;/div&gt;
 &lt;/ov-videoconference&gt;</code></pre></div><br/>
 
-<p>As we need to get the openvidu-browser <strong><a href="https://docs.openvidu.io/en/2.25.0/api/openvidu-browser/classes/Session.html">Session</a></strong>
+<p>As we need to get the openvidu-browser <strong><a href="https://docs.openvidu.io/en/2.26.0/api/openvidu-browser/classes/Session.html">Session</a></strong>
 object for sending messages to others, we can get it from the <code>onSessionCreated</code> event fired by the <a href="../components/VideoconferenceComponent.html">VideoconferenceComponent</a>
 when the session has been created.</p>
 <p>Once we have the session created, we can use the
-<a href="https://docs.openvidu.io/en/2.25.0/api/openvidu-browser/classes/Session.html#signal">signal</a> method to send our messages.</p>
+<a href="https://docs.openvidu.io/en/2.26.0/api/openvidu-browser/classes/Session.html#signal">signal</a> method to send our messages.</p>
 <div><pre class="line-numbers"><code class="language-javascript">export class ChatPanelDirectiveComponent {
 
     sessionId = &quot;chat-panel-directive-example&quot;;
