@@ -203,12 +203,12 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
     <tr>
-      <td class="first-col">Elasticsearch URL</br><span class="field-comment">URL to use the Elasticserch service. It is very important to specify the port, even if it is 443.<span></td>
-      <td><em>Your Elasticsearch URL.</em></br><span class="field-comment">For example: <em><strong>https://example.elasticsearch.com:443</strong></em></span></td>
+      <td class="first-col">Elasticsearch URL</br><span class="field-comment">URL to use the Elasticserch service.<span></td>
+      <td><em>Your Elasticsearch URL.</em></br><span class="field-comment">For example: <em><strong>https://example.elasticsearch.com</strong></em></span></td>
     </tr>
     <tr>
-      <td class="first-col">Kibana URL<br><span class="field-comment">URL for Kibana. It is very important to specify the port, even if it is 443.<span></td>
-      <td><em>Your Kibana URL.</em></br><span class="field-comment">For example: <em><strong>https://example.kibana.com:443</strong></em></span></td>
+      <td class="first-col">Kibana URL<br><span class="field-comment">URL for Kibana.<span></td>
+      <td><em>Your Kibana URL.</em></br><span class="field-comment">For example: <em><strong>https://example.kibana.com</strong></em></span></td>
     </tr>
     <tr>
       <td class="first-col">Elasticsearch and Kibana username<br><span class="field-comment">Elasticsearch username for OpenVidu<span></td>
@@ -219,15 +219,6 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
       <td><em>Your choice</em></td>
     </tr>
   </table>
-</div>
-
-<div class="warningBoxContent">
-  <div style="display: table-cell; vertical-align: middle;">
-      <i class="icon ion-android-alert warningIcon"></i>
-  </div>
-  <div class="warningBoxText">
-    It is very important to specify the port, even if it is 443, for both URLS: <strong>Elasticsearch URL</strong> and <strong>Kibana URL</strong>
-  </div>
 </div>
 
 <br>

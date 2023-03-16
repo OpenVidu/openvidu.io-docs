@@ -893,11 +893,11 @@ An external Elastic Stack can be configured with and without security. The table
 ### OpenVidu Pro Configuration for external Elastic Stack
 
 If you have an external Elastic Stack configured without security, you only need to specify these properties in the `/opt/openvidu/.env` file
-of your Master Node. These properties are URLs that need to have specified a port, even if it is port 80 or 443. For example:
+of your Master Node. For example:
 
 ```html
-OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com:443
-OPENVIDU_PRO_KIBANA_HOST=https://elk.example.com:443/kibana
+OPENVIDU_PRO_ELASTICSEARCH_HOST=https://elk.example.com
+OPENVIDU_PRO_KIBANA_HOST=https://elk.example.com/kibana
 ```
 
 If you have configured a user in your Elastic Stack, you need to also specify it in your `/opt/openvidu/.env`. Only Basic Auth is supported, which is used by Elastic Stack in their Basic License and is free to use. You need to modify these properties:
@@ -946,8 +946,8 @@ In the next section you will see how to configure a Managed Elastic Stack in AWS
 When the **Domain Status** of your Elasticsearch cluster is ready, let's configure OpenVidu Pro to use it. You will need to modify `/opt/openvidu/.env` and add into this file the **username**, **password**, **Domain Endpoint** and **Kibana** URL from previous steps. The `.env` file must have this parameters:
 
 ```html
-OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.es.amazonaws.com:443
-OPENVIDU_PRO_KIBANA_HOST=https://xxxxxxxx.es.amazonaws.com:443/_plugin/kibana/
+OPENVIDU_PRO_ELASTICSEARCH_HOST=https://xxxxxxxx.es.amazonaws.com
+OPENVIDU_PRO_KIBANA_HOST=https://xxxxxxxx.es.amazonaws.com/_plugin/kibana/
 ELASTICSEARCH_USERNAME=<YOUR_USERNAME>
 ELASTICSEARCH_PASSWORD=<YOUR_PASSWORD>
 ```

@@ -204,11 +204,11 @@ After that, just fill this section of the form with these parameters:
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
     <tr>
       <td class="first-col">Elasticsearch URL</td>
-      <td><em>URL of the Elasticsearch service.</em> It must have the port number specified. For example: <code>https://elk.example.com:443</code></td>
+      <td><em>URL of the Elasticsearch service.</em> For example: <code>https://elk.example.com</code></td>
     </tr>
     <tr>
       <td class="first-col">Kibana URL</td>
-      <td><em>URL of the Kibana service. </em>It must have the port number specified. For example: <code>https://elk.example.com:443/kibana</code></td>
+      <td><em>URL of the Kibana service.</em> For example: <code>https://elk.example.com/kibana</code></td>
     </tr>
     <tr>
       <td class="first-col">Elasticsearch and Kibana username</td>
