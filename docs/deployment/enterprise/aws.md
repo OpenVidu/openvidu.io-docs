@@ -80,7 +80,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 - **A FQDN (Fully Qualified Domain Name)**. The domain name will be configured at the end of the instructions to point to the Load Balancer URL created by the CloudFormation Stack.
 - **A valid certificate for your FQDN installed in AWS**. The CloudFormation automatically launches a Load Balancer to be used as entry point to the OpenVidu cluster. The CloudFormation needs the ARN of the certificate as a parameter.
-- **A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud.
+- **(Optional) A running Elasticsearch and Kibana deployment**. If you do not have any Elastic Stack deployed, check this [guide](openvidu-pro/monitoring-elastic-stack/#examples-of-managed-elastic-stack-services) on how to deploy an Elastic Stack as a service in AWS or Elastic Cloud. If you don't want to use Elastic Stack, you just need to specify it while deploying the CloudFormation.
 - **A user configured in your Elastic Stack to be used in the OpenVidu configuration**. You can use a normal user with all privileges, or just use a fine-grained one. Check this guide on [how to create a fine-grained](openvidu-pro/monitoring-elastic-stack/#create-a-fine-grained-user) user.
 
 #### 2) Access to the console of AWS Cloud Formation
@@ -202,6 +202,10 @@ First, indicate a name for your deployment. Next fill each section with the **Pa
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 0px">
+    <tr>
+      <td class="first-col">Enable Elasticsearch and Kibana</td>
+      <td>Parameter which enables or disables the use of Elasticsearch and Kibana by OpenVidu Enterprise. If <code>false</code> is selected, the rest of the parameters in this section will be ignored and Elasticsearch and Kibana will not be used. If <code>true</code> is selected, the rest of the parameters in this section will be used to connect to an existing Elasticsearch and Kibana service.</td>
+    </tr>
     <tr>
       <td class="first-col">Elasticsearch URL</br><span class="field-comment">URL to use the Elasticserch service.<span></td>
       <td><em>Your Elasticsearch URL.</em></br><span class="field-comment">For example: <em><strong>https://example.elasticsearch.com</strong></em></span></td>

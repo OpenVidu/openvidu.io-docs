@@ -190,8 +190,14 @@ Configure if you want or not to enable OpenVidu Recordings and what type of pers
 
 #### Elasticsearch configuration
 
-You can configure the deployment to use an external Elastic Stack, or deploy one next to OpenVidu Server Pro.
-##### External Elasticsearch and Kibana (Recommended)
+You have three options for configuring the deployment with Elasticsearch and Kibana:
+
+- **1)** Using an external Elasticsearch and Kibana deployment.
+- **2)** Using an Elasticsearch and Kibana deployed next to the OpenVidu Server master node.
+- **3)** Not deploying Elasticsearch and Kibana at all.
+
+The next sections will take a closer look at these three options.
+##### Option 1: External Elasticsearch and Kibana (Recommended)
 
 Requirements to use an external Elasticsearch and Kibana are:
 
@@ -202,6 +208,10 @@ After that, just fill this section of the form with these parameters:
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">Enable Elasticsearch and Kibana</td>
+      <td>Parameter which enables or disables the use of Elasticsearch and Kibana by OpenVidu Pro. In this case, it must be set to <code>true</code>.</td>
+    </tr>
     <tr>
       <td class="first-col">Elasticsearch URL</td>
       <td><em>URL of the Elasticsearch service.</em> For example: <code>https://elk.example.com</code></td>
@@ -222,7 +232,7 @@ After that, just fill this section of the form with these parameters:
 </div>
 <br>
 
-##### Elasticsearch and Kibana deployed next to OpenVidu
+##### Option 2: Elasticsearch and Kibana deployed next to OpenVidu
 
 Configuring Elasticsearch and Kibana next to OpenVidu is convenient sometimes because the cloudformation template is prepared to deploy automatically such services.
 But this option can have it downsides because Elasticsearch, Kibana and OpenVidu Server Pro will be running in the same machine. These downsides are:
@@ -232,6 +242,10 @@ But this option can have it downsides because Elasticsearch, Kibana and OpenVidu
 
 <div style="text-align: center" class="table-responsive">
   <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">Enable Elasticsearch and Kibana</td>
+      <td>Parameter which enables or disables the use of Elasticsearch and Kibana by OpenVidu Pro. In this case, it must be set to <code>true</code>.</td>
+    </tr>
     <tr>
       <td class="first-col">Elasticsearch URL</td>
       <td><em>Empty.</em> You don't want to use any external Elasticsearch service</td>
@@ -247,6 +261,36 @@ But this option can have it downsides because Elasticsearch, Kibana and OpenVidu
     <tr>
       <td class="first-col">Elasticsearch and Kibana password</td>
       <td><em>Your choice.</em> It will be configured while deploying.</em></td>
+    </tr>
+  </table>
+</div>
+<br>
+
+##### Option 3: No Elasticsearch and Kibana
+
+If you don't want to use Elasticsearch and Kibana, just configure the following parameters:
+
+<div style="text-align: center" class="table-responsive">
+  <table class="deploy-fields-table color-table-gray" style="margin-top: 10px; margin-bottom: 10px">
+    <tr>
+      <td class="first-col">Enable Elasticsearch and Kibana</td>
+      <td>Parameter which enables or disables the use of Elasticsearch and Kibana by OpenVidu Pro. In this case, it must be set to <code>false</code>.</td>
+    </tr>
+    <tr>
+      <td class="first-col">Elasticsearch URL</td>
+      <td><em>Empty.</em> You don't want to use any external Elasticsearch service</td>
+    </tr>
+    <tr>
+      <td class="first-col">Kibana URL</td>
+      <td><em>Empty.</em> You don't want to use any external Kibana Service.</td>
+    </tr>
+    <tr>
+      <td class="first-col">Elasticsearch and Kibana username</td>
+      <td><em>Empty.</em> You don't need to configure any username.</td>
+    </tr>
+    <tr>
+      <td class="first-col">Elasticsearch and Kibana password</td>
+      <td><em>Empty.</em> You don't need to configure any password.</em></td>
     </tr>
   </table>
 </div>

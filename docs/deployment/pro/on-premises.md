@@ -243,6 +243,8 @@ This can be convenient sometimes but it have it downsides because Elasticsearch,
 
 We recommend to configure an External Elasticsearch and Kibana. Take a look into how to configure it [here](openvidu-pro/monitoring-elastic-stack/#configuring-an-external-elastic-stack)
 
+If you don't want to use Elasticsearch and Kibana, you can disable it by setting the `OPENVIDU_PRO_ELASTICSEARCH` parameter to `false` in the `/opt/openvidu/.env` file of your deployment. This will disable the Elasticsearch and Kibana services so OpenVidu Server Pro will not send any history sessions, logs or metrics to Elasticsearch.
+
 <br>
 
 ##### Coturn Configuration
