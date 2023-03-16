@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.26.0](#2260)
 - [2.25.0](#2250)
 - [2.24.0](#2240)
 - [2.23.0](#2230)
@@ -28,6 +29,178 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.26.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.26.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.26.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.26.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>6.18.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/6.18.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.10.3</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Broadcasting to YouTube, Twitch or any other RTMP ingestion service
+
+Do you want to stream your OpenVidu Sessions to thousands of users? You can now easily broadcast them to YouTube Live, Twitch or any other live ingestion service that supports RTMP protocol. This feature is seamlessly integrated in OpenVidu REST API, openvidu-java-client SDK and openvidu-node-client SDK. And you can fully customize the broadcasting layout with HTML/JS/CSS.
+
+Check out the official documentation [here](https://docs.openvidu.io/en/2.26.0/advanced-features/broadcast/).
+
+> The broadcasting feature is included in the **OpenVidu Components** library (so currently available in [openvidu-angular](https://docs.openvidu.io/en/2.26.0/api/openvidu-angular/)) and in the [**OpenVidu Call**](https://openvidu.io/openvidu-call) application
+
+<br>
+
+##### openvidu-java-client SDK allows advanced configuration of its internal HTTP client
+
+[openvidu-java-client SDK](https://docs.openvidu.io/en/2.26.0/reference-docs/openvidu-java-client/) offers now more flexibility when configuring its internal HTTP client. Now you may provide a custom HTTP client builder in the constructor of OpenVidu object. This may be interesting for many reasons, including adding custom HTTP headers, adding proxy configuration, modifying the default connection timeouts, setting up a cookie store, and other things. Check out the new constructors in [JavaDoc](https://docs.openvidu.io/en/2.26.0/api/openvidu-java-client/io/openvidu/java/client/OpenVidu.html#%3Cinit%3E(java.lang.String,java.lang.String,org.apache.hc.client5.http.impl.classic.HttpClientBuilder)).
+
+<br>
+
+##### openvidu-node-client SDK production mode to hide info logging level
+
+[openvidu-node-client SDK](https://docs.openvidu.io/en/2.26.0/reference-docs/openvidu-node-client/) has a new method for production environments to silent logs of level DEBUG and INFO. Only WARNING and ERROR logs will be written to the output. Check out this new method in [TypeDoc](https://docs.openvidu.io/en/2.26.0/api/openvidu-node-client/classes/OpenVidu.html#enableProdMode).
+
+<br>
+
+##### openvidu-ios now uses the latest WebRTC library
+
+[openvidu-ios](https://docs.openvidu.io/en/2.26.0/tutorials/openvidu-ios/) sample application is now using the latest WebRTC version available for iOS. Previous version was from 2020, current version is the latest one available (Jan 2023). This brings all the improvements of the WebRTC standard updates to iOS.
+
+<br>
+
+#### BUG FIXES
+
+- _Speech To Text_: when using AWS as STT engine, two equal [SpeechToTextEvent](https://docs.openvidu.io/en/2.26.0/api/openvidu-browser/classes/SpeechToTextEvent.html) could be triggered with reason `recognized` in a row. This behavior is not contemplated and is now fixed.
+- _OpenVidu Pro/Enterprise deployments_: new configuration property `OPENVIDU_PRO_ELASTICSEARCH` allows launching OpenVidu Pro/Enterprise without an Elasticsearch. Before it was supposed to be possible to launch an OpenVidu Pro/Enterprise without an Elasticsearch by setting configuration property `OPENVIDU_PRO_ELASTICSEARCH_HOST` to an empty string, but this resulted in failed deployments. Now this is fixed with the new property. Of course, launching your OpenVidu Pro/Enterprise deployment without Elasticsearch will result in a complete absence of observability and history data.
+
+<br>
 
 ---
 
@@ -60,7 +233,7 @@
     <tr>
     <td>Dev container</td>
     <td>2.25.0</td>
-    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
   </tr>
 
   <tr>
@@ -106,7 +279,7 @@
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.25.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.25.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.25.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -197,12 +370,6 @@ New [configuration property `OPENVIDU_PRO_DOCKER_REGISTRIES`](https://docs.openv
 
 <br>
 
-#### BREAKING CHANGES
-
-- [**openvidu-java-client**](https://docs.openvidu.io/en/2.25.0/reference-docs/openvidu-java-client/) requires minimum Java 11.
-
-<br>
-
 ---
 
 ## 2.24.0
@@ -234,7 +401,7 @@ New [configuration property `OPENVIDU_PRO_DOCKER_REGISTRIES`](https://docs.openv
     <tr>
     <td>Dev container</td>
     <td>2.24.0</td>
-    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
   </tr>
 
   <tr>
@@ -280,7 +447,7 @@ New [configuration property `OPENVIDU_PRO_DOCKER_REGISTRIES`](https://docs.openv
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.24.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.24.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.24.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -415,7 +582,7 @@ This feature, available in OpenVidu Pro and Enterprise editions, is designed to 
     <tr>
     <td>Dev container</td>
     <td>2.23.0</td>
-    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-server-kms/tags/" target="_blank">DockerHub</a></td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
   </tr>
 
   <tr>
@@ -461,7 +628,7 @@ This feature, available in OpenVidu Pro and Enterprise editions, is designed to 
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.23.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.23.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.23.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -660,7 +827,7 @@ You can read the official documentation about these new features here:
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.22.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.22.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.22.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -853,7 +1020,7 @@ Hosting TURN server in Media Nodes is considered an experimental feature, so rig
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.21.1</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.21.1%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.21.1" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -1040,7 +1207,7 @@ There is a small breaking change affecting recording IDs. These IDs (and recordi
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.20.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.20.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.20.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -1186,7 +1353,7 @@ The [Connection object](https://docs.openvidu.io/en/2.20.0/reference-docs/REST-A
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.19.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.19.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.19.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -1338,7 +1505,7 @@ WebHook/CDR event [sessionCreated](https://docs.openvidu.io/en/2.19.0/reference-
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.18.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.18.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.18.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -1626,7 +1793,7 @@ openVidu.createSession(properties).then(session => { ... });
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.17.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.17.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.17.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -1825,7 +1992,7 @@ Check out the new [monitoring section](https://docs.openvidu.io/en/2.17.0/openvi
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.16.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.16.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.16.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -2106,7 +2273,7 @@ If that property is set to false (by default it is true), old API will no longer
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.15.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.15.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.15.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -2298,7 +2465,7 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.14.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.14.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.14.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -2503,7 +2670,7 @@ OpenVidu 2.14.0 brings all the goodness of Kurento 6.13.2 release. It includes m
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.13.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.13.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.13.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -2650,7 +2817,7 @@ The new Docker deployment stack requires OpenVidu to manage its configuration pr
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.12.1</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.12.1%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.12.1" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -2870,7 +3037,7 @@ OpenVidu Pro is now using the [latest Elasticsearch and Kibana version](https://
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.11.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.11.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.11.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3025,7 +3192,7 @@ OpenVidu CDR events `recordingStarted` and `recordingStopped` are now deprecated
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.10.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.10.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.10.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3168,7 +3335,7 @@ Yes, it’s 2019. But there’s still a lot of companies out there that provide/
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.9.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.9.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.9.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3339,7 +3506,7 @@ We are excited to announce OpenVidu Pro: a commercial tier for OpenVidu platform
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.8.1</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.8.1%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.8.1" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3487,7 +3654,7 @@ Even though this is not a major update with incompatibility changes according to
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.5.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.5.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3622,7 +3789,7 @@ You can now listen to volume changes in any Publisher or Subscriber object. You 
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.5.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.5.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3757,7 +3924,7 @@ This bug has been completely solved in OpenVidu 2.6.0. Now media connections wil
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.5.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.5.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.5.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -3933,7 +4100,7 @@ Of course you can keep using OpenVidu Browser library instead of these component
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.4.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.4.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.4.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -4055,7 +4222,7 @@ Event `recordingStopped` event now has `reason` property. Can be:
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.2.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.2.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.2.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -4249,7 +4416,7 @@ We have included a first way to set the maximum and minimum bandwidths for the m
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.2.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.2.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.2.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -4326,7 +4493,7 @@ The platform now integrates by default a COTURN server as part of its ecosystem.
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.0.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.0.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.0.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -4409,7 +4576,7 @@ If you want to check out a real example of this behavior, explore our renovated 
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>2.0.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C2.0.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.0.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
@@ -4570,7 +4737,7 @@ This is the first breaking change update for OpenVidu, which brings in lots of n
     <td>openvidu-java-client</td>
     <td>MVN package</td>
     <td>1.8.0</td>
-    <td><a class="" href="https://search.maven.org/#artifactdetails%7Cio.openvidu%7Copenvidu-java-client%7C1.8.0%7Cjar" target="_blank">MVN Repository</a></td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/1.8.0" target="_blank">MVN Repository</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
   </tr>
 
