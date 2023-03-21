@@ -3,8 +3,8 @@
 
 - **[Deployment instructions](#deployment-instructions)**
     - [1) Access to the console of AWS Cloud Formation](#1-access-to-the-console-of-aws-cloud-formation)
-    - [2) Select 'Create Stack' 🠚 'With new resources'](#2-select-create-stack-with-new-resources)
-    - [3) Option 'Specify template' 🠚 'Amazon S3 URL' with the following URL](#3-option-specify-template-amazon-s3-url-with-the-following-url)
+    - [2) Select 'Create Stack' ⇨ 'With new resources'](#2-select-create-stack-with-new-resources)
+    - [3) Option 'Specify template' ⇨ 'Amazon S3 URL' with the following URL](#3-option-specify-template-amazon-s3-url-with-the-following-url)
     - [4) Specify stack details](#4-specify-stack-details)
     - [5) Create your stack](#5-create-your-stack)
     - [6) Administration](#6-administration)
@@ -58,7 +58,7 @@
 
 ---
 
-### 2) Select _Create Stack_ 🠚 _With new resources_
+### 2) Select _Create Stack_ ⇨ _With new resources_
 
 <p>
     <img class="img-responsive deploy-img" style="margin: auto; max-height: 400px" src="img/docs/deployment/CF_newstack.png">
@@ -66,7 +66,7 @@
 
 ---
 
-### 3) Option _Specify template_ 🠚 _Amazon S3 URL_ with the following URL
+### 3) Option _Specify template_ ⇨ _Amazon S3 URL_ with the following URL
 
 <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-latest.yaml</code>
 <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button" title="Copy to Clipboard">Copy</button>
