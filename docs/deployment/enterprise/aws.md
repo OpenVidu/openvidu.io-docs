@@ -7,8 +7,8 @@
     - **[Deployment](#deployment)**
         - [1) Previous requirements](#1-previous-requirements)
         - [2) Access to the console of AWS Cloud Formation](#2-access-to-the-console-of-aws-cloud-formation)
-        - [3) Select Create Stack 🠚 With new resources](#3-select-create-stack-with-new-resources)
-        - [4) Option Specify template 🠚 Amazon S3 URL with the following URL](#4-option-specify-template-amazon-s3-url-with-the-following-url)
+        - [3) Select Create Stack ⇨ With new resources](#3-select-create-stack-with-new-resources)
+        - [4) Option Specify template ⇨ Amazon S3 URL with the following URL](#4-option-specify-template-amazon-s3-url-with-the-following-url)
         - [5) Specify stack details](#5-specify-stack-details)
             - [5.1) OpenVidu Configuration Parameters](#51-openvidu-configuration-parameters)
             - [5.2) Elasticsearch and Kibana Configuration](#52-elasticsearch-and-kibana-configuration)
@@ -91,7 +91,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 ---
 
-#### 3) Select _Create Stack_ 🠚 _With new resources_
+#### 3) Select _Create Stack_ ⇨ _With new resources_
 
 <p>
     <img class="img-responsive deploy-img" style="margin: auto; max-height: 400px" src="img/docs/deployment/CF_newstack.png">
@@ -99,7 +99,7 @@ To deploy OpenVidu Enterprise in AWS with High Availability you need at least:
 
 ---
 
-#### 4) Option _Specify template_ 🠚 _Amazon S3 URL_ with the following URL
+#### 4) Option _Specify template_ ⇨ _Amazon S3 URL_ with the following URL
 
 <code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Enterprise-latest.yaml</code>
 <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button" title="Copy to Clipboard">Copy</button>
@@ -521,7 +521,7 @@ openvidu-replication-manager-1  | 2022-05-17 12:23:41.002  INFO 8 --- [         
 
 OpenVidu Enterprise Autoscaling is managed by AWS Autoscaling Groups. In consequence, all autoscaling parameters can be changed through Cloudformation parameters.
 
-To change those parameters you just need to go to ** AWS Cloudformation Panel 🠚 Select Your Stack 🠚 Update 🠚 Use current template**.
+To change those parameters you just need to go to ** AWS Cloudformation Panel ⇨ Select Your Stack ⇨ Update ⇨ Use current template**.
 
 <div class="row">
     <div class="pro-gallery-steps" style="margin: 25px 35px 25px 35px">
