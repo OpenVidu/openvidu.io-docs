@@ -217,6 +217,8 @@ This dashboard allows you to see the recordings of the all OpenVidu Call session
 
 The **authentication system** for this dashboard is based on a single user with a fixed password. The default password is represented by variable `CALL_ADMIN_SECRET`.
 
+This admin dashboard will be public in [http://localhost:4200/admin](http://localhost:4200/admin).
+
 ##### Broadcast management
 
 The OpenVidu Call backend also provides **broadcasting features**. This feature allows to you stream any OpenVidu Call videoconference to Youtube, Twitch or any other broadcast platform that supports RTMP protocol (check the official documentation section [here](advanced-features/broadcast)).
