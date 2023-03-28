@@ -203,6 +203,8 @@ This dashboard allows you to see the recordings of the all OpenVidu Call session
 
 The authentication system for this dashboard is based on a single user with a fixed password. The default password is represented by variable `CALL_ADMIN_SECRET`.
 
+This admin dashboard will be public in [http://localhost:4200/admin](http://localhost:4200/admin).
+
 #### **openvidu-call-front**
 
 A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-front).
