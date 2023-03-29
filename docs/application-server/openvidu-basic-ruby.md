@@ -61,9 +61,6 @@ register Sinatra::Cors
 set :allow_origin, "*"
 set :allow_methods, "POST,OPTIONS"
 set :allow_headers, "content-type"
-
-...
-
 ```
 
 Starting by the top, the `app.rb` file has the following statements:
