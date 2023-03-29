@@ -131,7 +131,7 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
     <div class="effect effects wow">
         <div class="img">
             <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials" alt="" />
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-java" target="_blank">
+            <a href="application-server/openvidu-basic-java/">
                 <div class="overlay">
                     <ul class="expand"></ul>
                 </div>
@@ -153,7 +153,7 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
     <div class="effect effects wow">
         <div class="img">
             <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials" alt="" />
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node" target="_blank">
+            <a href="application-server/openvidu-basic-node/">
                 <div class="overlay">
                     <ul class="expand"></ul>
                 </div>
@@ -176,7 +176,7 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
     <div class="effect effects wow">
         <div class="img">
             <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials" alt="" />
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python" target="_blank">
+            <a href="application-server/openvidu-basic-python/">
                 <div class="overlay">
                     <ul class="expand"></ul>
                 </div>
@@ -202,7 +202,7 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
     <div class="effect effects wow">
         <div class="img">
             <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials" alt="" />
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet" target="_blank">
+            <a href="application-server/openvidu-basic-dotnet/">
                 <div class="overlay">
                     <ul class="expand"></ul>
                 </div>
@@ -224,7 +224,7 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
     <div class="effect effects wow">
         <div class="img">
             <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials" alt="" style="padding: 15px"/>
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby" target="_blank">
+            <a href="application-server/openvidu-basic-ruby/">
                 <div class="overlay">
                     <ul class="expand"></ul>
                 </div>
