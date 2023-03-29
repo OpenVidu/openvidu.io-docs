@@ -12,7 +12,7 @@ It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
 #### Prerequisites
 To run this application you will need **.NET** installed on your system:
 
-- [.NET 6.0](https://dotnet.microsoft.com/en-us/download){:target="_blank"}
+- [.NET 7.0](https://dotnet.microsoft.com/en-us/download){:target="_blank"}
 
 #### Download repository
 
