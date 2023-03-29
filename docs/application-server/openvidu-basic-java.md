@@ -3,13 +3,13 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-java" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a minimal OpenVidu server application sample built for Java with Spring Boot.
+This is a minimal OpenVidu server application sample built for Java with [Spring Boot](https://spring.io/){:target="_blank"}.
 It internally uses [openvidu-java-client SDK](reference-docs/openvidu-java-client/).
 
 ## Running this application
 
 #### Prerequisites
-To run this application you will need **Java** and **Maven** installed on your system:
+To run this application you will need **Java** and **Maven**:
 
 - [Java (>=11)](https://www.java.com/en/download/manual.jsp){:target="_blank"}
 - [Maven](https://maven.apache.org){:target="_blank"}
@@ -32,9 +32,9 @@ mvn spring-boot:run
 The application is a simple Spring Boot application with a single controller class `Controller.java` that exports two endpoints:
 
 - `/api/sessions` : Initialize a session.
-- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+- `/api/sessions/:sessionId/connections` : Create a connection.
 
-> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
+> You can get more information about these endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
 
 
 Let's see the code of the controller:
@@ -68,17 +68,17 @@ Starting by the top, the `Controller` class has the following annotations:
 
 Going deeper, the `Controller` class has the following fields:
 
-- `OPENVIDU_URL`: The URL of the OpenVidu Server. It is injected from the environment variable `OPENVIDU_URL` using the `@Value("${OPENVIDU_URL}")` annotation.
+- `OPENVIDU_URL`: the URL of the OpenVidu deployment. It is injected from the environment variable `OPENVIDU_URL` using the `@Value("${OPENVIDU_URL}")` annotation.
 
-- `OPENVIDU_SECRET`: The URL of the OpenVidu Server. It is injected from the environment variable `OPENVIDU_SECRET` using the `@Value("${OPENVIDU_SECRET}")` annotation.
+- `OPENVIDU_SECRET`: the secret of the OpenVidu deployment. It is injected from the environment variable `OPENVIDU_SECRET` using the `@Value("${OPENVIDU_SECRET}")` annotation.
 
-- `openvidu`: The `OpenVidu` object that will be used to interact with the OpenVidu Server. It is initialized in the `init()` method which is executed after dependency injection is done to perform any initialization using the `@PostConstruct` annotation.
+- `openvidu`: the `OpenVidu` object that will be used to interact with the the OpenVidu deployment. It is initialized in the `init()` method marked with the `@PostConstruct` annotation.
 
 <br>
 
 #### Initialize session endpoint
 
-The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```java
 @CrossOrigin(origins = "*")
@@ -99,15 +99,16 @@ public class Controller {
 	}
 }
 ```
+
 We build the `SessionProperties` object using the parameters received from the request body. This property is necessary to configure the `Session` object.
 
-Finally, the `Session ID` is returned in the response body.
+Finally, the session identifier is returned in the response body.
 
 <br>
 
-#### Create conneciton endpoint
+#### Create connection endpoint
 
-The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
 
 ```java
 @CrossOrigin(origins = "*")
@@ -137,9 +138,6 @@ public class Controller {
 ```
 
 After checking if OpenVidu Session exists, we build the `ConnectionProperties` object from the request body.
-After that, we uses the `Session` object, which has been retrieved from the `OpenVidu` object using the `sessionId` path variable, for creating a new `Connection` object.
+After that, we use the `Session` object (retrieved from the `OpenVidu` object using the `sessionId` path variable) to create a new `Connection` object.
 
-Finally, the `Token` associated to the `Connection` is returned in the response body.
-
-
-
+Finally, the token associated to the `Connection` is returned in the response body. We can use this token in [openviu-browser SDK](reference-docs/openvidu-browser/) to connect the user to the Session.

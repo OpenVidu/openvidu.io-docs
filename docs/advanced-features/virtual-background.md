@@ -111,10 +111,10 @@ If you try applying a Virtual Background before connecting to a Session, an [Ope
 }
 ```
 
-To avoid this, pass a `token` parameter to the method, providing a valid token generated for any Session in OpenVidu Server:
+To avoid this, pass a `token` parameter to the method, providing a valid token generated for any Session in the OpenVidu deployment:
 
 ```javascript
-var myToken; // A valid token from OpenVidu Server
+var myToken; // A valid token from the OpenVidu deployment
 
 var OV = new OpenVidu();
 var publisher = OV.initPublisherAsync(targetElement);

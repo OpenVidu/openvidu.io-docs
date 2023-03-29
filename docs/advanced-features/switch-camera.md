@@ -26,7 +26,7 @@ myPublisher.replaceTrack(myTrack)
 
 You can obtain this new [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack){:target="_blank"} by using the native Web API or simply with [OpenVidu.getUserMedia](api/openvidu-browser/classes/OpenVidu.html#getUserMedia) method.
 
-> **WARNING:** this method has been proven to work, but there may be some combinations of published/replaced tracks that may be incompatible between them and break the connection in OpenVidu Server.
+> **WARNING:** this method has been proven to work, but there may be some combinations of published/replaced tracks that may be incompatible between them and break the connection inside the OpenVidu deployment.
 > A complete renegotiation may be the only solution in this case
 
 #### By initializing a new Publisher

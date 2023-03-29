@@ -2,13 +2,13 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-node" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a minimal OpenVidu server application sample built for Node with Express.
+This is a minimal OpenVidu server application sample built for Node with [Express](https://expressjs.com/){:target="_blank"}.
 It internally uses [openvidu-node-client SDK](https://docs.openvidu.io/en/stable/reference-docs/openvidu-node-client/).
 
 ## Running this application
 
 #### Prerequisites
-To run this application you will need **Node** installed on your system:
+To run this application you will need **Node**:
 
 - [Node](https://nodejs.org/es/download/){:target="_blank"}
 
@@ -33,13 +33,12 @@ node index.js
 
 ## Understanding the code
 
-The application is a simple Express application with a single controller file `index.js` that exports two endpoints:
+The application is a simple Express app with a single controller file `index.js` that exports two endpoints:
 
 - `/api/sessions` : Initialize a session.
-- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+- `/api/sessions/:sessionId/connections` : Create a connection.
 
-> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
-
+> You can get more information about these endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
 
 Let's see the code of the controller:
 
@@ -69,49 +68,42 @@ server.listen(SERVER_PORT, () => {
   console.log("Application started on port: ", SERVER_PORT);
   console.warn('Application server connecting to OpenVidu at ' + OPENVIDU_URL);
 });
-
-...
-
 ```
 
 Starting by the top, the `index.js` file has the following fields:
 
-- `cors`: Allows the application to be accessed from any domain.
-- `app`: The Express application.
-- `server`: The HTTP server.
-- `openvidu`: The `OpenVidu` object that will be used to interact with the OpenVidu Server. It is initialized with the `OPENVIDU_URL` and `OPENVIDU_SECRET` environment variables.
-- `SERVER_PORT`: The port where the application will be listening.
-- `OPENVIDU_URL`: The URL where the OpenVidu Server is listening.
-- `OPENVIDU_SECRET`: The secret shared with the OpenVidu Server.
+- `cors`: allows the application to be accessed from any domain.
+- `app`: the Express application.
+- `server`: the HTTP server.
+- `openvidu`: the `OpenVidu` object that will be used to interact with the OpenVidu deployment. It is initialized with the `OPENVIDU_URL` and `OPENVIDU_SECRET` environment variables.
+- `SERVER_PORT`: the port where the application will be listening.
+- `OPENVIDU_URL`: the URL of the OpenVidu deployment.
+- `OPENVIDU_SECRET`: the secret of the OpenVidu deployment.
 
 <br>
 
 #### Initialize session endpoint
 
-The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```javascript
-...
-
 app.post("/api/sessions", async (req, res) => {
   var session = await openvidu.createSession(req.body);
   res.send(session.sessionId);
 });
-
 ```
 
 We build the `Session` object using the `OpenVidu` object and the parameters received from the request body.
-Finally, the `Session ID` is returned in the response body.
+
+Finally, the session identifier is returned in the response body.
 
 <br>
 
-#### Create conneciton endpoint
+#### Create connection endpoint
 
-The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
 
 ```javascript
-...
-
 app.post("/api/sessions/:sessionId/connections", async (req, res) => {
   var session = openvidu.activeSessions.find(
     (s) => s.sessionId === req.params.sessionId
@@ -123,12 +115,8 @@ app.post("/api/sessions/:sessionId/connections", async (req, res) => {
     res.send(connection.token);
   }
 });
-
 ```
+
 After checking if OpenVidu Session exists, the `Connection` object is built using the `Session` object and the parameters received from the request body.
 
-Finally, the `Token` associated to the `Connection` is returned in the response body.
-
-
-
-
+Finally, the `Token` associated to the `Connection` is returned in the response body. We can use this token in [openviu-browser SDK](reference-docs/openvidu-browser/) to connect the user to the Session.

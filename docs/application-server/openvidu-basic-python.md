@@ -2,14 +2,14 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-python" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a minimal OpenVidu server application sample built for Python with [Flask](https://flask.palletsprojects.com/).
+This is a minimal OpenVidu server application sample built for Python with [Flask](https://flask.palletsprojects.com/){:target="_blank"}.
 It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
 
 
 ## Running this application
 
 #### Prerequisites
-To run this application you will need **Python 3** installed on your system:
+To run this application you will need **Python 3**:
 
 - [Python 3](https://www.python.org/downloads/){:target="_blank"}
 
@@ -45,10 +45,9 @@ python3 app.py
 The application is a simple Flask application with a single controller file `app.py` that exports two endpoints:
 
 - `/api/sessions` : Initialize a session.
-- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+- `/api/sessions/:sessionId/connections` : Create a connection.
 
-> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
-
+> You can get more information about these endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
 
 Let's see the code of the controller:
 
@@ -65,29 +64,23 @@ OPENVIDU_SECRET = os.environ.get("OPENVIDU_SECRET")
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=SERVER_PORT)
-
-...
-
 ```
 
 Starting by the top, the `app.py` file has the following fields:
 
-- `app` : Flask application.
-- `cors` : CORS support for Flask application.
-- `SERVER_PORT` : Port of the application server.
-- `OPENVIDU_URL` : URL of the OpenVidu Server.
-- `OPENVIDU_SECRET` : Secret of the OpenVidu Server.
-
+- `app`: Flask application.
+- `cors`: CORS support for Flask application.
+- `SERVER_PORT`: port of the application server.
+- `OPENVIDU_URL`: the URL of your OpenVidu deployment.
+- `OPENVIDU_SECRET`: the secret of your OpenVidu deployment.
 
 <br>
 
 #### Initialize session endpoint
 
-The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```python
-...
-
 @app.route("/api/sessions", methods=['POST'])
 def initializeSession():
     try:
@@ -107,22 +100,17 @@ def initializeSession():
             return request.json["customSessionId"]
         else:
             return err
-
 ```
 
-The endpoint receives a POST request with a JSON body containing the `customSessionId` of the session to be created. If the session already exists in OpenVidu, the endpoint returns the `customSessionId` received in the request body. Otherwise, it creates a new session, using the
-[OpenVidu REST API](reference-docs/REST-API/) and returns the `sessionId` of the new session.
-
+The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `sessionId` of the new session. If the request brought a `customSessionId` parameter and that session already existed in the OpenVidu deployment (that's the `409 CONFLICT` error), then the endpoint simply returns the same `customSessionId`. At this point the Session is ready to create Connections, whether it is a newly created Session or an already existing one.
 
 <br>
 
-#### Create conneciton endpoint
+#### Create connection endpoint
 
-The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
 
 ```python
-...
-
 @app.route("/api/sessions/<sessionId>/connections", methods=['POST'])
 def createConnection(sessionId):
     body = request.json if request.data else {}
@@ -135,5 +123,5 @@ def createConnection(sessionId):
     ).json()["token"]
 
 ```
-The endpoint creates a new Connection using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `token` of the new connection.
 
+The endpoint creates a new Connection using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `token` of the new connection. We can use this token in [openviu-browser SDK](reference-docs/openvidu-browser/) to connect the user to the Session.

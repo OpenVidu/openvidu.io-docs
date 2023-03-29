@@ -21,7 +21,7 @@
 
 <br>
 
-OpenVidu Server can be configured to record sessions. Two modes of recordings are available:
+The OpenVidu deployment can be configured to record sessions. Two modes of recordings are available:
 
 - **COMPOSED**: every publisher stream is composed in the same video file in a grid layout. You can use the default layout, that will evenly distribute each stream in the available space, or you can use your own custom layout implemented with HTML/CSS/JS.
 
@@ -68,7 +68,7 @@ openvidu/openvidu-dev:2.26.0
 The two configuration properties that must be set are:
 
 - `OPENVIDU_RECORDING`: enables OpenVidu recording module. Another Docker image ([openvidu/openvidu-recording](https://hub.docker.com/r/openvidu/openvidu-recording/){:target="_blank"}) will be downloaded only during the first run of the container.
-- `OPENVIDU_RECORDING_PATH`: where to store the recorded video files on the host machine. OpenVidu Server must have write access to this path.
+- `OPENVIDU_RECORDING_PATH`: where to store the recorded video files on the host machine. The OpenVidu deployment must have write access to this path.
 
 It is also necessary to mount 2 volumes:
 
@@ -291,7 +291,7 @@ For example, for a session with two publishers the video file will look like thi
 
 > **Notes on COMPOSED recordings**<br>
 >
-> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, when using OpenVidu CE it is desirable to launch OpenVidu Server in a host with significant CPU power if COMPOSED video recordings are expected. In OpenVidu Pro, the same applies to the Media Node hosting the recording process. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
+> - If a COMPOSED recording is configured to record video (that is, not being an **[audio-only recording](#audio-only-and-video-only-recordings)**), this type of grid recording **can be a pretty heavy consuming process**. A maximum number of 4 publishers is recommended, and starting more than 2 recordings of this type at the same time can overload server CPUs. For these reasons, when using OpenVidu CE it is desirable to launch the OpenVidu deployment in a host with significant CPU power if COMPOSED video recordings are expected. In OpenVidu Pro, the same applies to the Media Node hosting the recording process. In comparison, INDIVIDUAL stream recording (and COMPOSED audio-only recording) can be **4x up to 10x more efficient**<br><br>
 > - You can configure the resolution and frame rate of the MP4 file for COMPOSED recordings by using `resolution` and `frameRate` properties when starting the recording<br><br>
 > - A thumbnail got from the middle of the video will be generated for COMPOSED recordings that have video. They will be stored next to the MP4 file and named [RECORDING_ID].jpg
 
@@ -933,9 +933,9 @@ Put them in a path accessible to openvidu-server. There must be an `index.html` 
 
 ---
 
-### 2. Configure custom layouts in OpenVidu Server
+### 2. Configure custom layouts in the OpenVidu deployment
 
-You can configure where should OpenVidu Server look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`. OpenVidu Server must have read access to that path, where you must have stored the `index.html` file of your layout.
+You can configure where should the OpenVidu deployment look for your custom layout in the system.<br>Default path is `/opt/openvidu/custom-layout`, but you can configure it with system property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`. The OpenVidu deployment must have read access to that path, where you must have stored the `index.html` file of your layout.
 
 <br>
 **OpenVidu production deployments**
@@ -1100,7 +1100,7 @@ BODY
 
 <br>
 
-In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from openvidu-server configuration property `OPENVIDU_RECORDING_CUSTOM_LAYOUT` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu Server host:
+In the snippets above, string `RELATIVE/PATH/TO/INDEX` is the path from OpenVidu configuration property `OPENVIDU_RECORDING_CUSTOM_LAYOUT` to the specific `index.html` you want to use for a particular recording. So, if you have the following folder tree structure in your OpenVidu deployment host:
 
 ```plaintext
 /opt
@@ -1198,7 +1198,7 @@ BODY
 
 ## Debugging your custom layouts
 
-To debug your custom layout, you just need to store it in the path declared with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`, as explained in section [Configure custom layouts in OpenVidu Server](#2-configure-custom-layouts-in-openvidu-server).
+To debug your custom layout, you just need to store it in the path declared with property `OPENVIDU_RECORDING_CUSTOM_LAYOUT`, as explained in section [Configure custom layouts in the OpenVidu deployment](#2-configure-custom-layouts-in-the-openvidu-deployment).
 
 Then, by using your OpenVidu application, start a session and as many publishers as you expect to be recorded in your custom layout. Finally you just have to connect to your layout through **Chrome** by entering url:
 
@@ -1391,7 +1391,7 @@ If the resulting video file of a COMPOSED or COMPOSED_QUICK_START recording with
 
 COMPOSED and COMPOSED_QUICK_START  recordings with video uses a special module that connects to the recorded session using the public domain of your OpenVidu deployment. This is only true if you are **not** using an [external custom layout](#using-an-external-custom-layout). This means:
 
-- For OpenVidu CE and its single-node environment, this means that the recording module is not able to connect to OpenVidu Server from inside the same machine.
+- For OpenVidu CE and its single-node environment, this means that the recording module is not able to connect to the OpenVidu deployment from inside the same machine.
 - For OpenVidu PRO and its multi-node environment, this means that Media Nodes are not able to reach Master Node using its public IP (the recording module is hosted in the Media Nodes).
 
 There are 2 possible solutions to this problem:

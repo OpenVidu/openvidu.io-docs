@@ -2,15 +2,13 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-
-This is a minimal OpenVidu server application sample built for Python with .NET.
+This is a minimal OpenVidu server application sample built for Python with .NET with [ASP.NET Core Minimal APIs](https://docs.microsoft.com/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio){:target="_blank"}.
 It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
-
 
 ## Running this application
 
 #### Prerequisites
-To run this application you will need **.NET** installed on your system:
+To run this application you will need **.NET**:
 
 - [.NET 7.0](https://dotnet.microsoft.com/en-us/download){:target="_blank"}
 
@@ -29,13 +27,12 @@ dotnet run
 
 ## Understanding the code
 
-
-The application is a simple .NET application with a single controller file `Program.cs` that exports two endpoints:
+The application is a simple Spring Boot application with a single controller class `Controller.java` that exports two endpoints:
 
 - `/api/sessions` : Initialize a session.
-- `/api/sessions/{{SESSION_ID}}/connections` : Create a connection.
+- `/api/sessions/:sessionId/connections` : Create a connection.
 
-> You can get more information about theses endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
+> You can get more information about these endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
 
 
 Let's see the code of the controller:
@@ -79,32 +76,28 @@ var handler = new HttpClientHandler
 };
 HttpClient client = new HttpClient(handler);
 client.BaseAddress = new System.Uri(OPENVIDU_URL);
-...
-
 ```
 
-Starting by the top, the `Program.cs` file has the followinf fields:
+Starting by the top, the `Program.cs` file has the following fields:
 
-- `builder`: A `WebApplicationBuilder` instance to build the application.
-- `config`: A `IConfiguration` instance to load the configuration from the `appsettings.json` file.
-- `client`: A `HttpClient` instance to make HTTP requests to the OpenVidu REST API.
-- `MyAllowSpecificOrigins`: The name of the CORS policy to be used in the application.
-- `app`: The `WebApplication` instance.
-- `SERVER_PORT`: The port where the application will be listening.
-- `OPENVIDU_URL`: The URL of your OpenVidu deployment.
-- `OPENVIDU_SECRET`: The secret of your OpenVidu deployment.
+- `builder`: a `WebApplicationBuilder` instance to build the application.
+- `config`: a `IConfiguration` instance to load the configuration from the `appsettings.json` file.
+- `client`: a `HttpClient` instance to make HTTP requests to the OpenVidu REST API.
+- `MyAllowSpecificOrigins`: the name of the CORS policy to be used in the application.
+- `app`: the `WebApplication` instance.
+- `SERVER_PORT`: the port where the application will be listening.
+- `OPENVIDU_URL`: the URL of your OpenVidu deployment.
+- `OPENVIDU_SECRET`: the secret of your OpenVidu deployment.
 
-The first thing the application does is to configure CORS support.  This is needed to allow the browser to make requests to the application server. The CORS policy is configured to allow requests from any origin and any header.
+The first thing the application does is to configure CORS support. The CORS policy is configured to allow requests from any origin and any header.
 
 <br>
 
 #### Initialize session endpoint
 
-The first endpoint allows us initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```cs
-...
-
 // Set OpenVidu deployment secret
 var basicAuth = Convert.ToBase64String(System.Text.ASCIIEncoding.UTF8.GetBytes($"OPENVIDUAPP:{OPENVIDU_SECRET}"));
 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", basicAuth);
@@ -128,22 +121,17 @@ app.MapPost("/api/sessions", async (HttpRequest request) =>
     var sessionId = responseBody["sessionId"].ToString().Trim('"');
     return sessionId;
 });
-
-
 ```
 
-The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `sessionId` of the new session.
-
+The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `sessionId` of the new session. If the request brought a `customSessionId` parameter and that session already existed in the OpenVidu deployment (that's the `409 CONFLICT` error), then the endpoint simply returns the same `customSessionId`. At this point the Session is ready to create Connections, whether it is a newly created Session or an already existing one.
 
 <br>
 
 #### Create conneciton endpoint
 
-The second and last endpoint has the goal of creating a new [OpenVidu Connection](/developing-your-video-app/#connection) in a session:
+The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
 
 ```cs
-...
-
 app.MapPost("/api/sessions/{sessionId}/connections", async (HttpRequest request, [FromRoute] string sessionId) =>
 {
     HttpContent content;
@@ -157,8 +145,6 @@ app.MapPost("/api/sessions/{sessionId}/connections", async (HttpRequest request,
     var token = responseBody["token"].ToString().Trim('"');
     return token;
 });
-
 ```
 
-The endpoint creates a new Connection using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `token` of the new connection.
-
+The endpoint creates a new `Connection` using the [OpenVidu REST API](reference-docs/REST-API/) and returns the `token` of the new connection. We can use this token in [openviu-browser SDK](reference-docs/openvidu-browser/) to connect the user to the Session.

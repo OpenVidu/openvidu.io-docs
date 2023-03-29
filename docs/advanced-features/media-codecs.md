@@ -104,7 +104,7 @@ OpenVidu allows you to make a decision about the video codec(s) that participant
 
 If you don't care about this technical detail, just using the default values is fine for most cases. However, there are instances where you might want to have control over the codec used by participants. For example, forcing everyone to use H.264 might be desirable to leverage the hardware encoder that lots of mobile devices include.
 
-This feature can be set globally for the OpenVidu Server by setting the `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC` property in the **`.env`** file of your deployment, or in a per-session basis through these methods:
+This feature can be set globally for the OpenVidu deployment by setting the `OPENVIDU_STREAMS_FORCED_VIDEO_CODEC` property in the **`.env`** file of your deployment, or in a per-session basis through these methods:
 
 <div class="lang-tabs-container" markdown="1">
 

@@ -227,7 +227,7 @@ When [publishing an IP camera](#how-to-publish-ip-cameras), you can configure di
 
 #### adaptativeBitrate
 
-Whether to re-encode the IP camera stream in OpenVidu, or not. Enabling this allows OpenVidu to provide a dynamic video quality that is automatically adapted to the network conditions of Subscribers of the IP camera, which helps avoid playback issues. It is active by default, and it allows OpenVidu Server to provide a robust and reliable flow to participants that will receive the IP camera stream. But re-encoding video has a moderately high CPU cost.
+Whether to re-encode the IP camera stream in OpenVidu, or not. Enabling this allows OpenVidu to provide a dynamic video quality that is automatically adapted to the network conditions of Subscribers of the IP camera, which helps avoid playback issues. It is active by default, and it allows the OpenVidu deployment to provide a robust and reliable flow to participants that will receive the IP camera stream. But re-encoding video has a moderately high CPU cost.
 
 When this option is disabled, the video is served as-is from the IP camera. For this to work, the source video codec must be compatible with receiving browsers; normally this means outputting either H.264 or VP8 video from the camera. OpenVidu will not adapt the video quality dynamically, which greatly reduces CPU usage on the server; however you could still change by hand the IP camera's settings in order to vary the output size or bitrate.
 
@@ -235,15 +235,15 @@ An example of situation where you might want to disable this setting is in envir
 
 #### onlyPlayWithSubscribers
 
-Whether to enable the IP camera stream only when some user is subscribed to it or not. What this means is that OpenVidu Server will only establish the RTSP connection with the IP camera when some participant asks to subscribe to the camera's stream. The rest of the time OpenVidu Server will not be effectively receiving any packets from the IP camera, saving CPU power and bandwidth. This option is active by default.
+Whether to enable the IP camera stream only when some user is subscribed to it or not. What this means is that the OpenVidu deployment will only establish the RTSP connection with the IP camera when some participant asks to subscribe to the camera's stream. The rest of the time the OpenVidu deployment will not be effectively receiving any packets from the IP camera, saving CPU power and bandwidth. This option is active by default.
 
-The counterpart to this option, which in principle would always seem desirable, is that the first participant requesting to subscribe to the camera's stream will take a little longer to do so, as OpenVidu Server has to establish the RTSP connection with the camera in the first place. Just after the last participant subscribed to the camera's stream unsubscribes from it, the RTSP connection between OpenVidu Server and the IP camera will be closed again, and the cycle starts again (next first participant subscribing to the camera's stream will have to wait longer than usual to receive the video).
+The counterpart to this option, which in principle would always seem desirable, is that the first participant requesting to subscribe to the camera's stream will take a little longer to do so, as the OpenVidu deployment has to establish the RTSP connection with the camera in the first place. Just after the last participant subscribed to the camera's stream unsubscribes from it, the RTSP connection between the OpenVidu deployment and the IP camera will be closed again, and the cycle starts again (next first participant subscribing to the camera's stream will have to wait longer than usual to receive the video).
 
 Generally speaking you'll want this option set to true, but if for your particular use case the response time of the first subscriber to the camera's stream is vital, you can set this option to false to never stop receiving the camera's feed.
 
 #### networkCache
 
-Set the size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds. The smaller it is, the less delay the signal will have, but more problematic will be in unstable networks. Use short buffers only if there is a quality connection between the IP camera and OpenVidu Server. The default safe value is 2000 ms.
+Set the size of the buffer of the endpoint receiving the IP camera's stream, in milliseconds. The smaller it is, the less delay the signal will have, but more problematic will be in unstable networks. Use short buffers only if there is a quality connection between the IP camera and the OpenVidu deployment. The default safe value is 2000 ms.
 
 <br>
 

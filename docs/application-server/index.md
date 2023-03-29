@@ -223,6 +223,28 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
 <div class="col-md-4 col-sm-4 team-member">
     <div class="effect effects wow">
         <div class="img">
+            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials" alt="" style="padding: 15px"/>
+            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby" target="_blank">
+                <div class="overlay">
+                    <ul class="expand"></ul>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="member-info wow">
+        <h4>Ruby</h4>
+        <ul style="margin: 0; padding-left: 17px;">
+            <li>Link to <a href="application-server/openvidu-basic-ruby/">documentation</a></li>
+            <li>Link to <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby" target="_blank">GitHub repository</a></li>
+            <li>Built with <a href="https://sinatrarb.com/" target="_blank">Sinatra</a></li>
+            <li>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="col-md-4 col-sm-4 team-member">
+    <div class="effect effects wow">
+        <div class="img">
             <img src="img/assets/server-langs/php.svg" class="img-responsive img-tutorials" alt="" />
             <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-php" target="_blank">
                 <div class="overlay">
@@ -235,24 +257,6 @@ See method [POST /openvidu/api/sessions/&lt;SESSION_ID&gt;/connection](reference
         <h4>PHP</h4>
         <p>Coming soon...</p>
         <!-- <p>Built with <a href="https://laravel.com" target="_blank">Laravel</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
-    </div>
-</div>
-
-<div class="col-md-4 col-sm-4 team-member">
-    <div class="effect effects wow">
-        <div class="img">
-            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials" alt="" style="padding: 15px"/>
-            <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-ruby" target="_blank">
-                <div class="overlay">
-                    <ul class="expand"></ul>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="member-info wow">
-        <h4>Ruby</h4>
-        <p>Coming soon...</p>
-        <!-- <p>Built with <a href="https://rubyonrails.org" target="_blank">Ruby on Rails</a><br>Consumes <a href="reference-docs/REST-API/">OpenVidu REST API</a></p> -->
     </div>
 </div>
 
