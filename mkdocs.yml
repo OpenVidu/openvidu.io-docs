@@ -20,6 +20,7 @@ nav:
               - openvidu-basic-node: application-server/openvidu-basic-node.md
               - openvidu-basic-python: application-server/openvidu-basic-python.md
               - openvidu-basic-dotnet: application-server/openvidu-basic-dotnet.md
+              - openvidu-basic-ruby: application-server/openvidu-basic-ruby.md
           - User Authentication: application-server/user-authentication.md
 
     - Ready-to-use component: ready-to-use-component/index.md
