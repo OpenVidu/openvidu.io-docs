@@ -243,6 +243,8 @@ You can read a complete description of them in the [REST API docs](reference-doc
 
 The default layout used when broadcasting an OpenVidu Session will evenly distribute each published stream in the available space. But you can implement your own  custom layout with HTML/CSS/JS. This is exactly the same and works in the same way as explained in this COMPOSED recording section: [Custom recording layouts](advanced-features/recording/#custom-recording-layouts). Everything that is explained there for the custom layouts of COMPOSED recordings applies equally to the custom layouts of the broadcasts.
 
+> **NOTE:** in order to use custom layouts when broadcasting, it is necessary to setup property `OPENVIDU_RECORDING=true` in the [OpenVidu deployment configuration](reference-docs/openvidu-config/).
+
 <br>
 
 ---
