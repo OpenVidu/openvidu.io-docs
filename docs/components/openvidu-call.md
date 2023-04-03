@@ -68,7 +68,7 @@ npm install
 3. Run the server application, which in this case is the OpenVidu Call backend. To configure this command you can check below section [Configuration parameters for OpenVidu Call backend](#configuration-parameters-for-openvidu-call-backend).
 
 ```bash
-npm run start
+npm run dev:start
 ```
 
 </div>
