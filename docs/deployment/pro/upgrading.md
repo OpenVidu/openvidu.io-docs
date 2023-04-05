@@ -1,7 +1,7 @@
 <h2 id="section-title">Upgrading OpenVidu Pro</h2>
 <hr>
 
-- **[Migrating from 2.25.0 to 2.26.0](#migrating-from-2250-to-2260)**
+- **[Migrating from 2.25.0 to 2.26.2](#migrating-from-2250-to-2262)**
 - **[Migrating from 2.24.0 to 2.25.0](#migrating-from-2240-to-2250)**
 - **[Migrating from 2.23.0 to 2.24.0](#migrating-from-2230-to-2240)**
 - **[Migrating from 2.22.0 to 2.23.0](#migrating-from-2220-to-2230)**
@@ -49,18 +49,18 @@
 </div>
 </div>
 
-## Migrating from 2.25.0 to 2.26.0
+## Migrating from 2.25.0 to 2.26.2
 
 Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
-- **[Migrating from 2.25.0 to 2.26.0 (AWS Cloudformation)](#migrating-from-2250-to-2260-aws-cloudformation)**
-- **[Migrating from 2.25.0 to 2.26.0 (On premises)](#migrating-from-2250-to-2260-on-premises)**
+- **[Migrating from 2.25.0 to 2.26.2 (AWS Cloudformation)](#migrating-from-2250-to-2262-aws-cloudformation)**
+- **[Migrating from 2.25.0 to 2.26.2 (On premises)](#migrating-from-2250-to-2262-on-premises)**
 
-### Migrating from 2.25.0 to 2.26.0 (AWS Cloudformation)
+### Migrating from 2.25.0 to 2.26.2 (AWS Cloudformation)
 
-#### Option 1 (recommended): Deploy a new Cloudformation for 2.26.0
+#### Option 1 (recommended): Deploy a new Cloudformation for 2.26.2
 
-If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.26.0](https://docs.openvidu.io/en/2.26.0/deployment/pro/aws/){target="_blank"}**.
+If you have deployed using Cloudformation **we strongly recommend updating by deploying a new [OpenVidu Cloudformation template of 2.26.2](https://docs.openvidu.io/en/2.26.0/deployment/pro/aws/){target="_blank"}**.
 
 By deploying a new Cloudformation for each version you update, you can benefit of updated AMIs in your deployment, and you can ensure that the upgrading process is not degraded by infrastructure changes that may be applied to the Cloudformation definition.
 
@@ -71,9 +71,9 @@ To do it, you just need to:
 - If you have your app deployed next to OpenVidu, move your app to your new deployment.
 - Modify the file at `/opt/openvidu/.env` to have your previous configuration values. (Ignore parameters which start with `AWS_`)
 
-However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.26.0](#option-2-update-current-deployment-to-2250), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
+However, if you don't want to deploy a new Cloudformation, you can follow the instruction from [Option 2: Update current deployment to 2.26.2](#option-2-update-current-deployment-to-2262), but you should know that the upgrading process may have some not contemplated issues if something in the Cloudformation template has changed between versions.
 
-#### Option 2: Update current deployment to 2.26.0
+#### Option 2: Update current deployment to 2.26.2
 
 **1)** SSH into your OpenVidu Server Master Node.
 
@@ -97,7 +97,7 @@ cd /opt/openvidu
 **6)** As OpenVidu uses an AMI to deploy and provision media nodes, we need to get and copy the media node AMI of the version we want to deploy. To get the Id of our official AMI you just need to execute:
 
 ```bash
-ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.26.0)
+ORIGINAL_AMI_ID=$(curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/get_ov_media_node_ami_id.sh | bash -s 2.26.2)
 ```
 
 The obtained `ORIGINAL_AMI_ID` must not be used in your deployment, you need to copy this AMI to your account and region where you have OpenVidu deployed. To copy this AMI to your account, execute these commands:
@@ -108,7 +108,7 @@ REGION=<YOUR_REGION>
 
 # Copy AMI and get AMI Id
 NEW_IMAGE_ID=$(aws ec2 copy-image \
-    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.26.0" \
+    --region "${REGION}" --name "OpenVidu PRO/ENTERPRISE - Media Node 2.26.2" \
     --source-region eu-west-1 --source-image-id "${ORIGINAL_AMI_ID}" --output text)
 
 # Wait for the AMI to be available
@@ -123,7 +123,7 @@ Where `<YOUR_REGION>` is the region your OpenVidu is deployed.
 The command `echo "${NEW_IMAGE_ID}"` will print your new AMI ID to be used in OpenVidu. Now you just need to execute the upgrade script with the new AMI ID as an argument:
 
 ```console
-curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.0.sh | bash -s upgrade "${NEW_IMAGE_ID}"
+curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.2.sh | bash -s upgrade "${NEW_IMAGE_ID}"
 ```
 
 
@@ -131,7 +131,7 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.26.0
+Openvidu successfully upgraded to version 2.26.2
 ================================================
 ```
 
@@ -147,13 +147,13 @@ Openvidu successfully upgraded to version 2.26.0
 
 **7)** After executing the previous command you will end up with two environment files:
 
-  - `.env-2.26.0`: Empty configuration file of the 2.26.0 version.
+  - `.env-2.26.2`: Empty configuration file of the 2.26.2 version.
   - `.env`: Previous configuration which remains intact.
 
 
-Transfer any configuration you want to keep in the upgraded version from `.env` to `.env-2.26.0`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
+Transfer any configuration you want to keep in the upgraded version from `.env` to `.env-2.26.2`. Don't move any parameter which starts with `AWS_`, keep those parameters intact.
 
-**8)** When you have the file `.env-2.26.0` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.26.0` to `.env`.
+**8)** When you have the file `.env-2.26.2` with all your desired parameters, remove the original `.env` (or do a backup of it) and rename the `env-2.26.2` to `.env`.
 
 
 **9)** Start Openvidu.
@@ -164,7 +164,7 @@ Transfer any configuration you want to keep in the upgraded version from `.env` 
 
 <br>
 
-### Migrating from 2.25.0 to 2.26.0 (On Premises)
+### Migrating from 2.25.0 to 2.26.2 (On Premises)
 
 #### 1) Upgrading Media Node
 
@@ -181,7 +181,7 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.26.0.sh | bash -s upgrade</strong></code>
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.26.2.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -190,12 +190,12 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.26.0
+Openvidu successfully upgraded to version 2.26.2
 ================================================
 
-1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.26.0 services
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.26.2 services
 
-2. This new version 2.26.0 does not need any .env file. Everything is configured from OpenVidu Pro
+2. This new version 2.26.2 does not need any .env file. Everything is configured from OpenVidu Pro
 
 3. Start new version of Media Node
 $ ./media_node start
@@ -228,7 +228,7 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.0.sh | bash -s upgrade</strong></code>
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.2.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -237,16 +237,16 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu successfully upgraded to version 2.26.0
+Openvidu successfully upgraded to version 2.26.2
 ================================================
-1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.26.0 services
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu 2.26.2 services
 
-2. The previous file '.env' remains intact, but a new file '.env-2.26.0' has been created.
-Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.26.0'.
-When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.26.0'.
+2. The previous file '.env' remains intact, but a new file '.env-2.26.2' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-2.26.2'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-2.26.2'.
 
 3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
-However, if you were using your own application, a file called 'docker-compose.override.yml-2.26.0'
+However, if you were using your own application, a file called 'docker-compose.override.yml-2.26.2'
 has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
 
 4. Start new version of Openvidu
