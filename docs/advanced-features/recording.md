@@ -97,6 +97,8 @@ Recording can be configured in two ways:
 
 In both cases you can stop the recording manually, and every recording will always be automatically stopped if last user leaves the session and certain timeout elapses (see [Automatic stop of recordings](#automatic-stop-of-recordings)).
 
+> **NOTE:** be aware that as the **ALWAYS** recording mode is automatic and asynchronous, the only way to know if there has been an error when starting the recording is to use the [`recordingStatusChanged`](reference-docs/openvidu-server-webhook/#recordingstatuschanged) webhook event.
+
 <br>
 
 You can use [REST API](reference-docs/REST-API/) or any of the server SDKs ([openvidu-java-client](reference-docs/openvidu-java-client/), [openvidu-node-client](reference-docs/openvidu-node-client/)) to manage your recorded sessions.
