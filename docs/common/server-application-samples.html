@@ -1,29 +1,35 @@
 <div class="lang-tabs-container" style="margin-bottom: 25px">
 
     <div class="lang-tabs-header">
-        <button class="lang-tabs-btn" data-language="java" onclick="changeLangServerTab(event)" style="background-color: #e8e8e8; color: black">
-            <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials img-server-logo" alt="java" />
+        <button class="lang-tabs-btn" data-language="java" onclick="changeLangServerTab(event)"
+            style="background-color: #e8e8e8; color: black">
+            <img src="img/assets/server-langs/java.svg" class="img-responsive img-tutorials img-server-logo"
+                alt="java" />
             Java
         </button>
         <button class="lang-tabs-btn" data-language="nodejs" onclick="changeLangServerTab(event)">
-            <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials img-server-logo" alt="nodejs" />
+            <img src="img/assets/server-langs/nodejs.svg" class="img-responsive img-tutorials img-server-logo"
+                alt="nodejs" />
             Node.js
         </button>
         <button class="lang-tabs-btn" data-language="python" onclick="changeLangServerTab(event)">
-            <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials img-server-logo" alt="python" />
+            <img src="img/assets/server-langs/python.svg" class="img-responsive img-tutorials img-server-logo"
+                alt="python" />
             Python
         </button>
         <button class="lang-tabs-btn" data-language="dotnet" onclick="changeLangServerTab(event)">
-            <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials img-server-logo" alt="dotnet" />
+            <img src="img/assets/server-langs/dotnet.svg" class="img-responsive img-tutorials img-server-logo"
+                alt="dotnet" />
             .NET
+        </button>
+        <button class="lang-tabs-btn" data-language="ruby" onclick="changeLangServerTab(event)">
+            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials img-server-logo" alt="ruby"
+                style="padding: 14px" />
+            Ruby
         </button>
         <button class="lang-tabs-btn" data-language="php" onclick="changeLangServerTab(event)">
             <img src="img/assets/server-langs/php.svg" class="img-responsive img-tutorials img-server-logo" alt="php" />
             PHP
-        </button>
-        <button class="lang-tabs-btn" data-language="ruby" onclick="changeLangServerTab(event)">
-            <img src="img/assets/server-langs/ruby.svg" class="img-responsive img-tutorials img-server-logo" alt="ruby" style="padding: 14px"/>
-            Ruby
         </button>
     </div>
 
@@ -120,11 +126,31 @@
         </ol>
     </div>
 
-    <div id="php" class="lang-tabs-content" style="display:none">
-        Coming soon...
+    <div id="ruby" class="lang-tabs-content" style="display:none">
+        <ol>
+            <li>
+                <div style="margin-bottom: 10px">Clone the repository</div>
+                <code class="language-bash hljs">
+                    git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.26.0<br>
+                    cd openvidu-tutorials/openvidu-basic-ruby
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Install dependencies</div>
+                <code class="language-bash hljs">
+                    bundle install
+                </code>
+            </li>
+            <li>
+                <div style="margin: 20px 0 10px 0">Run the application</div>
+                <code class="language-bash hljs">
+                    ruby app.rb
+                </code>
+            </li>
+        </ol>
     </div>
 
-    <div id="ruby" class="lang-tabs-content" style="display:none">
+    <div id="php" class="lang-tabs-content" style="display:none">
         Coming soon...
     </div>
 
