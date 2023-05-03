@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.27.0](#2270)
 - [2.26.0](#2260)
 - [2.25.0](#2250)
 - [2.24.0](#2240)
@@ -29,6 +30,178 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.27.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.27.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.27.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.27.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>7.0.0</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/7.0.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.11.23</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### Kurento 7
+
+The new major version of Kurento has been recently released, and it is now the default version used in OpenVidu. This new version of the media server focuses on upgrading the internal dependencies to recent official versions, compared to the old versions and custom forks used in Kurento 6. This brings improvements in terms of security and stability. You can read the release notes of Kurento 7 [here](https://doc-kurento.readthedocs.io/en/latest/project/relnotes/v7_0_0.html){:target="_blank"}.
+
+<br>
+
+##### openvidu-ruby sample application server now available
+
+We have added a new sample application server in Ruby. If you plan to build your OpenVidu application server in Ruby, you can use it as a starting point. You can find it here: [openvidu-basic-ruby](https://docs.openvidu.io/en/2.27.0/application-server/openvidu-basic-ruby/).
+
+<br>
+
+##### Audio-only broadcasts now available
+
+It is now possible to broadcast an OpenVidu Session as only-audio. Visit [Broadcasting](https://docs.openvidu.io/en/2.27.0/advanced-features/broadcast/) to learn how.
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-browser_: calling [`Publisher.publishVideo(false, true)`](https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Publisher.html#publishVideo) before publishing the Publisher to a Session was causing the audio track to not play on the Subscriber side. If the Publisher called the method after publishing to the Session, the audio played correctly. Now audio also plays correctly even in the case the Publisher stopped its video track before publishing to the Session. Related forum discussion: [4514](https://openvidu.discourse.group/t/microphone-doesnt-work-correctly-on-web-from-a-mobile-device/4514){:target="_blank"}. Related PR: [797](https://github.com/OpenVidu/openvidu/pull/797){:target="_blank"}
+- _Broadcasting_: broadcasting to AWS Media Live was not possible. Now it is.
+- _Broadcasting_: a failure in the startup process of a broadcast could end on some occasions with the Media Node being disconnected from the OpenVidu cluster. This is now fixed.
+- _Broadcasting & Speech To Text_: a fatal error was preventing these services to start normally in very specific cases:
+    - If a [custom Speech To Text module]((https://docs.openvidu.io/en/2.27.0/advanced-features/speech-to-text/#using-custom-languages)) was based on an outdated version of the base Speech To Text module.
+    - If a [custom layout](https://docs.openvidu.io/en/2.27.0/advanced-features/broadcast/#custom-broadcast-layouts) with an outdated version of openvidu-browser was being used to broadcast. This is now fixed and the fatal error is now a warn/error message in openvidu-server-pro logs.
+- _OpenVidu Components_: in a session with two participants and one of them using iPhone, if the other participant mutes the video, the iPhone participant was not able to see the video poster (instead the last frame was shown). This is now fixed.
+- _OpenVidu Components_: if a Session was recorded, that recording was then deleted and the Session was recorded again, the recording service was showing the oldest deleted video due to the browser caching the request to the resource. This is now fixed.
+- _Openvidu Components_: non-moderator participants didn't update their recording list because they didn't know when a recording had been deleted. Now all standard participants know the recording activity status. New `onActivitiesPanelForceRecordingUpdate` event is emitted when the participants need to update their recording list.
+- _OpenVidu Call_: the application updates the recording list from the backend listening to `onActivitiesPanelForceRecordingUpdate` event.
+- _OpenVidu Call_: fixed issue with participants name using Java Backend. Nicknames were not synchronized with other participants.
+- _OpenVidu Call_: fixed a security bug with recording access. This is now fixed.
+
+<br>
 
 ---
 

@@ -230,6 +230,7 @@ BODY
 The actual recording properties that take effect when applied to a broadcast are a subset of the recording properties, which includes:
 
 - `hasAudio`
+- `hasVideo`
 - `resolution`
 - `frameRate`
 - `recordingLayout`

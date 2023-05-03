@@ -1450,6 +1450,7 @@ Start broadcasting the OpenVidu Session to a live-streaming endpoint. This is us
 > - **session** _(mandatory String)_ : the sessionId of the session you want to start broadcasting.<br><br>
 > - **broadcastUrl** _(mandatory String)_ : the URL where to broadcast.<br><br>
 > - **hasAudio** _(optional Boolean)_ : whether to broadcast the audio or not. Default to `true`<br><br>
+> - **hasVideo** _(optional Boolean)_ : whether to broadcast the video or not. Default to `true`<br><br>
 > - **recordingLayout** _(optional String)_ : the layout to be used in this broadcast.
 >     - `BEST_FIT`_(default)_ : a grid layout where all the videos are evenly distributed.
 >     - `CUSTOM`: use your own custom layout. The functioning is exactly the same as in [Custom recording layouts](advanced-features/recording/#custom-recording-layouts).<br><br>
@@ -1468,7 +1469,7 @@ Start broadcasting the OpenVidu Session to a live-streaming endpoint. This is us
 | 404 | No session exists for the passed `session` body parameter |
 | 406 | The session has no connected participants |
 | 409 | The session is not configured for using MediaMode `ROUTED` or it is already being broadcasted |
-| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceeds acceptable values (min 0 and max 120), `shmSize` exceed acceptable values (min 134217728) |
+| 422 | `resolution` parameter exceeds acceptable values (for both width and height, min 100px and max 1999px), `frameRate` parameter exceeds acceptable values (min 0 and max 120), `shmSize` exceed acceptable values (min 134217728) or trying to start a broadcast with both `hasAudio` and `hasVideo` to false |
 | 500 | Unexpected error when starting the broadast. See the error message for further information |
 
 <br>
