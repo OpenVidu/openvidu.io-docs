@@ -147,7 +147,7 @@
   <tr>
     <td>Kurento Media Server</td>
     <td>Ubuntu package</td>
-    <td>7.0.0</td>
+    <td>7.0.1</td>
     <td><a class="" href="https://doc-kurento.readthedocs.io/en/7.0.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
     <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
   </tr>
@@ -170,7 +170,7 @@
 
 ##### Kurento 7
 
-The new major version of Kurento has been recently released, and it is now the default version used in OpenVidu. This new version of the media server focuses on upgrading the internal dependencies to recent official versions, compared to the old versions and custom forks used in Kurento 6. This brings improvements in terms of security and stability. You can read the release notes of Kurento 7 [here](https://doc-kurento.readthedocs.io/en/latest/project/relnotes/v7_0_0.html){:target="_blank"}.
+The new major version of Kurento has been recently released, and it is now the default version used in OpenVidu. This new version of the media server focuses on upgrading the internal dependencies to recent official versions, compared to the old versions and custom forks used in Kurento 6. This brings improvements in terms of security and stability. You can read the release notes of Kurento 7 [here](https://doc-kurento.readthedocs.io/en/latest/project/relnotes/7.0.html){:target="_blank"}.
 
 <br>
 
