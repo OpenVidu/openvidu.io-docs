@@ -1414,7 +1414,7 @@ Broadcast API is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro
 </div>
 </div>
 
-See [Broadcast to YouTube/Twitch](/advanced-features/broadcast).
+See [Broadcast to YouTube/Twitch](advanced-features/broadcast).
 
 ### POST `/openvidu/api/broadcast/start` {:id=start-broadcast}
 
