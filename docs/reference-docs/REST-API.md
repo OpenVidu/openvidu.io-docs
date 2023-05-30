@@ -1662,7 +1662,7 @@ Health API is part of OpenVidu <a href="openvidu-pro/"><span id="openvidu-pro-ta
 
 ##### Description
 
-Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is healthy if Master Node is up and there is at least one Media Node running and connected to the cluster (see [OpenVidu Pro architecture](openvidu-pro/scalability/#openvidu-pro-architecture)).
+This API endpoint provides status information for the deployment of your application, with different responses depending on the type of deployment you are using.
 
 ##### Operation
 
@@ -1674,21 +1674,84 @@ Check the health status of the OpenVidu Pro cluster. An OpenVidu Pro cluster is 
 
 ##### Sample return
 
+If you have all media nodes connected:
+
 ```json
 {
-    "status": "UP"
+    "status": "UP",
+    "disconnectedMediaNodes": []
 }
 ```
 
+If you have some media nodes disconnected:
+
+```json
+{
+    "status": "UNSTABLE",
+    "disconnectedMediaNodes": [
+        "media-node-1"
+    ]
+}
+```
+
+Where `media-node-1` is the ID of the disconnected media node.
+
+If all the media nodes are disconnected or no media node is registered:
+
+```json
+{
+    "status": "DOWN",
+    "disconnectedMediaNodes": [
+        "media-node-1",
+        "media-node-2"
+    ]
+}
+```
+
+If you are using OpenVidu Enterprise HA, the response is more detailed:
+
+```json
+{
+  "clusterStatus": "UP",
+  "nodes": {
+    "master_172.19.0.7": {
+      "status": "UP",
+      "id": "master_172.19.0.7",
+      "uri": "http://172.19.0.7:5443",
+      "disconnectedMediaNodes": []
+    },
+    "master_172.19.0.4": {
+      "status": "UP",
+      "id": "master_172.19.0.4",
+      "uri": "http://172.19.0.4:5443",
+      "disconnectedMediaNodes": []
+    }
+  }
+}
+```
+Where `master_172.19.0.7` and `master_172.19.0.4` are the IDs of the master nodes.
+
+In general terms, the response can be described as follows for OpenVidu Pro or Enterprise Single Master deployments:
+
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| status | String | Health status of the OpenVidu Pro cluster. Can be `UP` or `DOWN` |
+| status | String | Health status of the OpenVidu Pro cluster. Can be `UP`, `UNSTABLE` or `DOWN` |
+| disconnectedMediaNodes | Array of Strings | List of IDs of the media nodes that are disconnected from the OpenVidu Pro/Enterprise cluster |
+
+And for OpenVidu Enterprise HA deployments:
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| clusterStatus | String | Health status of the OpenVidu Enterprise cluster. Can be `UP`, `UNSTABLE` or `DOWN` |
+| nodes | Object | Object containing the health status of each master node of the OpenVidu Enterprise cluster |
+
 
 ##### HTTP responses
 
 |||
 | - ||
 | 200 | Health status is `UP` |
+| 409 | Health status is `UNSTABLE` |
 | 503 | Health status is `DOWN` |
 
 <br>
