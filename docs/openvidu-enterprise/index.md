@@ -343,11 +343,11 @@ The key feature of OpenVidu Enterprise is that it supports using **[mediasoup](h
 Using the same hardware, OpenVidu Enterprise with mediasoup supports up to 5 times more media streams than with Kurento.
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-1.png">
+  <img class="img-responsive" style="width: 100%; max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-1.png">
 </p>
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-2.png">
+  <img class="img-responsive" style="width: 100%; max-width: 550px" src="img/docs/openvidu-enterprise/improved-performance-2.png">
 </p>
 
 #### 5x quicker connections
@@ -355,7 +355,7 @@ Using the same hardware, OpenVidu Enterprise with mediasoup supports up to 5 tim
 Media connections are established **80% quicker** using OpenVidu Enterprise with mediasoup. This means that with Kurento the average time between a customer calling the subscription operation and the video being actually played on their device, it could average around **1.25 seconds**. With mediasoup it averages **0.25 seconds**.
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 750px" src="img/docs/openvidu-enterprise/improved-performance-3.gif">
+  <img class="img-responsive" style="padding: 25px 0; width: 100%; max-width: 750px" src="img/docs/openvidu-enterprise/improved-performance-3.gif">
 </p>
 
 #### Media quality improvements
@@ -380,10 +380,18 @@ OpenVidu Enterprise with mediasoup raises the bar of what is possible with adapt
 
 #### High Availability deployment option
 
-OpenVidu Enterprise offers a High Availability deployment option in AWS, with replication of all nodes and load balancing for clients. Visit the [High Availability](openvidu-enterprise/high-availability/) documentation for further information.
+OpenVidu Enterprise offers flexible deployment options. You can opt for a single master node configuration, similar to OpenVidu Pro, on [AWS](deployment/enterprise/aws/#single-master-deployment){:target="_blank"} or [On-Premises](deployment/enterprise/on-premises/#single-master-deployment){:target="_blank"}. However, if you're interested in leveraging the High Availability feature, you can deploy OpenVidu Enterprise as a High Availability cluster (HA) either in AWS or On-Premises.
+
+This strategy incorporates a robust replication mechanism across all nodes and an efficient client load balancing system. More details on the High Availability feature can be found in our **[High Availability Documentation](openvidu-enterprise/high-availability/){:target="_blank"}**.
+
+For a detailed guide on how to deploy OpenVidu Enterprise using our High Availability feature, please refer to the following resources:
+
+- [AWS Deployment](deployment/enterprise/aws/#high-availability-deployment){:target="_blank"}: Deploy OpenVidu Enterprise on AWS to enjoy scalability for both master and media nodes, fault tolerance, and load balancing.
+
+- [On Premises Deployment](deployment/enterprise/on-premises/#high-availability-deployment){:target="_blank"}: OpenVidu Enterprise On-Premises deployment has been optimized to a single unique node by merging the master and media nodes into a single one. This simplifies scaling operations and cluster management to better suit your requirements.
 
 <p align="center">
-  <img class="img-responsive xcode-img" style="padding: 25px 0; max-width: 500px" src="img/docs/openvidu-enterprise/ha-alone.png">
+  <img class="img-responsive" style="padding: 25px 0" src="img/docs/openvidu-enterprise/ha-alone.png">
 </p>
 
 #### 100% compatible with your current OpenVidu applications
