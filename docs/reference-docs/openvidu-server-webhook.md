@@ -76,6 +76,8 @@ You can retrieve the WebHook events information from the body request of the HTT
 - [**nodeRecovered**](#noderecovered)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [**mediaNodeStatusChanged**](#medianodestatuschanged)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
 - [**autoscaling**](#autoscaling)<a href="openvidu-pro/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(0, 136, 170); color: white; font-weight: bold; padding: 0px 5px; margin-left: 5px; margin-top:2px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">PRO</span></a>
+- [**HANodeRegistered**](#hanoderegistered)<a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
+- [**HANodeDeregistered**](#HANodeDeregistered)<a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a>
 
 <br>
 
@@ -770,3 +772,96 @@ An autoscaling event will always be followed by one or more [mediaNodeStatusChan
 | `canceledNodes`   | Media Nodes in `canceled` status | An Array of Objects of type **[mediaNode](#medianode)** |
 
 <br>
+
+#### HANodeRegistered
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This event is part of OpenVidu <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> <bold>HA On premises only.</bold> (Not available in OpenVidu Pro or Enterprise HA in AWS)
+</div>
+</div>
+
+When a node is registered in an OpenVidu HA On premises cluster, this event is dispatched to the webhook endpoint. It contains the following information:
+
+```json
+{
+  "timestamp": 1687190118593,
+  "event": "HANodeRegistered",
+  "nodeId": "master_10.5.0.6",
+  "ip": "10.5.0.6"
+}
+```
+
+| Property    | Description                               | Value                                         |
+| ----------- | ----------------------------------------- | --------------------------------------------- |
+| `event`     | Event type                                | `HANodeRegistered`                            |
+| `timestamp` | Time when the event was triggered         | A Number (UTC milliseconds)                   |
+| `nodeId`    | Id of the node registered                 | A String with the node id                     |
+| `ip`        | IP of the node registered                 | A String with the node IP                     |
+
+#### HANodeDeregistered
+
+<div style="
+    display: table;
+    border: 2px solid #0088aa9e;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    background-color: rgba(0, 136, 170, 0.04);"><div style="display: table-cell; vertical-align: middle">
+    <i class="icon ion-android-alert" style="
+    font-size: 50px;
+    color: #0088aa;
+    display: inline-block;
+    padding-left: 25%;
+"></i></div>
+<div style="
+    vertical-align: middle;
+    display: table-cell;
+    padding-left: 20px;
+    padding-right: 20px;
+    ">
+This event is part of OpenVidu <a href="openvidu-enterprise/"><span id="openvidu-pro-tag" style="display: inline-block; background-color: rgb(156, 39, 176); color: white; font-weight: bold; padding: 0px 5px; margin: 0 4px 0 4px; border-radius: 3px; font-size: 13px; line-height:21px; font-family: Montserrat, sans-serif;">ENTERPRISE</span></a> <bold>HA On premises only.</bold> (Not available in OpenVidu Pro or Enterprise HA in AWS)
+</div>
+</div>
+
+When a node is deregistered in an OpenVidu HA On premises cluster, this event is dispatched to the webhook endpoint. It contains the following information:
+
+```json
+{
+  "timestamp": 1687281184225,
+  "event": "HANodeDeregistered",
+  "nodeId": "master_10.5.0.6",
+  "ip": "10.5.0.6",
+  "reason": "mediaNodeStatusTerminated"
+}
+```
+
+| Property    | Description                               | Value                                         |
+| ----------- | ----------------------------------------- | --------------------------------------------- |
+| `event`     | Event type                                | `HANodeDeregistered`                          |
+| `timestamp` | Time when the event was triggered         | A Number (UTC milliseconds)                   |
+| `nodeId`    | Id of the node registered                 | A String with the node id                     |
+| `ip`        | IP of the node registered                 | A String with the node IP                     |
+| `reason`    | Reason why the node was deregistered      | A String with the reason. It could be `mediaNodeStatusTerminated` or `nodeCrashed`                 |
+

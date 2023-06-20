@@ -1830,8 +1830,8 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 ```
 
 > The body of the POST request is a JSON object with the new configuration properties to be applied on the restart process. These include [OpenVidu CE configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-ce), [OpenVidu Pro configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-pro) and [OpenVidu Enterprise configuration properties](reference-docs/openvidu-config/#configuration-parameters-for-openvidu-enterprise). All of them are optional. Not all properties can be modified this way. Others require a manual update.
-> 
-> The list of properties that **MAY NOT BE MODIFIED** through this method is available below. All other properties are modifiable. Visit the configuration docs for a detailed description of each one of them.
+>
+> In OpenVidu PRO/Enterprise some properties **MAY NOT BE MODIFIED** except in **OpenVidu Enterprise HA On premises** where all parameters are modifiable. The list of properties that **MAY NOT BE MODIFIED** through this method is available below. All other properties are modifiable. Visit the configuration docs for a detailed description of each one of them.
 >
 > ---
 >
@@ -1854,7 +1854,6 @@ Restart OpenVidu Server Pro programmatically. This helps easily modifying config
 > - **COTURN_IP**
 > - **COTURN_PORT**
 > - **COTURN_INTERNAL_RELAY**
-
 ##### HTTP responses
 
 |||

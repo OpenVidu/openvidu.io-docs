@@ -114,14 +114,10 @@ This means that the lifespan of the Media Node aligns with that of the Master No
 
 - Nodes are not fixed, and can be added or removed at any time (This ensures **media plane** and **signaling plane** scalability).
 - If a node goes down, the sessions on that node are automatically rebuilt on other node (see [Fault Tolerance](#fault-tolerance-in-openvidu-enterprise-ha)).
-<!--
-!!!!! TODO, update link when deployment docs are ready
--->
-- Nodes are registered automatically at startup, and deregistered gracefully with a REST API call. This allows for easy integration with your own autoscaling mechanism, or the one provided by your cloud provider. See [Node Management](openvidu-enterprise/management/#node-management) for more information.
 
-<!--
-!!!!! TODO, update link when deployment docs are ready
--->
+- Nodes are registered automatically at startup, and deregistered gracefully with a REST API call. This allows for easy integration with your own autoscaling mechanism, or the one provided by your cloud provider. See [Node Management](deployment/enterprise/on-premises/#node-management) for more information.
+
+
 For further information about On Premises deployment, see [On Premises deployment](deployment/enterprise/on-premises/#high-availability-deployment).
 
 <br>
@@ -137,7 +133,7 @@ Fault tolerance in OpenVidu Enterprise HA behaves similarly to [OpenVidu Pro Fau
 3. If the proxy chooses a healthy Master Node to handle the client request, this node will find out that the one to which the request was originally directed to is down. It will immediately warn the client and flag the crashed node as unhealthy, so AWS automatically terminates it.
 4. If the proxy chooses the crashed Master Node, then it will simply return a 50X error so the client may re-attempt the reconnection operation. Next time the proxy will choose a different Master Node to attend to the petition and point 3) will be performed.
 
-In the end, all users connected to OpenVidu sessions being hosted at a crashed Master Node will receive the proper events to allow the application to re-build the session. The process is just the same as the one explained here ([Making your OpenVidu app fault tolerant](openvidu-pro/fault-tolerance/#making-your-openvidu-app-fault-tolerant)), but with a small requirement in your application's backend: your server must **retry any REST API operation to OpenVidu whenever it receives an HTTP status between 500 and 504** during the process of rebuilding a session (creating a Session or Connection entity).
+In the end, all users connected to OpenVidu sessions being hosted at a crashed Master Node will receive the proper events to allow the application to re-build the session. The process is just the same as the one explained here ([Making your OpenVidu app fault tolerant](openvidu-pro/fault-tolerance/#making-your-openvidu-app-fault-tolerant)), but with a small requirement in your application's backend: your server must **retry any REST API operation to OpenVidu whenever it receives an HTTP status between 500 and 504** during the process of rebuilding a session (creating a Session or Connection entity). In a session specifically it could return a **404** error, as the session may have been destroyed by the Master Node crash. This status code should also be retried.
 
 This is essential, as there is a small time interval in which a Master Node may be down but the cluster still doesn't know about it, so petitions may end up being redirected to the crashed Master Node. In this case the proxy will return a 50X error, and the application's backend must retry the petition until it lands on a healthy Master Node. Below there are some code snippets for inspiration:
 
@@ -172,7 +168,7 @@ public Session getSession(String sessionId) {
             session = OV.createSession(properties);
             success = true;
         } catch (OpenViduHttpException e) {
-            if (e.getStatus() >= 500 && e.getStatus() <= 504) {
+            if ((e.getStatus() >= 500 && e.getStatus() <= 504) || e.getStatus() == 404) {
                 System.out.println("Retry. The node handling the operation is crashed: " + e.getMessage());
                 Thread.sleep(100);
             } else {

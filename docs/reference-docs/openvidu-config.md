@@ -131,6 +131,8 @@ These configuration parameters apply to OpenVidu Pro and OpenVidu Enterprise.
 
 ### Configuration parameters for OpenVidu Enterprise
 
+#### Common parameters for OpenVidu Enterprise (All deployment types)
+
 These configuration parameters apply only to OpenVidu Enterprise.
 
 | Parameter       | Description                               | Default value                                      |
@@ -138,6 +140,27 @@ These configuration parameters apply only to OpenVidu Enterprise.
 | **`OPENVIDU_ENTERPRISE_MEDIA_SERVER`** | Which media server to use in your deployment (see [Kurento vs mediasoup](openvidu-enterprise/#kurento-vs-mediasoup)). Possible values are:<br>• `kurento`<br>• `mediasoup`<br> | `mediasoup` |
 | **`OPENVIDU_ENTERPRISE_S3_CONFIG_AUTORESTART`** | If true, master nodes restart automatically on S3 changes. | **true** |
 | **`OPENVIDU_WEBRTC_SIMULCAST`** | Whether to enable [simulcast](openvidu-enterprise/simulcast/) for all Publishers or not | **false** |
+
+#### Parameters for OpenVidu Enterprise (HA On Premises)
+
+OpenVidu Enterprise can be deployed in multiple editions. [OpenVidu Enterprise HA On premises](deployment/enterprise/on-premises/#high-availability-deployment){:target="_blank"} has some additional parameters. These parameters are only available for this edition.
+
+| Parameter       | Description                               | Default value                                      |
+| --------------- | ----------------------------------------- | -------------------------------------------------- |
+| **`OPENVIDU_ENTERPRISE_HA_NODE_PRIVATE_IP`** | This is the IP address that will be used by the node to communicate with the other nodes in the cluster. For example `10.5.0.6` | |
+| **`OPENVIDU_ENTERPRISE_HA_REDIS_HOST`** | Hostname or IP used to connect to the Redis server | |
+| **`OPENVIDU_ENTERPRISE_HA_REDIS_PORT`** | Port used to connect to the Redis server | |
+| **`OPENVIDU_ENTERPRISE_HA_REDIS_PASSWORD`** | Password used to connect to the Redis server | |
+| **`OPENVIDU_ENTERPRISE_HA_REDIS_DATABASE`** | Database used to connect to the Redis server | `replicationmanager` |
+| **`OPENVIDU_ENTERPRISE_HA_REDIS_TIMEOUT`** | Timeout used to connect to the Redis server in seconds | **5** |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SERVICE_ENDPOINT`** | This parameter is used to configure the S3 service endpoint used by the cluster to store the global configuration file. For example `http://example.bucket:9000` | |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET`** | The specified s3 bucket will be used to store a global configuration file that is used by all the nodes in the cluster. For example `ov-enterprise-bucket` | |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_ACCESS_KEY`** | Access key for the s3 bucket defined at `OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET` | |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SECRET_KEY`** | Secret key for the s3 bucket defined at `OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET` | |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_REGION`** | Region where the s3 bucket defined at `OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET` is located. For MinIO deployments is usually not needed | |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_PATH_STYLE_ACCESS`** | Optional. Use path style access for the s3 bucket defined at `OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET`. With MinIO deployments this value must be `true` | **true** |
+| **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_HEADERS`** |  the collection of HTTP header values that the internal AWS client will use during the upload process. The property is a key-value map of strings, following the format of a JSON object.<br>For example, to apply server-side encryption with AES-256, this header is mandatory:<br>`{"x-amz-server-side-encryption":"AES256"}`<br>The list of available headers can be found **[here](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/Headers.html){:target="_blank"}**. | **{ }** |
+
 
 <br>
 

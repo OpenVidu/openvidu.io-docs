@@ -10,10 +10,10 @@
     - **[Installing Base Services](#installing-base-services)**
     - **[Installing OpenVidu Enterprise Nodes](#installing-openvidu-enterprise-nodes)**
     - **[Node management](#node-management)**
+    - **[Configuration management](#configuration-management)**
+        - **[Enabling Recording](#enabling-recording)**
+        - **[Enable Webhook Events](#enabling-webhooks)**
     - **[Troubleshooting](#troubleshooting)**
-        - **[Common installation errors](#common-installation-errors)**
-        - **[Cluster health check](#cluster-health-check)**
-        - **[Check the logs](#check-the-logs)**
 
 <hr>
 <br>
@@ -21,7 +21,7 @@
 ## Single master deployment
 <br>
 
-OpenVidu Enterprise on premises is deployed just as [OpenVidu Pro on premises](deployment/pro/on-premises). You just need to add the following property to OpenVidu configuration `.env` file [here](deployment/pro/on-premises/#22-configuration).
+OpenVidu Enterprise on premises with a single master is deployed just as [OpenVidu Pro on premises](deployment/pro/on-premises). You just need to add the following property to OpenVidu configuration `.env` file [here](deployment/pro/on-premises/#22-configuration).
 
     OPENVIDU_EDITION=enterprise
 
@@ -104,7 +104,7 @@ The following are the inbound and outbound rules that you need to open in the **
 - **(Optional) Port 22 TCP (Open to 0.0.0.0,::/0)**: Used to access the machine via SSH for administration purposes.
 - **Port 80 TCP (Open to 0.0.0.0,::/0)**: Used by the nginx proxy for letsencrypt certificate generation.
 - **Port 443 TCP (Open to 0.0.0.0,::/0)**: Used by the nginx proxy to serve OpenVidu Call and OpenVidu Enterprise API.
-- **Port 6379 TCP (Open to 10.5.0.0/24)** (Optional): Used by Redis to store sessions and cluster information. This port should be open only to the OpenVidu Enterprise Nodes.
+- **Port 6379 TCP (Open to 10.5.0.0/24)**: Used by Redis to store sessions and cluster information. This port should be open only to the OpenVidu Enterprise Nodes.
 - **Port 5601 TCP (Open to 10.5.0.0/24)**: Used by Kibana to serve the logs and metrics. This port should be open only to the OpenVidu Enterprise Nodes.
 - **Port 9000 TCP (Open to 10.5.0.0/24)**: Used by Minio for configuration and recordings. This port should be open only to the OpenVidu Enterprise Nodes.
 - **Port 9200 TCP (Open to 10.5.0.0/24)**: Used by Elasticsearch to serve the logs and metrics. This port should be open only to the OpenVidu Enterprise Nodes.
@@ -138,10 +138,10 @@ The following are the inbound and outbound rules that you need to open in the **
 
 - **(Optional) Port 22 TCP (Open to 0.0.0.0,::/0)**: Used to access the machine via SSH for administration purposes.
 - **Port 443 TCP/UDP (Open to 0.0.0.0,::/0)**: This port in OpenVidu Enterprise HA is used for TURN/STUN instead of 3478.
-- **Port 3000: (Open to 10.5.0.0/24)**: Used by a service called **Media Node Controller** which provision the Media Servers and recording containers. This port should be open only to the OpenVidu Enterprise Nodes.
-- **Port 4000: (Open to 10.5.0.0/24)**: Used by the **[Speech To Text](advanced-features/speech-to-text/){:target="_blank"}** service. This port should be open only to the OpenVidu Enterprise Nodes.
-- **Port 4443: (Open to 10.5.0.0/24)**: Used by the **Replication Manager** service to replicate the sessions and recordings and proxy accordingly all the requests to the OpenVidu Server. This port should be open only to the OpenVidu Enterprise Nodes and the Load Balancer.
-- **Port 5443: (Open to 10.5.0.0/24)**: Used by **OpenVidu Server**. This port is consumed by the **Replication Manager** service, and it should be open only to the OpenVidu Enterprise Nodes.
+- **Port 3000 TCP: (Open to 10.5.0.0/24)**: Used by a service called **Media Node Controller** which provision the Media Servers and recording containers. This port should be open only to the OpenVidu Enterprise Nodes.
+- **Port 4000 TCP: (Open to 10.5.0.0/24)**: Used by the **[Speech To Text](advanced-features/speech-to-text/){:target="_blank"}** service. This port should be open only to the OpenVidu Enterprise Nodes.
+- **Port 4443 TCP: (Open to 10.5.0.0/24)**: Used by the **Replication Manager** service to replicate the sessions and recordings and proxy accordingly all the requests to the OpenVidu Server. This port should be open only to the OpenVidu Enterprise Nodes and the Load Balancer.
+- **Port 5443 TCP: (Open to 10.5.0.0/24)**: Used by **OpenVidu Server**. This port is consumed by the **Replication Manager** service, and it should be open only to the OpenVidu Enterprise Nodes.
 - **Port 40000-65535 TCP/UDP (Open to 0.0.0.0,::/0)**: Used by Media Server to send and receive media streams.
 
 <br>
@@ -156,7 +156,7 @@ The following are the inbound and outbound rules that you need to open in the **
 
 <hr>
 
-#### Installing Base Services
+### Installing Base Services
 
 In order to install the base services, you need to follow the next steps:
 
@@ -218,15 +218,15 @@ cd ov-enterprise-base-services
 
 **6)** In this directory you will see a `.env` file. This file contains all the configuration parameters that you need to set up in order to run the **Base Services**. As this base service contains the Load Balancer, S3, Redis, Elasticsearch and OpenVidu Call Application, we will configure those services via this config file:
 
-- **`DOMAIN_OR_PUBLIC_IP`**: Set the FQDN or public IP of the machine where you are installing the **Base Services**. In this example, `openvidu.example.com`.
-- **`OPENVIDU_SECRET`**: Set the secret that you want to use for the **OpenVidu Server**. This parameter is needed by default OpenVidu Call Application to connect to the OpenVidu Server.
+- **`DOMAIN_OR_PUBLIC_IP`**: Set the FQDN or public IP of the machine where you are installing the **Base Services**.
+- **`OPENVIDU_SECRET`**: Set the secret that you want to use for the **OpenVidu Server**. This parameter is needed by the default OpenVidu Call Application to connect to the OpenVidu Server.
 - **`CERTIFICATE_TYPE`**: Set the type of certificate that you are using, which can be `selfsigned`, `owncert` or `letsencrypt`. If you want to know more about this parameter, please check this [section](deployment/ce/on-premises/#domain-and-ssl-configuration-examples){:target="_blank"}.
 - **`LETSENCRYPT_EMAIL`**: Set the email that you want to use for the certificate.
 - **`OPENVIDU_ENTERPRISE_HA_NODE_IPS`**: Set the IP addresses of the **OpenVidu Enterprise Nodes**, separated by commas.
 - **`OPENVIDU_ENTERPRISE_HA_REDIS_PASSWORD`**: Set the password for the deployed Redis database in this machine. This password will be used by the **OpenVidu Enterprise Nodes** to connect to this Redis database.
-- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET`**: Set the name of the S3 bucket that you want to use to store the configuration files. This bucket will be created automatically in a Minio server that will be deployed in this machine and will be used by the **OpenVidu Enterprise Nodes**.
-- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_ACCESS_KEY`**: Set the access key for the S3 bucket.
-- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SECRET_KEY`**: Set the secret key for the S3 bucket.
+- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET`**: Set the name of the S3 bucket that you want to use to store the configuration files (and recordings optionally). This bucket will be created automatically in a Minio server that will be deployed in this machine and will be used by the **OpenVidu Enterprise Nodes**.
+- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_ACCESS_KEY`**: Set the access key for the S3 Minio Service.
+- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SECRET_KEY`**: Set the secret key for the S3 Minio Service.
 - **`ELASTICSEARCH_USERNAME`**: Set the username for the Elasticsearch and Kibana service.
 - **`ELASTICSEARCH_PASSWORD`**: Set the password for the Elasticsearch and Kibana service.
 
@@ -258,7 +258,7 @@ ELASTICSEARCH_PASSWORD=ELASTIC_SECRET
 ./base-services start
 ```
 
-**8)** After deploying **OpenVidu Enterprise HA Base Services**, and if the installation of **Base Services** has been successful, you will be able to access the following services:
+**8)** After deploying **OpenVidu Enterprise HA Base Services**, and if the installation of **OpenVidu Enterprise Nodes** has been successful, you will be able to access the following services:
 
 - **OpenVidu Call Application**: `https://openvidu.example.io`
 - **Kibana**: `https://openvidu.example.io/kibana`
@@ -267,9 +267,9 @@ ELASTICSEARCH_PASSWORD=ELASTIC_SECRET
 
 <hr>
 
-#### Installing OpenVidu Enterprise Nodes
+### Installing OpenVidu Enterprise Nodes
 
-This guide provides step-by-step instructions on how to install and set up OpenVidu Enterprise Nodes. We will set up one node first (10.5.0.6), then replicate this process for the second node (10.6.0.7).
+This guide provides step-by-step instructions on how to install and set up OpenVidu Enterprise Nodes. We will set up one node first (10.5.0.6), then replicate this process for the second node (10.5.0.7).
 
 **1)** SSH into the **Base Services** machine (In the example is 10.5.0.6):
 
@@ -339,6 +339,7 @@ cd openvidu
 - **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SERVICE_ENDPOINT`**: The endpoint of your S3 deployment/provider.
 - **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_BUCKET`**: The bucket name you want to use to store the configuration files.
 - **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_ACCESS_KEY`**: The access key of your S3 deployment/provider.
+- **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_SECRET_KEY`**: The secret key of your S3 deployment/provider.
 - **`OPENVIDU_ENTERPRISE_HA_S3_CONFIG_REGION`**: The region of your S3 provider. (Usually with on premises deployments like Minio, this value is not required).
 - **`OPENVIDU_PRO_ELASTICSEARCH_HOST`**: The http URL of your Elasticsearch deployment/service.
 - **`OPENVIDU_PRO_KIBANA_HOST`**: The http URL of your Kibana deployment/service.
@@ -401,6 +402,274 @@ replication-manager  | ----------------------------------------------------
 OPENVIDU_ENTERPRISE_HA_NODE_PRIVATE_IP=10.5.0.7
 ```
 
+<hr>
+
+### Node Management
+
+To effectively manage the scalability of your cluster, it is crucial to monitor the CPU and RAM usage of your OpenVidu Enterprise Nodes and scale up or down depending on those. This section provides a comprehensive guide on how to perform necessary actions for scaling your cluster up or down, but the monitoring strategy is up to you.
+
+#### Scale Up
+
+Follow the steps below to scale up your system:
+
+**1) Create a New Machine**:
+
+First, create a new machine and ensure it has a public IP. This machine will be used to install the **OpenVidu Enterprise Node**.
+
+**2) Install the OpenVidu Enterprise Node**:
+
+Install the **OpenVidu Enterprise Node** as stated in the [Installation section](#installing-openvidu-enterprise-nodes). 
+
+Locate the `.env` file on the new machine and set the `OPENVIDU_ENTERPRISE_HA_NODE_PRIVATE_IP` parameter. This should be the private IP of the machine you are currently installing. For example, if the private IP of the new machine is `10.5.0.8`, your `.env` file should contain:
+
+```bash
+OPENVIDU_ENTERPRISE_HA_NODE_PRIVATE_IP=10.5.0.8
+```
+
+**3) Update your Load Balancer**:
+
+Update your Load Balancer configuration by adding the private IP of the new machine.
+
+If you are using the **Base Services** as a Load Balancer, find the `.env` file on the **Base Services** machine. Modify the `OPENVIDU_ENTERPRISE_HA_NODE_IPS` parameter by adding the private IP of the new machine you've just set up. For example, if you're adding a new machine with the private IP `10.5.0.8` and your current IPs are `10.5.0.6` and `10.5.0.7`, the parameter should look like this:
+
+```bash
+OPENVIDU_ENTERPRISE_HA_NODE_IPS=10.5.0.6,10.5.0.7,10.5.0.8
+```
+
+Apply the changes. By executing the following command you will update the Load Balancer without interrupting current client connections:
+
+```bash
+./base-services update-loadbalancer
+```
+
+You've now successfully scaled up your system by adding a new machine to the load balancer. To check if your Node was registered, The message of the log of the **OpenVidu Enterprise Node** should show this:
+
+```text
+OpenVidu Enterprise HA Node is ready!
+```
+
+To receive and event when the Node is registered into the cluster, [enable webhooks in the configuration](#enabling-webhooks) and enable the event `HANodeRegistered`. You will receive an HTTP POST request like this when the Node is registered:
+
+```json
+{
+  "timestamp": 1687190122864,
+  "event": "HANodeRegistered",
+  "nodeId": "master_10.5.0.8",
+  "ip": "10.5.0.8"
+}
+```
+
+> Note: Using any Load Balancer from any Cloud provider, you can check if a node is available by asking directly to the nodes to this specific path: `http://<NODE_IP>:4443` or `http://<NODE_IP>:4443/openvidu/health`. If the node is available, it will return a `200` status code. If not, basically no response will be received.
+
+#### Scale Down
+
+The process of scaling down typically presents a greater complexity compared to scaling up due to potential active sessions within nodes. It is vital to maintain the continuity of these sessions, ensuring there are no interruptions. However, OpenVidu Enterprise HA offers a mechanism that addresses this challenge by waiting for ongoing sessions to conclude prior to node shutdown, ensuring a secure and safe termination of the node.
+
+In order to accomplish this, the following steps should be adhered to:
+
+**1) Put the node in a `waiting-idle-to-terminate` state**:
+
+Identify the node you want to remove from the cluster and put it in a `waiting-idle-to-terminate` state. This can be done by executing an HTTP PATCH request to `/openvidu/api/media-nodes/<MEDIA_NODE_ID>` endpoint of the **Load Balancer** (see [REST API](reference-docs/REST-API/#patch-medianode) for more information). The `<MEDIA_NODE_ID>` is the ID of the node you want to remove from the cluster and the body of the request should contain the following JSON:
+
+```json
+{
+  "status": "waiting-idle-to-terminate"
+}
+```
+
+
+This will put the node in a state which will not accept new sessions, but will wait for ongoing sessions to conclude before terminating. When the node has no active sessions, it will automatically terminate, and terminate all related processes, so the node is no longer part of the cluster and can be safely removed from your infrastructure.
+
+Once in this state, you can't change the status of the node to any other state. If you want to abort the termination process, you need to wait for the node to terminate and then start it again with:
+
+```
+./openvidu restart
+```
+
+To receive an event when the Node is terminated, [enable webhooks in the configuration](#enabling-webhooks) and enable the event `HANodeTerminated`. You will receive an HTTP POST request like this when the Node is terminated:
+
+```json
+{
+  "timestamp": 1687190122864,
+  "event": "HANodeDeregistered",
+  "nodeId": "master_10.5.0.8",
+  "ip": "10.5.0.8"
+}
+```
+
+
+**2) Update your Load Balancer**:
+
+Update your Load Balancer configuration by removing the private IP of the node you want to remove from the cluster. Depending on your Load Balancer, it should be detected that the node is no longer available, and it should be removed from the cluster.
+
+If you are using **Base Services** as a Load Balancer, find the `.env` file on the **Base Services** machine. Modify the `OPENVIDU_ENTERPRISE_HA_NODE_IPS` parameter by removing the private IP of the node you want to remove from the cluster. For example, if you're removing the node with the private IP `10.5.0.8` the configuration should look like this:
+
+```bash
+OPENVIDU_ENTERPRISE_HA_NODE_IPS=10.5.0.6,10.5.0.7
+```
+
+Apply the changes. By executing the following command you will update the Load Balancer without interrupting current client connections:
+
+```bash
+./base-services update-loadbalancer
+```
+
+You've now successfully scaled up your system by adding a new machine to the load balancer.
+
+> Note: Using any Load Balancer from any Cloud provider, you can check if a node is available by asking directly to the nodes to this specific path: `http://<NODE_IP>:4443` or `http://<NODE_IP>:4443/openvidu/health`. If the node is available, it will return a `200` status code. If not, basically no response will be received.
+
+**3) Remove the node from your infrastructure**:
+
+Once the node has been terminated, you can safely remove it from your infrastructure without any issues.
+
+### Configuration management
+
+OpenVidu Enterprise HA provides a mechanism to manage the configuration of the cluster. This mechanism is managed using the deployed and configured S3 bucket.
+
+When you execute `./openvidu start`, a process of sync with S3 is runned next to a mechanism to check Redis and S3 are reachable. When you start your first node, no configuration is stored yet in the S3 bucket yet. You will notice that because you will see a message like this in the logs:
+
+```text
+    => Configuration file not found in S3
+```
+
+Until the S3 bucket is not reachable, the configuration is managed at `/opt/openvidu/.env`. Once the S3 bucket is reachable, the configuration is managed at the S3 bucket or via REST API, except the parameter `OPENVIDU_ENTERPRISE_HA_NODE_PRIVATE_IP` that is managed at `/opt/openvidu/.env` always. When your configuration is in sync with the node, you will see this message in the logs:
+
+```text
+    => Configuration file found in S3
+    => Configuration file updated from S3 to local file /opt/openvidu/.env
+```
+
+You can update the configuration through either the REST API or the S3 bucket. If you opt to use the REST API, simply send an HTTP POST request to `/openvidu/api/restart` along with the updated configuration in the request body. This approach automatically updates the S3 bucket and triggers a restart for all nodes, ensuring the application of the changes.
+
+However, if you prefer to alter the configuration directly via the S3 bucket, you will need to manually restart the nodes. You can do this by executing `./openvidu restart` or by sending an HTTP POST request to `/openvidu/api/restart`. In this latter case, though, remember not to include the configuration in the request body.
+
+In the following sections, we will give two examples of configuration updates via HTTP POST requests to enable recordings and to enable webhooks.
+
+#### Enabling Recording
+
+By default, recordings are disabled in this OpenVidu Enterprise HA deployment. To enable them, you need to update the configuration. In this example we will use the same S3 bucket we are using to store the configuration, but you can use any other S3 provider and bucket you wish. The HTTP POST request to `/openvidu/api/restart` should look like this:
+
+```json
+{
+    "OPENVIDU_RECORDING": "true",
+    "OPENVIDU_PRO_AWS_S3_BUCKET": "openvidu-enterprise",
+    "OPENVIDU_PRO_AWS_S3_SERVICE_ENDPOINT": "http://10.5.0.5:9000",
+    "OPENVIDU_PRO_AWS_ACCESS_KEY": "minioadmin",
+    "OPENVIDU_PRO_AWS_SECRET_KEY": "MINIO_SECRET"
+}
+```
+
+Make sure to change the values of the parameters `OPENVIDU_PRO_AWS_S3_BUCKET`, `OPENVIDU_PRO_AWS_S3_SERVICE_ENDPOINT`, `OPENVIDU_PRO_AWS_ACCESS_KEY` and `OPENVIDU_PRO_AWS_SECRET_KEY` to match your S3 bucket configuration. In this case, as we are using the S3 bucket deployed at **Base Services** it would look like the previous example.
+
+#### Enabling Webhooks
+
+If you want to receive events from OpenVidu Enterprise HA, you need to enable webhooks. To do so, you just need to execute an HTTP POST request to `/openvidu/api/restart` with the following configuration:
+
+```json
+{
+  "OPENVIDU_WEBHOOK": "true",
+  "OPENVIDU_WEBHOOK_ENDPOINT": "https://<YOUR_WEBHOOK_ENDPOINT>"
+}
+```
+
+Make sure to change the value of the parameter `OPENVIDU_WEBHOOK_ENDPOINT` to match your webhook endpoint.
+
+### Troubleshooting
+
+During the installation process, it is usual sometimes to find some errors. Most of the errors will pop up while installing the system. Some errors you may find are:
+
+<br>
+
+#### Error connecting to S3 bucket
+
+```text
+=> OpenVidu was unable to connect to S3 bucket <bucket-name> to sync the configuration file
+    Make sure the configuration of your S3 bucket is correct and that the credentials provided in /opt/openvidu/.env are valid
+    Also make sure your S3 bucket is reachable from this machine
+    To fix this, follow the next
+        1) Return to shell pressing Ctrl+C
+        2) Check your configuration file at /opt/openvidu/.env and check the S3 configuration
+            NOTE: All S3 parameters starts with 'OPENVIDU_ENTERPRISE_HA_S3_'
+        3) Restart OpenVidu with:
+            $ ./openvidu
+```
+
+This error will happen if the S3 bucket is not reachable from the machine. Make sure all the `OPENVIDU_ENTERPRISE_HA_S3_` parameters are correct and that the S3 bucket is reachable from the machine so the Node can sync the configuration file.
+
+<br>
+
+#### Error connecting to Redis
+
+```text
+ =>  OpenVidu was unable to connect to Redis server <REDIS_HOST>:<REDIS_PORT>
+
+    Make sure the configuration of your Redis server is correct and that the credentials provided in /opt/openvidu/.env are valid
+    Also make sure your Redis server is reachable from this machine
+    To fix this, follow the next steps:
+
+        1) Return to shell pressing Ctrl+C
+        2) Check the file of this node at /opt/openvidu/.env and check the Redis configuration
+            NOTE: All redis parameters starts with 'OPENVIDU_ENTERPRISE_HA_REDIS_'
+        3) Restart OpenVidu with:
+            $ ./openvidu restart
+```
+
+This error will happen if the Redis server is not reachable from the machine. Make sure all the `OPENVIDU_ENTERPRISE_HA_REDIS_` parameters are correct and that the Redis server is reachable from the machine.
+
+<br>
+
+#### Other problems or errors
+
+If none of this errors are happening to you:
+
+**1)** Check the logs of all the services running in the machine. You can check the logs of the services with the following commands:
+
+```bash
+sudo su
+cd /opt/openvidu
+./openvidu logs
+```
+
+Or check the logs of a specific service, for example of `replication-manager` and `openvidu-server`
+
+```bash
+sudo su
+cd /opt/openvidu
+docker-compose logs openvidu-server
+docker-compose logs replication-manager
+```
+
+**2)** Make sure all your nodes has a reachable public IP and at least port 443 open TCP/UDP. Nodes should have access to DNS, so they can autodiscover its own public IP. If your nodes can't have a public IP and/or the browsers in your infrastructure can't access to nodes, you will need to configure an external TURN server. You can configure a TURN server in the configuration file of the node at `/opt/openvidu/.env`. You can find more information about how to configure an external TURN server in the [Allow users behind firewalls](/deployment/allow-users-behind-firewalls/) section.
+
+#### Check cluster and nodes health
+
+You can check the health of the cluster and the nodes by using the [REST API healthcheck endpoint](reference-docs/REST-API/#get-health). If your cluster is working correctly it should return a response like this:
+
+```json
+{
+  "clusterStatus": "UP",
+  "nodes": {
+    "master_10.5.0.6": {
+      "status": "UP",
+      "id": "master_10.5.0.6",
+      "uri": "http://10.5.0.6:5443",
+      "disconnectedMediaNodes": []
+    },
+    "master_10.5.0.7": {
+      "status": "UP",
+      "id": "master_10.5.0.7",
+      "uri": "http://10.5.0.7:5443",
+      "disconnectedMediaNodes": []
+    }
+  }
+}
+```
+
+If your status is `UNSTABLE` or `DOWN` it means that your cluster is not working correctly.
+
+On the other hand there is an individual HTTP endpoint per node that you can use to check the health of a specific node and make your Load Balancer or Cloud Provider notice which nodes are working correctly and which ones are not.
+
+For example, if you execute a GET request to `http://10.5.0.6:4443/openvidu/health`, if this node is working correctly it should return a 200 OK response. You can use this endpoint to autoconfigure your Load Balancer or remove unhealthy nodes from your Cloud Provider.
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
