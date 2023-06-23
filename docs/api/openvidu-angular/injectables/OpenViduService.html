@@ -102,16 +102,31 @@
                                 <a href="#isSessionConnected" >isSessionConnected</a>
                             </li>
                             <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#publishAudio" >publishAudio</a>
+                                <a href="#publishAudio" class="deprecated-name">publishAudio</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#publishVideo" >publishVideo</a>
+                                <a href="#publishCamera" >publishCamera</a>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
-                                <a href="#toggleScreenshare" >toggleScreenshare</a>
+                                <a href="#publishScreen" >publishScreen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#publishVideo" class="deprecated-name">publishVideo</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#toggleScreenshare" class="deprecated-name">toggleScreenshare</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#unpublishCamera" >unpublishCamera</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#unpublishScreen" >unpublishScreen</a>
                             </li>
                         </ul>
                     </td>
@@ -187,7 +202,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Returns the remote connections of the Session.
-See <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
+See <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
 </div>
 
                     <div class="io-description">
@@ -220,7 +235,7 @@ See <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Con
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
+                    <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
 </div>
 
                     <div class="io-description">
@@ -268,16 +283,21 @@ See <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Con
                 <td class="col-md-4">
                     <a name="publishAudio"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>publishAudio</b></span>
+                        <span class="deprecated-name"><b>publishAudio</b></span>
                         <a href="#publishAudio"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
+                <td class="col-md-4 deprecated">
+                    This method has been moved to ParticipantService
+
+TODO: Remove this method in release 2.29.0
+                </td>
+            </tr>
+            <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>publishAudio(publish: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+<code>publishAudio(publish: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
@@ -287,7 +307,8 @@ See <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Con
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Publish or unpublish the audio stream (if available).
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
+<p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
                     <div class="io-description">
@@ -320,6 +341,140 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-br
                     <div>
                     </div>
                     <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="publishCamera"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>publishCamera</b></span>
+                        <a href="#publishCamera"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>publishCamera(publisher: Publisher)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Publishes the publisher to the webcam Session</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>publisher</td>
+                                    <td>
+                                            <code>Publisher</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="publishScreen"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>publishScreen</b></span>
+                        <a href="#publishScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>publishScreen(publisher: Publisher)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Publishes the publisher to the screen Session</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>publisher</td>
+                                    <td>
+                                            <code>Publisher</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
                         <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
                     </div>
@@ -337,9 +492,16 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-br
                     <a name="publishVideo"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>publishVideo</b></span>
+                        <span class="deprecated-name"><b>publishVideo</b></span>
                         <a href="#publishVideo"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    This method has been moved to ParticipantService
+
+TODO: Remove this method in release 2.29.0
                 </td>
             </tr>
             <tr>
@@ -356,7 +518,8 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-br
                 <td class="col-md-4">
                     <div class="io-description"><p>Publish or unpublish the video stream (if available).
 It hides the camera muted stream if screen is sharing.
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
+<p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
                     <div class="io-description">
@@ -406,9 +569,16 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-br
                     <a name="toggleScreenshare"></a>
                     <span class="name">
                         <span class="modifier">Async</span>
-                        <span ><b>toggleScreenshare</b></span>
+                        <span class="deprecated-name"><b>toggleScreenshare</b></span>
                         <a href="#toggleScreenshare"><span class="icon ion-ios-link"></span></a>
                     </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 deprecated">
+                    This method has been moved to ParticipantService
+
+TODO: Remove this method in release 2.29.0
                 </td>
             </tr>
             <tr>
@@ -425,11 +595,146 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.27.0/api/openvidu-br
                 <td class="col-md-4">
                     <div class="io-description"><p>Share or unshare the screen.
 Hide the camera muted stream when screen is sharing.</p>
+<p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                        <b>Returns : </b>    <code>unknown</code>
 
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unpublishCamera"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>unpublishCamera</b></span>
+                        <a href="#unpublishCamera"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unpublishCamera(publisher: Publisher)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unpublishes the publisher of the webcam Session</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>publisher</td>
+                                    <td>
+                                            <code>Publisher</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="unpublishScreen"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>unpublishScreen</b></span>
+                        <a href="#unpublishScreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>unpublishScreen(publisher: Publisher)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Unpublishes the publisher of the screen Session</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>publisher</td>
+                                    <td>
+                                            <code>Publisher</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>

@@ -30,7 +30,7 @@ docker run -p 4443:4443 --rm \
     -e OPENVIDU_RECORDING_PATH=/opt/openvidu/recordings \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /opt/openvidu/recordings:/opt/openvidu/recordings \
-openvidu/openvidu-dev:2.27.0
+openvidu/openvidu-dev:2.28.0
 ```
 
 > Check out the additional configuration properties and volumes you must set in the `docker run` command for the recording to work. If you let the default value `/opt/openvidu/recordings/` as `OPENVIDU_RECORDING_PATH`, make sure the docker container has write permissions on it.
@@ -47,7 +47,7 @@ npm --version
 Clone the repo:
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.27.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.28.0
 ```
 
 Run the application:

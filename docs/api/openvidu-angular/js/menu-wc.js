@@ -59,13 +59,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ApiDirectiveModule.html" data-type="entity-link" >ApiDirectiveModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-ApiDirectiveModule-708c8d5c472f0fd0fe6114fc6a1f27828f16493043101a738536ec9296fcda795c680487f1b0ab6f69ef5f1e506f97d74f5d4662b3e9ac0da525e9150261d413"' : 'data-target="#xs-directives-links-module-ApiDirectiveModule-708c8d5c472f0fd0fe6114fc6a1f27828f16493043101a738536ec9296fcda795c680487f1b0ab6f69ef5f1e506f97d74f5d4662b3e9ac0da525e9150261d413"' }>
+                                        'data-target="#directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' : 'data-target="#xs-directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ApiDirectiveModule-708c8d5c472f0fd0fe6114fc6a1f27828f16493043101a738536ec9296fcda795c680487f1b0ab6f69ef5f1e506f97d74f5d4662b3e9ac0da525e9150261d413"' :
-                                        'id="xs-directives-links-module-ApiDirectiveModule-708c8d5c472f0fd0fe6114fc6a1f27828f16493043101a738536ec9296fcda795c680487f1b0ab6f69ef5f1e506f97d74f5d4662b3e9ac0da525e9150261d413"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' :
+                                        'id="xs-directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' }>
                                         <li class="link">
                                             <a href="directives/ActivitiesPanelBroadcastingActivityDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActivitiesPanelBroadcastingActivityDirective</a>
                                         </li>
@@ -92,6 +92,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         </li>
                                         <li class="link">
                                             <a href="directives/LangDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LangDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/LangOptionsDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >LangOptionsDirective</a>
                                         </li>
                                         <li class="link">
                                             <a href="directives/MinimalDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >MinimalDirective</a>
@@ -328,6 +331,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="interfaces/CaptionsLangOption.html" data-type="entity-link" >CaptionsLangOption</a>
+                            </li>
+                            <li class="link">
+                                <a href="interfaces/LangOption.html" data-type="entity-link" >LangOption</a>
                             </li>
                             <li class="link">
                                 <a href="interfaces/PanelEvent.html" data-type="entity-link" >PanelEvent</a>

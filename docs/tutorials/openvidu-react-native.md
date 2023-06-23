@@ -29,7 +29,7 @@ We need the three components stated in [OpenVidu application architecture](devel
 
 1.  Clone the tutorials repository
 
-        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.27.0
+        git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.28.0
         cd openvidu-tutorials/openvidu-react-native
 
 2.  Install dependencies. This step will fail if you have not purchased the special library that OpenVidu requires for React Native to work. You must place it in the tutorial's root path
