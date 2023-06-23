@@ -1,7 +1,7 @@
 <h2 id="section-title">Deploying OpenVidu Enterprise on premises</h2>
 <hr>
 
-- **[Single master deployment](#regular-deployment)**
+- **[Single master deployment](#single-master-deployment)**
 - **[High Availability deployment](#high-availability-deployment)**
     - **[Overview](#overview)**
     - **[Prerequisites](#prerequisites)**
@@ -32,7 +32,7 @@ OpenVidu Enterprise on premises with a single master is deployed just as [OpenVi
 
 ### Overview
 
-OpenVidu Enterprise on premises can be deployed in a High Availability (HA) configuration. The difference of [OpenVidu Enterprise Single Master deployment](deployment/enterprise/on-premises/#regular-deployment) and [OpenVidu Enterprise HA deployment](deployment/enterprise/on-premises/#high-availability-deployment) is that in the latter you will have several OpenVidu Enterprise Nodes running at the same time, and all of them will be able to handle your users' sessions. This is specially useful when you have a lot of sessions and you want to distribute the load among several servers.
+OpenVidu Enterprise on premises can be deployed in a High Availability (HA) configuration. The difference of [OpenVidu Enterprise Single Master deployment](deployment/enterprise/on-premises/#single-master-deployment) and [OpenVidu Enterprise HA deployment](deployment/enterprise/on-premises/#high-availability-deployment) is that in the latter you will have several OpenVidu Enterprise Nodes running at the same time, and all of them will be able to handle your users' sessions. This is specially useful when you have a lot of sessions and you want to distribute the load among several servers.
 
 The following diagram shows a typical HA deployment:
 

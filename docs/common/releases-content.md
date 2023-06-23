@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.28.0](#2280)
 - [2.27.0](#2270)
 - [2.26.0](#2260)
 - [2.25.0](#2250)
@@ -30,6 +31,180 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.28.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.28.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.28.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.26.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-react</td>
+    <td>NPM package</td>
+    <td>2.28.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-react" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu React. Easier way to add OpenVidu video calls to your existing React application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>7.0.1</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/7.0.0/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.11.26</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+#### NEW FEATURES
+
+<br>
+
+##### OpenVidu Enterprise HA on premises
+
+It is now possible to deploy OpenVidu Enterprise High Availability in your own servers! Since OpenVidu 2.20.0 we have offered the High Availability deployment option for high demanding environments which require full scalability and fault tolerance. But this option was only available as an AWS deployment. Up until now.
+
+This new deployment option has also brought a brand new architectural solution. This has been done in order to simplify the management of the OpenVidu nodes, the decission on how many Master Nodes (for signaling) and Media Nodes (for video/audio streams) you should launch, and to prepare the ground for future native deployments on Kubernetes. OpenVidu Enterprise HA on premises deployments is now based on a single Node, which includes in a single machine all the components that were splitted between two different machines (a Master Node and a Media Node) before.
+
+You can follow the instructions to deploy an OpenVidu Enterprise HA cluster on premises [right here](https://docs.openvidu.io/en/2.28.0/deployment/enterprise/on-premises/#high-availability-deployment).
+
+<br>
+
+##### OpenVidu Components improvements related to language management
+
+Including:
+
+- A new event (`onLangChanged`) is emitted by `VideoconferenceComponent` when the application language has changed, so you can act upon a user selecting a different language. See the event [here](https://docs.openvidu.io/en/2.28.0/api/openvidu-angular/components/VideoconferenceComponent.html#onLangChanged).
+- A new directive (`langOptions`) is added to customize the language options available in the application. See [here](https://docs.openvidu.io/en/2.28.0/api/openvidu-angular/directives/LangOptionsDirective.html).
+
+<br>
+
+##### COTURN update to latest release 4.6.2
+
+See all changelogs since previous version (which was 4.5.2) [here](https://github.com/coturn/coturn/releases){:target="_blank"}.
+
+<br>
+
+#### BUG FIXES
+
+- _openvidu-node-client_: it wasn't catching errors on "fetch()" request which could potentially affect the application's error handling
+- _openvidu-browser_: custom screenshare tracks were not detected as screen. Now they are. Related Issues and PRs: [Issue 808](https://github.com/OpenVidu/openvidu/issues/808){:target="_blank"}, [PR 809](https://github.com/OpenVidu/openvidu/pull/809){:target="_blank"}.
+- _Recording_: in OpenVidu PRO and OpenVidu ENTEPRISE, in very rare occasions the recording service could return a 404 error when stopping an active recording, instead of the expected 200. This could affect the ongoing session and future recordings for that session. This is now fixed.
+- _openvidu-java-client_: global configuration paremeter `OPENVIDU_WEBRTC_ICE_SERVERS` was being overridden by openvidu-java-client when not configuring [custom ICE servers](https://docs.openvidu.io/en/2.28.0/deployment/allow-users-behind-firewalls/#use-a-third-party-turn-saas-for-clients-behind-firewalls), setting an empty array. This made `OPENVIDU_WEBRTC_ICE_SERVERS` configuration parameter to be ignored. Now this is fixed, and the global parameter will  be used if Connection parameter for a custom ICE server is empty.
+- _OpenVidu Components_: on fullscreen mode, the settings menu (3 dots) was not displayed. Now it is.
+- _OpenVidu Components_: switching the camera in Android devices was not working properly. This is now fixed.
+- _OpenVidu Components_: audiomuted and videomuted properties of the components were ignored if local storage values were present. This is fixed now.
+
+<br>
 
 ---
 
