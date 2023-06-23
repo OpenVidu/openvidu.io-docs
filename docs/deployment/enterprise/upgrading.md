@@ -1,6 +1,7 @@
 <h2 id="section-title">Upgrading OpenVidu Enterprise</h2>
 <hr>
 
+- **[Migrating from 2.27.0 to 2.28.0](#migrating-from-2270-to-2280)**
 - **[Migrating from 2.26.2 to 2.27.0](#migrating-from-2262-to-2270)**
 - **[Migrating from 2.25.0 to 2.26.2](#migrating-from-2250-to-2262)**
 - **[Migrating from 2.24.0 to 2.25.0](#migrating-from-2240-to-2250)**
@@ -39,6 +40,57 @@
       </ul>
 </div>
 </div>
+
+## Migrating from 2.27.0 to 2.28.0
+
+Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
+
+- **[Migrating from 2.27.0 to 2.28.0 (AWS Cloudformation - Single master deployment)](#migrating-from-2270-to-2280-aws-cloudformation-single-master-deployment)**
+- **[Migrating from 2.27.0 to 2.28.0 (On premises - Single master deployment)](#migrating-from-2270-to-2280-on-premises-single-master-deployment)**
+- **[Migrating from 2.27.0 to 2.28.0 (AWS Cloudformation - High Availability deployment)](#migrating-from-2270-to-2280-aws-cloudformation-high-availability-deployment)**
+
+### Migrating from 2.27.0 to 2.28.0 (AWS Cloudformation - Single master deployment)
+<br>
+
+Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.27.0 to 2.28.0 OpenVidu Pro (AWS with Cloudformation)](https://docs.openvidu.io/en/2.28.0/deployment/pro/upgrading/#migrating-from-2270-to-2280-aws-cloudformation).
+
+> Remember to use `OPENVIDU_EDITION=enterprise` to run the deployment as OpenVidu enterprise.
+
+### Migrating from 2.27.0 to 2.28.0 (On premises - Single master deployment)
+<br>
+
+Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.27.0 to 2.28.0 OpenVidu Pro (On premises)](https://docs.openvidu.io/en/2.28.0/deployment/pro/upgrading/#migrating-from-2270-to-2280-on-premises).
+
+> Remember to use `OPENVIDU_EDITION=enterprise` to run the deployment as OpenVidu enterprise.
+
+### Migrating from 2.27.0 to 2.28.0 (AWS Cloudformation - High Availability deployment)
+<br>
+
+For OpenVidu Enterprise with High Availability, the upgrading process can not be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration and recordings. You can access to it from your CloudFormation panel, at the **Resources** section.
+
+To upgrade you will need to deploy the newer Cloudformation template of the version you want to deploy.
+If you want to keep in your new deployment your configuration and recordings, follow from step **1)** to **5)**, Otherwise just start from step **3)**:
+
+<br>
+
+**1)** Clone your current S3 bucket with all of your data to a new S3 bucket. You do not need any tool installed on your machine. You can open your [AWS cloudshell](https://docs.aws.amazon.com/cloudshell/latest/userguide/welcome.html){:target="_blank"} and execute:
+
+```
+aws s3api create-bucket \
+    --bucket <new-bucket-v2.28.0> \
+    --region <your-region>
+aws s3 sync s3://<bucket-v2.27.0> s3://<new-bucket-v2.28.0>
+```
+
+**2)** Remove from the new bucket the file named `.env`, located in the root directory of the bucket. This is because we want OpenVidu Enterprise to generate a new one for us.
+
+**3)** Deploy the Cloudformation template of 2.28.0 from [this instructions](https://docs.openvidu.io/en/2.28.0/deployment/enterprise/aws/#high-availability-deployment). If you've followed steps 1 and 2, put at the **`OpenVidu S3 bucket`** parameter your new bucket, otherwise just keep the parameter blank.
+
+**4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.28.0/deployment/enterprise/aws/#check-cluster-after-deploy)
+
+**5)** Check your new S3 bucket (or check the `new-bucket-v2.28.0` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow [this section](https://docs.openvidu.io/en/2.28.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
+
+<br>
 
 ## Migrating from 2.26.2 to 2.27.0
 
