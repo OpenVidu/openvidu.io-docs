@@ -63,7 +63,7 @@ We provide our own deployment based on the [Coturn](https://github.com/coturn/co
 **3)** Execute this command to install our Coturn deployment.
 
 ```bash
-curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.5.2/install_openvidu_external_coturn.sh | bash
+curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.6.2/install_openvidu_external_coturn.sh | bash
 ```
 
 **4)** Fill in the file `/opt/coturn/.env` these environment variables:
@@ -153,7 +153,7 @@ but you may want to use a certificate purchased from a CA or you have your own s
 **3)** Execute this command to install our Coturn deployment.
 
 ```bash
-curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.5.2/install_openvidu_external_coturn.sh | bash
+curl https://s3.eu-west-1.amazonaws.com/aws.openvidu.io/external-turn/4.6.2/install_openvidu_external_coturn.sh | bash
 ```
 
 **4)** Place your certificates in a directory, for example: `/opt/coturn/owncert`. You should have two files at this directory:
