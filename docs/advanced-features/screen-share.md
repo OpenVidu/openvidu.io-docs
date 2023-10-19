@@ -1,6 +1,7 @@
 # Screen share
 
 - **[How to screen share](#how-to-screen-share)**
+- **[How to share the screen audio](#how-to-share-the-screen-audio)**
 - **[How to know when the user stops sharing the screen](#how-to-know-when-the-user-stops-sharing-the-screen)**
 - **[How to change the resolution when screen sharing](#how-to-change-the-resolution-when-screen-sharing)**
 
@@ -84,6 +85,31 @@ You can check out [openvidu-electron tutorial](tutorials/openvidu-electron/), wh
 
 ---
 
+## How to share the screen audio
+
+You can allow the clients to share the audio of their screens by setting both the `videoSource` and `audioSource` properties of [PublisherProperties](/api/openvidu-browser/interfaces/PublisherProperties.html){target="_blank"} object to `"screen"`:
+
+```javascript
+var publisher = OV.initPublisher("html-element-id", {
+    videoSource: "screen",
+    audioSource: "screen"
+});
+```
+
+This will add a toggle to the native dialog of the browser asking the user for permission to share the audio of the screen.
+
+<div class="row">
+    <div class="pro-gallery" style="margin: 20px 0">
+        <a data-fancybox="gallery" data-type="image" href="img/docs/advanced-features/screen-share-audio.png" class="fancybox-img"><img class="img-responsive" style="margin: auto; max-height: 450px" src="img/docs/advanced-features/screen-share-audio.png"/></a>
+    </div>
+</div>
+
+> **NOTE**: check browser compatibility for screen audio in the row ["Audio capture support"](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API/Using_Screen_Capture#browser_compatibility){target="_blank"}
+
+<br>
+
+---
+
 ## How to know when the user stops sharing the screen
 
 You can use native Web API to add a listener for determining when the user pressed the "Stop sharing" button shown by browsers when sharing a window or screen. You can do it like this:
@@ -103,10 +129,7 @@ var publisher = OV.initPublisherAsync({
 If that doesn't work (it may only work in certain clients, but not in others) you can also try [event ended of MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/ended_event){:target="_blank"}, which serves the same purpose. Following the same example above that would be:
 
 ```javascript
-var OV = new OpenVidu();
-var publisher = OV.initPublisherAsync({
-    videoSource: "screen"
-}).then(publisher => {
+var OV = new OpenVidu();mkdocs serve
     publisher.stream.getMediaStream().getVideoTracks()[0].addEventListener('ended', () => {
         console.log('User pressed the "Stop sharing" button');
     });
@@ -148,3 +171,7 @@ publisher.once('accessAllowed', () => {
 ```
 
 <br>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+<script type='text/javascript' src='js/fancybox-setup.js'></script>
