@@ -59,13 +59,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/ApiDirectiveModule.html" data-type="entity-link" >ApiDirectiveModule</a>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' : 'data-target="#xs-directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' }>
+                                        'data-target="#directives-links-module-ApiDirectiveModule-cc0a1aa456382e167b815b147dc70dc0e93ff1d6ac9f1979ecd332eb7f666d55a381e562e2934e300357b6848e99fcf7689bf7325c4e88a5737315f53fb6e016"' : 'data-target="#xs-directives-links-module-ApiDirectiveModule-cc0a1aa456382e167b815b147dc70dc0e93ff1d6ac9f1979ecd332eb7f666d55a381e562e2934e300357b6848e99fcf7689bf7325c4e88a5737315f53fb6e016"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' :
-                                        'id="xs-directives-links-module-ApiDirectiveModule-5710a3666c576a46f92586930009f2264ecdfc1c525b8d2b742c90980ea7a39e632cfedac061e2583472b42b1c97221613716e6050214ba91354dbb347524d01"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-ApiDirectiveModule-cc0a1aa456382e167b815b147dc70dc0e93ff1d6ac9f1979ecd332eb7f666d55a381e562e2934e300357b6848e99fcf7689bf7325c4e88a5737315f53fb6e016"' :
+                                        'id="xs-directives-links-module-ApiDirectiveModule-cc0a1aa456382e167b815b147dc70dc0e93ff1d6ac9f1979ecd332eb7f666d55a381e562e2934e300357b6848e99fcf7689bf7325c4e88a5737315f53fb6e016"' }>
                                         <li class="link">
                                             <a href="directives/ActivitiesPanelBroadcastingActivityDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ActivitiesPanelBroadcastingActivityDirective</a>
                                         </li>
@@ -115,10 +115,19 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <a href="directives/RecordingActivityRecordingsListDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RecordingActivityRecordingsListDirective</a>
                                         </li>
                                         <li class="link">
+                                            <a href="directives/SimulcastDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SimulcastDirective</a>
+                                        </li>
+                                        <li class="link">
                                             <a href="directives/StreamDisplayAudioDetectionDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StreamDisplayAudioDetectionDirective</a>
                                         </li>
                                         <li class="link">
                                             <a href="directives/StreamDisplayParticipantNameDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StreamDisplayParticipantNameDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/StreamFrameRateDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StreamFrameRateDirective</a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="directives/StreamResolutionDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StreamResolutionDirective</a>
                                         </li>
                                         <li class="link">
                                             <a href="directives/StreamSettingsButtonDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StreamSettingsButtonDirective</a>

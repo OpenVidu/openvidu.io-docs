@@ -1536,7 +1536,7 @@ Returns an object with the current [OpenVidu configuration](reference-docs/openv
 
 ```json
 {
-    "VERSION": "2.28.0",
+    "VERSION": "2.29.0",
     "DOMAIN_OR_PUBLIC_IP": "my.openvidu.ip",
     "HTTPS_PORT": 443,
     "OPENVIDU_PUBLICURL": "https://my.openvidu.ip",
@@ -1548,7 +1548,7 @@ Returns an object with the current [OpenVidu configuration](reference-docs/openv
     "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900,
     "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600,
     "OPENVIDU_RECORDING": true,
-    "OPENVIDU_RECORDING_VERSION": "2.28.0",
+    "OPENVIDU_RECORDING_VERSION": "2.29.0",
     "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/",
     "OPENVIDU_RECORDING_PUBLIC_ACCESS": false,
     "OPENVIDU_RECORDING_NOTIFICATION": "moderator",
@@ -1569,8 +1569,8 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
 
 ```json
 {
-    "VERSION": "2.28.0",
-    "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.28.0",
+    "VERSION": "2.29.0",
+    "OPENVIDU_SERVER_DEPENDENCY_VERSION": "2.29.0",
     "DOMAIN_OR_PUBLIC_IP": "my.openvidu.ip",
     "HTTPS_PORT": 443,
     "OPENVIDU_PUBLICURL": "https://my.openvidu.ip",
@@ -1582,7 +1582,7 @@ This is an example of an object returned by OpenVidu Pro. It includes all proper
     "OPENVIDU_SESSIONS_GARBAGE_INTERVAL": 900,
     "OPENVIDU_SESSIONS_GARBAGE_THRESHOLD": 3600,
     "OPENVIDU_RECORDING": true,
-    "OPENVIDU_RECORDING_VERSION": "2.28.0",
+    "OPENVIDU_RECORDING_VERSION": "2.29.0",
     "OPENVIDU_RECORDING_PATH": "/opt/openvidu/recordings/",
     "OPENVIDU_RECORDING_PUBLIC_ACCESS": false,
     "OPENVIDU_RECORDING_NOTIFICATION": "moderator",

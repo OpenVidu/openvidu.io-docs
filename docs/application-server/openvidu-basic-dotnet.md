@@ -15,7 +15,7 @@ To run this application you will need **.NET**:
 #### Download repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.28.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.29.0
 cd openvidu-tutorials/openvidu-basic-dotnet
 ```
 

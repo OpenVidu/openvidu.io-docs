@@ -128,6 +128,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#unpublishScreen" >unpublishScreen</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateVideoEncodingParameters" >updateVideoEncodingParameters</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -202,7 +206,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Returns the remote connections of the Session.
-See <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
+See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
 </div>
 
                     <div class="io-description">
@@ -235,7 +239,7 @@ See <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Con
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
+                    <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
 </div>
 
                     <div class="io-description">
@@ -307,7 +311,7 @@ TODO: Remove this method in release 2.29.0
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Publish or unpublish the audio stream (if available).
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
 <p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
@@ -518,7 +522,7 @@ TODO: Remove this method in release 2.29.0
                 <td class="col-md-4">
                     <div class="io-description"><p>Publish or unpublish the video stream (if available).
 It hides the camera muted stream if screen is sharing.
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.28.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
 <p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
@@ -731,6 +735,71 @@ Hide the camera muted stream when screen is sharing.</p>
                     </div>
                     <div class="io-description">
                         <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateVideoEncodingParameters"></a>
+                    <span class="name">
+                        <span class="modifier">Async</span>
+                        <span ><b>updateVideoEncodingParameters</b></span>
+                        <a href="#updateVideoEncodingParameters"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateVideoEncodingParameters(streamManager: StreamManager)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>streamManager</td>
+                                    <td>
+                                            <code>StreamManager</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
 
                     </div>
                     <div class="io-description">

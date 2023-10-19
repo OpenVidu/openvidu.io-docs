@@ -208,7 +208,7 @@ $ ./base-services start
 ```
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number like:<br>
-> <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_ov_enterprise_ha_base_<strong>2.28.0</strong>.sh | bash</code>
+> <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_ov_enterprise_ha_base_<strong>2.29.0</strong>.sh | bash</code>
 
 **5)** Go to `ov-enterprise-base-services` folder:
 
@@ -292,7 +292,7 @@ cd /opt
 </p>
 
 > To deploy a fixed version, including previous ones, replace `latest` with the desired version number like:<br>
-> <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_enterprise_ha_node_<strong>2.28.0</strong>.sh | bash</code>
+> <code>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_enterprise_ha_node_<strong>2.29.0</strong>.sh | bash</code>
 
 This will download all required files into `openvidu` folder and will show this message with basic instructions:
 
