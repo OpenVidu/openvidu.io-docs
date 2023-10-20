@@ -184,8 +184,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.29.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.29.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -231,8 +231,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.29.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-2"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.29.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -398,8 +398,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.28.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.28.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -445,8 +445,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.28.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.28.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -612,8 +612,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.27.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-5"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.27.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-5" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -659,8 +659,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.27.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-6"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.27.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-6" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -826,8 +826,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.26.2.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-7"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.26.2.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-7" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -873,8 +873,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.2.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-8"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.26.2.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-8" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1040,8 +1040,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.25.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-9"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.25.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-9" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1087,8 +1087,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.25.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-10"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.25.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-10" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1254,8 +1254,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.24.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-11"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.24.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-11" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1312,8 +1312,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.24.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-12"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.24.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-12" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1478,8 +1478,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.23.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-13"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.23.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-13" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1527,8 +1527,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.23.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-14"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.23.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-14" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1695,8 +1695,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.22.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-15"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.22.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-15" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1745,8 +1745,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.22.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-16"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.22.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-16" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1827,8 +1827,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.21.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-17"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.21.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-17" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1877,8 +1877,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.21.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-18"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.21.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-18" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -1955,8 +1955,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.20.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-19"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.20.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-19" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2004,8 +2004,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.20.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-20"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.20.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-20" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2075,8 +2075,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.19.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-21"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.19.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-21" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2124,8 +2124,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.19.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-22"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.19.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-22" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2196,8 +2196,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.18.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-23"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.18.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-23" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2245,8 +2245,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.18.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-24"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.18.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-24" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2318,8 +2318,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.17.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-25"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.17.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-25" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2369,8 +2369,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.17.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-26"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.17.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-26" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2441,8 +2441,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.16.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-27"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.16.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-27" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2492,8 +2492,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.16.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-28"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.16.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-28" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2570,8 +2570,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.15.1.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-29"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.15.1.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-29" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2616,8 +2616,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.1.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-30"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.15.1.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-30" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2690,8 +2690,8 @@ cd /opt/kms # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-4"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.14.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-4" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-31"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_media_node_2.14.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-31" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 
@@ -2732,8 +2732,8 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-3"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.14.0.sh | bash -s upgrade</strong></code>
-<button id="btn-copy-3" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+<code id="code-32"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_pro_2.14.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-32" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
 

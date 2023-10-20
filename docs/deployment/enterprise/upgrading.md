@@ -49,6 +49,7 @@ Depending of the type of deployment you have (_AWS_ or _On Premises_), you will 
 - **[Migrating from 2.28.0 to 2.29.0 (AWS Cloudformation - Single master deployment)](#migrating-from-2280-to-2290-aws-cloudformation-single-master-deployment)**
 - **[Migrating from 2.28.0 to 2.29.0 (On premises - Single master deployment)](#migrating-from-2280-to-2290-on-premises-single-master-deployment)**
 - **[Migrating from 2.28.0 to 2.29.0 (AWS Cloudformation - High Availability deployment)](#migrating-from-2280-to-2290-aws-cloudformation-high-availability-deployment)**
+- **[Migrating from 2.28.0 to 2.29.0 (On Premises - High Availability deployment)](#migration-from-2280-to-2290-on-premises-high-availability-deployment)**
 
 ### Migrating from 2.28.0 to 2.29.0 (AWS Cloudformation - Single master deployment)
 <br>
@@ -90,6 +91,109 @@ aws s3 sync s3://<bucket-v2.28.0> s3://<new-bucket-v2.29.0>
 **4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.29.0/deployment/enterprise/aws/#check-cluster-after-deploy)
 
 **5)** Check your new S3 bucket (or check the `new-bucket-v2.29.0` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow [this section](https://docs.openvidu.io/en/2.29.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
+
+<br>
+
+### Migration from 2.28.0 to 2.29.0 (On Premises - High Availability deployment)
+
+First make sure to stop all the nodes of your cluster. Then, follow the next steps:
+
+#### 1) Upgrading Base Services
+
+If you are using in your On premises deployment the Base Services node, you will need to upgrade it first. Connect to the Base Services instance through SSH. Log with `root` permissions and go to OpenVidu installation path, by default `/opt/ov-enterprise-base-services`
+
+
+```bash
+sudo -s
+cd /opt/ov-enterprise-base-services # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_ov_enterprise_ha_base_2.29.0.sh | bash -s upgrade</strong></code>
+<button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu Enterprise HA base services successfully upgraded to version v2.29.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.29.0 services
+
+2. The previous file '.env' remains intact, but a new file '.env-v2.29.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.29.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.29.0'.
+
+3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
+However, if you were using your own application, a file called 'docker-compose.override.yml-v2.29.0'
+has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
+
+3. Start new versions of Openvidu Enterprise HA Base Services
+------------------------------------------------
+$ ./base-services start
+------------------------------------------------
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.28.0'
+```
+
+After that, you can start the new version of OpenVidu Base Services with:
+
+```console
+./base-services start
+```
+
+<br>
+
+#### 2) Upgrading OpenVidu Nodes
+
+
+SSH to your OpenVidu Nodes with `root` permissions and go to OpenVidu installation path, by default `/opt/openvidu`:
+
+```bash
+sudo -s
+cd /opt/openvidu # Recommended and default installation path
+```
+
+Then you can run the upgrade script with this command:
+
+<p style="text-align: start">
+<code id="code-2"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_enterprise_ha_node_2.29.0.sh | bash -s upgrade
+</strong></code>
+<button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
+                              title="Copy to Clipboard">Copy</button>
+</p>
+
+The installation steps will output their progress as they run. If everything goes well, at the end you will see a message with the final instructions to successfully complete the upgrade process:
+
+```console
+================================================
+Openvidu Enterprise HA successfully upgraded to version v2.29.0
+================================================
+
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.29.0 services
+
+2. The previous file '.env' remains intact, but a new file '.env-v2.29.0' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.29.0'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.29.0'.
+
+3. Start new version of Openvidu
+------------------------------------------------
+$ ./openvidu start
+------------------------------------------------
+
+If you want to rollback, all the files from the previous installation have been copied to folder '.old-2.28.0'
+```
+
+Make sure that you have all of your needed properties at your .env file and start OpenVidu with:
+
+```console
+./openvidu start
+```
 
 <br>
 
