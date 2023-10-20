@@ -1,7 +1,9 @@
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-    for (var i = 1; i < 14; i++) {
 
+    var buttonCopyList = $("[id^='btn-copy-']");
+
+    $('[data-toggle="tooltip"]').tooltip();
+    for (var i = 1; i <= buttonCopyList.length; i++) {
         $('#btn-copy-' + i).bind('click', {id : i}, function (event) {
             window.getSelection().empty();
             var id = event.data.id;
