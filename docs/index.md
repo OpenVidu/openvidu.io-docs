@@ -219,7 +219,9 @@ The possibilities are endless. You can check our **[Demos](https://openvidu.io/d
 
 Acknowledgments
 ===============
-OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research. This work has also been supported by the Regional Government of Madrid (Spain) (CM) through project EDGEDATA-CM (P2018/TCS-4499) cofunded by FSE & FEDER.
+OpenVidu has been supported under project LERNIM (RTC-2016-4674-7), co-funded by the _Ministry of Economy, Finance and Competitiveness_ of Spain, as well as by the _European Regional Development Fund_, whose main goal is to promote technological development, innovation and high-quality research. 
+
+OpenVidu has been supported under project project EDGEDATA-CM (P2018/TCS-4499) cofunded by the Regional Government of Madrid (Spain) (CM) through and FSE & FEDER.
 
 <p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
   <img class="img-acknowledgments" width="400px" src="img/sponsors/footer-ministerio-economia-400-optimized.png">
@@ -227,6 +229,11 @@ OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by
   <img class="img-acknowledgments" width="100px" src="img/sponsors/comunidaddemadrid.png">
 </p>
 
+OpenVidu has been supported under project "CPP2021-008720 NewGenVidu: An elastic, user-friendly and privacy-friendly videoconferencing platform", funded by MCIN/AEI/10.13039/501100011033 and by the European Union-NextGenerationEU/PRTR.
+
+<p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
+  <img height="150px" src="img/logos/support.jpg">
+</p>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
