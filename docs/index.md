@@ -227,6 +227,11 @@ OpenVidu has been supported under Project LERNIM (RTC-2016-4674-7), co-funded by
   <img class="img-acknowledgments" width="100px" src="img/sponsors/comunidaddemadrid.png">
 </p>
 
+OpenVidu has been supported under project "CPP2021-008720 NewGenVidu: An elastic, user-friendly and privacy-friendly videoconferencing platform", funded by MCIN/AEI/10.13039/501100011033 and by the European Union-NextGenerationEU/PRTR.
+
+<p style="margin-top: 35px; margin-bottom: 25px;text-align: center;">
+  <img height="150px" src="https://openvidu.io/img/logos/support.jpg">
+</p>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
