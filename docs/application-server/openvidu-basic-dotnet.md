@@ -2,15 +2,16 @@
 
 <a href="https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-basic-dotnet" target="_blank"><i class="icon ion-social-github"> Check it on GitHub</i></a>
 
-This is a minimal OpenVidu server application sample built for Python with .NET with [ASP.NET Core Minimal APIs](https://docs.microsoft.com/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio){:target="_blank"}.
+This is a minimal OpenVidu server application sample built for .NET with [ASP.NET Core Minimal APIs](https://docs.microsoft.com/aspnet/core/tutorials/min-web-api?view=aspnetcore-6.0&tabs=visual-studio){:target="\_blank"}.
 It internally uses the [OpenVidu REST API](reference-docs/REST-API/).
 
 ## Running this application
 
 #### Prerequisites
+
 To run this application you will need **.NET**:
 
-- [.NET 7.0](https://dotnet.microsoft.com/en-us/download){:target="_blank"}
+- [.NET 7.0](https://dotnet.microsoft.com/en-us/download){:target="\_blank"}
 
 #### Download repository
 
@@ -27,15 +28,14 @@ dotnet run
 
 ## Understanding the code
 
-The application is a simple Spring Boot application with a single controller class `Controller.java` that exports two endpoints:
+The application is a simple ASP.NET Core Minimal APIs application with a single file `Program.cs` with two endpoints:
 
 - `/api/sessions` : Initialize a session.
 - `/api/sessions/:sessionId/connections` : Create a connection.
 
 > You can get more information about these endpoints in the [Application Server Endpoints](application-server/#rest-endpoints) section.
 
-
-Let's see the code of the controller:
+Let's see the code of `Program.cs` file:
 
 ```cs
 var builder = WebApplication.CreateBuilder(args);
