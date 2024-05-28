@@ -68,8 +68,8 @@
 
 ### 3) Option _Specify template_ ⇨ _Amazon S3 URL_ with the following URL
 
-<code id="code-2">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-latest.yaml</code>
-<button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button" title="Copy to Clipboard">Copy</button>
+<code id="code-1">https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/CF-OpenVidu-Pro-latest.yaml</code>
+<button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button" title="Copy to Clipboard">Copy</button>
 
 <p>
     <img class="img-responsive deploy-img" src="img/docs/deployment/CF_url.png">
