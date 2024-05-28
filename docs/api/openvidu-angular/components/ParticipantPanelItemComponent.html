@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,20 +84,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   ParticipantPanelItemComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -140,12 +190,12 @@ It will recognise the following directive in a child element.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -164,10 +214,13 @@ It will recognise the following directive in a child element.</p>
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>ov-participant-panel-item</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -192,7 +245,7 @@ It will recognise the following directive in a child element.</p>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -235,7 +288,7 @@ It will recognise the following directive in a child element.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -259,7 +312,7 @@ It will recognise the following directive in a child element.</p>
 
 
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -332,7 +385,7 @@ It will recognise the following directive in a child element.</p>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><mat-list>	<mat-list-item>		<mat-icon matListAvatar class="participant-avatar">person</mat-icon>		<h3 matLine class="participant-nickname">{{ _participant.nickname }}</h3>		<p matLine class="participant-subtitle">{{ _participant | streamTypesEnabled }}</p>		<!-- <p matLine>			<span class="participant-subtitle"></span>		</p> -->		<div class="participant-action-buttons">			<button				mat-icon-button				id="mute-btn"				*ngIf="!_participant.local && showMuteButton"				[class.warn-btn]="_participant.isMutedForcibly"				(click)="toggleMuteForcibly()"			>				<mat-icon *ngIf="!_participant.isMutedForcibly">volume_up</mat-icon>				<mat-icon *ngIf="_participant.isMutedForcibly">volume_off</mat-icon>			</button>			<!-- External item elements  -->			<ng-container *ngIf="participantPanelItemElementsTemplate">				<ng-container *ngTemplateOutlet="participantPanelItemElementsTemplate"></ng-container>			</ng-container>		</div>	</mat-list-item></mat-list></div>'
+        var COMPONENT_TEMPLATE = '<div><mat-list>	<mat-list-item>		<div matListItemIcon class="participant-avatar" [style.background-color]="_participant.colorProfile">			<mat-icon>person</mat-icon>		</div>		<h3 matListItemLine class="participant-nickname">			{{ _participant.nickname }}			<span *ngIf="_participant.isLocal"> ({{ \'PANEL.PARTICIPANTS.YOU\' | translate }})</span>		</h3>		<p matListItemLine class="participant-subtitle">{{ _participant | streamTypesEnabled }}</p>		<div class="participant-action-buttons" matListItemMeta>			<button				mat-icon-button				id="mute-btn"				*ngIf="!_participant.local && showMuteButton"				[class.warn-btn]="_participant.isMutedForcibly"				(click)="toggleMuteForcibly()"			>				<mat-icon *ngIf="!_participant.isMutedForcibly">volume_up</mat-icon>				<mat-icon *ngIf="_participant.isMutedForcibly">volume_off</mat-icon>			</button>			<!-- External item elements  -->			<ng-container *ngIf="participantPanelItemElementsTemplate">				<ng-container *ngTemplateOutlet="participantPanelItemElementsTemplate"></ng-container>			</ng-container>		</div>	</mat-list-item></mat-list></div>'
     var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'AdminDashboardComponent', 'selector': 'ov-admin-dashboard'},{'name': 'AdminLoginComponent', 'selector': 'ov-admin-login'},{'name': 'BroadcastingActivityComponent', 'selector': 'ov-broadcasting-activity'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
     var DIRECTIVES = [{'name': 'ActivitiesPanelBroadcastingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelBroadcastingActivity], ov-activities-panel[broadcastingActivity]'},{'name': 'ActivitiesPanelDirective', 'selector': '[ovActivitiesPanel]'},{'name': 'ActivitiesPanelRecordingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelRecordingActivity], ov-activities-panel[recordingActivity]'},{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AdminLoginDirective', 'selector': 'ov-admin-login[error]'},{'name': 'AdminRecordingsListDirective', 'selector': 'ov-admin-dashboard[recordingsList]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'BroadcastingActivityBroadcastingErrorDirective', 'selector': 'ov-videoconference[broadcastingActivityBroadcastingError], ov-broadcasting-activity[broadcastingError]'},{'name': 'CaptionsLangDirective', 'selector': 'ov-videoconference[captionsLang]'},{'name': 'CaptionsLangOptionsDirective', 'selector': 'ov-videoconference[captionsLangOptions]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LangDirective', 'selector': 'ov-videoconference[lang]'},{'name': 'LangOptionsDirective', 'selector': 'ov-videoconference[langOptions]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'RecordingActivityRecordingErrorDirective', 'selector': 'ov-videoconference[recordingActivityRecordingError], ov-recording-activity[recordingError]'},{'name': 'RecordingActivityRecordingsListDirective', 'selector': 'ov-videoconference[recordingActivityRecordingsList], ov-recording-activity[recordingsList]'},{'name': 'SimulcastDirective', 'selector': 'ov-videoconference[simulcast]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamFrameRateDirective', 'selector': 'ov-videoconference[streamFrameRate], ov-stream[frameRate]'},{'name': 'StreamResolutionDirective', 'selector': 'ov-videoconference[streamResolution], ov-stream[resolution]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarBroadcastingButtonDirective', 'selector': 'ov-videoconference[toolbarBroadcastingButton], ov-toolbar[broadcastingButton]'},{'name': 'ToolbarCaptionsButtonDirective', 'selector': 'ov-videoconference[toolbarCaptionsButton], ov-toolbar[captionsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'ToolbarSettingsButtonDirective', 'selector': 'ov-videoconference[toolbarSettingsButton], ov-toolbar[settingsButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
     var ACTUAL_COMPONENT = {'name': 'ParticipantPanelItemComponent'};
@@ -384,6 +437,19 @@ It will recognise the following directive in a child element.</p>
             var COMPODOC_CURRENT_PAGE_URL = 'ParticipantPanelItemComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -38,18 +87,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Directives</li>
-  <li >ParticipantPanelItemElementsDirective</li>
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >ParticipantPanelItemElementsDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -67,8 +119,8 @@ In the example below we add a simple button to disconnect from the session.</p>
 <p>With *<strong>ovParticipantPanelItemElements</strong> directive we can access the participant object from its context using
 the <code>let</code> keyword and referencing the <code>participant</code> variable: <code>*ovParticipantPanelItem=&quot;let participant&quot;</code>.
 Now we can access the <a href="../classes/ParticipantAbstractModel.html">ParticipantAbstractModel</a> object and enable the button just for the local participant.</p>
-<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.29.0/components/openvidu-custom-participant-panel-item-element#running-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.30.0/components/openvidu-custom-participant-panel-item-element#running-this-tutorial">here</a>.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference
     *ngIf=&quot;connected&quot;
     [tokens]=&quot;tokens&quot;
     [toolbarDisplaySessionName]=&quot;false&quot;&gt;
@@ -78,7 +130,7 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
         &lt;/button&gt;
     &lt;/div&gt;
 &lt;/ov-videoconference&gt;
-&lt;div *ngIf=&quot;!connected&quot; style=&quot;text-align: center;&quot;&gt;Session disconnected&lt;/div&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class ParticipantPanelItemElementsDirectiveComponent {
+&lt;div *ngIf=&quot;!connected&quot; style=&quot;text-align: center;&quot;&gt;Session disconnected&lt;/div&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">export class ParticipantPanelItemElementsDirectiveComponent {
 
     sessionId = &quot;participants-panel-directive-example&quot;;
     tokens!: TokenModel;
@@ -109,7 +161,7 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
 
 
 
-        <section>
+        <section data-compodoc="block-metadata">
             <h3>Metadata</h3>
             <table class="table table-sm table-hover metadata">
                 <tbody>
@@ -119,11 +171,14 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
                         <td class="col-md-9"><code>[ovParticipantPanelItemElements]</code></td>
                     </tr>
 
+
+
+
                 </tbody>
             </table>
         </section>
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -156,13 +211,13 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(template: TemplateRef<any>, viewContainer: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>)</code>
+<code>constructor(template: TemplateRef<any>, viewContainer: ViewContainerRef)</code>
                     </td>
                 </tr>
 
@@ -195,7 +250,7 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
                                                         <td>viewContainer</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                                                                    <code>ViewContainerRef</code>
                                                         </td>
                                                   
                                                     <td>
@@ -217,7 +272,7 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
 
 
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -258,7 +313,7 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                        <i>Type : </i>    <code>ViewContainerRef</code>
 
                     </td>
                 </tr>
@@ -317,6 +372,19 @@ Now we can access the <a href="../classes/ParticipantAbstractModel.html">Partici
             var COMPODOC_CURRENT_PAGE_URL = 'ParticipantPanelItemElementsDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

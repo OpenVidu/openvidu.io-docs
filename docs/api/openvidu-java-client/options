@@ -1,0 +1,26 @@
+-classpath
+'/home/pablo/.m2/repository/org/apache/httpcomponents/client5/httpclient5/5.1.4/httpclient5-5.1.4.jar:/home/pablo/.m2/repository/org/apache/httpcomponents/core5/httpcore5/5.1.5/httpcore5-5.1.5.jar:/home/pablo/.m2/repository/org/apache/httpcomponents/core5/httpcore5-h2/5.1.5/httpcore5-h2-5.1.5.jar:/home/pablo/.m2/repository/commons-codec/commons-codec/1.15/commons-codec-1.15.jar:/home/pablo/.m2/repository/com/google/code/gson/gson/2.10/gson-2.10.jar:/home/pablo/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/home/pablo/.m2/repository/commons-validator/commons-validator/1.7/commons-validator-1.7.jar:/home/pablo/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/home/pablo/.m2/repository/commons-digester/commons-digester/2.1/commons-digester-2.1.jar:/home/pablo/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/home/pablo/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/pablo/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar'
+-encoding
+'UTF-8'
+-public
+--release
+11
+-sourcepath
+'/home/pablo/Desktop/2.30.0/openvidu/openvidu-java-client/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2024 <a href="https://openvidu.io">OpenVidu</a>. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/pablo/Desktop/2.30.0/openvidu/openvidu-java-client/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'OpenVidu Java Client 2.30.0 API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' '/home/pablo/Desktop/2.30.0/openvidu/openvidu-java-client/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'OpenVidu Java Client 2.30.0 API'

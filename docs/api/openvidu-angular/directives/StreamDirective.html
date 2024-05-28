@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -38,18 +87,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Directives</li>
-  <li >StreamDirective</li>
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >StreamDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -66,13 +118,13 @@
 In the example below we customize the participant&#39;s nickname position and styles, replacing the default stream component.</p>
 <p>With *<strong>ovStream</strong> directive we can access to the stream object from its context using the <code>let</code> keyword and
 referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&quot;</code>. Now we can access the <a href="../interfaces/StreamModel.html">StreamModel</a> object.</p>
-<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.29.0/components/openvidu-custom-stream#running-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot;&gt;
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.30.0/components/openvidu-custom-stream#running-this-tutorial">here</a>.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot;&gt;
     &lt;div *ovStream=&quot;let stream&quot;&gt;
         &lt;ov-stream [stream]=&quot;stream&quot; [displayParticipantName]=&quot;false&quot;&gt;&lt;/ov-stream&gt;
         &lt;p&gt;{{ stream.participant.nickname }}&lt;/p&gt;
     &lt;/div&gt;
-&lt;/ov-videoconference&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class StreamDirectiveComponent {
+&lt;/ov-videoconference&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">export class StreamDirectiveComponent {
 
     sessionId = &#39;toolbar-directive-example&#39;;
     tokens!: TokenModel;
@@ -96,7 +148,7 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
 
 
 
-        <section>
+        <section data-compodoc="block-metadata">
             <h3>Metadata</h3>
             <table class="table table-sm table-hover metadata">
                 <tbody>
@@ -106,11 +158,14 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
                         <td class="col-md-9"><code>[ovStream]</code></td>
                     </tr>
 
+
+
+
                 </tbody>
             </table>
         </section>
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -143,13 +198,13 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
     </table>
 </section>
 
-            <section>
+            <section data-compodoc="block-constructor">
     <h3 id="constructor">Constructor</h3>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(template: TemplateRef<any>, container: <a href="https://angular.io/api/core/ViewContainerRef" target="_blank">ViewContainerRef</a>)</code>
+<code>constructor(template: TemplateRef<any>, container: ViewContainerRef)</code>
                     </td>
                 </tr>
 
@@ -182,7 +237,7 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
                                                         <td>container</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                                                                    <code>ViewContainerRef</code>
                                                         </td>
                                                   
                                                     <td>
@@ -204,7 +259,7 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
 
 
 
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -223,7 +278,7 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/core/ViewContainerRef" target="_blank" >ViewContainerRef</a></code>
+                        <i>Type : </i>    <code>ViewContainerRef</code>
 
                     </td>
                 </tr>
@@ -304,6 +359,19 @@ referencing the <code>stream</code> variable: <code>*ovStream=&quot;let stream&q
             var COMPODOC_CURRENT_PAGE_URL = 'StreamDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

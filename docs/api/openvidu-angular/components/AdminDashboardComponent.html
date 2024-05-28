@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,20 +84,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   AdminDashboardComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -62,15 +112,16 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+                <code>OnInit</code>
+                <code>OnDestroy</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
 
 
 
@@ -86,6 +137,8 @@
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>ov-admin-dashboard</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -113,7 +166,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -202,7 +255,7 @@ The recordings should be updated using the REST API.</p>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="dashboard-container">	<mat-toolbar class="header">		<span>{{ \'ADMIN.DASHBOARD\' | translate }}</span>		<div class="refresh-btn">			<button matSuffix mat-icon-button aria-label="Refresh" (click)="logout()">				<mat-icon>logout</mat-icon>			</button>		</div>	</mat-toolbar>	<div class="dashboard-body">		<div id="toolbar-search">			<div class="search-bar">				<textarea					id="search-input"					maxlength="100"					rows="4"					placeholder="{{ \'ADMIN.SEARCH\' | translate }}"					autocomplete="off"					[(ngModel)]="searchValue"				></textarea>				<div>					<button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue = \'\'">						<mat-icon>close</mat-icon>					</button>					<button *ngIf="!searchValue" matSuffix mat-icon-button aria-label="Search">						<mat-icon>search</mat-icon>					</button>				</div>			</div>			<div>				<button id="sort-menu-btn" color="primary" mat-flat-button [matMenuTriggerFor]="sortMenu">					{{ sortByLegend }}					<mat-icon>arrow_drop_down</mat-icon>				</button>				<mat-menu #sortMenu="matMenu">					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsByDate()">{{ \'ADMIN.DATE\' | translate }}</button>					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsByDuration()">						{{ \'ADMIN.DURATION\' | translate }}					</button>					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsBySize()">{{ \'ADMIN.SIZE\' | translate }}</button>				</mat-menu>				<div class="refresh-btn">					<button matSuffix mat-icon-button aria-label="Refresh" (click)="refreshRecordings()">						<mat-icon>refresh</mat-icon>					</button>				</div>			</div>		</div>		<div class="recordings-container">			<div *ngIf="!recordings || recordings.length === 0" class="no-recordings-warn">				<span>{{ \'ADMIN.NO_RECORDINGS\' | translate }}</span>			</div>			<div				*ngFor="					let recording of recordings						| searchByStringProperty: { properties: [\'sessionId\', \'properties?.name || name\'], filter: searchValue }				"				class="item"			>				<mat-card class="recording-card">					<mat-card-content>						<div class="video-div-container">							<img *ngIf="!!recording.url" [src]="recording.url | thumbnailUrl" />							<div class="video-btns">								<button									*ngIf="recording.status !== \'failed\' && recording.status !== \'stopped\'"									mat-icon-button									(click)="play(recording)"								>									<mat-icon id="play" aria-label="Play" title="{{ \'PANEL.RECORDING.PLAY\' | translate }}"										>play_arrow</mat-icon									>								</button>								<button									(click)="download(recording)"									*ngIf="!!recording.url && recording.status !== \'failed\' && recording.status !== \'stopped\'"									mat-icon-button									aria-label="Download"									title="{{ \'PANEL.RECORDING.DOWNLOAD\' | translate }}"								>									<mat-icon id="download">download</mat-icon>								</button>								<button mat-icon-button class="delete-recording-btn" (click)="deleteRecording(recording.id)">									<mat-icon id="delete" aria-label="Delete" title="{{ \'PANEL.RECORDING.DELETE\' | translate }}"										>delete</mat-icon									>								</button>							</div>						</div>						<div class="video-info-container">							<div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.NAME\' | translate }}</span									><span class="video-card-value">{{ recording.properties?.name || recording.name }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.SESSION\' | translate }}</span									><span class="video-card-value">{{ recording.sessionId }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.OUTPUT\' | translate }}</span									><span class="video-card-value">{{ recording.properties?.outputMode || recording.outputMode }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.DATE\' | translate }}</span									><span class="video-card-value">{{ recording.createdAt | date: \'M/d/yy, H:mm\' }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.DURATION\' | translate }}</span									><span class="video-card-value">{{ recording.duration | duration }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.SIZE\' | translate }}</span									><span class="video-card-value">{{ recording.size / 1024 / 1024 | number: \'1.1-2\' }} MBs</span>								</div>								<div class="video-div-tag" style="margin-top: 11px">									<span class="video-card-tag">{{ \'ADMIN.STATUS\' | translate }}</span									><span class="video-card-value status-value" [ngClass]="recording.status">{{ recording.status }}</span>								</div>							</div>						</div>					</mat-card-content>				</mat-card>			</div>		</div>	</div>	<mat-toolbar class="footer" fxLayout fxLayout.xs="row" fxLayoutGap="2px" id="footer" role="heading">		<span>{{ \'ADMIN.POWERED_BY\' | translate }}</span>		<a href="https://openvidu.io/">OpenVidu</a>	</mat-toolbar></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="dashboard-container">	<mat-toolbar class="header">		<span>{{ \'ADMIN.DASHBOARD\' | translate }}</span>		<div class="refresh-btn">			<button matSuffix mat-icon-button aria-label="Refresh" (click)="logout()">				<mat-icon>logout</mat-icon>			</button>		</div>	</mat-toolbar>	<div class="dashboard-body">		<div id="toolbar-search">			<div class="search-bar">				<textarea					id="search-input"					maxlength="100"					rows="4"					placeholder="{{ \'ADMIN.SEARCH\' | translate }}"					autocomplete="off"					[(ngModel)]="searchValue"				></textarea>				<div>					<button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue = \'\'">						<mat-icon>close</mat-icon>					</button>					<button *ngIf="!searchValue" matSuffix mat-icon-button aria-label="Search">						<mat-icon>search</mat-icon>					</button>				</div>			</div>			<div>				<button id="sort-menu-btn" color="primary" mat-flat-button [matMenuTriggerFor]="sortMenu">					{{ sortByLegend }}					<mat-icon>arrow_drop_down</mat-icon>				</button>				<mat-menu #sortMenu="matMenu">					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsByDate()">{{ \'ADMIN.DATE\' | translate }}</button>					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsByDuration()">						{{ \'ADMIN.DURATION\' | translate }}					</button>					<button mat-menu-item class="order-select-btn" (click)="sortRecordingsBySize()">{{ \'ADMIN.SIZE\' | translate }}</button>				</mat-menu>				<div class="refresh-btn">					<button matSuffix mat-icon-button aria-label="Refresh" (click)="refreshRecordings()">						<mat-icon>refresh</mat-icon>					</button>				</div>			</div>		</div>		<div class="recordings-container">			<div *ngIf="!recordings || recordings.length === 0" class="no-recordings-warn">				<span>{{ \'ADMIN.NO_RECORDINGS\' | translate }}</span>			</div>			<div				*ngFor="					let recording of recordings						| searchByStringProperty: { properties: [\'sessionId\', \'properties?.name || name\'], filter: searchValue }				"				class="item"			>				<mat-card appearance="outlined" class="recording-card">					<mat-card-content>						<div class="video-div-container">							<img *ngIf="!!recording.url" [src]="recording.url | thumbnailUrl" />							<div class="video-btns">								<button									*ngIf="recording.status !== \'failed\' && recording.status !== \'stopped\'"									mat-icon-button									(click)="play(recording)"								>									<mat-icon id="play" aria-label="Play" title="{{ \'PANEL.RECORDING.PLAY\' | translate }}"										>play_arrow</mat-icon									>								</button>								<button									(click)="download(recording)"									*ngIf="!!recording.url && recording.status !== \'failed\' && recording.status !== \'stopped\'"									mat-icon-button									aria-label="Download"									title="{{ \'PANEL.RECORDING.DOWNLOAD\' | translate }}"								>									<mat-icon id="download">download</mat-icon>								</button>								<button mat-icon-button class="delete-recording-btn" (click)="deleteRecording(recording.id)">									<mat-icon id="delete" aria-label="Delete" title="{{ \'PANEL.RECORDING.DELETE\' | translate }}"										>delete</mat-icon									>								</button>							</div>						</div>						<div class="video-info-container">							<div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.NAME\' | translate }}</span									><span class="video-card-value">{{ recording.properties?.name || recording.name }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.SESSION\' | translate }}</span									><span class="video-card-value">{{ recording.sessionId }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.OUTPUT\' | translate }}</span									><span class="video-card-value">{{ recording.properties?.outputMode || recording.outputMode }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.DATE\' | translate }}</span									><span class="video-card-value">{{ recording.createdAt | date: \'M/d/yy, H:mm\' }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.DURATION\' | translate }}</span									><span class="video-card-value">{{ recording.duration | duration }}</span>								</div>								<div class="video-div-tag">									<span class="video-card-tag">{{ \'ADMIN.SIZE\' | translate }}</span									><span class="video-card-value">{{ recording.size / 1024 / 1024 | number: \'1.1-2\' }} MBs</span>								</div>								<div class="video-div-tag" style="margin-top: 11px">									<span class="video-card-tag">{{ \'ADMIN.STATUS\' | translate }}</span									><span class="video-card-value status-value" [ngClass]="recording.status">{{ recording.status }}</span>								</div>							</div>						</div>					</mat-card-content>				</mat-card>			</div>		</div>	</div>	<mat-toolbar class="footer" fxLayout fxLayout.xs="row" fxLayoutGap="2px" id="footer" role="heading">		<span>{{ \'ADMIN.POWERED_BY\' | translate }}</span>		<a href="https://openvidu.io/">OpenVidu</a>	</mat-toolbar></div></div>'
     var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'AdminDashboardComponent', 'selector': 'ov-admin-dashboard'},{'name': 'AdminLoginComponent', 'selector': 'ov-admin-login'},{'name': 'BroadcastingActivityComponent', 'selector': 'ov-broadcasting-activity'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
     var DIRECTIVES = [{'name': 'ActivitiesPanelBroadcastingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelBroadcastingActivity], ov-activities-panel[broadcastingActivity]'},{'name': 'ActivitiesPanelDirective', 'selector': '[ovActivitiesPanel]'},{'name': 'ActivitiesPanelRecordingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelRecordingActivity], ov-activities-panel[recordingActivity]'},{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AdminLoginDirective', 'selector': 'ov-admin-login[error]'},{'name': 'AdminRecordingsListDirective', 'selector': 'ov-admin-dashboard[recordingsList]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'BroadcastingActivityBroadcastingErrorDirective', 'selector': 'ov-videoconference[broadcastingActivityBroadcastingError], ov-broadcasting-activity[broadcastingError]'},{'name': 'CaptionsLangDirective', 'selector': 'ov-videoconference[captionsLang]'},{'name': 'CaptionsLangOptionsDirective', 'selector': 'ov-videoconference[captionsLangOptions]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LangDirective', 'selector': 'ov-videoconference[lang]'},{'name': 'LangOptionsDirective', 'selector': 'ov-videoconference[langOptions]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'RecordingActivityRecordingErrorDirective', 'selector': 'ov-videoconference[recordingActivityRecordingError], ov-recording-activity[recordingError]'},{'name': 'RecordingActivityRecordingsListDirective', 'selector': 'ov-videoconference[recordingActivityRecordingsList], ov-recording-activity[recordingsList]'},{'name': 'SimulcastDirective', 'selector': 'ov-videoconference[simulcast]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamFrameRateDirective', 'selector': 'ov-videoconference[streamFrameRate], ov-stream[frameRate]'},{'name': 'StreamResolutionDirective', 'selector': 'ov-videoconference[streamResolution], ov-stream[resolution]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarBroadcastingButtonDirective', 'selector': 'ov-videoconference[toolbarBroadcastingButton], ov-toolbar[broadcastingButton]'},{'name': 'ToolbarCaptionsButtonDirective', 'selector': 'ov-videoconference[toolbarCaptionsButton], ov-toolbar[captionsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'ToolbarSettingsButtonDirective', 'selector': 'ov-videoconference[toolbarSettingsButton], ov-toolbar[settingsButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
     var ACTUAL_COMPONENT = {'name': 'AdminDashboardComponent'};
@@ -254,6 +307,19 @@ The recordings should be updated using the REST API.</p>
             var COMPODOC_CURRENT_PAGE_URL = 'AdminDashboardComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

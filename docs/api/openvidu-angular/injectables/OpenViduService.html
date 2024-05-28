@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -39,18 +88,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Injectables</li>
-  <li >OpenViduService</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >OpenViduService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -62,7 +114,7 @@
 
 
 
-            <section>
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -128,10 +180,6 @@
                                     <span class="modifier">Async</span>
                                 <a href="#unpublishScreen" >unpublishScreen</a>
                             </li>
-                            <li>
-                                    <span class="modifier">Async</span>
-                                <a href="#updateVideoEncodingParameters" >updateVideoEncodingParameters</a>
-                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -145,7 +193,7 @@
 </section>
 
 
-            <section>
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -172,13 +220,13 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Leaves the session, destroying all local streams and clean all participant data.</p>
+                        <div class="io-description"><p>Leaves the session, destroying all local streams and clean all participant data.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -205,14 +253,14 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Returns the remote connections of the Session.
-See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
+                        <div class="io-description"><p>Returns the remote connections of the Session.
+See <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-browser/classes/Connection.html"> Connection</a> object.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Connection[]</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Connection[]</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -239,13 +287,13 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Con
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
+                        <div class="io-description"><p>Returns the local Session. See <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-browser/classes/Session.html"> Session</a> object.</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Session</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Session</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -273,10 +321,10 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Con
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -310,47 +358,45 @@ TODO: Remove this method in release 2.29.0
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Publish or unpublish the audio stream (if available).
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
+                        <div class="io-description"><p>Publish or unpublish the audio stream (if available).
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-browser/classes/Publisher.html#publishAudio">publishAudio</a>.</p>
 <p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publish</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publish</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -361,7 +407,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
                 <td class="col-md-4">
                     <a name="publishCamera"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>publishCamera</b></span>
                         <a href="#publishCamera"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -369,7 +415,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>publishCamera(publisher: Publisher)</code>
                 </td>
             </tr>
@@ -379,45 +425,43 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Publishes the publisher to the webcam Session</p>
+                        <div class="io-description"><p>Publishes the publisher to the webcam Session</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>
-                                            <code>Publisher</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publisher</td>
+                                            <td>
+                                                        <code>Publisher</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -428,7 +472,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
                 <td class="col-md-4">
                     <a name="publishScreen"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>publishScreen</b></span>
                         <a href="#publishScreen"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -436,7 +480,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>publishScreen(publisher: Publisher)</code>
                 </td>
             </tr>
@@ -446,45 +490,43 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Publishes the publisher to the screen Session</p>
+                        <div class="io-description"><p>Publishes the publisher to the screen Session</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>
-                                            <code>Publisher</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publisher</td>
+                                            <td>
+                                                        <code>Publisher</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -495,7 +537,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
                 <td class="col-md-4">
                     <a name="publishVideo"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span class="deprecated-name"><b>publishVideo</b></span>
                         <a href="#publishVideo"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -510,7 +552,7 @@ TODO: Remove this method in release 2.29.0
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>publishVideo(publish: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
@@ -520,48 +562,46 @@ TODO: Remove this method in release 2.29.0
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Publish or unpublish the video stream (if available).
+                        <div class="io-description"><p>Publish or unpublish the video stream (if available).
 It hides the camera muted stream if screen is sharing.
-See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
+See openvidu-browser <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-browser/classes/Publisher.html#publishVideo">publishVideo</a></p>
 <p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publish</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publish</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -572,7 +612,7 @@ See openvidu-browser <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-br
                 <td class="col-md-4">
                     <a name="toggleScreenshare"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span class="deprecated-name"><b>toggleScreenshare</b></span>
                         <a href="#toggleScreenshare"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -587,7 +627,7 @@ TODO: Remove this method in release 2.29.0
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>toggleScreenshare()</code>
                 </td>
             </tr>
@@ -597,15 +637,15 @@ TODO: Remove this method in release 2.29.0
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Share or unshare the screen.
+                        <div class="io-description"><p>Share or unshare the screen.
 Hide the camera muted stream when screen is sharing.</p>
 <p>TODO: Remove this method in release 2.29.0</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>unknown</code>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -616,7 +656,7 @@ Hide the camera muted stream when screen is sharing.</p>
                 <td class="col-md-4">
                     <a name="unpublishCamera"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>unpublishCamera</b></span>
                         <a href="#unpublishCamera"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -624,7 +664,7 @@ Hide the camera muted stream when screen is sharing.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>unpublishCamera(publisher: Publisher)</code>
                 </td>
             </tr>
@@ -634,45 +674,43 @@ Hide the camera muted stream when screen is sharing.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Unpublishes the publisher of the webcam Session</p>
+                        <div class="io-description"><p>Unpublishes the publisher of the webcam Session</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>
-                                            <code>Publisher</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publisher</td>
+                                            <td>
+                                                        <code>Publisher</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -683,7 +721,7 @@ Hide the camera muted stream when screen is sharing.</p>
                 <td class="col-md-4">
                     <a name="unpublishScreen"></a>
                     <span class="name">
-                        <span class="modifier">Async</span>
+                            <span class="modifier">Async</span>
                         <span ><b>unpublishScreen</b></span>
                         <a href="#unpublishScreen"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -691,7 +729,7 @@ Hide the camera muted stream when screen is sharing.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
+                        <span class="modifier-icon icon ion-ios-reset"></span>
                     <code>unpublishScreen(publisher: Publisher)</code>
                 </td>
             </tr>
@@ -701,116 +739,49 @@ Hide the camera muted stream when screen is sharing.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Unpublishes the publisher of the screen Session</p>
+                        <div class="io-description"><p>Unpublishes the publisher of the screen Session</p>
 </div>
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>publisher</td>
-                                    <td>
-                                            <code>Publisher</code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>publisher</td>
+                                            <td>
+                                                        <code>Publisher</code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="updateVideoEncodingParameters"></a>
-                    <span class="name">
-                        <span class="modifier">Async</span>
-                        <span ><b>updateVideoEncodingParameters</b></span>
-                        <a href="#updateVideoEncodingParameters"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateVideoEncodingParameters(streamManager: StreamManager)</code>
-                </td>
-            </tr>
+                                            <td>
+                                                    No
+                                            </td>
 
 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
 
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>streamManager</td>
-                                    <td>
-                                            <code>StreamManager</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-            <section>
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -885,6 +856,19 @@ Hide the camera muted stream when screen is sharing.</p>
             var COMPODOC_CURRENT_PAGE_URL = 'OpenViduService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

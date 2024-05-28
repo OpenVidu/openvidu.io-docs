@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="./styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="./" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -31,7 +80,7 @@
                <div class="content getting-started">
                    <div class="content-data">
 
-<h1 id="openvidu-angular">openvidu-angular</h1>
+<h1>openvidu-angular</h1>
 <p>OpenVidu Components for Angular.</p>
 <p><a href="http://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache2-orange.svg" alt="License badge" class="img-responsive"></a>
 <a href="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-ce-test.yml"><img src="https://github.com/OpenVidu/openvidu/actions/workflows/openvidu-ce-test.yml/badge.svg" alt="OpenVidu Tests" class="img-responsive"></a>
@@ -39,21 +88,21 @@
 <a href="https://npmjs.org/package/openvidu-angular"><img src="https://img.shields.io/npm/v/openvidu-angular?label=npm-version" alt="Npm version" class="img-responsive"></a>
 <a href="https://npmjs.org/package/openvidu-angular"><img src="https://img.shields.io/npm/dw/openvidu-angular?label=npm2-downloads" alt="Npm downloads" class="img-responsive"></a></p>
 <p><strong>The easier way to build powerful OpenVidu videoconference frontend applications.</strong></p>
-<h2 id="requirements">Requirements:</h2>
+<h2>Requirements:</h2>
 <p>You will need NPM and Angular CLI to serve the Angular app. Check your installation with the following command:</p>
-<div><pre class="line-numbers"><code class="language-bash">npm -v
-ng v</code></pre></div><h2 id="how-to-install-it">How to install it</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-bash">npm -v
+ng v</code></pre></div><h2>How to install it</h2>
 <ol>
 <li>You need to install the openvidu-angular library in your Angular application:</li>
 </ol>
-<div><pre class="line-numbers"><code class="language-none">npm install openvidu-angular</code></pre></div><br>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">npm install openvidu-angular</code></pre></div><br>
 
 <ol start="2">
 <li>Also you need Angular Material. Check the <a href="https://material.angular.io/guide/getting-started">Angular Material documentation</a> for installing it.</li>
 </ol>
-<h2 id="configure-it">Configure it</h2>
+<h2>Configure it</h2>
 <p>You need to import the openvidu-angular module in your <code>app.module.ts</code>:</p>
-<div><pre class="line-numbers"><code class="language-typescript">import { OpenViduAngularConfig, OpenViduAngularModule } from &#39;openvidu-angular&#39;;
+<b>Example :</b><div><pre class="line-numbers"><code class="language-typescript">import { OpenViduAngularConfig, OpenViduAngularModule } from &#39;openvidu-angular&#39;;
 import { environment } from &#39;src/environments/environment&#39;;
 
 const config: OpenViduAngularConfig = {
@@ -66,7 +115,7 @@ const config: OpenViduAngularConfig = {
         OpenViduAngularModule.forRoot(config)
     ]
 })</code></pre></div><p>You can also add the default styles in your <code>styles.scss</code> file:</p>
-<div><pre class="line-numbers"><code class="language-css">:root {
+<b>Example :</b><div><pre class="line-numbers"><code class="language-css">:root {
     --ov-primary-color: #303030;
     --ov-secondary-color: #3e3f3f;
     --ov-tertiary-color: #598eff;
@@ -85,10 +134,10 @@ const config: OpenViduAngularConfig = {
     --ov-leave-button-radius: 10px;
     --ov-video-radius: 5px;
     --ov-panel-radius: 5px;
-}</code></pre></div><h2 id="how-to-use-it">How to use it</h2>
-<p>OpenVidu team has created a few tutorials to help you to start using OpenVidu Angular components. You can find them <a href="https://docs.openvidu.io/en/2.29.0/components/#where-to-start">here</a>.</p>
-<h2 id="openvidu-angular-api">openvidu-angular API</h2>
-<p>openvidu-angular API documentation is available <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-angular/">here</a>.</p>
+}</code></pre></div><h2>How to use it</h2>
+<p>OpenVidu team has created a few tutorials to help you to start using OpenVidu Angular components. You can find them <a href="https://docs.openvidu.io/en/2.30.0/components/#where-to-start">here</a>.</p>
+<h2>openvidu-angular API</h2>
+<p>openvidu-angular API documentation is available <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-angular/">here</a>.</p>
 
 
 
@@ -139,6 +188,19 @@ const config: OpenViduAngularConfig = {
             var COMPODOC_CURRENT_PAGE_URL = 'index.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>

@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,20 +84,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   ActivitiesPanelComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -62,11 +112,11 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
@@ -85,10 +135,13 @@
 
 
 
+
             <tr>
                 <td class="col-md-3">selector</td>
                 <td class="col-md-9"><code>ov-activities-panel</code></td>
             </tr>
+
+
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
@@ -113,7 +166,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -192,7 +245,7 @@
 
 
 
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -336,7 +389,7 @@ The recording should be stopped using the OpenVidu REST API.</p>
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -364,10 +417,10 @@ The recording should be stopped using the OpenVidu REST API.</p>
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -395,42 +448,40 @@ The recording should be stopped using the OpenVidu REST API.</p>
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>broadcastUrl</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>broadcastUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
 
-                                    <td>
-                                        No
-                                    </td>
+                                            <td>
+                                                    No
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -458,16 +509,16 @@ The recording should be stopped using the OpenVidu REST API.</p>
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
-    <section>
+    <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -514,7 +565,7 @@ The recording should be stopped using the OpenVidu REST API.</p>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="panel-container" id="activities-container" fxLayout="column" fxLayoutAlign="space-evenly none">	<div class="panel-header-container" fxFlex="55px" fxLayoutAlign="start center">		<h3 class="panel-title">Activities</h3>		<button class="panel-close-button" mat-icon-button matTooltip="{{ \'PANEL.CLOSE\' | translate }}" (click)="close()">			<mat-icon>close</mat-icon>		</button>	</div>	<div class="activities-body-container" fxFlex="75%" fxLayoutAlign="space-evenly none">		<mat-accordion [multi]="false">			<ov-recording-activity				*ngIf="showRecordingActivity"				id="recording-activity"				[expanded]="expandedPanel === \'recording\'"				(onStartRecordingClicked)="_onStartRecordingClicked()"				(onStopRecordingClicked)="_onStopRecordingClicked()"				(onDeleteRecordingClicked)="_onDeleteRecordingClicked($event)"				(onForceRecordingUpdate)="_onForceRecordingUpdate()"			></ov-recording-activity>			<ov-broadcasting-activity				*ngIf="showBroadcastingActivity"				id="broadcasting-activity"				[expanded]="expandedPanel === \'broadcasting\'"				(onStartBroadcastingClicked)="_onStartBroadcastingClicked($event)"				(onStopBroadcastingClicked)="_onStopBroadcastingClicked()"			></ov-broadcasting-activity>		</mat-accordion>	</div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="panel-container" id="activities-container">	<div class="panel-header-container">		<h3 class="panel-title">Activities</h3>		<button class="panel-close-button" mat-icon-button matTooltip="{{ \'PANEL.CLOSE\' | translate }}" (click)="close()">			<mat-icon>close</mat-icon>		</button>	</div>	<div class="activities-body-container">		<mat-accordion [multi]="false">			<ov-recording-activity				*ngIf="showRecordingActivity"				id="recording-activity"				[expanded]="expandedPanel === \'recording\'"				(onStartRecordingClicked)="_onStartRecordingClicked()"				(onStopRecordingClicked)="_onStopRecordingClicked()"				(onDeleteRecordingClicked)="_onDeleteRecordingClicked($event)"				(onForceRecordingUpdate)="_onForceRecordingUpdate()"			></ov-recording-activity>			<ov-broadcasting-activity				*ngIf="showBroadcastingActivity"				id="broadcasting-activity"				[expanded]="expandedPanel === \'broadcasting\'"				(onStartBroadcastingClicked)="_onStartBroadcastingClicked($event)"				(onStopBroadcastingClicked)="_onStopBroadcastingClicked()"			></ov-broadcasting-activity>		</mat-accordion>	</div></div></div>'
     var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'AdminDashboardComponent', 'selector': 'ov-admin-dashboard'},{'name': 'AdminLoginComponent', 'selector': 'ov-admin-login'},{'name': 'BroadcastingActivityComponent', 'selector': 'ov-broadcasting-activity'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
     var DIRECTIVES = [{'name': 'ActivitiesPanelBroadcastingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelBroadcastingActivity], ov-activities-panel[broadcastingActivity]'},{'name': 'ActivitiesPanelDirective', 'selector': '[ovActivitiesPanel]'},{'name': 'ActivitiesPanelRecordingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelRecordingActivity], ov-activities-panel[recordingActivity]'},{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AdminLoginDirective', 'selector': 'ov-admin-login[error]'},{'name': 'AdminRecordingsListDirective', 'selector': 'ov-admin-dashboard[recordingsList]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'BroadcastingActivityBroadcastingErrorDirective', 'selector': 'ov-videoconference[broadcastingActivityBroadcastingError], ov-broadcasting-activity[broadcastingError]'},{'name': 'CaptionsLangDirective', 'selector': 'ov-videoconference[captionsLang]'},{'name': 'CaptionsLangOptionsDirective', 'selector': 'ov-videoconference[captionsLangOptions]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LangDirective', 'selector': 'ov-videoconference[lang]'},{'name': 'LangOptionsDirective', 'selector': 'ov-videoconference[langOptions]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'RecordingActivityRecordingErrorDirective', 'selector': 'ov-videoconference[recordingActivityRecordingError], ov-recording-activity[recordingError]'},{'name': 'RecordingActivityRecordingsListDirective', 'selector': 'ov-videoconference[recordingActivityRecordingsList], ov-recording-activity[recordingsList]'},{'name': 'SimulcastDirective', 'selector': 'ov-videoconference[simulcast]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamFrameRateDirective', 'selector': 'ov-videoconference[streamFrameRate], ov-stream[frameRate]'},{'name': 'StreamResolutionDirective', 'selector': 'ov-videoconference[streamResolution], ov-stream[resolution]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarBroadcastingButtonDirective', 'selector': 'ov-videoconference[toolbarBroadcastingButton], ov-toolbar[broadcastingButton]'},{'name': 'ToolbarCaptionsButtonDirective', 'selector': 'ov-videoconference[toolbarCaptionsButton], ov-toolbar[captionsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'ToolbarSettingsButtonDirective', 'selector': 'ov-videoconference[toolbarSettingsButton], ov-toolbar[settingsButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
     var ACTUAL_COMPONENT = {'name': 'ActivitiesPanelComponent'};
@@ -566,6 +617,19 @@ The recording should be stopped using the OpenVidu REST API.</p>
             var COMPODOC_CURRENT_PAGE_URL = 'ActivitiesPanelComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

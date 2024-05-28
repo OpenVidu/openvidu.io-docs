@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -38,18 +87,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Directives</li>
-  <li >PanelDirective</li>
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >PanelDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -66,15 +118,15 @@
 tagged with the <a href="../directives/ChatPanelDirective.html">ChatPanelDirective</a>, <a href="../directives/ParticipantsPanelDirective.html">ParticipantsPanelDirective</a> and <a href="../directives/AdditionalPanelsDirective.html">AdditionalPanelsDirective</a>.</p>
 <p>In the example below we replace the entire <a href="../components/PanelComponent.html">PanelComponent</a> using the *<strong>ovPanel</strong> directive. Inside of it, we customize
 the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelComponent</a> and <a href="ChatPanelcomponent">ChatPanelcomponent</a> using their own directives.</p>
-<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.29.0/components/openvidu-custom-panels#running-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot;&gt;
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.30.0/components/openvidu-custom-panels#running-this-tutorial">here</a>.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot;&gt;
     &lt;ov-panel *ovPanel&gt;
         &lt;div *ovChatPanel id=&quot;my-chat-panel&quot;&gt;This is my custom chat panel&lt;/div&gt;
         &lt;div *ovParticipantsPanel id=&quot;my-participants-panel&quot;&gt;
             This is my custom participants panel
         &lt;/div&gt;
     &lt;/ov-panel&gt;
-&lt;/ov-videoconference&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class PanelDirectiveComponent {
+&lt;/ov-videoconference&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">export class PanelDirectiveComponent {
 
     sessionId = &quot;panel-directive-example&quot;;
     tokens!: TokenModel;
@@ -98,7 +150,7 @@ the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelCom
 
 
 
-        <section>
+        <section data-compodoc="block-metadata">
             <h3>Metadata</h3>
             <table class="table table-sm table-hover metadata">
                 <tbody>
@@ -107,6 +159,9 @@ the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelCom
                         <td class="col-md-3">Selector</td>
                         <td class="col-md-9"><code>[ovPanel]</code></td>
                     </tr>
+
+
+
 
                 </tbody>
             </table>
@@ -169,6 +224,19 @@ the <a href="../components/ParticipantsPanelComponent.html">ParticipantsPanelCom
             var COMPODOC_CURRENT_PAGE_URL = 'PanelDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

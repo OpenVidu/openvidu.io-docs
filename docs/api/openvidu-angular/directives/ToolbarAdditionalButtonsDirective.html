@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -38,18 +87,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Directives</li>
-  <li >ToolbarAdditionalButtonsDirective</li>
+  <li class="breadcrumb-item">Directives</li>
+  <li class="breadcrumb-item" >ToolbarAdditionalButtonsDirective</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info">
+    <div class="tab-pane fade active in" id="info">
         <p class="comment">
             <h3>File</h3>
         </p>
@@ -65,8 +117,8 @@
                 <p>The *<strong>ovToolbarAdditionalButtons</strong> directive allows to add additional buttons to center buttons group.
 In the example below we&#39;ve added the same buttons as the <a href="../directives/ToolbarDirective.html">ToolbarDirective</a>.
 Here we are using the <a href="../injectables/ParticipantService.html">ParticipantService</a> to check the audio or video status.</p>
-<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.29.0/components/openvidu-toolbar-buttons#running-this-tutorial">here</a>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot; [toolbarDisplaySessionName]=&quot;false&quot;&gt;
+<p>You can run the associated tutorial <a href="https://docs.openvidu.io/en/2.30.0/components/openvidu-toolbar-buttons#running-this-tutorial">here</a>.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;ov-videoconference [tokens]=&quot;tokens&quot; [toolbarDisplaySessionName]=&quot;false&quot;&gt;
     &lt;div *ovToolbarAdditionalButtons style=&quot;text-align: center;&quot;&gt;
         &lt;button mat-icon-button (click)=&quot;toggleVideo()&quot;&gt;
             &lt;mat-icon&gt;videocam&lt;/mat-icon&gt;
@@ -75,7 +127,7 @@ Here we are using the <a href="../injectables/ParticipantService.html">Participa
             &lt;mat-icon&gt;mic&lt;/mat-icon&gt;
         &lt;/button&gt;
     &lt;/div&gt;
-&lt;/ov-videoconference&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-javascript">export class ToolbarAdditionalButtonsDirectiveComponent {
+&lt;/ov-videoconference&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-javascript">export class ToolbarAdditionalButtonsDirectiveComponent {
 
 sessionId = &quot;panel-directive-example&quot;;
 tokens!: TokenModel;
@@ -116,7 +168,7 @@ tokens!: TokenModel;
 
 
 
-        <section>
+        <section data-compodoc="block-metadata">
             <h3>Metadata</h3>
             <table class="table table-sm table-hover metadata">
                 <tbody>
@@ -125,6 +177,9 @@ tokens!: TokenModel;
                         <td class="col-md-3">Selector</td>
                         <td class="col-md-9"><code>[ovToolbarAdditionalButtons]</code></td>
                     </tr>
+
+
+
 
                 </tbody>
             </table>
@@ -187,6 +242,19 @@ tokens!: TokenModel;
             var COMPODOC_CURRENT_PAGE_URL = 'ToolbarAdditionalButtonsDirective.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>

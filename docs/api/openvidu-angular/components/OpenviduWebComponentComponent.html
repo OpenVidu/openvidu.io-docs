@@ -12,8 +12,57 @@
         <link rel="stylesheet" href="../styles/dark.css">
     </head>
     <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
 
-        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
             <a href="../" class="navbar-brand">OpenVidu Angular Documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
@@ -35,20 +84,21 @@
 
 
 <ol class="breadcrumb">
-  <li>Components</li>
-  <li
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
   >
   OpenviduWebComponentComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
-        <li class="active">
-            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
     <h3>File</h3>
 </p>
 <p class="comment">
@@ -70,14 +120,17 @@
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                <code>OnInit</code>
     </p>
 
 
-<section>
+<section data-compodoc="block-metadata">
     <h3>Metadata</h3>
     <table class="table table-sm table-hover metadata">
         <tbody>
+
+
+
 
 
 
@@ -109,7 +162,7 @@
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -309,6 +362,9 @@
                                 <a href="#onToolbarScreenshareButtonClicked" >onToolbarScreenshareButtonClicked</a>
                             </li>
                             <li>
+                                <a href="#onToolbarStartBroadcastingClicked" >onToolbarStartBroadcastingClicked</a>
+                            </li>
+                            <li>
                                 <a href="#onToolbarStartRecordingClicked" >onToolbarStartRecordingClicked</a>
                             </li>
                             <li>
@@ -444,7 +500,7 @@
 </section>
 
 
-    <section>
+    <section data-compodoc="block-inputs">
     <h3 id="inputs">Inputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -464,7 +520,7 @@
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>activitiesPanelBroadcastingActivity</strong> attribute allows show/hide the broadcasting activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-broadcasting-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-broadcasting-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -487,7 +543,7 @@
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>activitiesPanelRecordingActivity</strong> attribute allows show/hide the recording activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-recording-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-recording-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -513,7 +569,7 @@
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent audio-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent audio-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -536,7 +592,7 @@
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>broadcastingActivityBroadcastingError</strong> attribute allows to show any possible error with the broadcasting in the <a href="../components/BroadcastingActivityComponent.html">BroadcastingActivityComponent</a>.</p>
 <p>Default: <code>undefined</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent broadcasting-activity-broadcasting-error=&quot;broadcastingError&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent broadcasting-activity-broadcasting-error=&quot;broadcastingError&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -560,7 +616,7 @@
                         <div class="io-description"><p>The <strong>captionsLang</strong> attribute sets the deafult language that OpenVidu will try to recognise.</p>
 <p>It must be a valid <a href="https://tools.ietf.org/html/bcp47">BCP-47</a> language tag like &quot;en-US&quot; or &quot;es-ES&quot;.</p>
 <p>Default: <code>en-US</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang=&quot;es-ES&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang=&quot;es-ES&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -585,7 +641,7 @@
 It will override the languages provided by default.
 This propety is an array of objects which must comply with the <a href="../interfaces/CaptionsLangOption.html">CaptionsLangOption</a> interface.</p>
 <p>Default: <code> [     { name: &#39;English&#39;, lang: &#39;en-US&#39; },     { name: &#39;Español&#39;, lang: &#39;es-ES&#39; },     { name: &#39;Deutsch&#39;, lang: &#39;de-DE&#39; },     { name: &#39;Français&#39;, lang: &#39;fr-FR&#39; },     { name: &#39;中国&#39;, lang: &#39;zh-CN&#39; },     { name: &#39;हिन्दी&#39;, lang: &#39;hi-IN&#39; },     { name: &#39;Italiano&#39;, lang: &#39;it-IT&#39; },     { name: &#39;やまと&#39;, lang: &#39;jp-JP&#39; },     { name: &#39;Português&#39;, lang: &#39;pt-PT&#39; } ]</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -608,7 +664,7 @@ This propety is an array of objects which must comply with the <a href="../inter
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>lang</strong> attribute sets the default UI language.</p>
 <p>Default: <code>en</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent lang=&quot;es&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent lang=&quot;es&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -636,7 +692,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 <p>Default: <code> [     { name: &#39;English&#39;, lang: &#39;en&#39; },  { name: &#39;Español&#39;, lang: &#39;es&#39; },  { name: &#39;Deutsch&#39;, lang: &#39;de&#39; },  { name: &#39;Français&#39;, lang: &#39;fr&#39; },  { name: &#39;中国&#39;, lang: &#39;cn&#39; },  { name: &#39;हिन्दी&#39;, lang: &#39;hi&#39; },  { name: &#39;Italiano&#39;, lang: &#39;it&#39; },  { name: &#39;やまと&#39;, lang: &#39;ja&#39; },  { name: &#39;Dutch&#39;, lang: &#39;nl&#39; },  { name: &#39;Português&#39;, lang: &#39;pt&#39; } ]</code></p>
 <p>Note: If you want to add a new language, you must add a new object with the name and the language code (e.g. <code>{ name: &#39;Custom&#39;, lang: &#39;cus&#39; }</code>)
 and then add the language file in the <code>assets/lang</code> folder with the name <code>cus.json</code>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -659,7 +715,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>minimal</strong> attribute applies a minimal UI hiding all controls except for cam and mic.</p>
 <p>Default: <code>false</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent minimal=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent minimal=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -684,7 +740,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-name=&quot;MY_NAME&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-name=&quot;MY_NAME&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -710,7 +766,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-panel-item-mute-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-panel-item-mute-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -733,7 +789,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>prejoin</strong> attribute allows show/hide the prejoin page for selecting media devices.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent prejoin=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent prejoin=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -756,7 +812,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>recordingActivityRecordingError</strong> attribute allows to show any possible error with the recording in the <a href="../components/RecordingActivityComponent.html">RecordingActivityComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recording-error=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recording-error=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -779,7 +835,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
                     <td class="col-md-4">
                         <div class="io-description"><p>The <strong>recordingActivityRecordingList</strong> attribute allows show to show the recordings available for the session in <a href="../components/RecordingActivityComponent.html">RecordingActivityComponent</a>.</p>
 <p>Default: <code>[]</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recordings-list=&quot;recordingsList&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recordings-list=&quot;recordingsList&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -804,7 +860,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
 to send multiple versions of the same video stream at different resolutions, framerates and qualities. This way,
 the receiver can subscribe to the most appropriate stream for its current network conditions.</p>
 <p>Default: <code>false</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent simulcast=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent simulcast=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -830,7 +886,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-audio-detection=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-audio-detection=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -856,7 +912,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-participant-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-participant-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -882,7 +938,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-frame-rate=&quot;30&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-frame-rate=&quot;30&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -908,7 +964,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-resolution=&quot;&#39;320x240&#39;&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-resolution=&quot;&#39;320x240&#39;&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -934,7 +990,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -958,7 +1014,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <div class="io-description"><p>Tokens parameter is required to grant a participant access to a Session.
 This OpenVidu token will be use by each participant when connecting to a Session.</p>
 <p>This input accepts a <a href="../interfaces/TokenModel.html">TokenModel</a> object type or a string type.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;{&quot;webcam&quot;:&quot;TOKEN1&quot;, &quot;screen&quot;:&quot;TOKEN2&quot;}&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;TOKEN1&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;{&quot;webcam&quot;:&quot;TOKEN1&quot;, &quot;screen&quot;:&quot;TOKEN2&quot;}&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;TOKEN1&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -984,7 +1040,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-activities-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-activities-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1010,7 +1066,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-background-effects-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-background-effects-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1036,7 +1092,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-broadcasting-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-broadcasting-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1062,7 +1118,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-captions-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-captions-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1088,7 +1144,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-chat-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-chat-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1114,7 +1170,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-logo=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-logo=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1140,7 +1196,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-session-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-session-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1166,7 +1222,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-fullscreen-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-fullscreen-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1192,7 +1248,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-leave-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-leave-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1218,7 +1274,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-participants-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-participants-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1244,7 +1300,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-recording-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-recording-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1270,7 +1326,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-screenshare-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-screenshare-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1296,7 +1352,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
@@ -1322,13 +1378,13 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent video-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent video-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
                     </td>
                 </tr>
             </tbody>
         </table>
 </section>
-    <section>
+    <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
             <tbody>
@@ -1529,7 +1585,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Provides event notifications that fire when OpenVidu Session is created.
-See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Session.html">openvidu-browser Session</a>.</p>
+See <a href="https://docs.openvidu.io/en/2.30.0/api/openvidu-browser/classes/Session.html">openvidu-browser Session</a>.</p>
 </div>
                     </td>
                 </tr>
@@ -1715,6 +1771,28 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="onToolbarStartBroadcastingClicked"></a>
+                        <b>onToolbarStartBroadcastingClicked</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;void&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Provides event notifications that fire when start broadcasting button is clicked from <a href="../components/ToolbarComponent.html">ToolbarComponent</a>.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="onToolbarStartRecordingClicked"></a>
                         <b>onToolbarStartRecordingClicked</b>
                     </td>
@@ -1783,7 +1861,7 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
 </section>
 
 
-    <section>
+    <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -1811,10 +1889,10 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
@@ -1842,17 +1920,17 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
             <tr>
                 <td class="col-md-4">
 
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                    </div>
+                        </div>
                 </td>
             </tr>
         </tbody>
     </table>
 </section>
 
-    <section>
+    <section data-compodoc="block-accessors">
     <h3 id="accessors">
         Accessors
     </h3>
@@ -1875,7 +1953,7 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>minimal</strong> attribute applies a minimal UI hiding all controls except for cam and mic.</p>
 <p>Default: <code>false</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent minimal=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent minimal=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -1936,7 +2014,7 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>lang</strong> attribute sets the default UI language.</p>
 <p>Default: <code>en</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent lang=&quot;es&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent lang=&quot;es&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -1998,7 +2076,7 @@ See <a href="https://docs.openvidu.io/en/2.29.0/api/openvidu-browser/classes/Ses
                                 <div class="io-description"><p>The <strong>captionsLang</strong> attribute sets the deafult language that OpenVidu will try to recognise.</p>
 <p>It must be a valid <a href="https://tools.ietf.org/html/bcp47">BCP-47</a> language tag like &quot;en-US&quot; or &quot;es-ES&quot;.</p>
 <p>Default: <code>en-US</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang=&quot;es-ES&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang=&quot;es-ES&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2064,7 +2142,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 <p>Default: <code> [     { name: &#39;English&#39;, lang: &#39;en&#39; },  { name: &#39;Español&#39;, lang: &#39;es&#39; },  { name: &#39;Deutsch&#39;, lang: &#39;de&#39; },  { name: &#39;Français&#39;, lang: &#39;fr&#39; },  { name: &#39;中国&#39;, lang: &#39;cn&#39; },  { name: &#39;हिन्दी&#39;, lang: &#39;hi&#39; },  { name: &#39;Italiano&#39;, lang: &#39;it&#39; },  { name: &#39;やまと&#39;, lang: &#39;ja&#39; },  { name: &#39;Dutch&#39;, lang: &#39;nl&#39; },  { name: &#39;Português&#39;, lang: &#39;pt&#39; } ]</code></p>
 <p>Note: If you want to add a new language, you must add a new object with the name and the language code (e.g. <code>{ name: &#39;Custom&#39;, lang: &#39;cus&#39; }</code>)
 and then add the language file in the <code>assets/lang</code> folder with the name <code>cus.json</code>.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2127,7 +2205,7 @@ and then add the language file in the <code>assets/lang</code> folder with the n
 It will override the languages provided by default.
 This propety is an array of objects which must comply with the <a href="../interfaces/CaptionsLangOption.html">CaptionsLangOption</a> interface.</p>
 <p>Default: <code> [     { name: &#39;English&#39;, lang: &#39;en-US&#39; },     { name: &#39;Español&#39;, lang: &#39;es-ES&#39; },     { name: &#39;Deutsch&#39;, lang: &#39;de-DE&#39; },     { name: &#39;Français&#39;, lang: &#39;fr-FR&#39; },     { name: &#39;中国&#39;, lang: &#39;zh-CN&#39; },     { name: &#39;हिन्दी&#39;, lang: &#39;hi-IN&#39; },     { name: &#39;Italiano&#39;, lang: &#39;it-IT&#39; },     { name: &#39;やまと&#39;, lang: &#39;jp-JP&#39; },     { name: &#39;Português&#39;, lang: &#39;pt-PT&#39; } ]</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent captions-lang-options=&quot;[{name:&#39;Spanish&#39;, lang: &#39;es-ES&#39;}]&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2190,7 +2268,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-name=&quot;MY_NAME&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-name=&quot;MY_NAME&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2251,7 +2329,7 @@ This propety is an array of objects which must comply with the <a href="../inter
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>prejoin</strong> attribute allows show/hide the prejoin page for selecting media devices.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent prejoin=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent prejoin=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2315,7 +2393,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent video-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent video-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2379,7 +2457,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent audio-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent audio-muted=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2442,7 +2520,7 @@ This propety is an array of objects which must comply with the <a href="../inter
 to send multiple versions of the same video stream at different resolutions, framerates and qualities. This way,
 the receiver can subscribe to the most appropriate stream for its current network conditions.</p>
 <p>Default: <code>false</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent simulcast=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent simulcast=&quot;true&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2506,7 +2584,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-screenshare-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-screenshare-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2570,7 +2648,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-recording-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-recording-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2634,7 +2712,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-broadcasting-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-broadcasting-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2698,7 +2776,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-fullscreen-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-fullscreen-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2762,7 +2840,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-background-effects-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-background-effects-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2826,7 +2904,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2890,7 +2968,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-leave-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-leave-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -2954,7 +3032,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-chat-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-chat-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3018,7 +3096,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-activities-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-activities-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3082,7 +3160,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-participants-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-participants-panel-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3146,7 +3224,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-logo=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-logo=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3210,7 +3288,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-session-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-display-session-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3274,7 +3352,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-captions-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent toolbar-captions-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3338,7 +3416,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-participant-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-participant-name=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3402,7 +3480,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-audio-detection=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-display-audio-detection=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3466,7 +3544,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-settings-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3530,7 +3608,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-resolution=&quot;&#39;320x240&#39;&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-resolution=&quot;&#39;320x240&#39;&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3594,7 +3672,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-frame-rate=&quot;30&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent stream-frame-rate=&quot;30&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3658,7 +3736,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
 <div class="warn-container">
     <span>WARNING</span>: If you want to use this parameter to OpenVidu Web Component statically, you have to replace the <strong>camelCase</strong> with a <strong>hyphen between words</strong>.</div>
 
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-panel-item-mute-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent participant-panel-item-mute-button=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3719,7 +3797,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>recordingActivityRecordingError</strong> attribute allows to show any possible error with the recording in the <a href="../components/RecordingActivityComponent.html">RecordingActivityComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recording-error=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recording-error=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3780,7 +3858,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>activitiesPanelRecordingActivity</strong> attribute allows show/hide the recording activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-recording-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-recording-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3841,7 +3919,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>activitiesPanelBroadcastingActivity</strong> attribute allows show/hide the broadcasting activity in <a href="../components/ActivitiesPanelComponent.html">ActivitiesPanelComponent</a>.</p>
 <p>Default: <code>true</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-broadcasting-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent activity-panel-broadcasting-activity=&quot;false&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3902,7 +3980,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>broadcastingActivityBroadcastingError</strong> attribute allows to show any possible error with the broadcasting in the <a href="../components/BroadcastingActivityComponent.html">BroadcastingActivityComponent</a>.</p>
 <p>Default: <code>undefined</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent broadcasting-activity-broadcasting-error=&quot;broadcastingError&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent broadcasting-activity-broadcasting-error=&quot;broadcastingError&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -3963,7 +4041,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                         <td class="col-md-4">
                                 <div class="io-description"><p>The <strong>recordingActivityRecordingList</strong> attribute allows show to show the recordings available for the session in <a href="../components/RecordingActivityComponent.html">RecordingActivityComponent</a>.</p>
 <p>Default: <code>[]</code></p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recordings-list=&quot;recordingsList&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent recording-activity-recordings-list=&quot;recordingsList&quot;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -4025,7 +4103,7 @@ the receiver can subscribe to the most appropriate stream for its current networ
                                 <div class="io-description"><p>Tokens parameter is required to grant a participant access to a Session.
 This OpenVidu token will be use by each participant when connecting to a Session.</p>
 <p>This input accepts a <a href="../interfaces/TokenModel.html">TokenModel</a> object type or a string type.</p>
-<div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;{&quot;webcam&quot;:&quot;TOKEN1&quot;, &quot;screen&quot;:&quot;TOKEN2&quot;}&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;TOKEN1&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;{&quot;webcam&quot;:&quot;TOKEN1&quot;, &quot;screen&quot;:&quot;TOKEN2&quot;}&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div><b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;openvidu-webcomponent tokens=&#39;TOKEN1&#39;&gt;&lt;/openvidu-webcomponent&gt;</code></pre></div></div>
 
                                 <div class="io-description">
                                         <b>Parameters :</b>
@@ -4085,7 +4163,7 @@ This OpenVidu token will be use by each participant when connecting to a Session
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ov-videoconference	*ngIf="success"	[simulcast]="_simulcast"	[participantName]="_participantName"	[tokens]="_tokens"	[minimal]="_minimal"	[lang]="_lang"	[langOptions]="_langOptions"	[captionsLang]="_captionsLang"	[captionsLangOptions]="_captionsLangOptions"	[prejoin]="_prejoin"	[videoMuted]="_videoMuted"	[audioMuted]="_audioMuted"	[toolbarScreenshareButton]="_toolbarScreenshareButton"	[toolbarRecordingButton]="_toolbarRecordingButton"	[toolbarBroadcastingButton]="_toolbarBroadcastingButton"	[toolbarFullscreenButton]="_toolbarFullscreenButton"	[toolbarBackgroundEffectsButton]="_toolbarBackgroundEffectsButton"	[toolbarSettingsButton]="_toolbarSettingsButton"	[toolbarLeaveButton]="_toolbarLeaveButton"	[toolbarActivitiesPanelButton]="_toolbarActivitiesPanelButton"	[toolbarChatPanelButton]="_toolbarChatPanelButton"	[toolbarParticipantsPanelButton]="_toolbarParticipantsPanelButton"	[toolbarDisplayLogo]="_toolbarDisplayLogo"	[toolbarDisplaySessionName]="_toolbarDisplaySessionName"	[toolbarCaptionsButton]="_toolbarCaptionsButton"	[streamDisplayParticipantName]="_streamDisplayParticipantName"	[streamDisplayAudioDetection]="_streamDisplayAudioDetection"	[streamSettingsButton]="_streamSettingsButton"	[streamResolution]="_streamResolution"	[streamFrameRate]="_streamFrameRate"	[participantPanelItemMuteButton]="_participantPanelItemMuteButton"	[activitiesPanelRecordingActivity]="_activitiesPanelRecordingActivity"	[activitiesPanelBroadcastingActivity]="_activitiesPanelBroadcastingActivity"	[recordingActivityRecordingsList]="_recordingActivityRecordingsList"	[recordingActivityRecordingError]="_recordingActivityRecordingError"	[broadcastingActivityBroadcastingInfo]="_broadcastingActivityBroadcastingInfo"	[broadcastingActivityBroadcastingError]="_broadcastingActivityBroadcastingError"	(onJoinButtonClicked)="_onJoinButtonClicked()"	(onToolbarLeaveButtonClicked)="_onToolbarLeaveButtonClicked()"	(onToolbarCameraButtonClicked)="_onToolbarCameraButtonClicked()"	(onToolbarMicrophoneButtonClicked)="_onToolbarMicrophoneButtonClicked()"	(onToolbarScreenshareButtonClicked)="_onToolbarScreenshareButtonClicked()"	(onToolbarParticipantsPanelButtonClicked)="_onToolbarParticipantsPanelButtonClicked()"	(onToolbarChatPanelButtonClicked)="_onToolbarChatPanelButtonClicked()"	(onToolbarActivitiesPanelButtonClicked)="_onToolbarActivitiesPanelButtonClicked()"	(onToolbarFullscreenButtonClicked)="_onToolbarFullscreenButtonClicked()"	(onToolbarStartRecordingClicked)="onStartRecordingClicked(\'toolbar\')"	(onToolbarStopRecordingClicked)="onStopRecordingClicked(\'toolbar\')"	(onToolbarStopBroadcastingClicked)="onStopBroadcastingClicked(\'toolbar\')"	(onActivitiesPanelStartRecordingClicked)="onStartRecordingClicked(\'panel\')"	(onActivitiesPanelStopRecordingClicked)="onStopRecordingClicked(\'panel\')"	(onActivitiesPanelDownloadRecordingClicked)="_onActivitiesDownloadRecordingClicked($event)"	(onActivitiesPanelDeleteRecordingClicked)="_onActivitiesDeleteRecordingClicked($event)"	(onActivitiesPanelStartBroadcastingClicked)="onStartBroadcastingClicked($event)"	(onActivitiesPanelStopBroadcastingClicked)="onStopBroadcastingClicked(\'panel\')"	(onSessionCreated)="_onSessionCreated($event)"	(onParticipantCreated)="_onParticipantCreated($event)"></ov-videoconference></div>'
+        var COMPONENT_TEMPLATE = '<div><ov-videoconference	*ngIf="success"	[simulcast]="_simulcast"	[participantName]="_participantName"	[tokens]="_tokens"	[minimal]="_minimal"	[lang]="_lang"	[langOptions]="_langOptions"	[captionsLang]="_captionsLang"	[captionsLangOptions]="_captionsLangOptions"	[prejoin]="_prejoin"	[videoMuted]="_videoMuted"	[audioMuted]="_audioMuted"	[toolbarScreenshareButton]="_toolbarScreenshareButton"	[toolbarRecordingButton]="_toolbarRecordingButton"	[toolbarBroadcastingButton]="_toolbarBroadcastingButton"	[toolbarFullscreenButton]="_toolbarFullscreenButton"	[toolbarBackgroundEffectsButton]="_toolbarBackgroundEffectsButton"	[toolbarSettingsButton]="_toolbarSettingsButton"	[toolbarLeaveButton]="_toolbarLeaveButton"	[toolbarActivitiesPanelButton]="_toolbarActivitiesPanelButton"	[toolbarChatPanelButton]="_toolbarChatPanelButton"	[toolbarParticipantsPanelButton]="_toolbarParticipantsPanelButton"	[toolbarDisplayLogo]="_toolbarDisplayLogo"	[toolbarDisplaySessionName]="_toolbarDisplaySessionName"	[toolbarCaptionsButton]="_toolbarCaptionsButton"	[streamDisplayParticipantName]="_streamDisplayParticipantName"	[streamDisplayAudioDetection]="_streamDisplayAudioDetection"	[streamSettingsButton]="_streamSettingsButton"	[streamResolution]="_streamResolution"	[streamFrameRate]="_streamFrameRate"	[participantPanelItemMuteButton]="_participantPanelItemMuteButton"	[activitiesPanelRecordingActivity]="_activitiesPanelRecordingActivity"	[activitiesPanelBroadcastingActivity]="_activitiesPanelBroadcastingActivity"	[recordingActivityRecordingsList]="_recordingActivityRecordingsList"	[recordingActivityRecordingError]="_recordingActivityRecordingError"	[broadcastingActivityBroadcastingInfo]="_broadcastingActivityBroadcastingInfo"	[broadcastingActivityBroadcastingError]="_broadcastingActivityBroadcastingError"	(onJoinButtonClicked)="_onJoinButtonClicked()"	(onToolbarLeaveButtonClicked)="_onToolbarLeaveButtonClicked()"	(onToolbarCameraButtonClicked)="_onToolbarCameraButtonClicked()"	(onToolbarMicrophoneButtonClicked)="_onToolbarMicrophoneButtonClicked()"	(onToolbarScreenshareButtonClicked)="_onToolbarScreenshareButtonClicked()"	(onToolbarParticipantsPanelButtonClicked)="_onToolbarParticipantsPanelButtonClicked()"	(onToolbarChatPanelButtonClicked)="_onToolbarChatPanelButtonClicked()"	(onToolbarActivitiesPanelButtonClicked)="_onToolbarActivitiesPanelButtonClicked()"	(onToolbarFullscreenButtonClicked)="_onToolbarFullscreenButtonClicked()"	(onToolbarStartRecordingClicked)="onStartRecordingClicked(\'toolbar\')"	(onToolbarStopRecordingClicked)="onStopRecordingClicked(\'toolbar\')"	(onToolbarStartBroadcastingClicked)="onToolbarStartBroadcastingClicked.emit()"	(onToolbarStopBroadcastingClicked)="onStopBroadcastingClicked(\'toolbar\')"	(onActivitiesPanelStartRecordingClicked)="onStartRecordingClicked(\'panel\')"	(onActivitiesPanelStopRecordingClicked)="onStopRecordingClicked(\'panel\')"	(onActivitiesPanelDownloadRecordingClicked)="_onActivitiesDownloadRecordingClicked($event)"	(onActivitiesPanelDeleteRecordingClicked)="_onActivitiesDeleteRecordingClicked($event)"	(onActivitiesPanelStartBroadcastingClicked)="onStartBroadcastingClicked($event)"	(onActivitiesPanelStopBroadcastingClicked)="onStopBroadcastingClicked(\'panel\')"	(onSessionCreated)="_onSessionCreated($event)"	(onParticipantCreated)="_onParticipantCreated($event)"></ov-videoconference></div>'
     var COMPONENTS = [{'name': 'ActivitiesPanelComponent', 'selector': 'ov-activities-panel'},{'name': 'AdminDashboardComponent', 'selector': 'ov-admin-dashboard'},{'name': 'AdminLoginComponent', 'selector': 'ov-admin-login'},{'name': 'BroadcastingActivityComponent', 'selector': 'ov-broadcasting-activity'},{'name': 'ChatPanelComponent', 'selector': 'ov-chat-panel'},{'name': 'LayoutComponent', 'selector': 'ov-layout'},{'name': 'OpenviduWebComponentComponent', 'selector': ''},{'name': 'PanelComponent', 'selector': 'ov-panel'},{'name': 'ParticipantPanelItemComponent', 'selector': 'ov-participant-panel-item'},{'name': 'ParticipantsPanelComponent', 'selector': 'ov-participants-panel'},{'name': 'RecordingActivityComponent', 'selector': 'ov-recording-activity'},{'name': 'StreamComponent', 'selector': 'ov-stream'},{'name': 'ToolbarComponent', 'selector': 'ov-toolbar'},{'name': 'VideoconferenceComponent', 'selector': 'ov-videoconference'}];
     var DIRECTIVES = [{'name': 'ActivitiesPanelBroadcastingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelBroadcastingActivity], ov-activities-panel[broadcastingActivity]'},{'name': 'ActivitiesPanelDirective', 'selector': '[ovActivitiesPanel]'},{'name': 'ActivitiesPanelRecordingActivityDirective', 'selector': 'ov-videoconference[activitiesPanelRecordingActivity], ov-activities-panel[recordingActivity]'},{'name': 'AdditionalPanelsDirective', 'selector': '[ovAdditionalPanels]'},{'name': 'AdminLoginDirective', 'selector': 'ov-admin-login[error]'},{'name': 'AdminRecordingsListDirective', 'selector': 'ov-admin-dashboard[recordingsList]'},{'name': 'AudioMutedDirective', 'selector': 'ov-videoconference[audioMuted]'},{'name': 'BroadcastingActivityBroadcastingErrorDirective', 'selector': 'ov-videoconference[broadcastingActivityBroadcastingError], ov-broadcasting-activity[broadcastingError]'},{'name': 'CaptionsLangDirective', 'selector': 'ov-videoconference[captionsLang]'},{'name': 'CaptionsLangOptionsDirective', 'selector': 'ov-videoconference[captionsLangOptions]'},{'name': 'ChatPanelDirective', 'selector': '[ovChatPanel]'},{'name': 'LangDirective', 'selector': 'ov-videoconference[lang]'},{'name': 'LangOptionsDirective', 'selector': 'ov-videoconference[langOptions]'},{'name': 'LayoutDirective', 'selector': '[ovLayout]'},{'name': 'MinimalDirective', 'selector': 'ov-videoconference[minimal]'},{'name': 'PanelDirective', 'selector': '[ovPanel]'},{'name': 'ParticipantNameDirective', 'selector': 'ov-videoconference[participantName]'},{'name': 'ParticipantPanelItemDirective', 'selector': '[ovParticipantPanelItem]'},{'name': 'ParticipantPanelItemElementsDirective', 'selector': '[ovParticipantPanelItemElements]'},{'name': 'ParticipantPanelItemMuteButtonDirective', 'selector': 'ov-videoconference[participantPanelItemMuteButton], ov-participant-panel-item[muteButton]'},{'name': 'ParticipantsPanelDirective', 'selector': '[ovParticipantsPanel]'},{'name': 'PrejoinDirective', 'selector': 'ov-videoconference[prejoin]'},{'name': 'RecordingActivityRecordingErrorDirective', 'selector': 'ov-videoconference[recordingActivityRecordingError], ov-recording-activity[recordingError]'},{'name': 'RecordingActivityRecordingsListDirective', 'selector': 'ov-videoconference[recordingActivityRecordingsList], ov-recording-activity[recordingsList]'},{'name': 'SimulcastDirective', 'selector': 'ov-videoconference[simulcast]'},{'name': 'StreamDirective', 'selector': '[ovStream]'},{'name': 'StreamDisplayAudioDetectionDirective', 'selector': 'ov-videoconference[streamDisplayAudioDetection], ov-stream[displayAudioDetection]'},{'name': 'StreamDisplayParticipantNameDirective', 'selector': 'ov-videoconference[streamDisplayParticipantName], ov-stream[displayParticipantName]'},{'name': 'StreamFrameRateDirective', 'selector': 'ov-videoconference[streamFrameRate], ov-stream[frameRate]'},{'name': 'StreamResolutionDirective', 'selector': 'ov-videoconference[streamResolution], ov-stream[resolution]'},{'name': 'StreamSettingsButtonDirective', 'selector': 'ov-videoconference[streamSettingsButton], ov-stream[settingsButton]'},{'name': 'ToolbarAdditionalButtonsDirective', 'selector': '[ovToolbarAdditionalButtons]'},{'name': 'ToolbarAdditionalPanelButtonsDirective', 'selector': '[ovToolbarAdditionalPanelButtons]'},{'name': 'ToolbarBackgroundEffectsButtonDirective', 'selector': 'ov-videoconference[toolbarBackgroundEffectsButton], ov-toolbar[backgroundEffectsButton]'},{'name': 'ToolbarBroadcastingButtonDirective', 'selector': 'ov-videoconference[toolbarBroadcastingButton], ov-toolbar[broadcastingButton]'},{'name': 'ToolbarCaptionsButtonDirective', 'selector': 'ov-videoconference[toolbarCaptionsButton], ov-toolbar[captionsButton]'},{'name': 'ToolbarChatPanelButtonDirective', 'selector': 'ov-videoconference[toolbarChatPanelButton], ov-toolbar[chatPanelButton]'},{'name': 'ToolbarDirective', 'selector': '[ovToolbar]'},{'name': 'ToolbarDisplayLogoDirective', 'selector': 'ov-videoconference[toolbarDisplayLogo], ov-toolbar[displayLogo]'},{'name': 'ToolbarDisplaySessionNameDirective', 'selector': 'ov-videoconference[toolbarDisplaySessionName], ov-toolbar[displaySessionName]'},{'name': 'ToolbarFullscreenButtonDirective', 'selector': 'ov-videoconference[toolbarFullscreenButton], ov-toolbar[fullscreenButton]'},{'name': 'ToolbarLeaveButtonDirective', 'selector': 'ov-videoconference[toolbarLeaveButton], ov-toolbar[leaveButton]'},{'name': 'ToolbarParticipantsPanelButtonDirective', 'selector': 'ov-videoconference[toolbarParticipantsPanelButton], ov-toolbar[participantsPanelButton]'},{'name': 'ToolbarScreenshareButtonDirective', 'selector': 'ov-videoconference[toolbarScreenshareButton], ov-toolbar[screenshareButton]'},{'name': 'ToolbarSettingsButtonDirective', 'selector': 'ov-videoconference[toolbarSettingsButton], ov-toolbar[settingsButton]'},{'name': 'VideoMutedDirective', 'selector': 'ov-videoconference[videoMuted]'}];
     var ACTUAL_COMPONENT = {'name': 'OpenviduWebComponentComponent'};
@@ -4137,6 +4215,19 @@ This OpenVidu token will be use by each participant when connecting to a Session
             var COMPODOC_CURRENT_PAGE_URL = 'OpenviduWebComponentComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
