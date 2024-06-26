@@ -1,3 +1,24 @@
+#sticky-menu ul#menu-list > li > ul.top-ul:has(.nav-item-title-OpenVidu.v3) {
+    background-color: #ffcc00;
+    margin-bottom: 6px;
+}
+
+#sticky-menu ul#menu-list > li > ul.top-ul:has(.nav-item-title-OpenVidu.v3):hover {
+    background-color: #ffcc00d5;
+}
+
+#sticky-menu li a.nav-item-title-OpenVidu.v3 {
+    color: #444444;
+}
+
+#sticky-menu li a.nav-item-title-OpenVidu.v3.current {
+    color: black;
+}
+
+#sticky-menu ul li.toctree-l1:hover a.nav-item-title-OpenVidu.v3 {
+    color: rgba(0, 0, 0, 0.7);
+}
+
 readthedocs-flyout {
     display: none;
 }

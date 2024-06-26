@@ -10,6 +10,7 @@ site_description: OpenVidu documentation pages
 
 # Documentation layout.
 nav:
+    - OpenVidu v3: openvidu3.md
     - What is OpenVidu?: index.md
     - Getting started: getting-started/index.md
     - Developing your video app: developing-your-video-app/index.md
