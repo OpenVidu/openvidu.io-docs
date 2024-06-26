@@ -1,6 +1,7 @@
 <style>
     #version-warning {
-        padding: 12px;
+        padding: 24px;
+        font-size: 16px;
         background-color: #ffcc00;
         color: #4c4c4c;
         position: fixed;
@@ -58,9 +59,9 @@ the message could be changed to this:
 -->
 
 <div id="version-warning" class="alert" style="display: none">
-    <span class="warning-text"><strong>Warning:</strong> You are reading docs for an old version.</span>
+    <span class="warning-text">This is the documentation of OpenVidu v2</span>
     <div class="div-btns">
-        <span><a id="link-to-stable" class="alert-btn">GO TO LATEST STABLE VERSION</a></span>
+        <span><a id="link-to-stable" class="alert-btn" style="color: #0088aa"><strong>Go to OpenVidu v3</strong></a></span>
     </div>
 </div>
 
@@ -87,15 +88,15 @@ the message could be changed to this:
             //     -> []
             // http://127.0.0.1:8000/tutorials/openvidu-hello-world/
             //     -> ["tutorials", "openvidu-hello-world"]
-            if (pathSplitted.length < 2 || pathSplitted[0] !== "en") {
-                return;
-            }
+            // if (pathSplitted.length < 2 || pathSplitted[0] !== "en") {
+            //     return;
+            // }
 
             const urlVersion = pathSplitted[1];
 
-            if (urlVersion === "latest" || urlVersion === "stable") {
-                return;
-            }
+            // if (urlVersion === "latest" || urlVersion === "stable") {
+            //     return;
+            // }
 
             // Newest version obtained from selector in version-button.html
             const selectorNewestVersion = document
@@ -104,16 +105,17 @@ the message could be changed to this:
                 .filter((v) => v)
                 .pop();
 
-            if (urlVersion !== selectorNewestVersion) {
+            if (urlVersion !== selectorNewestVersion && !window.location.pathname.includes("/openvidu3/")) {
                 const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
                 const hash = window.location.hash;
 
                 document.getElementById("link-to-stable").onclick = function () {
-                    if (restOfPath.length > 0) {
-                        window.location.href = "/en/stable/" + restOfPath + "/" + hash;
-                    } else {
-                        window.location.href = "/en/stable/" + hash;
-                    }
+                    // if (restOfPath.length > 0) {
+                    //     window.location.href = "/en/stable/" + restOfPath + "/" + hash;
+                    // } else {
+                    //     window.location.href = "/en/stable/" + hash;
+                    // }
+                    window.open("https://openvidu.io", "_blank");
                 };
                 $("#version-warning").show();
             }
