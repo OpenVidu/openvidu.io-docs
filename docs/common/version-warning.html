@@ -99,13 +99,13 @@ the message could be changed to this:
             // }
 
             // Newest version obtained from selector in version-button.html
-            const selectorNewestVersion = document
-                .getElementById("version-selector")[0]
-                .value.split("/")
-                .filter((v) => v)
-                .pop();
+            // const selectorNewestVersion = document
+            //     .getElementById("version-selector")[0]
+            //     .value.split("/")
+            //     .filter((v) => v)
+            //     .pop();
 
-            if (urlVersion !== selectorNewestVersion && !window.location.pathname.includes("/openvidu3/")) {
+            if (/*urlVersion !== selectorNewestVersion && */!window.location.pathname.includes("/openvidu3/")) {
                 const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
                 const hash = window.location.hash;
 
