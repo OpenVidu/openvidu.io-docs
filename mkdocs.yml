@@ -139,6 +139,7 @@ nav:
           - Home: openvidu-enterprise/index.md
           - Simulcast: openvidu-enterprise/simulcast.md
           - High availability: openvidu-enterprise/high-availability.md
+    - Account: account.md
 
 # Build directories.
 theme:
