@@ -11,3 +11,7 @@
         url('fonts/Arciform.svg#svgFontName') format('svg');
     /* Legacy iOS */
 }
+
+li:has(> ul > li > a.nav-item-title-Account) {
+    display: none !important;
+}
