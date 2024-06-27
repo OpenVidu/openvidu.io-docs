@@ -222,9 +222,7 @@ Although most OpenVidu v2 applications should work out of the box with OpenVidu 
 - [Server-side voice and video filters](advanced-features/filters/) are not supported out-of-the-box.
 - [Autoscaling](openvidu-pro/scalability/#autoscaling) is not available for On-Premises deployments. It is currently available for AWS deployments.
 - In Connection objects the `subscribers` array will always be empty. This applies to the `subscribers` property in the JSON response of the [REST API](reference-docs/REST-API/#the-connection-object) methods, the [Connection#getSubscribers](api/openvidu-java-client/io/openvidu/java/client/Connection.html#getSubscribers()) method of openvidu-java-client, and the [Connection.subscribers](api/openvidu-node-client/classes/Connection.html#subscribers) property of openvidu-node-client.
-- As there are no official OpenVidu SDKs for native [Android](tutorials/openvidu-android/) and [iOS](tutorials/openvidu-ios/), applications have to be updated to use the LiveKit SDKs. You can check out the migrations guides:
-    - [Migrating a native Android app from OpenVidu v2 to OpenVidu v3]()
-    - [Migrating a native iOS app from OpenVidu v2 to OpenVidu v3]()
+- As there are no official OpenVidu SDKs for native [Android](tutorials/openvidu-android/) and [iOS](tutorials/openvidu-ios/), applications have to be updated to use the LiveKit SDKs. We are currently working on migration guides.
 
 #### Breaking changes in openvidu-browser
 
