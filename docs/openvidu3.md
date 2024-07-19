@@ -178,7 +178,15 @@ This includes any client application built with the [OpenVidu Web Component](/re
 
 ### 3. Point your server application to your new OpenVidu v3 deployment
 
-Make sure that your server application is configured to connect to your new OpenVidu v3 deployment.
+Make sure that your server application is configured to connect to your new OpenVidu v3 deployment. Depending on the deployment type you have chosen, you will have to update OpenVidu Server URL and OpenVidu Secret in your server application accordingly.
+
+- [OpenVidu Local Deployment](https://openvidu.io/latest/docs/self-hosting/local/#openvidu-pro_1)
+- OpenVidu Elastic Deployment:
+    - [On-Premises](https://openvidu.io/latest/docs/self-hosting/elastic/on-premises/install/#configure-your-application-to-use-the-deployment)
+    - [AWS](https://openvidu.io/latest/docs/self-hosting/elastic/aws/install/#configure-your-application-to-use-the-deployment)
+- OpenVidu High Availability Deployment:
+    - [On-Premises](https://openvidu.io/latest/docs/self-hosting/ha/on-premises/install-dlb/#configure-your-application-to-use-the-deployment)
+    - [AWS](https://openvidu.io/latest/docs/self-hosting/ha/aws/install/#configure-your-application-to-use-the-deployment)
 
 After these steps, your application should be up and running against OpenVidu v3.
 
