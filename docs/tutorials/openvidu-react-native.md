@@ -9,7 +9,7 @@ An OpenVidu application built with **React Native**. It can be compiled into a *
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial">Commercial support</a> to get it.
+    React Native support is a paid feature. <strong>A special version of openvidu-browser library is needed for openvidu-react-native tutorial to work</strong>. Contact us through <a href="https://openvidu.io/support#commercial-support">Commercial support</a> to get it.
   </div>
 </div>
 

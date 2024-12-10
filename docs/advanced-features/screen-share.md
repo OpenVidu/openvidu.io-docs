@@ -87,7 +87,7 @@ You can check out [openvidu-electron tutorial](tutorials/openvidu-electron/), wh
 
 ## How to share the screen audio
 
-You can allow the clients to share the audio of their screens by setting both the `videoSource` and `audioSource` properties of [PublisherProperties](/api/openvidu-browser/interfaces/PublisherProperties.html){target="_blank"} object to `"screen"`:
+You can allow the clients to share the audio of their screens by setting both the `videoSource` and `audioSource` properties of [PublisherProperties](api/openvidu-browser/interfaces/PublisherProperties.html){target="_blank"} object to `"screen"`:
 
 ```javascript
 var publisher = OV.initPublisher("html-element-id", {

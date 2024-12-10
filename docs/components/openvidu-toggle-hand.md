@@ -236,4 +236,4 @@ This script will create an image named `openvidu/openvidu-toggle-hand-demo:X.Y.Z
 
 #### 2) Deploy the docker image
 
-Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](/deployment/deploying-openvidu-apps/#with-docker) guide for doing this.
+Time to deploy the docker image. You can follow the [Deploy OpenVidu based application with Docker](deployment/deploying-openvidu-apps/#with-docker) guide for doing this.

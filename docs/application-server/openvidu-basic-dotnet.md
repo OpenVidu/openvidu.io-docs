@@ -95,7 +95,7 @@ The first thing the application does is to configure CORS support. The CORS poli
 
 #### Initialize session endpoint
 
-The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```cs
 // Set OpenVidu deployment secret
@@ -129,7 +129,7 @@ The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/
 
 #### Create conneciton endpoint
 
-The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
+The second endpoint allows us to create a new [OpenVidu Connection](developing-your-video-app/#connection) in the session:
 
 ```cs
 app.MapPost("/api/sessions/{sessionId}/connections", async (HttpRequest request, [FromRoute] string sessionId) =>

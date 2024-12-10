@@ -293,7 +293,7 @@ The two endpoints offered by all server application samples are documented below
 
 ## User Authentication
 
-The application servers are stateless. They do not store any information about users or sessions. It is your responsibility to implement user authentication and authorization in your application server. This is a very important topic that is outside the scope of OpenVidu. You can find some useful information in the [User Authentication](/application-server/user-authentication/) section.
+The application servers are stateless. They do not store any information about users or sessions. It is your responsibility to implement user authentication and authorization in your application server. This is a very important topic that is outside the scope of OpenVidu. You can find some useful information in the [User Authentication](application-server/user-authentication/) section.
 
 <br>
 <script>

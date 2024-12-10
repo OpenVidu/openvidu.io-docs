@@ -5,7 +5,7 @@
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-    <strong>openvidu-ios sample application is a paid feature</strong>. Contact us through <a href="https://openvidu.io/support#commercial" target="_blank">Commercial support</a> to get it
+    <strong>openvidu-ios sample application is a paid feature</strong>. Contact us through <a href="https://openvidu.io/support#commercial-support" target="_blank">Commercial support</a> to get it
   </div>
 </div>
 

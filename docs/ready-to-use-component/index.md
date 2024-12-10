@@ -3,7 +3,7 @@
 
 OpenVidu provides a **Web Component** that is the fastest and least impactful way to incorporate video conferencing capabilities to your application. It is extremely easy to add, although its customization is somewhat limited.
 
-The Web Component is built directly from our flagship application [OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"}, so all of its advanced features are available when using the Web Component.
+The Web Component is built directly from our flagship application [OpenVidu Call](components/openvidu-call){:target="_blank"}, so all of its advanced features are available when using the Web Component.
 
 > The _ready-to-use component_ is only one of the three strategies available to integrate OpenVidu in your application's client. You can take a look to sections [OpenVidu Components](components/) or [Full control of the UI](full-control-ui/) to explore the other alternatives.
 

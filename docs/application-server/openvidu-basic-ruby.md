@@ -76,7 +76,7 @@ Then the application configures the port retrieved from the environment variable
 
 #### Initialize session endpoint
 
-The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```ruby
 post '/api/sessions' do
@@ -111,7 +111,7 @@ The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/
 
 #### Create connection endpoint
 
-The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
+The second endpoint allows us to create a new [OpenVidu Connection](developing-your-video-app/#connection) in the session:
 
 ```ruby
 post '/api/sessions/:sessionId/connections' do
