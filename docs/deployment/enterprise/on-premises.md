@@ -639,7 +639,7 @@ docker-compose logs openvidu-server
 docker-compose logs replication-manager
 ```
 
-**2)** Make sure all your nodes has a reachable public IP and at least port 443 open TCP/UDP. Nodes should have access to DNS, so they can autodiscover its own public IP. If your nodes can't have a public IP and/or the browsers in your infrastructure can't access to nodes, you will need to configure an external TURN server. You can configure a TURN server in the configuration file of the node at `/opt/openvidu/.env`. You can find more information about how to configure an external TURN server in the [Allow users behind firewalls](/deployment/allow-users-behind-firewalls/) section.
+**2)** Make sure all your nodes has a reachable public IP and at least port 443 open TCP/UDP. Nodes should have access to DNS, so they can autodiscover its own public IP. If your nodes can't have a public IP and/or the browsers in your infrastructure can't access to nodes, you will need to configure an external TURN server. You can configure a TURN server in the configuration file of the node at `/opt/openvidu/.env`. You can find more information about how to configure an external TURN server in the [Allow users behind firewalls](deployment/allow-users-behind-firewalls/) section.
 
 #### Check cluster and nodes health
 

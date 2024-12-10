@@ -830,7 +830,7 @@ Do you want to stream your OpenVidu Sessions to thousands of users? You can now 
 
 Check out the official documentation [here](https://docs.openvidu.io/en/2.26.0/advanced-features/broadcast/).
 
-> The broadcasting feature is included in the **OpenVidu Components** library (so currently available in [openvidu-angular](https://docs.openvidu.io/en/2.26.0/api/openvidu-angular/)) and in the [**OpenVidu Call**](https://openvidu.io/openvidu-call) application
+> The broadcasting feature is included in the **OpenVidu Components** library (so currently available in [openvidu-angular](https://docs.openvidu.io/en/2.26.0/api/openvidu-angular/)) and in the [**OpenVidu Call**](https://docs.openvidu.io/en/2.26.0/components/openvidu-call/) application
 
 <br>
 
@@ -3176,7 +3176,7 @@ There are 2 major changes in the way OpenVidu Pro takes advantage of its Elastic
 
 ##### OpenVidu Call complete overhaul
 
-[OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"} is our flagship demo application. It is an example of a common use case of videoconferencing application, built with love and available for everyone with its open source license.
+[OpenVidu Call](https://docs.openvidu.io/en/stable/components/openvidu-call/){:target="_blank"} is our flagship demo application. It is an example of a common use case of videoconferencing application, built with love and available for everyone with its open source license.
 
 People liked it so much that we decided to integrate it by default in OpenVidu 2.13.0 official deployments. Now, when deploying OpenVidu in production, OpenVidu Call is automatically added to the stack and you can start using it right away. But OpenVidu Call had some limitations that must be addressed.
 This is the complete changelog of OpenVidu Call in 2.14.0 release:
@@ -3917,7 +3917,7 @@ Using Electron means that the same codebase you are already using for your web a
 
 You’re not convinced by Ionic? Now you can choose React Native framework for developing your OpenVidu mobile app. React Native is rather similar to Ionic from the developers perspective, but at the same time its nature is very different. Essentially, it really uses native Android and iOS UI components under the hood while Ionic is based on WebView (in a nutshell, it runs on the browser).
 
-> React Native support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-react-native](tutorials/openvidu-react-native/) tutorial to quickly get started
+> React Native support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial-support){:target="_blank"} page to ask for React Native support. You can then use [openvidu-react-native](tutorials/openvidu-react-native/) tutorial to quickly get started
 
 <br>
 
@@ -3925,7 +3925,7 @@ You’re not convinced by Ionic? Now you can choose React Native framework for d
 
 Yes, it’s 2019. But there’s still a lot of companies out there that provide/require IE support and need videoconferencing systems to work in this browser relic. So that’s why we have brought OpenVidu support to IE through Temasys plugin. Only IE 11 is supported (going further back was too much of a pain).
 
-> Internet Explorer support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial){:target="_blank"} page to ask for React Native support. You can then use [openvidu-internet-explorer](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-internet-explorer/){:target="_blank"} tutorial to quickly get started
+> Internet Explorer support is not part of the open source stack of OpenVidu platform. Please, contact us through [Commercial](https://openvidu.io/support#commercial-support){:target="_blank"} page to ask for React Native support. You can then use [openvidu-internet-explorer](https://github.com/OpenVidu/openvidu-tutorials/tree/master/openvidu-internet-explorer/){:target="_blank"} tutorial to quickly get started
 
 <br>
 
@@ -4685,7 +4685,7 @@ You can set custom bandwidths by using **REST API**, **openvidu-java-client** or
 <br>
 ##### OpenVidu Browser improvements
 
-- New method `OpenVidu.checkScreenSharingCapabilities()`. It allows developers to know if the client platform supports screen sharing (see its declaration in [OpenVidu Documentation](https://openvidu.io//api/openvidu-browser/classes/openvidu.html#checkscreensharingcapabilities){:target="_blank"})
+- New method `OpenVidu.checkScreenSharingCapabilities()`. It allows developers to know if the client platform supports screen sharing (see its declaration in [OpenVidu Documentation](https://openvidu.io/api/openvidu-browser/classes/openvidu.html#checkscreensharingcapabilities){:target="_blank"})
 
 <br>
 ##### New OpenVidu Angular and OpenVidu React libraries

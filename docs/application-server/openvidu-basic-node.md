@@ -84,7 +84,7 @@ Starting by the top, the `index.js` file has the following fields:
 
 #### Initialize session endpoint
 
-The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```javascript
 app.post("/api/sessions", async (req, res) => {
@@ -101,7 +101,7 @@ Finally, the session identifier is returned in the response body.
 
 #### Create connection endpoint
 
-The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
+The second endpoint allows us to create a new [OpenVidu Connectiondeveloping-your-video-app/#connection) in the session:
 
 ```javascript
 app.post("/api/sessions/:sessionId/connections", async (req, res) => {

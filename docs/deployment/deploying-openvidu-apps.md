@@ -8,7 +8,7 @@
 
 ## OpenVidu Call application installed by default
 
-When deploying OpenVidu platform for production the [OpenVidu Call](https://openvidu.io/openvidu-call){:target="_blank"} application is automatically deployed and it is accessible in the URL:
+When deploying OpenVidu platform for production the [OpenVidu Call](components/openvidu-call){:target="_blank"} application is automatically deployed and it is accessible in the URL:
 
 ```console
 https://DOMAIN_OR_PUBLIC_IP/

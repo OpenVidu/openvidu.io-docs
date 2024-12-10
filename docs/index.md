@@ -183,7 +183,7 @@ OpenVidu is a platform to facilitate the addition of video calls in your web or 
     </div>
     <div class="col-sm-6 col-xs-12 col-sm-pull-6 feature-text-col">
       <h3 style="text-align: right">Supported plans and professional support</h3>
-      <span class="feature-text">We offer <a href="openvidu-pro/" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="https://openvidu.io/support#commercial" target="_blank">Contact us now!</a></span>
+      <span class="feature-text">We offer <a href="openvidu-pro/" style="font-weight: bold">OpenVidu Pro</a> for those companies interested in a more advanced production setup, focused on improved monitoring, scalability and fault tolerance. And OpenVidu team is opened to providing professional support for any project related to the platform. <a href="https://openvidu.io/support#commercial-support" target="_blank">Contact us now!</a></span>
     </div>
   </div>
 
@@ -205,7 +205,7 @@ Some interesting and real-world use cases that you can implement with OpenVidu:
 - A security platform where you can receive video from security cameras. You could even receive a notification when some movement is detected in a region of the video.
 - A mobile app to receive video from drones equipped with an IP camera.
 
-The possibilities are endless. You can check our **[Demos](https://openvidu.io/demos){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
+The possibilities are endless. You can check our **[Demos](https://demos.openvidu.io){:target="_blank"}** to get an idea of what you can do with OpenVidu. Here some cool pictures of them:
 
 <div class="docs-gallery">
   <a data-fancybox="gallery-wellcome" data-type="iframe" href="video/components/ov-call-greetings.mp4" class="fancybox-img"><video class="img-responsive img-wellcome" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video></a>

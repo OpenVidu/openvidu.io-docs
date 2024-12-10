@@ -129,7 +129,7 @@ See below every step in detail.
 
 ### 1. Deploy OpenVidu v3
 
-An OpenVidu v2 deployment is **NOT** directly upgradable to an OpenVidu v3 deployment. You will have to deploy OpenVidu v3 completely from scratch. Just follow the [official instructions](https://openvidu.io/docs/self-hosting/deployment-types/){target="_blank"}, making sure to enable **compatibility with OpenVidu v2**. You do this by enabling **`v2compatibility`** module while installing OpenVidu v3.
+An OpenVidu v2 deployment is **NOT** directly upgradable to an OpenVidu v3 deployment. You will have to deploy OpenVidu v3 completely from scratch. Just follow the [official instructions](https://openvidu.io/latest/docs/self-hosting/deployment-types/){target="_blank"}, making sure to enable **compatibility with OpenVidu v2**. You do this by enabling **`v2compatibility`** module while installing OpenVidu v3.
 
 ### 2. Update your application
 
@@ -147,7 +147,7 @@ If your application imports the *openvidu-browser.js* bundle library directly:
 
 #### For application using the OpenVidu Web Component
 
-This includes any client application built with the [OpenVidu Web Component](/ready-to-use-component/).
+This includes any client application built with the [OpenVidu Web Component](ready-to-use-component/).
 
 - Replace both web component files: `openvidu-webcomponent-2.X.X.js` to `openvidu-webcomponent-v2compatibility-3.X.X.js` and `openvidu-webcomponent-2.X.X.css` to `openvidu-webcomponent-v2compatibility-3.X.X.css`. You can find the latest version in the [releases table below](#artifacts-for-v2-apps-compatible-with-openvidu-v3).
 

@@ -6,7 +6,7 @@
 Take a look at our demos and get a taste of what is possible to build with OpenVidu.
 
 <div style="text-align: center; margin: 35px 0 0 15px">
-    <a href="https://openvidu.io/demos" target="_blank" class="btn btn-lg btn-primary btn-scroll try-now-btn">Try our demos</a>
+    <a href="https://demos.openvidu.io" target="_blank" class="btn btn-lg btn-primary btn-scroll try-now-btn">Try our demos</a>
 </div>
 
 ## OpenVidu Editions

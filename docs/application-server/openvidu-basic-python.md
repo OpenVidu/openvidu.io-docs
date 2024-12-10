@@ -78,7 +78,7 @@ Starting by the top, the `app.py` file has the following fields:
 
 #### Initialize session endpoint
 
-The first endpoint allows us to initialize a new [OpenVidu Session](/developing-your-video-app/#session). The code of this endpoint is the following:
+The first endpoint allows us to initialize a new [OpenVidu Session](developing-your-video-app/#session). The code of this endpoint is the following:
 
 ```python
 @app.route("/api/sessions", methods=['POST'])
@@ -108,7 +108,7 @@ The endpoint creates a new Session using the [OpenVidu REST API](reference-docs/
 
 #### Create connection endpoint
 
-The second endpoint allows us to create a new [OpenVidu Connection](/developing-your-video-app/#connection) in the session:
+The second endpoint allows us to create a new [OpenVidu Connection](developing-your-video-app/#connection) in the session:
 
 ```python
 @app.route("/api/sessions/<sessionId>/connections", methods=['POST'])

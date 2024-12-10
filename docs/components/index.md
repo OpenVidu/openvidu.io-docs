@@ -33,7 +33,7 @@ The main goal always pursued by the OpenVidu team is to reduce to a minimum the 
 - It offers as much customization as possible. Adapt, extend and replace any component however you want.
 - It keeps your code up to date. Using OpenVidu Components means that your application will be much easier to update after each new OpenVidu release.
 
-Nothing better than a real example to see the potential of OpenVidu Components. Our production-ready flagship application **[OpenVidu Call](https://openvidu.io/openvidu-call)** is developed using OpenVidu Components.
+Nothing better than a real example to see the potential of OpenVidu Components. Our production-ready flagship application **[OpenVidu Call](components/openvidu-call)** is developed using OpenVidu Components.
 
 ## Where to start
 

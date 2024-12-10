@@ -1507,7 +1507,7 @@ automatically to all the media nodes configured in "KMS_URIS"
       <i class="icon ion-android-alert warningIcon"></i>
   </div>
   <div class="warningBoxText">
-        If you want to use the <strong><a href="/advanced-features/speech-to-text/" target="_blank">Speech to text</a></strong> service available in this version, you need to open the port 4000 in your Media Node to be reachable only by OpenVidu Server.
+        If you want to use the <strong><a href="advanced-features/speech-to-text/" target="_blank">Speech to text</a></strong> service available in this version, you need to open the port 4000 in your Media Node to be reachable only by OpenVidu Server.
   </div>
 </div>
 

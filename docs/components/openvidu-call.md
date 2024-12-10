@@ -17,8 +17,6 @@ OpenVidu Call is the flagship videoconference app based on [OpenVidu Components]
 Moreover, OpenVidu Call contains an **intelligent layout** algorithm that adapts the video layout to the number of participants in the session.
 OpenVidu Call is installed by default when you [deploy OpenVidu](deployment).
 
-Visit its <a href="https://openvidu.io/openvidu-call">presentation page</a> for more information.
-
 <p align="center" style="margin-top: 30px">
   <video class="img-responsive" style="max-width: 80%" src="video/components/ov-call-greetings.mp4" muted async loop autoplay playsinline></video>
 </p>
@@ -144,7 +142,7 @@ OpenVidu Call offers two different flavors of the same backend (Java and Node), 
 
 _(Used by default with OpenVidu deployment)_
 
-See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-back){:target="\_blank"}
+See code [here](https://github.com/OpenVidu/openvidu-call/tree/v2/openvidu-call-back){:target="\_blank"}
 
 </div>
 
@@ -162,7 +160,7 @@ See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-c
 - `AuthService.java`: service which includes the auth logic.
 - `SecurityConfig.java`: config file for basic authentication.
 
-See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-back-java){:target="\_blank"}
+See code [here](https://github.com/OpenVidu/openvidu-call/tree/v2/openvidu-call-back-java){:target="\_blank"}
 
 </div>
 </div>
@@ -231,7 +229,7 @@ As identical to the recording features, the broadcast features are also based on
 
 #### **openvidu-call-front**
 
-A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/master/openvidu-call-front).
+A simple Angular app built with [openvidu-angular](api/openvidu-angular/) library allowing us to develop a powerful videconference frontend. See code [here](https://github.com/OpenVidu/openvidu-call/tree/v2/openvidu-call-front).
 
 - `services/guards/navigator-guard.service.ts`: service in charge of checking if the navigation to an specific route is allowed verifying the user authentication.
 - `services/call.service.ts`: service in charge of the OpenVidu Call environment information.
@@ -242,7 +240,7 @@ A simple Angular app built with [openvidu-angular](api/openvidu-angular/) librar
 - `components/call`: component with the videoconference screen.
 - `components/admin-dashboard`: component with the admin dashboard.
 
-Let's focus on the [CallComponent template](https://github.com/OpenVidu/openvidu-call/blob/master/openvidu-call-front/src/app/components/call/call.component.html){:target="\_blank"}. We can have a videoconference app **with a few lines of code**:
+Let's focus on the [CallComponent template](https://github.com/OpenVidu/openvidu-call/blob/v2/openvidu-call-front/src/app/components/call/call.component.html){:target="\_blank"}. We can have a videoconference app **with a few lines of code**:
 
 ```html
 <ov-videoconference
