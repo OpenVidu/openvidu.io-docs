@@ -16,7 +16,7 @@ To run this application you will need **Ruby** installed on your system:
 #### Download repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.30.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.31.0
 cd openvidu-tutorials/openvidu-basic-ruby
 ```
 

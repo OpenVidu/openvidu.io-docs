@@ -64,7 +64,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="_blank"}:
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
 
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.30.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.31.0
 ```
 
 #### 2. Run your preferred server application sample
@@ -113,7 +113,7 @@ This script will create the docker image with the [openvidu-basic-node](applicat
 
 ```bash
 # Clone the openvidu-tutorials repository at the same level of the openvidu-call-react repository
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.30.0
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.31.0
 ```
 
 Then, you can create the docker image with the following command:
