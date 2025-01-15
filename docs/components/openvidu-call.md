@@ -53,7 +53,7 @@ You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-j
 1. Clone the repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-call.git -b v2.30.0
+git clone https://github.com/OpenVidu/openvidu-call.git -b v2.31.0
 ```
 
 2. Install dependencies
@@ -78,7 +78,7 @@ You need [Java](https://www.java.com/en/download/manual.jsp){:target="\_blank"} 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-call.git -b v2.30.0
+git clone https://github.com/OpenVidu/openvidu-call.git -b v2.31.0
 ```
 
 2. Install dependencies

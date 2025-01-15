@@ -1226,7 +1226,7 @@ This is literally the simplest HTML for a custom recording layout. Use it as a t
 ```html
 <html>
 
-<head><script src="openvidu-browser-2.30.0.min.js"></script></head>
+<head><script src="openvidu-browser-2.31.0.min.js"></script></head>
 
 <body>
     <div id="videos"></div>
@@ -1260,7 +1260,7 @@ You also can use an additional layout library for improving the layout and get a
 <html>
 
 <head>
-    <script src="openvidu-browser-2.30.0.min.js"></script>
+    <script src="openvidu-browser-2.31.0.min.js"></script>
     <script src="opentok-layout.min.js"></script>
 </head>
 
