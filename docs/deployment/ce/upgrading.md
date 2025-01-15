@@ -82,7 +82,7 @@ sudo -s
 cd /opt/openvidu # Recommended and default installation path
 ```
 
-Then you can run the upgrade script with the following command. Change the desired version in the URL: instead of <code>install_openvidu_<strong>VERSION</strong>.sh</code> use for example <code>install_openvidu_<strong>2.30.0</strong>.sh</code>
+Then you can run the upgrade script with the following command. Change the desired version in the URL: instead of <code>install_openvidu_<strong>VERSION</strong>.sh</code> use for example <code>install_openvidu_<strong>2.31.0</strong>.sh</code>
 
 <p style="text-align: start">
 <code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_VERSION.sh | bash -s upgrade</strong></code>
