@@ -1,6 +1,7 @@
 <h2 id="section-title">Releases</h2>
 <hr>
 
+- [2.31.0](#2310)
 - [2.30.0](#2300)
 - [2.29.0](#2290)
 - [2.28.0](#2280)
@@ -33,6 +34,155 @@
 - [2.1.0](#210)
 - [2.0.0](#200)
 - [1.9.0-beta-1](#190-beta-1)
+
+---
+
+## 2.31.0
+
+### Artifacts
+
+<table class="artifact-table">
+
+<tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="3" style="vertical-align: middle">OpenVidu CE</td>
+    <td>On Premises</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/ce/on-premises/">Deploy</a></td>
+    <td rowspan="3" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu CE server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/ce/aws/">Deploy</a></td>
+  </tr>
+    <tr>
+    <td>Dev container</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://hub.docker.com/r/openvidu/openvidu-dev/tags/" target="_blank">DockerHub</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Pro</td>
+    <td>On Premises</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/pro/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Pro server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/pro/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">OpenVidu Enterprise</td>
+    <td>On Premises</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/enterprise/on-premises/">Deploy</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Enterprise server side. It receives the remote procedure calls from openvidu-browser and manage all the media streams operations" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>On AWS</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://docs.openvidu.io/en/2.31.0/deployment/enterprise/aws/">Deploy</a></td>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser</td>
+    <td>NPM package</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.31.0" target="_blank">GitHub</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client</td>
+    <td>MVN package</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client/2.31.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client</td>
+    <td>NPM package</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent</td>
+    <td>ZIP</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/tag/v2.31.0" target="_blank">GitHub</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular</td>
+    <td>NPM package</td>
+    <td>2.31.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>Kurento Media Server</td>
+    <td>Ubuntu package</td>
+    <td>7.1.1</td>
+    <td><a class="" href="https://doc-kurento.readthedocs.io/en/7.1/user/installation.html#local-installation" target="_blank">Kurento Docs</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>mediasoup</td>
+    <td>NPM package</td>
+    <td>3.11.26</td>
+    <td><a class="" href="https://www.npmjs.com/package/mediasoup" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="Alternative Media Server in charge of the media transmissions" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
+### Release Notes
+
+<br>
+
+##### Kurento 7.1.1
+
+- **Kurento Media Server** has been updated to version 7.1.1. Which includes the following feautures:
+    - **Update to Ubuntu 24.04**. Base OS system has been updated to latest stabe version noble (24.04).  This includes several base packages updates, including GStreamer, libnice and libsoup.
+    - **Update to GStreamer 1.24.2**, GStreamer is updated to 1.24.04 which benefits the stability and performance of all the underying system. This includes some annoying bug recording H264 from  iOS and safari
+    - **Update to libnice 0.1.21**
+    - **Update to libSoup 3.4.4**,
+    - **Added DTLS state**, On WebRTCEndpoint, now DTLS state is reflected on a status property and changes are communicated to application throough Kurento events
+    - **Added VP9 support**, Thanks to the update to GStreamer we hae been able to add VP9 support to Kurento, including WebRTC VP9 support
+    - **Initial AV1 support**, Initial AV1 support has been added to Kurento, however it is ot yet functional for WebRTC
+
+##### Update internal dependencies
+
+There has been numerous updates to keep dependencies up to date and without vulnerabilities. This includes:
+
+- **openvidu-browser** and **openvidu-node-client** dependencies.
+- **openvidu-server**: Update some patches and dependencies.
+- Versions of **nginx**, **redis** and **coturn** for production deployments.
+- For AWS deployments: OpenVidu AWS AMIs are now based on **Ubuntu 24.04**
+
+<br>
 
 ---
 
