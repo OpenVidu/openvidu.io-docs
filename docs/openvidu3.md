@@ -225,8 +225,7 @@ Although most OpenVidu v2 applications should work out of the box with OpenVidu 
 
 #### General breaking changes
 
-- [IP Cameras](advanced-features/ip-cameras/) are not supported (for now).
-- [Speech To Text](advanced-features/speech-to-text/) is not supported (for now).
+- [Speech To Text](advanced-features/speech-to-text/) is not supported (for now). This is a work in progress and will be available soon.
 - [Server-side voice and video filters](advanced-features/filters/) are not supported out-of-the-box.
 - [Autoscaling](openvidu-pro/scalability/#autoscaling) is not available for On-Premises deployments. It is currently available for AWS deployments.
 - In Connection objects the `subscribers` array will always be empty. This applies to the `subscribers` property in the JSON response of the [REST API](reference-docs/REST-API/#the-connection-object) methods, the [Connection#getSubscribers](api/openvidu-java-client/io/openvidu/java/client/Connection.html#getSubscribers()) method of openvidu-java-client, and the [Connection.subscribers](api/openvidu-node-client/classes/Connection.html#subscribers) property of openvidu-node-client.
@@ -319,6 +318,65 @@ As mid-term goals, will be working in supporting a mesh distribution in the medi
 ## Artifacts for v2 apps compatible with OpenVidu v3
 
 The below artifacts allow making your OpenVidu v2 application compatible whith an OpenVidu v3 deployment. Read the [instructions](#updating-from-openvidu-v2-to-openvidu-v3) to update your app and make it work against an OpenVidu v3 deployment.
+
+### Release 3.1.0
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser-v2compatibility" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/download/v3.1.0/openvidu-browser-v2compatibility-3.1.0.min.js" target="_blank">Download</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular-v2compatibility" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular Components. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent-v2compatibility</td>
+    <td>ZIP</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/download/v3.1.0/openvidu-webcomponent-v2compatibility-3.1.0.zip" target="_blank">Download</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client-v2compatibility</td>
+    <td>MVN package</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client-v2compatibility/3.1.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.1.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client-v2compatibility" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
 
 ### Release 3.0.0
 
