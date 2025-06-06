@@ -319,6 +319,65 @@ As mid-term goals, will be working in supporting a mesh distribution in the medi
 
 The below artifacts allow making your OpenVidu v2 application compatible whith an OpenVidu v3 deployment. Read the [instructions](#updating-from-openvidu-v2-to-openvidu-v3) to update your app and make it work against an OpenVidu v3 deployment.
 
+### Release 3.2.0
+
+<table class="artifact-table">
+
+  <tr>
+    <th>Artifact</th>
+    <th>Type</th>
+    <th>Compatible Version</th>
+    <th>Link</th>
+    <th class="last-table-col">Info</th>
+  </tr>
+
+  <tr>
+    <td rowspan="2" style="vertical-align: middle">openvidu-browser-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-browser-v2compatibility" target="_blank">NPM</a></td>
+    <td rowspan="2" style="vertical-align: middle" class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu client side. It is a library for the browser. It allows you to control your videos and sessions directly from your client's browsers" class="icon ion-information-circled"></i></td>
+  </tr>
+  <tr>
+    <td>JS file</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/download/v3.2.0/openvidu-browser-v2compatibility-3.2.0.min.js" target="_blank">Download</a></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-angular-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-angular-v2compatibility" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Angular Components. Easier way to add OpenVidu video calls to your existing Angular application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-webcomponent-v2compatibility</td>
+    <td>ZIP</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://github.com/OpenVidu/openvidu/releases/download/v3.2.0/openvidu-webcomponent-v2compatibility-3.2.0.zip" target="_blank">Download</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="OpenVidu Web Component. Easier way to add OpenVidu video calls to your existing web application" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-java-client-v2compatibility</td>
+    <td>MVN package</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://central.sonatype.com/artifact/io.openvidu/openvidu-java-client-v2compatibility/3.2.0" target="_blank">MVN Repository</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your JAVA server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+  <tr>
+    <td>openvidu-node-client-v2compatibility</td>
+    <td>NPM package</td>
+    <td>3.2.0</td>
+    <td><a class="" href="https://www.npmjs.com/package/openvidu-node-client-v2compatibility" target="_blank">NPM</a></td>
+    <td class="last-table-col"><i data-toggle="tooltip" data-placement="right" title="SDK for your NODE server. Simple alternative to the REST API" class="icon ion-information-circled"></i></td>
+  </tr>
+
+</table>
+
 ### Release 3.1.0
 
 <table class="artifact-table">
