@@ -171,12 +171,12 @@ This is a maintenance release with important updates to internal dependencies an
     - Spring framework and other Java dependencies in **openvidu-server**.
     - Versions of **nginx**, **redis** and **coturn** in production deployments.
     - For AWS deployments: OpenVidu AWS AMIs are now based on latest **Ubuntu 24.04**.
-    - **ELK observability stack** updated to:
+    - **ELK observability stack** updates:
         - Elasticsearch from 7.8.0 to 7.17.29
         - Kibana from 7.8.0 to 7.17.29
-        - Metricbeat 7.8.0 to 7.12.1
+        - Metricbeat from 7.8.0 to 7.12.1
         - Filebeat from 7.8.0 to 7.12.1
-- Latest **kurento-media-server** version ([7.3.0](https://doc-kurento.readthedocs.io/en/latest/project/relnotes/7.3.html).
+- Latest **kurento-media-server** version ([7.3.0](https://doc-kurento.readthedocs.io/en/latest/project/relnotes/7.3.html)).
 - Latest **mediasoup** version ([3.19.12](https://github.com/versatica/mediasoup/releases/tag/3.19.12)) for OpenVidu Enterprise, bringing two years of fixes and improvements to the SFU inside Media Nodes.
 - **Fix possible crash in kurento-media-server** Docker container for resource exhaustion in available file descriptors when the system is under heavy load.
 - **Speech-to-text**: improved English language model in vosk STT service. Added russian language to default vosk service.
@@ -184,6 +184,7 @@ This is a maintenance release with important updates to internal dependencies an
 #### BREAKING CHANGES
 
 - **openvidu-browser**: removed support for es5 (minimum es2015). This means that applications using openvidu-browser must now support at least es2015. This affects mainly applications supporting very old browsers (like Internet Explorer 11). All modern browsers already support es2015.
+- **openvidu-java-client**: now requires Java 17 or higher.
 
 <br>
 
