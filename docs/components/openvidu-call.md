@@ -32,7 +32,7 @@ Using [Docker Engine](https://docs.docker.com/engine/){:target="\_blank"}:
 ```bash
 # WARNING: this container is not suitable for production deployments of OpenVidu
 # Visit https://docs.openvidu.io/en/stable/deployment
-docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.31.0
+docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-dev:2.32.0
 ```
 
 #### 2. Run your preferred server application
@@ -53,7 +53,7 @@ You need [Node and npm](https://docs.npmjs.com/downloading-and-installing-node-j
 1. Clone the repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-call.git -b v2.31.0
+git clone https://github.com/OpenVidu/openvidu-call.git -b v2.32.0
 ```
 
 2. Install dependencies
@@ -78,7 +78,7 @@ You need [Java](https://www.java.com/en/download/manual.jsp){:target="\_blank"} 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-call.git -b v2.31.0
+git clone https://github.com/OpenVidu/openvidu-call.git -b v2.32.0
 ```
 
 2. Install dependencies

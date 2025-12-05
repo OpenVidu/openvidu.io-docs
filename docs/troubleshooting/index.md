@@ -133,7 +133,7 @@ docker run -p 4443:4443 --rm \
   -e SERVER_PORT=4443 \
   -e HTTPS_PORT=443 \
   -e FORCE_PLAIN_HTTP=false \
-openvidu/openvidu-dev:2.31.0
+openvidu/openvidu-dev:2.32.0
 ```
 
 #### 2. Run your preferred server application sample
