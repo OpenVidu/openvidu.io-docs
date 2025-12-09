@@ -45,30 +45,30 @@
 </div>
 </div>
 
-## Migrating from 2.31.0 to 2.32.0
+## Migrating from 2.31.0 to 2.32.1
 
 Depending of the type of deployment you have (_AWS_ or _On Premises_), you will need to follow one of the following instructions:
 
-- **[Migrating from 2.31.0 to 2.32.0 (AWS Cloudformation - Single master deployment)](#migrating-from-2310-to-2320-aws-cloudformation-single-master-deployment)**
-- **[Migrating from 2.31.0 to 2.32.0 (On premises - Single master deployment)](#migrating-from-2310-to-2320-on-premises-single-master-deployment)**
-- **[Migrating from 2.31.0 to 2.32.0 (AWS Cloudformation - High Availability deployment)](#migrating-from-2310-to-2320-aws-cloudformation-high-availability-deployment)**
-- **[Migrating from 2.31.0 to 2.32.0 (On Premises - High Availability deployment)](#migration-from-2310-to-2320-on-premises-high-availability-deployment)**
+- **[Migrating from 2.31.0 to 2.32.1 (AWS Cloudformation - Single master deployment)](#migrating-from-2310-to-2321-aws-cloudformation-single-master-deployment)**
+- **[Migrating from 2.31.0 to 2.32.1 (On premises - Single master deployment)](#migrating-from-2310-to-2321-on-premises-single-master-deployment)**
+- **[Migrating from 2.31.0 to 2.32.1 (AWS Cloudformation - High Availability deployment)](#migrating-from-2310-to-2321-aws-cloudformation-high-availability-deployment)**
+- **[Migrating from 2.31.0 to 2.32.1 (On Premises - High Availability deployment)](#migration-from-2310-to-2321-on-premises-high-availability-deployment)**
 
-### Migrating from 2.31.0 to 2.32.0 (AWS Cloudformation - Single master deployment)
+### Migrating from 2.31.0 to 2.32.1 (AWS Cloudformation - Single master deployment)
 <br>
 
-Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.31.0 to 2.32.0 OpenVidu Pro (AWS with Cloudformation)](https://docs.openvidu.io/en/2.32.0/deployment/pro/upgrading/#migrating-from-2310-to-2320-aws-cloudformation).
+Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.31.0 to 2.32.1 OpenVidu Pro (AWS with Cloudformation)](https://docs.openvidu.io/en/2.32.1/deployment/pro/upgrading/#migrating-from-2310-to-2321-aws-cloudformation).
 
 > Remember to use `OPENVIDU_EDITION=enterprise` to run the deployment as OpenVidu enterprise.
 
-### Migrating from 2.31.0 to 2.32.0 (On premises - Single master deployment)
+### Migrating from 2.31.0 to 2.32.1 (On premises - Single master deployment)
 <br>
 
-Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.31.0 to 2.32.0 OpenVidu Pro (On premises)](https://docs.openvidu.io/en/2.32.0/deployment/pro/upgrading/#migrating-from-2310-to-2320-on-premises).
+Upgrading process for this kind of deployment is exactly the same as [Migrating from 2.31.0 to 2.32.1 OpenVidu Pro (On premises)](https://docs.openvidu.io/en/2.32.1/deployment/pro/upgrading/#migrating-from-2310-to-2321-on-premises).
 
 > Remember to use `OPENVIDU_EDITION=enterprise` to run the deployment as OpenVidu enterprise.
 
-### Migrating from 2.31.0 to 2.32.0 (AWS Cloudformation - High Availability deployment)
+### Migrating from 2.31.0 to 2.32.1 (AWS Cloudformation - High Availability deployment)
 <br>
 
 For OpenVidu Enterprise with High Availability, the upgrading process can not be done manually because it would require a lot of different changes on different machines. Instead, OpenVidu Enterprise with High Availability uses a S3 bucket to preserve its configuration and recordings. You can access to it from your CloudFormation panel, at the **Resources** section.
@@ -82,22 +82,22 @@ If you want to keep in your new deployment your configuration and recordings, fo
 
 ```
 aws s3api create-bucket \
-    --bucket <new-bucket-v2.32.0> \
+    --bucket <new-bucket-v2.32.1> \
     --region <your-region>
-aws s3 sync s3://<bucket-v2.31.0> s3://<new-bucket-v2.32.0>
+aws s3 sync s3://<bucket-v2.31.0> s3://<new-bucket-v2.32.1>
 ```
 
 **2)** Remove from the new bucket the file named `.env`, located in the root directory of the bucket. This is because we want OpenVidu Enterprise to generate a new one for us.
 
-**3)** Deploy the Cloudformation template of 2.32.0 from [this instructions](https://docs.openvidu.io/en/2.32.0/deployment/enterprise/aws/#high-availability-deployment). If you've followed steps 1 and 2, put at the **`OpenVidu S3 bucket`** parameter your new bucket, otherwise just keep the parameter blank.
+**3)** Deploy the Cloudformation template of 2.32.1 from [this instructions](https://docs.openvidu.io/en/2.32.1/deployment/enterprise/aws/#high-availability-deployment). If you've followed steps 1 and 2, put at the **`OpenVidu S3 bucket`** parameter your new bucket, otherwise just keep the parameter blank.
 
-**4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.32.0/deployment/enterprise/aws/#check-cluster-after-deploy)
+**4)** Wait for the deployment to be in [healthy state](https://docs.openvidu.io/en/2.32.1/deployment/enterprise/aws/#check-cluster-after-deploy)
 
-**5)** Check your new S3 bucket (or check the `new-bucket-v2.32.0` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow [this section](https://docs.openvidu.io/en/2.32.0/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
+**5)** Check your new S3 bucket (or check the `new-bucket-v2.32.1` you have created if you followed steps 1 and 2), and move your old configuration to the `.env` configuration of the new bucket. You can follow [this section](https://docs.openvidu.io/en/2.32.1/deployment/enterprise/aws/#2-change-configuration-by-modifying-s3-configuration-file-not-recommended) to see how to change and restart OpenVidu master nodes.
 
 <br>
 
-### Migration from 2.31.0 to 2.32.0 (On Premises - High Availability deployment)
+### Migration from 2.31.0 to 2.32.1 (On Premises - High Availability deployment)
 
 First make sure to stop all the nodes of your cluster. Then, follow the next steps:
 
@@ -114,7 +114,7 @@ cd /opt/ov-enterprise-base-services # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_ov_enterprise_ha_base_2.32.0.sh | bash -s upgrade</strong></code>
+<code id="code-1"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_ov_enterprise_ha_base_2.32.1.sh | bash -s upgrade</strong></code>
 <button id="btn-copy-1" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
 </p>
@@ -123,17 +123,17 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu Enterprise HA base services successfully upgraded to version v2.32.0
+Openvidu Enterprise HA base services successfully upgraded to version v2.32.1
 ================================================
 
-1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.32.0 services
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.32.1 services
 
-2. The previous file '.env' remains intact, but a new file '.env-v2.32.0' has been created.
-Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.32.0'.
-When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.32.0'.
+2. The previous file '.env' remains intact, but a new file '.env-v2.32.1' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.32.1'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.32.1'.
 
 3. If you were using Openvidu Call application, it has been automatically updated in file 'docker-compose.override.yml'.
-However, if you were using your own application, a file called 'docker-compose.override.yml-v2.32.0'
+However, if you were using your own application, a file called 'docker-compose.override.yml-v2.32.1'
 has been created with the latest version of Openvidu Call. If you don't plan to use it you can delete it.
 
 3. Start new versions of Openvidu Enterprise HA Base Services
@@ -165,7 +165,7 @@ cd /opt/openvidu # Recommended and default installation path
 Then you can run the upgrade script with this command:
 
 <p style="text-align: start">
-<code id="code-2"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_enterprise_ha_node_2.32.0.sh | bash -s upgrade
+<code id="code-2"><strong>curl https://s3-eu-west-1.amazonaws.com/aws.openvidu.io/install_openvidu_enterprise_ha_node_2.32.1.sh | bash -s upgrade
 </strong></code>
 <button id="btn-copy-2" class="btn-xs btn-primary btn-copy-code hidden-xs" data-toggle="tooltip" data-placement="button"
                               title="Copy to Clipboard">Copy</button>
@@ -175,14 +175,14 @@ The installation steps will output their progress as they run. If everything goe
 
 ```console
 ================================================
-Openvidu Enterprise HA successfully upgraded to version v2.32.0
+Openvidu Enterprise HA successfully upgraded to version v2.32.1
 ================================================
 
-1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.32.0 services
+1. A new file 'docker-compose.yml' has been created with the new OpenVidu Enterprise HA v2.32.1 services
 
-2. The previous file '.env' remains intact, but a new file '.env-v2.32.0' has been created.
-Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.32.0'.
-When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.32.0'.
+2. The previous file '.env' remains intact, but a new file '.env-v2.32.1' has been created.
+Transfer any configuration you wish to keep in the upgraded version from '.env' to '.env-v2.32.1'.
+When you are OK with it, rename and leave as the only '.env' file of the folder the new '.env-v2.32.1'.
 
 3. Start new version of Openvidu
 ------------------------------------------------
@@ -199,7 +199,6 @@ Make sure that you have all of your needed properties at your .env file and star
 ```
 
 <br>
-
 
 ## Migrating from 2.30.0 to 2.31.0
 
