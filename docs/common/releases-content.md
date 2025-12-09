@@ -186,6 +186,12 @@ This is a maintenance release with important updates to internal dependencies an
 - **openvidu-browser**: removed support for es5 (minimum es2015). This means that applications using openvidu-browser must now support at least es2015. This affects mainly applications supporting very old browsers (like Internet Explorer 11). All modern browsers already support es2015.
 - **openvidu-java-client**: now requires Java 17 or higher.
 
+#### PATCH VERSIONS
+
+##### 2.32.1
+
+- CVEs fixes in [**openvidu/openvidu-server** Docker container](https://hub.docker.com/r/openvidu/openvidu-server/tags) (commit [5921eef](https://github.com/OpenVidu/openvidu/commit/5921eef20a3f13722d9273e3bd169088e8148033).
+
 <br>
 
 ---
