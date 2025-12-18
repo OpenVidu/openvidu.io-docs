@@ -17,11 +17,9 @@
 
 ## Prerequisites
 
-| Dependency    | Check version   | Install                                 |
-| ------------- | --------------- |---------------------------------------- |
-| Java 11 JDK    | `java -version` | `sudo apt-get install -y openjdk-11-jdk` |
-| Maven         | `mvn -v`        | `sudo apt-get install -y maven`         |
-| Node          | `node -v`       | `sudo curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -`<br>`sudo apt-get install -y nodejs` |
+- **Java 25 JDK**
+- **Maven >= 3.9.0**
+- **Node >= v24**
 
 ## Compiling OpenVidu Server
 

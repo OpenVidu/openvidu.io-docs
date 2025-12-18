@@ -190,7 +190,7 @@ This is a maintenance release with important updates to internal dependencies an
 
 ##### 2.32.1
 
-- CVEs fixes in [**openvidu/openvidu-server** Docker container](https://hub.docker.com/r/openvidu/openvidu-server/tags) (commit [5921eef](https://github.com/OpenVidu/openvidu/commit/5921eef20a3f13722d9273e3bd169088e8148033).
+- CVEs fixes in [**openvidu/openvidu-server** Docker container](https://hub.docker.com/r/openvidu/openvidu-server/tags) (commit [5921eef](https://github.com/OpenVidu/openvidu/commit/5921eef20a3f13722d9273e3bd169088e8148033)).
 
 <br>
 
