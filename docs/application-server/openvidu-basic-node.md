@@ -15,7 +15,7 @@ To run this application you will need **Node**:
 #### Download repository
 
 ```bash
-git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.32.1
+git clone https://github.com/OpenVidu/openvidu-tutorials.git -b v2.32.2
 cd openvidu-tutorials/openvidu-basic-node
 ```
 
