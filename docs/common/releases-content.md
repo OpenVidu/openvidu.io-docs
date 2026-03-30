@@ -188,6 +188,13 @@ This is a maintenance release with important updates to internal dependencies an
 
 #### PATCH VERSIONS
 
+##### 2.32.2
+
+- Update Coturn to [4.9.0](https://github.com/coturn/coturn/releases/tag/4.9.0):
+    - Fix [CVE-2026-27624](https://nvd.nist.gov/vuln/detail/CVE-2026-27624): bypass localhost and IP range block using IPv4-mapped IPv6.
+    - Fix old STUN RFC 3489 needed by Kurento (submitted PR waiting for approval (https://github.com/coturn/coturn/pull/1839))
+    - Only allow peer relay udp
+
 ##### 2.32.1
 
 - CVEs fixes in [**openvidu/openvidu-server** Docker container](https://hub.docker.com/r/openvidu/openvidu-server/tags) (commit [5921eef](https://github.com/OpenVidu/openvidu/commit/5921eef20a3f13722d9273e3bd169088e8148033)).
