@@ -235,7 +235,6 @@ Although most OpenVidu v2 applications should work out of the box with OpenVidu 
 
 - `reason` attribute is available but not accurate for events: [sessionDisconnected](api/openvidu-browser/classes/SessionDisconnectedEvent.html#reason), [connectionDestroyed](api/openvidu-browser/classes/ConnectionEvent.html#reason), [streamDestroyed](api/openvidu-browser/classes/StreamEvent.html#reason) and [recordingStopped](api/openvidu-browser/classes/RecordingEvent.html#reason).
 - When using [Network Quality API](advanced-features/network-quality/#understanding-the-network-quality-level), event [NetworkQualityLevelChanged](api/openvidu-browser/classes/NetworkQualityLevelChangedEvent.html) now returns only values ​​1,3 and 5 (never 2 or 4). Representing 5 good network, 3 average network and 1 poor network.
-- Method [Stream.reconnect](api/openvidu-browser/classes/Stream.html#reconnect) exists but does nothing.
 - ICE exception events are not generated. This means that [ExceptionEvent](api/openvidu-browser/classes/ExceptionEvent.html) will not be fired with event names [ICE_CANDIDATE_ERROR](api/openvidu-browser/enums/ExceptionEventName.html#ICE_CANDIDATE_ERROR), [ICE_CONNECTION_DISCONNECTED](api/openvidu-browser/enums/ExceptionEventName.html#ICE_CONNECTION_DISCONNECTED), [ICE_CONNECTION_FAILED](api/openvidu-browser/enums/ExceptionEventName.html#ICE_CONNECTION_FAILED).
 
 #### Breaking changes in recording
