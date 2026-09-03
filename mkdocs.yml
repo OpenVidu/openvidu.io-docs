@@ -2,11 +2,13 @@
 # https://www.mkdocs.org/user-guide/configuration/
 
 # Project information.
-site_name: OpenVidu Docs
-site_url: https://docs.openvidu.io/
+site_name: OpenVidu 2.x Docs
+# Fixed to the stable version path on purpose: MkDocs derives every page's
+# canonical URL and the sitemap from it, and all versions must point at stable.
+site_url: https://docs.openvidu.io/en/stable/
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 edit_uri: blob/master/docs/
-site_description: OpenVidu documentation pages
+site_description: Documentation for OpenVidu 2.x, the legacy version of OpenVidu. New projects should use OpenVidu 3 at openvidu.io.
 
 # Documentation layout.
 nav:
@@ -180,3 +182,162 @@ extra:
     READTHEDOCS_VERSION: !ENV [READTHEDOCS_VERSION, null]
     READTHEDOCS_PROJECT: !ENV [READTHEDOCS_PROJECT, null]
     READTHEDOCS_LANGUAGE: !ENV [READTHEDOCS_LANGUAGE, null]
+    # 2.x page URL (as MkDocs `page.url`) -> equivalent OpenVidu 3 page. Read by
+    # base.html for the per-page notice; pages not listed link to the 3.x docs home.
+    v3_counterparts:
+        # Home, meta and orientation
+        "": https://openvidu.io/latest/docs/
+        openvidu3/: https://openvidu.io/latest/docs/
+        getting-started/: https://openvidu.io/latest/docs/getting-started/
+        developing-your-video-app/: https://openvidu.io/latest/docs/build-your-app/
+        developing/: https://openvidu.io/latest/docs/build-your-app/
+        developing/rpc/: https://openvidu.io/latest/docs/reference/client-sdk/
+        releases/: https://openvidu.io/latest/docs/releases/
+        troubleshooting/: https://openvidu.io/support/
+        livestreaming-videoconferences/: https://openvidu.io/latest/docs/self-hosting/production-ready/scalability/
+        # Application server
+        application-server/: https://openvidu.io/latest/docs/tutorials/application-server/
+        application-server/openvidu-basic-java/: https://openvidu.io/latest/docs/tutorials/application-server/java/
+        application-server/openvidu-basic-node/: https://openvidu.io/latest/docs/tutorials/application-server/node/
+        application-server/openvidu-basic-python/: https://openvidu.io/latest/docs/tutorials/application-server/python/
+        application-server/openvidu-basic-dotnet/: https://openvidu.io/latest/docs/tutorials/application-server/dotnet/
+        application-server/openvidu-basic-ruby/: https://openvidu.io/latest/docs/tutorials/application-server/ruby/
+        application-server/user-authentication/: https://openvidu.io/latest/docs/reference/access-tokens/#generating-a-token
+        # Ready-to-use component and OpenVidu Components
+        ready-to-use-component/: https://openvidu.io/latest/meet/embedded/reference/webcomponent/
+        components/: https://openvidu.io/latest/docs/ui-components/angular-components/
+        components/openvidu-custom-ui/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-ui/
+        components/openvidu-custom-toolbar/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-toolbar/
+        components/openvidu-toolbar-buttons/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-toolbar-buttons/
+        components/openvidu-toolbar-panel-buttons/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-toolbar-panel-buttons/
+        components/openvidu-custom-layout/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-layout/
+        components/openvidu-custom-stream/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-stream/
+        components/openvidu-custom-panels/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-panels/
+        components/openvidu-additional-panels/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-additional-panels/
+        components/openvidu-custom-chat-panel/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-chat-panel/
+        components/openvidu-custom-activities-panel/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-activities-panel/
+        components/openvidu-custom-participants-panel/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-participants-panel/
+        components/openvidu-custom-participant-panel-item/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-participant-panel-item/
+        components/openvidu-custom-participant-panel-item-elements/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-custom-participant-panel-item-element/
+        components/openvidu-toggle-hand/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-toggle-hand/
+        components/openvidu-admin-dashboard/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-admin-dashboard/
+        components/openvidu-call/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        # Full control of the UI: tutorials and demos
+        full-control-ui/: https://openvidu.io/latest/docs/tutorials/application-client/
+        tutorials/openvidu-hello-world/: https://openvidu.io/latest/docs/getting-started/
+        tutorials/openvidu-js/: https://openvidu.io/latest/docs/tutorials/application-client/javascript/
+        tutorials/openvidu-angular/: https://openvidu.io/latest/docs/tutorials/application-client/angular/
+        tutorials/openvidu-react/: https://openvidu.io/latest/docs/tutorials/application-client/react/
+        tutorials/openvidu-vue/: https://openvidu.io/latest/docs/tutorials/application-client/vue/
+        tutorials/openvidu-ionic/: https://openvidu.io/latest/docs/tutorials/application-client/ionic/
+        tutorials/openvidu-ionic-cordova/: https://openvidu.io/latest/docs/tutorials/application-client/ionic/
+        tutorials/openvidu-react-native/: https://openvidu.io/latest/docs/tutorials/application-client/
+        tutorials/openvidu-electron/: https://openvidu.io/latest/docs/tutorials/application-client/electron/
+        tutorials/openvidu-android/: https://openvidu.io/latest/docs/tutorials/application-client/android/
+        tutorials/openvidu-ios/: https://openvidu.io/latest/docs/tutorials/application-client/ios/
+        tutorials/openvidu-iframe/: https://openvidu.io/latest/meet/embedded/reference/iframe/
+        tutorials/openvidu-js-screen-share/: https://openvidu.io/latest/docs/reference/client-sdk/#screen-sharing
+        tutorials/openvidu-library-react/: https://openvidu.io/latest/docs/ui-components/react-components/
+        tutorials/openvidu-ipcameras/: https://openvidu.io/latest/docs/build-your-app/common-operations/#ip-cameras
+        tutorials/openvidu-filters/: https://openvidu.io/latest/docs/reference/client-sdk/#virtual-background
+        tutorials/openvidu-virtual-background/: https://openvidu.io/latest/docs/reference/client-sdk/#virtual-background
+        tutorials/openvidu-speech-to-text/: https://openvidu.io/latest/docs/tutorials/ai-services/openvidu-live-captions/
+        tutorials/openvidu-roles-java/: https://openvidu.io/latest/docs/reference/access-tokens/#video-grants
+        tutorials/openvidu-roles-node/: https://openvidu.io/latest/docs/reference/access-tokens/#video-grants
+        tutorials/openvidu-recording-java/: https://openvidu.io/latest/docs/tutorials/advanced-features/recording-basic-s3/
+        tutorials/openvidu-recording-node/: https://openvidu.io/latest/docs/tutorials/advanced-features/recording-basic-s3/
+        demos/openvidu-getaroom/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        demos/openvidu-classroom/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        demos/openvidu-call-react/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        # Cheatsheet
+        cheatsheet/join-session/: https://openvidu.io/latest/docs/reference/client-sdk/#connecting-to-a-room
+        cheatsheet/leave-session/: https://openvidu.io/latest/docs/reference/client-sdk/#disconnect-from-a-room
+        cheatsheet/subscribe-unsubscribe/: https://openvidu.io/latest/docs/reference/client-sdk/#subscribe-to-a-track
+        cheatsheet/publish-unpublish/: https://openvidu.io/latest/docs/reference/client-sdk/#publish-a-track
+        cheatsheet/mute-audio-video/: https://openvidu.io/latest/docs/reference/client-sdk/#muteunmute-a-track
+        cheatsheet/manage-videos/: https://openvidu.io/latest/docs/reference/client-sdk/#tracks
+        cheatsheet/share-data/: https://openvidu.io/latest/docs/reference/client-sdk/#shared-state
+        cheatsheet/send-messages/: https://openvidu.io/latest/docs/reference/client-sdk/#text-and-files
+        # Advanced features
+        advanced-features/recording/: https://openvidu.io/latest/docs/reference/egress/
+        advanced-features/media-codecs/: https://openvidu.io/latest/docs/reference/client-sdk/#bandwidth-optimizations
+        advanced-features/screen-share/: https://openvidu.io/latest/docs/reference/client-sdk/#screen-sharing
+        advanced-features/ip-cameras/: https://openvidu.io/latest/docs/build-your-app/common-operations/#ip-cameras
+        advanced-features/speech-detection/: https://openvidu.io/latest/docs/reference/client-sdk/#participants-and-room-state
+        advanced-features/filters/: https://openvidu.io/latest/docs/reference/client-sdk/#virtual-background
+        advanced-features/switch-camera/: https://openvidu.io/latest/docs/reference/client-sdk/#publish-a-track
+        advanced-features/automatic-reconnection/: https://openvidu.io/latest/docs/reference/client-sdk/#reconnection
+        advanced-features/sip/: https://openvidu.io/latest/docs/reference/ingress/
+        advanced-features/network-quality/: https://openvidu.io/latest/docs/reference/client-sdk/#quality-devices-and-diagnostics
+        advanced-features/virtual-background/: https://openvidu.io/latest/docs/reference/client-sdk/#virtual-background
+        advanced-features/speech-to-text/: https://openvidu.io/latest/docs/ai/live-captions/
+        advanced-features/broadcast/: https://openvidu.io/latest/docs/reference/egress/#streams
+        advanced-features/streaming/: https://openvidu.io/latest/docs/reference/egress/#streams
+        # Reference documentation
+        reference-docs/openvidu-browser/: https://openvidu.io/latest/docs/reference/client-sdk/
+        reference-docs/openvidu-java-client/: https://openvidu.io/latest/docs/reference/room-service-api/
+        reference-docs/openvidu-node-client/: https://openvidu.io/latest/docs/reference/room-service-api/
+        reference-docs/openvidu-angular/: https://openvidu.io/latest/docs/ui-components/angular-components/
+        reference-docs/REST-API/: https://openvidu.io/latest/docs/reference/room-service-api/
+        reference-docs/openvidu-config/: https://openvidu.io/latest/docs/self-hosting/configuration/reference/
+        reference-docs/openvidu-server-webhook/: https://openvidu.io/latest/docs/reference/webhooks/
+        reference-docs/openvidu-server-cdr/: https://openvidu.io/latest/docs/reference/webhooks/
+        reference-docs/openvidu-server-params/: https://openvidu.io/latest/docs/self-hosting/configuration/reference/
+        # Deployment
+        deployment/: https://openvidu.io/latest/docs/self-hosting/deployment-types/
+        deployment/ce/aws/: https://openvidu.io/latest/docs/self-hosting/single-node/aws/install/
+        deployment/ce/on-premises/: https://openvidu.io/latest/docs/self-hosting/single-node/on-premises/install/
+        deployment/ce/upgrading/: https://openvidu.io/latest/docs/self-hosting/single-node/upgrade/
+        deployment/pro/aws/: https://openvidu.io/latest/docs/self-hosting/elastic/aws/install/
+        deployment/pro/on-premises/: https://openvidu.io/latest/docs/self-hosting/elastic/on-premises/install/
+        deployment/pro/upgrading/: https://openvidu.io/latest/docs/self-hosting/elastic/
+        deployment/enterprise/aws/: https://openvidu.io/latest/docs/self-hosting/ha/aws/install/
+        deployment/enterprise/on-premises/: https://openvidu.io/latest/docs/self-hosting/ha/on-premises/
+        deployment/enterprise/upgrading/: https://openvidu.io/latest/docs/self-hosting/ha/
+        deployment/pro-enterprise/aws/: https://openvidu.io/latest/docs/self-hosting/elastic/aws/install/
+        deployment/pro-enterprise/enterprise-aws/: https://openvidu.io/latest/docs/self-hosting/ha/aws/install/
+        deployment/pro-enterprise/on-premises/: https://openvidu.io/latest/docs/self-hosting/elastic/on-premises/install/
+        deployment/pro-enterprise/upgrading/: https://openvidu.io/latest/docs/self-hosting/elastic/
+        deployment/deploying-aws/: https://openvidu.io/latest/docs/self-hosting/single-node/aws/install/
+        deployment/deploying-on-premises/: https://openvidu.io/latest/docs/self-hosting/single-node/on-premises/install/
+        deployment/upgrading/: https://openvidu.io/latest/docs/self-hosting/single-node/upgrade/
+        deployment/deploying-openvidu-apps/: https://openvidu.io/latest/meet/embedded/deploy-your-app/
+        deployment/allow-users-behind-firewalls/: https://openvidu.io/latest/docs/self-hosting/how-to-guides/force-single-port/
+        # OpenVidu PRO
+        openvidu-pro/: https://openvidu.io/latest/docs/self-hosting/production-ready/
+        openvidu-pro/scalability/: https://openvidu.io/latest/docs/self-hosting/production-ready/scalability/
+        openvidu-pro/fault-tolerance/: https://openvidu.io/latest/docs/self-hosting/production-ready/fault-tolerance/
+        openvidu-pro/openvidu-inspector/: https://openvidu.io/latest/docs/self-hosting/production-ready/observability/openvidu-dashboard/
+        openvidu-pro/detailed-session-monitoring/: https://openvidu.io/latest/docs/self-hosting/production-ready/observability/grafana-stack/
+        openvidu-pro/monitoring-elastic-stack/: https://openvidu.io/latest/docs/self-hosting/production-ready/observability/grafana-stack/
+        openvidu-pro/deployment/aws/: https://openvidu.io/latest/docs/self-hosting/elastic/aws/install/
+        openvidu-pro/deployment/on-premises/: https://openvidu.io/latest/docs/self-hosting/elastic/on-premises/install/
+        openvidu-pro/deployment/upgrading/: https://openvidu.io/latest/docs/self-hosting/elastic/
+        openvidu-pro/reference-docs/openvidu-pro-config/: https://openvidu.io/latest/docs/self-hosting/configuration/reference/
+        openvidu-pro/reference-docs/openvidu-server-pro-params/: https://openvidu.io/latest/docs/self-hosting/configuration/reference/
+        openvidu-pro/reference-docs/openvidu-server-pro-cdr/: https://openvidu.io/latest/docs/reference/webhooks/
+        openvidu-pro/reference-docs/REST-API-pro/: https://openvidu.io/latest/docs/reference/room-service-api/
+        # OpenVidu Enterprise
+        openvidu-enterprise/: https://openvidu.io/latest/docs/self-hosting/production-ready/performance/
+        openvidu-enterprise/simulcast/: https://openvidu.io/latest/docs/reference/client-sdk/#bandwidth-optimizations
+        openvidu-enterprise/high-availability/: https://openvidu.io/latest/docs/self-hosting/production-ready/fault-tolerance/
+        # Pages that exist only in branches 2.11.0-2.19.0 (harmless on newer ones)
+        tutorials/: https://openvidu.io/latest/docs/tutorials/application-client/
+        tutorials/openvidu-insecure-js/: https://openvidu.io/latest/docs/tutorials/application-client/javascript/
+        tutorials/openvidu-insecure-angular/: https://openvidu.io/latest/docs/tutorials/application-client/angular/
+        tutorials/openvidu-insecure-react/: https://openvidu.io/latest/docs/tutorials/application-client/react/
+        tutorials/openvidu-insecure-vue/: https://openvidu.io/latest/docs/tutorials/application-client/vue/
+        tutorials/openvidu-ionic-capacitor/: https://openvidu.io/latest/docs/tutorials/application-client/ionic/
+        tutorials/openvidu-js-java/: https://openvidu.io/latest/docs/tutorials/application-server/java/
+        tutorials/openvidu-mvc-java/: https://openvidu.io/latest/docs/tutorials/application-server/java/
+        tutorials/openvidu-js-node/: https://openvidu.io/latest/docs/tutorials/application-server/node/
+        tutorials/openvidu-mvc-node/: https://openvidu.io/latest/docs/tutorials/application-server/node/
+        tutorials/openvidu-library-angular/: https://openvidu.io/latest/docs/ui-components/angular-components/
+        tutorials/openvidu-webcomponent/: https://openvidu.io/latest/meet/embedded/reference/webcomponent/
+        demos/openvidu-call/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        demos/openvidu-call-ionic/: https://openvidu.io/latest/docs/tutorials/angular-components/openvidu-components-demo/
+        deployment/deploying-app/: https://openvidu.io/latest/docs/build-your-app/#4-deploy-openvidu-and-your-application
+        deployment/deploying-ubuntu/: https://openvidu.io/latest/docs/self-hosting/single-node/on-premises/install/
+        openvidu-pro/deploying-openvidu-pro/: https://openvidu.io/latest/docs/self-hosting/elastic/
+        openvidu-pro/deployment/kubernetes/: https://openvidu.io/latest/docs/self-hosting/deployment-types/
+        openvidu-pro/REST-API-pro/: https://openvidu.io/latest/docs/reference/room-service-api/
