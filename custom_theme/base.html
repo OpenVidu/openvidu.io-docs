@@ -12,18 +12,16 @@
 		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<meta name="format-detection" content="telephone=no">
 		<meta name="keywords" content="OpenVidu, openvidu, WebRTC, Video, mobile" />
-		{% if page and page.is_homepage %}<meta name="description" content="{{ config['site_description'] }}">{% endif %}
+		{#- Every version's build canonicalizes to /en/stable/: site_url is fixed to that path. #}
+		{% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+		{%- if page and page.meta and page.meta.description %}
+		<meta name="description" content="{{ page.meta.description }}">
+		{%- elif page and page.title and not page.is_homepage %}
+		<meta name="description" content="{{ page.title }} in OpenVidu 2.x (legacy documentation). New projects should use OpenVidu 3 at openvidu.io.">
+		{%- else %}
+		<meta name="description" content="{{ config.site_description }}">
+		{%- endif %}
 		{% if config.site_author %}<meta name="author" content="{{ config.site_author }}">{% endif %}
-
-		{#
-		FIXME: MkDocs requires that `site_url` is set to the complete URL of the docs,
-		including any subdirectories. But RTD doesn't yet provide any
-		way to configure `site_url` with the correct directory path!
-		This means that `page.canonical_url` ends up pointing to an nonexistent URL.
-		Related: https://github.com/readthedocs/readthedocs.org/issues/8260
-		#}
-		{# {% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %} #}
-		{# The canonical URL is set below, when the domain "docs.openvidu.io" is detected #}
 
 		{% if config.site_favicon %}<link rel="shortcut icon" href="{{ config.site_favicon|url }}">
 		{% else %}<link rel="shortcut icon" href="img/favicon.ico">{% endif %}
@@ -58,7 +56,6 @@
 	config.theme.locale.language: {{ config.theme.locale.language }}
 	config.docs_dir: {{ config.docs_dir }}
 	#}
-	{% if page %}<link rel="canonical" href="{{ config.site_url }}{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/{{ page.url }}">{% endif %}
 	<base href="/{{ config.theme.locale.language }}/{{ config.docs_dir.split('/')[-2] }}/" />
 	{%- else %}
 	{#
@@ -185,6 +182,12 @@
 			<div>
 
 				<div role="main">
+					{%- set v3_url = (config.extra.v3_counterparts or {}).get(page.url if page else '', 'https://openvidu.io/latest/docs/') %}
+					<aside id="v2-notice" role="note">
+						You are reading the documentation of <strong>OpenVidu 2.x</strong> (legacy).
+						The current version is OpenVidu 3 —
+						<a href="{{ v3_url }}">see the equivalent page in the OpenVidu 3 documentation</a>.
+					</aside>
 					<div class="section">
 						{% block content %} {{ page.content }} {% endblock %}
 					</div>
