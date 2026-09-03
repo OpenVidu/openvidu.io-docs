@@ -11,3 +11,19 @@
         url('fonts/Arciform.svg#svgFontName') format('svg');
     /* Legacy iOS */
 }
+
+/* Per-page notice pointing 2.x readers to the equivalent OpenVidu 3 page */
+#v2-notice {
+    margin: 0 0 24px;
+    padding: 12px 16px;
+    border-left: 4px solid #ffcc00;
+    background-color: #fff8e1;
+    color: #4c4c4c;
+    font-size: 15px;
+    text-align: left;
+}
+
+#v2-notice a {
+    color: #0088aa;
+    font-weight: bold;
+}
