@@ -106,17 +106,14 @@ the message could be changed to this:
             //     .pop();
 
             if (/*urlVersion !== selectorNewestVersion && */!window.location.pathname.includes("/openvidu3/")) {
-                const restOfPath = pathSplitted.slice(2, pathSplitted.length).join("/");
-                const hash = window.location.hash;
-
-                document.getElementById("link-to-stable").onclick = function () {
-                    // if (restOfPath.length > 0) {
-                    //     window.location.href = "/en/stable/" + restOfPath + "/" + hash;
-                    // } else {
-                    //     window.location.href = "/en/stable/" + hash;
-                    // }
-                    window.open("https://openvidu.io", "_blank");
-                };
+                // The page sets data-v3-url to its OpenVidu 3 counterpart (see base.html);
+                // versions built before that attribute existed fall back to the 3.x docs home.
+                const wrapper = document.getElementById("version-warning-wrapper");
+                const v3Url = (wrapper && wrapper.dataset.v3Url) || "https://openvidu.io/latest/docs/";
+                const link = document.getElementById("link-to-stable");
+                link.href = v3Url;
+                link.target = "_blank";
+                link.rel = "noopener";
                 $("#version-warning").show();
             }
         });
