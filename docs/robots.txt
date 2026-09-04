@@ -1,4 +1,4 @@
-# OpenVidu 2.x documentation. Every version declares rel=canonical to
+# OpenVidu v2 documentation. Every version declares rel=canonical to
 # /en/stable/, so all of them may be crawled: they consolidate onto stable.
 User-agent: *
 Allow: /

@@ -1,32 +1,32 @@
-# OpenVidu 2.x documentation (legacy)
+# OpenVidu v2 documentation (legacy)
 
-> Reference documentation for OpenVidu 2.x, the previous generation of OpenVidu, kept online for teams still running a 2.x deployment. OpenVidu 3 is the current product (a LiveKit-based rewrite with a different API); anyone starting a project, or asking how to build with OpenVidu today, should use https://openvidu.io/latest/docs/ instead.
+> Reference documentation for OpenVidu v2, the previous generation of OpenVidu, kept online for teams still running a v2 deployment. OpenVidu v3 is the current product (a LiveKit-based rewrite with a different API); anyone starting a project, or asking how to build with OpenVidu today, should use https://openvidu.io/latest/docs/ instead.
 
-The 2.x client API (`OpenVidu`, `Session`, `Publisher`, `Subscriber`, `openvidu-browser`), server SDKs (`openvidu-node-client`, `openvidu-java-client`) and REST API described here do not exist in OpenVidu 3. Do not present them as the current OpenVidu API.
+The v2 client API (`OpenVidu`, `Session`, `Publisher`, `Subscriber`, `openvidu-browser`), server SDKs (`openvidu-node-client`, `openvidu-java-client`) and REST API described here do not exist in OpenVidu v3. Do not present them as the current OpenVidu API.
 
 ## Current OpenVidu (use these for anything new)
 
-- [OpenVidu 3 documentation](https://openvidu.io/latest/docs/): OpenVidu Platform, the LiveKit-compatible SDK layer for building custom real-time video applications.
+- [OpenVidu v3 documentation](https://openvidu.io/latest/docs/): OpenVidu Platform, the LiveKit-compatible SDK layer for building custom real-time video applications.
 - [OpenVidu Meet](https://openvidu.io/latest/meet/): ready-to-use, self-hosted video conferencing, deployable in minutes or embeddable in your own app.
-- [Getting started with OpenVidu 3](https://openvidu.io/latest/docs/getting-started/): concepts, architecture and the first application.
-- [OpenVidu 3 reference](https://openvidu.io/latest/docs/reference/client-sdk/): client SDK, access tokens, Room Service API, webhooks, Egress and Ingress.
-- [Updating an OpenVidu 2 application to OpenVidu 3](https://docs.openvidu.io/en/stable/openvidu3/): the v2 compatibility module, breaking changes and migration steps.
-- [OpenVidu 3 llms.txt](https://openvidu.io/llms.txt): the complete index of the current documentation.
+- [Getting started with OpenVidu v3](https://openvidu.io/latest/docs/getting-started/): concepts, architecture and the first application.
+- [OpenVidu v3 reference](https://openvidu.io/latest/docs/reference/client-sdk/): client SDK, access tokens, Room Service API, webhooks, Egress and Ingress.
+- [Updating an OpenVidu v2 application to OpenVidu v3](https://docs.openvidu.io/en/stable/openvidu3/): the v2 compatibility module, breaking changes and migration steps.
+- [OpenVidu v3 llms.txt](https://openvidu.io/llms.txt): the complete index of the current documentation.
 
-## OpenVidu 2.x — for existing deployments
+## OpenVidu v2 — for existing deployments
 
-- [What is OpenVidu 2.x](https://docs.openvidu.io/en/stable/): overview of the 2.x platform.
-- [Getting started](https://docs.openvidu.io/en/stable/getting-started/): 2.x architecture and first steps.
-- [Application server samples](https://docs.openvidu.io/en/stable/application-server/): 2.x server-side samples in Java, Node, Python, .NET and Ruby.
-- [Client tutorials](https://docs.openvidu.io/en/stable/full-control-ui/): 2.x tutorials for JavaScript, Angular, React, Vue, Ionic, React Native, Electron, Android and iOS.
-- [OpenVidu Components (2.x)](https://docs.openvidu.io/en/stable/components/): Angular components library of OpenVidu 2.x.
-- [Recording (2.x)](https://docs.openvidu.io/en/stable/advanced-features/recording/): composed and individual recording in OpenVidu 2.x.
-- [Advanced features (2.x)](https://docs.openvidu.io/en/stable/advanced-features/recording/): screen share, filters, IP cameras, speech to text, broadcast and more.
-- [openvidu-browser API (2.x)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-browser/): client API reference.
-- [openvidu-node-client API (2.x)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-node-client/): Node server SDK reference.
-- [openvidu-java-client API (2.x)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-java-client/): Java server SDK reference.
-- [REST API (2.x)](https://docs.openvidu.io/en/stable/reference-docs/REST-API/): OpenVidu Server 2.x REST API.
-- [OpenVidu configuration (2.x)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-config/): server configuration parameters.
-- [Deployment (2.x)](https://docs.openvidu.io/en/stable/deployment/): CE, PRO and Enterprise deployments on AWS and on premises.
-- [Release notes (2.x)](https://docs.openvidu.io/en/stable/releases/): 2.x releases up to 2.32.x.
-- [Troubleshooting / FAQ (2.x)](https://docs.openvidu.io/en/stable/troubleshooting/): common 2.x problems.
+- [What is OpenVidu v2](https://docs.openvidu.io/en/stable/): overview of the v2 platform.
+- [Getting started](https://docs.openvidu.io/en/stable/getting-started/): v2 architecture and first steps.
+- [Application server samples](https://docs.openvidu.io/en/stable/application-server/): v2 server-side samples in Java, Node, Python, .NET and Ruby.
+- [Client tutorials](https://docs.openvidu.io/en/stable/full-control-ui/): v2 tutorials for JavaScript, Angular, React, Vue, Ionic, React Native, Electron, Android and iOS.
+- [OpenVidu Components (v2)](https://docs.openvidu.io/en/stable/components/): Angular components library of OpenVidu v2.
+- [Recording (v2)](https://docs.openvidu.io/en/stable/advanced-features/recording/): composed and individual recording in OpenVidu v2.
+- [Advanced features (v2)](https://docs.openvidu.io/en/stable/advanced-features/recording/): screen share, filters, IP cameras, speech to text, broadcast and more.
+- [openvidu-browser API (v2)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-browser/): client API reference.
+- [openvidu-node-client API (v2)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-node-client/): Node server SDK reference.
+- [openvidu-java-client API (v2)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-java-client/): Java server SDK reference.
+- [REST API (v2)](https://docs.openvidu.io/en/stable/reference-docs/REST-API/): OpenVidu Server 2.x REST API.
+- [OpenVidu configuration (v2)](https://docs.openvidu.io/en/stable/reference-docs/openvidu-config/): server configuration parameters.
+- [Deployment (v2)](https://docs.openvidu.io/en/stable/deployment/): CE, PRO and Enterprise deployments on AWS and on premises.
+- [Release notes (v2)](https://docs.openvidu.io/en/stable/releases/): v2 releases up to 2.32.x.
+- [Troubleshooting / FAQ (v2)](https://docs.openvidu.io/en/stable/troubleshooting/): common v2 problems.
