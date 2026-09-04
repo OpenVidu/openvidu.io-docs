@@ -9,7 +9,7 @@ The 2.x client API (`OpenVidu`, `Session`, `Publisher`, `Subscriber`, `openvidu-
 - [OpenVidu 3 documentation](https://openvidu.io/latest/docs/): OpenVidu Platform, the LiveKit-compatible SDK layer for building custom real-time video applications.
 - [OpenVidu Meet](https://openvidu.io/latest/meet/): ready-to-use, self-hosted video conferencing, deployable in minutes or embeddable in your own app.
 - [Getting started with OpenVidu 3](https://openvidu.io/latest/docs/getting-started/): concepts, architecture and the first application.
-- [OpenVidu 3 reference](https://openvidu.io/latest/docs/reference/client-sdk/): client SDK, access tokens, Room Service API, webhooks, Egress and Ingress.
+- [OpenVidu 3 reference](https://openvidu.io/latest/docs/reference/): client SDK, access tokens, Room Service API, webhooks, Egress and Ingress.
 - [Updating an OpenVidu 2 application to OpenVidu 3](https://docs.openvidu.io/en/stable/openvidu3/): the v2 compatibility module, breaking changes and migration steps.
 - [OpenVidu 3 llms.txt](https://openvidu.io/llms.txt): the complete index of the current documentation.
 
