@@ -2,13 +2,13 @@
 # https://www.mkdocs.org/user-guide/configuration/
 
 # Project information.
-site_name: OpenVidu 2.x Docs
+site_name: OpenVidu v2 Docs
 # Fixed to the stable version path on purpose: MkDocs derives every page's
 # canonical URL and the sitemap from it, and all versions must point at stable.
 site_url: https://docs.openvidu.io/en/stable/
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 edit_uri: blob/master/docs/
-site_description: Documentation for OpenVidu 2.x, the legacy version of OpenVidu. New projects should use OpenVidu 3 at openvidu.io.
+site_description: Documentation for OpenVidu v2, the legacy version of OpenVidu. New projects should use OpenVidu v3 at openvidu.io.
 
 # Documentation layout.
 nav:
@@ -175,7 +175,7 @@ extra:
     READTHEDOCS_VERSION: !ENV [READTHEDOCS_VERSION, null]
     READTHEDOCS_PROJECT: !ENV [READTHEDOCS_PROJECT, null]
     READTHEDOCS_LANGUAGE: !ENV [READTHEDOCS_LANGUAGE, null]
-    # 2.x page URL (as MkDocs `page.url`) -> equivalent OpenVidu 3 page. Read by
+    # v2 page URL (as MkDocs `page.url`) -> equivalent OpenVidu v3 page. Read by
     # base.html for the per-page notice; pages not listed link to the 3.x docs home.
     v3_counterparts:
         # Home, meta and orientation
