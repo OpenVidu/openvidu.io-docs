@@ -2,7 +2,7 @@ strict: false
 # Fixed to the stable version path on purpose: MkDocs derives every page's
 # canonical URL and the sitemap from it, and all versions must point at stable.
 site_url: https://docs.openvidu.io/en/stable/
-site_name: OpenVidu 2.x Docs
+site_name: OpenVidu v2 Docs
 repo_url: https://github.com/OpenVidu/openvidu.io-docs
 nav:
 - What is OpenVidu?: index.md
@@ -97,7 +97,7 @@ markdown_extensions:
         permalink: " 🔗"
 
 extra:
-    # 2.x page URL (as MkDocs `page.url`) -> equivalent OpenVidu 3 page. Read by
+    # v2 page URL (as MkDocs `page.url`) -> equivalent OpenVidu v3 page. Read by
     # base.html for the per-page notice; pages not listed link to the 3.x docs home.
     v3_counterparts:
         # Home, meta and orientation
