@@ -1,7 +1,9 @@
-# Disallow indexing of old documentation versions.
+# OpenVidu 2.x documentation. stable and 2.32.0 declare rel=canonical to
+# /en/stable/; older versions are unblocked one by one as they are rebuilt
+# with the same canonical (all versions stay online for their users).
 User-agent: *
 Disallow: /en/*/
 Allow: /en/stable/
-Allow: /en/latest/
+Allow: /en/2.32.0/
 
 Sitemap: https://docs.openvidu.io/sitemap.xml
