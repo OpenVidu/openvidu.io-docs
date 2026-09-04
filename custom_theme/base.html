@@ -183,11 +183,13 @@
 
 				<div role="main">
 					{%- set v3_url = (config.extra.v3_counterparts or {}).get(page.url if page else '', 'https://openvidu.io/latest/docs/') %}
+					{%- if page and page.url != 'openvidu3/' %}
 					<aside id="v2-notice" role="note">
 						You are reading the documentation of <strong>OpenVidu v2</strong> (legacy).
 						The current version is OpenVidu v3 —
 						<a href="{{ v3_url }}">see the equivalent page in the OpenVidu v3 documentation</a>.
 					</aside>
+					{%- endif %}
 					<div class="section">
 						{% block content %} {{ page.content }} {% endblock %}
 					</div>
