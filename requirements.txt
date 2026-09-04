@@ -1,4 +1,7 @@
 # requirements.txt
 mkdocs==1.1
 markdown==3.2.1
+# Last releases that keep the APIs MkDocs 1.1 imports (jinja2.contextfilter, markupsafe.soft_unicode).
+jinja2==3.0.3
+markupsafe==2.0.1
 jinja2<3.1.0
