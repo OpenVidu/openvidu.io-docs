@@ -1,9 +1,15 @@
-# OpenVidu 2.x documentation. stable and 2.32.0 declare rel=canonical to
-# /en/stable/; older versions are unblocked one by one as they are rebuilt
-# with the same canonical (all versions stay online for their users).
+# OpenVidu 2.x documentation. stable and 2.20.0-2.32.0 declare rel=canonical
+# to /en/stable/ and are crawlable. 2.11.0-2.19.0 stay blocked until they are
+# rebuilt with the same canonical (all versions stay online for their users).
 User-agent: *
-Disallow: /en/*/
-Allow: /en/stable/
-Allow: /en/2.32.0/
+Disallow: /en/2.11.0/
+Disallow: /en/2.12.0/
+Disallow: /en/2.13.0/
+Disallow: /en/2.14.0/
+Disallow: /en/2.15.0/
+Disallow: /en/2.16.0/
+Disallow: /en/2.17.0/
+Disallow: /en/2.18.0/
+Disallow: /en/2.19.0/
 
 Sitemap: https://docs.openvidu.io/sitemap.xml
