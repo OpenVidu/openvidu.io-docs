@@ -8,11 +8,11 @@
 	{%- if page and page.meta and page.meta.description %}
 	<meta name="description" content="{{ page.meta.description }}">
 	{%- elif page and page.title and not page.is_homepage %}
-	<meta name="description" content="{{ page.title }} in OpenVidu 2.x (legacy documentation). New projects should use OpenVidu 3 at openvidu.io.">
+	<meta name="description" content="{{ page.title }} in OpenVidu v2 (legacy documentation). New projects should use OpenVidu v3 at openvidu.io.">
 	{%- else %}
-	<meta name="description" content="Documentation for OpenVidu 2.x, the legacy version of OpenVidu. New projects should use OpenVidu 3 at openvidu.io.">
+	<meta name="description" content="Documentation for OpenVidu v2, the legacy version of OpenVidu. New projects should use OpenVidu v3 at openvidu.io.">
 	{%- endif %}
-	<title>{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}OpenVidu 2.x Docs</title>
+	<title>{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}OpenVidu v2 Docs</title>
 	<meta charset="utf-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport"
@@ -24,7 +24,7 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link href="css/style-custom.css" rel="stylesheet" type="text/css" />
 	<link href="css/docs-layout.css" rel="stylesheet" type="text/css" />
-	<link href="docs-own-styles.css" rel="stylesheet" type="text/css" />
+	<link href="docs-own-styles.css{% if build_date_utc %}?v={{ build_date_utc.strftime('%Y%m%d%H%M%S') }}{% endif %}" rel="stylesheet" type="text/css" />
 	<!-- Skin Color -->
 	<link rel="stylesheet" href="css/colors/yellow.css" id="color-skins" />
 	<link rel="stylesheet" type="text/css" href="css/downloads/cookieconsent-3.0.3.css" />
@@ -120,9 +120,9 @@
 				<div role="main">
 					{%- set v3_url = (config.extra.v3_counterparts or {}).get(page.url if page else '', 'https://openvidu.io/latest/docs/') %}
 					<aside id="v2-notice" role="note">
-						You are reading the documentation of <strong>OpenVidu 2.x</strong> (legacy).
-						The current version is OpenVidu 3 —
-						<a href="{{ v3_url }}">see the equivalent page in the OpenVidu 3 documentation</a>.
+						You are reading the documentation of <strong>OpenVidu v2</strong> (legacy).
+						The current version is OpenVidu v3 —
+						<a href="{{ v3_url }}">see the equivalent page in the OpenVidu v3 documentation</a>.
 					</aside>
 					<div class="section">
 						{% block content %} {{ page.content }} {% endblock %}
