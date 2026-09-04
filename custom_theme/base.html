@@ -3,7 +3,16 @@
 
 <head>
 	<base href="/en/2.18.0/">
-	<title>OpenVidu Docs</title>
+	{#- Every version's build canonicalizes to /en/stable/: site_url is fixed to that path. #}
+	{% if page and page.canonical_url %}<link rel="canonical" href="{{ page.canonical_url }}">{% endif %}
+	{%- if page and page.meta and page.meta.description %}
+	<meta name="description" content="{{ page.meta.description }}">
+	{%- elif page and page.title and not page.is_homepage %}
+	<meta name="description" content="{{ page.title }} in OpenVidu 2.x (legacy documentation). New projects should use OpenVidu 3 at openvidu.io.">
+	{%- else %}
+	<meta name="description" content="Documentation for OpenVidu 2.x, the legacy version of OpenVidu. New projects should use OpenVidu 3 at openvidu.io.">
+	{%- endif %}
+	<title>{% if page and page.title and not page.is_homepage %}{{ page.title }} - {% endif %}OpenVidu 2.x Docs</title>
 	<meta charset="utf-8">
 	<meta name="format-detection" content="telephone=no">
 	<meta name="viewport"
@@ -109,6 +118,12 @@
 			<div>
 
 				<div role="main">
+					{%- set v3_url = (config.extra.v3_counterparts or {}).get(page.url if page else '', 'https://openvidu.io/latest/docs/') %}
+					<aside id="v2-notice" role="note">
+						You are reading the documentation of <strong>OpenVidu 2.x</strong> (legacy).
+						The current version is OpenVidu 3 —
+						<a href="{{ v3_url }}">see the equivalent page in the OpenVidu 3 documentation</a>.
+					</aside>
 					<div class="section">
 						{% block content %} {{ page.content }} {% endblock %}
 					</div>
